@@ -1,0 +1,583 @@
+{
+ "slug": "capital-humanities-ba",
+ "name": "Humanities, B.A. (Capital)",
+ "type": "major",
+ "degree": "BA",
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/humanities-ba/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "HUM 100N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HUM 200N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HUM 300N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HUM 400N",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nHUM 100NFoundations in the Humanities: Understanding the Human Experience 3\nHUM 200NExplorations in the Humanities: The Quest 3\nHUM 300NInterpretations in the Humanities 3\nHUM 400NExpressions in the Humanities 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select two Humanities (HUM) courses of the following:"
+    },
+    {
+     "type": "course",
+     "code": "HUM 150N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HUM 311N",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "HUM 410",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "HUM 430",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "HUM 453",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HUM 460",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HUM 461",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "HUM 491",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HUM 494",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HUM 495",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HUM 496",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HUM 497",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HUM 499",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect two Humanities (HUM) courses of the following:6\nHUM 150NWorld Mythologies in the Arts\nHUM 311N\nHUM 410\nHUM 430\nHUM 453Texts and Culture\nHUM 460Thematic Studies\nHUM 461\nHUM 491Seminar in Interdisciplinary Humanities\nHUM 494Research Project\nHUM 495Internship\nHUM 496Independent Studies\nHUM 497Special Topics\nHUM 499Foreign Studies\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits in one of the four following areas and 9 credits in a second area:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "HIST, CMLIT, and SPAN courses"
+    },
+    {
+     "type": "course",
+     "code": "CAS 271N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENGL 486",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENGL 488",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "INTST 100",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "ART, ARTH, INART, MUSIC, AND THEA courses"
+    },
+    {
+     "type": "course",
+     "code": "COMM 215",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "COMM 241",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "COMM 242",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "COMM 250",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "PHIL and RLST courses"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "ENGL and CMLIT courses"
+    },
+    {
+     "type": "course",
+     "code": "COMM 230W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "COMM 260W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "COMM 332",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "COMM 346",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "COMM 474",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from AMST, ART, ARTH, CAS, CHNS, CMLIT, COMM, ENGL, FR, HIST, HUM, INART, MUSIC, PHIL, RLST, SPAN, or THEA and/or 12 credits that can be used toward a minor in an area of the student's interests",
+     "from": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Select 12 credits in one of the four following areas and 9 credits in a second area:21\nHistory and Global Cultures\nHIST, CMLIT, and SPAN courses\nCAS 271NIntercultural Communication\nENGL 486The World Novel in English\nENGL 488\nINTST 100Introduction to International Studies\nPerforming and Visual Arts and Art History\nART, ARTH, INART, MUSIC, AND THEA courses\nCOMM 215Basic Photography for Communications\nCOMM 241Graphic Design for Communications\nCOMM 242Basic Video/Filmmaking\nCOMM 250Film History and Theory\nPhilosophy and Religious Studies\nPHIL and RLST courses\nLiterature and Writing\nENGL and CMLIT courses\nCOMM 230WWriting for Media\nCOMM 260WNews Writing and Reporting\nCOMM 332Reporting\nCOMM 346Writing for the Screen I\nCOMM 474Depth Reporting\nSelect 12 credits from AMST, ART, ARTH, CAS, CHNS, CMLIT, COMM, ENGL, FR, HIST, HUM, INART, MUSIC, PHIL, RLST, SPAN, or THEA and/or 12 credits that can be used toward a minor in an area of the student's interests12\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Humanities, B.A. at Harrisburg Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 15S",
+        "ENGL 30T",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Quantification",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "HUM 100N",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language level 1",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100S"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language level 2",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language level 3",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "HUM 200N",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Quantification",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select course in first subfield (1)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HUM 300N",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select course in first subfield (1)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select course in second subfield (2)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Couse",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Degree required course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Select HUM required course (3)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select course in first subfield (1)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select course in second subfield (2)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Degree required course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select additional course in specific area or in support of a minor",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HUM 400N",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select course in first subfield (1)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select additional course in specific area or in support of a minor",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select additional course in specific area or in support of a minor",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Degree required course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "HUM required course (3)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select course in second subfield (2)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Degree required course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select additional course in specific area or in support of a minor",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+LionsDegree
+Copyright 2026 Ojas Khadakban
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+--------------------------------------------------------------------------
+Catalog data
+--------------------------------------------------------------------------
+This repository redistributes a transformed subset of publicly available
+course and program information published by The Pennsylvania State University
+at https://bulletins.psu.edu, under psu-planner/apps/web/public/catalog/.
+
+The data is factual (course codes, titles, credits, prerequisite text,
+requirement tables) and has been mechanically restructured into JSON by the
+scraper in psu-catalog-pipeline/. It is provided for the operation of this
+planner only, and it is NOT covered by the Apache License above; the
+underlying content remains the property of its publisher.
+
+This project is NOT affiliated with, endorsed by, or an official product of
+The Pennsylvania State University. "Penn State", "Nittany Lion", and related
+marks belong to the University. Course data may be out of date or incorrect.
+Always verify your plan with your academic adviser and LionPATH before
+registering.
+
+Advising flowchart PDFs referenced by the pipeline are published by the Penn
+State College of Engineering and are used here as a source for deterministic
+statistical priors only; they are not redistributed in this repository.
+
+--------------------------------------------------------------------------
+Third-party components
+--------------------------------------------------------------------------
+Bundled fonts:
+  Space Grotesk Variable - SIL Open Font License 1.1
+
+Runtime dependencies retain their own licenses; see each package under
+node_modules/ and the lockfile for the authoritative list.

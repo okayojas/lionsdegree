@@ -1,0 +1,69 @@
+{
+ "slug": "health-human-development-health-policy-administration-minor",
+ "name": "Health Policy and Administration, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "health-human-development",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/health-human-development/health-policy-administration-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "HPA 57",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HPA 101",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nHPA 57Consumer Choices in Health Care 3\nHPA 101Introduction to Health Services Organization3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "HPA 210",
+       "HPA 211",
+       "HPA 301W",
+       "HPA 310",
+       "HPA 311",
+       "HPA 332"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-9 credits from 400-level HPA courses",
+     "from": {
+      "kind": "pattern",
+      "subject": "HPA",
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3-6 credits of the following:3-6\nHPA 210Health Care Payment\nHPA 211Financial Decisions in Health Care Organizations\nHPA 301WHealth Services Policy Issues\nHPA 310Health Care and Medical Needs\nHPA 311Population Health and Healthcare\nHPA 332Health Systems Management\nSelect 6-9 credits from 400-level HPA courses6-9\n"
+  }
+ ],
+ "suggestedPlans": []
+}

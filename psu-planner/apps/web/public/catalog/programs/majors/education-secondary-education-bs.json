@@ -1,0 +1,5623 @@
+{
+ "slug": "education-secondary-education-bs",
+ "name": "Secondary Education, B.S. (Education)",
+ "type": "major",
+ "degree": "BS",
+ "college": "education",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/education/secondary-education-bs/",
+ "totalCredits": 126,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CI 280",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CI 295",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "CI 495C",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CI 495E",
+     "credits": 15
+    },
+    {
+     "type": "course",
+     "code": "EDPSY 14",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HDFS 239",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SPLED 400",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "SPLED 403B",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better for teacher certification\nCI 280Introduction to Teaching Multilingual Learners 3\nCI 295Introductory Field Experience for Teacher Preparation2\nCI 495CClinical Application of Instruction -- Secondary Education3\nCI 495EPracticum in Student Teaching--Secondary Education15\nEDPSY 14Learning and Instruction 3\nHDFS 239Adolescent Development 3\nSPLED 400Inclusive Special Ed Foundations: Legal, Characteristics, Collaboration, Assessment, and Management4\nSPLED 403BEvidence-Based Methods for Teaching Secondary Students with Disabilities in Inclusive Settings3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CI 492",
+      "EDPSY 422"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better for teacher certification\nCI 492Identities, Power and Perceptual Pedagogies in Teaching and Learning3\nor EDPSY 422 Learning and Development in the Context of Adversity and Trauma\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of GH courses from Literature Selection",
+     "from": {
+      "kind": "genEd",
+      "domain": "GH"
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EDTHP 115",
+       "EDTHP 115A"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "3 credits at the 400 level of any EDTHP course"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better for teacher certification\nSelect 3 credits of GH courses from Literature Selection3\nSelect 3 credits from the following:3\nEDTHP 115Education in American Society\nEDTHP 115ACompeting Rights: Issues in American Education\n3 credits at the 400 level of any EDTHP course\n"
+  },
+  {
+   "heading": "Requirements for the Option",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select an option"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Requirements for the Option: Require a grade of C or better for teacher certification\nSelect an option38-67\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 113",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "SCIED 411W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCIED 412",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better for teacher certification\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nCHEM 112Chemical Principles II 3\nCHEM 113Experimental Chemistry II 1\nMATH 140Calculus With Analytic Geometry I 4\nSCIED 411WTeaching Secondary Science I3\nSCIED 412Teaching Secondary Science II3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 110",
+      "BIOL 114",
+      "BIOL 115",
+      "BIOL 114",
+      "BIOL 116"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 220W",
+      "BIOL 224",
+      "BIOL 225W"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 240W",
+      "BIOL 244",
+      "BIOL 245W"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BMB 251",
+      "BMB 252",
+      "BIOL 230W",
+      "BIOL 234",
+      "BIOL 235W"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "MATH 141 or 4 credits of 200-level STAT GQ courses"
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "ANTH 21",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ANTH 460",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 427",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOSC 204",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOSC 424",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 211",
+      "PHYS 212"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 250",
+      "PHYS 251"
+     ],
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BMB 211",
+       "BMB 212",
+       "BMB 401",
+       "BMB 402",
+       "CHEM 202",
+       "CHEM 203",
+       "CHEM 210",
+       "CHEM 212",
+       "CHEM 213"
+      ]
+     }
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better for teacher certification\nBIOL 110Biology: Basic Concepts and Biodiversity 4-5\nor BIOL 114& BIOL 115 Biology: Basic Concepts and Biodiversity - Lecture and Biology: Basic Concepts and Biodiversity - Lab\nor BIOL 114& BIOL 116 Biology: Basic Concepts and Biodiversity - Lecture and Biology: Basic Concepts and Biodiversity - FRI Lab\nBIOL 220WBiology: Populations and Communities4\nor BIOL 224& BIOL 225W Biology: Populations and Communities - Lectureand Biology: Populations and Communities - Lab\nBIOL 240WBiology: Function and Development of Organisms4\nor BIOL 244& BIOL 245W Biology: Function and Development of Organisms - Lectureand Biology: Function and Development of Organisms - Lab\nBMB 251& BMB 252Molecular and Cell Biology Iand Molecular and Cell Biology II4-6\nor BIOL 230W Biology: Molecules and Cells\nor BIOL 234& BIOL 235W Biology: Molecules and Cells - Lectureand Biology: Molecules and Cells - Lab\nMATH 141 or 4 credits of 200-level STAT GQ courses4\nSelect one of the following:3-4\nANTH 21Introductory Biological Anthropology\nANTH 460Human Genetics\nBIOL 427Evolution\nGEOSC 204Geobiology\nGEOSC 424Paleontology and Fossils\nSelect one of the following:8\nPHYS 211& PHYS 212General Physics: Mechanicsand General Physics: Electricity and Magnetism\nPHYS 250& PHYS 251Introductory Physics Iand Introductory Physics II\nSelect 6 credits from the following:6\nBMB 211Elementary Biochemistry\nBMB 212Elementary Biochemistry Laboratory\nBMB 401General Biochemistry\nBMB 402General Biochemistry\nCHEM 202Fundamentals of Organic Chemistry I\nCHEM 203Fundamentals of Organic Chemistry II\nCHEM 210Organic Chemistry I\nCHEM 212Organic Chemistry II\nCHEM 213Laboratory in Organic Chemistry\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 8,
+     "commentRaw": "Select 8 credits of 300-level or 400-level BIOL or biological fields",
+     "from": {
+      "kind": "pattern",
+      "subject": "OR",
+      "minLevel": 300
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better for teacher certification\nSelect 8 credits of 300-level or 400-level BIOL or biological fields8\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 113",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 212",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "SCIED 411W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCIED 412",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better for teacher certification\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nCHEM 112Chemical Principles II 3\nCHEM 113Experimental Chemistry II 1\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\nPHYS 211General Physics: Mechanics 4\nPHYS 212General Physics: Electricity and Magnetism 4\nSCIED 411WTeaching Secondary Science I3\nSCIED 412Teaching Secondary Science II3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 110",
+      "BIOL 114",
+      "BIOL 115",
+      "BIOL 114",
+      "BIOL 116"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 202",
+      "CHEM 203"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 210",
+      "CHEM 212",
+      "CHEM 213"
+     ],
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from 400 level CHEM or related field",
+     "from": {
+      "kind": "pattern",
+      "subject": "CHEM",
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better for teacher certification\nBIOL 110Biology: Basic Concepts and Biodiversity 4-5\nor BIOL 114& BIOL 115 Biology: Basic Concepts and Biodiversity - Lecture and Biology: Basic Concepts and Biodiversity - Lab\nor BIOL 114& BIOL 116 Biology: Basic Concepts and Biodiversity - Lecture and Biology: Basic Concepts and Biodiversity - FRI Lab\nSelect one of the following:6-8\nCHEM 202& CHEM 203Fundamentals of Organic Chemistry Iand Fundamentals of Organic Chemistry II\nCHEM 210& CHEM 212& CHEM 213Organic Chemistry Iand Organic Chemistry IIand Laboratory in Organic Chemistry\nSelect 9 credits from 400 level CHEM or related field9\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-9 credits in CHEM or chemistry-related fields at the 200 level or higher (e.g., BMB 211 and BMB 212, BMB 251, BMB 252, MICRB 251, FDSC 400, ANSC 301, NUTR 251, CHEM, CHE)",
+     "from": {
+      "kind": "pattern",
+      "subject": "OR",
+      "minLevel": 200
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better for teacher certification\nSelect 6-9 credits in CHEM or chemistry-related fields at the 200 level or higher (e.g., BMB 211 and BMB 212, BMB 251, BMB 252, MICRB 251, FDSC 400, ANSC 301, NUTR 251, CHEM, CHE)6-9\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ASTRO 10",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "ASTRO 11",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "EARTH 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "SCIED 411W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCIED 412",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better for teacher certification\nASTRO 10Elementary Astronomy 2\nASTRO 11Elementary Astronomy Laboratory 1\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nEARTH 100Environment Earth 3\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\nSCIED 411WTeaching Secondary Science I3\nSCIED 412Teaching Secondary Science II3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 110",
+      "BIOL 114",
+      "BIOL 115",
+      "BIOL 114",
+      "BIOL 116"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 220W",
+      "BIOL 224",
+      "BIOL 225W"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "GEOSC 1",
+      "GEOSC 20"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "GEOSC 21",
+      "GEOSC 204"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 211",
+      "PHYS 212"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 250",
+      "PHYS 251"
+     ],
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "METEO 3",
+       "METEO 201",
+       "METEO 300"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 435",
+       "BIOL 482",
+       "GEOSC 40",
+       "GEOSC 440"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better for teacher certification\nBIOL 110Biology: Basic Concepts and Biodiversity 4-5\nor BIOL 114& BIOL 115 Biology: Basic Concepts and Biodiversity - Lecture and Biology: Basic Concepts and Biodiversity - Lab\nor BIOL 114& BIOL 116 Biology: Basic Concepts and Biodiversity - Lecture and Biology: Basic Concepts and Biodiversity - FRI Lab\nBIOL 220WBiology: Populations and Communities4\nor BIOL 224& BIOL 225W Biology: Populations and Communities - Lectureand Biology: Populations and Communities - Lab\nGEOSC 1Physical Geology3\nor GEOSC 20 Planet Earth\nGEOSC 21Earth and Life: Origin and Evolution3-4\nor GEOSC 204 Geobiology\nSelect one of the following:8\nPHYS 211& PHYS 212General Physics: Mechanicsand General Physics: Electricity and Magnetism\nPHYS 250& PHYS 251Introductory Physics Iand Introductory Physics II\nSelect 3-4 credits from the following:3-4\nMETEO 3Weather Revealed: Introductory Meteorology\nMETEO 201Introduction to Weather Analysis\nMETEO 300Fundamentals of Atmospheric Science\nSelect 3-4 credits from the following:3-4\nBIOL 435Ecology of Lakes and Streams\nBIOL 482Coastal Biology\nGEOSC 40The Sea Around Us\nGEOSC 440Marine Geology\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 8,
+     "commentRaw": "Select 8 credits of 200-400 level from EARTH, GEOSC, METEO, ASTRO, other earth science field, or BIOL 427",
+     "from": {
+      "kind": "pattern",
+      "subject": "FROM",
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better for teacher certification\nSelect 8 credits of 200-400 level from EARTH, GEOSC, METEO, ASTRO, other earth science field, or BIOL 4278\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CI 492",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LLED 411",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LLED 412W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LLED 420",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LLED 421",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LLED 422",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better for teacher certification\nCI 492Identities, Power and Perceptual Pedagogies in Teaching and Learning3\nLLED 411Teaching Language Arts In Secondary Schools I3\nLLED 412WTeaching Language Arts in Secondary Schools II3\nLLED 420Teaching Adolescent Literature and Literacy3\nLLED 421Teaching Writing in Secondary Schools3\nLLED 422Teaching the Young Adult Literature Workshop3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 1,
+     "commentRaw": "Select 1-3 credits of Grammar from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "APLNG 484",
+       "COMM 160"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of Speech and Oral Performance from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAS 100",
+       "CAS 280W",
+       "THEA 102"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of Shakespeare from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 129",
+       "ENGL 405",
+       "ENGL 440",
+       "ENGL 444"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of British and American Literature from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 221",
+       "ENGL 222",
+       "ENGL 231",
+       "ENGL 232"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of Multicultural Literature in English from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 431",
+       "ENGL 492"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of Nonprint Literature from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMLIT 415",
+       "COMM 150N",
+       "COMM 250",
+       "COMM 411",
+       "ENGL 136",
+       "THEA 100",
+       "THEA 105"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of Writing from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 50",
+       "ENGL 212",
+       "ENGL 213",
+       "ENGL 214",
+       "ENGL 215"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better for teacher certification\nSelect 1-3 credits of Grammar from the following:1-3\nAPLNG 484Discourse-Functional Grammar\nCOMM 160Basic News Writing Skills\nSelect 3 credits of Speech and Oral Performance from the following:3\nCAS 100Effective Speech\nCAS 280WStorytelling and Speaking\nTHEA 102Fundamentals of Acting\nSelect 3 credits of Shakespeare from the following:3\nENGL 129Shakespeare\nENGL 405Taking Shakespeare From Page to Stage\nENGL 440Studies in Shakespeare\nENGL 444Shakespeare\nSelect 6 credits of British and American Literature from the following:6\nENGL 221British Literature to 1798\nENGL 222British Literature from 1798\nENGL 231American Literature to 1865\nENGL 232American Literature from 1865\nSelect 3 credits of Multicultural Literature in English from the following:3\nCMLIT/LTNST 403Latina/o Literature and Culture\nENGL/AMST 135Alternative Voices in American Literature\nENGL/AFAM 139African American Literature\nENGL/WMNST 194Women Writers\nENGL/AAS 428Asian American Literatures\nENGL 431/AMST 475Black American Writers\nENGL/WMNST 462Reading Black, Reading Feminist\nENGL/AFAM 466African American Novel I\nENGL/AFAM 467African American Novel II\nENGL/AFAM 468African American Poetry\nENGL/WMNST 490Women Writers and Their Worlds\nENGL 492/AMST 476/WMNST 491American Women Writers\nSelect 3 credits of Nonprint Literature from the following:3\nAFAM/ENGL 235African American Oral Traditions through Hip-Hop\nCMLIT 415World Graphic Novels\nCOMM 150NThe Art of the Cinema\nCOMM 250Film History and Theory\nCOMM 411Cultural Aspects of the Mass Media\nENGL 136The Graphic Novel\nTHEA 100The Art of the Theatre\nTHEA 105Introduction to Theatre\nSelect 3 credits of Writing from the following:3\nENGL 50Introduction to Creative Writing\nENGL 212Introduction to Fiction Writing\nENGL 213Introduction to Poetry Writing\nENGL 214Introduction to Creative Nonfiction Writing\nENGL 215Introduction to General Nonfiction Writing\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 101",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "SCIED 411W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCIED 412",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better for teacher certification\nCHEM 101Introductory Chemistry 3\nMATH 140Calculus With Analytic Geometry I 4\nSCIED 411WTeaching Secondary Science I3\nSCIED 412Teaching Secondary Science II3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 110",
+      "BIOL 114",
+      "BIOL 115",
+      "BIOL 114",
+      "BIOL 116"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 220W",
+      "BIOL 224",
+      "BIOL 225W"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 20",
+      "CHEM 21"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 110",
+      "CHEM 111"
+     ],
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 240W",
+      "BIOL 244",
+      "BIOL 245W"
+     ],
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "WFS 407",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "WFS 408",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better for teacher certification\nBIOL 110Biology: Basic Concepts and Biodiversity 4-5\nor BIOL 114& BIOL 115 Biology: Basic Concepts and Biodiversity - Lecture and Biology: Basic Concepts and Biodiversity - Lab\nor BIOL 114& BIOL 116 Biology: Basic Concepts and Biodiversity - Lecture and Biology: Basic Concepts and Biodiversity - FRI Lab\nBIOL 220WBiology: Populations and Communities4\nor BIOL 224& BIOL 225W Biology: Populations and Communities - Lectureand Biology: Populations and Communities - Lab\nSelect one of the following:4\nCHEM 20& CHEM 21Environmental Chemistryand Environmental Chemistry Laboratory\nCHEM 110& CHEM 111Chemical Principles Iand Experimental Chemistry I\nSelect one of the following:3-4\nBIOL 240WBiology: Function and Development of Organisms\nor BIOL 244& BIOL 245W Biology: Function and Development of Organisms - Lectureand Biology: Function and Development of Organisms - Lab\nWFS 407Ornithology\nWFS 408Mammalogy\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "chooseN",
+     "n": 2,
+     "options": [],
+     "credits": 6,
+     "commentRaw": "Select two courses (6-8 credits) in environmental law, economics, management and policy (e.g., ECON 428, ERM 411, ERM 412, ERM 413W, WFS 410, WFS 447W, WFS 463W)"
+    },
+    {
+     "type": "course",
+     "code": "SELECT 4",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "STS 100",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "STS 460",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 14,
+     "commentRaw": "Select at least 14 credits from the cohort Teaching option",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better for teacher certification\nSelect two courses (6-8 credits) in environmental law, economics, management and policy (e.g., ECON 428, ERM 411, ERM 412, ERM 413W, WFS 410, WFS 447W, WFS 463W)6-8\nSelect 4 credits of an environmentally related course in Science Technology and Society (e.g., STS 100, STS 460)4\nSelect at least 14 credits from the cohort Teaching option 14\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 113",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "SCIED 411W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCIED 412",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better for teacher certification\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nCHEM 112Chemical Principles II 3\nCHEM 113Experimental Chemistry II 1\nMATH 140Calculus With Analytic Geometry I 4\nSCIED 411WTeaching Secondary Science I3\nSCIED 412Teaching Secondary Science II3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 110",
+      "BIOL 114",
+      "BIOL 115",
+      "BIOL 114",
+      "BIOL 116"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "MATH 141 or 4 credits of 200-level STAT GQ courses"
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 220W",
+      "BIOL 224",
+      "BIOL 225W"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 230W",
+      "BIOL 234",
+      "BIOL 235W"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 240W",
+      "BIOL 244",
+      "BIOL 245W"
+     ],
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 211",
+      "PHYS 212"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 250",
+      "PHYS 251"
+     ],
+     "credits": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better for teacher certification\nBIOL 110Biology: Basic Concepts and Biodiversity 4-5\nor BIOL 114& BIOL 115 Biology: Basic Concepts and Biodiversity - Lecture and Biology: Basic Concepts and Biodiversity - Lab\nor BIOL 114& BIOL 116 Biology: Basic Concepts and Biodiversity - Lecture and Biology: Basic Concepts and Biodiversity - FRI Lab\nMATH 141 or 4 credits of 200-level STAT GQ courses4\nSelect one of the following:4\nBIOL 220WBiology: Populations and Communities\nor BIOL 224& BIOL 225W Biology: Populations and Communities - Lectureand Biology: Populations and Communities - Lab\nBIOL 230WBiology: Molecules and Cells\nor BIOL 234& BIOL 235W Biology: Molecules and Cells - Lectureand Biology: Molecules and Cells - Lab\nBIOL 240WBiology: Function and Development of Organisms\nor BIOL 244& BIOL 245W Biology: Function and Development of Organisms - Lectureand Biology: Function and Development of Organisms - Lab\nSelect one of the following:8\nPHYS 211& PHYS 212General Physics: Mechanicsand General Physics: Electricity and Magnetism\nPHYS 250& PHYS 251Introductory Physics Iand Introductory Physics II\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 220",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MATH 310",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 311W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 312",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 414",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 471",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MTHED 411",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MTHED 412W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MTHED 427",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better for teacher certification\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\nMATH 220Matrices 2-3\nMATH 310Elementary Combinatorics3\nMATH 311WConcepts of Discrete Mathematics3-4\nMATH 312Concepts of Real Analysis3\nMATH 414Introduction to Probability Theory3\nMATH 471Geometry for Teachers4\nMTHED 411Teaching Secondary Mathematics I3\nMTHED 412WTeaching Secondary Mathematics II3\nMTHED 427Teaching Mathematics in Technology-Intensive Environments3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 231",
+      "MATH 232",
+      "MATH 230"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 435",
+      "MATH 470"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 436",
+      "MATH 441"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "MATH 415",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "STAT 401",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "3 credits of MTHED from program list"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better for teacher certification\nMATH 231& MATH 232Calculus of Several Variablesand Integral Vector Calculus4\nor MATH 230 Calculus and Vector Analysis\nMATH 435Basic Abstract Algebra3\nor MATH 470 Algebra for Teachers\nMATH 436Linear Algebra3\nor MATH 441 Matrix Algebra\nSelect one of the following:3\nMATH 415Introduction to Mathematical Statistics\nSTAT 401Experimental Methods\n3 credits of MTHED from program list\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from 400-level MATH or MTHED courses",
+     "from": {
+      "kind": "pattern",
+      "subject": "MATH",
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits from 400-level MATH or MTHED courses6\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 113",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 220",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "PHYS 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 212",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 213",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "PHYS 214",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "PHYS 237",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PHYS 400",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PHYS 419",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCIED 411W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCIED 412",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better for teacher certification\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nCHEM 112Chemical Principles II 3\nCHEM 113Experimental Chemistry II 1\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\nMATH 220Matrices 2-3\nPHYS 211General Physics: Mechanics 4\nPHYS 212General Physics: Electricity and Magnetism 4\nPHYS 213General Physics: Fluids and Thermal Physics 2\nPHYS 214General Physics: Wave Motion and Quantum Physics 2\nPHYS 237Introduction to Modern Physics3\nPHYS 400Intermediate Electricity and Magnetism3\nPHYS 419Theoretical Mechanics3\nSCIED 411WTeaching Secondary Science I3\nSCIED 412Teaching Secondary Science II3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 110",
+      "BIOL 114",
+      "BIOL 115",
+      "BIOL 114",
+      "BIOL 116"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 230",
+      "MATH 231"
+     ],
+     "credits": 2
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 250",
+      "MATH 251"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "PHYS 402",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PHYS 457W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PHYS 458",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better for teacher certification\nBIOL 110Biology: Basic Concepts and Biodiversity 4-5\nor BIOL 114& BIOL 115 Biology: Basic Concepts and Biodiversity - Lecture and Biology: Basic Concepts and Biodiversity - Lab\nor BIOL 114& BIOL 116 Biology: Basic Concepts and Biodiversity - Lecture and Biology: Basic Concepts and Biodiversity - FRI Lab\nMATH 230Calculus and Vector Analysis2-4\nor MATH 231 Calculus of Several Variables\nMATH 250Ordinary Differential Equations3-4\nor MATH 251 Ordinary and Partial Differential Equations\nSelect one of the following:1-4\nPHYS 402Electronics for Scientists\nPHYS 457WExperimental Physics\nPHYS 458Intermediate Optics\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ECON 104",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "GEOG 30N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HIST 20",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HIST 21",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PLSC 1",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SSED 411",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SSED 412W",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better for teacher certification\nECON 104Introductory Macroeconomic Analysis and Policy 3\nGEOG 30NEnvironment and Society in a Changing World 3\nHIST 20American Civilization to 1877 3\nHIST 21American Civilization Since 1877 3\nPLSC 1American Politics: Principles, Processes and Powers 3\nSSED 411Teaching Secondary Social Studies I3\nSSED 412WTeaching Secondary Social Studies II3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "HIST 1",
+      "HIST 10"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "HIST 2",
+      "HIST 11"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ANTH 45N",
+       "ECON 102",
+       "GEOG 6N",
+       "PLSC 3",
+       "PLSC 14",
+       "PSYCH 100",
+       "SOC 1"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better for teacher certification\nHIST 1Western Civilization I 3\nor HIST 10 World History to 1500\nHIST 2Western Civilization II 3\nor HIST 11 World History since 1500\nSelect 9 credits from the following:9\nANTH 45NCultural Diversity: A Global Perspective\nECON 102Introductory Microeconomic Analysis and Policy\nGEOG 6NMaps and the Geospatial Revolution\nPLSC 3Comparing Politics around the Globe\nPLSC 14International Relations\nPSYCH 100Introductory Psychology\nSOC 1Introductory Sociology\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level History",
+     "from": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one concentration:"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of History at the 100 level or above",
+     "from": {
+      "kind": "pattern",
+      "subject": "OR",
+      "minLevel": 100
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ANTH 45N",
+       "SOC 1"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ECON 102",
+       "PLSC 3",
+       "PLSC 14"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "GEOG 6N",
+       "GEOG 10",
+       "GEOG 20",
+       "PLSC 3",
+       "PLSC 14"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PLSC 7N",
+       "PLSC 10",
+       "PLSC 17N"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level Political Science",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAMS 1",
+       "CAMS 4",
+       "CAMS 5"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of 100-level Classics and Ancient Mediterranean Studies",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of Classics and Ancient Mediterranean Studies below the 400 level",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level Classics and Ancient Mediterranean Studies",
+     "from": null
+    },
+    {
+     "type": "course",
+     "code": "ECON 102",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ECON 302",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ECON 304",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level Economics",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of Geography below the 400 level",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level Geography",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of Anthropology, Psychology, and/or Sociology below the 400 level",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level Anthropology, Psychology, and/or Sociology",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better for teacher certification\nSelect 6 credits of 400-level History6\nSelect one concentration:15\nCitizenship Education\nSelect 6 credits of History at the 100 level or above\nSelect 3 credits from the following:\nANTH 45NCultural Diversity: A Global Perspective\nSOC 1Introductory Sociology\nSelect 3 credits from the following:\nECON 102Introductory Microeconomic Analysis and Policy\nPLSC 3Comparing Politics around the Globe\nPLSC 14International Relations\nSelect 3 credits from the following:\nGEOG 6NMaps and the Geospatial Revolution\nGEOG 10Physical Geography: An Introduction\nGEOG 20Human Geography: An Introduction\nCivics and Government\nPLSC 3Comparing Politics around the Globe\nPLSC 14International Relations\nSelect 3 credits from the following:\nPLSC 7NContemporary Political Ideologies\nPLSC 10Scientific Study of Politics\nPLSC 17NIntroduction to Political Theory\nSelect 6 credits of 400-level Political Science\nClassics and Ancient Studies\nSelect 3 credits from the following:\nCAMS 1Greek and Roman Literature\nCAMS 4Jewish and Christian Foundations\nCAMS 5Ancient Mediterranean Civilizations\nSelect 3 credits of 100-level Classics and Ancient Mediterranean Studies\nSelect 3 credits of Classics and Ancient Mediterranean Studies below the 400 level\nSelect 6 credits of 400-level Classics and Ancient Mediterranean Studies\nEconomics\nECON 102Introductory Microeconomic Analysis and Policy\nECON 302Intermediate Microeconomic Analysis\nECON 304Intermediate Macroeconomic Analysis\nSelect 6 credits of 400-level Economics\nGeography\nSelect 9 credits of Geography below the 400 level\nSelect 6 credits of 400-level Geography\nHolocaust and Genocide Studies\nHIST/JST 121History of the Holocaust 1933-1945\nSelect 6 credits from the following:\nCMLIT/ENGL/JST 128NThe Holocaust in Film and Literature\nHIST/JST 143NHistory of Fascism and Nazism\nHIST/JST 195Genocide in Global perspectives: Twentieth Century and beyond\nSelect 6 credits from the following:\nHIST/JST 426Holocaust\nHIST/JST/WMNST 439Women and the Holocaust\nJST/PLSC 450HGenocide and Tyranny\nASIA/HIST 457/JST 474Hiroshima & the Holocaust in History and Memory\nJST/PHIL/RLST 478Ethics After the Holocaust\nSocial Sciences\nSelect 9 credits of Anthropology, Psychology, and/or Sociology below the 400 level\nSelect 6 credits of 400-level Anthropology, Psychology, and/or Sociology\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Biology Teaching Option: Secondary Education, B.S. at University Park Campus and Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#"
+       ],
+       "alternatives": [
+        "MATH 140B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDUC 100",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDTHP 115",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡"
+       ],
+       "alternatives": [
+        "MATH 141B",
+        "STAT 200"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EDPSY 14",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Wellness",
+       "credits": 1.5,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "BMB 251",
+        "BMB 252"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Literature Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†",
+        "1"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CI 295",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CI 280",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HDFS 239",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "PSYCH 412"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 240W",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "PHYS 211"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Wellness",
+       "credits": 1.5,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SPLED 400",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 251",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PHYS 212"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ENGL 202B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 427",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ANTH 21",
+        "ANTH 460",
+        "GEOSC 204",
+        "GEOSC 424"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BMB 211",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": [
+        "BMB 401",
+        "BMB 402",
+        "CHEM 202",
+        "CHEM 203",
+        "CHEM 210",
+        "CHEM 212",
+        "CHEM 213"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SCIED 411W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 300-400 Level Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SPLED 403B",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 211",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": [
+        "BMB 401",
+        "BMB 402",
+        "CHEM 202",
+        "CHEM 203",
+        "CHEM 210",
+        "CHEM 212",
+        "CHEM 213"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SCIED 412",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CI 495C",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Arts Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "GH, GA, GS, GHW, or Interdomain",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 300-400 Level Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CI 495E",
+       "credits": 15,
+       "footnotes": [
+        "*",
+        "3"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 125,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Chemistry Teaching Option: Secondary Education, B.S. at University Park Campus and Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "CHEM 111"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EDUC 100",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDTHP 115",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDPSY 14",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Literature Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†",
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CI 295",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CI 280",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 5,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "CHEM 213",
+        "CHEM 202",
+        "CHEM 203"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Related 200 Level Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Art Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SPLED 400",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ENGL 202B"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Related 200-level Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Related 200-level Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SCIED 411W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HDFS 239",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "PSYCH 412"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "CHEM 400 Level Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SPLED 403B",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SCIED 412",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CI 495C",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "CHEM 400 Level Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "GA, GH, GS, or GHW Interdomain",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "Health and Wellness (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CI 495E",
+       "credits": 15,
+       "footnotes": [
+        "*",
+        "3"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 119,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDUC 100",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDTHP 115",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MATH 141B",
+        "STAT 200"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EDPSY 14",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Wellness",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "EARTH 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "GEOSC 1",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "GEOSC 20"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CI 295",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Literature Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†",
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CI 280",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 211"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "Interdomain General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Wellness",
+       "credits": 1.5,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "METEO 3",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "METEO 201",
+        "METEO 300"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PHYS 251",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PHYS 212"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ENGL 202B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "GEOSC 40",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "GEOSC 440",
+        "BIOL 435",
+        "BIOL 482"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ASTRO 10",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ASTRO 11"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SPLED 400",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SCIED 411W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPLED 403B",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "GEOSC 21",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "GEOSC 204"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HDFS 239",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 412"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 427",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SCIED 412",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CI 495C",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Arts Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 427",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 427",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CI 495E",
+       "credits": 15,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Literature Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†",
+        "1"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EDPSY 14",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDUC 100",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Mathematics Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "Science Selection (GN)/Interdomain",
+       "domain": "GN",
+       "credits": 3,
+       "footnotes": [
+        "†",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Non-Print Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Science Selection",
+       "credits": 3,
+       "footnotes": [
+        "†",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Mathematics Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "American or British Literature Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CI 295",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "Art Selection (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "5"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "Science Selection (GN)",
+       "domain": "GN",
+       "credits": 3,
+       "footnotes": [
+        "†",
+        "2"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CI 280",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "American or British Literature Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Writing Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "6"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 412",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "HDFS 239"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "Interdomain General Education (GA, GH, GS, GHW)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Grammar Selection",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "7"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EDTHP 115",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "Health and Wellness (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LLED 411",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CI 492",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202B"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Shakespeare Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "8"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Physical Activity",
+       "credits": 1.5,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LLED 421",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LLED 422",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Multicultural Literature Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "9"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SPLED 400",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LLED 420",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LLED 412W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CI 495C",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPLED 403B",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CI 495E",
+       "credits": 15,
+       "footnotes": [
+        "*",
+        "1",
+        "0"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 125,
+   "footnotes": {}
+  },
+  {
+   "campusLabel": "",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EDUC 100",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CMPSC 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "CMPSC 121"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Arts Selection",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 220",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Literature Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Science Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Physical Activity",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 230",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "MATH 231"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 311W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Science Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "EDPSY 14",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CI 280",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Physical Activity",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HDFS 239",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "PSYCH 412"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 310",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 312",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Science Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CI 295",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDTHP 115",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MTHED 411",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MTHED 427",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPLED 400",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 435",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MATH 470"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 414",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MTHED 412W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CI 495C",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPLED 403B",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 471",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 436",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CI 495E",
+       "credits": 15,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "MATH 400 Level Selection or MTHED 400 Level Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "MATH 400 Level Selection or MTHED 400 Level Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ENGL 202B"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Arts Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 401",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MATH 415"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 131,
+   "footnotes": {}
+  },
+  {
+   "campusLabel": "",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EDUC 100",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CMPSC 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "CMPSC 121"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Arts Selection",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 220",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Literature Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Science Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Physical Activity",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 230",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "MATH 231"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 311W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Science Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "EDPSY 14",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CI 280",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Physical Activity",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HDFS 239",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 412"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 310",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 312",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Science Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CI 295",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDTHP 115",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Arts Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ENGL 202B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 414",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 435",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MATH 470"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 436",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MATH 441"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SPLED 400",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MTHED 411",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MTHED 427",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 471",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "MATH 400 Level Selection or MTHED 400 Level Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MTHED 412W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CI 495C",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPLED 403B",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 401",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MATH 415"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "MATH 400 Level Selection or MTHED 400 Level Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CI 495E",
+       "credits": 15,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 131,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDUC 100",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDTHP 115",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDPSY 14",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 220",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Literature Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†",
+        "1"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CI 280",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 213",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 214"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Health and Wellness",
+       "credits": 1.5,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CI 295",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 250",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MATH 251"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 237",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SPLED 400",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 230",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MATH 231"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 400",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HDFS 239",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "PSYCH 412"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SCIED 411W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Arts Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "SPLED 403B",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 419",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 12.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SCIED 412",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CI 495C",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 402",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PHYS 458"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Wellness",
+       "credits": 1.5,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "GS, GH, GA, GHW, or Interdomain",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CI 495E",
+       "credits": 15,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 119,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EDUC 100",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HIST 20",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Mathematics Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Science Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "GEOG 30N",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDTHP 115",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HIST 21",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLSC 1",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Mathematics Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EDPSY 14",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 104",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HIST 1",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "HIST 10"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CI 295",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Literature Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HDFS 239",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 412"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CI 280",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HIST 2",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "HIST 11"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Concentration Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Concentration Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SSED 411",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPLED 400",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "HIST 400-level Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Concentration Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Concentration Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SSED 412W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CI 495C",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPLED 403B",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "HIST 400-level Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Concentration Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CI 495E",
+       "credits": 15,
+       "footnotes": [
+        "*",
+        "4"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ENGL 202B"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Wellness Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Science Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Art Selection",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 130,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Social Studies Option - Spring Student Teaching: Secondary Education, B.S. at University Park Campus and Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "GEOG 30N",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDUC 100",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLSC 1",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Arts Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Mathematics Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Science Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HIST 20",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Science Selection",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Mathematics Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Physical Activity",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CI 280",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDTHP 115",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HIST 21",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Physical Activity",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CI 295",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDPSY 14",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 104",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HIST 1",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "HIST 10"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Literature Selection",
+       "credits": null,
+       "footnotes": [
+        "*",
+        "#",
+        "†",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ENGL 202B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HDFS 239",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "PSYCH 412"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HIST 2",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "HIST 11"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Concentration Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Concentration Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SSED 411",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPLED 400",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "HIST 400-level Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Concentration Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Concentration Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SSED 412W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CI 495C",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPLED 403B",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Concentration Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "HIST 400-level selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CI 495E",
+       "credits": 15,
+       "footnotes": [
+        "*",
+        "4"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 127,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

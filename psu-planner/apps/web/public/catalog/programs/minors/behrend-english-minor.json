@@ -1,0 +1,37 @@
+{
+ "slug": "behrend-english-minor",
+ "name": "English, Minor (Behrend)",
+ "type": "minor",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/english-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select at least 12 credits from ENGL/ELISH 200-ENGL/ELISH 289",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select at least 6 credits from ENGL/ELISH 400-ENGL/ELISH 493",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect at least 12 credits from ENGL/ELISH 200-ENGL/ELISH 289 12\nSelect at least 6 credits from ENGL/ELISH 400-ENGL/ELISH 4936\n"
+  }
+ ],
+ "suggestedPlans": []
+}

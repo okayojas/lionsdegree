@@ -1,0 +1,582 @@
+{
+ "slug": "liberal-arts-african-american-studies-ba",
+ "name": "African American Studies, B.A.",
+ "type": "major",
+ "degree": "BA",
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/african-american-studies-ba/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AFAM 100N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AFAM 110N",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAFAM 100NBlack Freedom Struggles 3\nAFAM 110NIntroduction to African American Studies 3\nAFAM/HIST 152African American History 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AFAM 103"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AFAM 197",
+       "SOC 207"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AFAM 401",
+       "AFAM 494",
+       "AFAM 495"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nAFAM/WMNST 101NAfrican American Women\nAFAM/WMNST 102Women of the African Diaspora\nAFAM 103Racism and Sexism\nSelect 3 credits from the following:3\nAFAM 197Special Topics\nSOC 207Research Methods in Sociology\nSelect 3 credits from the following:3\nAFAM 401Afro-American Studies Seminar\nAFAM 494Research Project\nAFAM 495Internship\n"
+  },
+  {
+   "heading": "Area of Concentration",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from one of the following four areas of concentration, and 6 more credits from any of the other areas. A minimum of 12 credits should be AFAM courses, and at least 12 of these credits must be at the 400-level or above.",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AFAM 410"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits at the 400-level in consultation with your adviser",
+     "from": {
+      "kind": "pattern",
+      "subject": "IN",
+      "minLevel": 400
+     }
+    },
+    {
+     "type": "course",
+     "code": "AFAM 212",
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "AFAM 445Y",
+      "PLSC 445Y",
+      "LER 445Y"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "AFR 459",
+      "PLSC 459"
+     ],
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ECON 436",
+     "credits": null,
+     "resolvedFrom": "ECON 436W"
+    },
+    {
+     "type": "course",
+     "code": "PLSC 223N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PLSC 490",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SOC 119N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "AFR 110N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "AFR 497",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PLSC 453",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 12 credits from one of the following four areas of concentration, and 6 more credits from any of the other areas. A minimum of 12 credits should be AFAM courses, and at least 12 of these credits must be at the 400-level or above. 18\n1. Gender and Sexuality\nAFAM/WMNST 101NAfrican American Women\nAFAM/WMNST 102Women of the African Diaspora\nAFAM/SOC/WMNST 103Racism and Sexism\nAFAM 410Spirit, Space, Survival: Contemporary Black Women\nAFAM/THEA 412African American Theatre\nAFAM/STS 416Race, Gender and Science\nAFR/WMNST 202NWomen, Gender, and Feminisms in Africa\nSelect 3 credits at the 400-level in consultation with your adviser\n2. Humanities\nAFAM/RLST 145African Diaspora Religions and Spiritualities\nAFAM/RLST 146The Life and Thought of Martin Luther King, Jr.\nAFAM/RLST 147The Life and Thought of Malcolm X\nAFAM/THEA 208Workshop: Theatre in Diverse Cultures\nAFAM/HIST 210Freedom's First Generation: African American Life and Work, from the Civil War to World War II\nAFAM 212African Americans in the New Jim Crow Era, 1968-present\nAFAM/ENGL 235From Folk Shouts and Songs to Hip Hop Poetry\nAFAM/THEA 412African American Theatre\nAFAM/CAS 422Contemporary African American Communication\nAFAM/PHIL 460African American Philosophy\nAFAM/HIST 465The Post-World War II Civil Rights Movement\nAFAM/ENGL 469Slavery and the Literary Imagination\n3. Social Sciences and Community Development\nAFAM/BBH 302Diversity and Health\nAFAM/SOC 409Racial and Ethnic Inequality in America\nAFAM/HIST 431Black Liberation and American Foreign Policy\nAFAM/HIST 432Between Nation and Empire: The Caribbean in the 20th Century\nAFAM/PLSC/LER 445Y\nAFR/PLSC 459\nECON 436W\nEDTHP/SOC 447Ethnic Minorities and Schools in the United States\nPLSC 223NEthnic and Racial Politics\nPLSC 490Policy Making and Evaluation\nSOC 119NRace, Ethnicity and Culture\n4. Migration and Diaspora\nAFAM/WMNST 102Women of the African Diaspora\nAFAM/SPAN/AFR 132Afro-Hispanic Civilization\nAFAM/HIST 211Slavery and Freedom in the Black Atlantic\nAFAM/HIST 250Introduction to the Caribbean\nAFAM/HIST 431Black Liberation and American Foreign Policy\nAFAM/HIST 432Between Nation and Empire: The Caribbean in the 20th Century\nAFR 110NIntroduction to Contemporary Africa\nAFR/HIST 192Modern African History\nAFR/IB/PLSC 440Globalization and Its Implications\nAFR 497Special Topics\nPLSC 453Political Processes in Underdeveloped Systems\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "African American Studies, B.A. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15",
+        "ENGL 137H",
+        "CAS 137H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AFAM 152",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "HIST 152"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LA 83",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 1",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "First Year Seminar",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "World Language Level 2",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 138T",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 138T"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AFAM 101N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "WMNST 101N",
+        "AFAM 102",
+        "WMNST 102",
+        "AFAM 103",
+        "WMNST 103",
+        "SOC 103"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AFAM 110N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Quantification Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "World Language Level 3",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "AFAM 100N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "course",
+       "code": "SOC 207",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Quantification Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Knowledge Domain Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "AFAM any or AFAM elective",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "AFAM 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BA World Cultures",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BA Knowledge Domain Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "AFAM 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BA Knowledge Domain Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "AFAM 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "AFAM 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Health and Wellness (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 6,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "AFAM any or AFAM elective",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AFAM 401",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Health and Wellness (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 128,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

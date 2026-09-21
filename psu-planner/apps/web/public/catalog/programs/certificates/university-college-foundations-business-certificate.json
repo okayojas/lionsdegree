@@ -1,0 +1,81 @@
+{
+ "slug": "university-college-foundations-business-certificate",
+ "name": "Foundations of Business, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/foundations-business-certificate/",
+ "totalCredits": 15,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BA 100S",
+      "BA 100"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ECON 102",
+      "ECON 104"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 100",
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MKTG 122N",
+      "MKTG 301"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one from the following:"
+    },
+    {
+     "type": "course",
+     "code": "DA 101",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MIS 204",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MIS 250",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SCM 200",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "STAT 200",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BA 100SIntroduction to Business 3\nor BA 100 Introduction to Business\nECON 102Introductory Microeconomic Analysis and Policy 3\nor ECON 104 Introductory Macroeconomic Analysis and Policy\nLHR 100Exploring Work and Employment 3\nMKTG 122NMarketing through the Ages 3\nor MKTG 301 Principles of Marketing\nSelect one from the following:3-4\nDA 101Introduction to Data Analytics\nMIS 204Introduction to Management Information Systems\nMIS 250Introduction to Problem Solving with Spreadsheet Analysis and Information Systems Management\nSCM 200Introduction to Statistics for Business\nSTAT 200Elementary Statistics\n"
+  }
+ ],
+ "suggestedPlans": []
+}

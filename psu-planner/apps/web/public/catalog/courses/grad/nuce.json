@@ -1,0 +1,704 @@
+[
+ {
+  "code": "NUCE 501",
+  "subject": "NUCE",
+  "number": "501",
+  "display": "NUCE 501",
+  "title": "Reactor Engineering",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Thermal hydraulic fundamentals applied to power reactors, thermal analysis of fuel elements and two-phase heat transfer in heated channels.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "NUC E430",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 501"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 502",
+  "subject": "NUCE",
+  "number": "502",
+  "display": "NUCE 502",
+  "title": "Reactor Core Thermal-Hydraulics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "In-depth analysis of the reactor core thermal hydraulics; computational methods and practical applications. NUC E 502 Reactors Core Thermal-Hydraulics (3) This course provides students with a background in reactor core thermal hydraulics and enhances their understanding of the important phenomena in a nuclear reactor core, which can determine reactor safety performance. Students will obtain an overall view of reactor safety from the reactor thermal hydraulics perspective. This course examines the outcomes of research projects and international scientific activities in this area. Objectives are met by introducing course modules that utilize state-of-the-art computer codes to solve well established international thermal-hydraulics benchmark problems to demonstrate reactor performance during operational transients. One of the principal goals of the course is to provide students with a computationally intensive curriculum that is consistent with their capabilities and their expectations for a modern reactor thermal hydraulics course. This course discusses detailed thermal-hydraulic analysis of reactor systems with an emphasis on the application of conservation equations for single- and two-phase flow in detailed modeling of reactor cores using three-dimensional subchannel analysis methods and examines the reactor's core thermal-hydraulic design for core limit analysis. The governing sets of equations that form the basis for the three-dimensional thermal-hydraulic methods commonly used in the nuclear industry will be derived and discussed in addition to specific models that are used for closure. Hot assembly analysis will be performed, as well as core wide analysis, to determine the hot assembly and resulting hot subchannels in the core. Students will use state -of-the-art three-dimensional computer codes to model fuel assemblies and the reactor core to determine the most limiting fuel pin and hottest subchannel. Background on heat and mass transfer and fluid dynamics is the prerequisite to this course, which provides a basis for understanding reactor core thermal-hydraulic analysis.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "NUC E430",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 502"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 505",
+  "subject": "NUCE",
+  "number": "505",
+  "display": "NUCE 505",
+  "title": "Reactor Instrumentation and Control",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Reactor control principles; classical control methods; operational control problems; control simulation using modern mainframe and microcomputer software packages; reactor instrumentation.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "NUC E302 or NUC E401",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 505"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 506",
+  "subject": "NUCE",
+  "number": "506",
+  "display": "NUCE 506",
+  "title": "Nuclear Chemistry",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Energetics, kinematics, and models of nuclear reactions; nuclear processes as chemical probes, mossbauer effect and perturbed angular correlation spectroscopy.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 506"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 509",
+  "subject": "NUCE",
+  "number": "509",
+  "display": "NUCE 509",
+  "title": "Physics of Radiation Damage",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Radiation damage plays a pivotal role in materials design for radiation-intensive applications, such as in fission and fusion nuclear reactors. Atoms in solid materials can be displaced from their lattice sites due to interactions with energetic radiation particles, generating a variety of point defects and defect clusters that can profoundly modify the material properties, such as mechanical strength, dimensional stability, thermal conductivity, as well as electrical and optical properties. This course provides students with the fundamental theories and methodologies essential for the research of materials to be used in radiation-intensive environments. Key topics include: (1) theories for energy deposition from energetic particles into materials, (2) analytical models for atomic displacement and collision cascades, (3) kinetics of point defects and defect clusters, emphasizing rate theory and related models, and (4) defect-property relationship in materials.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 509"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 511",
+  "subject": "NUCE",
+  "number": "511",
+  "display": "NUCE 511",
+  "title": "Nuclear Reactor Kinetics and Dynamics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Analytical kinetics and dynamics modeling for reactivity-induced transients; reactor accident kinetics methods for simple and complex geometries; experimental methods. NUC E 511 Nuclear Reactor Kinetics and Dynamics (3) This course provides students with a background in the area of nuclear reactor kinetics and dynamics and enhances their understanding of the important multi-physics phenomena in a reactor, which can determine reactor safety performance. Students will obtain an overall view of nuclear reactor safety from the nuclear reactor dynamics perspective. This course examines the outcomes of research projects and international scientific activities in the area of reactor dynamics. Objectives are met by introducing course modules that utilize state-of-the-art computer codes to solve well established international coupled thermal-hydraulics and neutronics benchmark problems to demonstrate reactor performance during operational transients. The course will be based on modules that demonstrate the Light Water Reactor (LWR) behavior utilizing state-of-the-art computer codes to solve well established Organization for Economic Cooperation and Development (OECD) coupled code benchmark problems. A supplementary module will also be developed which focuses on the High Temperature Reactor (HTR) in order to demonstrate the dynamic and safety issues unique to an advanced next generation reactor. The course will provide students with a computationally intensive modular curriculum that the instructor can utilize as appropriate to complement the nuclear reactor kinetics and dynamics concepts. This course focuses on nuclear reactor kinetics and dynamics methods and techniques for multi-dimensional safety and transient analysis. It consists of five major topics: review of point nuclear reactor kinetics theory; reactivity feedback and nuclear reactor dynamics; methods for spatial kinetics; coupled and multi-dimensional thermal-hydraulics/neutron kinetics; and, experimental determination of reactor dynamics parameters. A computer project provides students with knowledge about state-of-the-art methods used to model reactor transients for safety evaluations.Background on basic reactor physics and analysis is the prerequisite content to this course, which provides a basis for understanding nuclear reactor kinetics theory and nuclear reactor dynamics phenomena.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "NUC E301 ; NUC E302",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 511"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 512",
+  "subject": "NUCE",
+  "number": "512",
+  "display": "NUCE 512",
+  "title": "Nuclear Fuel Management",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Nuclear fuel inventory determination and economic value through the fuel cycle. Emphasis on calculational techniques in reactor, optimization, and design.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "NUC E302",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 512"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 518",
+  "subject": "NUCE",
+  "number": "518",
+  "display": "NUCE 518",
+  "title": "Computational Nuclear Materials",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This graduate course introduces computational methods for modeling the behavior and degradation of nuclear materials under irradiation and extreme environments. Students will learn multiscale approaches, including atomic collision theory, molecular dynamics, phase-field modeling, and fuel performance simulations. Emphasis is placed on understanding the theoretical foundations, capabilities, and limitations of each method. This course prepares students to critically evaluate modeling results, select appropriate methods for specific materials problems, and connect simulations with experimental or engineering data.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 518"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": [
+   "Recommended Preparation: NUCE 401, NUCE409, and CMPSC 121 or equivalent. Students should have a basic understanding of nuclear materials, materials science, and programming. Prior exposure to numerical methods is helpful but not required."
+  ]
+ },
+ {
+  "code": "NUCE 521",
+  "subject": "NUCE",
+  "number": "521",
+  "display": "NUCE 521",
+  "title": "Neutron Transport Theory",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Derivation of Boltzmann equation for neutron transport; techniques of approximate and exact solution for the monoenergetic and spectrum regenerating cases.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "NUC E403 or PHYS 406",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 521"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 523",
+  "subject": "NUCE",
+  "number": "523",
+  "display": "NUCE 523",
+  "title": "Environmental Degradation of Materials in Nuclear Power Plants",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Degradation of materials performance when exposed to the combination of high temperature, neutron irradiation, and aggressive electrochemistry found in nuclear reactors.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "MATSE409",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "MATSE 523"
+  ],
+  "aliases": [
+   "NUCE 523"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 525",
+  "subject": "NUCE",
+  "number": "525",
+  "display": "NUCE 525",
+  "title": "Monte Carlo Methods",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Fundamentals of the probability theory and statistics, analog and non-analog Monte Carlo methods and their applications, random processes, and numbers.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "MATH 141 , PHYS 237 , STAT 401",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 525"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 530",
+  "subject": "NUCE",
+  "number": "530",
+  "display": "NUCE 530",
+  "title": "Parallel/Vector Algorithms for Scientific Applications",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Development/analysis of parallel/vector algorithms (finite-differencing of PDEs and Monte Carlo methods) for engineering/scientific applications for shared and distributed memory architectures.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "AERSP424 or CMPSC450",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 530"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 540",
+  "subject": "NUCE",
+  "number": "540",
+  "display": "NUCE 540",
+  "title": "Theory of Plasma Waves",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Solutions of the Boltzmann equation; waves in bounded and unbounded plasmas; radiation and scattering from plasmas.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E E 471",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "AERSP 540"
+  ],
+  "aliases": [
+   "NUCE 540"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 542",
+  "subject": "NUCE",
+  "number": "542",
+  "display": "NUCE 542",
+  "title": "Source and Detector Technologies for Nuclear Security",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Theory and Technology behind detectors, sensors, and source technologies including portal monitors and field depoloyable detection systems.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "NUC E 450",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 542"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 543",
+  "subject": "NUCE",
+  "number": "543",
+  "display": "NUCE 543",
+  "title": "Nuclear Security Education Laboratory",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Hands-on Experience with the radiation detection systems, sensors, devices, and source technologies for nuclear security applications.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "NUC E 450, NUC E 542",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 543"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 544",
+  "subject": "NUCE",
+  "number": "544",
+  "display": "NUCE 544",
+  "title": "Global Nuclear Security Policies",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course reviews the historical development and examines the current state of American and international policies and laws related to global nuclear security. U.S. policy has evolved over a period of more than sixty years since the Manhattan Project and has embraced the importance of both safeguards (applicable to weapons states and non-weapons states that commit to peaceful use of nuclear materials) and proliferation prevention (policies intended to deter and detect attempts to illicitly acquire nuclear weapons). Over this time improvements in technology have increased the potential for proliferation but have also increased the ability to detect proliferation. Recently, heightened danger of unauthorized proliferation by states and, more worrisome, transnational non-states, has led to increased emphasis on control and detection. Within this context students in this course will study U.S. national security strategy in the areas of counterterrorism and nonproliferation. We will discuss those policies aimed at enhancing nuclear security and examine the roles of various agencies, including the Department of Homeland Security, the Department of Energy (including the National Nuclear Security Administration), the Nuclear Regulatory Commission, the Department of Defense, and the Environmental Protection Agency. International treaties and conventions on nuclear safeguards, arms control, and terrorism will be covered. Regulations promulgated by the U.S. Nuclear Regulatory Commission and the International Atomic Energy Agency will also be studied. The course will consider how these policies are intended to control the actions of both state and non-state adversaries and applications to both government and private sector nuclear activities. The role of transnational and domestic groups will be discussed, especially with regard to motivation and potential capabilities.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 544"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 590",
+  "subject": "NUCE",
+  "number": "590",
+  "display": "NUCE 590",
+  "title": "Colloquium",
+  "credits": "1-3 Credits/Maximum of 3",
+  "creditsParsed": {
+   "min": 1,
+   "max": 3,
+   "repeatableMax": 3
+  },
+  "description": "Continuing seminars which consist of a series of individual lectures by faculty, students, or outside speakers.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 590"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 596",
+  "subject": "NUCE",
+  "number": "596",
+  "display": "NUCE 596",
+  "title": "Individual Studies",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Creative projects, including nonthesis research, which are supervised on an individual basis and which fall outside the scope of formal courses.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 596"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 597",
+  "subject": "NUCE",
+  "number": "597",
+  "display": "NUCE 597",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given on a topical or special interest subject which may be offered infrequently; several different topics may be taught in one year or term.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 597"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 600",
+  "subject": "NUCE",
+  "number": "600",
+  "display": "NUCE 600",
+  "title": "Thesis Research",
+  "credits": "1-15 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 1,
+   "max": 15,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 600"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 601",
+  "subject": "NUCE",
+  "number": "601",
+  "display": "NUCE 601",
+  "title": "Ph.D. Dissertation Full-Time",
+  "credits": "0 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 0,
+   "max": 0,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 601"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 602",
+  "subject": "NUCE",
+  "number": "602",
+  "display": "NUCE 602",
+  "title": "Supervised Experience in College Teaching",
+  "credits": "1-3 Credits/Maximum of 6",
+  "creditsParsed": {
+   "min": 1,
+   "max": 3,
+   "repeatableMax": 6
+  },
+  "description": "Graduate assistants receive credit for teaching lower level courses while under the direct supervision of a graduate faculty member.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "graduate student standing in nuclear engineering",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 602"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 610",
+  "subject": "NUCE",
+  "number": "610",
+  "display": "NUCE 610",
+  "title": "Thesis Research Off Campus",
+  "credits": "1-15 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 1,
+   "max": 15,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 610"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ },
+ {
+  "code": "NUCE 611",
+  "subject": "NUCE",
+  "number": "611",
+  "display": "NUCE 611",
+  "title": "Ph.D. Dissertation Part-Time",
+  "credits": "0 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 0,
+   "max": 0,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "NUCE 611"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/nuce/",
+  "extraRaw": []
+ }
+]

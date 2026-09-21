@@ -1,0 +1,340 @@
+/** Parse table.sc_courselist requirement tables into structured rule sections.
+ * Structure is additive, never lossy: every section keeps its rawText, and any
+ * row the deterministic parser can't classify becomes an `unstructured` rule
+ * plus an entry in the needs-review queue. */
+import * as cheerio from "cheerio";
+import { normDisplayCode } from "../lib/codes.js";
+import { astComplete, parseExpr, tokenize, type AstNode } from "../lib/prereq.js";
+import type { RequirementSection, Rule } from "../validate/schemas.js";
+
+function clean(s: string): string {
+  return s.replace(/ /g, " ").replace(/\s+/g, " ").trim();
+}
+
+function sectionKind(heading: string): RequirementSection["kind"] {
+  const h = heading.toLowerCase();
+  if (h.includes("prescribed")) return "prescribed";
+  if (h.includes("additional")) return "additional";
+  if (h.includes("supporting")) return "supporting";
+  if (h.includes("general education")) return "geneds";
+  if (h.includes("elective")) return "electives";
+  return "other";
+}
+
+const GENED_DOMAINS = ["GWS", "GQ", "GA", "GH", "GHW", "GN", "GS"];
+const WORD_NUMS: Record<string, number> = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6 };
+
+/** Strict code-token pattern: subject 2-6 UPPERCASE letters (optionally A-I
+ * style), number 1-3 digits + up to 2 letter suffix. Uppercase-only on purpose:
+ * case-insensitive matching turned prose like "The 400-level", "Option 4", and
+ * "apply 6" into phantom course codes. Bare numbers inherit the previous
+ * subject ("CMPSC 121 or 131"); slash subjects share the number ("STS/PHIL 107").
+ * Wildcards ("BIOL 4XX") are patterns, not courses — rejected here. */
+const CODE_TOKEN = /^([A-Z]{2,6}(?:-[A-Z])?(?:\s*\/\s*[A-Z]{2,6}(?:-[A-Z])?)*)\s*(\d{1,3}[A-Z]{0,2})$/;
+const BARE_NUM = /^(\d{1,3}[A-Z]{0,2})$/;
+const WILDCARD = /^\d[XY]{2}$|^\dXX$/i;
+
+export interface CodeListResult {
+  codes: string[];
+  leadingOr: boolean;
+}
+
+/** If the text is purely a list of course codes joined by or/and/commas/slashes,
+ * return the expanded codes; otherwise null. Conservative by design — prose
+ * like "400 level" must NOT match. */
+export function parseCodeListText(text: string): CodeListResult | null {
+  let t = clean(text).replace(/[.;]+$/, "");
+  const leadingOr = /^or\s+/i.test(t);
+  t = t.replace(/^(?:or|and)\s+/i, "");
+  if (!t) return null;
+  const parts = t.split(/\s*(?:,|\bor\b|\band\b|&)\s*/i).filter(Boolean);
+  const codes: string[] = [];
+  let lastSubjects: string[] | null = null;
+  for (const part of parts) {
+    if (WILDCARD.test(part.trim().split(/\s+/).pop() ?? "")) return null; // "BIOL 4XX" is a pattern
+    const m = CODE_TOKEN.exec(part.trim());
+    if (m) {
+      const subjects = m[1].split(/\s*\/\s*/).map((s) => s.trim());
+      for (const subj of subjects) {
+        const code = normDisplayCode(`${subj} ${m[2]}`);
+        if (!code) return null;
+        codes.push(code);
+      }
+      lastSubjects = subjects;
+      continue;
+    }
+    const bare = BARE_NUM.exec(part.trim());
+    if (bare && lastSubjects) {
+      for (const subj of lastSubjects) {
+        const code = normDisplayCode(`${subj} ${bare[1]}`);
+        if (!code) return null;
+        codes.push(code);
+      }
+      continue;
+    }
+    return null;
+  }
+  return codes.length ? { codes, leadingOr } : null;
+}
+
+/** Requirement rows sometimes hold boolean expressions ("CHEM 210 & CHEM 212 &
+ * (CHEM 213 or CHEM 213W)"). Reuse the prereq parser and flatten a top-level
+ * AND chain of courses / or-groups into individual rules. */
+export function parseBooleanRow(text: string, credits: number | null): Rule[] | null {
+  if (!/[&()]/.test(text)) return null;
+  const ast = parseExpr(tokenize(text.replace(/&/g, " and ")));
+  if (!astComplete(ast)) return null;
+  const rules: Rule[] = [];
+  const orChain = (n: AstNode): string[] | null => {
+    if (n.op === "course") return [n.code];
+    if (n.op === "or") {
+      const a = orChain(n.a), b = orChain(n.b);
+      return a && b ? [...a, ...b] : null;
+    }
+    return null;
+  };
+  const walkAnd = (n: AstNode): boolean => {
+    if (n.op === "and") return walkAnd(n.a) && walkAnd(n.b);
+    if (n.op === "course") { rules.push({ type: "course", code: n.code, credits: null }); return true; }
+    const ors = orChain(n);
+    if (ors) { rules.push({ type: "oneOf", options: ors, credits: null }); return true; }
+    return false;
+  };
+  if (!walkAnd(ast) || !rules.length) return null;
+  if (rules.length === 1) {
+    const only = rules[0];
+    if (only.type === "course" || only.type === "oneOf") only.credits = credits;
+  }
+  return rules;
+}
+
+/** Organizational labels and policy notes that carry no checkable rule. */
+export function isNoteRow(text: string): boolean {
+  if (/^select an option[.:]?$/i.test(text)) return true;
+  if (/^a maximum of \d+/i.test(text)) return true;
+  if (/^per university policy/i.test(text)) return true;
+  // Short heading-like labels ("Evolution Group:", "Practicum Group:")
+  if (/:$/.test(text) && text.length < 60 && !/\bcredits?\b/i.test(text) && !/\d{2,}/.test(text)) return true;
+  return false;
+}
+
+/** Classify a courselistcomment row into a structured rule where possible. */
+export function classifyComment(text: string): Rule {
+  // "Select one/two of the following (...)" -> chooseN, options collected from
+  // the indented rows that follow.
+  const chooseWord =
+    /^(?:students?\s+(?:must|should|will)\s+)?(?:select|choose|take|complete)\s+(one|two|three|four|five|six|\d+)\s+(?:course|of the following|(?:additional\s+)?courses?)/i.exec(text);
+  if (chooseWord) {
+    const n = WORD_NUMS[chooseWord[1].toLowerCase()] ?? parseInt(chooseWord[1], 10);
+    if (n >= 1 && n <= 20) return { type: "chooseN", n, options: [], credits: null, commentRaw: text };
+  }
+
+  // Any "...select/take/choose ... N credits ..." phrasing, including with a
+  // leading clause ("In consultation with adviser, select 12 credits from...").
+  const sel =
+    /^(?:students?\s+(?:must|should|will)\s+)?(?:select|choose|take|complete)\b[^.]*?\b(\d+(?:\.\d+)?)(?:\s*[-–]\s*(\d+(?:\.\d+)?))?\s+credits?\b(.*)$/i.exec(text) ??
+    /^Select\s+(\d+(?:\.\d+)?)(?:\s*[-–]\s*(\d+(?:\.\d+)?))?\s+credits?\s*:?(.*)$/i.exec(text) ??
+    (text.length < 220
+      ? /\b(?:select|choose|take|complete)\b[^.]*?\b(\d+(?:\.\d+)?)(?:\s*[-–]\s*(\d+(?:\.\d+)?))?\s+credits?\b(.*)$/i.exec(text)
+      : null);
+  if (sel) {
+    const credits = parseFloat(sel[1]);
+    const rest = clean(sel[3] ?? "");
+    if (!rest || /the following/i.test(rest) || /:$/.test(text.trim())) {
+      return { type: "selectCredits", credits, commentRaw: text, from: { kind: "courses", courses: [] } };
+    }
+    const pat =
+      /(\d{3})[\s-]*level\s+(?:courses?\s+(?:in|of)\s+)?([A-Z-]{2,6})\b/i.exec(rest) ??
+      /([A-Z-]{2,6})\s+(?:courses?\s+)?at\s+the\s+(\d{3})[\s-]*level/i.exec(rest);
+    if (pat) {
+      const [a, b] = [pat[1], pat[2]];
+      const subject = /^\d/.test(a) ? b : a;
+      const level = parseInt(/^\d/.test(a) ? a : b, 10);
+      return { type: "selectCredits", credits, commentRaw: text, from: { kind: "pattern", subject: subject.toUpperCase().replace(/-/g, ""), minLevel: level } };
+    }
+    const ged = GENED_DOMAINS.find((d) => new RegExp(`\\b${d}\\b`).test(rest));
+    if (ged) return { type: "selectCredits", credits, commentRaw: text, from: { kind: "genEd", domain: ged } };
+    const list = parseCodeListText(rest);
+    if (list) return { type: "selectCredits", credits, commentRaw: text, from: { kind: "courses", courses: list.codes } };
+    // Constraint prose we can't model ("in consultation with adviser", "with at
+    // least 9 credits at the 400 level") — keep the credit count, keep the text.
+    return { type: "selectCredits", credits, commentRaw: text, from: null };
+  }
+
+  const ged = /^(GWS|GQ|GA|GH|GHW|GN|GS)\b.*course/i.exec(text);
+  if (ged) return { type: "genEd", domain: ged[1].toUpperCase(), credits: null, commentRaw: text };
+
+  return { type: "unstructured", commentRaw: text };
+}
+
+export interface RequirementsParseResult {
+  sections: RequirementSection[];
+  needsReview: { heading: string; text: string }[];
+}
+
+export function parseRequirementTables(html: string): RequirementsParseResult {
+  const $ = cheerio.load(html);
+  const container = $("#programrequirementstextcontainer");
+  const tables = container.length ? container.find("table.sc_courselist") : $("table.sc_courselist");
+  const sections: RequirementSection[] = [];
+  const needsReview: RequirementsParseResult["needsReview"] = [];
+
+  tables.each((_, table) => {
+    let current: RequirementSection | null = null;
+    /** Open rule that collects option codes from following indented rows. */
+    let collector: Extract<Rule, { type: "selectCredits" | "chooseN" }> | null = null;
+
+    const collectInto = (codes: string[]): boolean => {
+      if (!collector) return false;
+      if (collector.type === "chooseN") { collector.options.push(...codes); return true; }
+      if (collector.from?.kind === "courses") { collector.from.courses.push(...codes); return true; }
+      return false;
+    };
+
+    const push = () => {
+      if (current) {
+        current.structured = current.rules.every((r) => r.type !== "unstructured");
+        sections.push(current);
+      }
+    };
+    const ensureSection = (heading: string) => {
+      push();
+      current = {
+        heading,
+        kind: sectionKind(heading),
+        creditsRequired: null,
+        rules: [],
+        structured: true,
+        llmNormalized: false,
+        rawText: "",
+      };
+      collector = null;
+    };
+
+    $(table)
+      .find("tbody tr")
+      .each((_, tr) => {
+        const $tr = $(tr);
+        const cls = $tr.attr("class") ?? "";
+        const rowText = clean($tr.clone().find("sup").remove().end().text());
+        if (!rowText) return;
+
+        const isHeader = $tr.find("span.areaheader").length > 0;
+        const isSubheader = $tr.find("span.areasubheader").length > 0;
+        const comment = $tr.find("span.courselistcomment").first();
+        const codeLink = $tr.find("td.codecol a").first();
+        const hoursText = clean($tr.find("td.hourscol").first().text());
+        const credits = hoursText && !Number.isNaN(parseFloat(hoursText)) ? parseFloat(hoursText) : null;
+        const indented = $tr.find("div.blockindent").length > 0;
+
+        if (isHeader) {
+          ensureSection(clean(comment.clone().find("sup").remove().end().text()) || rowText);
+          return;
+        }
+        if (!current) ensureSection("Requirements");
+        current!.rawText += rowText + "\n";
+        if (isSubheader) return;
+
+        const foldIntoPrev = (codes: string[], rowCredits: number | null) => {
+          const prevRule = current!.rules[current!.rules.length - 1];
+          if (prevRule?.type === "course") {
+            current!.rules[current!.rules.length - 1] = {
+              type: "oneOf",
+              options: [prevRule.code, ...codes],
+              credits: prevRule.credits ?? rowCredits,
+            };
+          } else if (prevRule?.type === "oneOf") {
+            prevRule.options.push(...codes);
+          } else if (!collectInto(codes)) {
+            current!.rules.push(codes.length > 1 ? { type: "oneOf", options: codes, credits: rowCredits } : { type: "course", code: codes[0], credits: rowCredits });
+          }
+        };
+
+        // codecol cells without links (courses the bulletin didn't hyperlink):
+        // parse the cell text as a code list or boolean expression.
+        const codeCell = $tr.find("td.codecol").first();
+        if (!codeLink.length && codeCell.length) {
+          const text = clean(codeCell.clone().find("sup").remove().end().text());
+          if (text) {
+            const list = parseCodeListText(text);
+            if (list) {
+              if (list.leadingOr) foldIntoPrev(list.codes, credits);
+              else if (indented && collectInto(list.codes)) { /* collected */ }
+              else if (list.codes.length > 1) current!.rules.push({ type: "oneOf", options: list.codes, credits });
+              else current!.rules.push({ type: "course", code: list.codes[0], credits });
+              return;
+            }
+            const bool = parseBooleanRow(text, credits);
+            if (bool) { current!.rules.push(...bool); collector = null; return; }
+          }
+        }
+
+        if (codeLink.length) {
+          const codesInCell = $tr
+            .find("td.codecol a")
+            .map((_, a) => normDisplayCode(clean($(a).attr("title") ?? $(a).text())))
+            .get()
+            .filter((c): c is string => !!c);
+          if (!codesInCell.length) return;
+
+          if (cls.includes("orclass")) {
+            foldIntoPrev(codesInCell, credits);
+            return;
+          }
+          if (indented && collectInto(codesInCell)) return;
+
+          if (codesInCell.length > 1) {
+            current!.rules.push({ type: "oneOf", options: codesInCell, credits });
+          } else {
+            current!.rules.push({ type: "course", code: codesInCell[0], credits });
+          }
+          collector = null;
+          return;
+        }
+
+        if (comment.length) {
+          const text = clean(comment.clone().find("sup").remove().end().text());
+          if (!text) return;
+
+          // Comment rows that are purely course codes ("CRIMJ 200",
+          // "or STS/PHIL 107") — treat like code rows.
+          const list = parseCodeListText(text);
+          if (list) {
+            if (list.leadingOr) foldIntoPrev(list.codes, credits);
+            else if (indented && collectInto(list.codes)) { /* collected */ }
+            else if (list.codes.length > 1) current!.rules.push({ type: "oneOf", options: list.codes, credits });
+            else current!.rules.push({ type: "course", code: list.codes[0], credits });
+            return;
+          }
+
+          if (isNoteRow(text)) {
+            current!.rules.push({ type: "note", commentRaw: text });
+            return;
+          }
+          const bool = parseBooleanRow(text, credits);
+          if (bool) { current!.rules.push(...bool); collector = null; return; }
+
+          const rule = classifyComment(text);
+          current!.rules.push(rule);
+          collector = rule.type === "selectCredits" || rule.type === "chooseN" ? rule : null;
+          if ((rule.type === "selectCredits" || rule.type === "chooseN") && credits !== null && rule.credits === null) rule.credits = credits;
+          if (rule.type === "unstructured") needsReview.push({ heading: current!.heading, text });
+          return;
+        }
+
+        needsReview.push({ heading: current!.heading, text: rowText });
+        current!.rules.push({ type: "unstructured", commentRaw: rowText });
+      });
+
+    push();
+  });
+
+  // Section credit subtotals often appear in the heading text, e.g.
+  // "Prescribed Courses (42 credits)" — capture when present.
+  for (const s of sections) {
+    const m = /\((\d+(?:\.\d+)?)\s*credits?\)/i.exec(s.heading) ?? /:\s*(\d+(?:\.\d+)?)\s*credits?/i.exec(s.heading);
+    if (m) s.creditsRequired = parseFloat(m[1]);
+  }
+
+  return { sections, needsReview };
+}

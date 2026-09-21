@@ -1,0 +1,75 @@
+{
+ "slug": "smeal-business-smeal-college-business-fundamentals-certificate",
+ "name": "Smeal College Business Fundamentals, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "smeal-business",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/smeal-business/smeal-college-business-fundamentals-certificate/",
+ "totalCredits": 15,
+ "requirementSections": [
+  {
+   "heading": "Prerequisite Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ACCTG 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ECON 102",
+     "credits": 3
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Select three credits of 200-level statistics"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "ACCTG 211Financial and Managerial Accounting for Decision Making4\nECON 102Introductory Microeconomic Analysis and Policy 3\nSelect three credits of 200-level statistics3\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BA 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BA 302",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BA 303",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BA 304",
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BLAW 243",
+      "IB 303"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBA 301Finance3\nBA 302Supply Chains3\nBA 303Marketing3\nBA 304Management and Organization3\nBLAW 243Legal Environment of Business3\nor IB 303 International Business Operations\n"
+  }
+ ],
+ "suggestedPlans": []
+}

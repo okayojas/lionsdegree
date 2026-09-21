@@ -1,0 +1,48 @@
+{
+ "slug": "behrend-public-relations-certificate",
+ "name": "Public Relations, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/public-relations-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "COMM 315",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 370",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 471",
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "COMM 472",
+      "COMM 473"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "COMM 315Applications for Media Writing3\nCOMM 370Public Relations3\nCOMM 471Public Relations Media and Methods3\nCOMM 472Public Relations Event Planning3\nor COMM 473 Public Relations Campaigns\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,53 @@
+{
+ "slug": "engineering-engineering-design-digital-tools-certificate",
+ "name": "Engineering Design with Digital Tools, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/engineering-design-digital-tools-certificate/",
+ "totalCredits": 13,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EDSGN 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 468",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 485",
+     "credits": 1
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following or from an approved list maintained by the program:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EDSGN 110",
+       "EDSGN 210",
+       "EDSGN 462",
+       "EDSGN 468",
+       "EMCH 461"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "EDSGN 100Cornerstone Engineering Design3\nEDSGN 468Engineering Design and Analysis with CAD3\nEDSGN 485Engineering Design Portfolio1\nSelect 6 credits from the following or from an approved list maintained by the program:6\nEDSGN 110Spatial Analysis in Engineering Design\nEDSGN 210Tolerancing and Spatial Models\nEDSGN 462Introduction to Design for Additive Manufacturing\nEDSGN 468Engineering Design and Analysis with CAD\nEMCH 461Finite Elements in Engineering\n"
+  }
+ ],
+ "suggestedPlans": []
+}

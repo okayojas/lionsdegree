@@ -1,0 +1,542 @@
+[
+ {
+  "code": "DA 101",
+  "subject": "DA",
+  "number": "101",
+  "display": "DA 101",
+  "title": "Introduction to Data Analytics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course is designed around storytelling with data. It is designed to introduce students to foundational concepts in data analytics. Students will learn key concepts used in the data analytics industry to understand and frame projects. The core dimensions of analytics prescribed by current data analytics professional guidelines will be introduced and demonstrated through case studies. Students will be exposed to spreadsheets, scripting languages for analytics, and current statistical software packages. The importance of communicating findings to different constituents will be emphasized throughout this class.",
+  "enforced": "MATH 21 or satisfactory performance on the mathematics placement examination.",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "course",
+    "code": "MATH 21"
+   },
+   "b": {
+    "op": "phrase",
+    "text": "satisfactory performance on the mathematics placement examination."
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": false,
+  "genEd": [
+   "GQ"
+  ],
+  "attributes": [
+   "GLO: Effective Communication",
+   "GLO: Crit and Analytical Think",
+   "GLO: Integrative Thinking"
+  ],
+  "crossListings": [],
+  "aliases": [
+   "DA 101"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/da/",
+  "extraRaw": []
+ },
+ {
+  "code": "DA 201W",
+  "subject": "DA",
+  "number": "201W",
+  "display": "DA 201W",
+  "title": "Descriptive Analytics",
+  "credits": "4 Credits",
+  "creditsParsed": {
+   "min": 4,
+   "max": 4,
+   "repeatableMax": null
+  },
+  "description": "DA 201W is a four-credit course with lecture and writing components. (DA201W, DA 302W, and DA 401W each carry only one credit of \"writing\"; completion of all three courses is required to meet the writing requirement.) This course introduces students to the core areas of descriptive analytics, where the main objective is to answer \"what happened\" in the project. Students will learn how to accurately describe the attributes of data variables available to them for their projects. Students will have the opportunity to work on real-life projects and cases throughout the course. The course will expose students to spreadsheets, scripting languages for analytics, and current statistical software packages. The instructor will emphasize the importance of communicating findings to different constituents throughout this class.",
+  "enforced": "(PSYCH 200 or STAT 200 or STAT 250 or SCM 200) and (DA 101 or DS 200) Enforced Concurrent at Enrollment: DA 301",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "or",
+     "a": {
+      "op": "or",
+      "a": {
+       "op": "or",
+       "a": {
+        "op": "course",
+        "code": "PSYCH 200"
+       },
+       "b": {
+        "op": "course",
+        "code": "STAT 200"
+       }
+      },
+      "b": {
+       "op": "course",
+       "code": "STAT 250"
+      }
+     },
+     "b": {
+      "op": "course",
+      "code": "SCM 200"
+     }
+    },
+    "b": {
+     "op": "or",
+     "a": {
+      "op": "course",
+      "code": "DA 101"
+     },
+     "b": {
+      "op": "course",
+      "code": "DS 200"
+     }
+    }
+   },
+   "b": {
+    "op": "concurrent",
+    "a": {
+     "op": "course",
+     "code": "DA 301"
+    }
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [
+   "Writing Across the Curriculum"
+  ],
+  "crossListings": [],
+  "aliases": [
+   "DA 201W"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/da/",
+  "extraRaw": []
+ },
+ {
+  "code": "DA 301",
+  "subject": "DA",
+  "number": "301",
+  "display": "DA 301",
+  "title": "Diagnostic Analytics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course introduces students to the core areas of diagnostic analytics. The diagnostic analysis takes descriptive data a step further by examining the relationships between variables through root cause analysis. Students will learn current tools and techniques, including external environmental factors, that allow analysts to explain why the patterns are observed in data and discover relationships between two or more attributes of the data. Students will have the opportunity to review case studies and work on real-world projects throughout the course.",
+  "enforced": "DA 101 Enforced Concurrent at Enrollment: DA 201W",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "DA 101"
+   },
+   "b": {
+    "op": "concurrent",
+    "a": {
+     "op": "course",
+     "code": "DA 201W"
+    }
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "DA 301"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/da/",
+  "extraRaw": []
+ },
+ {
+  "code": "DA 302W",
+  "subject": "DA",
+  "number": "302W",
+  "display": "DA 302W",
+  "title": "Predictive Analytics",
+  "credits": "4 Credits",
+  "creditsParsed": {
+   "min": 4,
+   "max": 4,
+   "repeatableMax": null
+  },
+  "description": "DA 302W is a four-credit course with lecture and writing components. (DA201W, DA 302W, and DA 401W each carry only one credit of \"writing\"; completion of all three courses is required to meet the writing requirement.) The principal objective of this course is to help students predict ¿what will happen¿ in future events based on historical data. This course exposes students to predictive analytics techniques that are consistent with best practices in the data analytics industry. Students will learn how to properly examine problem contexts to use the most appropriate method to develop the best predictive model. Students will also learn how to evaluate their results and interpret findings to users at different levels of an organization. This course focuses on the application of spreadsheets, scripting languages for data analytics, and current statistical software packages.",
+  "enforced": "DA 301 and DA 201W",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "DA 301"
+   },
+   "b": {
+    "op": "course",
+    "code": "DA 201W"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [
+   "Writing Across the Curriculum"
+  ],
+  "crossListings": [],
+  "aliases": [
+   "DA 302W"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/da/",
+  "extraRaw": []
+ },
+ {
+  "code": "DA 305",
+  "subject": "DA",
+  "number": "305",
+  "display": "DA 305",
+  "title": "Data Ethics and Privacy",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "DA 305 will cultivate students¿ awareness of ethical, privacy, and security rules and standards to guide how to use and analyze data and communicate the report findings. The course will demonstrate appropriate ethical, privacy, and security standards. This course will utilize case studies to demonstrate the realworld implications of these topics in data analytics and identify the appropriate communication styles. The course will emphasize ethics at various stages of data analytics. This includes the communication of the implications of the data analysis to stakeholders, including how data are collected and stored as well as how it is analyzed and presented to different stakeholders. Students will be able to define who has access to which data, where and how long the data will be stored, and which procedures will be implemented for further use.",
+  "enforced": "DA 101",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "DA 101"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "DA 305"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/da/",
+  "extraRaw": []
+ },
+ {
+  "code": "DA 401W",
+  "subject": "DA",
+  "number": "401W",
+  "display": "DA 401W",
+  "title": "Prescriptive Analytics",
+  "credits": "4 Credits",
+  "creditsParsed": {
+   "min": 4,
+   "max": 4,
+   "repeatableMax": null
+  },
+  "description": "DA 401W is a four-credit course with lecture and writing components. (DA201W, DA 302W, and DA 401W each carry only 1 credit of \"writing\"; all three courses must be taken to meet the writing requirement). This course will introduce students to how data analytics assists in making decisions and advocating for a course of action. The core objective of this course is to help students develop a set of viable decision options (based on considerations including costs and benefits, key stakeholder preferences, ethical guidelines, etc.), ranking those decision options to create alternative courses of action, and how to achieve an optimal decision. Topics covered will include optimization, sensitivity analysis, decision making, linear programming, and simulation.",
+  "enforced": "DA 302W",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "DA 302W"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [
+   "Writing Across the Curriculum"
+  ],
+  "crossListings": [],
+  "aliases": [
+   "DA 401W"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/da/",
+  "extraRaw": []
+ },
+ {
+  "code": "DA 402",
+  "subject": "DA",
+  "number": "402",
+  "display": "DA 402",
+  "title": "Qualitative Analytics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "The majority of non-numeric data is unstructured (e.g., blogs, emails, forums). DA 402 is an overview of data analytics techniques for non-numeric data (e.g., text, videos or images). The methodological reasons for a qualitative rather than a quantitative approach, and the underlying challenges with this type of data depend on the hypothesis or research question. Often, research questions and organizational problems can best be answered by qualitative, non-numeric data. Students in data analytics will be exposed to situations and conditions where these practical analyses would be applicable rather than students in data sciences who create or improve the algorithm for analysis. This course will enable students to pursue further study in these types of practical applications. Students need a strong background in statistics before scheduling this course.",
+  "enforced": "DA 201W Enforced Concurrent at Enrollment: (ENGL 202A or ENGL 202B or ENGL 202C or ENGL 202D)",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "DA 201W"
+   },
+   "b": {
+    "op": "concurrent",
+    "a": {
+     "op": "or",
+     "a": {
+      "op": "or",
+      "a": {
+       "op": "or",
+       "a": {
+        "op": "course",
+        "code": "ENGL 202A"
+       },
+       "b": {
+        "op": "course",
+        "code": "ENGL 202B"
+       }
+      },
+      "b": {
+       "op": "course",
+       "code": "ENGL 202C"
+      }
+     },
+     "b": {
+      "op": "course",
+      "code": "ENGL 202D"
+     }
+    }
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "DA 402"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/da/",
+  "extraRaw": []
+ },
+ {
+  "code": "DA 475",
+  "subject": "DA",
+  "number": "475",
+  "display": "DA 475",
+  "title": "Data Analytics Implementation Capstone I",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "DA 475 is the first semester of a two-semester sequence and completion of the BS in Data Analytics. The course requirements enable the student to demonstrate the student's ability to use industry or organization data to develop a descriptive, diagnostic, predictive, and prescriptive analysis. This portion of the capstone addresses the understanding of the industry data, project scope, data journalism, and descriptive analysis.",
+  "enforced": "DA 302W and DA 305 and MIS 447 Enforced Concurrent at Enrollment: MGMT 409",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "and",
+     "a": {
+      "op": "course",
+      "code": "DA 302W"
+     },
+     "b": {
+      "op": "course",
+      "code": "DA 305"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "MIS 447"
+    }
+   },
+   "b": {
+    "op": "concurrent",
+    "a": {
+     "op": "course",
+     "code": "MGMT 409"
+    }
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "DA 475"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/da/",
+  "extraRaw": []
+ },
+ {
+  "code": "DA 476",
+  "subject": "DA",
+  "number": "476",
+  "display": "DA 476",
+  "title": "Data Analytics Implementation Capstone II",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "DA 476 is the second semester of a two-semester sequence and completion of the BS in Data Analytics. The course requirements will include a continuation of industry project (assigned in DA 475) and the remaining three-part analysis of organization-specific analysis (diagnostic, predictive, and prescriptive).",
+  "enforced": "DA 475",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "DA 475"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "DA 476"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/da/",
+  "extraRaw": []
+ },
+ {
+  "code": "DA 494",
+  "subject": "DA",
+  "number": "494",
+  "display": "DA 494",
+  "title": "Research Projects",
+  "credits": "1-12 Credits/Maximum of 12",
+  "creditsParsed": {
+   "min": 1,
+   "max": 12,
+   "repeatableMax": 12
+  },
+  "description": "Supervised student activities on research projects identified on an individual or small-group basis.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "DA 494"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/da/",
+  "extraRaw": []
+ },
+ {
+  "code": "DA 495",
+  "subject": "DA",
+  "number": "495",
+  "display": "DA 495",
+  "title": "Internship",
+  "credits": "1-18 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 18,
+   "repeatableMax": null
+  },
+  "description": "Supervised off-campus, nongroup instruction including field experiences, practica, or internships. Written and oral critique of activity required.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "DA 495"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/da/",
+  "extraRaw": []
+ },
+ {
+  "code": "DA 496",
+  "subject": "DA",
+  "number": "496",
+  "display": "DA 496",
+  "title": "Independent Study",
+  "credits": "1-18 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 18,
+   "repeatableMax": null
+  },
+  "description": "Creative projects, including research and design, which are supervised on an individual basis and which fall outside the scope of formal courses.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "DA 496"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/da/",
+  "extraRaw": []
+ },
+ {
+  "code": "DA 497",
+  "subject": "DA",
+  "number": "497",
+  "display": "DA 497",
+  "title": "Special Topics",
+  "credits": "1-9 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": null
+  },
+  "description": "Formal courses given infrequently to explore, in depth, a comparatively narrow subject which may be topical or of special interest.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "DA 497"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/da/",
+  "extraRaw": []
+ }
+]

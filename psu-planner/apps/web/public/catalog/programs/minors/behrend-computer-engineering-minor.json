@@ -1,0 +1,105 @@
+{
+ "slug": "behrend-computer-engineering-minor",
+ "name": "Computer Engineering, Minor (Behrend)",
+ "type": "minor",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/computer-engineering-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EE 210",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "EE 310",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "EE 316",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nEE 210Circuits and Devices4\nEE 310Electronic Circuit Design I4\nEE 316Introduction to Embedded Microcontrollers3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CMPEN 271",
+      "CMPEN 275"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CMPSC 201",
+      "CMPSC 202"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select two of the following:"
+    },
+    {
+     "type": "course",
+     "code": "CMPEN 352W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPEN 411",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPEN 431",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPEN 441",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPEN 461",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 450",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SWENG 411",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nCMPEN 271& CMPEN 275Introduction to Digital Systemsand Digital Design Laboratory4\nCMPSC 201Programming for Engineers with C++ 3\nor CMPSC 202\nSelect two of the following:6\nCMPEN 352WEmbedded Systems Design\nCMPEN 411VLSI Digital Circuits\nCMPEN 431Introduction to Computer Architecture\nCMPEN 441Operating Systems\nCMPEN 461Communication Networks\nCMPSC 450Concurrent Scientific Programming\nSWENG 411Software Engineering\n"
+  }
+ ],
+ "suggestedPlans": []
+}

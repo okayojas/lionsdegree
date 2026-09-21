@@ -1,0 +1,46 @@
+{
+ "slug": "capital-integrative-arts-ba",
+ "name": "Integrative Arts, B.A. (Capital)",
+ "type": "major",
+ "degree": "BA",
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/integrative-arts-ba/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 24,
+     "commentRaw": "Select 24 credits from an arts area",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from other arts areas",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of GA",
+     "from": {
+      "kind": "genEd",
+      "domain": "GA"
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 24 credits from an arts area24\nSelect 12 credits from other arts areas12\nSelect 6 credits of GA6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

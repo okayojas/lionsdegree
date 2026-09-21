@@ -1,0 +1,718 @@
+{
+ "slug": "eberly-science-neurobiology-bs",
+ "name": "Neurobiology, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/neurobiology-bs/",
+ "totalCredits": 122,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 162",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "BIOL 470",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 212",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PHYS 250",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 251",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "BIOL 161",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BIOL 469",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 162Human Anatomy and Physiology I - Laboratory 1\nBIOL 470Functional and Integrative Neuroscience3\nCHEM 111Experimental Chemistry I 1\nCHEM 210Organic Chemistry I3\nCHEM 212Organic Chemistry II3\nPHYS 250Introductory Physics I 4\nPHYS 251Introductory Physics II 4\nPrescribed Courses: Require a grade of C or better\nBIOL 161Human Anatomy and Physiology I - Lecture 3\nBIOL 469Neurobiology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 222",
+      "BIOL 322"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BMB 211",
+      "BMB 401"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 113",
+      "CHEM 113B"
+     ],
+     "credits": 1
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 213W",
+      "CHEM 213M"
+     ],
+     "credits": 2
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 100",
+      "PSYCH 100H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 260",
+      "PSYCH 260A"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select a minimum of 15 credits of 400-level biology courses, with at least 6 credits from Group A (Molecular and Cellular Neuroscience), 3 credits from Group B (Behavioral, Structural, and Cognitive Neuroscience) ), 3 credits from Group C (Additional Coursework on Topics Highly Relevant to Neuroscience), and 3 credits from Group D (Laboratory Requirement).",
+     "from": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Group A: Molecular and Cellular Neuroscience"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 404",
+       "BIOL 413",
+       "BIOL 430",
+       "BIOL 467"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Group B: Behavioral, Structural, and Cognitive Neuroscience"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ANTH 466",
+       "BBH 468",
+       "BIOL 426",
+       "BIOL 478",
+       "KINES 465",
+       "KINES 471",
+       "PSYCH 452",
+       "PSYCH 455",
+       "PSYCH 458",
+       "PSYCH 462",
+       "PSYCH 478"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Group C: Additional Coursework on Topics Highly Relevant to Neuroscience"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BBH 451",
+       "BIOL 418",
+       "BIOL 422",
+       "BIOL 434",
+       "BIOL 439",
+       "BIOL 455",
+       "BIOL 460",
+       "BIOL 465",
+       "BIOL 472",
+       "BIOL 475",
+       "BIOL 479",
+       "NUTR 460"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Group D: Laboratory Requirement"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 421",
+       "BIOL 437",
+       "BIOL 473",
+       "BIOL 476",
+       "BIOL 477",
+       "BIOL 478",
+       "BIOL 494",
+       "BIOL 496",
+       "SC 295",
+       "SC 395",
+       "SC 495"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 110",
+      "BIOL 110H"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 230W",
+      "BIOL 230M"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 110",
+      "CHEM 110H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 112",
+      "CHEM 112H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 140B",
+      "MATH 140"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "STAT 250",
+      "STAT 200",
+      "STAT 240"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "BIOL 222Genetics3\nor BIOL 322 Genetic Analysis\nBMB 211Elementary Biochemistry3\nor BMB 401 General Biochemistry\nCHEM 113Experimental Chemistry II 1\nor CHEM 113B Experimental Chemistry II--Bioscience\nCHEM 213WLaboratory in Organic Chemistry - Writing Intensive2\nor CHEM 213M Laboratory in Organic Chemistry - Honors, Writing Intensive\nPSYCH 100Introductory Psychology 3\nor PSYCH 100H Honors Introductory Psychology\nPSYCH 260/BBH 203Neurological Bases of Human Behavior3\nor PSYCH 260A Neurological Bases of Human Behavior\nGroups\nSelect a minimum of 15 credits of 400-level biology courses, with at least 6 credits from Group A (Molecular and Cellular Neuroscience), 3 credits from Group B (Behavioral, Structural, and Cognitive Neuroscience) ), 3 credits from Group C (Additional Coursework on Topics Highly Relevant to Neuroscience), and 3 credits from Group D (Laboratory Requirement).15\nGroup A: Molecular and Cellular Neuroscience\nSelect 6 credits from the following:\nBIOL 404Cellular Mechanisms in Vertebrate Physiology\nBIOL 413Cell Signaling and Regulation\nBIOL 430Developmental Biology\nBIOL 467Molecular Basis of Neurological Diseases\nGroup B: Behavioral, Structural, and Cognitive Neuroscience\nSelect 3 credits from the following:\nANTH 466The Skull\nBBH 468Neuroanatomical Bases for Disorders of Behavior and Health\nBIOL 426Developmental Neurobiology\nBIOL 478HUMAN NEUROANATOMY\nKINES 465Neurobiology of Sensorimotor Stroke Rehabilitation\nKINES 471MOTOR CONTROL\nPSYCH 452Learning and Memory\nPSYCH 455Cognitive Neuroscience\nPSYCH 458Visual Cognition\nPSYCH 462Physiological Psychology\nPSYCH 478Clinical Neuropsychology\nGroup C: Additional Coursework on Topics Highly Relevant to Neuroscience\nSelect 3 credits from the following:\nBBH 451Pharmacological Influences on Health\nBIOL 418Biology of Human Infectious Diseases\nBIOL 422Advanced Genetics\nBIOL 434Pathobiology of Emerging Infectious Disease\nBIOL 439Practical Bioinformatics\nBIOL 455Stem Cell Biology and Therapy\nBIOL 460Human Genetics\nBIOL 465Network analysis of biological systems\nBIOL 472Human Physiology\nBIOL 475Human Pathophysiology\nBIOL 479General Endocrinology\nNUTR 460Nutritional Neuroscience\nGroup D: Laboratory Requirement\nSelect 3 credits from the following:\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL 437Histology\nBIOL 473Laboratory in Mammalian Physiology\nBIOL 476Advanced Human Anatomy - cadaver based\nBIOL 477Biology Cadaver Dissection\nBIOL 478HUMAN NEUROANATOMY\nBIOL 494Research Project\nBIOL 496Independent Studies\nSC 295Science Co-op Work Experience I\nSC 395Science Co-op Work Experience II\nSC 495Science Co-op Work Experience III\nAdditional Courses: Require a grade of C or better\nBIOL 110Biology: Basic Concepts and Biodiversity 4\nor BIOL 110H Honors Biology: Basic Concepts and Biodiversity\nBIOL 230WBiology: Molecules and Cells4\nor BIOL 230M Honors Biology: Molecules and Cells\nCHEM 110Chemical Principles I 3\nor CHEM 110H Chemical Principles I - Honors\nCHEM 112Chemical Principles II 3\nor CHEM 112H Chemical Principles II - Honors\nMATH 140BCalculus and Biology I 4\nor MATH 140 Calculus With Analytic Geometry I\nSTAT 250Introduction to Biostatistics 3-4\nor STAT 200 Elementary Statistics\nor STAT 240 Introduction to Biometry\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 19,
+     "commentRaw": "Select 19-20 credits from department list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 19-20 credits from department list19-20\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Neurobiology, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115",
+        "BIOL 114",
+        "BIOL 116"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15",
+        "ENGL 137H",
+        "CAS 137H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "PSU First-Year Seminar (not required if enrolled in ENGL/CAS 137H)",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GWS) (ENGL/CAS 138H) or General Education Course or Elective",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 222",
+       "credits": 4,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": [
+        "BIOL 161",
+        "BIOL 162"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 250",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 200",
+        "STAT 240"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BBH 203",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 322",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": [
+        "BIOL 161",
+        "BIOL 162"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL/BBH 469 (or BIOL 4XX (Group A))",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 211",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BMB 401"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 470",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 251",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH, US/IL)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 470",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX (Group B)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Exploration)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX (Group C)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX (Group D)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 122,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

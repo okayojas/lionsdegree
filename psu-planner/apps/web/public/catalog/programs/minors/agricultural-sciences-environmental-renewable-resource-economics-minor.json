@@ -1,0 +1,68 @@
+{
+ "slug": "agricultural-sciences-environmental-renewable-resource-economics-minor",
+ "name": "Environmental and Renewable Resource Economics, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/environmental-renewable-resource-economics-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CED 201",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CED 429",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 302",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCED 201Introductory Environmental and Resource Economics3\nCED 429Natural Resource Economics3\nECON 302Intermediate Microeconomic Analysis 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CED 329H",
+       "ECON 428",
+       "CED 431W",
+       "CED 450",
+       "ERM 411",
+       "ERM 449"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "300- or 400-level internship or independent study (3 credit max)"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 9 credits from the following:9\nCED 329HIntermediate Environmental & Resource Economics (Honors)\nor ECON 428 Environmental Economics\nCED 431WEconomic Analysis of Environmental and Resource Policies\nCED 450International Development, Renewable Resources, and the Environment\nERM 411Legal Aspects of Resource Management\nERM 449Sustainable Water Management: Economics and Policy\n300- or 400-level internship or independent study (3 credit max)\n"
+  }
+ ],
+ "suggestedPlans": []
+}

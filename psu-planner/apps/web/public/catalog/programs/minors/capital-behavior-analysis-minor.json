@@ -1,0 +1,95 @@
+{
+ "slug": "capital-behavior-analysis-minor",
+ "name": "Behavior Analysis, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/behavior-analysis-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "PSYCH 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 443",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 473",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 488",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nPSYCH 100Introductory Psychology 3\nPSYCH 443Treatment and Education in Developmental Disabilities3\nPSYCH 473Behavior Modification3\nPSYCH 488Ethics in Behavioral Sciences and Education3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 261",
+      "PSYCH 461"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nPSYCH 261Introduction to Psychology of Learning 3\nor PSYCH 461 Advanced Conditioning and Learning\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ABA 495",
+      "ABA 494"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ABA 457",
+       "PSYCH 474",
+       "PSYCH 485",
+       "SPLED 462"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nABA 495Internship in Behavior Analysis3\nor ABA 494 Research Projects in Behavior Analysis\nSelect 3 credits from the following:3\nABA 457Understanding Communication: Verbal Behavior\nPSYCH 474Psychological Intervention in Childhood\nPSYCH 485Leadership in Work Settings\nSPLED 462Autism and Applied Behavior Analysis\n"
+  }
+ ],
+ "suggestedPlans": []
+}

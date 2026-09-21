@@ -1,0 +1,76 @@
+{
+ "slug": "eberly-science-biology-minor",
+ "name": "Biology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/biology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 110",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBIOL 110Biology: Basic Concepts and Biodiversity 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 7,
+     "commentRaw": "Select 7-8 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 129",
+       "BIOL 141",
+       "BIOL 142",
+       "BIOL 161",
+       "BIOL 162",
+       "BIOL 163",
+       "BIOL 164",
+       "BIOL 220W",
+       "BIOL 222",
+       "BIOL 230W",
+       "BIOL 240W",
+       "BIOL 322"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 7-8 credits of the following:7-8\nBIOL 129Mammalian Anatomy\nBIOL 141Introduction to Human Physiology\nBIOL 142Physiology Laboratory\nBIOL 161Human Anatomy and Physiology I - Lecture\nBIOL 162Human Anatomy and Physiology I - Laboratory\nBIOL 163Human Anatomy and Physiology II - Lecture\nBIOL 164Human Anatomy and Physiology II - Laboratory\nBIOL 220WBiology: Populations and Communities\nBIOL 222Genetics\nBIOL 230WBiology: Molecules and Cells\nBIOL 240WBiology: Function and Development of Organisms\nBIOL 322Genetic Analysis\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-9 credits from 400-level Biology courses",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6-9 credits from 400-level Biology courses 6-9\n"
+  }
+ ],
+ "suggestedPlans": []
+}

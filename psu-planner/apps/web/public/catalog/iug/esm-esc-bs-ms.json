@@ -1,0 +1,298 @@
+{
+  "slug": "esm-esc-bs-ms",
+  "name": "Engineering Science and Mechanics",
+  "gradDegree": "M.S. in Engineering Science and Mechanics",
+  "college": "College of Engineering (ESM)",
+  "campus": "University Park",
+  "pairsWith": [
+    "engineering-engineering-science-bs"
+  ],
+  "sourceUrl": "https://bulletins.psu.edu/graduate/programs/majors/engineering-science-mechanics/",
+  "edition": "2025-2026",
+  "totalGradCredits": null,
+  "doubleCount": {
+    "maxCredits": 12,
+    "minHalfAt500Level": true,
+    "eligible": [
+      "EMCH 400",
+      "EMCH 407",
+      "EMCH 524A",
+      "ESC 404",
+      "ESC 419",
+      "ESC 501",
+      "ESC 551"
+    ]
+  },
+  "applyText": "Integrated Undergrad-Grad Programs Integrated B.S. in Engineering Science And M.S. in Engineering Science and Mechanics This Integrated Undergraduate/Graduate (IUG) degree program combines the B.S. in Engineering Science with the M.S. in Engineering offered at the following campuses: Undergraduate Degree University Park Graduate Degree University Park Requirements listed here are in addition to requirements listed in GCAC-210 Integrated Undergraduate-Graduate (IUG) Degree Programs. The flexibility and strength in fundamentals of the Engineering Science curriculum provides an opportunity for Engineering Science undergraduate students to participate in the ESM Integrated Undergraduate Graduate (IUG) program. The IUG program promotes the interchange of ideas across all branches of the scientific and engineering disciplines from both a theoretical and experimental perspective. Students in the integrated degree program are expected to pursue interdisciplinary studies in areas that encompass nano- and bionanotechnology, advanced materials, electromagnetic, mechanics, microelectronics, nanoelectronics and bioelectronics, neural engineering, photonics and photovoltaics (among others) and t",
+  "gradTracks": [
+    {
+      "sections": [
+        {
+          "heading": "Required Courses",
+          "kind": "other",
+          "creditsRequired": null,
+          "rules": [
+            {
+              "type": "oneOf",
+              "options": [
+                "ESC 514",
+                "EMCH 514"
+              ],
+              "credits": 1
+            },
+            {
+              "type": "selectCredits",
+              "credits": 3,
+              "commentRaw": "Select 3 credits in each of the following areas:",
+              "from": {
+                "kind": "courses",
+                "courses": []
+              }
+            },
+            {
+              "type": "unstructured",
+              "commentRaw": "Analysis"
+            },
+            {
+              "type": "unstructured",
+              "commentRaw": "Fields"
+            },
+            {
+              "type": "unstructured",
+              "commentRaw": "Motion"
+            },
+            {
+              "type": "unstructured",
+              "commentRaw": "Materials Performance/Reliability or Materials Processing/Structure/Characterization"
+            },
+            {
+              "type": "unstructured",
+              "commentRaw": "Select 3 additional credits from any one of the four categories above"
+            }
+          ],
+          "structured": false,
+          "llmNormalized": false,
+          "rawText": "ESC 514Engineering Science and Mechanics Seminar1\nor EMCH 514 Engineering Science and Mechanics Seminar\nSelect 3 credits in each of the following areas:12\nAnalysis\nFields\nMotion\nMaterials Performance/Reliability or Materials Processing/Structure/Characterization\nSelect 3 additional credits from any one of the four categories above3\n"
+        },
+        {
+          "heading": "Electives",
+          "kind": "electives",
+          "creditsRequired": null,
+          "rules": [
+            {
+              "type": "unstructured",
+              "commentRaw": "Select 12 elective credits"
+            }
+          ],
+          "structured": false,
+          "llmNormalized": false,
+          "rawText": "Select 12 elective credits12\n"
+        },
+        {
+          "heading": "Culminating Experience",
+          "kind": "other",
+          "creditsRequired": null,
+          "rules": [
+            {
+              "type": "oneOf",
+              "options": [
+                "ESC 596",
+                "EMCH 596"
+              ],
+              "credits": 3
+            },
+            {
+              "type": "unstructured",
+              "commentRaw": "Total Credits31"
+            }
+          ],
+          "structured": false,
+          "llmNormalized": false,
+          "rawText": "ESC 596Individual Studies3\nor EMCH 596 Individual Studies\nTotal Credits31\n"
+        }
+      ],
+      "totalCredits": 31
+    },
+    {
+      "sections": [
+        {
+          "heading": "Required Courses",
+          "kind": "other",
+          "creditsRequired": null,
+          "rules": [
+            {
+              "type": "selectCredits",
+              "credits": 3,
+              "commentRaw": "Select 3 credits in the area of Mathematical Methods in Engineering (EMCH 524A, or an equivalent or more advanced course)",
+              "from": null
+            },
+            {
+              "type": "selectCredits",
+              "credits": 3,
+              "commentRaw": "Select 3 credits in the area of Mechanics",
+              "from": null
+            },
+            {
+              "type": "selectCredits",
+              "credits": 3,
+              "commentRaw": "Select 3 credits in the area of Materials",
+              "from": null
+            },
+            {
+              "type": "selectCredits",
+              "credits": 3,
+              "commentRaw": "Select 3 credits in the area of Engineering Science",
+              "from": null
+            },
+            {
+              "type": "oneOf",
+              "options": [
+                "EMCH 514",
+                "ESC 514"
+              ],
+              "credits": 2
+            }
+          ],
+          "structured": true,
+          "llmNormalized": false,
+          "rawText": "Select 3 credits in the area of Mathematical Methods in Engineering (EMCH 524A, or an equivalent or more advanced course)3\nSelect 3 credits in the area of Mechanics 3\nSelect 3 credits in the area of Materials 3\nSelect 3 credits in the area of Engineering Science 3\nEMCH 514Engineering Science and Mechanics Seminar2\nor ESC 514 Engineering Science and Mechanics Seminar\n"
+        },
+        {
+          "heading": "Electives",
+          "kind": "electives",
+          "creditsRequired": null,
+          "rules": [],
+          "structured": true,
+          "llmNormalized": false,
+          "rawText": ""
+        },
+        {
+          "heading": "Culminating Experience",
+          "kind": "other",
+          "creditsRequired": null,
+          "rules": [
+            {
+              "type": "selectCredits",
+              "credits": 6,
+              "commentRaw": "Select 6 credits of thesis research:",
+              "from": {
+                "kind": "courses",
+                "courses": [
+                  "EMCH 600",
+                  "EMCH 610",
+                  "ESC 600",
+                  "ESC 610"
+                ]
+              }
+            },
+            {
+              "type": "unstructured",
+              "commentRaw": "Total Credits32"
+            }
+          ],
+          "structured": false,
+          "llmNormalized": false,
+          "rawText": "Select 6 credits of thesis research:6\nEMCH 600Thesis Research\nEMCH 610Thesis Research Off Campus\nESC 600Thesis Research\nESC 610Thesis Research Off Campus\nTotal Credits32\n"
+        }
+      ],
+      "totalCredits": 32
+    },
+    {
+      "sections": [
+        {
+          "heading": "Required Courses",
+          "kind": "other",
+          "creditsRequired": null,
+          "rules": [
+            {
+              "type": "course",
+              "code": "EMCH 524A",
+              "credits": 3
+            },
+            {
+              "type": "oneOf",
+              "options": [
+                "EMCH 514",
+                "ESC 514"
+              ],
+              "credits": 2
+            }
+          ],
+          "structured": true,
+          "llmNormalized": false,
+          "rawText": "EMCH 524AMathematical Methods in Engineering (or an equivalent or more advanced course)3\nEMCH 514Engineering Science and Mechanics Seminar2\nor ESC 514 Engineering Science and Mechanics Seminar\n"
+        },
+        {
+          "heading": "Electives",
+          "kind": "electives",
+          "creditsRequired": null,
+          "rules": [],
+          "structured": true,
+          "llmNormalized": false,
+          "rawText": ""
+        },
+        {
+          "heading": "Culminating Experience",
+          "kind": "other",
+          "creditsRequired": null,
+          "rules": [
+            {
+              "type": "oneOf",
+              "options": [
+                "ESC 596",
+                "EMCH 596"
+              ],
+              "credits": 3
+            },
+            {
+              "type": "unstructured",
+              "commentRaw": "Total Credits32"
+            }
+          ],
+          "structured": false,
+          "llmNormalized": false,
+          "rawText": "ESC 596Individual Studies3\nor EMCH 596 Individual Studies\nTotal Credits32\n"
+        }
+      ],
+      "totalCredits": 32
+    }
+  ],
+  "needsReview": [
+    {
+      "heading": "Required Courses",
+      "text": "Analysis"
+    },
+    {
+      "heading": "Required Courses",
+      "text": "Fields"
+    },
+    {
+      "heading": "Required Courses",
+      "text": "Motion"
+    },
+    {
+      "heading": "Required Courses",
+      "text": "Materials Performance/Reliability or Materials Processing/Structure/Characterization"
+    },
+    {
+      "heading": "Required Courses",
+      "text": "Select 3 additional credits from any one of the four categories above"
+    },
+    {
+      "heading": "Electives",
+      "text": "Select 12 elective credits"
+    },
+    {
+      "heading": "Culminating Experience",
+      "text": "Total Credits31"
+    },
+    {
+      "heading": "Culminating Experience",
+      "text": "Total Credits32"
+    },
+    {
+      "heading": "Culminating Experience",
+      "text": "Total Credits32"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+ "slug": "altoona-vocal-studies-minor",
+ "name": "Vocal Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "altoona",
+ "campuses": [
+  "Altoona, The Altoona College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/altoona/vocal-studies-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MUSIC 215",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 104",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "VOICE 100",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "VOICE 110",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nMUSIC 215The Craft of Singing 3\nMUSIC 104Chamber Singers 2\nVOICE 100Voice: Secondary 2\nVOICE 110Voice: Secondary 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "INART 50",
+       "MUSIC 4",
+       "MUSIC 5",
+       "MUSIC 7",
+       "MUSIC 8",
+       "MUSIC 9"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nINART 50The Science of Music\nMUSIC 4Film Music\nMUSIC 5An Introduction to Western Music\nMUSIC 7Evolution of Jazz\nMUSIC 8Rudiments of Music\nMUSIC 9Introduction to World Musics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "COMM 436",
+       "INART 494",
+       "MUSIC 404",
+       "MUSIC 420",
+       "MUSIC 497"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits from the following:6\nCOMM 436Advanced Audio Production\nINART 494Research Projects\nMUSIC 404Adv Chamber Singer\nMUSIC 420Song Writing and Recording\nMUSIC 497Special Topics\n"
+  }
+ ],
+ "suggestedPlans": []
+}

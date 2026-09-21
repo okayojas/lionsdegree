@@ -1,0 +1,53 @@
+{
+ "slug": "engineering-nanotechnology-minor",
+ "name": "Nanotechnology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/nanotechnology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ESC 312",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ESC 313",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nESC 312Engineering Applications of Wave, Particle, and Ensemble Concepts3\nESC 313Introduction to Principles, Fabrication Methods, and Applications of Nanotechnology3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits (at least 6 credits at the 400 level) from an approved list",
+     "from": {
+      "kind": "pattern",
+      "subject": "REDITS",
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 12 credits (at least 6 credits at the 400 level) from an approved list12\n"
+  }
+ ],
+ "suggestedPlans": []
+}

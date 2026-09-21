@@ -1,0 +1,122 @@
+{
+ "slug": "engineering-environmental-engineering-minor",
+ "name": "Environmental Engineering, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/environmental-engineering-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CE 370",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCE 370Introduction to Environmental Engineering3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "BE 308",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CE 479",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CHEM 202",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CHEM 210",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 0,
+     "commentRaw": "Select 0-3 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BE 302",
+       "CHE 210",
+       "EGEE 302",
+       "MNPR 301",
+       "NUCE 430",
+       "AERSP 308",
+       "BE 467",
+       "CE 371",
+       "CE 462",
+       "CHE 330",
+       "EME 303",
+       "ME 320",
+       "METEO 454",
+       "NUCE 431W"
+      ]
+     }
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-9 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BE 468",
+       "BE 477",
+       "CE 472W",
+       "CE 475",
+       "CE 476",
+       "CHEM 402",
+       "EGEE 470",
+       "ENVSE 408",
+       "ENVSE 427",
+       "ERM 411",
+       "ERM 412",
+       "ERM 413W",
+       "ERM 447",
+       "ERM 450",
+       "FSC 431",
+       "GEOSC 452",
+       "ME 405",
+       "ME 433",
+       "NUCE 405",
+       "NUCE 420",
+       "NUCE 428",
+       "SOILS 420"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nChemistry and Biological Sciences\nSelect one of the following:3\nBE 308Engineering Elements of Biochemistry and Microbiology\nCE 479Environmental Microbiology for Engineers\nCHEM 202Fundamentals of Organic Chemistry I\nCHEM 210Organic Chemistry I\nProcess Engineering\nSelect 0-3 credits of the following:0-3\nBE 302Heat and Mass Transfer in Biological Systems\nCHE 210Introduction to Material Balances\nEGEE 302Principles of Energy Engineering\nMNPR 301Elements of Mineral Processing\nNUCE 430Design Principles of Reactor Systems\nApplied Fluid Mechanics\nSelect one of the following:3\nAERSP 308Mechanics of Fluids\nBE 467Design of Stormwater and Erosion Control Facilities\nCE 371Water and Wastewater Treatment\nCE 462Open Channel Hydraulics\nCHE 330Process Fluid Mechanics\nEME 303Fluid Mechanics in Energy and Mineral Engineering\nME 320Fluid Flow\nMETEO 454Introduction to Micrometeorology\nNUCE 431WNuclear Reactor Core Design Synthesis\nEnvironmental Sciences and Design\nSelect 6-9 credits of the following:6-9\nBE 468Microbiological Engineering\nBE 477Land-Based Waste Disposal\nCE 472WEnvironmental Engineering Capstone Design\nCE 475Water Quality Chemistry\nCE 476Solid and Hazardous Wastes\nCHEM 402Environment Chemistry: Atmosphere\nEGEE/ME 430Introduction to Combustion\nEGEE 470Air Pollutants from Combustion Sources\nENVSE 408Contaminant Hydrology\nENVSE 427Pollution Control in the Process Industries\nERM 411Legal Aspects of Resource Management\nERM 412Resource Systems Analysis\nERM 413WCase Studies in Ecosystem Management\nERM 447Stream Restoration\nERM 450Wetland Science and Sustainability\nFSC 431The Chemistry of Fuels\nGEOSC 452Hydrogeology\nME 405Indoor Air Quality Engineering\nME 433Fundamentals of Air Pollution\nNUCE 405Nuclear and Radiochemistry\nNUCE 420Radiological Safety\nNUCE 428Radioactive Waste Control\nSOILS 420Remediation of Contaminated Soils\n"
+  }
+ ],
+ "suggestedPlans": []
+}

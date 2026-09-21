@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  app:
+    name: engine + web + api
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: psu-planner/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+        working-directory: psu-planner
+      - run: pnpm -r typecheck
+        working-directory: psu-planner
+      # The engine tests read the catalog committed under
+      # apps/web/public/catalog, so a bad catalog refresh fails here first.
+      - run: pnpm -r test
+        working-directory: psu-planner
+      - run: pnpm --filter web build
+        working-directory: psu-planner
+
+  pipeline:
+    name: scraper parser regression
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+        working-directory: psu-catalog-pipeline
+      - run: npm test
+        working-directory: psu-catalog-pipeline
+      - run: npm run typecheck
+        working-directory: psu-catalog-pipeline

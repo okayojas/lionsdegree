@@ -1,0 +1,100 @@
+{
+ "slug": "university-college-corporate-communication-minor",
+ "name": "Corporate Communication, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/corporate-communication-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CC 200",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCC 200Introduction to Corporate Communication 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-7 credits from:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ART 201",
+       "BA 243",
+       "CAS 204",
+       "CAS 250",
+       "CAS 252",
+       "CAS 271N",
+       "CAS 352",
+       "COMM 100N",
+       "COMM 241",
+       "COMM 370",
+       "ENGL 211",
+       "IST 110",
+       "MGMT 301",
+       "MKTG 301",
+       "MKTG 310",
+       "PHIL 103",
+       "PHIL 106",
+       "PHIL 123"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-6 credits from:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CC 401",
+       "CC 402"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAS 403",
+       "CAS 404",
+       "CAS 405",
+       "CAS 455",
+       "CAS 471",
+       "CC 404",
+       "CC 405",
+       "CC 406",
+       "COMM 472",
+       "ENGL 420",
+       "ENGL 480",
+       "MGMT 433"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3-7 credits from:3-7\nART 201\nBA 243Social, Legal, and Ethical Environment of Business\nCAS 204Communication Research Methods\nCAS 250Small Group Communication\nCAS 252Business and Professional Communication\nCAS 271NIntercultural Communication\nCAS 352Organizational Communication\nCOMM 100NThe Mass Media and Society\nCOMM 241Graphic Design for Communications\nCOMM 370Public Relations\nENGL 211Introduction to Writing Studies\nIST 110Information, People and Technology\nMGMT 301Basic Management Concepts\nMKTG 301Principles of Marketing\nMKTG 310Public Relations and Marketing\nPHIL 103Ethics\nPHIL 106Business Ethics\nPHIL 123Media Ethics\nSelect 3-6 credits from:3-6\nCC 401Internal Communication\nCC 402External Communication\nSelect 6 credits from:6\nCAS 403Interpersonal Communication Theory and Research\nCAS 404Conflict Resolution and Negotiation\nCAS 405Family Communication Theory and Research\nCAS 455Topics in Gender and Communication\nCAS 471Intercultural Communication Theory and Research\nCC 404Risk and Crisis in Corporate Communication\nCC 405Strategic Speaking\nCC 406Social Media in Corporate Communication\nCOMM 472Public Relations Event Planning\nENGL 420Writing for the Web\nENGL 480Communication Design for Writers\nMGMT 433Leadership and Team Building\n"
+  }
+ ],
+ "suggestedPlans": []
+}

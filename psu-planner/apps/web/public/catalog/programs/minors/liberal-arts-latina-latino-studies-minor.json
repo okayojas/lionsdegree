@@ -1,0 +1,67 @@
+{
+ "slug": "liberal-arts-latina-latino-studies-minor",
+ "name": "Latina and Latino Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/latina-latino-studies-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "LTNST 100",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nLTNST 100Introduction to Latina/o Studies 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "3 credits of SPAN 3 or above"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 9 credits of the following:9\nLTNST/ENGL 226Latina and Latino Border Theories\nLTNST/WMNST 300Latinx Gender and Sexuality Studies\nLTNST/SPAN 315NSpanish and Spanish-speakers in the U.S.\nLTNST/CMLIT 403Latina/o Literature and Culture\nLTNST/ENGL 426Chicana and Chicano Cultural Production: Literature, Film, Music\n3 credits of SPAN 3 or above\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from approved list in consultation with an academic adviser",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits from approved list in consultation with an academic adviser6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

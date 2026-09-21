@@ -1,0 +1,88 @@
+{
+ "slug": "arts-architecture-jazz-performance-minor",
+ "name": "Jazz Performance, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "arts-architecture",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/arts-architecture/jazz-performance-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MUSIC 84",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 181",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 182",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 421",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 422",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nMUSIC 84Jazz Ensemble 2\nMUSIC 181Jazz Improvisation I2\nMUSIC 182Jazz Improvisation II2\nMUSIC 421Jazz Combo Class 2\nMUSIC 422Jazz Harmony and Arranging3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "AFAM 207N",
+      "MUSIC 7"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "JAZZ 100",
+      "JAZZ 110"
+     ],
+     "credits": 2
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nAFAM 207NJazz and the African American Experience 3\nor MUSIC 7 Evolution of Jazz\nJAZZ 100Jazz Performance Studies 2\nor JAZZ 110 Jazz Performance Studies\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "Take 2 additional credits in the jazz or commercial music area in consultation with jazz faculty and adviser"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nTake 2 additional credits in the jazz or commercial music area in consultation with jazz faculty and adviser2\n"
+  }
+ ],
+ "suggestedPlans": []
+}

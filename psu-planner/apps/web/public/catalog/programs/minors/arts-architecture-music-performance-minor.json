@@ -1,0 +1,51 @@
+{
+ "slug": "arts-architecture-music-performance-minor",
+ "name": "Music Performance, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "arts-architecture",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/arts-architecture/music-performance-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 8,
+     "commentRaw": "Select 8 credits in applied music through Level IV: Primary",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits in ensembles",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of electives in MUSIC",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits at the 400 level in MUSIC",
+     "from": {
+      "kind": "pattern",
+      "subject": "IN",
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 8 credits in applied music through Level IV: Primary8\nSelect 4 credits in ensembles4\nSelect 3 credits of electives in MUSIC3\nSelect 6 credits at the 400 level in MUSIC6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

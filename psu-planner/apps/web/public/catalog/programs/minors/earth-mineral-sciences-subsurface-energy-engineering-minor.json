@@ -1,0 +1,69 @@
+{
+ "slug": "earth-mineral-sciences-subsurface-energy-engineering-minor",
+ "name": "Subsurface Energy Engineering, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/subsurface-energy-engineering-minor/",
+ "totalCredits": 18,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EME 200",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PNG 305",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PNG 410",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nEME 200Subsurface Energy Engineering 3\nPNG 305Rock and Fluid Properties3\nPNG 410Reservoir Engineering3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EBF 484",
+       "EME 460",
+       "ENVSE 408",
+       "GEOSC 454",
+       "MNG 410",
+       "PNG 420",
+       "PNG 430",
+       "PNG 440W",
+       "PNG 450",
+       "PNG 460",
+       "PNG 475"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 9 credits from the following:9\nEBF 484Energy Economics\nEME 460Geo-resource Evaluation and Investment Analysis\nENVSE 408Contaminant Hydrology\nGEOSC 454Geology of Oil and Gas\nMNG 410Underground Mining\nPNG 420Applied Reservoir Analysis and Secondary Recovery\nPNG 430Reservoir Modeling\nPNG 440WFormation Evaluation\nPNG 450Drilling Engineering\nPNG 460Subsurface Storage Engineering\nPNG 475Production and Completions Engineering\n"
+  }
+ ],
+ "suggestedPlans": []
+}

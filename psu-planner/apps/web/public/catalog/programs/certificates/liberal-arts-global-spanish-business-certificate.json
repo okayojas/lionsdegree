@@ -1,0 +1,159 @@
+{
+ "slug": "liberal-arts-global-spanish-business-certificate",
+ "name": "Global Spanish for Business, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/global-spanish-business-certificate/",
+ "totalCredits": 15,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "SPAN 100",
+      "SPAN 100A",
+      "SPAN 100B"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "SPAN 215N",
+      "SPAN 215Q",
+      "SPAN 253W"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SPAN 310",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SPAN 420",
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following Culture Course Lists:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "If you take SPAN 215N or SPAN 215Q, select one of the following courses:"
+    },
+    {
+     "type": "course",
+     "code": "SPAN 315N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 411",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 412",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 423",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 425",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "If you take SPAN 253W, select one of the following courses:"
+    },
+    {
+     "type": "course",
+     "code": "SPAN 315N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 353",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 354W",
+     "credits": null,
+     "resolvedFrom": "SPAN 354"
+    },
+    {
+     "type": "course",
+     "code": "SPAN 355",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 356",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 439",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 412",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 470",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 474",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 476",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 479",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 490",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 491",
+     "credits": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "SPAN 100Intermediate Grammar and Composition (or students may place into 200)3\nor SPAN 100A Intermediate Grammar and Composition for Spanish Bilinguals\nor SPAN 100B Intermediate Grammar and Composition for Students in Medical-Related Fields\nSPAN 215NThe Science of Spanish: A Beginner's Guide to Hispanic Linguistics 3\nor SPAN 215Q The Science of Spanish: A Beginner's Guide to Hispanic Linguistics\nor SPAN 253W Introduction to Literary & Cultural Studies en Español\nSPAN 310Business Spanish3\nSPAN 420Spanish for Business and International Trade3\nSelect 3 credits from the following Culture Course Lists:3\nIf you take SPAN 215N or SPAN 215Q, select one of the following courses:\nSPAN 315NSpanish and Spanish-speakers in the U.S.\nSPAN 411The ABCs of Bilingualism: Acquisition, Brain, and Community\nSPAN 412Translation\nSPAN 423Spanish in Contact with Other Languages\nSPAN 425The Spanish Your Teachers Never Taught You\nIf you take SPAN 253W, select one of the following courses:\nSPAN 315NSpanish and Spanish-speakers in the U.S.\nSPAN 353Topics in the Cultures of Spain\nSPAN 354Topics in Cultural Contact and Exchange\nSPAN 355Topics in the Cultures of Latin America\nSPAN 356Topics in the Cultures of the Americas\nSPAN 439Don Quijote\nSPAN 412Translation\nSPAN 470Youth Cultures in Latin(a/o) America\nSPAN 474Many Mexicos\nSPAN 476Masterpieces of Spanish American Literature\nSPAN 479U.S. Latina/o Culture en Espanol\nSPAN 490Masterpieces of Spanish Prose\nSPAN 491Masterpieces of Spanish Drama and Poetry\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,76 @@
+{
+ "slug": "earth-mineral-sciences-geosciences-minor",
+ "name": "Geosciences, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/geosciences-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "GEOSC 21",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "GEOSC 201",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nGEOSC 21Earth and Life: Origin and Evolution3\nGEOSC 201Earth Materials4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "GEOSC 1",
+      "GEOSC 20",
+      "GEOSC 71"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "GEOSC 470W",
+      "EMSC 470W"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nGEOSC 1Physical Geology3\nor GEOSC 20 Planet Earth\nor GEOSC 71\nGEOSC 470WIntroduction to Field Geology3\nor EMSC 470W Undergraduate Collaborative Research in Earth and Materials Sciences\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 5,
+     "commentRaw": "Select 5 credits from a number of courses covering a variety of disciplines and fields of interest",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 5 credits from a number of courses covering a variety of disciplines and fields of interest 5\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,92 @@
+{
+ "slug": "agricultural-sciences-arboriculture-minor",
+ "name": "Arboriculture, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/arboriculture-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ENT 313",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "ENT 314",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "FOR 401",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HORT 201",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "HORT 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HORT 408",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "SOILS 101",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nENT 313Introduction to Entomology2\nENT 314Management of Insect Pests of Ornamentals1\nFOR 401Urban Forest Management3\nHORT 201Applied Arboriculture2\nHORT 301Principles of Arboriculture3\nHORT 408Landscape Plant Establishment and Maintenance4\nSOILS 101Introductory Soil Science 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 110",
+      "BIOL 127"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "FOR 203",
+      "HORT 137"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PPEM 300",
+      "PPEM 318"
+     ],
+     "credits": 2
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nBIOL 110Biology: Basic Concepts and Biodiversity 3-4\nor BIOL 127 Introduction to Plant Biology\nFOR 203Field Dendrology3\nor HORT 137 Ornamental Plant Materials\nPPEM 300Horticultural Crop Diseases 2-3\nor PPEM 318 Diseases of Forest and Shade Trees\n"
+  }
+ ],
+ "suggestedPlans": []
+}

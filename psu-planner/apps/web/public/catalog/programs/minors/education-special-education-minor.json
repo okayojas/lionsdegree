@@ -1,0 +1,97 @@
+{
+ "slug": "education-special-education-minor",
+ "name": "Special Education, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "education",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/education/special-education-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EDPSY 14",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SPLED 400",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "SPLED 419",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "SPLED 461",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nEDPSY 14Learning and Instruction 3\nSPLED 400Inclusive Special Ed Foundations: Legal, Characteristics, Collaboration, Assessment, and Management4\nSPLED 419Assistive Technology for General Education Teachers2\nSPLED 461Introduction to Autism Spectrum Disorders: Issues and Concerns3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "SPLED 403A",
+      "SPLED 403B"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "EDPSY 10",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HDFS 229",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HDFS 239",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CSD 146",
+       "CSD 218",
+       "CSD 269",
+       "CSD 300",
+       "RHS 100",
+       "RHS 402",
+       "RPTM 277"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSPLED 403AEvidence-Based Instruction for Elementary Students with Disabilities in Reading, Math, and Writin3\nor SPLED 403B Evidence-Based Methods for Teaching Secondary Students with Disabilities in Inclusive Settings\nSelect one of the following:3\nEDPSY 10Individual Differences and Education\nHDFS 229Infant and Child Development\nHDFS 239Adolescent Development\nSelect 6 credits of the following:6\nCSD 146Introduction to Communication Sciences and Disorders\nCSD 218American Sign Language I\nCSD 269Deaf Culture\nCSD 300Child Language Development\nRHS 100Introduction to Disability Culture\nRHS 402Children and Families in Rehabilitation Settings and Human Services\nRPTM 277Inclusive Leisure Services\n"
+  }
+ ],
+ "suggestedPlans": []
+}

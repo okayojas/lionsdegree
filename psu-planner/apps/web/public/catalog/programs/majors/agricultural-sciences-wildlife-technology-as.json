@@ -1,0 +1,345 @@
+{
+ "slug": "agricultural-sciences-wildlife-technology-as",
+ "name": "Wildlife Technology, A.S.",
+ "type": "major",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/wildlife-technology-as/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AG 113",
+     "credits": 1
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B",
+      "CAS 100C",
+      "CAS 100S"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 242",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FORT 150",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FORT 160",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "KINES 13",
+     "credits": 1.5
+    },
+    {
+     "type": "course",
+     "code": "STAT 200",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "WILDL 106",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "WILDL 207",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "WILDL 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "WILDL 213",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202C",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "WILDL 101",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "WILDL 103",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "WILDL 208W",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "AG 113Exploring Careers in Agriculture1\nCAS 100Effective Speech3\nFOR 242Elements of Project Supervision in Forestry3\nFORT 150Dendrology3\nFORT 160Silvicultural Practices3\nKINES 13First Aid & Safety, CPR/AED 1.5\nSTAT 200Elementary Statistics 4\nWILDL 106Wildlife Management Techniques4\nWILDL 207Outdoor Recreation3\nWILDL 211GIS and Aerial Photo Interpretation in Wildlife Management4\nWILDL 213Wetlands and Fisheries Management4\nPrescribed Courses: Require a grade of C or better\nENGL 202CEffective Writing: Technical Writing 3\nWILDL 101Introduction to Wildlife Management3\nWILDL 103Animal Identification4\nWILDL 208WTerrestrial Wildlife Management3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 110",
+      "BIOL 114",
+      "BIOL 115"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 15",
+      "ENGL 30H"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 110Biology: Basic Concepts and Biodiversity 4\nor BIOL 114& BIOL 115 Biology: Basic Concepts and Biodiversity - Lecture and Biology: Basic Concepts and Biodiversity - Lab\nAdditional Courses: Require a grade of C or better\nENGL 15Rhetoric and Composition 3\nor ENGL 30H Honors Rhetoric and Composition\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Wildlife Technology, A.S. at DuBois Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "WILDL 101",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FORT 150",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Educaton Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "1"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AG 113",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "WILDL 103",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "WILDL 106",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FORT 160",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "WILDL 207",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "WILDL 208W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "WILDL 213",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 242",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "WILDL 211",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "KINES 13",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 65,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

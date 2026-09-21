@@ -1,0 +1,79 @@
+{
+ "slug": "eberly-science-marine-sciences-minor",
+ "name": "Marine Sciences, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/marine-sciences-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "GEOSC 40",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nGEOSC 40The Sea Around Us 3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select at least 6 credits of field studies of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 450W",
+       "BIOL 483",
+       "BIOL 499A",
+       "EARTH 240",
+       "EMSC 440",
+       "EMSC 441",
+       "ERM 496",
+       "GEOSC 410",
+       "BIOL 496",
+       "GEOSC 496",
+       "METEO 496"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 10,
+     "commentRaw": "Select 10 credits from the following list:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 406",
+       "BIOL 417",
+       "BIOL 482",
+       "GEOSC 419",
+       "GEOSC 440",
+       "METEO 451",
+       "WFS 436",
+       "ERM 436",
+       "WFS 452",
+       "WFS 453"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect at least 6 credits of field studies of the following: 6\nBIOL 450WExperimental Field Biology\nBIOL 483Coastal Biology Travel Experience\nBIOL 499ATropical Field Ecology\nEARTH 240Coral Reef Systems\nEMSC 440Science Diving\nEMSC 441Advanced Science Diving\nERM 496Independent Studies\nGEOSC 410Marine Biogeochemistry\nor BIOL 496 Independent Studies\nGEOSC 496Independent Studies\nMETEO 496Independent Studies\nSelect 10 credits from the following list:10\nBIOL 406Symbiosis\nBIOL 417Invertebrate Zoology\nBIOL 482Coastal Biology\nGEOSC 419The Organic Geochemistry of Natural Waters and Sediments\nGEOSC 440Marine Geology\nMETEO 451Introduction to Physical Oceanography\nWFS/ERM 435Limnology\nWFS/ERM 436\nWFS/ERM 450Wetland Science and Sustainability\nWFS 452Ichthyology\nWFS 453Ichthyology Laboratory\n"
+  }
+ ],
+ "suggestedPlans": []
+}

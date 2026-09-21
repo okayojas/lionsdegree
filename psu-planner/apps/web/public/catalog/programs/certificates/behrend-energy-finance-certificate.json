@@ -1,0 +1,53 @@
+{
+ "slug": "behrend-energy-finance-certificate",
+ "name": "Energy Finance, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/energy-finance-certificate/",
+ "totalCredits": 15,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EBF 200",
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "EBF 301",
+      "MET 436"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EGEE 101",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 418",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 427",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Required Courses: Require a grade of C or better\nEBF 200Introduction to Energy and Earth Sciences Economics 3\nEBF 301Global Finance for the Earth, Energy, and Materials Industries3\nor MET 436 Energy Conservation Systems\nEGEE 101Energy and the Environment 3\nFIN 418Energy Finance3\nFIN 427Derivative Securities3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,47 @@
+{
+ "slug": "capital-homeland-security-minor",
+ "name": "Homeland Security, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/homeland-security-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nPUBPL/HLS 201Introduction to Homeland Security3\nPUBPL/HLS 306Introduction to Crisis and Emergency Management3\nPUBPL/HLS 483Seminar in National Security Policy3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following (course substitution possible with permission of adviser):",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CRIMJ 304",
+       "CRIMJ 435",
+       "SRA 421"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 9 credits from the following (course substitution possible with permission of adviser): 9\nCRIMJ 304Security Administration\nCRIMJ 435Border Security\nPUBPL/HLS 475Critical Infrastructure Protection\nPUBPL/HLS 476Homeland Security Intelligence\nPLSC/CRIMJ 439The Politics of Terrorism\nSRA 421The Intelligence Environment\n"
+  }
+ ],
+ "suggestedPlans": []
+}

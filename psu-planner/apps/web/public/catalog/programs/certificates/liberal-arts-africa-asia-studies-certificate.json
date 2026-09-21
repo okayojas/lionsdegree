@@ -1,0 +1,67 @@
+{
+ "slug": "liberal-arts-africa-asia-studies-certificate",
+ "name": "Africa-Asia Studies, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/africa-asia-studies-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "AFR 105",
+      "AFR 110N"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ASIA 100",
+      "ASIA 100"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AFR 191",
+       "AFR 192",
+       "AFR 202N",
+       "AFR 399",
+       "AFR 405",
+       "AFR 443",
+       "AFR 454",
+       "AFR 464",
+       "AFR 497",
+       "AFR 596",
+       "ANTH 408",
+       "ANTH 458",
+       "ASIA 3",
+       "ASIA 120Y",
+       "ASIA 171",
+       "ASIA 199",
+       "ASIA 401",
+       "HIST 475Y"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "AFR 105African Biodiversity and Conservation 3\nor AFR 110N Introduction to Contemporary Africa\nASIA 100What is Asia? 3\nor ASIA 100Z\nSelect 6 credits from the following:6\nAFR 191Early African History\nAFR 192Modern African History\nAFR 202NWomen, Gender, and Feminisms in Africa\nAFR 399Foreign Studies\nAFR 405African Studies Methodologies\nAFR 443Ethnic Conflict in Africa\nAFR 454Government and Politics of Africa\nAFR 464Extractive Industries in Africa\nAFR 497Special Topics\nAFR 596Individual Studies\nANTH 408Anthropological Demography\nANTH 458Ethnographic Field Methods\nASIA 3Introduction to the Religions of the East\nASIA 120YSouth Asia: A Literary History\nASIA 171\nASIA 199Foreign Studies\nASIA 401Technology & Society in Modern Asia\nHIST 475YThe Making and Emergence of Modern India\n"
+  }
+ ],
+ "suggestedPlans": []
+}

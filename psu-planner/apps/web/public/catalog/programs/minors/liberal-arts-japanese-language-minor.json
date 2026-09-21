@@ -1,0 +1,82 @@
+{
+ "slug": "liberal-arts-japanese-language-minor",
+ "name": "Japanese Language, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/japanese-language-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "JAPNS 2",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "JAPNS 3",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nJAPNS 2Level One Japanese B4\nJAPNS 3Level Two Japanese A4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "JAPNS 110",
+       "JAPNS 299"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-8 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ASIA 499",
+       "JAPNS 401",
+       "JAPNS 402",
+       "JAPNS 403Y",
+       "JAPNS 404",
+       "JAPNS 410",
+       "JAPNS 430",
+       "JAPNS 431",
+       "JAPNS 432",
+       "JAPNS 433",
+       "JAPNS 434",
+       "JAPNS 452",
+       "JAPNS 453",
+       "JAPNS 454",
+       "JAPNS 496",
+       "JAPNS 497",
+       "JAPNS 499"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 4 credits of the following: 4\nJAPNS 110Level Two Japanese B\nJAPNS 299Foreign Study\nSelect 6-8 credits of the following: 6-8\nASIA 499Foreign Studies\nJAPNS 401Level Three Japanese A\nJAPNS 402Level Three Japanese B\nJAPNS 403YLevel Four Japanese A\nJAPNS 404Level Four Japanese B\nJAPNS 410Japanese Through Manga\nJAPNS 430Japan in the World\nJAPNS 431Courtly Japan\nJAPNS 432War and the Warrior in Japan\nJAPNS 433\nJAPNS 434Beyond Anime\nJAPNS 452Contemporary Japan: Cultures, Lifestyles, Trends\nJAPNS 453Japanese Film\nJAPNS 454Japanese Literature\nJAPNS 496Independent Studies\nJAPNS 497Special Topics\nJAPNS 499Foreign Study\n"
+  }
+ ],
+ "suggestedPlans": []
+}

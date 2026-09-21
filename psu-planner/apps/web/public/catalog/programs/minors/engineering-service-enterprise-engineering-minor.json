@@ -1,0 +1,80 @@
+{
+ "slug": "engineering-service-enterprise-engineering-minor",
+ "name": "Service Enterprise Engineering, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/service-enterprise-engineering-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "IE 460",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IE 478",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nIE 460Service Systems Engineering3\nIE 478Retail Services Engineering3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from Engineering Cluster:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "IE 302",
+       "IE 322",
+       "IE 323",
+       "IE 330",
+       "IE 402",
+       "IE 405",
+       "MATH 484",
+       "IE 424",
+       "IE 467",
+       "IE 468",
+       "IE 480W"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the Service Cluster:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "HDFS 311",
+       "HDFS 455",
+       "HPA 332",
+       "HPA 433",
+       "HPA 442",
+       "HPA 475"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits from Engineering Cluster:6\nIE 302Engineering Economy\nIE 322Probabilistic Models in Industrial Engineering\nIE 323Statistical Methods in Industrial Engineering\nIE 330Engineering Analytics\nIE 402Advanced Engineering Economy\nIE 405Deterministic Models in Operations Research\nor MATH 484 Linear Programs and Related Problems\nIE 424Process Quality Engineering\nIE 467\nIE 468Optimization Modeling and Methods\nIE 480WCapstone Design Project\nSelect 6 credits from the Service Cluster:6\nHDFS 311Human Development and Family Studies Interventions\nHDFS 455Development and Administration of Human Services Programs\nHPA 332Health Systems Management\nHPA 433Administration of Hospital and Health Service Systems\nHPA 442Long-Term Care Management\nHPA 475Health Care Quality\n"
+  }
+ ],
+ "suggestedPlans": []
+}

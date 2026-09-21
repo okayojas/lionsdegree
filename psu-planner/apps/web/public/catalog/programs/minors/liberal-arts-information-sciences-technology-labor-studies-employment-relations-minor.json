@@ -1,0 +1,74 @@
+{
+ "slug": "liberal-arts-information-sciences-technology-labor-studies-employment-relations-minor",
+ "name": "Information Sciences and Technology for Labor Studies and Employment Relations, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/information-sciences-technology-labor-studies-employment-relations-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "IST 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 220",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 100",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nIST 110Information, People and Technology 3\nIST 210Organization of Data3\nIST 220Networking and Telecommunications3\nLHR 100Exploring Work and Employment 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "LHR 400",
+       "LHR 401",
+       "LER 424",
+       "LHR 434",
+       "LHR 435",
+       "LHR 437",
+       "LHR 444",
+       "LHR 460",
+       "LHR 464",
+       "LHR 465",
+       "LHR 497"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits of the following:6\nLHR 400Comparative Employment Relations Systems\nLHR 401The Law of Labor-Management Relations\nLER 424Employment Compensation\nLHR 434Advanced Collective Bargaining and Contract Administration\nLHR 435Labor Relations in the Public Sector\nLHR 437Workplace Dispute Resolution\nLHR 444Workplace Safety and Health: Principles and Practices\nLHR 460Ethics in the Workplace\nLHR 464Communication Skills for Leaders in Groups and Organizations\nLHR 465Collective Decision Making\nLHR 497Special Topics\n"
+  }
+ ],
+ "suggestedPlans": []
+}

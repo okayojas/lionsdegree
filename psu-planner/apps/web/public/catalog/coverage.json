@@ -1,0 +1,537 @@
+{
+ "note": "Directional: coveredBy[X] lists courses whose content subsumes X (per bulletin descriptions). A requirement for X is satisfiable by any of coveredBy[X]; never the reverse.",
+ "minedFrom": "bulletin course descriptions, deterministic sentence patterns",
+ "coveredBy": {
+  "ACCTG 305": [
+   {
+    "by": "ACCTG 371",
+    "evidence": "Students who have passed ACCTG 371 or 471; and 472 may not take this course for credit."
+   },
+   {
+    "by": "ACCTG 471",
+    "evidence": "Students who have passed ACCTG 371 or 471; and 472 may not take this course for credit."
+   },
+   {
+    "by": "ACCTG 472",
+    "evidence": "Students who have passed ACCTG 371 or 471; and 472 may not take this course for credit."
+   }
+  ],
+  "ASTRO 1": [
+   {
+    "by": "ASTRO 5",
+    "evidence": "Students who have passed ASTRO 5, ASTRO 6, ASTRO 7N or ASTRO 10 may not take this course for credit."
+   },
+   {
+    "by": "ASTRO 6",
+    "evidence": "Students who have passed ASTRO 5, ASTRO 6, ASTRO 7N or ASTRO 10 may not take this course for credit."
+   },
+   {
+    "by": "ASTRO 7N",
+    "evidence": "Students who have passed ASTRO 5, ASTRO 6, ASTRO 7N or ASTRO 10 may not take this course for credit."
+   },
+   {
+    "by": "ASTRO 10",
+    "evidence": "Students who have passed ASTRO 5, ASTRO 6, ASTRO 7N or ASTRO 10 may not take this course for credit."
+   }
+  ],
+  "ASTRO 5": [
+   {
+    "by": "ASTRO 1",
+    "evidence": "Students who have passed ASTRO 1, ASTRO 7N, or ASTRO 10 may not take this course for credit."
+   },
+   {
+    "by": "ASTRO 7N",
+    "evidence": "Students who have passed ASTRO 1, ASTRO 7N, or ASTRO 10 may not take this course for credit."
+   },
+   {
+    "by": "ASTRO 10",
+    "evidence": "Students who have passed ASTRO 1, ASTRO 7N, or ASTRO 10 may not take this course for credit."
+   }
+  ],
+  "ASTRO 6": [
+   {
+    "by": "ASTRO 1",
+    "evidence": "Students who have passed ASTRO 1, ASTRO 7N, or ASTRO 10 may not take this course for credit."
+   },
+   {
+    "by": "ASTRO 7N",
+    "evidence": "Students who have passed ASTRO 1, ASTRO 7N, or ASTRO 10 may not take this course for credit."
+   },
+   {
+    "by": "ASTRO 10",
+    "evidence": "Students who have passed ASTRO 1, ASTRO 7N, or ASTRO 10 may not take this course for credit."
+   }
+  ],
+  "ASTRO 7N": [
+   {
+    "by": "ASTRO 1",
+    "evidence": "Students who have passed ASTRO 1, ASTRO 5, ASTRO 6 or ASTRO 10 may not take this course for credit."
+   },
+   {
+    "by": "ASTRO 5",
+    "evidence": "Students who have passed ASTRO 1, ASTRO 5, ASTRO 6 or ASTRO 10 may not take this course for credit."
+   },
+   {
+    "by": "ASTRO 6",
+    "evidence": "Students who have passed ASTRO 1, ASTRO 5, ASTRO 6 or ASTRO 10 may not take this course for credit."
+   },
+   {
+    "by": "ASTRO 10",
+    "evidence": "Students who have passed ASTRO 1, ASTRO 5, ASTRO 6 or ASTRO 10 may not take this course for credit."
+   }
+  ],
+  "ASTRO 10": [
+   {
+    "by": "ASTRO 5",
+    "evidence": "Students who have passed ASTRO, 1, ASTRO 5, ASTRO 6, or ASTRO 7N may not take this course for credit."
+   },
+   {
+    "by": "ASTRO 6",
+    "evidence": "Students who have passed ASTRO, 1, ASTRO 5, ASTRO 6, or ASTRO 7N may not take this course for credit."
+   },
+   {
+    "by": "ASTRO 7N",
+    "evidence": "Students who have passed ASTRO, 1, ASTRO 5, ASTRO 6, or ASTRO 7N may not take this course for credit."
+   }
+  ],
+  "BIOL 114": [
+   {
+    "by": "BIOL 110",
+    "evidence": "Students who have passed BIOL 110 or BIOL 110H may not schedule this course."
+   },
+   {
+    "by": "BIOL 110H",
+    "evidence": "Students who have passed BIOL 110 or BIOL 110H may not schedule this course."
+   }
+  ],
+  "BIOL 127": [
+   {
+    "by": "BIOL 240W",
+    "evidence": "Students who have passed BIOL 240W may not schedule this course."
+   }
+  ],
+  "BIOL 129": [
+   {
+    "by": "BIOL 421",
+    "evidence": "Students who have passed BIOL 421 may not schedule this course."
+   }
+  ],
+  "BIOL 133": [
+   {
+    "by": "BIOL 222",
+    "evidence": "students who have passed BIOL 222, 230W, B M B 251 or any upper-division biology course may not schedule this course."
+   },
+   {
+    "by": "BIOL 230W",
+    "evidence": "students who have passed BIOL 222, 230W, B M B 251 or any upper-division biology course may not schedule this course."
+   }
+  ],
+  "BIOL 225W": [
+   {
+    "by": "BIOL 220W",
+    "evidence": "Students who have passed BIOL 220W or BIOL 220M may not enroll in this course."
+   },
+   {
+    "by": "BIOL 220M",
+    "evidence": "Students who have passed BIOL 220W or BIOL 220M may not enroll in this course."
+   }
+  ],
+  "BIOL 226W": [
+   {
+    "by": "BIOL 220W",
+    "evidence": "Students who have passed BIOL 220W or BIOL 220M may not enroll in this course."
+   },
+   {
+    "by": "BIOL 220M",
+    "evidence": "Students who have passed BIOL 220W or BIOL 220M may not enroll in this course."
+   }
+  ],
+  "BIOL 235W": [
+   {
+    "by": "BIOL 230W",
+    "evidence": "Students who have passed BIOL 230W or BIOL 230M may not enroll in this course."
+   },
+   {
+    "by": "BIOL 230M",
+    "evidence": "Students who have passed BIOL 230W or BIOL 230M may not enroll in this course."
+   }
+  ],
+  "BIOL 236W": [
+   {
+    "by": "BIOL 230W",
+    "evidence": "Students who have passed BIOL 230W or BIOL 230M may not enroll in this course."
+   },
+   {
+    "by": "BIOL 230M",
+    "evidence": "Students who have passed BIOL 230W or BIOL 230M may not enroll in this course."
+   }
+  ],
+  "BIOL 244": [
+   {
+    "by": "BIOL 240W",
+    "evidence": "Students who have passed BIOL 240W or BIOL 240M may not enroll in this course."
+   },
+   {
+    "by": "BIOL 240M",
+    "evidence": "Students who have passed BIOL 240W or BIOL 240M may not enroll in this course."
+   }
+  ],
+  "BIOL 245W": [
+   {
+    "by": "BIOL 240W",
+    "evidence": "Students who have passed BIOL 240W or BIOL 240M may not enroll in this course."
+   },
+   {
+    "by": "BIOL 240M",
+    "evidence": "Students who have passed BIOL 240W or BIOL 240M may not enroll in this course."
+   }
+  ],
+  "BISC 1": [
+   {
+    "by": "BIOL 11",
+    "evidence": "Students who have passed BIOL 11 or 110 may not schedule this course."
+   },
+   {
+    "by": "BIOL 110",
+    "evidence": "Students who have passed BIOL 11 or 110 may not schedule this course."
+   }
+  ],
+  "BISC 2": [
+   {
+    "by": "BIOL 110",
+    "evidence": "Students who have passed BIOL 110, 133, 220W, or 222 may not schedule this course."
+   },
+   {
+    "by": "BIOL 133",
+    "evidence": "Students who have passed BIOL 110, 133, 220W, or 222 may not schedule this course."
+   },
+   {
+    "by": "BIOL 220W",
+    "evidence": "Students who have passed BIOL 110, 133, 220W, or 222 may not schedule this course."
+   },
+   {
+    "by": "BIOL 222",
+    "evidence": "Students who have passed BIOL 110, 133, 220W, or 222 may not schedule this course."
+   }
+  ],
+  "BISC 4": [
+   {
+    "by": "BIOL 129",
+    "evidence": "Students who have passed BIOL 129, 141, 161 and 163 may not schedule this course."
+   },
+   {
+    "by": "BIOL 141",
+    "evidence": "Students who have passed BIOL 129, 141, 161 and 163 may not schedule this course."
+   },
+   {
+    "by": "BIOL 161",
+    "evidence": "Students who have passed BIOL 129, 141, 161 and 163 may not schedule this course."
+   },
+   {
+    "by": "BIOL 163",
+    "evidence": "Students who have passed BIOL 129, 141, 161 and 163 may not schedule this course."
+   }
+  ],
+  "CHEM 1": [
+   {
+    "by": "CHEM 3",
+    "evidence": "Students who have received credit for CHEM 3, 101, 130, or 110 may not schedule this course."
+   },
+   {
+    "by": "CHEM 101",
+    "evidence": "Students who have received credit for CHEM 3, 101, 130, or 110 may not schedule this course."
+   },
+   {
+    "by": "CHEM 130",
+    "evidence": "Students who have received credit for CHEM 3, 101, 130, or 110 may not schedule this course."
+   },
+   {
+    "by": "CHEM 110",
+    "evidence": "Students who have received credit for CHEM 3, 101, 130, or 110 may not schedule this course."
+   }
+  ],
+  "CMPSC 467": [
+   {
+    "by": "MATH 465",
+    "evidence": "Students who have passed MATH 465 may not schedule this course."
+   }
+  ],
+  "ECON 14": [
+   {
+    "by": "ECON 102",
+    "evidence": "Students who have passed ECON 102 or ECON 104 or who are registered in the College of Business Administration may not schedule this course."
+   },
+   {
+    "by": "ECON 104",
+    "evidence": "Students who have passed ECON 102 or ECON 104 or who are registered in the College of Business Administration may not schedule this course."
+   }
+  ],
+  "ECON 102": [
+   {
+    "by": "ECON 302",
+    "evidence": "Students who have completed ECON 302 may not enroll in this course."
+   }
+  ],
+  "ECON 104": [
+   {
+    "by": "ECON 304",
+    "evidence": "Students who have completed ECON 304 may not enroll in this course."
+   }
+  ],
+  "ECON 106": [
+   {
+    "by": "ECON 306",
+    "evidence": "Students who have completed ECON 306 may not enroll in this course."
+   }
+  ],
+  "EDMTH 444": [
+   {
+    "by": "MATH 200",
+    "evidence": "student who has passed MATH 200 may not take EDMTH 444 for credit."
+   }
+  ],
+  "EMCH 211": [
+   {
+    "by": "EMCH 210",
+    "evidence": "Students taking E MCH 210 may not take E MCH 211 or 213 for credit"
+   },
+   {
+    "by": "EMCH 210H",
+    "evidence": "Students taking E MCH 210H may not take E MCH 211 and 213 for credit"
+   }
+  ],
+  "EMCH 213": [
+   {
+    "by": "EMCH 210",
+    "evidence": "Students taking E MCH 210 may not take E MCH 211 or 213 for credit"
+   },
+   {
+    "by": "EMCH 210H",
+    "evidence": "Students taking E MCH 210H may not take E MCH 211 and 213 for credit"
+   }
+  ],
+  "MATH 200": [
+   {
+    "by": "EDMTH 444",
+    "evidence": "student who has passed EDMTH 444 may not take MATH 200 for credit."
+   }
+  ],
+  "MATH 230H": [
+   {
+    "by": "MATH 232",
+    "evidence": "Students who have passed either Math 231 or MATH 232 may not schedule Math 230 or MATH 230H for credit."
+   },
+   {
+    "by": "MATH 231",
+    "evidence": "Students who have passed either MATH 231 or MATH 232 may not schedule MATH 230 or MATH 230H for credit."
+   }
+  ],
+  "MATH 230": [
+   {
+    "by": "MATH 231",
+    "evidence": "Students who have passed either MATH 231 or MATH 232 may not schedule MATH 230 or MATH 230H for credit."
+   },
+   {
+    "by": "MATH 232",
+    "evidence": "Students who have passed either MATH 231 or MATH 232 may not schedule MATH 230 or MATH 230H for credit."
+   }
+  ],
+  "MATH 231": [
+   {
+    "by": "MATH 230",
+    "evidence": "Students who have passed MATH 230 or MATH 230H may not schedule this course."
+   },
+   {
+    "by": "MATH 230H",
+    "evidence": "Students who have passed MATH 230 or MATH 230H may not schedule this course."
+   }
+  ],
+  "MATH 232": [
+   {
+    "by": "MATH 230",
+    "evidence": "Students who have passed MATH 230 may not schedule this course for credit."
+   }
+  ],
+  "MATH 250": [
+   {
+    "by": "MATH 251",
+    "evidence": "Students who have passed MATH 251 may not schedule this course for credit."
+   }
+  ],
+  "MATH 252": [
+   {
+    "by": "MATH 251",
+    "evidence": "Students who have passed MATH 251 may not schedule this course for credit."
+   }
+  ],
+  "MATH 311W": [
+   {
+    "by": "CMPSC 360",
+    "evidence": "Students who have passed CMPSC 360 may not schedule this course for credit."
+   }
+  ],
+  "MATH 405": [
+   {
+    "by": "MATH 411",
+    "evidence": "Students who have passed MATH 411 or 412 may not take this course for credit."
+   },
+   {
+    "by": "MATH 412",
+    "evidence": "Students who have passed MATH 411 or 412 may not take this course for credit."
+   }
+  ],
+  "MATH 406": [
+   {
+    "by": "MATH 421",
+    "evidence": "Students who have passed MATH 421 may not take this course for credit."
+   }
+  ],
+  "MATH 410": [
+   {
+    "by": "MATH 406",
+    "evidence": "Students who have passed MATH 406 or MATH 421 may not take this course for credit."
+   },
+   {
+    "by": "MATH 421",
+    "evidence": "Students who have passed MATH 406 or MATH 421 may not take this course for credit."
+   }
+  ],
+  "MATH 471": [
+   {
+    "by": "MATH 427",
+    "evidence": "Students who have passed MATH 427 may not schedule MATH 471."
+   }
+  ],
+  "MATH 427": [
+   {
+    "by": "MATH 471",
+    "evidence": "Students who have passed MATH 471 may not schedule MATH 427."
+   }
+  ],
+  "MATH 470": [
+   {
+    "by": "MATH 435",
+    "evidence": "Students who have passed MATH 435 may not schedule MATH 470."
+   }
+  ],
+  "MATH 441": [
+   {
+    "by": "MATH 436",
+    "evidence": "Students who have passed MATH 436 may not schedule MATH 441."
+   }
+  ],
+  "MATH 467": [
+   {
+    "by": "MATH 465",
+    "evidence": "Students who have passed MATH 465 may not schedule this course."
+   }
+  ]
+ },
+ "exclusions": [
+  {
+   "a": "BA 302",
+   "b": "SCM 301",
+   "evidence": "may not receive credit towards graduation for both BA 302 and and SCM 301."
+  },
+  {
+   "a": "BA 303",
+   "b": "MKTG 221",
+   "evidence": "may not receive credit towards graduation for both B A 303 and MKTG 221 or MKTG 221W."
+  },
+  {
+   "a": "BA 303",
+   "b": "MKTG 221W",
+   "evidence": "may not receive credit towards graduation for both B A 303 and MKTG 221 or MKTG 221W."
+  },
+  {
+   "a": "MKTG 221",
+   "b": "MKTG 221W",
+   "evidence": "may not receive credit towards graduation for both B A 303 and MKTG 221 or MKTG 221W."
+  },
+  {
+   "a": "BA 303",
+   "b": "MKTG 301",
+   "evidence": "may not receive credit towards graduation for both B A 303 and MKTG 301 or MKTG 301W."
+  },
+  {
+   "a": "BA 303",
+   "b": "MKTG 301W",
+   "evidence": "may not receive credit towards graduation for both B A 303 and MKTG 301 or MKTG 301W."
+  },
+  {
+   "a": "MKTG 301",
+   "b": "MKTG 301W",
+   "evidence": "may not receive credit towards graduation for both B A 303 and MKTG 301 or MKTG 301W."
+  },
+  {
+   "a": "BA 304",
+   "b": "MGMT 100",
+   "evidence": "may not receive credit towards graduation for both B A 304 and MGMT 100 or MGMT 100W."
+  },
+  {
+   "a": "BA 304",
+   "b": "MGMT 100W",
+   "evidence": "may not receive credit towards graduation for both B A 304 and MGMT 100 or MGMT 100W."
+  },
+  {
+   "a": "MGMT 100",
+   "b": "MGMT 100W",
+   "evidence": "may not receive credit towards graduation for both B A 304 and MGMT 100 or MGMT 100W."
+  },
+  {
+   "a": "BA 304",
+   "b": "MGMT 301",
+   "evidence": "may not receive credit towards graduation for both B A 304 and MGMT 301 or MGMT 301W."
+  },
+  {
+   "a": "BA 304",
+   "b": "MGMT 301W",
+   "evidence": "may not receive credit towards graduation for both B A 304 and MGMT 301 or MGMT 301W."
+  },
+  {
+   "a": "MGMT 301",
+   "b": "MGMT 301W",
+   "evidence": "may not receive credit towards graduation for both B A 304 and MGMT 301 or MGMT 301W."
+  },
+  {
+   "a": "CHEM 476",
+   "b": "BMB 401H",
+   "evidence": "may not receive credit for both CHEM 476 and BMB 401H."
+  },
+  {
+   "a": "CHEM 202",
+   "b": "CHEM 210",
+   "evidence": "may not receive credit for both CHEM 202 and CHEM 210."
+  },
+  {
+   "a": "CHEM 203",
+   "b": "CHEM 213",
+   "evidence": "may not receive credit for both CHEM 203 and CHEM 213."
+  },
+  {
+   "a": "CHEM 210",
+   "b": "CHEM 202",
+   "evidence": "may not receive credit for both CHEM 210 and 202."
+  },
+  {
+   "a": "CHEM 203",
+   "b": "CHEM 213",
+   "evidence": "may not receive credit for both CHEM 203 and CHEM 213."
+  },
+  {
+   "a": "CHEM 203",
+   "b": "CHEM 213",
+   "evidence": "may not receive credit for both CHEM 203 and CHEM 213."
+  },
+  {
+   "a": "CHEM 203",
+   "b": "CHEM 213",
+   "evidence": "may not receive credit for both CHEM 203 and CHEM 213."
+  },
+  {
+   "a": "COMM 320",
+   "b": "MKTG 422",
+   "evidence": "may not receive credit for both COMM 320 and MKTG 422."
+  }
+ ]
+}

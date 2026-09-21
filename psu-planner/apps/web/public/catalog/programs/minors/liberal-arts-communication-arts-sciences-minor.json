@@ -1,0 +1,74 @@
+{
+ "slug": "liberal-arts-communication-arts-sciences-minor",
+ "name": "Communication Arts and Sciences, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/communication-arts-sciences-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CAS 101N",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCAS 101NIntroduction to Human Communication 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAS 203",
+       "CAS 210",
+       "CAS 215",
+       "CAS 220"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits from the following:6\nCAS 203Interpersonal Communication\nCAS 210Landmark Speeches on Democracy and Dissent\nCAS 215Argumentation\nCAS 220Persuasion\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "Select 3 additional credits from any 200-level CAS course"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Select 6 additional credits from any 400-level CAS course (excluding CAS 493, CAS 494, CAS 495, CAS 496, or CAS 499)"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Note: CAS 100, CAS 126, or CAS 195 may not be counted as part of the minor."
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 additional credits from any 200-level CAS course3\nSelect 6 additional credits from any 400-level CAS course (excluding CAS 493, CAS 494, CAS 495, CAS 496, or CAS 499)6\nNote: CAS 100, CAS 126, or CAS 195 may not be counted as part of the minor.\n"
+  }
+ ],
+ "suggestedPlans": []
+}

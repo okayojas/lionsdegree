@@ -1,0 +1,75 @@
+{
+ "slug": "agricultural-sciences-renewable-bioproducts-minor",
+ "name": "Renewable Bioproducts, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/renewable-bioproducts-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ABSM 300",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ABSM 350",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ABSM 411",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nABSM 300Introduction to Agricultural and Biorenewable Products3\nABSM 350Introduction to Life Cycle Assessment3\nABSM 411Bioproducts Science and Technology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ABSM 402",
+       "ABSM 417",
+       "ABSM 423",
+       "BE 404",
+       "BE 464",
+       "BE 465",
+       "BE 468",
+       "BME 444",
+       "BME 446",
+       "CHE 442",
+       "CHE 443",
+       "CHEM 480",
+       "EGEE 439",
+       "MATSE 441",
+       "MATSE 445",
+       "MATSE 446",
+       "MATSE 447"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 9 credits from the following:9\nABSM 402Foundations of Sustainable Business\nABSM 417Processing and Manufacturing Systems for Bioproducts\nABSM 423Deterioration and Protection of Bioproducts\nBE 404Engineering Properties of Food and Biological Materials\nBE 464Bioenergy Systems Engineering\nBE 465Food and Biological Process Engineering\nBE 468Microbiological Engineering\nBME 444Surfaces and the Biological Response to Materials\nBME 446Polymers in Biomedical Engineering\nCHE 442Polymer Processing Technology\nCHE 443Introduction to Polymer Science\nCHEM 480Chemistry and Properties of Polymers\nEGEE 439Alternative Fuels from Biomass Sources\nMATSE 441Polymeric Materials I\nMATSE 445Thermodynamics, Microstructure, and Characterization of Polymers\nMATSE 446Mechanical and Electrical Properties of Polymers and Composities\nMATSE 447Rheology and Processing of Polymers\n"
+  }
+ ],
+ "suggestedPlans": []
+}

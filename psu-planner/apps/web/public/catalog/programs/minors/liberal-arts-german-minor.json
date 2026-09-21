@@ -1,0 +1,56 @@
+{
+ "slug": "liberal-arts-german-minor",
+ "name": "German, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/german-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "GER 201",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "GER 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "GER 302W",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nGER 201Conversation and Composition4\nGER 301Intermediate Speaking and Listening3\nGER 302WIntermediate Composition and Grammar3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "Select 3 GER credits at the 300- or 400-level"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Select 6 GER credits at the 400-level"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 GER credits at the 300- or 400-level3\nSelect 6 GER credits at the 400-level 6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,54 @@
+{
+ "slug": "engineering-international-engineering-minor",
+ "name": "International Engineering, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/international-engineering-minor/",
+ "totalCredits": 6,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ECON 333",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nECON 333International Economics 3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "Demonstrate language skills in a currently spoken world language other than English"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of Engineering/computer science courses with significant international content from a program list or as approved by the director of the program",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level engineering or computer science courses, in consultation with departmental undergraduate coordinator",
+     "from": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nDemonstrate language skills in a currently spoken world language other than English 6\nSelect 3 credits of Engineering/computer science courses with significant international content from a program list or as approved by the director of the program3\nSelect 6 credits of 400-level engineering or computer science courses, in consultation with departmental undergraduate coordinator 6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

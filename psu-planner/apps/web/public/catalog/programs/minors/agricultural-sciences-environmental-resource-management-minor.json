@@ -1,0 +1,54 @@
+{
+ "slug": "agricultural-sciences-environmental-resource-management-minor",
+ "name": "Environmental Resource Management, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/environmental-resource-management-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "course",
+     "code": "ABSM 327",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOILS 101",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "LEAST 6",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "THE 400",
+     "credits": null,
+     "unverified": true
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 18 credits of the following:18\nABSM 327Soil and Water Resource Management3\nSOILS 101Introductory Soil Science\nAny ERM course (at least 6 credits must be at the 400-level)\n"
+  }
+ ],
+ "suggestedPlans": []
+}

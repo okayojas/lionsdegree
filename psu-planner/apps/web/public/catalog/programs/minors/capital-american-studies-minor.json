@@ -1,0 +1,58 @@
+{
+ "slug": "capital-american-studies-minor",
+ "name": "American Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/american-studies-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AMST 491W",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAMST 491WAmerican Studies Perspectives3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "AMST 100",
+      "AMST 100Y"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from any American Studies offerings (AMST) or from courses related to American Studies chosen from a list provided by the college. At least six of those credits must be at the 400 level. Substitutions must be approved by the American Studies Program head at the appropriate college.",
+     "from": {
+      "kind": "pattern",
+      "subject": "BE",
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nAMST 100Introduction to American Studies 3\nor AMST 100Y Introduction to American Studies\nSelect 12 credits from any American Studies offerings (AMST) or from courses related to American Studies chosen from a list provided by the college. At least six of those credits must be at the 400 level. Substitutions must be approved by the American Studies Program head at the appropriate college. 12\n"
+  }
+ ],
+ "suggestedPlans": []
+}

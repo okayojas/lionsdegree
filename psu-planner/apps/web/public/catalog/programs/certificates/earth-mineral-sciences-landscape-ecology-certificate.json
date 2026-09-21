@@ -1,0 +1,71 @@
+{
+ "slug": "earth-mineral-sciences-landscape-ecology-certificate",
+ "name": "Landscape Ecology, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/landscape-ecology-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "GEOG 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "GEOG 314",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "GEOG 414",
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "GEOG 362",
+       "GEOG 365",
+       "GEOG 430",
+       "GEOG 431",
+       "GEOG 465"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Some \"additional\" course selections have prerequisites not included in the certificate: GEOG 160 or 260 is prerequisite for GEOG 362 and 365; GEOG 363 is prerequisite for GEOG 465."
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "GEOG 210Geographic Perspectives on Environmental Systems Science 3\nGEOG 314Biogeography and Global Ecology3\nGEOG 414Principles and Applications in Landscape Ecology3\nSelect 3 credits from:3\nGEOG 362Remote Sensing and Image Analysis\nGEOG 365Intermediate GIS Programming\nGEOG 430Human Use of Environment\nGEOG 431Geography of Water Resources\nGEOG 465Advanced Geographic Information Systems Modeling\nSome \"additional\" course selections have prerequisites not included in the certificate: GEOG 160 or 260 is prerequisite for GEOG 362 and 365; GEOG 363 is prerequisite for GEOG 465.\n"
+  },
+  {
+   "heading": "Non-Course Requirements",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Per University policy, all credit courses for a certificate require a grade of 'C' or higher, and at least two-thirds (2/3) of the credits used to complete a certificate must be earned at Penn State. If student is completing multiple certificates in Geography, no more than one (1) course may double-count for each."
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Per University policy, all credit courses for a certificate require a grade of 'C' or higher, and at least two-thirds (2/3) of the credits used to complete a certificate must be earned at Penn State. If student is completing multiple certificates in Geography, no more than one (1) course may double-count for each.\n"
+  }
+ ],
+ "suggestedPlans": []
+}

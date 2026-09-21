@@ -1,0 +1,70 @@
+{
+ "slug": "agricultural-sciences-community-forestry-certificate",
+ "name": "Community Forestry, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/community-forestry-certificate/",
+ "totalCredits": 15,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "FOR 401",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HORT 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOILS 101",
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "HORT 408",
+      "SOILS 404"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "CAS 404",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CED 327",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ERM 411",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "FOR 450W",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "FOR 401Urban Forest Management3\nHORT 301Principles of Arboriculture3\nSOILS 101Introductory Soil Science 3\nHORT 408Landscape Plant Establishment and Maintenance3-4\nor SOILS 404 Urban Soils\nSelect one of the following:3\nCAS 404Conflict Resolution and Negotiation\nCED 327Environment and Society\nERM 411Legal Aspects of Resource Management\nFOR 450WHuman Dimensions of Natural Resources\n"
+  }
+ ],
+ "suggestedPlans": []
+}

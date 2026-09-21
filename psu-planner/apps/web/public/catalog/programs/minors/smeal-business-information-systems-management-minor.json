@@ -1,0 +1,66 @@
+{
+ "slug": "smeal-business-information-systems-management-minor",
+ "name": "Information Systems Management, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "smeal-business",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/smeal-business/information-systems-management-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MIS 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MIS 431",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MIS 441",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MIS 446",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCM 301",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nMIS 301Business Analytics3\nMIS 431Business Data Management3\nMIS 441Applied Artificial Intelligence and Machine Learning in Business3\nMIS 446Information Technology and Business Strategy3\nSCM 301Supply Chain Management3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "SCM 200",
+      "STAT 200"
+     ],
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSCM 200Introduction to Statistics for Business 4\nor STAT 200 Elementary Statistics\n"
+  }
+ ],
+ "suggestedPlans": []
+}

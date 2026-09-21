@@ -1,0 +1,122 @@
+{
+ "slug": "earth-mineral-sciences-geophysics-minor",
+ "name": "Geophysics, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/geophysics-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "GEOSC 1",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 212",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nGEOSC 1Physical Geology3\nMATH 140Calculus With Analytic Geometry I 4\nPHYS 212General Physics: Electricity and Magnetism 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "GEOSC 203",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EARTH 2",
+       "EARTH 101",
+       "EARTH 105N",
+       "EARTH 106",
+       "GEOSC 1",
+       "GEOSC 10",
+       "GEOSC 40",
+       "GEOSC 109H"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 11,
+     "commentRaw": "Select 11-13 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "GEOSC 402Y",
+       "GEOSC 434",
+       "GEOSC 452",
+       "GEOSC 483",
+       "GEOSC 487",
+       "GEOSC 488",
+       "GEOSC 489",
+       "PHYS 212"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MATH 220",
+       "MATH 230",
+       "MATH 231",
+       "MATH 232",
+       "MATH 250",
+       "MATH 251"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 11,
+     "commentRaw": "Select 11-13 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "GEOSC 402Y",
+       "GEOSC 434",
+       "GEOSC 452",
+       "GEOSC 483",
+       "GEOSC 487",
+       "GEOSC 488",
+       "GEOSC 489"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nNon-Geoscience Majors\nGEOSC 203Physical Processes in Geology\nSelect 3 credits from the following:\nEARTH 2The Earth System and Global Change\nEARTH 101Natural Disasters: Hollywood vs. Reality\nEARTH 105NEnvironments of Africa: Geology and Climate Change\nEARTH 106\nGEOSC 1Physical Geology\nGEOSC 10Geology of the National Parks\nGEOSC 40The Sea Around Us\nGEOSC 109HEarthquakes and Society\nSelect 11-13 credits of the following:\nGEOSC 402YNatural Disasters\nGEOSC 434Volcanology\nGEOSC 452Hydrogeology\nGEOSC 483Environmental Geophysics\nGEOSC 487Analysis of Time Series\nGEOSC 488An Introduction to Seismology\nGEOSC 489Dynamics of the Earth\nGeoscience Majors\nPHYS 212General Physics: Electricity and Magnetism\nSelect 3-4 credits of the following:\nMATH 220Matrices\nMATH 230Calculus and Vector Analysis\nMATH 231Calculus of Several Variables\nMATH 232Integral Vector Calculus\nMATH 250Ordinary Differential Equations\nMATH 251Ordinary and Partial Differential Equations\nSelect 11-13 credits of the following:\nGEOSC 402YNatural Disasters\nGEOSC 434Volcanology\nGEOSC 452Hydrogeology\nGEOSC 483Environmental Geophysics\nGEOSC 487Analysis of Time Series\nGEOSC 488An Introduction to Seismology\nGEOSC 489Dynamics of the Earth\n"
+  }
+ ],
+ "suggestedPlans": []
+}

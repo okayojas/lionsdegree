@@ -1,0 +1,61 @@
+{
+ "slug": "liberal-arts-black-diaspora-studies-minor",
+ "name": "Black Diaspora Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/black-diaspora-studies-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AFAM 100N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AFR 110N",
+     "credits": 3,
+     "resolvedFrom": "AFR 110"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAFAM 100NBlack Freedom Struggles 3\nAFAM/HIST 211Slavery and Freedom in the Black Atlantic 3\nAFR 1103\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits (at least 6 credits at the 400 level) of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AFAM 132",
+       "AFAM 250",
+       "AFAM 431",
+       "AFAM 432",
+       "AFR 191",
+       "AFR 440",
+       "PLSC 453"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 9 credits (at least 6 credits at the 400 level) of the following:9\nAFAM 132Afro-Hispanic Civilization\nAFAM 250Introduction to the Caribbean\nAFAM 431Black Liberation and American Foreign Policy\nAFAM 432Between Nation and Empire: The Caribbean in the 20th Century\nAFR 191Early African History\nAFR 440Globalization and Its Implications\nPLSC 453Political Processes in Underdeveloped Systems\n"
+  }
+ ],
+ "suggestedPlans": []
+}

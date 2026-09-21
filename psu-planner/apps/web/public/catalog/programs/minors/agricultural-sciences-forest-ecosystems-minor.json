@@ -1,0 +1,77 @@
+{
+ "slug": "agricultural-sciences-forest-ecosystems-minor",
+ "name": "Forest Ecosystems, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/forest-ecosystems-minor/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "FOR 203",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 308",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nFOR 203Field Dendrology3\nFOR 308Forest Ecology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select a minimum of 12 credits of the following FOR courses:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "FOR 200",
+       "FOR 201",
+       "FOR 204",
+       "FOR 255",
+       "FOR 266",
+       "FOR 303",
+       "FOR 320",
+       "FOR 350",
+       "FOR 401",
+       "FOR 403",
+       "FOR 409",
+       "FOR 410",
+       "FOR 418",
+       "FOR 421",
+       "FOR 439",
+       "FOR 440",
+       "FOR 450W",
+       "FOR 455",
+       "FOR 466W",
+       "FOR 470",
+       "FOR 471",
+       "FOR 475",
+       "FOR 480",
+       "FOR 488Y"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect a minimum of 12 credits of the following FOR courses: 12-14\nFOR 200The Profession of Forestry\nFOR 201Global Change and Ecosystems\nFOR 204Silvics and Forest Dynamics\nFOR 255GPS and GIS Applications for Natural Resources Professionals\nFOR 266Forest Resources Measurements\nFOR 303Herbaceous Forest Plant Identification and Ecology\nFOR 320Wildland Fire Management\nFOR 350Forest Ecosystem Monitoring and Data Analysis\nFOR 401Urban Forest Management\nFOR 403Invasive Forest Plants: Identification, Ecology, and Management\nFOR 409Tree Physiology\nFOR 410Elements of Forest Ecosystem Management\nFOR 418Agroforestry: Science, Design, and Practice\nFOR 421Silviculture: Applied Forest Ecology\nFOR/WFS 430Conservation Biology\nFOR 439Timber Sale Administration\nFOR 440Forest and Conservation Economics\nFOR 450WHuman Dimensions of Natural Resources\nFOR 455Remote Sensing and Spatial Data Handling\nFOR 466WForest Management and Planning\nFOR 470Watershed Management\nFOR 471Watershed Management Laboratory\nFOR 475Principles of Forest Soils Management\nFOR 480Policy and Administration\nFOR 488Y\n"
+  }
+ ],
+ "suggestedPlans": []
+}

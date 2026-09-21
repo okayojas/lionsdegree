@@ -1,0 +1,79 @@
+{
+ "slug": "abington-chemical-dependency-prevention-counseling-certificate",
+ "name": "Chemical Dependency Prevention and Counseling, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "abington",
+ "campuses": [
+  "Abington, The Abington College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/abington/chemical-dependency-prevention-counseling-certificate/",
+ "totalCredits": 18,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BBH 143",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CNED 401",
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CNED 404",
+      "RHS 303"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "HLHED 443",
+      "CNED 421"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "RHS 301",
+      "HDFS 414"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "CNED 416",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CNED 420",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CNED 423",
+     "credits": null,
+     "unverified": true
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BBH 143Drugs, Behavior, and Health 3\nCNED 401Foundations of Chemical Dependency Counseling3\nCNED 404Group Procedures in Guidance and Counseling3\nor RHS 303 Group Work in Rehabilitation Practice and Human Services\nHLHED 4433\nor CNED 421 Counseling Strategies for Preventing Chemical Dependency\nRHS 301Introduction to Counseling as a Profession3\nor HDFS 414 Resolving Human Development and Family Problems\nSelect one of the following:3\nCNED 416Interpersonal Relationships and Alcohol and Other Drugs (AOD) Dependency\nCNED 420Chemical Dependency: Youth at Risk\nCNED 423\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,68 @@
+{
+ "slug": "smeal-business-legal-environment-business-minor",
+ "name": "Legal Environment of Business, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "smeal-business",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/smeal-business/legal-environment-business-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BLAW 341",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BLAW 441",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 104",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 301",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBLAW 341Business Law I: Introduction to Contracts, Liability Issues, and Intellectual Property3\nBLAW 441Business Law II: Agency, Employment and Business Structure3\nECON 104Introductory Macroeconomic Analysis and Policy 3\nFIN 301Corporation Finance3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BLAW 425",
+       "RM 425",
+       "BLAW 444",
+       "BLAW 445",
+       "BLAW 446"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits of the following:6\nBLAW/RM 424Real Estate Law\nBLAW/RM 425\nBLAW 444Advanced UCC and Commercial Transactions\nBLAW 445Advanced Intellectual Property and Competition Law\nBLAW 446Employment Law\n"
+  }
+ ],
+ "suggestedPlans": []
+}

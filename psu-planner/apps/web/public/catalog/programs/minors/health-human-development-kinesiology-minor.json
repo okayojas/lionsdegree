@@ -1,0 +1,71 @@
+{
+ "slug": "health-human-development-kinesiology-minor",
+ "name": "Kinesiology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "health-human-development",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/health-human-development/kinesiology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "KINES 100",
+       "KINES 101",
+       "KINES 202"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits from the following:6\nKINES 100The Cultural and Behavioral Foundations of Kinesiology\nKINES 101The Biophysical Foundations of Kinesiology\nKINES 202Functional Human Anatomy\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from approved list, 6 credits must be at the 400-level:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "KINES 100",
+       "KINES 101",
+       "KINES 160N",
+       "KINES 202",
+       "KINES 303",
+       "KINES 321",
+       "KINES 341",
+       "KINES 345",
+       "KINES 350",
+       "KINES 360",
+       "KINES 384"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Any KINES 400-level course. Exclude: KINES 408, KINES 495B, KINES 495C, KINES 495D. No more than 3 credits of KINES 496 may count towards the minor."
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 12 credits from approved list, 6 credits must be at the 400-level:12\nKINES 100The Cultural and Behavioral Foundations of Kinesiology\nKINES 101The Biophysical Foundations of Kinesiology\nKINES 160NFitness with Exercise Physiology\nKINES 202Functional Human Anatomy\nKINES 303Emergency Recognition and Care with BLS CPR\nKINES 321Psychology of Movement Behavior\nKINES 341The Historical, Cultural, and Social Dynamics of Sport\nKINES 345Meaning, Ethics, and Movement\nKINES 350Exercise Physiology\nKINES 360The Neurobiology of Motor Control and Development\nKINES 384Biomechanics\nAny KINES 400-level course. Exclude: KINES 408, KINES 495B, KINES 495C, KINES 495D. No more than 3 credits of KINES 496 may count towards the minor.\n"
+  }
+ ],
+ "suggestedPlans": []
+}

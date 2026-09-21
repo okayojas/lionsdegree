@@ -1,0 +1,69 @@
+{
+ "slug": "agricultural-sciences-wildlife-fisheries-science-minor",
+ "name": "Wildlife and Fisheries Science, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/wildlife-fisheries-science-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 110",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "WFS 209N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "WFS 430",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBIOL 110Biology: Basic Concepts and Biodiversity 4\nWFS 209NWildlife and Fisheries Conservation 3\nWFS 430Conservation Biology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "WFS 300",
+       "WFS 407",
+       "WFS 408",
+       "WFS 410",
+       "WFS 422",
+       "WFS 447W",
+       "WFS 450",
+       "WFS 452",
+       "WFS 460",
+       "WFS 462",
+       "WFS 463W"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 12 credits of the following:12\nWFS 300The Vertebrates\nWFS 407Ornithology\nWFS 408Mammalogy\nWFS 410General Fishery Science\nWFS 422Ecology of Fishes\nWFS/ERM 435Limnology\nWFS 447WWildlife Management\nWFS 450Wetland Science and Sustainability\nWFS 452Ichthyology\nWFS 460Wildlife Behavior\nWFS 462Amphibians and Reptiles\nWFS 463WFishery Management\n"
+  }
+ ],
+ "suggestedPlans": []
+}

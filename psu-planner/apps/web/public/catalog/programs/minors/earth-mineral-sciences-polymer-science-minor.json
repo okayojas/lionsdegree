@@ -1,0 +1,90 @@
+{
+ "slug": "earth-mineral-sciences-polymer-science-minor",
+ "name": "Polymer Science, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/polymer-science-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MATH 231",
+     "credits": 2
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nMATH 231Calculus of Several Variables2\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 210",
+      "CHEM 202"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATSE 202",
+      "CHEM 480"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9-12 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MATSE 403",
+       "MATSE 404",
+       "MATSE 432",
+       "MATSE 441",
+       "MATSE 445",
+       "MATSE 446",
+       "MATSE 447",
+       "MATSE 449"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 0,
+     "commentRaw": "Select 0-3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ABSM 411",
+       "AERSP 473",
+       "BMB 474",
+       "BME 446",
+       "CHE 443",
+       "EMCH 446",
+       "EMCH 471",
+       "EMCH 473"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nCHEM 210Organic Chemistry I3\nor CHEM 202 Fundamentals of Organic Chemistry I\nMATSE 202Introduction to Polymer Materials3\nor CHEM 480 Chemistry and Properties of Polymers\nSelect 9-12 credits from the following:9-12\nMATSE 403/BME 443Biomedical Materials\nMATSE 404/BME 444Surfaces and the Biological Response to Materials\nMATSE 432Sustainable & Recyclable Polymers\nMATSE 441Polymeric Materials I\nMATSE 445Thermodynamics, Microstructure, and Characterization of Polymers\nMATSE 446Mechanical and Electrical Properties of Polymers and Composities\nMATSE 447Rheology and Processing of Polymers\nMATSE 449Fundamentals of Composite Materials Science and Engineering\nSelect 0-3 credits from the following:0-3\nABSM 411Bioproducts Science and Technology\nAERSP 473Composites Processing\nBMB 474Analytical Biochemistry\nBME 446Polymers in Biomedical Engineering\nCHE 443Introduction to Polymer Science\nEMCH 446Mechanics of Viscoelastic Materials\nEMCH 471Engineering Composite Materials\nEMCH 473Composites Processing\n"
+  }
+ ],
+ "suggestedPlans": []
+}

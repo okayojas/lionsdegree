@@ -1,0 +1,111 @@
+{
+ "slug": "behrend-data-visualization-minor",
+ "name": "Data Visualization, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/data-visualization-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "DIGIT 410",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nDIGIT 410Data Visualization3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "COMM 406",
+      "MIS 415"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "GEOG 160",
+      "GEOG 260"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 200",
+      "STAT 200"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ART 102",
+       "ART 168",
+       "COMM 270",
+       "DART 303",
+       "GD 100",
+       "PSYCH 246N"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPSC 101",
+       "CMPSC 121",
+       "CMPSC 201",
+       "CMPSC 221",
+       "DIGIT 210",
+       "HCDD 311",
+       "IST 242",
+       "IST 256"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "COMM 310",
+       "MIS 301",
+       "MIS 345"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nCOMM 406Electronic News Gathering and Editing3\nor MIS 415 Social Media Management and Analytics\nGEOG 160Mapping Our Changing World 3\nor GEOG 260 Geographic Information in a Changing World: Introduction to GIScience\nPSYCH 200Elementary Statistics in Psychology 4\nor STAT 200 Elementary Statistics\nSelect 3-4 credits from the following:3-4\nART 102Beginning Computer Aided Design for Artists\nART 168The Digital Medium\nCOMM 270Introduction to Multimedia Production\nDART 3033D Studio\nGD 100Introduction to Graphic Design\nPSYCH 246NHuman Factors in Design & Art\nSelect 3 credits from the following:3\nCMPSC 101Introduction to Programming\nCMPSC 121Introduction to Programming Techniques\nCMPSC 201Programming for Engineers with C++\nCMPSC 221Object Oriented Programming with Web-Based Applications\nDIGIT 210Large Scale Text Analysis\nHCDD 311Object-Oriented Design and Software Applications\nIST 242Intermediate & Object-Oriented Application Development\nIST 256Programming for the Web\nSelect 3 credits from the following:3\nCOMM 310Digital Media Metrics\nMIS 301Business Analytics\nMIS 345Introduction to Data Analytics\n"
+  }
+ ],
+ "suggestedPlans": []
+}

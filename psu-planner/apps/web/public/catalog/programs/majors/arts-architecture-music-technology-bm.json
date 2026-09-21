@@ -1,0 +1,818 @@
+{
+ "slug": "arts-architecture-music-technology-bm",
+ "name": "Music Technology, B.M.",
+ "type": "major",
+ "degree": "BM",
+ "college": "arts-architecture",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/arts-architecture/music-technology-bm/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "INART 50",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "INART 258A",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 38",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 40",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 101",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 121",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 122",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 127",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 131",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 132",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 162",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 177",
+     "credits": 8
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 221",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 222",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 231",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 261",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 262",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 270",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 332",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 437",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 451",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 452",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 453",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 458",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "THEA 484",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nINART 50The Science of Music 3\nINART 258AFundamentals of Digital Audio 3\nMATH 38Elementary Linear Algebra 3\nMUSIC 40First-Year Seminar in Music 1\nMUSIC 101Music Common Hour1\nMUSIC 121Basic Musicianship I1\nMUSIC 122Basic Musicianship II1\nMUSIC 127Introduction to Music Technology1\nMUSIC 131Music Theory I2\nMUSIC 132Music Theory II2\nMUSIC 162Introduction to Music History2\nMUSIC 177ROARS lab 8\nMUSIC 221Basic Musicianship III1\nMUSIC 222Basic Musicianship IV1\nMUSIC 231Music Theory III2\nMUSIC 261Survey of Music History I 3\nMUSIC 262Survey of Music History II 3\nMUSIC 270Keyboard Skills IV: Music Major1\nMUSIC 332Analysis of Twentieth Century Music2\nMUSIC 437Music Information Retrieval and Computer-Assisted Music3\nMUSIC 451Computer Programming for Musicians3\nMUSIC 452Computer Music Synthesis3\nMUSIC 453Recording Studio Training1\nMUSIC 458Electronic Music Composition I3\nTHEA 484Sound Recording Techniques3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 8,
+     "commentRaw": "Select 8 credits of Applied MUSIC courses",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits of approved ensembles (see School of Music Handbook for list of ensembles)",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of W-designated courses from the following: MUSIC 461W or MUSIC 462W or MUSIC 463W or MUSIC 464W",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 31",
+      "MATH 41"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 8 credits of Applied MUSIC courses8\nSelect 4 credits of approved ensembles (see School of Music Handbook for list of ensembles)4\nSelect 3 credits of W-designated courses from the following: MUSIC 461W or MUSIC 462W or MUSIC 463W or MUSIC 464W3\nAdditional Courses: Require a grade of C or better\nMATH 31Mathematics of Music 3-4\nor MATH 41 Trigonometry and Analytic Geometry\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Music Technology, B.M. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Applied Music – Primary Instrument",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Ensemble (Supporting Course)",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 40",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 121",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 127",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 131",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 177",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "INART 50",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 38",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†",
+        "‡"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Applied Music – Primary Instrument",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Ensemble (Supporting Course)",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "INART 258A",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 122",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 132",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 162",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 177",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 15A",
+        "ENGL 30H"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Applied Music – Primary Instrument",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Ensemble (Supporting Course)",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 177",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 221",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 231",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 262",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 453",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 31",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†",
+        "‡"
+       ],
+       "alternatives": [
+        "MATH 41"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Applied Music – Primary Instrument",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Ensemble (Supporting Course)",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 177",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 222",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 261",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 332",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 270",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Applied Music – Primary Instrument",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 177",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 437",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "THEA 484",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Applied Music – Primary Instrument",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 177",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 451",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MUSIC 452"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 458",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Applied Music – Primary Instrument",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 177",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 461W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MUSIC 462W",
+        "MUSIC 463W",
+        "MUSIC 464W"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN)",
+       "domain": "GN",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Exploration)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Applied Music – Primary Instrument",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 101",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 177",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 451",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MUSIC 452"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GS)",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Exploration)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

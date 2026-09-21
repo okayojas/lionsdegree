@@ -1,0 +1,96 @@
+{
+ "slug": "health-human-development-global-health-minor",
+ "name": "Global Health, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "health-human-development",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/health-human-development/global-health-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BBH 101",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BBH 305",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BBH 390A",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BBH 390B",
+     "credits": 6
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBBH 101Introduction to Biobehavioral Health 3\nBBH 305Introduction to Global Health Issues3\nBBH 390APreparation for Global Health Field Experience3\nBBH 390BGlobal Health Field Experience6\nBBH/HPA 440Principles of Epidemiology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "STAT 200",
+      "STAT 250"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSTAT 200Elementary Statistics 3-4\nor STAT 250 Introduction to Biostatistics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits (at least 3 credits at the 400 level) from the list of approved supporting courses in consultation with the Global Health Director",
+     "from": {
+      "kind": "pattern",
+      "subject": "REDITS",
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits (at least 3 credits at the 400 level) from the list of approved supporting courses in consultation with the Global Health Director 6\n"
+  },
+  {
+   "heading": "Supervised Fieldwork Experience",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BBH 390B",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "An approved, supervised fieldwork experience dealing with a global health issue is a requirement of this minor (BBH 390B)\n"
+  }
+ ],
+ "suggestedPlans": []
+}

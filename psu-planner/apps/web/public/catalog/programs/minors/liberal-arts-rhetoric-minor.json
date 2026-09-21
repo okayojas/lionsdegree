@@ -1,0 +1,159 @@
+{
+ "slug": "liberal-arts-rhetoric-minor",
+ "name": "Rhetoric, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/rhetoric-minor/",
+ "totalCredits": 6,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CAS 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 471",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCAS 301Rhetorical Theory 3\nENGL 471Rhetorical Traditions3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select three of the following:"
+    },
+    {
+     "type": "course",
+     "code": "CAS 175N",
+     "credits": null,
+     "resolvedFrom": "CAS 175"
+    },
+    {
+     "type": "course",
+     "code": "CAS 311",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CAS 321",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CAS 375",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CAS 411",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CAS 415",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CAS 420",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CAS 426W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CAS 475",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CAS 478",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENGL 415",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENGL 416",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENGL 417",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENGL 420",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENGL 472",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENGL 473",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENGL 474",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect three of the following:9\nCAS 175Persuasion and Propaganda\nCAS 311Methods of Rhetorical Criticism\nCAS 321Rhetoric and Law\nCAS 375Rhetoric and Public Controversy\nCAS 411Rhetorical Criticism\nCAS 415Rhetoric of Film and Television\nCAS 420Rhetorical Theory\nCAS 426WCommunication Ethics\nCAS 475Studies in Public Address\nCAS 478Contemporary U.S. Political Rhetoric\nENGL 415Advanced Nonfiction Writing\nENGL 416Science Writing\nENGL 417The Editorial Process\nENGL 420Writing for the Web\nENGL 472Current Theories of Writing and Reading\nENGL 473Rhetorical Approaches to Discourse\nENGL 474Issues in Rhetoric and Composition\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of the following in consultation with adviser:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAS 494H",
+       "ENGL 310",
+       "CAS 499",
+       "ENGL 499",
+       "ENGL 487W",
+       "LA 495"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits of the following in consultation with adviser:3\nCAS 494HResearch Topics\nor ENGL 310\nCAS 499Foreign Studies\nor ENGL 499 Foreign Study--English\nENGL 487WSenior Seminar\nLA 495Undergraduate Field Experience or Practicum\n"
+  }
+ ],
+ "suggestedPlans": []
+}

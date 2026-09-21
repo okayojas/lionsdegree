@@ -1,0 +1,685 @@
+{
+ "slug": "berks-cybersecurity-analytics-operations-bs",
+ "name": "Cybersecurity Analytics and Operations, B.S. (Berks)",
+ "type": "major",
+ "degree": "BS",
+ "college": "berks",
+ "campuses": [
+  "Berks, The Berks College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/berks/cybersecurity-analytics-operations-bs/",
+ "totalCredits": 123,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CYBER 221",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CYBER 262",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CYBER 342W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CYBER 362",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CYBER 366",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CYBER 440",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CYBER 451",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CYBER 454",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CYBER 456",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 220",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 230",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 432",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 495",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "SRA 111",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SRA 211",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SRA 231",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SRA 311",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SRA 365",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCYBER 221Overview of Information Security3\nCYBER 262Cyber-Defense Studio3\nCYBER 342WCyber Incident Handling and Response3\nCYBER 362Cybersecurity Analytics Studio3\nCYBER 366Malware Analytics3\nCYBER 440Cybersecurity Capstone3\nCYBER 451Network Security3\nCYBER 454Computer and Cyber Forensics3\nCYBER 456Information Security Management3\nIST 210Organization of Data3\nIST 220Networking and Telecommunications3\nIST 230Language, Logic, and Discrete Mathematics3\nIST 432Legal and Regulatory Environment of Information Science and Technology3\nIST 495Internship1\nSRA 111Introduction to Security and Risk Analysis 3\nSRA 211Threat of Terrorism and Crime3\nSRA 231Decision Theory and Analysis3\nSRA 311Risk Analysis in a Security Context3\nSRA 365Statistics for Security and Risk Analysis3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CYBER 100",
+      "CYBER 100S"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 202C",
+      "ENGL 202D"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 110",
+      "MATH 140"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "STAT 200",
+      "SCM 200"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 121",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 131",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "IST 140",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 122",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 132",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "IST 242",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "IST 256",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "IST 261",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HCDD 361",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nCYBER 100Computer Systems Literacy3\nor CYBER 100S Computer Systems Literacy\nENGL 202CEffective Writing: Technical Writing 3\nor ENGL 202D Effective Writing: Business Writing\nMATH 110Techniques of Calculus I 4\nor MATH 140 Calculus With Analytic Geometry I\nSTAT 200Elementary Statistics 4\nor SCM 200 Introduction to Statistics for Business\nSelect one of the following:3\nCMPSC 121Introduction to Programming Techniques\nCMPSC 131Programming and Computation I: Fundamentals\nIST 140Introduction to Application Development\nSelect one of the following:3\nCMPSC 122Intermediate Programming\nCMPSC 132Programming and Computation II: Data Structures\nIST 242Intermediate & Object-Oriented Application Development\nSelect one of the following:3\nIST 256Programming for the Web\nIST 261Application Development Design Studio I\nHCDD 361Application Development Design Studio II\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from one of the Application Focus course lists. At least 3 credits must be at the 400-level. Students may also complete a custom Application Focus sequence with approval from an academic adviser and a CYBER undergraduate program coordinator.",
+     "from": {
+      "kind": "pattern",
+      "subject": "BE",
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 9 credits from one of the Application Focus course lists. At least 3 credits must be at the 400-level. Students may also complete a custom Application Focus sequence with approval from an academic adviser and a CYBER undergraduate program coordinator.9\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Cybersecurity Analytics and Operations, B.S. at Berks Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IST 140",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CYBER 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN or GA or GH)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar (IST 111S recommended)",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IST 210",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IST 220",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SRA 111",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CYBER 221",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IST 242",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SRA 211",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN or GA or GH)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN or GA or GH)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "IST 256",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "IST 261"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SRA 231",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CYBER 262",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN)",
+       "domain": "GN",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "IST 230",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SRA 311",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SRA 365",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Application Focus Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Integrative Studies)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CYBER 342W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CYBER 366",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CYBER 454",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Application Focus Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Integrative Studies)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "IST 432",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IST 495",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CYBER 362",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CYBER 440",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Exploration)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CYBER 451",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CYBER 456",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Exploration)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Application Focus Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 123,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

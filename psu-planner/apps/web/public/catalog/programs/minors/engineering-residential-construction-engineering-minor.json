@@ -1,0 +1,92 @@
+{
+ "slug": "engineering-residential-construction-engineering-minor",
+ "name": "Residential Construction Engineering, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/residential-construction-engineering-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AE 449",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AE 470",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 410",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 411",
+     "credits": 1
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAE 449Ultra-High Performance Buildings: Passive House Principles & Design3\nAE 470Residential Building Design and Construction3\nCE 410Sustainable Residential Subdivision Design3\nCE 411Residential Construction Design Project1\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "AE 471",
+      "AE 475"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from one of the following tracks:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AE 210",
+       "AE 421",
+       "AE 422",
+       "ARCH 380",
+       "ARCH 412",
+       "ARCH 480",
+       "FIN 100",
+       "BA 301",
+       "AE 202",
+       "AE 372",
+       "AE 402",
+       "AE 404",
+       "AE 432",
+       "AE 454",
+       "BE 462",
+       "AE 432",
+       "BE 462",
+       "CE 332",
+       "CE 336",
+       "CE 341",
+       "CE 432"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nAE 471CONSTRUCTION MANAGEMENT OF RESIDENTIAL BUILDING PROJECTS3\nor AE 475 Building Construction Engineering I\nSelect 9 credits from one of the following tracks:9\nArchitecture Track\nAE 210Introduction to Architectural Structural Systems\nAE 421Architectural Structural Systems I\nAE 422Architectural Structural Systems II\nARCH 380Building Environmental Systems I\nARCH 412Integrative Energy and Environmental Design\nARCH 480Technical Systems Integration\nFIN 100Introduction to Finance\nor BA 301 Finance\nArchitectural Engineering Track\nAE 202Introduction to Architectural Engineering Concepts\nAE 372Introduction to the Building Construction Industry\nAE 402Design of Concrete Structures for Buildings\nAE 404Building Structural Systems in Steel and Concrete\nAE 432Design of Masonry Structures\nAE 454Advanced Heating, Ventilating, and Air Conditioning\nBE 462Design of Wood Structures\nCivil Engineering Track\nAE 432Design of Masonry Structures\nAE/CE 542Building Enclosure Science and Design\nBE 462Design of Wood Structures\nCE 332Professionalism, Economics & Construction Project Delivery\nCE 336Materials Science for Civil Engineers\nCE 341Design of Concrete Structures\nCE 432Construction Project Management\n"
+  }
+ ],
+ "suggestedPlans": []
+}

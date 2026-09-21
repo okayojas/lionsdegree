@@ -1,0 +1,1122 @@
+{
+ "slug": "agricultural-sciences-veterinary-biomedical-sciences-bs",
+ "name": "Veterinary and Biomedical Sciences, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/veterinary-biomedical-sciences-bs/",
+ "totalCredits": 121,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MICRB 201",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MICRB 202",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "PHYS 250",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 251",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "VBSC 211",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ANSC 201",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ANSC 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 113",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "VBSC 300",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "MICRB 201Introductory Microbiology3\nMICRB 202Introductory Microbiology Laboratory2\nPHYS 250Introductory Physics I 4\nPHYS 251Introductory Physics II 4\nVBSC 211The Immune System and Disease3\nVBSC/BIOL 421Comparative Anatomy of Vertebrates4\nPrescribed Courses: Require a grade of C or better\nANSC 201Animal Science4\nANSC 301Principles of Animal Nutrition3\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nCHEM 112Chemical Principles II 3\nCHEM 113Experimental Chemistry II 1\nVBSC 300Veterinary Medical Terminology and Diagnostics3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ANSC 423",
+      "BIOL 472"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-5 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 220W",
+       "BIOL 224",
+       "BIOL 225W",
+       "BIOL 230W",
+       "BIOL 234",
+       "BIOL 235W",
+       "BIOL 234",
+       "BIOL 236W",
+       "BIOL 240W",
+       "BIOL 244",
+       "BIOL 245W",
+       "BMB 251"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-8 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CHEM 202",
+       "CHEM 203",
+       "CHEM 210",
+       "CHEM 212",
+       "CHEM 213W"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BMB 211",
+       "BMB 212",
+       "BMB 221",
+       "BMB 401",
+       "BMB 402"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 140",
+      "MATH 140B"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "VBSC 403",
+      "VBSC 403H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4-5 credits of lecture/laboratory from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 110",
+       "BIOL 110H",
+       "BIOL 114",
+       "BIOL 115",
+       "BIOL 114",
+       "BIOL 116"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ANSC 322",
+       "BIOL 222",
+       "BIOL 322"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAS 100A",
+       "CAS 100B",
+       "CAS 100C"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 15",
+       "ENGL 15A",
+       "ENGL 15E",
+       "ENGL 15S",
+       "ENGL 30H",
+       "ENGL 30T",
+       "ENGL 137H"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 202A",
+       "ENGL 202B",
+       "ENGL 202C",
+       "ENGL 202D"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "STAT 200",
+       "STAT 240",
+       "STAT 250"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ANSC 423Comparative Physiology of Domestic Animals3\nor BIOL 472 Human Physiology\nSelect 3-5 credits from the following:3-5\nBIOL 220WBiology: Populations and Communities\nBIOL 224& BIOL 225WBiology: Populations and Communities - Lectureand Biology: Populations and Communities - Lab\nBIOL 230WBiology: Molecules and Cells\nBIOL 234& BIOL 235WBiology: Molecules and Cells - Lectureand Biology: Molecules and Cells - Lab\nBIOL 234& BIOL 236WBiology: Molecules and Cells - Lectureand Biology: Molecules and Cells - FRI Lab\nBIOL 240WBiology: Function and Development of Organisms\nBIOL 244& BIOL 245WBiology: Function and Development of Organisms - Lectureand Biology: Function and Development of Organisms - Lab\nBMB 251Molecular and Cell Biology I\nSelect 6-8 credits from the following:6-8\nCHEM 202& CHEM 203Fundamentals of Organic Chemistry Iand Fundamentals of Organic Chemistry II\nCHEM 210& CHEM 212& CHEM 213WOrganic Chemistry Iand Organic Chemistry IIand Laboratory in Organic Chemistry - Writing Intensive\nSelect 6 credits from the following:6\nBMB 211& BMB 212& BMB 221Elementary Biochemistryand Elementary Biochemistry Laboratoryand Applied Biochemistry\nBMB 401& BMB 402General Biochemistryand General Biochemistry\nAdditional Courses: Require a grade of C or better\nMATH 140Calculus With Analytic Geometry I 4\nor MATH 140B Calculus and Biology I\nVBSC 403Principles of Animal Disease Control3\nor VBSC 403H Principles of Animal Disease Control\nSelect 4-5 credits of lecture/laboratory from the following:4-5\nBIOL 110Biology: Basic Concepts and Biodiversity\nBIOL 110HHonors Biology: Basic Concepts and Biodiversity\nBIOL 114& BIOL 115Biology: Basic Concepts and Biodiversity - Lectureand Biology: Basic Concepts and Biodiversity - Lab\nBIOL 114& BIOL 116Biology: Basic Concepts and Biodiversity - Lectureand Biology: Basic Concepts and Biodiversity - FRI Lab\nSelect 3 credits from the following:3\nANSC 322Animal Genetics and Selection\nBIOL 222Genetics\nBIOL 322Genetic Analysis\nSelect 3 credits from the following:3\nCAS 100AEffective Speech\nCAS 100BEffective Speech\nCAS 100CEffective Speech\nSelect 3 credits from the following:3\nENGL 15Rhetoric and Composition\nENGL 15ARhetoric and Composition\nENGL 15ERhetoric and Composition Enhanced\nENGL 15SRhetoric and Composition\nENGL 30HHonors Rhetoric and Composition\nENGL 30THonors Freshman Composition First-Year Seminar\nENGL 137HRhetoric and Civic Life I\nSelect 3 credits from the following:3\nENGL 202AEffective Writing: Writing in the Social Sciences\nENGL 202BEffective Writing: Writing in the Humanities\nENGL 202CEffective Writing: Technical Writing\nENGL 202DEffective Writing: Business Writing\nSelect 3-4 credits from the following:3-4\nSTAT 200Elementary Statistics\nSTAT 240Introduction to Biometry\nSTAT 250Introduction to Biostatistics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of 400-level courses from department list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 9 credits of 400-level courses from department list9\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Veterinary and Biomedical Sciences, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "VBSC 50",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "Economics/Business Selection (GS)",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MATH 140B"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education selection (GA/GH/GHW/Integrated)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education selection (GA/GH/Integrated)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MATH 141B"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education selection (GA/GH/GHW/Integrated)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 202",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 210"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education selection (GA/GH/GHW/Integrated)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 230W",
+        "BIOL 240W",
+        "BMB 251"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 251",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 203",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 212",
+        "CHEM 213W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ANSC 201",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 401",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BMB 211",
+        "BMB 212"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ANSC 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 250",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "STAT 200"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 222",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "BIOL 322"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education selection (GA/GH/GHW/Integrated)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 402",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": [
+        "BMB 221"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "VBSC 211",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 201",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 202",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education selection (GA/GH/GHW/Integrated)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "VBSC 421",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Courses (see department list)",
+       "credits": 6,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "VBSC 403",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 472",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ANSC 423"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Electives",
+       "credits": 6,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Courses (see department list)",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 125,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Veterinary and Biomedical Sciences, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 202",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 210"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 230W",
+        "BIOL 240W",
+        "BMB 251"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 203",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 212",
+        "CHEM 213"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 251",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "STAT 250",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "STAT 200"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ANSC 201",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 401",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BMB 211",
+        "BMB 212"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 222",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 201",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 202",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 402",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": [
+        "BMB 221"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "VBSC 211",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ANSC 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "VBSC 421",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "VBSC 403",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course 400 Level",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course 400 Level",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 472",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ANSC 423"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course 400 Level",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 125,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

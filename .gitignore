@@ -1,0 +1,55 @@
+node_modules
+
+# Local env files. apps/api/.env has its own rule, but apps/web/.env.local was
+# uncovered — Vite treats *.local as machine-local and it should never be committed.
+.env
+.env.local
+.env.*.local
+
+# Build output. `pnpm --filter web build` regenerates dist/ from src + public/
+# catalog; committing it doubled the tracked file count and produced a merge
+# conflict on every build. The Cloudflare Pages deploy builds from source.
+dist/
+*.tsbuildinfo
+
+# Stray local logs
+vite.log
+*.log
+
+# Scratch / editor
+.DS_Store
+.idea/
+.vscode/
+
+
+# Scraper working data (raw HTML cache, emitted output, the 31 Engineering
+# advising flowchart PDFs). Regenerate with the pipeline; see README.
+# EXCEPTION, force-added: data/flowcharts/parsed.json -- 20 KB of derived
+# semester placements. The PDFs themselves are not redistributed (see NOTICE),
+# but committing their parse keeps `mineFlowchartPatterns` reproducible for
+# contributors who do not have them.
+#
+# ANCHORED to the pipeline. This rule used to be a bare `data`, which git
+# matches at ANY depth -- it silently swallowed apps/web/src/data/ (three
+# source files imported across the web app), so a fresh clone could not build.
+# Same bug class as the `catalogs/` one in DECISIONS.md 5.3. Keep the leading
+# slash and the path.
+/psu-catalog-pipeline/data/
+
+# Internal working documents, not part of the public project:
+#   STATUS.md                        session handoff; personal details, local paths
+#   LionsDegree-B2C-Launch-Spec.md   business plan with a vulnerability inventory
+#   Landing-Page-Spec.md             pre-pivot marketing spec
+STATUS.md
+LionsDegree-B2C-Launch-Spec.md
+Landing-Page-Spec.md
+
+# Personal academic records. The author's own plan was the reference used to
+# design the optimizer; it is course history for a real student and does not
+# belong in a public repo. The single-file demo counts too: it embeds DATA.plan,
+# a real ESci+AIE schedule. The engine ports from it are credited in comments.
+Academic Plan - *.xlsx
+Academic Plan Flowchart.html
+
+# Local scratch
+logo-size-test.html

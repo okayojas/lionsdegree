@@ -1,0 +1,70 @@
+{
+ "slug": "arts-architecture-digital-arts-certificate",
+ "name": "Digital Arts, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "arts-architecture",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/arts-architecture/digital-arts-certificate/",
+ "totalCredits": 15,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ART 10",
+      "ART 20"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ART 211Y",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "DART 300",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "DART 412",
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "DART 202",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "DART 203",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "DART 204",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "DART 206",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ART 10Introduction to Visual Studies 3\nor ART 20 Introduction to Drawing\nART 211YIntroduction to Digital Art and Design Criticism3\nDART 300Digital Portfolio Elements3\nDART 412Portfolio Design and Professional Practices3\nSelect one of the following:3\nDART 2022D Digital Art & Computer Graphics\nDART 2033D Digital Art & Design Fundamentals\nDART 204Animation Fundamentals\nDART 206Web Design and Visual Web Development\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,284 @@
+[
+ {
+  "code": "IET 101",
+  "subject": "IET",
+  "number": "101",
+  "display": "IET 101",
+  "title": "Manufacturing Materials, Processes, and Laboratory",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Mechanical properties of materials; primary processing methods used in manufacturing; ferrous and nonferrous metals; important plastic plus ceramic materials; dimensional verification and measurements; mechanical properties evaluation; laboratory methods; statistical interpretation of data.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "IET 101"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/iet/",
+  "extraRaw": []
+ },
+ {
+  "code": "IET 215",
+  "subject": "IET",
+  "number": "215",
+  "display": "IET 215",
+  "title": "Production Design",
+  "credits": "2 Credits",
+  "creditsParsed": {
+   "min": 2,
+   "max": 2,
+   "repeatableMax": null
+  },
+  "description": "The study of manufacturing processes for the purpose of part creation and/or part feature creation using both current and advanced technologies.",
+  "enforced": "IET 101 or MET 105",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "course",
+    "code": "IET 101"
+   },
+   "b": {
+    "op": "course",
+    "code": "MET 105"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "IET 215"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/iet/",
+  "extraRaw": []
+ },
+ {
+  "code": "IET 216",
+  "subject": "IET",
+  "number": "216",
+  "display": "IET 216",
+  "title": "Production Design Laboratory",
+  "credits": "2 Credits",
+  "creditsParsed": {
+   "min": 2,
+   "max": 2,
+   "repeatableMax": null
+  },
+  "description": "Laboratory methods in production design including conventional and advanced manufacturing processes, computer applications, and automation/robotics.",
+  "enforced": null,
+  "concurrent": "IET 215",
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": {
+   "op": "concurrent",
+   "a": {
+    "op": "course",
+    "code": "IET 215"
+   }
+  },
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "IET 216"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/iet/",
+  "extraRaw": []
+ },
+ {
+  "code": "IET 297",
+  "subject": "IET",
+  "number": "297",
+  "display": "IET 297",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given infrequently to explore, in depth, a comparatively narrow subject which may be topical or of special interest.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "IET 297"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/iet/",
+  "extraRaw": []
+ },
+ {
+  "code": "IET 308",
+  "subject": "IET",
+  "number": "308",
+  "display": "IET 308",
+  "title": "Statistical Quality Control",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Fundamentals of probability and statistics, introduction to quality control fundamentals, control charts, acceptance sampling.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "IET 308"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/iet/",
+  "extraRaw": []
+ },
+ {
+  "code": "IET 311",
+  "subject": "IET",
+  "number": "311",
+  "display": "IET 311",
+  "title": "Elements of Metallurgy",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Introduction to metallurgical concepts, metallurgical testing, phase diagram studies, heat treating concepts, ferrous and nonferrous systems.",
+  "enforced": "ET 322",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "ET 322"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "IET 311"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/iet/",
+  "extraRaw": []
+ },
+ {
+  "code": "IET 321",
+  "subject": "IET",
+  "number": "321",
+  "display": "IET 321",
+  "title": "Manufacturing Processes",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Manufacturing processes for producing metal, plastic, and ceramic items. Primary emphasis is placed on machine tool processes.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "IET 321"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/iet/",
+  "extraRaw": []
+ },
+ {
+  "code": "IET 333",
+  "subject": "IET",
+  "number": "333",
+  "display": "IET 333",
+  "title": "Engineering Economics for Technologists",
+  "credits": "2 Credits",
+  "creditsParsed": {
+   "min": 2,
+   "max": 2,
+   "repeatableMax": null
+  },
+  "description": "Fundamentals of engineering economics; equivalence and rate of return analysis; replacement models; depreciation and tax considerations; and economic decision making for technologists.",
+  "enforced": "MATH 26 or MATH 40 or MATH 41 or MATH 83 or MATH 140",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "or",
+    "a": {
+     "op": "or",
+     "a": {
+      "op": "or",
+      "a": {
+       "op": "course",
+       "code": "MATH 26"
+      },
+      "b": {
+       "op": "course",
+       "code": "MATH 40"
+      }
+     },
+     "b": {
+      "op": "course",
+      "code": "MATH 41"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "MATH 83"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "MATH 140"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "IET 333"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/iet/",
+  "extraRaw": []
+ }
+]

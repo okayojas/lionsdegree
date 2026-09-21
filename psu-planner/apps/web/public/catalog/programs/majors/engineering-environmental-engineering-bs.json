@@ -1,0 +1,327 @@
+{
+ "slug": "engineering-environmental-engineering-bs",
+ "name": "Environmental Engineering, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/environmental-engineering-bs/",
+ "totalCredits": 128,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CE 402",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 472W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 475",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "EGEE 470",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 310",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 332",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 335",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 370",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 403",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 461",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 476",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 113",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EMCH 211",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EMCH 212",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202C",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "GEOSC 1",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 211",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CE 402Computing Methods for Civil and Environmental Engineering3\nCE 472WEnvironmental Engineering Capstone Design3\nCE 475Water Quality Chemistry4\nEGEE 470Air Pollutants from Combustion Sources3\nPrescribed Courses: Require a grade of C or better\nCE 310Surveying3\nCE 332Professionalism, Economics & Construction Project Delivery3\nCE 335Engineering Mechanics of Soils3\nCE 370Introduction to Environmental Engineering3\nCE 403Energy Use, Climate Change, and Our Engineered Infrastructure3\nCE 461Water-resource Engineering3\nCE 476Solid and Hazardous Wastes3\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nCHEM 112Chemical Principles II 3\nCHEM 113Experimental Chemistry II 1\nEDSGN 100Cornerstone Engineering Design3\nEMCH 211Statics3\nEMCH 212Dynamics3\nENGL 202CEffective Writing: Technical Writing 3\nGEOSC 1Physical Geology3\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\nPHYS 211General Physics: Mechanics 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 1,
+     "commentRaw": "Select 1 credit of First-Year Seminar",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPSC 121",
+       "CMPSC 131",
+       "CMPSC 200",
+       "CMPSC 201",
+       "CMPSC 204",
+       "ESC 261M"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ECON 14",
+       "ECON 102",
+       "ECON 104",
+       "GEOG 160",
+       "GEOG 260"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENVSE 406",
+       "IE 424",
+       "STAT 401"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 251",
+      "MATH 250",
+      "MATH 252"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CE 360",
+      "EME 303"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAS 100A",
+       "CAS 100B",
+       "EMSC 100S"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 15",
+       "ENGL 15A",
+       "ENGL 15E",
+       "ENGL 30T",
+       "ENGL 30H",
+       "ESL 15"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CHE 220",
+       "EME 301",
+       "ME 201",
+       "ME 300"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 1 credit of First-Year Seminar1\nSelect 3 credits from the following:3\nCMPSC 121Introduction to Programming Techniques\nCMPSC 131Programming and Computation I: Fundamentals\nCMPSC 200Programming for Engineers with MATLAB\nCMPSC 201Programming for Engineers with C++\nCMPSC 204Introduction to Computational Sciences Programming\nESC 261MComputational Methods in Engineering\nSelect 3 credits from the following:3\nECON 14Principles of Economics\nECON 102Introductory Microeconomic Analysis and Policy\nECON 104Introductory Macroeconomic Analysis and Policy\nGEOG 160Mapping Our Changing World\nGEOG 260Geographic Information in a Changing World: Introduction to GIScience\nSelect 3 credits from the following:3\nENVSE 406Sampling and Monitoring of the Geo-Environment\nIE 424Process Quality Engineering\nSTAT 401Experimental Methods\nAdditional Courses: Require a grade of C or better\nMATH 251Ordinary and Partial Differential Equations4\nor MATH 250& MATH 252 Ordinary Differential Equationsand Partial Differential Equations\nCE 360Fluid Mechanics3\nor EME 303 Fluid Mechanics in Energy and Mineral Engineering\nSelect 3 credits from the following:3\nCAS 100AEffective Speech\nCAS 100BEffective Speech\nCAS/ENGL 138TRhetoric and Civic Life II\nEMSC 100SEarth and Mineral Sciences First-Year Seminar\nSelect 3 credits from the following:3\nENGL 15Rhetoric and Composition\nENGL 15ARhetoric and Composition\nENGL 15ERhetoric and Composition Enhanced\nENGL 30THonors Freshman Composition First-Year Seminar\nENGL 30HHonors Rhetoric and Composition\nENGL/CAS 137HRhetoric and Civic Life I\nESL 15ESL Composition for American Academic Communication II\nSelect 3 credits from the following:3\nCHE 220Introduction to Chemical Engineering Thermodynamics\nEME 301Thermodynamics in Energy and Mineral Engineering\nME 201Introduction to Thermal Science\nME 300Engineering Thermodynamics I\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select at least 6 credits of ENVE Technical Electives from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CE 371",
+       "CE 473",
+       "CE 479",
+       "ENVSE 404W",
+       "ENVSE 427"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select at least 9 credits of Technical Electives within or outside of ENVE from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ABSM 350",
+       "BE 464",
+       "BE 467",
+       "BE 477",
+       "BE 487",
+       "CE 462",
+       "CE 473",
+       "CE 479",
+       "CHE 445",
+       "EDSGN 452",
+       "EDSGN 453",
+       "EGEE 420",
+       "EGEE 437",
+       "EGEE 438",
+       "EGEE 439",
+       "EME 460",
+       "ENGR 407",
+       "ENGR 408",
+       "ENGR 410",
+       "ENGR 425",
+       "ENGR 451",
+       "ENVSE 400",
+       "ENVSE 404W",
+       "ENVSE 412",
+       "ENVSE 427",
+       "ENVST 428",
+       "ERM 411",
+       "ERM 429",
+       "ERM 430",
+       "ERM 440",
+       "ERM 448",
+       "GEOG 363",
+       "GEOSC 451",
+       "METEO 469"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select at least 6 credits of ENVE Technical Electives from the following:6\nCE 371Water and Wastewater Treatment\nCE 473Ecological Design of Regenerative Aquatic Systems\nCE 479Environmental Microbiology for Engineers\nENVSE 404WSurface and Interfacial Phenomena in Environmental Systems\nENVSE 427Pollution Control in the Process Industries\nSelect at least 9 credits of Technical Electives within or outside of ENVE from the following:9\nABSM 350Introduction to Life Cycle Assessment\nBE 464Bioenergy Systems Engineering\nBE 467Design of Stormwater and Erosion Control Facilities\nBE 477Land-Based Waste Disposal\nBE 487Simulation Modeling for Water Resources Management\nCE 462Open Channel Hydraulics\nCE 473Ecological Design of Regenerative Aquatic Systems\nCE 479Environmental Microbiology for Engineers\nCHE 445Bioremediation/Green Chemistry\nEDSGN 452Projects in Humanitarian Engineering\nEDSGN 453Design for Developing Communities\nEGEE 420Hydrogen and Fuel Cells\nEGEE 437Design of Solar Energy Conversion Systems\nEGEE 438Wind and Hydropower Energy Conversion\nEGEE 439Alternative Fuels from Biomass Sources\nEME 460Geo-resource Evaluation and Investment Analysis\nENGR 407Product Innovation Entrepreneurship\nENGR 408Leadership Principles\nENGR 410Coaching Skills and Practice for Engineering Leaders\nENGR 425New Venture Creation\nENGR 451Social Entrepreneurship\nENVSE 400Safety Engineering\nENVSE 404WSurface and Interfacial Phenomena in Environmental Systems\nENVSE 412Environmental Systems Engineering Laboratory\nENVSE 427Pollution Control in the Process Industries\nENVST 428Environmental Economics and Policy\nERM 411Legal Aspects of Resource Management\nERM 429The Chesapeake Bay Watershed: Issues and Careers in Complex Environmental Problem Solving\nERM 430Air Pollution Impacts to Terrestrial Ecosystems\nERM 440Chemistry of the Environment: Air, Water, and Soil\nERM 448Rural Road Ecology and Maintenance\nGEOG 363Geographic Information Systems\nGEOSC 451Natural Resources: Origins, Economics and Environmental Impact\nMETEO 469From Meteorology to Mitigation: Understanding Global Warming\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,98 @@
+{
+ "slug": "capital-human-resource-management-minor",
+ "name": "Human Resource Management, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/human-resource-management-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Basic Management and HR:"
+    },
+    {
+     "type": "course",
+     "code": "MGMT 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MGMT 341",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBasic Management and HR:\nMGMT 301Basic Management Concepts3\nMGMT 341Human Resource Management3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-12 credits from the following advanced HRM courses:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MGMT 440",
+       "MGMT 441",
+       "MGMT 443",
+       "MGMT 445"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3-12 credits from the following advanced HRM courses:3-12\nMGMT 440Compensation and Benefits\nMGMT 441Organizational Staffing and Development\nMGMT 443Performance Management\nMGMT 445Managing a Diverse Workforce\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 0,
+     "commentRaw": "Select between 0-9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ECON 315",
+       "ECON 410",
+       "HRM 495",
+       "MGMT 321",
+       "PSYCH 484",
+       "MGMT 326",
+       "MGMT 331",
+       "MGMT 400",
+       "MGMT 420",
+       "CAS 404",
+       "MGMT 424",
+       "MGMT 433",
+       "MGMT 450",
+       "MGMT 461",
+       "MGMT 483"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect between 0-9 credits from the following:0-9\nECON 315Labor Economics\nor ECON 410 Economics of Labor Markets\nHRM 495Internship in Human Capital Management\nMGMT 321Leadership and Motivation\nor PSYCH 484 Work Attitudes and Motivation\nMGMT 326Organizational Behavior and Design\nMGMT 331Management and Organization\nor MGMT 400 Organization Development\nMGMT 420Negotiation and Conflict Management\nor CAS 404 Conflict Resolution and Negotiation\nMGMT 424Interpersonal Relationships in Organizations\nMGMT 433Leadership and Team Building\nMGMT 450Labor Management Relations\nMGMT 461International Management\nMGMT 483Compliance and Fairness in Organizations\n"
+  }
+ ],
+ "suggestedPlans": []
+}

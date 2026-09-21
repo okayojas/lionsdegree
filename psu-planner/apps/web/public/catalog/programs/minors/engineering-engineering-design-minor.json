@@ -1,0 +1,89 @@
+{
+ "slug": "engineering-engineering-design-minor",
+ "name": "Engineering Design, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/engineering-design-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EDSGN 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 367",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 467",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 485",
+     "credits": 1
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nEDSGN 100Cornerstone Engineering Design3\nEDSGN 367Design Thinking and Making3\nEDSGN 467Prototyping to Launch3\nEDSGN 485Engineering Design Portfolio1\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-8 credits from the following courses:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EDSGN 270",
+       "EDSGN 452",
+       "EDSGN 453",
+       "EDSGN 462",
+       "EDSGN 468",
+       "EDSGN 494",
+       "EDSGN 496",
+       "ENGR 310",
+       "ENGR 407",
+       "ENGR 408",
+       "ENGR 409",
+       "ENGR 422"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6-8 credits from the following courses:6-8\nEDSGN 270Summers by Design: An International Engineering Design Experience\nEDSGN 452Projects in Humanitarian Engineering\nEDSGN 453Design for Developing Communities\nEDSGN 462Introduction to Design for Additive Manufacturing\nEDSGN 468Engineering Design and Analysis with CAD\nEDSGN 494Research Project\nEDSGN 496Independent Studies\nENGR/WFED 405Project Management for Professionals\nENGR 310Entrepreneurial Leadership\nENGR 407Product Innovation Entrepreneurship\nENGR 408Leadership Principles\nENGR 409Leadership in Organizations\nENGR 422Leadership of International Virtual Engineering Teams\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "None specified. In consultation with the minor director, students may receive up to 2 course credits for an approved course in support of their engineering design minor."
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nNone specified. In consultation with the minor director, students may receive up to 2 course credits for an approved course in support of their engineering design minor.0-2\n"
+  }
+ ],
+ "suggestedPlans": []
+}

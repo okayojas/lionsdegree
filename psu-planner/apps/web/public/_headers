@@ -1,0 +1,16 @@
+# Cloudflare Pages security headers (OWASP Secure Headers baseline).
+# CSP notes: no third-party scripts at all; styles allow inline because React
+# style props are used throughout; connect-src covers same-origin /v1 and
+# Supabase (auth/sync) only.
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://*.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+
+/catalog/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

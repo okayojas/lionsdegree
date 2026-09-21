@@ -1,0 +1,84 @@
+{
+ "slug": "intercollege-astrobiology-minor",
+ "name": "Astrobiology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "intercollege",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/intercollege/astrobiology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBIOL/GEOSC 474Astrobiology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ASTRO 140",
+      "ASTRO 291"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "EARTH 2",
+      "GEOSC 21"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "GEOSC 204",
+      "BIOL 427"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nASTRO 140Life in the Universe 3\nor ASTRO 291 Astronomical Methods and the Solar System\nEARTH 2The Earth System and Global Change 3\nor GEOSC 21 Earth and Life: Origin and Evolution\nGEOSC 204Geobiology3-4\nor BIOL 427 Evolution\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ASTRO 475W",
+       "BIOL 405",
+       "BMB 401",
+       "BMB 402",
+       "GEOSC 416",
+       "GEOSC 419",
+       "METEO 466",
+       "MICRB 201"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits of the following:6\nASTRO 475WStars and Galaxies\nBIOL 405Molecular Evolution\nBMB 401General Biochemistry\nBMB 402General Biochemistry\nGEOSC 416Stable and Radioactive Isotopes in Geosciences: Introduction\nGEOSC 419The Organic Geochemistry of Natural Waters and Sediments\nMETEO 466Planetary Atmospheres\nMICRB 201Introductory Microbiology\n"
+  }
+ ],
+ "suggestedPlans": []
+}

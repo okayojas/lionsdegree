@@ -1,0 +1,82 @@
+{
+ "slug": "behrend-project-supply-chain-management-minor",
+ "name": "Project and Supply Chain Management, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/project-supply-chain-management-minor/",
+ "totalCredits": 18,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MGMT 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCM 301",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nMGMT 301Basic Management Concepts3\nSCM 301Supply Chain Management3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "MGMT 410",
+      "BA 421"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Select three 400-level MGMT and SCM courses of the following:"
+    },
+    {
+     "type": "course",
+     "code": "MGMT 415",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MGMT 418",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SCM 445",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SCM 455",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SCM 460",
+     "credits": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nMGMT 410Project Management3\nor BA 421 Project Management\nSelect three 400-level MGMT and SCM courses of the following: 9\nMGMT 415Project Portfolio Management and Organizations\nMGMT 418Project Planning and Resource Management\nSCM 445Operations Planning and Control\nSCM 455Logistics Systems Analysis and Design\nSCM 460Purchasing and Materials Management\n"
+  }
+ ],
+ "suggestedPlans": []
+}

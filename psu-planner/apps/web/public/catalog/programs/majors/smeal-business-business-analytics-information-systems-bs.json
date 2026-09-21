@@ -1,0 +1,1066 @@
+{
+ "slug": "smeal-business-business-analytics-information-systems-bs",
+ "name": "Business Analytics and Information Systems, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "smeal-business",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/smeal-business/business-analytics-information-systems-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BA 342",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BA 411",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BLAW 341",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 102",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 104",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202D",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MGMT 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MIS 250",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MIS 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MIS 431",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MIS 432",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MIS 441",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MIS 479W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MKTG 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCM 301",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BA 342Socially Responsible, Sustainable and Ethical Business Practice3\nBA 411Analyzing Business and Industry3\nBLAW 341Business Law I: Introduction to Contracts, Liability Issues, and Intellectual Property3\nECON 102Introductory Microeconomic Analysis and Policy 3\nECON 104Introductory Macroeconomic Analysis and Policy 3\nPrescribed Courses: Require a grade of C or better\nENGL 202DEffective Writing: Business Writing 3\nFIN 301Corporation Finance3\nMGMT 301Basic Management Concepts3\nMIS 250Introduction to Problem Solving with Spreadsheet Analysis and Information Systems Management3\nMIS 301Business Analytics3\nMIS 431Business Data Management3\nMIS 432Business Information System Analysis3\nMIS 441Applied Artificial Intelligence and Machine Learning in Business3\nMIS 479WEnterprise Information Systems3\nMKTG 301Principles of Marketing3\nSCM 301Supply Chain Management3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ACCTG 211",
+      "ACCTG 201",
+      "ACCTG 202"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 110",
+      "MATH 140"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MIS 437",
+      "MIS 446"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "SCM 200",
+      "STAT 200"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 15",
+       "ENGL 30H",
+       "ESL 15"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nACCTG 211Financial and Managerial Accounting for Decision Making4-6\nor ACCTG 201& ACCTG 202 Introduction to Financial Accounting and Introduction to Managerial Accounting\nMATH 110Techniques of Calculus I 4\nor MATH 140 Calculus With Analytic Geometry I\nMIS 437Programming Skills for Business3\nor MIS 446 Information Technology and Business Strategy\nSCM 200Introduction to Statistics for Business 4\nor STAT 200 Elementary Statistics\nSelect 3 credits from the following:3\nENGL 15Rhetoric and Composition\nENGL 30HHonors Rhetoric and Composition\nENGL/CAS 137HRhetoric and Civic Life I\nESL 15ESL Composition for American Academic Communication II\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "Attainment of 12th-credit-level proficiency in a single world language. Proficiency must be demonstrated by either examination or coursework."
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of Business Breadth coursework. See Department List.",
+     "from": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Attainment of 12th-credit-level proficiency in a single world language. Proficiency must be demonstrated by either examination or coursework.4\nSelect 6 credits of Business Breadth coursework. See Department List.6\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Business Analytics and Information Systems, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSU 6",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "(MATH 110 or MATH 140) or (SCM 200 or STAT 200) (GQ)",
+       "domain": "GQ",
+       "credits": 4,
+       "footnotes": [
+        "1",
+        ",",
+        "2"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "1",
+        ",",
+        "2"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15",
+        "ENGL 137H",
+        "CAS 137H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language - Level One (4th credit level)",
+       "credits": 4,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MGMT 301",
+       "credits": 3,
+       "footnotes": [
+        "1",
+        ",",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "(SCM 200 or STAT 200) or (MATH 110 or MATH 140) (GQ)",
+       "domain": "GQ",
+       "credits": 4,
+       "footnotes": [
+        "1",
+        ",",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language - Level Two (8th credit level)",
+       "credits": 4,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (US)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MKTG 301",
+       "credits": 3,
+       "footnotes": [
+        "1",
+        ",",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ACCTG 211",
+       "credits": 4,
+       "footnotes": [
+        "1",
+        ",",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 104",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language - Level Three (12th credit level)",
+       "credits": 4,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FIN 301",
+       "credits": 3,
+       "footnotes": [
+        "1",
+        ",",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SCM 301",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 138T",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": [
+        "CAS 138T"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MIS 250",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MIS 301",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202D",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BLAW 341",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BA 342"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Business Breadth Course",
+       "credits": 3,
+       "footnotes": [
+        "5"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MIS 431",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MIS 437",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": [
+        "MIS 446"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Business Breadth Course",
+       "credits": 3,
+       "footnotes": [
+        "5"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BA 342",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BLAW 341"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MIS 432",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BA 411",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": [
+        "MIS 441"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": [
+        "4"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MIS 479W",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BA 411",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": [
+        "MIS 441"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "1": "Course requires a grade of C or better",
+    "2": "Entrance-to-Major Course – complete prior to attaining 59 cumulative credits at Penn State",
+    "3": "Attain 12th credit level proficiency in a world language (0-12 credits). Credits required vary based on predetermined skill level. Balance of remaining credits are taken as electives. American Sign Language does not satisfy the Smeal College world language requirement.",
+    "4": "When planning general education and elective courses, students should factor in the following requirements: 3 credits of United States Culture (US) 3 credits of International Culture (IL) 6 credits of Inter-Domain (N) coursework",
+    "5": "See the Business Breadth Course list on the Smeal College website."
+   }
+  },
+  {
+   "campusLabel": "Business Analytics and Information Systems, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar (if required by Campus)",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "(MATH 110 or MATH 140) or (SCM 200 or STAT 200) (GQ)",
+       "domain": "GQ",
+       "credits": 4,
+       "footnotes": [
+        "1",
+        ",",
+        "2"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "1",
+        ",",
+        "2"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15",
+        "ENGL 137H",
+        "CAS 137H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language - Level One (4th credit level)",
+       "credits": 4,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ACCTG 201",
+       "credits": 3,
+       "footnotes": [
+        "1",
+        ",",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MGMT 301",
+       "credits": 3,
+       "footnotes": [
+        "1",
+        ",",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "(SCM 200 or STAT 200) or (MATH 110 or MATH 140) (GQ)",
+       "domain": "GQ",
+       "credits": 4,
+       "footnotes": [
+        "1",
+        ",",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language - Level Two (8th credit level)",
+       "credits": 4,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MKTG 301",
+       "credits": 3,
+       "footnotes": [
+        "1",
+        ",",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ACCTG 202",
+       "credits": 3,
+       "footnotes": [
+        "1",
+        ",",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 104",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language - Level Three (12th credit level)",
+       "credits": 4,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FIN 301",
+       "credits": 3,
+       "footnotes": [
+        "1",
+        ",",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202D",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 138T",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": [
+        "CAS 138T"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (US)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MIS 250",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MIS 301",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SCM 301",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BLAW 341",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BA 342"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MIS 431",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MIS 437",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": [
+        "MIS 446"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Business Breadth Course",
+       "credits": 3,
+       "footnotes": [
+        "5"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BA 342",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BLAW 341"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MIS 432",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BA 411",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": [
+        "MIS 441"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Business Breadth Course",
+       "credits": 3,
+       "footnotes": [
+        "5"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MIS 479W",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MIS 441",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": [
+        "BA 411"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "1": "Course requires a grade of C or better",
+    "2": "Entrance-to-Major Course – complete prior to attaining 59 cumulative credits at Penn State",
+    "3": "Attain 12th credit level proficiency in a world language (0-12 credits). Credits required vary based on predetermined skill level. Balance of remaining credits are taken as electives. American Sign Language does not satisfy the Smeal College world language requirement.",
+    "4": "When planning general education and elective courses, students should factor in the following requirements: 3 credits of United States Culture (US) 3 credits of International Culture (IL) 6 credits of Inter-Domain (N) coursework",
+    "5": "See the Business Breadth Course list on the Smeal College website."
+   }
+  }
+ ]
+}

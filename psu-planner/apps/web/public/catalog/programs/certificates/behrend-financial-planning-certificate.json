@@ -1,0 +1,70 @@
+{
+ "slug": "behrend-financial-planning-certificate",
+ "name": "Financial Planning, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/financial-planning-certificate/",
+ "totalCredits": 18,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ACCTG 310",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 330",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 420",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 430",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 450",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 491",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ACCTG 310Federal Taxation I3\nFIN 330Personal Financial Planning3\nFIN 420Investment and Portfolio Analysis3\nFIN 430Estate Planning3\nFIN 450Retirement Planning3\nFIN 491Financial Planning Capstone3\n"
+  },
+  {
+   "heading": "Requirements",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "FIN 301",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "FIN 301Corporation Finance3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

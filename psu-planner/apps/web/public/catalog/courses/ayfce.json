@@ -1,0 +1,383 @@
+[
+ {
+  "code": "AYFCE 211N",
+  "subject": "AYFCE",
+  "number": "211N",
+  "display": "AYFCE 211N",
+  "title": "Foundations: Civic and Community Engagement",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Through readings, discussion, deliberation, listening, and individual as well as collaborative action, this course gives students the opportunity to learn about and practice theories and habits of civic and community engagement and public scholarship with the goal of helping to build democratic capacity and sustain participatory democracy. This course emphasizes concepts and case studies that focus on the people's role in shared governance. The course also provides a foundation for understanding how a wide range of other individual and collective practices have an equally important role to play in building and sustaining community. The course draws from studies in demography, political science, sociology, psychology of racial identity formation and education to help students communicate better about and in shared governance. Among the core concepts are the role of students and other citizens in sustaining and transforming their communities, the historical and contemporary mission of Land Grant universities, the centrality of rhetoric and communication to collaborative judgment, and the relationship among media, cultures, and politics as they affect civic and community engagement. Students also learn together about the range of ways that citizens do, can, and might participate in democratic decision-making and will observe and practice these forms in several communication media and across a range of differences. Finally, learn about models of and opportunities for engaging other citizens across and beyond Penn State, including in global environments.",
+  "enforced": "ENGL 15 or ENGL 30H or CAS 137H or ENGL 137H or CAS 100",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "or",
+    "a": {
+     "op": "or",
+     "a": {
+      "op": "or",
+      "a": {
+       "op": "course",
+       "code": "ENGL 15"
+      },
+      "b": {
+       "op": "course",
+       "code": "ENGL 30H"
+      }
+     },
+     "b": {
+      "op": "course",
+      "code": "CAS 137H"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "ENGL 137H"
+    }
+   },
+   "b": {
+    "op": "or",
+    "a": {
+     "op": "or",
+     "a": {
+      "op": "or",
+      "a": {
+       "op": "course",
+       "code": "CAS 100A"
+      },
+      "b": {
+       "op": "course",
+       "code": "CAS 100B"
+      }
+     },
+     "b": {
+      "op": "course",
+      "code": "CAS 100C"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "CAS 100S"
+    }
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [
+   "GH",
+   "GS",
+   "- Integrative: Interdomain"
+  ],
+  "attributes": [
+   "International Cultures: (IL)",
+   "United States Cultures: (US)",
+   "GLO: Effective Communication",
+   "GLO: Integrative Thinking",
+   "GLO: Soc Resp and Ethic Reason"
+  ],
+  "crossListings": [
+   "CAS 222N",
+   "CIVCM 211N"
+  ],
+  "aliases": [
+   "AYFCE 211N"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/ayfce/",
+  "extraRaw": []
+ },
+ {
+  "code": "AYFCE 270",
+  "subject": "AYFCE",
+  "number": "270",
+  "display": "AYFCE 270",
+  "title": "Consumer and Financial Skills",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "AYFCE 270 Consumer and Financial Skill (3) (GS) This course covers essential consumer and financial skills young adults need to successfully manage resources and personal finances. It is also designed to satisfy social and behavioral general education requirements. Major themes addressed include goals and decision-making, spending sensibly, borrowing wisely, maximizing earnings /income, protecting assets, making money work, and life events that have financial implications. Some of the information has immediate application, while the remainder will become applicable to all students after graduating and living independently. Regardless of students&rsquo; major or profession, the course content applies to them and can play a critical role in their professional and personal success. Course topics are related to current economic events from an individual perspective, consumers&rsquo; behavior in the market, and their impact on communities and society in general. Strategies are discussed which outlines how course topics can be extended to others. For instance, future formal educators (teachers) will learn strategies for incorporating consumer and financial skills into existing curricula regardless of the subject they teach. Students who plan to work in non-formal settings (e.g., human service agencies, community agencies, youth groups or organizations) will acquire useful tools and techniques that may be used to improve the life skills and financial security of their clients. Future parents will learn easy ways to incorporate desired financial skills and behaviors in their children using daily living. The course addresses critical consumer and financial topics from the individual or household level only and with emphasis on key decisions from a social and behavioral perspective.",
+  "enforced": "Semester standing of 3rd or higher",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "course",
+    "code": "OF 3RD"
+   },
+   "b": {
+    "op": "phrase",
+    "text": "higher"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": false,
+  "genEd": [
+   "GS"
+  ],
+  "attributes": [
+   "GLO: Crit and Analytical Think",
+   "GLO: Key Literacies",
+   "GLO: Soc Resp and Ethic Reason"
+  ],
+  "crossListings": [],
+  "aliases": [
+   "AYFCE 270"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/ayfce/",
+  "extraRaw": []
+ },
+ {
+  "code": "AYFCE 295",
+  "subject": "AYFCE",
+  "number": "295",
+  "display": "AYFCE 295",
+  "title": "Internship",
+  "credits": "1-18 Credits/Maximum of 18",
+  "creditsParsed": {
+   "min": 1,
+   "max": 18,
+   "repeatableMax": 18
+  },
+  "description": "Supervised off-campus, nongroup instruction including field experiences, practica, or internships. Written and oral critique of activity required.",
+  "enforced": "Prior approval of proposed assignment by instructor",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "phrase",
+   "text": "Prior approval of proposed assignment by instructor"
+  },
+  "concurrentAst": null,
+  "astComplete": false,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "AYFCE 295"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/ayfce/",
+  "extraRaw": []
+ },
+ {
+  "code": "AYFCE 295B",
+  "subject": "AYFCE",
+  "number": "295B",
+  "display": "AYFCE 295B",
+  "title": "Leadership Jazz",
+  "credits": "3 Credits/Maximum of 3",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": 3
+  },
+  "description": "Supervised off-campus, nongroup instruction including field experiences, practica, or internships. Written and oral critique of activity required.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "AYFCE 295B"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/ayfce/",
+  "extraRaw": []
+ },
+ {
+  "code": "AYFCE 297",
+  "subject": "AYFCE",
+  "number": "297",
+  "display": "AYFCE 297",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given infrequently to explore, in depth, a comparatively narrow subject that may be topical or of special interest.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "AYFCE 297"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/ayfce/",
+  "extraRaw": []
+ },
+ {
+  "code": "AYFCE 438",
+  "subject": "AYFCE",
+  "number": "438",
+  "display": "AYFCE 438",
+  "title": "Living in an Increasingly Diverse Society",
+  "credits": "1-3 Credits/Maximum of 3",
+  "creditsParsed": {
+   "min": 1,
+   "max": 3,
+   "repeatableMax": 3
+  },
+  "description": "Students in this course will explore selected dimensions of diversity through lecture, discussion, speakers, active participation, and experiential learning.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [
+   "United States Cultures: (US)"
+  ],
+  "crossListings": [],
+  "aliases": [
+   "AYFCE 438"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/ayfce/",
+  "extraRaw": []
+ },
+ {
+  "code": "AYFCE 495",
+  "subject": "AYFCE",
+  "number": "495",
+  "display": "AYFCE 495",
+  "title": "Internship in Youth and Family Education Programs",
+  "credits": "1-18 Credits/Maximum of 18",
+  "creditsParsed": {
+   "min": 1,
+   "max": 18,
+   "repeatableMax": 18
+  },
+  "description": "Supervised off-campus, nongroup instruction including field experiences, practicums, or internships.",
+  "enforced": "Prior approval of proposed assignment by instructor",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "phrase",
+   "text": "Prior approval of proposed assignment by instructor"
+  },
+  "concurrentAst": null,
+  "astComplete": false,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "AYFCE 495"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/ayfce/",
+  "extraRaw": []
+ },
+ {
+  "code": "AYFCE 496",
+  "subject": "AYFCE",
+  "number": "496",
+  "display": "AYFCE 496",
+  "title": "Independent Studies",
+  "credits": "1-18 Credits/Maximum of 18",
+  "creditsParsed": {
+   "min": 1,
+   "max": 18,
+   "repeatableMax": 18
+  },
+  "description": "Creative projects, including research and design, which are supervised on an individual basis and which fall outside the scope of formal courses.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "AYFCE 496"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/ayfce/",
+  "extraRaw": []
+ },
+ {
+  "code": "AYFCE 497",
+  "subject": "AYFCE",
+  "number": "497",
+  "display": "AYFCE 497",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given infrequently to explore, in depth, a comparatively narrow subject which may be topical or of special interest.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "AYFCE 497"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/ayfce/",
+  "extraRaw": []
+ },
+ {
+  "code": "AYFCE 499",
+  "subject": "AYFCE",
+  "number": "499",
+  "display": "AYFCE 499",
+  "title": "Foreign Studies",
+  "credits": "1-12 Credits/Maximum of 12",
+  "creditsParsed": {
+   "min": 1,
+   "max": 12,
+   "repeatableMax": 12
+  },
+  "description": "Courses offered in foreign countries by individual or group instruction.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [
+   "International Cultures: (IL)"
+  ],
+  "crossListings": [],
+  "aliases": [
+   "AYFCE 499"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/ayfce/",
+  "extraRaw": []
+ }
+]

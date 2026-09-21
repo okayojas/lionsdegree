@@ -1,0 +1,90 @@
+{
+ "slug": "abington-mathematics-applications-minor",
+ "name": "Mathematics Applications, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "abington",
+ "campuses": [
+  "Abington, The Abington College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/abington/mathematics-applications-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-8 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MATH 220",
+       "MATH 230",
+       "MATH 231",
+       "MATH 232",
+       "MATH 250",
+       "MATH 251",
+       "MATH 310",
+       "MATH 311W",
+       "MATH 312"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6-8 credits from the following:6-8\nMATH 220Matrices\nMATH 230Calculus and Vector Analysis\nMATH 231Calculus of Several Variables\nMATH 232Integral Vector Calculus\nMATH 250Ordinary Differential Equations\nMATH 251Ordinary and Partial Differential Equations\nMATH 310Elementary Combinatorics\nMATH 311WConcepts of Discrete Mathematics\nMATH 312Concepts of Real Analysis\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level MATH courses",
+     "from": {
+      "kind": "pattern",
+      "subject": "MATH",
+      "minLevel": 400
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from 400-level Mathematics Applications courses",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits of 400-level MATH courses6\nSelect 6 credits from 400-level Mathematics Applications courses 6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

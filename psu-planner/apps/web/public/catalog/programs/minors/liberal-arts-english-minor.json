@@ -1,0 +1,39 @@
+{
+ "slug": "liberal-arts-english-minor",
+ "name": "English, Minor (Liberal Arts)",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/english-minor/",
+ "totalCredits": 18,
+ "requirementSections": [
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from ENGL 200 - ENGL 299",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from ENGL 400 - ENGL 499",
+     "from": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Select 6 additional credits in English"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits from ENGL 200 - ENGL 2996\nSelect 6 credits from ENGL 400 - ENGL 4996\nSelect 6 additional credits in English6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,94 @@
+{
+ "slug": "agricultural-sciences-animal-science-minor",
+ "name": "Animal Science, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/animal-science-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ANSC 201",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ANSC 290",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "ANSC 301",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nANSC 201Animal Science4\nANSC 290Careers in Animal Agriculture1\nANSC 301Principles of Animal Nutrition3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ANSC 207",
+      "ANSC 208",
+      "ANSC 300"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ANSC 305",
+       "ANSC 306",
+       "ANSC 308",
+       "ANSC 309",
+       "ANSC 310",
+       "ANSC 311",
+       "ANSC 327"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nANSC 207& ANSC 208Animal Products Technologyand Animal Products Technology Laboratory3\nor ANSC 300 Anatomy and Physiology of Domestic Animals\nSelect 3-4 credits from the following:3-4\nANSC 305Companion Animal Nutrition\nANSC 306Swine Production and Management\nANSC 308Sheep and Goat Production and Management\nANSC 309Beef Cattle Production and Management\nANSC 310Dairy Cattle Production and Management\nANSC 311Poultry Production and Management\nANSC 327Horse Production and Management\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level ANSC courses",
+     "from": {
+      "kind": "pattern",
+      "subject": "ANSC",
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits of 400-level ANSC courses6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

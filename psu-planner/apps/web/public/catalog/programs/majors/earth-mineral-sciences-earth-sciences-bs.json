@@ -1,0 +1,1080 @@
+{
+ "slug": "earth-mineral-sciences-earth-sciences-bs",
+ "name": "Earth Sciences, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/earth-sciences-bs/",
+ "totalCredits": 123,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 110",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 113",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "EMSC 100S",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 212",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 110Biology: Basic Concepts and Biodiversity 4\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nCHEM 112Chemical Principles II 3\nCHEM 113Experimental Chemistry II 1\nEMSC 100SEarth and Mineral Sciences First-Year Seminar 3\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\nPHYS 211General Physics: Mechanics 4\nPHYS 212General Physics: Electricity and Magnetism 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 15",
+      "ENGL 30H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits of introductory earth science of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EARTH 2",
+       "EARTH 101",
+       "EARTH 103N",
+       "EARTH 105N",
+       "GEOG 30N",
+       "GEOG 110",
+       "GEOG 111",
+       "GEOG 115",
+       "GEOG 160",
+       "GEOSC 1",
+       "GEOSC 21",
+       "METEO 3",
+       "SOILS 101"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of writing-intensive courses from within Earth and Mineral Sciences to include, but not limited to the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "GEOG 310",
+       "GEOG 412",
+       "GEOSC 402Y",
+       "GEOSC 470W",
+       "METEO 471"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits of advanced earth science of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "GEOG 412",
+       "GEOG 430",
+       "GEOG 438W",
+       "GEOSC 204",
+       "GEOSC 320",
+       "GEOSC 340",
+       "GEOSC 402Y",
+       "GEOSC 416",
+       "METEO 300",
+       "METEO 431"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ENGL 15Rhetoric and Composition 3\nor ENGL 30H Honors Rhetoric and Composition\nSelect 15 credits of introductory earth science of the following: 15\nEARTH 2The Earth System and Global Change\nEARTH 101Natural Disasters: Hollywood vs. Reality\nEARTH 103NEarth in the Future: Predicting Climate Change and Its Impacts Over the Next Century\nEARTH 105NEnvironments of Africa: Geology and Climate Change\nGEOG 30NEnvironment and Society in a Changing World\nGEOG 110\nGEOG 111\nGEOG 115Landforms of the World\nGEOG 160Mapping Our Changing World\nGEOSC 1Physical Geology\nGEOSC 21Earth and Life: Origin and Evolution\nMETEO 3Weather Revealed: Introductory Meteorology\nSOILS 101Introductory Soil Science\nSelect 3 credits of writing-intensive courses from within Earth and Mineral Sciences to include, but not limited to the following:3\nGEOG 310Introduction to Global Climatic Systems\nGEOG 412\nGEOSC 402YNatural Disasters\nGEOSC 470WIntroduction to Field Geology\nMETEO 471\nAdditional Courses: Require a grade of C or better\nSelect 15 credits of advanced earth science of the following: 15\nGEOG 412\nGEOG 430Human Use of Environment\nGEOG 438WHuman Dimensions of a Changing Climate\nGEOSC 204Geobiology\nGEOSC 320Geology of Climate Change\nGEOSC 340Geomorphology\nGEOSC 402YNatural Disasters\nGEOSC 416Stable and Radioactive Isotopes in Geosciences: Introduction\nMETEO 300Fundamentals of Atmospheric Science\nMETEO 431Atmospheric Thermodynamics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits of advanced math, statistics, computer science in consultation with an adviser",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of field, laboratory experience in consultation with an adviser",
+     "from": null
+    },
+    {
+     "type": "course",
+     "code": "SELECT 8",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "APPLY 6",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18 credits, in consultation from an adviser, from one of the following Earth and Mineral Sciences interdisciplinary minors:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Climatology"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Marine Science"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Watersheds & Water Resources"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Earth Systems"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Global Business Strategies for Earth and Environmental Industries"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Select 3-4 credits of advanced math, statistics, computer science in consultation with an adviser3-4\nSelect 3 credits of field, laboratory experience in consultation with an adviser3\nSelect 8-9 credits in other approved courses (students may apply 6 credits of ROTC)8-9\nSupporting Courses and Related Areas: Require a grade of C or better\nSelect 18 credits, in consultation from an adviser, from one of the following Earth and Mineral Sciences interdisciplinary minors:18\nClimatology\nMarine Science\nWatersheds & Water Resources\nEarth Systems\nGlobal Business Strategies for Earth and Environmental Industries\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Earth Sciences, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140G"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EMSC 100S",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Intro GEOSC/EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 141G"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Intro GEOSC/EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 114",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 115",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education knowledge domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education knowledge domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Intro GEOSC/EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education knowledge domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Minor course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "5"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Advanced EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Advanced EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Intro GEOSC/EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 2,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Minor course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "5"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education knowledge domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Advanced GEOSC/EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Intro GEOSC/EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "5"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education knowledge domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Health and Wellness (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Advanced EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Foundation selection (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "5"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education knowledge domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Health and Wellness (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Advanced Math/Stat/CMPSC/GEOSC 210",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Advanced EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "EARTH Field/lab experience",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Writing across the curriculum course in EMS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "5"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "5"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 123,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Earth Sciences, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Intro GEOSC/EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Intro GEOSC/EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Foundation selection (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 114",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 115",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education knowledge domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education knowledge domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Intro GEOSC/EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education knowledge domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Advanced Math/Stat/CMPSC/GEOSC 210",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education knowledge domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Advanced EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Intro GEOSC/EARCH elective",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 2,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Minor course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "5"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education knowledge domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Advanced GEOSC/EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Intro GEOSC/EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "5"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "5"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Health and Wellness (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Advanced EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Foundation selection (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "5"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education knowledge domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Health and Wellness (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Advanced EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Advanced EARTH elective",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "EARTH Field/lab experience",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Writing across the curriculum course in EMS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "5"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "5"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 123,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

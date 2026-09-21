@@ -1,0 +1,97 @@
+{
+ "slug": "agricultural-sciences-environmental-soil-science-minor",
+ "name": "Environmental Soil Science, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/environmental-soil-science-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "SOILS 101",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOILS 102",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "SOILS 403",
+     "credits": 2
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nSOILS 101Introductory Soil Science 3\nSOILS 102Introductory Soil Science Laboratory1\nSOILS 403Soil Morphology Practicum2\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "In consultation with an Environmental Soil Science adviser, select 12-13 credits from the following (including at least 6 credits at the 400-level):",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "SOILS courses"
+    },
+    {
+     "type": "course",
+     "code": "ASM 327",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "CE 335",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ERM 433",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ERM 440",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "FOR 475",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "TURF 434",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "TURF 435",
+     "credits": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nIn consultation with an Environmental Soil Science adviser, select 12-13 credits from the following (including at least 6 credits at the 400-level):12-13\nSOILS courses\nASM 327Soil and Water Resource Management\nCE 335Engineering Mechanics of Soils\nERM 433Transformation of Pollutants in Soils\nERM 440Chemistry of the Environment: Air, Water, and Soil\nFOR 475Principles of Forest Soils Management\nTURF 434Turfgrass Edaphology\nTURF 435Turfgrass Nutrition\n"
+  }
+ ],
+ "suggestedPlans": []
+}

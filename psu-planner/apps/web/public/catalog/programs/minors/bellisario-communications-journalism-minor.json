@@ -1,0 +1,79 @@
+{
+ "slug": "bellisario-communications-journalism-minor",
+ "name": "Journalism, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "bellisario-communications",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/bellisario-communications/journalism-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "COMM 160",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "COMM 260W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 271",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 403",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 409",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCOMM 160Basic News Writing Skills1\nCOMM 260WNews Writing and Reporting3\nCOMM 271Principles of Journalism3\nCOMM 403Law of Mass Communications3\nCOMM 409News Media Ethics3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "COMM 261",
+       "COMM 269",
+       "COMM 360",
+       "COMM 362",
+       "COMM 364",
+       "COMM 460W",
+       "COMM 461",
+       "COMM 462",
+       "COMM 463",
+       "COMM 464W",
+       "COMM 465"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits from the following:6\nCOMM 261The Literature of Journalism\nCOMM 269Photojournalism\nCOMM 360Radio Reporting\nCOMM 362Podcasting\nCOMM 364Data Visualization for Journalists\nCOMM 460WReporting Methods\nCOMM 461Magazine Writing\nCOMM 462Feature Writing\nCOMM 463Newspaper Design\nCOMM 464WEditorial, Opinion and Commentary Writing\nCOMM 465Television Reporting\n"
+  }
+ ],
+ "suggestedPlans": []
+}

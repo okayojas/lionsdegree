@@ -1,0 +1,352 @@
+[
+ {
+  "code": "RTE 294",
+  "subject": "RTE",
+  "number": "294",
+  "display": "RTE 294",
+  "title": "Research Project",
+  "credits": "1-12 Credits/Maximum of 12",
+  "creditsParsed": {
+   "min": 1,
+   "max": 12,
+   "repeatableMax": 12
+  },
+  "description": "Supervised student activities on research projects identified on an individual or small-group basis.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RTE 294"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/rte/",
+  "extraRaw": []
+ },
+ {
+  "code": "RTE 301",
+  "subject": "RTE",
+  "number": "301",
+  "display": "RTE 301",
+  "title": "Railroad Industry Overview and Economic Regulation",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course explores the relationship between railroads and customers, competitors, and the political, regulatory, and economic environment.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "ECON 102; Concurrent: RTE 303",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RTE 301"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/rte/",
+  "extraRaw": []
+ },
+ {
+  "code": "RTE 302",
+  "subject": "RTE",
+  "number": "302",
+  "display": "RTE 302",
+  "title": "Railroad Track Location, Construction and Maintenance",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Principles of railroad track location, alignment, elements and safety regulations.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "C E 310 , C E 336; Concurrent: C E 335, C E 360",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RTE 302"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/rte/",
+  "extraRaw": []
+ },
+ {
+  "code": "RTE 303",
+  "subject": "RTE",
+  "number": "303",
+  "display": "RTE 303",
+  "title": "Railroad Operation and Safety",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Basics of rail operations, including the role of terminals and safety principles.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RTE 303"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/rte/",
+  "extraRaw": [
+   "Concurrent: RTE 301"
+  ]
+ },
+ {
+  "code": "RTE 305",
+  "subject": "RTE",
+  "number": "305",
+  "display": "RTE 305",
+  "title": "Railroad Communications and Signals",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Principles of the separation of trains, including signals, interlocking, and communications.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "PHYS 212 , CMPSC201 or CMPSC202; Concurrent: RTE 303",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RTE 305"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/rte/",
+  "extraRaw": []
+ },
+ {
+  "code": "RTE 402",
+  "subject": "RTE",
+  "number": "402",
+  "display": "RTE 402",
+  "title": "Railroad Operations Practicum",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Practicum (lectures, supervised field work, laboratories) exploring practical problems in rail operations and safety.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "RTE 303 , RTE 305",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RTE 402"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/rte/",
+  "extraRaw": []
+ },
+ {
+  "code": "RTE 403",
+  "subject": "RTE",
+  "number": "403",
+  "display": "RTE 403",
+  "title": "Railroad Track Practicum",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Practicum (lectures, labs, supervised field experiences) exploring the construction and repair of track.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "RTE 302 , C E 310; Concurrent: C E 333W, C E 335",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RTE 403"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/rte/",
+  "extraRaw": []
+ },
+ {
+  "code": "RTE 404",
+  "subject": "RTE",
+  "number": "404",
+  "display": "RTE 404",
+  "title": "Railroad Mechanical Practicum",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Practicum (lectures, labs, supervised field experiences) examining the repair of locomotives and cars.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "RTE 303 , PHYS 211 , PHYS 212 , E MCH213",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RTE 404"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/rte/",
+  "extraRaw": []
+ },
+ {
+  "code": "RTE 406",
+  "subject": "RTE",
+  "number": "406",
+  "display": "RTE 406",
+  "title": "Railroad Capstone Project",
+  "credits": "4 Credits",
+  "creditsParsed": {
+   "min": 4,
+   "max": 4,
+   "repeatableMax": null
+  },
+  "description": "Capstone project to integrate course knowledge in a team-based project.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "C E 333W , RTE 305 , RTE 402 , RTE 403 , RTE 404 , C E 332 , 7th semester standing",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RTE 406"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/rte/",
+  "extraRaw": []
+ },
+ {
+  "code": "RTE 495",
+  "subject": "RTE",
+  "number": "495",
+  "display": "RTE 495",
+  "title": "Internship",
+  "credits": "1-18 Credits/Maximum of 18",
+  "creditsParsed": {
+   "min": 1,
+   "max": 18,
+   "repeatableMax": 18
+  },
+  "description": "Supervised off-campus, nongroup instruction including field experiences, practica, or internships. Written and oral critique of activity required.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RTE 495"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/rte/",
+  "extraRaw": []
+ },
+ {
+  "code": "RTE 496",
+  "subject": "RTE",
+  "number": "496",
+  "display": "RTE 496",
+  "title": "Independent Studies",
+  "credits": "1-18 Credits/Maximum of 18",
+  "creditsParsed": {
+   "min": 1,
+   "max": 18,
+   "repeatableMax": 18
+  },
+  "description": "Creative projects, including research and design, that are supervised on an individual basis and that fall outside the scope of formal courses.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RTE 496"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/rte/",
+  "extraRaw": []
+ },
+ {
+  "code": "RTE 497",
+  "subject": "RTE",
+  "number": "497",
+  "display": "RTE 497",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given infrequently to explore, in depth, a comparatively narrow subject that may be topical or of special interest.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RTE 497"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/rte/",
+  "extraRaw": []
+ }
+]

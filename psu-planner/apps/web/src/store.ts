@@ -1,0 +1,499 @@
+import { create } from "zustand";
+import {
+  applyHonorsUpgrades, attachIug, auditHonors, buildItems, buildSchedule, detachIug,
+  optimizeSchedule, parseTermLabel, refineGenEdSlots, repairPrereqOrdering, termSequence,
+  type Catalog, type CourseSpec, type PlanDoc, type PlanItem, type Schedule,
+} from "@psu-planner/engine";
+import { loadCatalogFor, loadCoverage, loadFlowchartPatterns, loadIug } from "./data/catalogClient";
+import { schedulePush } from "./data/sync";
+
+const LS_KEY = "psu-planner-plan-v1";
+
+export function loadSavedPlan(): PlanDoc | null {
+  try {
+    const s = localStorage.getItem(LS_KEY);
+    return s ? (JSON.parse(s) as PlanDoc) : null;
+  } catch {
+    return null;
+  }
+}
+
+interface PlannerState {
+  plan: PlanDoc | null;
+  catalog: Catalog;
+  items: PlanItem[];
+  sched: Schedule;
+  /** Directional coverage map (MATH 250 -> [MATH 251]) for substitute-aware completion. */
+  coverage: Record<string, string[]>;
+  loading: boolean;
+  /** One-shot note about generation-time prereq repairs, shown as a toast. */
+  repairNote: string | null;
+  clearRepairNote: () => void;
+  setPlan: (plan: PlanDoc | null, opts?: { repairOrdering?: boolean; optimize?: boolean }) => Promise<void>;
+  /** Repack the current plan into the fewest <=19-credit semesters, keeping the
+   * flowchart's difficulty order and capstone at the end. Pass a semester
+   * target to spread the work across exactly that many terms (best effort). */
+  optimizeNow: (targetSemesters?: number) => Promise<string>;
+  autoReoptimize: () => void;
+  mutatePlan: (fn: (plan: PlanDoc) => void) => void;
+  /** Marking complete removes the course from future terms (it already
+   * happened — don't keep scheduling it); unmarking re-adds it to the first
+   * term so it isn't lost. */
+  markCompleted: (code: string, done: boolean) => void;
+  /** Mark many courses completed at once (spreadsheet import) — one mutation. */
+  bulkComplete: (codes: string[]) => void;
+  /** Apply a spreadsheet import in one shot: mark `completed` courses done
+   * (mapping onto matching template/alternative cards), fold `scheduled`
+   * courses into the plan, then RE-OPTIMIZE unconditionally so the flowchart
+   * adapts — imported courses flow to prerequisite-valid positions instead of
+   * piling into the last semester, and duplicates of template courses dedupe. */
+  applyImport: (completed: string[], scheduled: { code: string; sem: number }[]) => Promise<void>;
+  /** Swap a plan course for one of its listed alternatives (CMPSC 121 <-> 131). */
+  swapAlternative: (oldCode: string, newCode: string) => Promise<void>;
+  /** Hide an item from the chart and credit totals (restorable). */
+  removeItem: (id: string) => void;
+  restoreItem: (id: string) => void;
+  /** Opt into the summer session of a calendar year (inserted between Spring
+   * and Fall of that year). Returns the summer's term index, remapping any
+   * index-keyed state (constraints, moves, added) that sits after it. Idempotent. */
+  addSummerSession: (year: number) => number;
+  /** Append an empty semester to the end of the plan and return its index (for
+   * dragging a course past the last term). Transient like any manual move —
+   * re-optimizing repacks and trims it if left empty. */
+  addSemester: () => number;
+  /** Skip a semester (gap year / co-op / leave): mark it an empty gap and
+   * re-optimize so coursework flows around it and graduation moves back. */
+  deleteSemester: (index: number) => Promise<string>;
+  /** Un-skip a previously gapped semester and re-optimize back into it. */
+  restoreSemester: (index: number) => Promise<string>;
+  /** Attach an IUG master's (by slug) to the current plan: loads the grad
+   * program + grad courses, folds them on as graduate terms with double-count,
+   * re-optimizes the undergrad half. Returns a human summary. */
+  attachIugNow: (slug: string) => Promise<string>;
+  /** Remove the attached IUG, returning to a plain bachelor's. */
+  detachIugNow: () => Promise<string>;
+  refreshCatalog: () => Promise<void>;
+}
+
+function recompute(plan: PlanDoc | null, catalog: Catalog): { items: PlanItem[]; sched: Schedule } {
+  if (!plan) return { items: [], sched: {} };
+  const items = buildItems(plan, catalog);
+  return { items, sched: buildSchedule(plan, items, catalog) };
+}
+
+const HISTORY_LS_KEY = "psu-planner-plan-history-v1";
+const HISTORY_MAX = 15;
+
+export interface PlanHistoryEntry {
+  ts: string;
+  rev: number;
+  /** e.g. "chat turn", "optimize", "manual edit", "generated" */
+  cause: string;
+  plan: PlanDoc;
+}
+
+/** Ring buffer of recent plan states — recovery that does NOT depend on the
+ * chat session (a real incident: chat undo was lost and the wrecked plan was
+ * the only persisted state). Restorable from Menu → Plan history. */
+export function getPlanHistory(): PlanHistoryEntry[] {
+  try {
+    return JSON.parse(localStorage.getItem(HISTORY_LS_KEY) ?? "[]") as PlanHistoryEntry[];
+  } catch {
+    return [];
+  }
+}
+function pushHistory(plan: PlanDoc, cause: string) {
+  try {
+    const log = getPlanHistory();
+    const last = log[log.length - 1];
+    if (last && JSON.stringify(last.plan) === JSON.stringify(plan)) return; // no-op change
+    log.push({ ts: new Date().toISOString(), rev: plan.rev, cause, plan });
+    localStorage.setItem(HISTORY_LS_KEY, JSON.stringify(log.slice(-HISTORY_MAX)));
+  } catch { /* quota — history is best-effort, never blocks saving the plan */ }
+}
+
+function persist(plan: PlanDoc | null, cause = "edit") {
+  try {
+    if (plan) {
+      pushHistory(plan, cause);
+      localStorage.setItem(LS_KEY, JSON.stringify(plan));
+    } else localStorage.removeItem(LS_KEY);
+  } catch { /* quota exceeded: plan persists next time */ }
+  if (plan) schedulePush(plan); // no-op unless Supabase configured + signed in
+}
+
+/** Completing X clears not just X's card but any card X substitutes for:
+ * a card whose `alternatives` include X ("CMPSC 121 or 131" card, took 131),
+ * or a card whose content X covers (took MATH 251, card is MATH 250). */
+function clearSatisfiedCards(p: PlanDoc, code: string, coverage: Record<string, string[]>) {
+  const satisfies = (cardCode: string, alts: string[] | undefined): boolean =>
+    cardCode === code || (alts ?? []).includes(code) || (coverage[cardCode] ?? []).includes(code);
+  for (const t of p.terms) {
+    t.items = t.items.filter((it) => !("code" in it && satisfies(it.code, it.alternatives)));
+  }
+  p.added = p.added.filter((a) => !satisfies(a.code, undefined));
+  delete p.moves[code];
+  delete p.moves["add-" + code];
+  for (const [slotId, fill] of Object.entries(p.slotFills)) {
+    if (fill !== code) continue;
+    delete p.slotFills[slotId];
+    delete p.moves[slotId];
+    for (const t of p.terms) {
+      t.items = t.items.filter((it) => !("slot" in it && it.id === slotId));
+    }
+  }
+}
+
+function planCodes(plan: PlanDoc): string[] {
+  const codes = plan.terms.flatMap((t) => t.items.flatMap((i) => ("code" in i ? [i.code] : [])));
+  codes.push(...plan.added.map((a) => a.code));
+  codes.push(...Object.values(plan.slotFills));
+  codes.push(...Object.keys(plan.completed));
+  return codes;
+}
+
+export const usePlanner = create<PlannerState>((set, get) => ({
+  plan: null,
+  catalog: {},
+  items: [],
+  sched: {},
+  coverage: {},
+  loading: false,
+  repairNote: null,
+  clearRepairNote: () => set({ repairNote: null }),
+
+  setPlan: async (plan, opts) => {
+    persist(plan, opts?.optimize ? "generated" : "set plan");
+    if (!plan) {
+      set({ plan: null, items: [], sched: {}, loading: false });
+      return;
+    }
+    set({ plan, loading: true });
+    const catalog = await loadCatalogFor(planCodes(plan));
+    const coverage = await loadCoverage();
+    set({ coverage });
+    const notes: string[] = [];
+    // Schreyer honors upgrades run FIRST (RCL pair swapped + pinned to the
+    // first two terms; the gen-ed audit then sees the swapped GWS courses),
+    // then gen-ed refinement, then the optimizer. Because packing shifts which
+    // academic year a course lands in, the upgrade pass runs AGAIN on the
+    // final layout — swaps are in-place, so no re-optimization is needed.
+    // All passes are idempotent.
+    if (plan.honors) {
+      const hon = applyHonorsUpgrades(plan, catalog);
+      if (hon.note) notes.push(hon.note);
+    }
+    // Gen-ed refinement: names generic GE cards by framework category, drops
+    // ones the major's own courses already cover (double-counting), and hints
+    // at IL/US picks.
+    const genEd = refineGenEdSlots(plan, catalog);
+    if (genEd.note) notes.push(genEd.note);
+    if (opts?.optimize) {
+      // The optimizer is the LAST word: it anchors to the template order with
+      // leaf-level prereq feasibility AND the 19-credit cap. Never run the
+      // cap-blind repair pass after it (that was the 25-credit dual-major bug).
+      const patterns = await loadFlowchartPatterns();
+      const res = optimizeSchedule(plan, catalog, { maxCredits: 19, patterns });
+      notes.push(`kept your ${res.semestersAfter}-semester flowchart order, ≤19 credits each, gen eds and electives spread throughout`);
+      if (res.capstoneNote) notes.push(res.capstoneNote);
+    } else if (opts?.repairOrdering) {
+      // Non-optimized path: bulletin suggested plans sometimes violate their
+      // own enforced prerequisites; move prereqs earlier like the department
+      // flowcharts do.
+      const moves = repairPrereqOrdering(plan, catalog);
+      if (moves.length) {
+        notes.push(`prerequisites reordered (${moves.map((m) => m.code).join(", ")})`);
+      }
+    }
+    // Second honors pass on the FINAL layout: packing shifts academic years,
+    // so top up the per-year windows in place and report what's still short.
+    if (plan.honors) {
+      const hon2 = applyHonorsUpgrades(plan, catalog);
+      if (hon2.note) notes.push(hon2.note);
+      const audit = auditHonors(plan, catalog);
+      const short = audit.windows.filter((w) => w.shortfall > 0);
+      if (short.length) notes.push(short.map((w) => `Schreyer ${w.label}: still ${w.shortfall} honors credits short (honors options on regular courses count too — arrange with instructors)`).join("; "));
+    }
+    if (notes.length) persist(plan, opts?.optimize ? "generated + optimized" : "repaired");
+    set({
+      plan, catalog, ...recompute(plan, catalog), loading: false,
+      repairNote: notes.length ? `Optimized your schedule: ${notes.join("; ")}.` : null,
+    });
+  },
+
+  optimizeNow: async (targetSemesters?: number) => {
+    const plan = get().plan;
+    if (!plan) return "No plan yet.";
+    const catalog = get().catalog;
+    const patterns = await loadFlowchartPatterns();
+    if (plan.honors) applyHonorsUpgrades(plan, catalog); // RCL pin + pre-pack upgrades (idempotent)
+    const genEd = refineGenEdSlots(plan, catalog); // idempotent; keeps categories fresh
+    const res = optimizeSchedule(plan, catalog, { maxCredits: 19, patterns, targetSemesters });
+    // Post-pack honors pass: packing shifts academic years, so top up windows
+    // on the final layout (in-place swaps, no re-pack needed).
+    const honors = plan.honors ? applyHonorsUpgrades(plan, catalog) : null;
+    const next: PlanDoc = { ...plan, rev: plan.rev + 1, updatedAt: new Date().toISOString() };
+    persist(next, "optimize");
+    set({ plan: next, ...recompute(next, catalog) });
+    let base: string;
+    if (targetSemesters && res.targetMissed) {
+      base = `The remaining work won't fit in ${targetSemesters} semesters at 19 credits each — the tightest I can do is ${res.semestersAfter}. Courses still rise in difficulty, max 19 credits each.`;
+    } else if (targetSemesters) {
+      base = `Consolidated into ${res.semestersAfter} semesters as requested, max 19 credits each, difficulty rising and capstone last.`;
+    } else {
+      base = res.semestersAfter < res.semestersBefore
+        ? `Packed your plan into ${res.semestersAfter} semesters (was ${res.semestersBefore}), max 19 credits each, following the flowchart's difficulty order.`
+        : `Rebalanced into ${res.semestersAfter} semesters, max 19 credits each, following the flowchart's difficulty order.`;
+    }
+    const extras = [res.capstoneNote, honors?.note, genEd.note].filter(Boolean).join(" ");
+    return extras ? `${base} ${extras}` : base;
+  },
+
+  /** After completions change what's schedulable, re-optimize automatically —
+   * but never silently destroy a manually arranged chart. */
+  autoReoptimize: () => {
+    const plan = get().plan;
+    if (!plan) return;
+    if (Object.keys(plan.moves).length === 0) {
+      void get().optimizeNow().then((msg) => set({ repairNote: `Schedule updated — ${msg}` }));
+    } else {
+      set({ repairNote: "Course completed. You've arranged cards manually, so I didn't reshuffle — Menu → Optimize when ready." });
+    }
+  },
+
+  mutatePlan: (fn) => {
+    const plan = get().plan;
+    if (!plan) return;
+    const next: PlanDoc = structuredClone(plan);
+    fn(next);
+    next.rev += 1;
+    next.updatedAt = new Date().toISOString();
+    persist(next);
+    set({ plan: next, ...recompute(next, get().catalog) });
+  },
+
+  markCompleted: (code, done) => {
+    const coverage = get().coverage;
+    get().mutatePlan((p) => {
+      if (done) {
+        p.completed[code] = true;
+        // Remove the course wherever it's scheduled — including cards it
+        // substitutes for (alternatives) or covers (MATH 251 -> MATH 250).
+        clearSatisfiedCards(p, code, coverage);
+        queueMicrotask(() => get().autoReoptimize());
+      } else {
+        delete p.completed[code];
+        // Re-add so the requirement is visible again.
+        const scheduled = p.terms.some((t) => t.items.some((it) => "code" in it && it.code === code));
+        if (!scheduled && !p.added.some((a) => a.code === code)) p.added.push({ code, sem: 0 });
+      }
+    });
+  },
+
+  bulkComplete: (codes) => {
+    const coverage = get().coverage;
+    get().mutatePlan((p) => {
+      for (const code of codes) {
+        p.completed[code] = true;
+        clearSatisfiedCards(p, code, coverage);
+      }
+    });
+    if (codes.length) get().autoReoptimize();
+  },
+
+  applyImport: async (completed, scheduled) => {
+    if (!get().plan) return;
+    const coverage = get().coverage;
+    get().mutatePlan((p) => {
+      for (const code of completed) {
+        p.completed[code] = true;
+        // Map onto the matching template/alternative/covered card instead of
+        // leaving a duplicate on the chart.
+        clearSatisfiedCards(p, code, coverage);
+      }
+      for (const s of scheduled) {
+        if (p.completed[s.code]) continue;
+        // Skip anything already on the chart — the optimizer dedupes by code,
+        // but this also avoids a redundant `added` entry.
+        const onChart = p.terms.some((t) => t.items.some((it) => "code" in it && it.code === s.code));
+        if (!onChart && !p.added.some((a) => a.code === s.code)) p.added.push({ code: s.code, sem: s.sem });
+      }
+    });
+    // Load any newly referenced subjects, then re-optimize UNCONDITIONALLY (an
+    // import is a deliberate bulk change): the engine folds `added` courses into
+    // prerequisite-valid positions and re-flows the whole plan around the
+    // completed courses — no more "everything dumped in the last semester".
+    await get().refreshCatalog();
+    await get().optimizeNow();
+  },
+
+  removeItem: (id) => {
+    get().mutatePlan((p) => {
+      p.removed = { ...(p.removed ?? {}), [id]: true };
+      // "added" courses are simply dropped from the list instead.
+      if (id.startsWith("add-")) {
+        const code = id.slice(4);
+        p.added = p.added.filter((a) => a.code !== code);
+        delete p.removed[id];
+        return;
+      }
+      // Preserve the full course spec (origin, alternatives) so Restore can
+      // reinstate it even after a re-optimize rebuilds the term list without it
+      // — the optimizer reads `removed`, so a removed course's card would
+      // otherwise be gone for good and Restore would have nothing to bring back.
+      for (const t of p.terms) {
+        const spec = t.items.find((it) => "code" in it && it.code === id) as CourseSpec | undefined;
+        if (spec) { p.removedSpecs = { ...(p.removedSpecs ?? {}), [id]: structuredClone(spec) }; break; }
+      }
+    });
+  },
+
+  restoreItem: (id) => {
+    let reAdded = false;
+    get().mutatePlan((p) => {
+      if (p.removed) delete p.removed[id];
+      // If a re-optimize already dropped the course from the term list, put its
+      // preserved spec back so it's scheduled again (auto-restore). Its origin
+      // rides along, so re-optimizing flows it to the right semester.
+      const present = p.terms.some((t) => t.items.some((it) => ("code" in it ? it.code : it.id) === id));
+      const spec = p.removedSpecs?.[id];
+      if (!present && spec) {
+        if (!p.terms.length) p.terms.push({ label: "", items: [] });
+        p.terms[0].items.push(structuredClone(spec) as typeof spec);
+        reAdded = true;
+      }
+      if (p.removedSpecs) delete p.removedSpecs[id];
+    });
+    // A course put back into term 0 needs the optimizer to flow it into place
+    // (guarded so a manually arranged chart isn't reshuffled).
+    if (reAdded) get().autoReoptimize();
+  },
+
+  addSummerSession: (year) => {
+    const plan = get().plan;
+    if (!plan) return -1;
+    const label = `Summer ${year}`;
+    const existing = plan.terms.findIndex((t) => t.label === label);
+    if (existing >= 0 || (plan.summerYears ?? []).includes(year)) {
+      return existing >= 0 ? existing : plan.terms.findIndex((t) => t.label === label);
+    }
+    // Insert right after Spring of that year (or at the end if the plan
+    // doesn't reach that spring yet — the optimizer resequences either way).
+    const springIdx = plan.terms.findIndex((t) => t.label === `Spring ${year}`);
+    const insertAt = springIdx >= 0 ? springIdx + 1 : plan.terms.length;
+    get().mutatePlan((p) => {
+      p.summerYears = [...(p.summerYears ?? []), year].sort((a, b) => a - b);
+      p.terms.splice(insertAt, 0, { label, items: [] });
+      // Remap every index-keyed reference at/after the insertion point.
+      for (const c of p.constraints ?? []) if (c.termIndex >= insertAt) c.termIndex++;
+      for (const a of p.added) if (a.sem >= insertAt) a.sem++;
+      for (const k of Object.keys(p.moves)) if (p.moves[k] >= insertAt) p.moves[k]++;
+    });
+    return insertAt;
+  },
+
+  addSemester: () => {
+    const plan = get().plan;
+    if (!plan) return -1;
+    let idx = -1;
+    get().mutatePlan((p) => {
+      const ref = parseTermLabel(p.terms[0]?.label ?? "") ?? { kind: "Fall" as const, year: 2026, label: "Fall 2026" };
+      const start = { term: (ref.kind === "Summer" ? "Fall" : ref.kind) as "Fall" | "Spring", year: ref.year };
+      const seq = termSequence(start, p.terms.length + 2, p.summerYears ?? []);
+      idx = p.terms.length;
+      p.terms.push({ label: seq[idx]?.label ?? `Term ${idx + 1}`, items: [] });
+    });
+    return idx;
+  },
+
+  deleteSemester: async (index) => {
+    const plan = get().plan;
+    if (!plan || !plan.terms[index]) return "No such semester.";
+    const label = plan.terms[index].label;
+    // Marking the term a gap makes the optimizer keep it empty and flow the
+    // coursework (including whatever was in it) around it. Reoptimize is the
+    // mechanism — nothing is removed, graduation simply moves back a term.
+    get().mutatePlan((p) => { if (p.terms[index]) p.terms[index].gap = true; });
+    const msg = await get().optimizeNow();
+    const full = `Skipped ${label} (kept empty for your gap) — ${msg}`;
+    set({ repairNote: full });
+    return full;
+  },
+
+  restoreSemester: async (index) => {
+    const plan = get().plan;
+    if (!plan || !plan.terms[index]) return "No such semester.";
+    const label = plan.terms[index].label;
+    get().mutatePlan((p) => { if (p.terms[index]) delete p.terms[index].gap; });
+    const msg = await get().optimizeNow();
+    const full = `Using ${label} again — ${msg}`;
+    set({ repairNote: full });
+    return full;
+  },
+
+  attachIugNow: async (slug) => {
+    const plan = get().plan;
+    if (!plan) return "No plan yet.";
+    const spec = await loadIug(slug);
+    if (!spec) return "Couldn't load that IUG program.";
+    // Load the grad courses the IUG needs (grad-level subjects merge in via
+    // loadSubject's :grad handling), on top of the current catalog.
+    const gradCodes = [
+      ...spec.doubleCount.eligible,
+      ...spec.gradTracks.flatMap((t) => t.sections.flatMap((s) => s.rules.flatMap((r) =>
+        r.type === "course" ? [r.code] : "options" in r ? r.options : []))),
+    ];
+    const catalog = { ...get().catalog, ...(await loadCatalogFor([...gradCodes, ...planCodes(plan)])) };
+    const res = attachIug(plan, spec, catalog);
+    const patterns = await loadFlowchartPatterns();
+    optimizeSchedule(plan, catalog, { maxCredits: 19, patterns }); // re-flow UG half; grad terms preserved
+    const next: PlanDoc = { ...plan, rev: plan.rev + 1, updatedAt: new Date().toISOString() };
+    persist(next, `attach IUG ${slug}`);
+    set({ plan: next, catalog, ...recompute(next, catalog) });
+    return res.note;
+  },
+
+  detachIugNow: async () => {
+    const plan = get().plan;
+    if (!plan?.iug) return "No IUG attached.";
+    const catalog = get().catalog;
+    detachIug(plan);
+    const patterns = await loadFlowchartPatterns();
+    optimizeSchedule(plan, catalog, { maxCredits: 19, patterns });
+    const next: PlanDoc = { ...plan, rev: plan.rev + 1, updatedAt: new Date().toISOString() };
+    persist(next, "detach IUG");
+    set({ plan: next, ...recompute(next, catalog) });
+    return "Removed the master's degree — back to your bachelor's plan.";
+  },
+
+  swapAlternative: async (oldCode, newCode) => {
+    get().mutatePlan((p) => {
+      for (const t of p.terms) {
+        for (const it of t.items) {
+          if ("code" in it && it.code === oldCode) {
+            const alts = new Set(it.alternatives ?? []);
+            alts.delete(newCode);
+            alts.add(oldCode);
+            it.code = newCode;
+            it.alternatives = [...alts];
+            it.unverified = undefined;
+            // Item ids are the course code; carry any manual move along.
+            if (oldCode in p.moves) {
+              p.moves[newCode] = p.moves[oldCode];
+              delete p.moves[oldCode];
+            }
+            return;
+          }
+        }
+      }
+    });
+    await get().refreshCatalog(); // the alternative may live in an unloaded subject
+  },
+
+  refreshCatalog: async () => {
+    const plan = get().plan;
+    if (!plan) return;
+    const catalog = await loadCatalogFor(planCodes(plan));
+    set({ catalog, ...recompute(plan, catalog) });
+  },
+}));

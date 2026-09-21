@@ -1,0 +1,332 @@
+[
+ {
+  "code": "ITECH 212",
+  "subject": "ITECH",
+  "number": "212",
+  "display": "ITECH 212",
+  "title": "Artificial Intelligence Tools and Methods",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course provides a hands-on introduction to the tools and workflows that power modern AI systems. Students will experiment with pretrained models, evaluate model outputs, integrate AI services into applications, and construct small AI-enabled prototypes. Ethical considerations - including bias, transparency, and accountability - are embedded throughout. By the end of the course, students will be able to apply AI tools, assess outputs, and design responsible AI workflows.",
+  "enforced": "C or better in A-I 100",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "AI 100"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ITECH 212"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/itech/",
+  "extraRaw": []
+ },
+ {
+  "code": "ITECH 308",
+  "subject": "ITECH",
+  "number": "308",
+  "display": "ITECH 308",
+  "title": "Applied IT Project Management",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course explores modern project management through traditional, agile, and hybrid approaches. Students analyze scope, time, cost, quality, and risk management techniques; apply project management tools; evaluate ethical considerations; and integrate technology-enabled methods for planning and monitoring. Through case studies, tool-based exercises, and a capstone project plan, students will synthesize traditional and agile methods to manage projects in dynamic environments.",
+  "enforced": "C or better in: IST 210 and IST 220",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "IST 210"
+   },
+   "b": {
+    "op": "course",
+    "code": "IST 220"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ITECH 308"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/itech/",
+  "extraRaw": []
+ },
+ {
+  "code": "ITECH 442",
+  "subject": "ITECH",
+  "number": "442",
+  "display": "ITECH 442",
+  "title": "Applied Artificial Intelligence Project Lifecycle",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This advanced, project-based course guides students through the full life cycle of developing, deploying, and evaluating an AI-driven application. Working individually or in teams, students will take an applied problem from concept to implementation - moving through the stages of ideation, data acquisition and preparation, model selection and training, system integration, deployment, and post-deployment evaluation. Emphasis is placed on designing AI systems that are technically sound, ethically responsible, and aligned with user and organizational goals. By the end of the course, students will have completed and presented a fully functional AI application accompanied by documentation, testing artifacts, and a final project report, demonstrating mastery of both the technical and ethical dimensions of modern AI development.",
+  "enforced": "C or better in: A-I 100 and ITECH 212 and A-I 285",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "course",
+     "code": "AI 100"
+    },
+    "b": {
+     "op": "course",
+     "code": "ITECH 212"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "AI 285"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ITECH 442"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/itech/",
+  "extraRaw": []
+ },
+ {
+  "code": "ITECH 457",
+  "subject": "ITECH",
+  "number": "457",
+  "display": "ITECH 457",
+  "title": "Advanced Network and Cybersecurity Technologies",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course provides a hands-on exploration of advanced network and cybersecurity technologies used to protect enterprise and cloud infrastructures. Students will configure, secure, and troubleshoot network devices; evaluate threats; interpret security events; and apply defensive strategies in realistic scenarios. Emphasis is placed on applying security tools, analyzing vulnerabilities, and implementing defense-in-depth controls across systems, networks, and virtual environments.",
+  "enforced": "C or better in: IST 220 and CYBER 221",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "IST 220"
+   },
+   "b": {
+    "op": "course",
+    "code": "CYBER 221"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ITECH 457"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/itech/",
+  "extraRaw": []
+ },
+ {
+  "code": "ITECH 458",
+  "subject": "ITECH",
+  "number": "458",
+  "display": "ITECH 458",
+  "title": "Information Technology Laws, Regulations, and Ethics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course provides an in-depth examination of the legal, regulatory, and ethical frameworks governing information technology in a global digital environment. Students will analyze foundational legal concepts, evaluate statutory and regulatory requirements, interpret case law, and assess the ethical implications of technology use. Emphasis is placed on applying legal reasoning, conducting compliance assessments, and recommending responsible IT governance strategies. Through case studies and applied analyses, students will learn to synthesize legal requirements with ethical decision-making in real-world scenarios..",
+  "enforced": "C or better in IST 110 or CYBER 100 or HCDD 113 or A-I 100",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "or",
+    "a": {
+     "op": "or",
+     "a": {
+      "op": "course",
+      "code": "IST 110"
+     },
+     "b": {
+      "op": "course",
+      "code": "CYBER 100"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "HCDD 113"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "AI 100"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ITECH 458"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/itech/",
+  "extraRaw": []
+ },
+ {
+  "code": "ITECH 461",
+  "subject": "ITECH",
+  "number": "461",
+  "display": "ITECH 461",
+  "title": "Advanced Database Management",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "A study of advanced topics in database management systems that are fundamental to effective administration of modern enterprise information systems. The objective of the course is to enable a student to comprehend a range of issues in modern database management and administration. This course offers an in-depth exploration of advanced database concepts and technologies, designed for students aiming to master the complexities of modern database systems. Students will engage with the full database lifecycle, from initial planning and design to implementation, optimization, and maintenance. Emphasis is placed on advanced SQL techniques, performance tuning, transaction management, and the exploration of emerging trends such as distributed databases, big data, NoSQL, and cloud databases. Prerequisite IST 210 and IST 242",
+  "enforced": "IST 210 and (IST 242 or CMPSC 122 or CMPSC 132)",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "IST 210"
+   },
+   "b": {
+    "op": "or",
+    "a": {
+     "op": "or",
+     "a": {
+      "op": "course",
+      "code": "IST 242"
+     },
+     "b": {
+      "op": "course",
+      "code": "CMPSC 122"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "CMPSC 132"
+    }
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ITECH 461"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/itech/",
+  "extraRaw": []
+ },
+ {
+  "code": "ITECH 490",
+  "subject": "ITECH",
+  "number": "490",
+  "display": "ITECH 490",
+  "title": "Special Topics in Information Technology: Technology Exploration and Application",
+  "credits": "3 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": 9
+  },
+  "description": "This course provides an in-depth exploration of an emerging technology shaping the information systems field. Students analyze the technology's architecture, evaluate implementation challenges, assess integration and security considerations, and design applied solutions. Through hands-on labs and a semester project, students will synthesize technical, organizational, ethical, and strategic perspectives to make informed adoption and implementation recommendations.",
+  "enforced": "C or better in: IST 210 or IST 220",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "course",
+    "code": "IST 210"
+   },
+   "b": {
+    "op": "course",
+    "code": "IST 220"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ITECH 490"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/itech/",
+  "extraRaw": []
+ },
+ {
+  "code": "ITECH 495",
+  "subject": "ITECH",
+  "number": "495",
+  "display": "ITECH 495",
+  "title": "Internship",
+  "credits": "0.5-3 Credits/Maximum of 3",
+  "creditsParsed": {
+   "min": 0.5,
+   "max": 3,
+   "repeatableMax": 3
+  },
+  "description": "Supervised on or off-campus, nongroup instruction including field experiences, practica, or internships. Written and oral critique of the student activities is required. ITECH 495 is offered as an internship for a student within a company. Faculty and industry collaborate to specify the duties of the intern. The course facilitator responsible for the course then approves the internship. The internship must consist of a minimum of 240 hours for 1 credit and 120 hours for .5 credit of meaningful information and technology-related tasks per credit hour.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ITECH 495"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/itech/",
+  "extraRaw": []
+ }
+]

@@ -1,0 +1,109 @@
+{
+ "slug": "capital-mechatronics-technology-minor",
+ "name": "Mechatronics Technology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/mechatronics-technology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "EET 311",
+      "EET 315"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "EMCH 211",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ET 300",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MET 111",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nEET 311Alternating Current Circuits3-4\nor EET 315 Linear and Discrete System Analysis\nSelect one of the following:3\nEMCH 211Statics\nET 300Mechanics I: Statics\nMET 111Mechanics for Technology: Statics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-8 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EE 310",
+       "EET 212W",
+       "CMPEN 271",
+       "CMPEN 275",
+       "CMPET 117",
+       "CMPET 120",
+       "EET 341",
+       "EMET 330",
+       "ME 345",
+       "ME 345W",
+       "MET 341",
+       "EMCH 212",
+       "ET 321",
+       "MET 206",
+       "CMPEH 472",
+       "EE 485",
+       "EET 433",
+       "EET 440",
+       "EMET 410",
+       "MET 454",
+       "MET 455"
+      ]
+     }
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following sequences:"
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one course each from the following categories:"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6-8 credits of the following: 6-8\nGroup A\nEE 310Electronic Circuit Design I\nor EET 212W Op Amp and Integrated Circuit Electronics\nSelect one of the following sequences:\nCMPEN 271& CMPEN 275Introduction to Digital Systemsand Digital Design Laboratory\nCMPET 117& CMPET 120Digital Electronicsand Digital Electronics Laboratory\nGroup B\nSelect one of the following:\nEET 341Measurements and Instrumentation\nEMET 330Measurement Theory and Instrumentation\nME 345Instrumentation, Measurements, and Statistics\nME 345WInstrumentation, Measurements, and Statistics\nMET 341Mechanical Measurements and Instrumentation\nSelect one of the following:\nEMCH 212Dynamics\nET 321Dynamics\nMET 206Dynamics\nSelect one course each from the following categories:6-8\nCategory I\nCMPEH 472Microcontrollers\nEE 485Energy Systems and Conversion\nCategory II\nEET 433Control System Analysis and Design\nEET 440Applied Feedback Controls\nEMET 410Automated Control Systems\nMET 454Automatic Controls\nMET 455\n"
+  }
+ ],
+ "suggestedPlans": []
+}

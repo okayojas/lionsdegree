@@ -1,0 +1,81 @@
+{
+ "slug": "liberal-arts-chinese-language-minor",
+ "name": "Chinese Language, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/chinese-language-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHNS 2",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "CHNS 3",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCHNS 2Level One Chinese B4\nCHNS 3Level Two Chinese A4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CHNS 110",
+      "CHNS 299"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-8 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ASIA 499",
+       "CHNS 401",
+       "CHNS 402",
+       "CHNS 403W",
+       "CHNS 404",
+       "CHNS 410",
+       "CHNS 411",
+       "CHNS 414",
+       "CHNS 415",
+       "CHNS 416",
+       "CHNS 417",
+       "CHNS 418",
+       "CHNS 419",
+       "CHNS 452",
+       "CHNS 453",
+       "CHNS 454",
+       "CHNS 455",
+       "CHNS 496",
+       "CHNS 497",
+       "CHNS 499"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nCHNS 110Level Two Chinese B4\nor CHNS 299 Foreign Studies\nSelect 6-8 credits of the following:6-8\nASIA 499Foreign Studies\nCHNS 401Level Three Chinese A\nCHNS 402Level Three Chinese B\nCHNS 403WLevel Four Chinese A\nCHNS 404Level Four Chinese B\nCHNS 410Chinese Through Film\nCHNS 411\nCHNS 414Introduction to Chinese Language, Culture and Society\nCHNS 415China Beyond China\nCHNS 416Gender and Sexuality in China\nCHNS 417The Warrior, the Courtesan and the Ghost in Classical Chinese Novels\nCHNS 418Confucius and the Great Books of China\nCHNS 419The Chinese Rhetorical Tradition\nCHNS 452Contemporary China: Culture and Trends\nCHNS 453Chinese Film\nCHNS 454Introduction to Classical Chinese\nCHNS 455\nCHNS 496Independent Studies\nCHNS 497Special Topics\nCHNS 499Foreign Studies\n"
+  }
+ ],
+ "suggestedPlans": []
+}

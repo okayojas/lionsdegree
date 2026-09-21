@@ -1,0 +1,83 @@
+{
+ "slug": "behrend-financial-controllership-certificate",
+ "name": "Financial Controllership, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/financial-controllership-certificate/",
+ "totalCredits": 15,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ACCTG 340",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ACCTG 422",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ACCTG 426",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 420",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 461",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ACCTG 340Cost Accounting3\nACCTG 422Accounting Systems3\nACCTG 426Financial Statement Analysis3\nFIN 420Investment and Portfolio Analysis3\nFIN 461Portfolio Management and Analysis3\n"
+  },
+  {
+   "heading": "Requirements",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ACCTG 211",
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ACCTG 305",
+      "ACCTG 371"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ACCTG 312",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 301",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ACCTG 211Financial and Managerial Accounting for Decision Making4\nACCTG 305Financial Statements and Management Decisions4\nor ACCTG 371 Intermediate Accounting I\nACCTG 312Accounting Technology Lab3\nFIN 301Corporation Finance3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

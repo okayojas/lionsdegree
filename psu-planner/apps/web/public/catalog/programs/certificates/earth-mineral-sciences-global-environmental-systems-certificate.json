@@ -1,0 +1,64 @@
+{
+ "slug": "earth-mineral-sciences-global-environmental-systems-certificate",
+ "name": "Global Environmental Systems, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/global-environmental-systems-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "GEOG 210",
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "GEOG 310",
+       "GEOG 310W",
+       "GEOG 314",
+       "GEOG 315",
+       "GEOG 410",
+       "GEOG 411",
+       "GEOG 411W",
+       "GEOG 412W",
+       "GEOG 414",
+       "GEOG 417",
+       "GEOG 431",
+       "GEOG 438W"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "GEOG 210Geographic Perspectives on Environmental Systems Science 3\nSelect 9 credits from:9\nGEOG 310Introduction to Global Climatic Systems\nGEOG 310WIntroduction to Global Climatic Systems\nGEOG 314Biogeography and Global Ecology\nGEOG 315Landforms and Geomorphic Systems in the Anthropocene\nGEOG 410\nGEOG 411Forest Geography\nGEOG 411WForest Geography\nGEOG 412WClimatic Change and Variability\nGEOG 414Principles and Applications in Landscape Ecology\nGEOG 417Satellite Climatology\nGEOG 431Geography of Water Resources\nGEOG 438WHuman Dimensions of a Changing Climate\n"
+  },
+  {
+   "heading": "Non-Course Requirements",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Per University policy, all credit courses for a certificate require a grade of 'C' or higher, and at least two-thirds (2/3) of the credits used to complete a certificate must be earned at Penn State. If student is completing multiple certificates in Geography, no more than one (1) course may double-count for each."
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Per University policy, all credit courses for a certificate require a grade of 'C' or higher, and at least two-thirds (2/3) of the credits used to complete a certificate must be earned at Penn State. If student is completing multiple certificates in Geography, no more than one (1) course may double-count for each.\n"
+  }
+ ],
+ "suggestedPlans": []
+}

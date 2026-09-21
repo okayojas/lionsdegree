@@ -1,0 +1,70 @@
+{
+ "slug": "earth-mineral-sciences-information-sciences-technology-earth-mineral-sciences-minor",
+ "name": "Information Sciences and Technology for Earth and Mineral Sciences, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/information-sciences-technology-earth-mineral-sciences-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "GEOG 463",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 220",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nGEOG 463Geospatial Information Management3\nIST 110Information, People and Technology 3\nIST 210Organization of Data3\nIST 220Networking and Telecommunications3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "GEOG 461W",
+       "GEOG 464",
+       "GEOG 485",
+       "MATSE 419",
+       "METEO 473",
+       "METEO 474",
+       "PNG 430"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits of the following:6\nGEOG 461WDynamic Cartographic Representation\nGEOG 464Advanced Spatial Analysis\nGEOG 485GIS Programming and Software Development\nMATSE 419Computational Materials Science and Engineering\nMETEO 473Application of Computers to Meteorology\nMETEO 474Computer Methods of Meteorological Analysis and Forecasting\nPNG 430Reservoir Modeling\n"
+  }
+ ],
+ "suggestedPlans": []
+}

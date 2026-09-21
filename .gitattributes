@@ -1,0 +1,9 @@
+# Normalize line endings. The project is developed on Windows but CI and most
+# contributors are on Linux; without this every checkout churns the diff.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.woff2 binary
+*.pdf binary
+*.xlsx binary

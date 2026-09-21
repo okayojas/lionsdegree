@@ -1,0 +1,53 @@
+{
+ "slug": "university-college-healthcare-informatics-certificate",
+ "name": "Healthcare Informatics, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/healthcare-informatics-certificate/",
+ "totalCredits": 18,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "HPA 101",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HPA 332",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HPA 470",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 220",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "HPA 101Introduction to Health Services Organization3\nHPA 332Health Systems Management3\nHPA 470Health Care Information Management3\nIST 110Information, People and Technology 3\nIST 210Organization of Data3\nIST 220Networking and Telecommunications3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

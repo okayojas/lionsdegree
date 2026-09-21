@@ -1,0 +1,82 @@
+{
+ "slug": "behrend-human-factors-certificate",
+ "name": "Human Factors, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/human-factors-certificate/",
+ "totalCredits": 15,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "PSYCH 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 244",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 444",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "PSYCH 100Introductory Psychology 3\nPSYCH 244Introduction to the Psychology of Human Factors Engineering 3\nPSYCH 444Engineering Psychology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 253",
+      "PSYCH 256"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 100",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 221",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SOC 5",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "STS 200",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "PSYCH 253Introduction to Psychology of Perception 3\nor PSYCH 256 Introduction to Cognitive Psychology\nSelect one of the following: 3\nEDSGN 100Cornerstone Engineering Design\nPSYCH 221Introduction to Social Psychology\nSOC 5Society's Problems: Causes, Consequences, and Solutions\nSTS 200Critical Issues in Science, Technology, and Society\nSTS/PHIL 233Ethics and the Design of Technology\n"
+  }
+ ],
+ "suggestedPlans": []
+}

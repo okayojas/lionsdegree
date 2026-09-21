@@ -1,0 +1,128 @@
+{
+ "slug": "earth-mineral-sciences-energy-business-finance-minor",
+ "name": "Energy Business and Finance, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/energy-business-finance-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EBF 200",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EBF 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 102",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EME 460",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nEBF 200Introduction to Energy and Earth Sciences Economics 3\nEBF 301Global Finance for the Earth, Energy, and Materials Industries3\nECON 102Introductory Microeconomic Analysis and Policy 3\nEME 460Geo-resource Evaluation and Investment Analysis3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MATH 22",
+       "MATH 110",
+       "MATH 140"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EBF 472",
+       "STAT 200",
+       "STAT 401"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EGEE 101",
+       "EGEE 102",
+       "EGEE 120"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3-4 credits from:3-4\nMATH 22College Algebra With Analytic Geometry and Applications II\nMATH 110Techniques of Calculus I\nMATH 140Calculus With Analytic Geometry I\nSelect 3-4 credits from:3-4\nEBF 472\nSTAT 200Elementary Statistics\nSTAT 401Experimental Methods\nSelect 3 credits of the following:3\nEGEE 101Energy and the Environment\nEGEE 102Energy Conservation for Environmental Protection\nEGEE 120Oil: International Evolution\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the approved list of EMS courses. Approved courses are:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EBF 401",
+       "EBF 402",
+       "EBF 473",
+       "EBF 483",
+       "EBF 484",
+       "EGEE 401",
+       "EME 444",
+       "GEOG 424W",
+       "GEOG 430",
+       "GEOG 431",
+       "GEOG 432",
+       "GEOG 444",
+       "GEOG 469",
+       "GEOSC 402Y",
+       "GEOSC 454",
+       "METEO 473"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits from the approved list of EMS courses. Approved courses are:6\nEBF 401Strategic Corporate Finance for the Earth, Energy, and Materials Industries\nEBF 402Energy Law and Contracts\nEBF 473Risk Management in Energy Industries\nEBF 483Introduction to Electricity Markets\nEBF 484Energy Economics\nEGEE 401Energy in a Changing World\nEME 444Global Energy Enterprise\nGEOG 424WGeography of the Global Economy\nGEOG 430Human Use of Environment\nGEOG 431Geography of Water Resources\nGEOG 432Energy Policy\nGEOG 444Resource Governance in Africa\nGEOG 469Energy Industry Applications of GIS\nGEOSC 402YNatural Disasters\nGEOSC 454Geology of Oil and Gas\nMETEO 473Application of Computers to Meteorology\n"
+  }
+ ],
+ "suggestedPlans": []
+}

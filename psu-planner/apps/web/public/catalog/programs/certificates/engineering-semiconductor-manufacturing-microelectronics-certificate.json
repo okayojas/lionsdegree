@@ -1,0 +1,87 @@
+{
+ "slug": "engineering-semiconductor-manufacturing-microelectronics-certificate",
+ "name": "Semiconductor Manufacturing and Microelectronics, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/semiconductor-manufacturing-microelectronics-certificate/",
+ "totalCredits": 13,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EE 340",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "EE 340Introduction to Nanoelectronics4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "Select one or more of the following courses which have a laboratory component:"
+    },
+    {
+     "type": "course",
+     "code": "EE 410",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 413",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 441",
+     "credits": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Select one or more of the following courses which have a laboratory component:3-9\nEE 410Linear Electronic Design\nEE 413Power Electronics\nEE 441Semiconductor Integrated Circuit Technology\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 13,
+     "commentRaw": "Select additional elective courses as needed to reach a minimum of 13 credits:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EE 416",
+       "EE 442",
+       "ESC 445",
+       "ESC 481",
+       "IE 458",
+       "MATSE 402",
+       "MATSE 412",
+       "MATSE 415",
+       "MATSE 417",
+       "MATSE 450"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select additional elective courses as needed to reach a minimum of 13 credits:0-6\nEE 416Digital Integrated Circuits\nEE 442Solid State Devices\nESC 445Semiconductor Optoelectronic Devices\nESC 481Elements of Nano/Micro-electromechanical Systems Processing and Design\nIE 458Manufacturing and Design of Nano Devices\nMATSE 402Materials Process Kinetics\nMATSE 412Thermal Properties of Materials\nMATSE 415Introduction to Glass Science\nMATSE 417Electrical and Magnetic Properties\nMATSE 450Synthesis and Processing of Electronic and Photonic Materials\n"
+  }
+ ],
+ "suggestedPlans": []
+}

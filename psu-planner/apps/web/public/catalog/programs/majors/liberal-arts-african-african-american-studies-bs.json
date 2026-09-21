@@ -1,0 +1,286 @@
+{
+ "slug": "liberal-arts-african-african-american-studies-bs",
+ "name": "African and African American Studies, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/african-african-american-studies-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AFAM 100N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AFR 110N",
+     "credits": 3,
+     "resolvedFrom": "AFR 110"
+    },
+    {
+     "type": "course",
+     "code": "SOC 207",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "STAT 200",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAFAM 100NBlack Freedom Struggles 3\nAFR 1103\nSOC 207Research Methods in Sociology3\nSTAT 200Elementary Statistics 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "SOC 470",
+      "PLSC 309"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSOC 470Intermediate Social Statistics3-4\nor PLSC 309 Quantitative Political Analysis\n"
+  },
+  {
+   "heading": "Requirements for the Option",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select an option"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Requirements for the Option: Require a grade of C or better\nSelect an option48\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AFAM 101N",
+     "credits": 3,
+     "resolvedFrom": "AFAM 101"
+    },
+    {
+     "type": "course",
+     "code": "AFAM 401",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAFAM 1013\nAFAM/HIST 211Slavery and Freedom in the Black Atlantic 3\nAFAM 401Afro-American Studies Seminar3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 21,
+     "commentRaw": "Select 21 credits with at least 3 credits in AAAS courses of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AFAM 83",
+       "AFR 197",
+       "AFR 199",
+       "ECON 102",
+       "ECON 104",
+       "ECON 304",
+       "SOC 119"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18 credits at the 400-level with at least 9 credits in AAAS courses of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AAAS 494",
+       "AFAM 431",
+       "AFAM 445Y",
+       "LER 445Y",
+       "PLSC 445Y",
+       "AFAM 465",
+       "AFR 440",
+       "AFR 495",
+       "AFR 497",
+       "AFR 499",
+       "CRIMJ 451",
+       "ECON 436W",
+       "EDTHP 447",
+       "PLSC 490"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 21 credits with at least 3 credits in AAAS courses of the following:21\nAFAM 83First-Year Seminar in African American Studies\nAFAM/WMNST 102Women of the African Diaspora\nAFAM/SOC/WMNST 103Racism and Sexism\nAFAM/RLST 146The Life and Thought of Martin Luther King, Jr.\nAFAM/RLST 147The Life and Thought of Malcolm X\nAFAM/HIST 210Freedom's First Generation: African American Life and Work, from the Civil War to World War II\nAFR 197Special Topics\nAFR 199Foreign Studies\nECON 102Introductory Microeconomic Analysis and Policy\nECON 104Introductory Macroeconomic Analysis and Policy\nECON 304Intermediate Macroeconomic Analysis\nSOC 119\nSelect 18 credits at the 400-level with at least 9 credits in AAAS courses of the following:18\nAAAS 494\nAFAM/SOC 409Racial and Ethnic Inequality in America\nAFAM 431Black Liberation and American Foreign Policy\nAFAM/LER/PLSC 445Y\nAFAM 465The Post-World War II Civil Rights Movement\nAFR 440Globalization and Its Implications\nAFR 495Internship\nAFR 497Special Topics\nAFR 499Foreign Studies\nCRIMJ 451Race, Crime, and Justice\nECON 436W\nEDTHP 447Ethnic Minorities and Schools in the United States\nPLSC 490Policy Making and Evaluation\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AAAS 400",
+     "credits": 3,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "AFR 191",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AFR 192",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAAAS 4003\nAFR 191Early African History 3\nAFR 192Modern African History 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 21,
+     "commentRaw": "Select 21 credits with at least 3 credits of AAAS courses of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AAAS 397",
+       "AFAM 83",
+       "AFAM 211",
+       "AFR 197",
+       "AFR 199",
+       "AFR 202N",
+       "AFR 297",
+       "AFR 299",
+       "AFR 395",
+       "AFR 399",
+       "ECON 102",
+       "ECON 104",
+       "ECON 304",
+       "SWA 1",
+       "SWA 2"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18 credits at the 400-level with at least 9 credits in AAAS courses of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AAAS 494",
+       "AFAM 431",
+       "AFAM 445Y",
+       "LER 445Y",
+       "PLSC 445Y",
+       "AFAM 465",
+       "AFR 403",
+       "AFR 440",
+       "AFR 443",
+       "AFR 454",
+       "AFR 495",
+       "AFR 497",
+       "AFR 499",
+       "ECON 471",
+       "GEOG 444",
+       "PLSC 453"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 21 credits with at least 3 credits of AAAS courses of the following:21\nAAAS 397\nAFAM 83First-Year Seminar in African American Studies\nAFAM 211Slavery and Freedom in the Black Atlantic\nAFR 197Special Topics\nAFR 199Foreign Studies\nAFR 202NWomen, Gender, and Feminisms in Africa\nAFR 297Special Topics\nAFR 299Foreign Studies\nAFR 395Internship\nAFR 399Foreign Studies\nECON 102Introductory Microeconomic Analysis and Policy\nECON 104Introductory Macroeconomic Analysis and Policy\nECON 304Intermediate Macroeconomic Analysis\nSWA 1Elementary Swahili I\nSWA 2Elementary Swahili II\nSelect 18 credits at the 400-level with at least 9 credits in AAAS courses of the following: 18\nAAAS 494\nAFAM 431Black Liberation and American Foreign Policy\nAFAM/LER/PLSC 445Y\nAFAM 465The Post-World War II Civil Rights Movement\nAFR 403South Africa Today\nAFR 440Globalization and Its Implications\nAFR 443Ethnic Conflict in Africa\nAFR 454Government and Politics of Africa\nAFR 495Internship\nAFR 497Special Topics\nAFR 499Foreign Studies\nECON 471Growth and Development\nGEOG 444Resource Governance in Africa\nPLSC 453Political Processes in Underdeveloped Systems\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AFAM 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AFAM 401",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAFAM 210Freedom's First Generation: African American Life and Work, from the Civil War to World War II 3\nAFAM 401Afro-American Studies Seminar3\nCRIMJ/CRIM/SOC 12Criminology 3\nCRIMJ/CRIM 100Introduction to Criminal Justice 3\nCRIMJ/CRIM 113Introduction to Law3\nCRIMJ/CRIM 451Race, Crime, and Justice3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 30,
+     "commentRaw": "Select 30 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AFAM 409",
+       "AFAM 445Y",
+       "LER 445Y",
+       "PLSC 445Y",
+       "AFR 440",
+       "CRIM 430",
+       "CRIM 433",
+       "CRIM 435",
+       "CRIM 441",
+       "CRIM 490",
+       "ECON 436W"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 30 credits of the following:30\nAFAM 409Racial and Ethnic Inequality in America\nAFAM/HIST 431Black Liberation and American Foreign Policy\nAFAM/LER/PLSC 445Y\nAFAM/HIST 465The Post-World War II Civil Rights Movement\nAFR 440Globalization and Its Implications\nCRIM 430American Correctional System\nCRIM 433Sentencing\nCRIM 435Policing in America\nCRIM 441The Juvenile Justice System\nCRIM/SOC 467Law and Society\nCRIM 490Crime Policy\nCRIMJ/WMNST 453Women and the Criminal Justice System\nECON 436W\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,125 @@
+{
+ "slug": "liberal-arts-spanish-minor",
+ "name": "Spanish, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/spanish-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "SPAN 200",
+      "SPAN 301"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "SPAN 215N",
+      "SPAN 215Q",
+      "SPAN 253W"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "SPAN 100",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 100A",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 100B",
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "SPAN 100",
+      "SPAN 100A",
+      "SPAN 100B"
+     ],
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSPAN 200¡Hablemos! Language and Culture 3\nor SPAN 301 Language and Culture for Spanish Bilinguals\nSPAN 215The Science of Spanish: A Beginner's Guide to Hispanic Linguistics3\nor SPAN 253W Introduction to Literary & Cultural Studies en Español\nSelect one of the following:3\nSPAN 100Intermediate Grammar and Composition\nSPAN 100AIntermediate Grammar and Composition for Spanish Bilinguals\nSPAN 100BIntermediate Grammar and Composition for Students in Medical-Related Fields\nSPAN 100C\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "SPAN 210",
+       "SPAN 220",
+       "SPAN 297",
+       "SPAN 299",
+       "SPAN 300",
+       "SPAN 305",
+       "SPAN 314",
+       "SPAN 316",
+       "SPAN 353",
+       "SPAN 354",
+       "SPAN 355",
+       "SPAN 356",
+       "SPAN 397",
+       "SPAN 399"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "SPAN 410",
+       "SPAN 412",
+       "SPAN 413",
+       "SPAN 418",
+       "SPAN 420",
+       "SPAN 439",
+       "SPAN 472",
+       "SPAN 474",
+       "SPAN 476",
+       "SPAN 479",
+       "SPAN 490",
+       "SPAN 497",
+       "SPAN 499"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits of the following:3\nSPAN 210\nSPAN 220Readings in Ibero-American Civilization\nSPAN 297Special Topics\nSPAN 299Foreign Study--Intermediate Conversational Spanish\nSPAN 300Advanced Grammar and Composition Through Reading\nSPAN 305Spanish for Social Services\nSPAN 314Spanish Sounds\nSPAN 316Building Words and Sentences in Spanish\nSPAN 353Topics in the Cultures of Spain\nSPAN 354Topics in Cultural Contact and Exchange\nSPAN 355Topics in the Cultures of Latin America\nSPAN 356Topics in the Cultures of the Americas\nSPAN 397Special Topics\nSPAN 399Foreign Study--Spanish\nSelect 6 credits of the following:6\nSPAN 410Advanced Oral Expression and Communication\nSPAN 412Translation\nSPAN 413Interpretation\nSPAN 418The Evolution of Spanish\nSPAN 420Spanish for Business and International Trade\nSPAN 439Don Quijote\nSPAN 472The Contemporary Spanish American Novel\nSPAN 474Many Mexicos\nSPAN 476Masterpieces of Spanish American Literature\nSPAN 479U.S. Latina/o Culture en Espanol\nSPAN 490Masterpieces of Spanish Prose\nSPAN 497Special Topics\nSPAN 499Foreign Study--Spanish\n"
+  }
+ ],
+ "suggestedPlans": []
+}

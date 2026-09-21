@@ -1,0 +1,102 @@
+{
+ "slug": "behrend-german-studies-certificate",
+ "name": "German Studies, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/german-studies-certificate/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Required Language Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "GER 3",
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "GER 201",
+      "GER 301"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Required Language Courses: Require a grade of C or better\nGER 3Intermediate German4\nGER 201Conversation and Composition3-4\nor GER 301 Intermediate Speaking and Listening\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "Select nine credit hours from a program approved list:"
+    },
+    {
+     "type": "course",
+     "code": "GER 100",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GER 189N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GER 190",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GER 200N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HIST 121",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HIST 143N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HIST 144",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HIST 427",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 5",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PLSC 200N",
+     "credits": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect nine credit hours from a program approved list:9\nGER 100German Culture and Civilization\nGER 189NGerman Film\nGER 190Twentieth-Century German Literature in English Translation\nGER 200NContemporary German Culture\nHIST 121History of the Holocaust 1933-1945\nHIST 143NHistory of Fascism and Nazism\nHIST 144The World at War: 1939-1945\nHIST 427Germany Since 1860\nMUSIC 5An Introduction to Western Music\nPLSC 200NGovernment and Politics of Europe\n"
+  }
+ ],
+ "suggestedPlans": []
+}

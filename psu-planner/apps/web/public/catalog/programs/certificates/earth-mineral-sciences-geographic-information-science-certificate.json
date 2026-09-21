@@ -1,0 +1,60 @@
+{
+ "slug": "earth-mineral-sciences-geographic-information-science-certificate",
+ "name": "Geographic Information Science, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/geographic-information-science-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "GEOG 260",
+      "GEOG 160"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "GEOG 361",
+       "GEOG 362",
+       "GEOG 363",
+       "GEOG 364",
+       "GEOG 365"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "GEOG 260Geographic Information in a Changing World: Introduction to GIScience 3\nor GEOG 160 Mapping Our Changing World\nSelect 9 credits from:9\nGEOG 361Cartography--Maps and Map Construction\nGEOG 362Remote Sensing and Image Analysis\nGEOG 363Geographic Information Systems\nGEOG 364Spatial Analysis\nGEOG 365Intermediate GIS Programming\n"
+  },
+  {
+   "heading": "Non-Course Requirements",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Per University policy, all credit courses for a certificate require a grade of 'C' or higher, and at least two-thirds (2/3) of the credits used to complete a certificate must be earned at Penn State. If student is completing multiple certificates in Geography, no more than one (1) course may double-count for each."
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Per University policy, all credit courses for a certificate require a grade of 'C' or higher, and at least two-thirds (2/3) of the credits used to complete a certificate must be earned at Penn State. If student is completing multiple certificates in Geography, no more than one (1) course may double-count for each.\n"
+  }
+ ],
+ "suggestedPlans": []
+}

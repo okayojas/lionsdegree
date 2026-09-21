@@ -1,0 +1,70 @@
+{
+ "slug": "intercollege-bioethics-medical-humanities-minor",
+ "name": "Bioethics and Medical Humanities, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "intercollege",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/intercollege/bioethics-medical-humanities-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BMH 490",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PHIL 132",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBMH 490Bioethics and Medical Humanities Capstone Course3\nPHIL 132/RLST 131Bioethics 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits (at least 3 credits at the 400 level) of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BBH 301W",
+       "BIOL 461",
+       "NURS 464",
+       "PHIL 432",
+       "STS 432",
+       "PHIL 498",
+       "WMNST 458",
+       "CAS 253",
+       "CAS 453",
+       "HIST 103",
+       "ANTH 470",
+       "ANTH 471H",
+       "CSD 269",
+       "FDSC 280",
+       "HPA 301W",
+       "KINES 345",
+       "WMNST 250"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 12 credits (at least 3 credits at the 400 level) of the following: 12\nEthics\nBBH 301WValues and Ethics in Biobehavioral Health Research and Practice\nBIOL 461Contemporary Issues in Science and Medicine\nNURS 464Dying and Death\nPHIL 432Medical and Health Care Ethics\nor STS 432 Medical and Health Care Ethics\nPHIL 498\nWMNST 458Critical Feminist Issues in Reproduction\nHumanities\nCAS 253Health Communication\nCAS 453Health Communication Theory and Research\nHIST 103The History of Madness, Mental Illness, and Psychiatry\nOther\nANTH 470\nANTH 471H\nCSD 269Deaf Culture\nFDSC 280\nHPA 301WHealth Services Policy Issues\nKINES 345Meaning, Ethics, and Movement\nWMNST 250Sexual and Gender Identity Over the Lifespan\n"
+  }
+ ],
+ "suggestedPlans": []
+}

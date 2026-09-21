@@ -1,0 +1,93 @@
+{
+ "slug": "behrend-actuarial-mathematics-statistics-certificate",
+ "name": "Actuarial Mathematics and Statistics, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/actuarial-mathematics-statistics-certificate/",
+ "totalCredits": 31,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ECON 102",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 104",
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ECON 481",
+      "ECON 485"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 427",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 230",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "STAT 301",
+     "credits": 3,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "STAT 414",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "STAT 462",
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "SCM 200",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "STAT 200",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "STAT 401",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ECON 102Introductory Microeconomic Analysis and Policy 3\nECON 104Introductory Macroeconomic Analysis and Policy 3\nECON 481Business Forecasting Techniques3\nor ECON 485 Econometric Techniques\nFIN 301Corporation Finance3\nFIN 427Derivative Securities3\nMATH 230Calculus and Vector Analysis4\nSTAT 3013\nSTAT 414Introduction to Probability Theory3\nSTAT 462Applied Regression Analysis3\nSelect one of the following:3-4\nSCM 200Introduction to Statistics for Business\nSTAT 200Elementary Statistics\nSTAT 401Experimental Methods\n"
+  }
+ ],
+ "suggestedPlans": []
+}

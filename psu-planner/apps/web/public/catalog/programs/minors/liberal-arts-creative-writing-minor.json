@@ -1,0 +1,64 @@
+{
+ "slug": "liberal-arts-creative-writing-minor",
+ "name": "Creative Writing, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/creative-writing-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of introductory-level courses (200-level) from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 212",
+       "ENGL 213",
+       "ENGL 214",
+       "ENGL 215",
+       "ENGL 260",
+       "ENGL 281"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of advanced-level writing workshop courses (400-level) from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 401",
+       "ENGL 410",
+       "ENGL 411M",
+       "ENGL 412",
+       "ENGL 413",
+       "ENGL 414",
+       "ENGL 415",
+       "ENGL 422",
+       "ENGL 435",
+       "ENGL 436",
+       "ENGL 437",
+       "ENGL 439",
+       "ENGL 458",
+       "ENGL 486",
+       "ENGL 495"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 9 credits of introductory-level courses (200-level) from the following:9\nENGL 212Introduction to Fiction Writing\nENGL 213Introduction to Poetry Writing\nENGL 214Introduction to Creative Nonfiction Writing\nENGL 215Introduction to General Nonfiction Writing\nENGL 260Theory & Practice of Screenwriting\nENGL 281Television Script Writing\nSelect 9 credits of advanced-level writing workshop courses (400-level) from the following:9\nENGL 401Studies in Genre\nENGL 410Advanced TV Script Writing\nENGL 411MHonors Seminar in English: Creative Writing\nENGL 412Advanced Fiction Writing\nENGL 413Advanced Poetry Writing\nENGL 414Biographical Writing\nENGL 415Advanced Nonfiction Writing\nENGL 422Fiction Workshop\nENGL/ENVST 424Creative Writing and the Natural World\nENGL 435The American Short Story\nENGL 436American Fiction Since 1945\nENGL 437The Poet in America\nENGL 439American Nonfiction Prose\nENGL 458Twentieth-Century Poetry\nENGL 486The World Novel in English\nENGL 495Internship\n"
+  }
+ ],
+ "suggestedPlans": []
+}

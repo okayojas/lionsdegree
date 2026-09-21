@@ -1,0 +1,5741 @@
+{
+ "slug": "agricultural-sciences-plant-sciences-bs",
+ "name": "Plant Sciences, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/plant-sciences-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 110",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "ENT 313",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "PLANT 200",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AGECO 457",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PLANT 461",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOILS 101",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 110Biology: Basic Concepts and Biodiversity 4\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nENT 313Introduction to Entomology2\nPLANT 200Introduction to Agricultural Crop Growth, Form, and Function 3\nPrescribed Courses: Require a grade of C or better\nAGECO 457Principles of Integrated Pest Management3\nPLANT 461Emerging Issues in Plant Sciences3\nSOILS 101Introductory Soil Science 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ENT 314",
+      "ENT 316"
+     ],
+     "credits": 1
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGBM 101",
+       "ECON 14",
+       "ECON 102",
+       "ECON 104"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 1,
+     "commentRaw": "Select 1 credit from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGECO 495",
+       "AGRO 495",
+       "HORT 495",
+       "HORT 496"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 202C",
+      "ENGL 202D"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-5 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MATH 22",
+       "MATH 26",
+       "MATH 40",
+       "MATH 41",
+       "MATH 110",
+       "MATH 111",
+       "MATH 140",
+       "MATH 141",
+       "MATH 141B"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "STAT 200",
+       "STAT 240",
+       "STAT 250"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ENT 314Management of Insect Pests of Ornamentals1\nor ENT 316 Field Crops Entomology\nSelect 3 credits from the following:3\nAGBM 101Economic Principles of Agribusiness Decision Making\nECON 14Principles of Economics\nECON 102Introductory Microeconomic Analysis and Policy\nECON 104Introductory Macroeconomic Analysis and Policy\nSelect 1 credit from the following:1\nAGECO 495Agroecology Internship\nAGRO 495Internship\nHORT 495Internship\nHORT 496Independent Studies\nAdditional Courses: Require a grade of C or better\nENGL 202CEffective Writing: Technical Writing 3\nor ENGL 202D Effective Writing: Business Writing\nSelect 3-5 credits from the following:3-5\nMATH 22College Algebra With Analytic Geometry and Applications II\nMATH 26Plane Trigonometry and Applications of Trigonometry\nMATH 40\nMATH 41Trigonometry and Analytic Geometry\nMATH 110Techniques of Calculus I\nMATH 111Techniques of Calculus II\nMATH 140Calculus With Analytic Geometry I\nMATH 141Calculus with Analytic Geometry II\nMATH 141BCalculus and Biology II\nSelect 3-4 credits from the following:3-4\nSTAT 200Elementary Statistics\nSTAT 240Introduction to Biometry\nSTAT 250Introduction to Biostatistics\n"
+  },
+  {
+   "heading": "Requirements for the Option",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select an option"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select an option47-63\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AGECO 295",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "PPEM 405",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOILS 102",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "SOILS 401",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOILS 402",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AGECO 201",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "AGECO 295Agroecology Internship1\nAGECO/AGRO 438Principles of Weed Management4\nPPEM 405Microbe-Plant Interactions: Plant Disease and Biological Control3\nSOILS 102Introductory Soil Science Laboratory1\nSOILS 401Soil Composition and Physical Properties3\nSOILS 402Soil Nutrient Behavior and Management3\nPrescribed Courses: Require a grade of C or better\nAGECO 201Introductory Agroecology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 222",
+      "HORT 407"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGECO 134",
+       "AGECO 144",
+       "AGECO 154",
+       "AGECO 496"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AG 160",
+       "GEOG 30N",
+       "PHIL 13",
+       "PHIL 103",
+       "PHIL 132"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGRO 423",
+       "AGRO 425",
+       "HORT 202",
+       "HORT 315",
+       "HORT 431",
+       "HORT 432",
+       "HORT 433",
+       "SOILS 418"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGRO 410W",
+       "HORT 412W",
+       "SOILS 412W"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "AGRO 28",
+      "HORT 101"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 222Genetics3\nor HORT 407 Plant Breeding\nSelect 3 credits from the following:3\nAGECO/METEO 122Atmospheric Environment: Growing in the Wind\nAGECO 134\nAGECO 144Principles and Practices of Organic Agriculture\nAGECO 154Principles of Agronomic Field Operations\nAGECO 496Independent Studies\nSelect 3 credits from the following:3\nAG 160Introduction into Ethics and Issues in Agriculture\nGEOG 30NEnvironment and Society in a Changing World\nPHIL 13Nature and Environment\nPHIL 103Ethics\nPHIL 132/BIOET 100Bioethics\nSelect 6 credits from the following:6\nAGRO 423Forage Crop Management\nAGRO 425Field Crop Management\nHORT 202Plant Propagation\nHORT 315Environmental Effects on Horticultural Crops\nHORT 431Small Fruit Culture\nHORT 432Deciduous Tree Fruits\nHORT 433Vegetable Crops\nSOILS 418Nutrient Management in Agricultural Systems\nSelect 3-4 credits from the following:3-4\nAGRO 410WPhysiology of Agricultural Crops\nHORT 412WPost-Harvest Physiology\nSOILS 412WSoil Ecology\nAdditional Courses: Require a grade of C or better\nAGRO 28Principles of Crop Management3\nor HORT 101 Horticultural Science\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18 credits of supporting courses in consultation with adviser",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 18 credits of supporting courses in consultation with adviser18\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AGECO 295",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "AGECO 429",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "AGRO 423",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AGRO 425",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HORT 407",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PPEM 405",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOILS 102",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "SOILS 401",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOILS 402",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AGECO 201",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "AGECO 295Agroecology Internship1\nAGECO 429Crop Scouting2\nAGECO/AGRO 438Principles of Weed Management4\nAGRO 423Forage Crop Management3\nAGRO 425Field Crop Management3\nHORT 407Plant Breeding3\nPPEM 405Microbe-Plant Interactions: Plant Disease and Biological Control3\nSOILS 102Introductory Soil Science Laboratory1\nSOILS 401Soil Composition and Physical Properties3\nSOILS 402Soil Nutrient Behavior and Management3\nPrescribed Courses: Require a grade of C or better\nAGECO 201Introductory Agroecology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "AGECO 154",
+      "SOILS 403"
+     ],
+     "credits": 2
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AG 160",
+       "PHIL 13",
+       "PHIL 103",
+       "PHIL 132"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGBM 102",
+       "AGBM 106",
+       "AGBM 200",
+       "AGBM 407"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AEE 201",
+       "AEE 360",
+       "AEE 460",
+       "AEE 465"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ANSC 201",
+       "GEOG 160",
+       "SOILS 450"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGRO 410W",
+       "HORT 412W",
+       "SOILS 412W"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "AGRO 28",
+      "HORT 101"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "AGECO 154Principles of Agronomic Field Operations2\nor SOILS 403 Soil Morphology Practicum\nSelect 3 credits from the following:3\nAG 160Introduction into Ethics and Issues in Agriculture\nPHIL 13Nature and Environment\nPHIL 103Ethics\nPHIL 132/BIOET 100Bioethics\nSelect 3 credits from the following:3\nAGBM 102Economics of the Food System\nAGBM 106Agribusiness Problem Solving\nAGBM 200Introduction to Agricultural Business Management\nAGBM 407Farm Planning and Financial Management\nSelect 3 credits from the following:3\nAEE 201Interpersonal Skills for Tomorrow's Leaders\nAEE 360Leadership Development for Small Groups\nAEE 460Foundations in Leadership Development\nAEE 465Leadership Practices: Power, Influences, and Impact\nSelect 3-4 credits from the following:3-4\nAGECO/ANSC/SOILS 418Nutrient Management in Agricultural Systems\nANSC 201Animal Science\nGEOG 160Mapping Our Changing World\nSOILS 450Environmental Geographic Information Systems\nSelect 3-4 credits from the following:3-4\nAGRO 410WPhysiology of Agricultural Crops\nHORT 412WPost-Harvest Physiology\nSOILS 412WSoil Ecology\nAdditional Courses: Require a grade of C or better\nAGRO 28Principles of Crop Management3\nor HORT 101 Horticultural Science\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of supporting courses in consultation with adviser",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 9 credits of supporting courses in consultation with adviser9\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "HORT 232",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HORT 402W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HORT 407",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HORT 445",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HORT 455",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HORT 101",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HORT 202",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HORT 315",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HORT 412W",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "HORT 232Horticultural Systematics3\nHORT 402WPlant Nutrition3\nHORT 407Plant Breeding3\nHORT 445Plant Ecology3\nHORT 455Retail Horticulture Business Management3\nPrescribed Courses: Require a grade of C or better\nHORT 101Horticultural Science 3\nHORT 202Plant Propagation3\nHORT 315Environmental Effects on Horticultural Crops3\nHORT 412WPost-Harvest Physiology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "AGRO 438",
+      "HORT 238"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PPEM 300",
+      "PPEM 405"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "HORT 131",
+       "HORT 137",
+       "HORT 138",
+       "HORT 431",
+       "HORT 432",
+       "HORT 433"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-7 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "HORT 408",
+       "HORT 431",
+       "HORT 432",
+       "HORT 433",
+       "HORT 453"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9-10 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AG 301",
+       "AGBM 200",
+       "AGBM 407",
+       "BA 301",
+       "BA 303",
+       "BLAW 243",
+       "SPAN 1",
+       "SPAN 2",
+       "SPAN 3",
+       "SPAN 105"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "AGRO 438Principles of Weed Management3-4\nor HORT 238 Turf and Ornamental Weed Control\nPPEM 300Horticultural Crop Diseases 3\nor PPEM 405 Microbe-Plant Interactions: Plant Disease and Biological Control\nSelect 3 credits from the following:3\nHORT 131Herbaceous Perennial and Annual Identification\nHORT 137Ornamental Plant Materials\nHORT 138Ornamental Plant Materials\nHORT 431Small Fruit Culture\nHORT 432Deciduous Tree Fruits\nHORT 433Vegetable Crops\nSelect 6-7 credits from the following:6-7\nHORT 408Landscape Plant Establishment and Maintenance\nHORT 431Small Fruit Culture\nHORT 432Deciduous Tree Fruits\nHORT 433Vegetable Crops\nHORT 453Flower Crop Production and Management\nSelect 9-10 credits from the following:9-10\nAG 301\nAGBM 200Introduction to Agricultural Business Management\nAGBM 407Farm Planning and Financial Management\nBA 301Finance\nBA 303Marketing\nBLAW 243Legal Environment of Business\nSPAN 1Elementary Spanish I\nSPAN 2Elementary Spanish II\nSPAN 3Intermediate Spanish\nSPAN 105Elementary Spanish I for Students in the Agricultural Sciences\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AGRO 410W",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "BIOL 222",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BMB 400",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 212",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HORT 407",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PHYS 250",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PPEM 405",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "AGRO 410WPhysiology of Agricultural Crops4\nAGRO/BIOTC 460Advances and Applications of Plant Biotechnology3\nBIOL 222Genetics3\nBMB 400Molecular Biology of the Gene2-3\nCHEM 112Chemical Principles II 3\nCHEM 210Organic Chemistry I3\nCHEM 212Organic Chemistry II3\nHORT 407Plant Breeding3\nHORT/BIOL/BIOTC 459Plant Tissue Culture and Biotechnology3\nPHYS 250Introductory Physics I 4\nPrescribed Courses: Require a grade of C or better\nPPEM 405Microbe-Plant Interactions: Plant Disease and Biological Control3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "AGRO 28",
+      "HORT 101"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 113",
+      "CHEM 113B"
+     ],
+     "credits": 1
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4-6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 230W",
+       "BIOL 240W",
+       "BMB 211",
+       "BMB 212",
+       "MICRB 201",
+       "MICRB 202"
+      ]
+     }
+    },
+    {
+     "type": "course",
+     "code": "MICRB 251",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BMB 251",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MICRB 252",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BMB 252",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 414",
+       "BIOL 427",
+       "BIOL 428",
+       "BIOL 436",
+       "BIOL 448",
+       "ENT 420",
+       "HORT 445"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 2,
+     "commentRaw": "Select 2-3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 439",
+       "BIOTC 479",
+       "HORT 497",
+       "MCIBS 571",
+       "MCIBS 593"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENT 410",
+       "PPEM 416"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 407",
+       "BIOL 424",
+       "BIOL 441",
+       "HORT 402W",
+       "HORT 412W",
+       "HORT 420",
+       "MCIBS 591",
+       "PPEM 417W"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGRO 423",
+       "AGRO 425",
+       "HORT 202",
+       "HORT 315",
+       "HORT 431",
+       "HORT 432",
+       "HORT 433"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "AGRO 28Principles of Crop Management3\nor HORT 101 Horticultural Science\nCHEM 113Experimental Chemistry II 1\nor CHEM 113B Experimental Chemistry II--Bioscience\nSelect 4-6 credits from the following:4-6\nBIOL 230WBiology: Molecules and Cells\nBIOL 240WBiology: Function and Development of Organisms\nBMB 211& BMB 212Elementary Biochemistryand Elementary Biochemistry Laboratory\nMICRB 201& MICRB 202Introductory Microbiologyand Introductory Microbiology Laboratory\nMICRB 251/BMB 251 & MICRB 252/BMB 252\nSelect 3-4 credits from the following:3-4\nBIOL 414Taxonomy of Seed Plants\nBIOL 427Evolution\nBIOL 428Population Genetics\nBIOL 436Population Ecology and Global Climate Change\nBIOL 448Ecology of Plant Reproduction\nENT 420Introduction to Population Dynamics\nHORT 445Plant Ecology\nPPEM/BIOL 425Biology of Fungi\nSelect 2-3 credits from the following:2-3\nBIOL 439Practical Bioinformatics\nBIOTC 479Methods in Biofermentations\nHORT 497Special Topics\nMCIBS 571Current Issues in Biotechnology\nMCIBS 593Molecular Biology Laboratory\nSelect 3-4 credits from the following:3-4\nENT/VBSC 402WBiology of Animal Parasites\nENT 410Insect Structure and Function\nPPEM 416Plant Virology: Molecules to Populations\nPPEM/BIOL 425Biology of Fungi\nSelect 3-4 credits from the following:3-4\nBIOL 407Plant Developmental Anatomy\nBIOL 424Seeds of Change: The Uses of Plants\nBIOL 441Plant Physiology\nHORT 402WPlant Nutrition\nHORT 412WPost-Harvest Physiology\nHORT 420\nMCIBS 591Ethics, Rigor, Reproducibility and Conduct of Research in the Life Sciences\nPPEM 417WGood Bugs, Bad Bugs: How Bacteria Shape Plant Health\nPPEM/ERM 430Air Pollution Impacts to Terrestrial Ecosystems\nSelect 3 credits from the following:3\nAGRO 423Forage Crop Management\nAGRO 425Field Crop Management\nHORT 202Plant Propagation\nHORT 315Environmental Effects on Horticultural Crops\nHORT 431Small Fruit Culture\nHORT 432Deciduous Tree Fruits\nHORT 433Vegetable Crops\nSOILS/AGECO/ANSC 418Nutrient Management in Agricultural Systems\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 222",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 212",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 213",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "PHYS 250",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PPEM 405",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 222Genetics3\nCHEM 112Chemical Principles II 3\nCHEM 210Organic Chemistry I3\nCHEM 212Organic Chemistry II3\nCHEM 213Laboratory in Organic Chemistry2\nPHYS 250Introductory Physics I 4\nPrescribed Courses: Require a grade of C or better\nPPEM 405Microbe-Plant Interactions: Plant Disease and Biological Control3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "AGRO 28",
+      "HORT 101"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 113",
+      "CHEM 113B"
+     ],
+     "credits": 1
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4-6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BMB 211",
+       "BMB 212",
+       "BIOL 230W",
+       "BIOL 240W",
+       "MICRB 201",
+       "MICRB 202",
+       "MICRB 251",
+       "MICRB 252"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 439",
+       "ENT 402W",
+       "ENT 410",
+       "PPEM 416",
+       "PPEM 417W",
+       "PPEM 425"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 412",
+       "BIOL 414",
+       "BIOL 427",
+       "BIOL 428",
+       "BIOL 436",
+       "BIOL 448",
+       "ENT 420",
+       "HORT 445",
+       "PPEM 425"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGRO 460",
+       "BIOL 439",
+       "HORT 407",
+       "HORT 459"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-7 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGRO 410W",
+       "AGRO 460",
+       "BIOL 407",
+       "BIOL 441",
+       "BIOL 424",
+       "HORT 402W",
+       "HORT 407",
+       "HORT 412W",
+       "HORT 420",
+       "PPEM 417W"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGRO 410W",
+       "HORT 412W",
+       "SOILS 412W"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "AGRO 28Principles of Crop Management3\nor HORT 101 Horticultural Science\nCHEM 113Experimental Chemistry II 1\nor CHEM 113B Experimental Chemistry II--Bioscience\nSelect 4-6 credits of the following:4-6\nBMB 211& BMB 212Elementary Biochemistryand Elementary Biochemistry Laboratory\nBIOL 230WBiology: Molecules and Cells\nBIOL 240WBiology: Function and Development of Organisms\nMICRB 201& MICRB 202Introductory Microbiologyand Introductory Microbiology Laboratory\nMICRB 251Molecular and Cell Biology I\nMICRB 252Molecular and Cell Biology II\nSelect 3-4 credits of the following:3-4\nBIOL 439Practical Bioinformatics\nENT 402WBiology of Animal Parasites\nENT 410Insect Structure and Function\nPPEM 416Plant Virology: Molecules to Populations\nPPEM 417WGood Bugs, Bad Bugs: How Bacteria Shape Plant Health\nPPEM 425Biology of Fungi\nSelect 3-4 credits of the following:3-4\nBIOL 412Ecology of Infectious Diseases\nBIOL 414Taxonomy of Seed Plants\nBIOL 427Evolution\nBIOL 428Population Genetics\nBIOL 436Population Ecology and Global Climate Change\nBIOL 448Ecology of Plant Reproduction\nENT/VBSC 402WBiology of Animal Parasites\nENT 420Introduction to Population Dynamics\nHORT 445Plant Ecology\nPPEM 425Biology of Fungi\nSelect 3 credits of the following:3\nAGRO 460Advances and Applications of Plant Biotechnology\nBIOL 439Practical Bioinformatics\nHORT 407Plant Breeding\nHORT 459Plant Tissue Culture and Biotechnology\nSelect 6-7 credits of the following:6-7\nAGRO 410WPhysiology of Agricultural Crops\nAGRO 460Advances and Applications of Plant Biotechnology\nBIOL 407Plant Developmental Anatomy\nBIOL 441Plant Physiology\nBIOL 424Seeds of Change: The Uses of Plants\nHORT 402WPlant Nutrition\nHORT 407Plant Breeding\nHORT 412WPost-Harvest Physiology\nHORT 420\nPPEM 417WGood Bugs, Bad Bugs: How Bacteria Shape Plant Health\nPPEM/ERM 430Air Pollution Impacts to Terrestrial Ecosystems\nSelect 3-4 credits of the following:3-4\nAGRO 410WPhysiology of Agricultural Crops\nHORT 412WPost-Harvest Physiology\nSOILS 412WSoil Ecology\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Agroecology Option: Plant Sciences, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLANT 150S",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 26",
+        "MATH 41",
+        "MATH 110",
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGRO 28",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "HORT 101"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 295",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 102",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 201",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PLANT 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 14",
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGECO 122",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGECO 144",
+        "AGECO 154",
+        "AGECO 496"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 314",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": [
+        "ENT 316"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SOILS 402",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "AG 160",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "GEOG 30N",
+        "PHIL 13",
+        "PHIL 103",
+        "PHIL 132"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGECO 457",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PPEM 405",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 222",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 407"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGRO 423",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 425",
+        "HORT 202",
+        "HORT 315",
+        "HORT 431",
+        "HORT 432",
+        "HORT 433",
+        "SOILS 418"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SOILS 401",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 423",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 425",
+        "HORT 202",
+        "HORT 315",
+        "HORT 431",
+        "HORT 432",
+        "HORT 433",
+        "SOILS 418"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGECO 438",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 495",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 410W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 412W",
+        "SOILS 412W"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PLANT 461",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 4,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Crop Production Option: Plant Sciences, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLANT 150S",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 26",
+        "MATH 41",
+        "MATH 110",
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGRO 28",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "HORT 101"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 295",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 102",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 201",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PLANT 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 14",
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AG 160",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHIL 13",
+        "PHIL 103",
+        "PHIL 132"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGECO 154",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 314",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": [
+        "ENT 316"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AEE 201",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AEE 360",
+        "AEE 460",
+        "AEE 465"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGBM 102",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGBM 106",
+        "AGBM 200",
+        "AGBM 407"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGRO 423",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 429",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 438",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SOILS 401",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 402",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 425",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 410W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 412W",
+        "SOILS 412W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGECO 418",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ANSC 201",
+        "GEOG 160",
+        "SOILS 450"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGECO 495",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 496"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGECO 457",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PPEM 405",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 403",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HORT 407",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLANT 461",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 4,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Horticulture Option: Plant Sciences, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLANT 150S",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 26",
+        "MATH 41",
+        "MATH 110",
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HORT 101",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 14",
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HORT 202",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SOILS 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HORT 101",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 137",
+        "HORT 138",
+        "HORT 431",
+        "HORT 432",
+        "HORT 433"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 314",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": [
+        "ENT 316"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HORT 232",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 315",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGBM 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGBM 407",
+        "BLAW 243",
+        "BA 301",
+        "BA 303",
+        "SPAN 1",
+        "SPAN 2",
+        "SPAN 3",
+        "SPAN 105"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PLANT 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 455",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 238",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 438"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HORT 408",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 431",
+        "HORT 432",
+        "HORT 433",
+        "HORT 453"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HORT 412W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 408",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 431",
+        "HORT 432",
+        "HORT 433",
+        "HORT 453"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGBM 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGBM 407",
+        "BLAW 243",
+        "BA 301",
+        "BA 303",
+        "SPAN 1",
+        "SPAN 2",
+        "SPAN 3",
+        "SPAN 105"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGECO 457",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PPEM 405",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "PPEM 300"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HORT 445",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGBM 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGBM 407",
+        "BLAW 243",
+        "BA 301",
+        "BA 303",
+        "SPAN 1",
+        "SPAN 2",
+        "SPAN 3",
+        "SPAN 105"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective or Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 12.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HORT 407",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLANT 461",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 402W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 495",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 496"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective or Supporting Course",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Plant Genetics and Biotechnology Option: Plant Sciences, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PLANT 150S",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 26",
+        "MATH 41",
+        "MATH 110",
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGRO 28",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 101"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLANT 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 222",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 14",
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 240W",
+        "BMB 211",
+        "BMB 212",
+        "MICRB 201",
+        "MICRB 202",
+        "MICRB 251",
+        "MICRB 252"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGECO 457",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 407",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 423",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 425",
+        "HORT 202",
+        "HORT 315",
+        "HORT 431",
+        "HORT 432",
+        "HORT 433",
+        "SOILS 418"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGRO 410W",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 459",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOTC 459",
+        "BIOL 459"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 314",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": [
+        "ENT 316"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PPEM 405",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 400",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 495",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 495",
+        "HORT 495",
+        "HORT 496"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 412",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 414",
+        "BIOL 427",
+        "BIOL 428",
+        "BIOL 436",
+        "BIOL 448",
+        "ENT 420",
+        "HORT 445",
+        "PPEM 425"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 439",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": [
+        "BIOTC 479",
+        "HORT 497"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGRO 460",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOTC 460"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PLANT 461",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 407",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 424",
+        "BIOL 441",
+        "HORT 402W",
+        "HORT 412W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENT 402W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ENT 410",
+        "PPEM 416",
+        "PPEM 425"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 121,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Plant Science Option: Plant Sciences, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PLANT 150S",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 26",
+        "MATH 41",
+        "MATH 110",
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGRO 28",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 101"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLANT 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 14",
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 230W",
+        "BMB 211",
+        "BMB 212",
+        "MICRB 201",
+        "MICRB 202",
+        "MICRB 251",
+        "MICRB 252"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGECO 457",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 410W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 460",
+        "BIOL 407",
+        "BIOL 441",
+        "BIOL 424",
+        "HORT 402W",
+        "HORT 407",
+        "HORT 412W",
+        "PPEM 430"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 222",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 410W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 412W",
+        "SOILS 412W"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PPEM 405",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 495",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 314",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 412",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 414",
+        "BIOL 427",
+        "BIOL 428",
+        "BIOL 436",
+        "BIOL 448",
+        "ENT 402W",
+        "ENT 420",
+        "HORT 445",
+        "PPEM 425"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PLANT 461",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 410W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 460",
+        "BIOL 407",
+        "BIOL 441",
+        "BIOL 424",
+        "HORT 402W",
+        "HORT 407",
+        "HORT 412W",
+        "PPEM 430"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 439",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ENT 402W",
+        "ENT 410",
+        "PPEM 425"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGRO 460",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 439",
+        "HORT 407",
+        "HORT 459"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Agroecology Option: Plant Sciences, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 26",
+        "MATH 41",
+        "MATH 110",
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AG 160",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "GEOG 30N",
+        "PHIL 13",
+        "PHIL 103",
+        "PHIL 132"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 14",
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course or Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SOILS 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 102",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PPEM 405",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLANT 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 28",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "HORT 101"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGRO 423",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 425",
+        "HORT 202",
+        "HORT 315",
+        "HORT 431",
+        "HORT 432",
+        "HORT 433",
+        "SOILS 418"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 316",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 201",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 410W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 412W",
+        "SOILS 412W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGECO 122",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGECO 144",
+        "AGECO 154",
+        "AGECO 496"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGRO 423",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 425",
+        "HORT 202",
+        "HORT 315",
+        "HORT 431",
+        "HORT 432",
+        "HORT 433",
+        "SOILS 418"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGECO 295",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 457",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 438",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 222",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 407"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 4,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PLANT 461",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 401",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 402",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 495",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Crop Production Option: Plant Sciences, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 26",
+        "MATH 41",
+        "MATH 110",
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 14",
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AG 160",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHIL 13",
+        "PHIL 103",
+        "PHIL 132"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 4,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGRO 28",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "HORT 101"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SOILS 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 102",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLANT 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 438",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 423",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 154",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGECO 201",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 314",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": [
+        "ENT 316"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGRO 410W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "SOILS 412W",
+        "HORT 412W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGRO 425",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 418",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ANSC 201",
+        "GEOG 160",
+        "SOILS 450"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGECO 457",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AEE 201",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AEE 360",
+        "AEE 460",
+        "AEE 465"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGBM 102",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGBM 106",
+        "AGBM 200",
+        "AGBM 407"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGECO 429",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 495",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 495"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PPEM 405",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PLANT 461",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 401",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 402",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 295",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 407",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Horticulture Option: Plant Sciences, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 12.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 26",
+        "MATH 41",
+        "MATH 110",
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 14",
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGBM 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGBM 407",
+        "BLAW 243",
+        "BA 301",
+        "BA 303",
+        "SPAN 1",
+        "SPAN 2",
+        "SPAN 3",
+        "SPAN 105"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGBM 200",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "AGBM 407",
+        "BLAW 243",
+        "BA 301",
+        "BA 303",
+        "SPAN 1",
+        "SPAN 2",
+        "SPAN 3",
+        "SPAN 105"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGBM 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGBM 407",
+        "BLAW 243",
+        "BA 301",
+        "BA 303",
+        "SPAN 1",
+        "SPAN 2",
+        "SPAN 3",
+        "SPAN 105"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective or Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HORT 101",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLANT 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 455",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 238",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 438"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HORT 202",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 232",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 315",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 314",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": [
+        "ENT 316"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HORT 408",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 431",
+        "HORT 432",
+        "HORT 433",
+        "HORT 453"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGECO 457",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PPEM 405",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "PPEM 300"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HORT 445",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 408",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 431",
+        "HORT 432",
+        "HORT 433",
+        "HORT 453"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HORT 131",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 137",
+        "HORT 138",
+        "HORT 431",
+        "HORT 432",
+        "HORT 433"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HORT 407",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLANT 461",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 402W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 495",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 496"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HORT 412W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective or Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Plant Genetics and Biotechnology Option: Plant Sciences, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 26",
+        "MATH 41",
+        "MATH 110",
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ECON 14",
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 240W",
+        "BMB 211",
+        "BMB 212",
+        "MICRB 201",
+        "MICRB 202",
+        "MICRB 251",
+        "MICRB 252"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 222",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 28",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 101"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PPEM 405",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLANT 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 423",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 425",
+        "HORT 202",
+        "HORT 315",
+        "HORT 431",
+        "HORT 432",
+        "HORT 433",
+        "SOILS 418"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGRO 410W",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 459",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOTC 459",
+        "BIOL 459"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 314",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": [
+        "ENT 316"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SOILS 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGECO 457",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 400",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 407",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGECO 495",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 495",
+        "HORT 495",
+        "HORT 496"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 412",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 414",
+        "BIOL 427",
+        "BIOL 428",
+        "BIOL 436",
+        "BIOL 448",
+        "ENT 420",
+        "HORT 445",
+        "PPEM 425"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 439",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": [
+        "BIOTC 479",
+        "HORT 497"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGRO 460",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOTC 460"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PLANT 461",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 407",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 424",
+        "BIOL 441",
+        "HORT 402W",
+        "HORT 412W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENT 402W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ENT 410",
+        "PPEM 416",
+        "PPEM 425"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Plant Science Option: Plant Sciences, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 26",
+        "MATH 41",
+        "MATH 110",
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ECON 14",
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGECO 457",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PPEM 405",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLANT 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 28",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 101"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 222",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 410W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "HORT 412W",
+        "SOILS 412W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 240W",
+        "BMB 211",
+        "BMB 212",
+        "MICRB 201",
+        "MICRB 202",
+        "MICRB 251",
+        "MICRB 252"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGECO 495",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 314",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 412",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 414",
+        "BIOL 427",
+        "BIOL 428",
+        "BIOL 436",
+        "BIOL 448",
+        "ENT 402W",
+        "ENT 420",
+        "HORT 445",
+        "PPEM 425"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 439",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ENT 402W",
+        "ENT 410",
+        "PPEM 416",
+        "PPEM 425"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGRO 410W",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 460",
+        "BIOL 407",
+        "BIOL 441",
+        "BIOL 424",
+        "HORT 402W",
+        "HORT 407",
+        "HORT 412W",
+        "PPEM 430"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PLANT 461",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGRO 410W",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "AGRO 460",
+        "BIOL 407",
+        "BIOL 441",
+        "BIOL 424",
+        "HORT 402W",
+        "HORT 407",
+        "HORT 412W",
+        "PPEM 430"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGRO 460",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 439",
+        "HORT 407",
+        "HORT 459"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 121,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

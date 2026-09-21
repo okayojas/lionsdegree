@@ -1,0 +1,64 @@
+{
+ "slug": "behrend-child-development-certificate",
+ "name": "Child Development, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/child-development-certificate/",
+ "totalCredits": 15,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 212",
+      "HDFS 129"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PSYCH 410",
+       "PSYCH 412",
+       "PSYCH 476"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EDPSY 14",
+       "HDFS 229",
+       "PSYCH 221",
+       "PSYCH 238",
+       "PSYCH 256",
+       "PSYCH 413",
+       "PSYCH 414",
+       "PSYCH 473"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "PSYCH 212Introduction to Developmental Psychology 3\nor HDFS 129 Introduction to Human Development and Family Studies\nSelect 6 credits of the following:6\nPSYCH 410Child Development\nPSYCH 412Adolescence\nPSYCH 476Child Psychopathology\nSelect 6 credits of the following:6\nEDPSY 14Learning and Instruction\nHDFS 229Infant and Child Development\nPSYCH 221Introduction to Social Psychology\nPSYCH 238Introduction to Personality Psychology\nPSYCH 256Introduction to Cognitive Psychology\nPSYCH 413Cognitive Development\nPSYCH 414Social and Personality Development\nPSYCH 473Behavior Modification\n"
+  }
+ ],
+ "suggestedPlans": []
+}

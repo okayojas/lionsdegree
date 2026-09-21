@@ -1,0 +1,91 @@
+{
+ "slug": "agricultural-sciences-equine-science-minor",
+ "name": "Equine Science, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/equine-science-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ANSC 107",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ANSC 201",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ANSC 217",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "ANSC 327",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nANSC 107Introduction to Equine Science and the Equine Industry 3\nANSC 201Animal Science4\nANSC 217Introduction to Horse Judging2\nANSC 327Horse Production and Management4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ANSC 437",
+       "ANSC 447",
+       "ANSC 457",
+       "ANSC 467W"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-7 credits from the following (3 credits must be at the 400-level):",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGRO 423",
+       "ANSC 117",
+       "ANSC 317",
+       "ANSC 357",
+       "ANSC 418",
+       "ANSC 419W",
+       "ANSC 420",
+       "ANSC 423",
+       "ANSC 427",
+       "ANSC 437",
+       "ANSC 447",
+       "ANSC 457",
+       "ANSC 467W",
+       "VBSC 403"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nANSC 437Equine Facilitated Therapy\nANSC 447Equine Exercise Physiology\nANSC 457Equine Reproduction and Breeding Farm Management\nANSC 467WEquine Nutrition and Feeding\nSelect 6-7 credits from the following (3 credits must be at the 400-level):6-7\nAGRO 423Forage Crop Management\nANSC 117Equine Marketing\nANSC 317Horse Handling and Training\nANSC 357Equine Broodmare and Foal Care\nANSC 418Nutrient Management in Agricultural Systems\nANSC 419WApplied Animal Welfare\nANSC 420Animal Nutrition and Feed Technology\nANSC 423Comparative Physiology of Domestic Animals\nANSC 427Milk Secretion\nANSC 437Equine Facilitated Therapy\nANSC 447Equine Exercise Physiology\nANSC 457Equine Reproduction and Breeding Farm Management\nANSC 467WEquine Nutrition and Feeding\nVBSC 403Principles of Animal Disease Control\n"
+  }
+ ],
+ "suggestedPlans": []
+}

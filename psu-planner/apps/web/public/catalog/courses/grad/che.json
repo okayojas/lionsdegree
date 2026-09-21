@@ -1,0 +1,686 @@
+[
+ {
+  "code": "CHE 501",
+  "subject": "CHE",
+  "number": "501",
+  "display": "CHE 501",
+  "title": "Bioengineering Transport Phenomena",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Application of the equations of mass, energy, and momentum conservation to physiological phenomena and to the design of artificial organs.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "BIOE 501"
+  ],
+  "aliases": [
+   "CHE 501"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 503",
+  "subject": "CHE",
+  "number": "503",
+  "display": "CHE 503",
+  "title": "Fluid Mechanics of Bioengineering Systems",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Cardiovascular system and blood flow, non-Newtonian fluid description, vessel flows, unsteady flows and wave motion, windkessel theory, transmission line theory.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "BME 409 (equivalent to CH E 330, M E 320, or AERSP 308)",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "BIOE 503"
+  ],
+  "aliases": [
+   "CHE 503"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 505",
+  "subject": "CHE",
+  "number": "505",
+  "display": "CHE 505",
+  "title": "Atomistic Scale Simulations for Engineer",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course aims to provide an overview of atomistic-scale methods - in particular, ab-initio based methods like Density Functional Theory and empirical force field methods - to an engineering audience. Due to the increasing availability of computers, atomistic-scale simulation methods are becoming increasingly relevant to engineers, as they can provide key thermodynamic and material properties necessary for the design and analysis of engineering material performance. The main aim of the course is to encourage students to integrate atomistic-scale concepts in their current research. As such, there is a strong emphasis on hands-on experience with various software codes, including commercial codes and academic codes. The students learn the basic concepts of quantum mechanics, statistical thermodynamics, crystallography, physics and chemistry as they relate to ab initio and empirical force field methods and their integration in energy minimization, molecular dynamics and Monte Carlo methods. These concepts are discussed on a conceptual level, enabling students to understand their application range and validity. Furthermore, we dedicate a significant amount of class time to engineer-relevant applications of these force engines and methods.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "ME 505"
+  ],
+  "aliases": [
+   "CHE 505"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 510",
+  "subject": "CHE",
+  "number": "510",
+  "display": "CHE 510",
+  "title": "Surface Characterization of Materials",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Physical and chemical principles of characterization techniques widely used in materials science, chemistry and engineering. CH E (MATSE) 510 Surface Characterization of Materials (3) Surface and interface characterization is an important subject in nanotechnology, heterogeneous catalysis, semiconductor processing, advanced functional materials, biomaterials, corrosion, environmental science, and tribology. This course will study the physical and chemical principles of representative characterization techniques widely used in these research areas. Topics covered in this course include surface chemistry and physics fundamentals, x-ray and electron-based spectroscopy, vibration spectroscopy, ellipsometry, microscopy with physical probes, and multivariate data analysis. Physical principles and practical applications will be studied through theoretical calculations, data analysis, and literature reviews.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "MATSE 510"
+  ],
+  "aliases": [
+   "CHE 510"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 512",
+  "subject": "CHE",
+  "number": "512",
+  "display": "CHE 512",
+  "title": "Optimization and Biological Networks",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Mathematical optimization, formulation and solution techniques for linear, nonlinear, and mixed-integer problems; optimization-based tools for reconstruction, analysis, and redesign of biological networks. CH E 512 Optimization and Biological Networks (3) This course focuses on the principles and applications of mathematical optimization in biological systems. The first part of the course addresses optimization theory, solution algorithms, and implementation software. Topics include nonlinear optimization, linear programming, mixed-integer linear and nonlinear optimization, and bi-level optimization. Emphasis will be placed on understanding the logic of the methodology, underlying key assumptions, comparative merits and shortcomings, and applications for solving engineering problems. Valuable hands-on experience will be provided on coding optimization models using GAMS (General Algebraic Modeling System) and specialized optimization solvers. The latter part of the course concentrates on applying the tools necessary to address the challenges arising in biological networks. Specifically, the use of optimization in reconstructing and analyzing genome-scale models of metabolism, protein library design strategies, regulatory network elucidation, and synthetic circuits design as well as optimal modifications in metabolic networks for various bioengineering tasks will be studied.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 512"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 515",
+  "subject": "CHE",
+  "number": "515",
+  "display": "CHE 515",
+  "title": "Density Functional Theory and Practice",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course gives students an overview of the theory and practice of calculations performed with Density Functional Theory (DFT). DFT is a powerful tool to calculate the structural and electronic properties of collections of atoms. The course emphasizes the practical aspects of the calculations and the theory will be only described as necessary to understand and perform correct calculations. The target audience of the course is students of Physics, Chemistry, Materials Science, Chemical or Mechanical Engineering, and other science/engineering disciplines that need to learn to perform calculations based on DFT with a minimum of exposure to the theoretical details underlying this technique.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "PHYS 515"
+  ],
+  "aliases": [
+   "CHE 515"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 520",
+  "subject": "CHE",
+  "number": "520",
+  "display": "CHE 520",
+  "title": "Polymer Science and Engineering",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course provides fundamental understanding of basic principles in polymer science and connects these to current research topics at Penn State as well as novel findings in soft material science at other institutions. Interdisciplinary in content, the curriculum spans from polymer synthesis (chemistry), to physical properties (physics), to characterization, to engineering (chemical engineering), to application of polymer materials (materials science). Two areas of focus will lie on (i) the environmental impact of commodity plastics and (ii) conductive polymers and their every-day use in display technology and energy harvesting. While polymers are versatile and broadly applicable, there lie significant dangers in their use for us as a society. For example, while the drive for flexible displays and solar cells is increasing, there is no clear pathway for efficient recycling of the resulting electronic polymeric materials. To this end, this course will engage students in discussions about industrial processing of polymers and the importance to find new pathways for their recycling.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "CHEM 520",
+   "MATSE 520"
+  ],
+  "aliases": [
+   "CHE 520"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 524",
+  "subject": "CHE",
+  "number": "524",
+  "display": "CHE 524",
+  "title": "Chemical Engineering, Application of Thermodynamics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Elements of thermochemistry and thermodynamics of greatest importance in chemical engineering.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 524"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 528",
+  "subject": "CHE",
+  "number": "528",
+  "display": "CHE 528",
+  "title": "Colloidal Forces and Thermodynamics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Unified treatment of formation, growth and stability of colloids based on principles of intermolecular and colloidal forces and thermodynamics.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "CHEM 450 , CH E 320 or an equivalent background in chemical thermodynamics",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 528"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 535",
+  "subject": "CHE",
+  "number": "535",
+  "display": "CHE 535",
+  "title": "Chemical Reaction Engineering",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Optimal design of batch and continuous chemical reactors and reactor batteries; effect of mixing on reactor operation.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 535"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 536",
+  "subject": "CHE",
+  "number": "536",
+  "display": "CHE 536",
+  "title": "Heterogeneous Catalysis",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Thermodynamics and kinetics of adsorption and reactions on solid surfaces, heat and mass transfer effects, theory and correlations in catalysis.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "CHEM 450 , CHEM 452",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 536"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 544",
+  "subject": "CHE",
+  "number": "544",
+  "display": "CHE 544",
+  "title": "General Transport Phenomena",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Formulation and solution of transport problems involving momentum, heat, and mass transfer, with chemical engineering applications.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "CH E 330 , CH E 350 , CH E 410",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 544"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 546",
+  "subject": "CHE",
+  "number": "546",
+  "display": "CHE 546",
+  "title": "Transport Phenomena II",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Heat and mass transfer, steady and unsteady state, coupling, molecular diffusion, moving boundaries, transfer coefficients, chemical engineering applications.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 546"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 555",
+  "subject": "CHE",
+  "number": "555",
+  "display": "CHE 555",
+  "title": "Engineering Soft Materials",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Soft materials are materials that can be easily deformed by thermal stresses or thermal fluctuations at about room temperature. In this course, the foundations of soft matter will be explained using numerous real-life examples. A comprehensive overview on different types of soft matter, such as polymers, colloids, gels, liquid crystals, amphiphiles, proteins, and/or cells will be provided, and the focus will be placed on engineering this burgeoning class of materials to address current challenges in the food-water-healthcare-energy nexus. During the semester, students will be guided to learn about various classes of soft materials and discover their emerging applications to address some of the quintessential challenges of the 21st century.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 555"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": [
+   "Recommended Preparation: Basic knowledge of thermodynamics, physical chemistry, and mathematics will be helpful."
+  ]
+ },
+ {
+  "code": "CHE 576",
+  "subject": "CHE",
+  "number": "576",
+  "display": "CHE 576",
+  "title": "Environmental Transport Processes",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Fundamentals of chemical transport in engineered environments, such as biofilm reactors, and natural systems including aquifers and rivers. C E 576C E 576 Environmental Transport Processes (3)Environmental Transport Processes covers the fundamental of mass transport of chemicals between air, water, soil, and biota. Material is divided into three subject areas: mass transfer theory, transport processes related to engineered reactors, and transport in the natural environment. The focus of the course is on chemical calculations particular to dilute systems, with emphasis on quantifying chemical transport rates and distributions in natural and engineered environments. Special topics of interest to environmental engineers include biofilm models, bioreators, chemical partitioning in thin fluid film bioreactors, and fate of anthropogenic chemicals from spills and discharges into the environment (i.e., rivers, lakes, and groundwaters).Faculty: Bruce E. Logan",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "C E 475",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "CE 576"
+  ],
+  "aliases": [
+   "CHE 576"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 590",
+  "subject": "CHE",
+  "number": "590",
+  "display": "CHE 590",
+  "title": "Colloquium",
+  "credits": "1-3 Credits/Maximum of 3",
+  "creditsParsed": {
+   "min": 1,
+   "max": 3,
+   "repeatableMax": 3
+  },
+  "description": "Continuing seminars which consist of a series of individual lectures by faculty, students, or outside speakers.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 590"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 596",
+  "subject": "CHE",
+  "number": "596",
+  "display": "CHE 596",
+  "title": "Individual Studies",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Creative projects, including nonthesis research, which are supervised on an individual basis and which fall outside the scope of formal courses.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 596"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 597",
+  "subject": "CHE",
+  "number": "597",
+  "display": "CHE 597",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given on a topical or special interest subject which may be offered infrequently; several different topics may be taught in one year or term.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 597"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 600",
+  "subject": "CHE",
+  "number": "600",
+  "display": "CHE 600",
+  "title": "Thesis Research",
+  "credits": "1-15 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 1,
+   "max": 15,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 600"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 601",
+  "subject": "CHE",
+  "number": "601",
+  "display": "CHE 601",
+  "title": "Ph.D. Dissertation Full-Time",
+  "credits": "0 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 0,
+   "max": 0,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 601"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 602",
+  "subject": "CHE",
+  "number": "602",
+  "display": "CHE 602",
+  "title": "Supervised Experience in College Teaching",
+  "credits": "1-3 Credits/Maximum of 6",
+  "creditsParsed": {
+   "min": 1,
+   "max": 3,
+   "repeatableMax": 6
+  },
+  "description": "Opportunity for supervised and graded teaching experience for graduate students in chemical engineering.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "At least one year of graduate study in chemical engineering.",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 602"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 610",
+  "subject": "CHE",
+  "number": "610",
+  "display": "CHE 610",
+  "title": "Thesis Research Off Campus",
+  "credits": "1-15 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 1,
+   "max": 15,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 610"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ },
+ {
+  "code": "CHE 611",
+  "subject": "CHE",
+  "number": "611",
+  "display": "CHE 611",
+  "title": "Ph.D. Dissertation Part-Time",
+  "credits": "0 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 0,
+   "max": 0,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CHE 611"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/che/",
+  "extraRaw": []
+ }
+]

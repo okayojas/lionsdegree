@@ -1,0 +1,466 @@
+[
+ {
+  "code": "COMP 505",
+  "subject": "COMP",
+  "number": "505",
+  "display": "COMP 505",
+  "title": "Theory of Computation",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Topics in discrete mathematics, discrete probability, first order logic and models of computation.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "CMPSC463",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 505"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ },
+ {
+  "code": "COMP 511",
+  "subject": "COMP",
+  "number": "511",
+  "display": "COMP 511",
+  "title": "Design and Analysis of Algorithms",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Amortized analysis, graph algorithms, NP-complete problems, approximation algorithms, parallel algorithms.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "CMPSC463",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 511"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ },
+ {
+  "code": "COMP 512",
+  "subject": "COMP",
+  "number": "512",
+  "display": "COMP 512",
+  "title": "Advanced Operating Systems",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "A study of the principles and practice of distributed system design, including communication, synchronization, processes, file systems, and memory management.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "CMPSC472",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 512"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ },
+ {
+  "code": "COMP 513",
+  "subject": "COMP",
+  "number": "513",
+  "display": "COMP 513",
+  "title": "Formal Methods for Software Engineering",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Object-oriented software development, formal specification techniques and related CASE tools, software re-use, verification and validation, transformational development.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "CMPSC487W , COMP 511 , or permission of the program",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 513"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ },
+ {
+  "code": "COMP 516",
+  "subject": "COMP",
+  "number": "516",
+  "display": "COMP 516",
+  "title": "Advanced Programming Languages",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Programming paradigms and styles, object-oriented programming, formal semantics, programming language design.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "CMPSC460",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 516"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ },
+ {
+  "code": "COMP 517",
+  "subject": "COMP",
+  "number": "517",
+  "display": "COMP 517",
+  "title": "Computer Security",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Introduction to the area of computer security and current issues associated with computer security.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "MATH 315",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 517"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ },
+ {
+  "code": "COMP 519",
+  "subject": "COMP",
+  "number": "519",
+  "display": "COMP 519",
+  "title": "Advanced Topics in Database Management Systems",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Concurrency control, crash recovery, query processing, semantic data models, advanced file access, distributed database systems, performance, case studies, advanced applications.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "CMPSC430 , MATH 315",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 519"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ },
+ {
+  "code": "COMP 520",
+  "subject": "COMP",
+  "number": "520",
+  "display": "COMP 520",
+  "title": "Artificial Intelligence",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Problem solving, knowledge representation, language understanding, perception, learning, artificial neural networks.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "CMPSC463",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 520"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ },
+ {
+  "code": "COMP 521",
+  "subject": "COMP",
+  "number": "521",
+  "display": "COMP 521",
+  "title": "Artificial Neural Networks and Deep Learning",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Deep learning, as a field of computer science study, is a branch of machine learning that focuses on the development and application of deep artificial neural networks. The computing model of an artificial neural network (ANN) consists of layers of nodes called perceptrons or artificial neurons, which can learn complex patterns in data. The deep learning model extracts layered data representations of complex data to maximize task performance. Deep learning has a wide range of applications, such as object recognition, classification, prediction, natural language processing, speech recognition, fraud detection, recommender systems, and other scientific and healthcare applications. This course covers the theory and problem-solving techniques relevant to the foundations and applications of deep learning and modern deep neural networks, the methodology of deep learning model development, evaluation, validation, and optimization. The course requires a strong foundation in algorithms, programming, and mathematics.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "CMPSC 463 or EE 456",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 521"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ },
+ {
+  "code": "COMP 524",
+  "subject": "COMP",
+  "number": "524",
+  "display": "COMP 524",
+  "title": "Evolutionary Computation",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Topics in evolutionary algorithms and genetic algorithms.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "COMP 511 or permission of the program",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 524"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ },
+ {
+  "code": "COMP 530",
+  "subject": "COMP",
+  "number": "530",
+  "display": "COMP 530",
+  "title": "Computational Structural Biology for Computer Science",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course provides a fundamental background in computational structural biology and bioinformatics, algorithms and tools widely used in the field, and assists students in starting research in the field of computational structural biology. The course will cover topics regarding protein structures, functions, physical principles describing molecular structures of proteins and their dynamics, algorithms used in protein/DNA sequence analysis, and computational geometry algorithms useful for computational structural biology studies tailored for computer science students.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "(CMPSC 122 or CMPSC 132) and (MATH 220 or MATH 230) and CMPSC 462 and CMPSC 463 Recommended Preparation: This course does not require a background in structural biology. The course is for computer science students and will cover fundamental",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 530"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ },
+ {
+  "code": "COMP 545",
+  "subject": "COMP",
+  "number": "545",
+  "display": "COMP 545",
+  "title": "Computer Architecture",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Cache, pipelining, memory design, interconnection networks, multiprocessor systems.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "CMPSC312",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 545"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ },
+ {
+  "code": "COMP 594",
+  "subject": "COMP",
+  "number": "594",
+  "display": "COMP 594",
+  "title": "Master's Studies",
+  "credits": "3 Credits/Maximum of 3",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": 3
+  },
+  "description": "Presentation of various research techniques, in-depth study of a specific computer science problem, development of a written paper or project, and an oral defense.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "A minimum of 2 of the 500-level computer science required courses or permission of the program.",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 594"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ },
+ {
+  "code": "COMP 596",
+  "subject": "COMP",
+  "number": "596",
+  "display": "COMP 596",
+  "title": "Individual Studies",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Creative projects, including nonthesis research, that are supervised on an individual basis and which fall outside the scope of formal courses.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 596"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ },
+ {
+  "code": "COMP 597",
+  "subject": "COMP",
+  "number": "597",
+  "display": "COMP 597",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given on a topical or special interest subject which may be offered infrequently; several different topics may be taught in one year or semester.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 597"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ },
+ {
+  "code": "COMP 600",
+  "subject": "COMP",
+  "number": "600",
+  "display": "COMP 600",
+  "title": "Thesis Research",
+  "credits": "1-15 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 1,
+   "max": 15,
+   "repeatableMax": 999
+  },
+  "description": "Research into a specific computer science problem, development of a scholarly written paper, and an oral defense.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "A minimum of 2 of the 500-level computer science required courses or permission of the program.",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "COMP 600"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
+  "extraRaw": []
+ }
+]

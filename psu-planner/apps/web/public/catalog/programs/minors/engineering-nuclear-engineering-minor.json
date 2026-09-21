@@ -1,0 +1,75 @@
+{
+ "slug": "engineering-nuclear-engineering-minor",
+ "name": "Nuclear Engineering, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/nuclear-engineering-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "NUCE 301",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NUCE 310W",
+     "credits": 2
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nNUCE 301Fundamentals of Reactor Physics4\nNUCE 310WIssues in Nuclear Engineering2\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 0,
+     "commentRaw": "Select 0-8 credits in Reactor Design and Thermodynamics from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "NUCE 302",
+       "NUCE 309",
+       "NUCE 321",
+       "CHE 220",
+       "CHEM 450",
+       "EMCH 302H",
+       "EME 301",
+       "MATSE 401",
+       "ME 201",
+       "ME 300",
+       "NUCE 322",
+       "AERSP 311",
+       "CE 360",
+       "CHE 330",
+       "EME 303",
+       "ME 320"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-12 credits of 400-Level Courses. Students should consult the Department of Nuclear Engineering for the up-to-date list of approved 400-level courses that meet this requirement.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 0-8 credits in Reactor Design and Thermodynamics from the following:0-8\nNUCE 302Introduction to Reactor Design\nNUCE 309Analytical Techniques for Nuclear Concept\nNUCE 321Introduction to Thermal-Fluid Sciences for Nuclear Engineers - I\nor CHE 220 Introduction to Chemical Engineering Thermodynamics\nor CHEM 450 Physical Chemistry - Thermodynamics\nor EMCH 302H Thermodynamics, Heat Conduction, and Principles of Modeling, Honors\nor EME 301 Thermodynamics in Energy and Mineral Engineering\nor MATSE 401 Thermodynamics of Materials\nor ME 201 Introduction to Thermal Science\nor ME 300 Engineering Thermodynamics I\nNUCE 322Introduction to Thermal-Fluid Sciences for Nuclear Engineers - II\nor AERSP 311 Aerodynamics I\nor CE 360 Fluid Mechanics\nor CHE 330 Process Fluid Mechanics\nor EME 303 Fluid Mechanics in Energy and Mineral Engineering\nor ME 320 Fluid Flow\nSelect 6-12 credits of 400-Level Courses. Students should consult the Department of Nuclear Engineering for the up-to-date list of approved 400-level courses that meet this requirement.6-12\n"
+  }
+ ],
+ "suggestedPlans": []
+}

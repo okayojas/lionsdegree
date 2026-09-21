@@ -1,0 +1,47 @@
+{
+ "slug": "liberal-arts-organizational-communication-certificate",
+ "name": "Organizational Communication, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/organizational-communication-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CAS 283",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CAS 352",
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAS 404",
+       "CAS 452",
+       "CAS 475",
+       "ENGL 419"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CAS 283Communication and Information Technology I 3\nCAS 352Organizational Communication 3\nSelect 6 credits of the following:6\nCAS 404Conflict Resolution and Negotiation\nCAS 452Organizational Communication Theory and Research\nCAS 475Studies in Public Address\nENGL 419Advanced Business Writing\n"
+  }
+ ],
+ "suggestedPlans": []
+}

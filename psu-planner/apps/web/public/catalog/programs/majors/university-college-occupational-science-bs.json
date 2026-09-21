@@ -1,0 +1,295 @@
+{
+ "slug": "university-college-occupational-science-bs",
+ "name": "Occupational Science, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/occupational-science-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 161",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BIOL 162",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "BIOL 163",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BIOL 164",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "OS 410",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "OS 420",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "OS 430",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "OS 440",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "OS 450",
+     "credits": 5
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "STAT 100",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBIOL 161Human Anatomy and Physiology I - Lecture 3\nBIOL 162Human Anatomy and Physiology I - Laboratory 1\nBIOL 163Human Anatomy and Physiology II - Lecture 3\nBIOL 164Human Anatomy and Physiology II - Laboratory 1\nOS 410Foundations of Occupational Science and Therapy4\nOS 420Occupational Constructs: Habits, Routines, Roles & Rituals3\nOS 430Perspectives of Culture, Equity & Spirituality 3\nOS 440Human Behavior: Creativity and Flow 3\nOS 450Applied Occupational Science Capstone 5\nPSYCH 100Introductory Psychology 3\nSTAT 100Statistical Concepts and Reasoning 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 15",
+      "ENGL 30H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "HDFS 129",
+      "PSYCH 212"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select either the OT or PT track:"
+    },
+    {
+     "type": "course",
+     "code": "OT 100",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "OT 101",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "OT 103",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "OT 195E",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "OT 205",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "OT 207",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "OT 209",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "OT 210W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "OT 212",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "OT 214",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "OT 216",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "OT 295E",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "OT 395A",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "OT 395B",
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PT 100",
+      "PT 100S"
+     ],
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PT 120",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PT 150",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PT 160",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PT 250",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PT 260",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PT 285",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PT 290",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PT 384",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PT 395E",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PT 395G",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 5,
+     "commentRaw": "Select 5 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PT 270",
+       "PT 270W",
+       "PT 271",
+       "PT 272",
+       "PT 271W",
+       "PT 272"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 5,
+     "commentRaw": "Select 5 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PT 280",
+       "PT 280W",
+       "PT 281",
+       "PT 282",
+       "PT 281",
+       "PT 282W"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PT 395F",
+       "PT 395H",
+       "PT 395I"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nENGL 15Rhetoric and Composition 3\nor ENGL 30H Honors Rhetoric and Composition\nHDFS 129Introduction to Human Development and Family Studies 3\nor PSYCH 212 Introduction to Developmental Psychology\nSelect either the OT or PT track:44-45\nOccupational Therapy Track (45 credits)\nOT 100Structural Foundations of Occupational Therapy\nOT 101Conceptual Foundations of Occupational Therapy Practice\nOT 103Occupational Performance Across the Life Span\nOT 195EFieldwork Level I Experience in Occupational Therapy\nOT 205Group Process Across The Lifespan\nOT 207Assistive Technologies and Methods of Adaptation\nOT 209Management, Leadership and Ethics in Occupational Therapy\nOT 210WClinical Reasoning and Documentation in Occupational Therapy\nOT 212Occupational Therapy for Child & Adolescent Health\nOT 214Occupational Therapy for Psychosocial and Behavioral Health\nOT 216Occupational Therapy for Physical Health and Rehabilitation\nOT 295EFieldwork Level I Experience in Occupational Therapy\nOT 395AFieldwork Level II Experience in Occupational Therapy\nOT 395BFieldwork Level II Experience in Occupational Therapy\nPhysical Therapist Assistant Track (44 credits)\nPT 100Physical Therapist Assistant--Introduction\nor PT 100S Physical Therapist Assistant-Introduction\nPT 120Human Musculature and Functional Anatomy\nPT 150Physical Therapist Assistant Procedures I\nPT 160Therapeutic Exercise I\nPT 250Physical Therapist Assistant--Procedures II\nPT 260Therapeutic Exercise--II\nPT 285Clinical Reasoning for the PTA\nPT 290Professional Issues in Clinical Practice\nPT 384Applied Kinesiology\nPT 395EPhysical Therapist Assistant--Practicum I\nPT 395GPhysical Therapist Assistant--Practicum III\nSelect 5 credits from the following:\nPT 270Pathophysiology\nPT 270WPathophysiology\nPT 271& PT 272Pathophysiology Iand Pathophysiology II\nPT 271W& PT 272Pathophysiology Iand Pathophysiology II\nSelect 5 credits from the following:\nPT 280Rehabilitation\nPT 280WRehabilitation\nPT 281& PT 282Rehabilitation-1and Rehabilitation-2\nPT 281& PT 282WRehabilitation-1and Rehabilitation-2W\nSelect 4 credits from the following:\nPT 395FPhysical Therapist Assistant--Practicum II\nPT 395H& PT 395IPhysical Therapist Assistant--Practicum II Part 1and Physical Therapist Assistant--Practicum II Part 2\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "Select a 3-credit Anthropology or Sociology course"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect a 3-credit Anthropology or Sociology course3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

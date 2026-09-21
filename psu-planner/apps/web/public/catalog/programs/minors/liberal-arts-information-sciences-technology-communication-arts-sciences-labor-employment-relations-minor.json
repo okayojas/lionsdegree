@@ -1,0 +1,95 @@
+{
+ "slug": "liberal-arts-information-sciences-technology-communication-arts-sciences-labor-employment-relations-minor",
+ "name": "Information Sciences and Technology in Communication Arts and Sciences and Labor and Employment Relations, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/information-sciences-technology-communication-arts-sciences-labor-employment-relations-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CAS 283",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCAS 283Communication and Information Technology I 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "LHR 100",
+      "LHR 136"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select two from the following:"
+    },
+    {
+     "type": "course",
+     "code": "IST 110",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "IST 210",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "IST 220",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nLHR 100Exploring Work and Employment 3\nor LHR 136 Race, Gender, and Employment\nSelect two from the following:6\nIST 110Information, People and Technology\nIST 210Organization of Data\nIST 220Networking and Telecommunications\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "CAS and LHR Coursework. Choose 6 credits from the following (one course must be at the 300-400 level):",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAS 272N",
+       "CAS 352",
+       "CAS 383N",
+       "CAS 426W",
+       "CAS 450W",
+       "CAS 483",
+       "LHR 201",
+       "LHR 202",
+       "LHR 305",
+       "LHR 437"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nCAS and LHR Coursework. Choose 6 credits from the following (one course must be at the 300-400 level):6\nCAS 272NPolitical Communication and Technology\nCAS 352Organizational Communication\nCAS 383NCulture and Technology\nCAS 426WCommunication Ethics\nCAS 450WGroup Communication Theory and Research\nCAS 483Communication and Information Technology II\nLHR 201Employment Relationship: Law and Policy\nLHR 202Understanding Employee Behavior\nLHR 305Human Resources Fundamentals\nLHR 437Workplace Dispute Resolution\nLHR/OLEAD 464Communication Skills for Leaders in Groups and Organizations\nLHR/OLEAD 465Collective Decision Making\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,84 @@
+{
+ "slug": "arts-architecture-music-studies-minor",
+ "name": "Music Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "arts-architecture",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/arts-architecture/music-studies-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MUSIC 131",
+     "credits": 2
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nMUSIC 131Music Theory I2\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from one of the following sequences:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MUSIC 132",
+       "MUSIC 231",
+       "MUSIC 332",
+       "MUSIC 261",
+       "MUSIC 262",
+       "MUSIC 4",
+       "MUSIC 162",
+       "MUSIC 209N",
+       "MUSIC 261",
+       "MUSIC 262"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 9 credits from one of the following sequences:9\nSequence 1\nMUSIC 132Music Theory II\nMUSIC 231Music Theory III\nMUSIC 332Analysis of Twentieth Century Music\nMUSIC 261Survey of Music History I\nor MUSIC 262 Survey of Music History II\nSequence 2\nMUSIC 4Film Music\nMUSIC 162Introduction to Music History\nAFAM/INART/AMST 226NCritical Approaches to Hip-Hop\nMUSIC/AFAM 207NJazz and the African American Experience\nMUSIC 209N/ENGL 208NThe Music of the Beatles and American Popular Culture\nMUSIC 261Survey of Music History I\nMUSIC 262Survey of Music History II\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits at the 400-level in MUSIC",
+     "from": {
+      "kind": "pattern",
+      "subject": "IN",
+      "minLevel": 400
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits in ensembles",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits at the 400-level in MUSIC6\nSelect 4 credits in ensembles4\n"
+  }
+ ],
+ "suggestedPlans": []
+}

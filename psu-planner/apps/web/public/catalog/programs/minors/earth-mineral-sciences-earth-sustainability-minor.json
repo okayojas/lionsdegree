@@ -1,0 +1,101 @@
+{
+ "slug": "earth-mineral-sciences-earth-sustainability-minor",
+ "name": "Earth and Sustainability, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/earth-sustainability-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EARTH 103N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EARTH 402",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nEARTH 103NEarth in the Future: Predicting Climate Change and Its Impacts Over the Next Century 3\nEARTH 402Modeling the Earth System3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select three of the following:"
+    },
+    {
+     "type": "course",
+     "code": "EARTH 104N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EARTH 111N",
+     "credits": null,
+     "resolvedFrom": "EARTH 111"
+    },
+    {
+     "type": "course",
+     "code": "EARTH 107N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOG 3N",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect three of the following:9\nEARTH 104NClimate, Energy and Our Future\nEARTH 111\nEARTH 107NCoastal Processes, Hazards and Society\nGEOG 3NFood and the Future Environment\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the approved list of EMS courses. Approved courses are:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EGEE 401",
+       "EME 444",
+       "EME 460",
+       "GEOG 412",
+       "GEOG 430",
+       "GEOG 431",
+       "GEOG 432",
+       "GEOG 438W",
+       "GEOG 469",
+       "GEOSC 402Y",
+       "GEOSC 451",
+       "GEOSC 452",
+       "METEO 469"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits from the approved list of EMS courses. Approved courses are:3\nEGEE 401Energy in a Changing World\nEME 444Global Energy Enterprise\nEME 460Geo-resource Evaluation and Investment Analysis\nGEOG 412\nGEOG 430Human Use of Environment\nGEOG 431Geography of Water Resources\nGEOG 432Energy Policy\nGEOG 438WHuman Dimensions of a Changing Climate\nGEOG 469Energy Industry Applications of GIS\nGEOSC 402YNatural Disasters\nGEOSC 451Natural Resources: Origins, Economics and Environmental Impact\nGEOSC 452Hydrogeology\nMETEO 469From Meteorology to Mitigation: Understanding Global Warming\n"
+  }
+ ],
+ "suggestedPlans": []
+}

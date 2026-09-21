@@ -1,0 +1,52 @@
+{
+ "slug": "engineering-engineering-design-certificate",
+ "name": "Engineering Design, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/engineering-design-certificate/",
+ "totalCredits": 13,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EDSGN 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 367",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 485",
+     "credits": 1
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "EDSGN 100Cornerstone Engineering Design3\nEDSGN 367Design Thinking and Making3\nEDSGN 485Engineering Design Portfolio1\n"
+  },
+  {
+   "heading": "Supporting Courses",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "In addition to the required courses, students must taken a minimum of 6 credits of supporting courses, such as EDSGN 4XX or other 400-level courses with approval from the Certificate Director."
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "In addition to the required courses, students must taken a minimum of 6 credits of supporting courses, such as EDSGN 4XX or other 400-level courses with approval from the Certificate Director. 6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

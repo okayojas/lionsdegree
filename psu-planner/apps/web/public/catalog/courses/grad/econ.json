@@ -1,0 +1,785 @@
+[
+ {
+  "code": "ECON 500",
+  "subject": "ECON",
+  "number": "500",
+  "display": "ECON 500",
+  "title": "Introduction to Mathematical Economics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Mathematical Economics: Applications of Mathematical Techniques to Economics.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 500"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 501",
+  "subject": "ECON",
+  "number": "501",
+  "display": "ECON 501",
+  "title": "Econometrics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Econometrics: Applications of Statistical Techniques to Economics",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 501"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 502",
+  "subject": "ECON",
+  "number": "502",
+  "display": "ECON 502",
+  "title": "Microeconomic Analysis",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Economic behavior under pure and imperfect competition; price and output determination in product markets; prices and employment in factor markets.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 502"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 503",
+  "subject": "ECON",
+  "number": "503",
+  "display": "ECON 503",
+  "title": "Macroeconomic Analysis",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "National income accounts; determination of income, employment, interest rates, and the price level; stabilization policy.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 503"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 507",
+  "subject": "ECON",
+  "number": "507",
+  "display": "ECON 507",
+  "title": "International Trade",
+  "credits": "3-6 Credits/Maximum of 6",
+  "creditsParsed": {
+   "min": 3,
+   "max": 6,
+   "repeatableMax": 6
+  },
+  "description": "Theory of international trade and investment; effect of commercial policy on trade and income distribution; multinational corporations and international trade.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 507"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 510",
+  "subject": "ECON",
+  "number": "510",
+  "display": "ECON 510",
+  "title": "Econometrics I",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "General linear model, multicolinearity, specification error, autocorrelation, heteroskedasticity, restricted least squares, functional form, dummy variables, limited dependent variables.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "ECON 501 or STAT 462 or STAT 501",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 510"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 512A",
+  "subject": "ECON",
+  "number": "512A",
+  "display": "ECON 512A",
+  "title": "Empirical Methods in Economics I",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "The course will provide a foundation for students in the computational methods used to numerically solve and simulate economic models and program econometric estimators.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "ECON 510",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 512A"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 512B",
+  "subject": "ECON",
+  "number": "512B",
+  "display": "ECON 512B",
+  "title": "Empirical Methods in Economics II",
+  "credits": "2 Credits",
+  "creditsParsed": {
+   "min": 2,
+   "max": 2,
+   "repeatableMax": null
+  },
+  "description": "The course will provide continued exposure to the computational methods used to numerically solve and simulate economic models and program econometric estimators.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "ECON 512A",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 512B"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 517",
+  "subject": "ECON",
+  "number": "517",
+  "display": "ECON 517",
+  "title": "Open Economy Macroeconomics and International Finance",
+  "credits": "3-6 Credits/Maximum of 6",
+  "creditsParsed": {
+   "min": 3,
+   "max": 6,
+   "repeatableMax": 6
+  },
+  "description": "The balance of payments, portfolio allocation, monetary and fiscal policy in an open economy, exchange rate regimes, selected policy issues.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 517"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 521",
+  "subject": "ECON",
+  "number": "521",
+  "display": "ECON 521",
+  "title": "Advanced Microeconomic Theory",
+  "credits": "3-6 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 6,
+   "repeatableMax": null
+  },
+  "description": "Theory of consumer behavior; theory of the firm; price determination in product and factor markets; introduction to welfare economics.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 521"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 522",
+  "subject": "ECON",
+  "number": "522",
+  "display": "ECON 522",
+  "title": "Advanced Macroeconomic Theory",
+  "credits": "3-6 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 6,
+   "repeatableMax": null
+  },
+  "description": "Measurement of income; theories of consumption, investment, and money holdings; static determination of income and employment; introduction to dynamic analysis.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 522"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 530",
+  "subject": "ECON",
+  "number": "530",
+  "display": "ECON 530",
+  "title": "Master's Scholarly Essay I",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course is a workshop designed to guide students through the process of conducting independent research towards successful completion of the M.A. Scholar Essay project. The course will provide students with broad instruction on research objectives such as formulating a research question, constructing an economic analysis, and writing up results for an academic audience. Emphasis will be placed on breaking the task of completing a research essay into discrete, and manageable tasks.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 530"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 531",
+  "subject": "ECON",
+  "number": "531",
+  "display": "ECON 531",
+  "title": "Master's Scholarly Essay II",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course is a workshop designed to guide students through the process of conducting independent research towards successful completion of the Master's Scholarly Essay. The course will provide students with broad instruction on research objectives such as formulating a research question, constructing an economic analysis, and writing up results for an academic audience. Emphasis will be placed on breaking the task of completing a research essay into discrete, manageable tasks.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "ECON 530",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 531"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 533",
+  "subject": "ECON",
+  "number": "533",
+  "display": "ECON 533",
+  "title": "Applied and Quantitative Economics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course combines the use of econometric software and real economic data sets to study actual empirical questions in economics. Topics covered include instrumental variables, panel data methods, estimation of nonlinear models, discrete choice models, regression discontinuity techniques and nonparametric method for data analysis. Each of the topics will have one or more empirical applications. The economic applications include production function estimation, returns to education, investment models, consumer demand models, and transportation modes.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 533"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 534",
+  "subject": "ECON",
+  "number": "534",
+  "display": "ECON 534",
+  "title": "Game Theory",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Foundations of current research in game theory. ECON 534 Game Theory (3) This is an advanced graduate course in game theory and its applications to economics. The course content is mathematical in nature and emphasizes formal statements of key propositions and their proofs. It begins by presenting two alternative ways in which a game may be represented: the extensive (or tree) form and the strategic (or normal) form. The relationship between these two representations is studied and the key idea of a strategy is introduced. Pre-equilibrium notions of dominance, iterated dominance and rationalizability are studied. Nash's fundamental theorem on the existence of equilibrium in finite games is proved. Strategic form based refinements of Nash equilibrium, including perfect, proper and stable equilibria are considered. Extensive form based refinements, including subgame perfection and sequential equilibrium are also considered and compared. Harsanyi's conception of a game of incomplete information is introduced. Other subjects covered include repeated games and the folk theorem, bargaining, common knowledge. Additional topics of current interests may also be covered.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "ECON 521 or permission of program",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 534"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 543",
+  "subject": "ECON",
+  "number": "543",
+  "display": "ECON 543",
+  "title": "Industrial Organization and Public Policy",
+  "credits": "3-6 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 6,
+   "repeatableMax": null
+  },
+  "description": "The structure of American industry; performance and behavior; public policies toward business.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 543"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 555",
+  "subject": "ECON",
+  "number": "555",
+  "display": "ECON 555",
+  "title": "Research and Knowledge Transfer Methods",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "The course will provide an overview of existing guidelines published by experienced researchers in various subfields of economics (applied microeconomics, economic development, econometrics, industrial organization, international trade, macroeconomics, and microeconomic theory) on the topics of developing research ideas, writing papers for publication in refereed economic journals and presenting research findings in conferences (shorter presentations) and seminars (longer presentations). Models of successful writing in recent top economic publications will be discussed. Each student will then have an opportunity to apply these guidelines and practice their writing and presentation skills based on their original research. Presentations of research will be discussed with peers and research ideas will be tested within and across subfields of economics, thus preparing students for the demands of academic research exchange and academic publication in economics.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 555"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 558",
+  "subject": "ECON",
+  "number": "558",
+  "display": "ECON 558",
+  "title": "Development of Monetary Theory",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Classical and neoclassical quantity theories of money and contemporary criticism; Keynesian monetary theory and its critics.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 558"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 559",
+  "subject": "ECON",
+  "number": "559",
+  "display": "ECON 559",
+  "title": "Current Monetary Theory and Policy",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Post-Keynesian reformulation of quantity and Keynesian theories of money; liquidity and general equilibrium approaches; current issues in theory and policy.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 559"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 570",
+  "subject": "ECON",
+  "number": "570",
+  "display": "ECON 570",
+  "title": "Development Economics",
+  "credits": "3-6 Credits/Maximum of 6",
+  "creditsParsed": {
+   "min": 3,
+   "max": 6,
+   "repeatableMax": 6
+  },
+  "description": "Resources and institutions; quantitative measures; theories of economic growth in developing areas; developmental policies.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 570"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 589",
+  "subject": "ECON",
+  "number": "589",
+  "display": "ECON 589",
+  "title": "Seminar in Econometric Theory",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Theories and methods relevant to the application of statistical methods to economics.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "ECON 510",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 589"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 596",
+  "subject": "ECON",
+  "number": "596",
+  "display": "ECON 596",
+  "title": "Individual Studies",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Creative projects, including nonthesis research, which are supervised on an individual basis and which fall outside the scope of formal courses.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 596"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 597",
+  "subject": "ECON",
+  "number": "597",
+  "display": "ECON 597",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given on a topical or special interest subject which may be offered infrequently; several different topics may be taught in one year or term.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 597"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 600",
+  "subject": "ECON",
+  "number": "600",
+  "display": "ECON 600",
+  "title": "Thesis Research",
+  "credits": "1-15 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 1,
+   "max": 15,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 600"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 601",
+  "subject": "ECON",
+  "number": "601",
+  "display": "ECON 601",
+  "title": "Ph.D. Dissertation Full-Time",
+  "credits": "0 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 0,
+   "max": 0,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 601"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 610",
+  "subject": "ECON",
+  "number": "610",
+  "display": "ECON 610",
+  "title": "Thesis Research Off Campus",
+  "credits": "1-15 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 1,
+   "max": 15,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 610"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ },
+ {
+  "code": "ECON 611",
+  "subject": "ECON",
+  "number": "611",
+  "display": "ECON 611",
+  "title": "Ph.D. Dissertation Part-Time",
+  "credits": "0 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 0,
+   "max": 0,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ECON 611"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/econ/",
+  "extraRaw": []
+ }
+]

@@ -1,0 +1,105 @@
+{
+ "slug": "university-college-international-studies-certificate",
+ "name": "International Studies, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/international-studies-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select 3 credts from the following:"
+    },
+    {
+     "type": "course",
+     "code": "GLIS 101N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GLIS 102N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HIST 11",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "INTST 100",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following list:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AA 100",
+       "ANTH 8",
+       "ANTH 45N",
+       "APLNG 220N",
+       "ARTH 100",
+       "BBH 305",
+       "BIOL 120N",
+       "CMLIT 108",
+       "CMLIT 184",
+       "ENGL 194",
+       "GEOG 30N",
+       "HIST 1",
+       "HIST 2",
+       "HIST 10",
+       "HIST 117",
+       "HIST 121",
+       "HIST 144",
+       "HIST 173",
+       "IB 303",
+       "LING 1",
+       "MUSIC 9",
+       "PLSC 3",
+       "PLSC 14",
+       "PSYCH 232",
+       "RLST 1",
+       "RLST 4",
+       "RLST 101",
+       "SPAN 131",
+       "SPAN 131Y"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of 400-level courses from the following list:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BBH 407",
+       "HIST 452",
+       "HIST 488",
+       "GLIS 497",
+       "MGMT 461",
+       "MKTG 445",
+       "NURS 401",
+       "NURS 464",
+       "THEA 401"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3 credts from the following:3\nGLIS 101NGlobalization\nGLIS 102NGlobal Pathways\nHIST 11World History since 1500\nINTST 100Introduction to International Studies\nSelect 6 credits from the following list:6\nAA 100Introduction to International Arts\nANTH 8Aztec, Inca, Maya\nANTH 45NCultural Diversity: A Global Perspective\nAPLNG 220NMultilingual Lives: Stories of Language and Culture Learning\nARTH 100Introduction to Art\nBBH 305Introduction to Global Health Issues\nBIOL 120N\nCMLIT 108Myths and Mythologies\nCMLIT 184The Short Story\nENGL 194Women Writers\nGEOG 30NEnvironment and Society in a Changing World\nHIST 1Western Civilization I\nHIST 2Western Civilization II\nHIST 10World History to 1500\nHIST 117Women in United States History\nHIST 121History of the Holocaust 1933-1945\nHIST 144The World at War: 1939-1945\nHIST 173Vietnam in War and Peace\nIB 303International Business Operations\nLING 1Language, Life and Society\nMUSIC 9Introduction to World Musics\nPLSC 3Comparing Politics around the Globe\nPLSC 14International Relations\nPSYCH 232Cross-Cultural Psychology\nRLST 1Introduction to World Religions\nRLST 4Jewish and Christian Foundations\nRLST 101Comparative Religion\nSPAN 131Ibero-American Civilization\nSPAN 131YIbero-American Civilization\nSelect 3 credits of 400-level courses from the following list:3\nBBH 407Global Health Equity\nHIST 452\nHIST 488American Diplomacy Since 1914\nGLIS 497Special Topics\nMGMT 461International Management\nMKTG 445Global Marketing\nNURS 401Concepts of Health\nNURS 464Dying and Death\nTHEA 401Theatre History I: Ancient to 1700\n"
+  }
+ ],
+ "suggestedPlans": []
+}

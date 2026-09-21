@@ -1,0 +1,79 @@
+{
+ "slug": "liberal-arts-african-studies-minor",
+ "name": "African Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/african-studies-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AFR 110N",
+     "credits": 3,
+     "resolvedFrom": "AFR 110"
+    },
+    {
+     "type": "course",
+     "code": "AFR 191",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AFR 192",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAFR 1103\nAFR 191Early African History 3\nAFR 192Modern African History 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits (including 6 credits of AFR courses at the 400 level) of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AFR 105",
+       "AFR 209",
+       "AFR 403",
+       "AFR 405",
+       "AFR 440",
+       "AFR 443",
+       "AFR 459",
+       "PLSC 459",
+       "AFR 495",
+       "AFR 496",
+       "AFR 499",
+       "CMLIT 3",
+       "CMLIT 422",
+       "CMLIT 423",
+       "ECON 413W",
+       "ECON 475W",
+       "FR 458",
+       "GEOG 429",
+       "GEOG 444",
+       "PLSC 481"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 9 credits (including 6 credits of AFR courses at the 400 level) of the following:9\nAFR 105African Biodiversity and Conservation\nAFR/WMNST 202NWomen, Gender, and Feminisms in Africa\nAFR 209Poverty in Africa\nAFR 403South Africa Today\nAFR 405African Studies Methodologies\nAFR/PLSC 434War and Development in Africa\nAFR 440Globalization and Its Implications\nAFR 443Ethnic Conflict in Africa\nAFR/PLSC 454Government and Politics of Africa\nAFR/PLSC 459\nAFR/PLSC 464Extractive Industries in Africa\nAFR 495Internship\nAFR 496Independent Studies\nAFR 499Foreign Studies\nCMLIT 3Introduction to African Literatures\nCMLIT 422African Drama\nCMLIT 423African Novel\nECON 413W\nECON 475W\nFR 458African Literature of French Expression\nGEOG 429Geographic Perspectives on Global Urbanization\nGEOG 444Resource Governance in Africa\nPLSC 481Global Political Economy\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,81 @@
+{
+ "slug": "information-sciences-technology-information-sciences-technology-minor",
+ "name": "Information Sciences and Technology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "information-sciences-technology",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/information-sciences-technology/information-sciences-technology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "IST 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 220",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nIST 110Information, People and Technology 3\nIST 210Organization of Data3\nIST 220Networking and Telecommunications3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "IST 140",
+       "IST 234",
+       "COMM 234",
+       "IST 250",
+       "IST 301",
+       "IST 302"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "IST 402",
+       "IST 431",
+       "IST 432",
+       "IST 442",
+       "IST 445",
+       "IST 452",
+       "IST 453"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits of the following:3\nIST 140Introduction to Application Development\nIST/COMM 234\nIST/WMNST 235Gender and the Global Information Technology Sector\nIST 250Introduction to Web Design and Development\nIST 301Information and Organizations\nIST 302IT Project Management\nSelect 6 credits of the following:6\nIST 402Emerging Issues and Technologies\nIST 431The Information Environment\nIST 432Legal and Regulatory Environment of Information Science and Technology\nIST 442Information Technology in an International Context\nIST 445Globalization Trends and World Issues\nIST 452Legal and Regulatory Environment of Privacy and Security\nIST 453Legal, Regulatory, Policy Environment of Cyber Forensics\n"
+  }
+ ],
+ "suggestedPlans": []
+}

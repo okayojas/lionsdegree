@@ -1,0 +1,72 @@
+{
+ "slug": "health-human-development-american-sign-language-minor",
+ "name": "American Sign Language, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "health-human-development",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/health-human-development/american-sign-language-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CSD 218",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CSD 269",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CSD 318",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CSD 418",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CSD 428",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCSD 218American Sign Language I3\nCSD 269Deaf Culture 3\nCSD 318American Sign Language II3\nCSD 418American Sign Language III3\nCSD 428American Sign Language IV3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CSD 111",
+       "CSD 146",
+       "CSD 230",
+       "CSD 240"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nCSD 111Preventing Hearing Loss\nCSD 146Introduction to Communication Sciences and Disorders\nCSD 230Introduction to Audiology\nCSD 240Supporting Communication Through The Performing Arts\n"
+  }
+ ],
+ "suggestedPlans": []
+}

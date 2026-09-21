@@ -1,0 +1,962 @@
+{
+ "slug": "capital-structural-design-construction-engineering-technology-bs",
+ "name": "Structural Design and Construction Engineering Technology, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/structural-design-construction-engineering-technology-bs/",
+ "totalCredits": 125,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CET 308",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CET 342",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CET 343",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CET 434",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "ET 200",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SSET 295",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CE 254",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 333W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CET 430",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CET 431",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CET 432",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CET 435",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202C",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CET 308Construction Methods and Materials3\nCET 342Civil Engineering Materials - Concrete and Bituminous3\nCET 343Soils Mechanics3\nCET 434Foundations3\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nET 200Graphic Communications3\nSSET 295Internship1\nPrescribed Courses: Require a grade of C or better\nCE 254Personal & Occupational Safety3\nCE 333WConstruction Management I3\nCET 430Structural Analysis3\nCET 431Structural Design-Steel3\nCET 432Structural Design-Reinforced Concrete3\nCET 435Construction Estimating3\nENGL 202CEffective Writing: Technical Writing 3\nMATH 140Calculus With Analytic Geometry I 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CE 310",
+      "SUR 111"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ET 323",
+      "MET 214"
+     ],
+     "credits": 1
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EGT 102",
+       "EGT 201",
+       "EDSGN 100"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PHYS 150",
+       "PHYS 211",
+       "PHYS 250"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PHYS 151",
+       "PHYS 212",
+       "PHYS 251"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ECON 14",
+       "ECON 102",
+       "ECON 104"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPSC 101",
+       "CMPSC 121",
+       "CMPSC 201"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ACCTG 211",
+       "MGMT 100",
+       "MGMT 301"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 141",
+      "STAT 200"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EMCH 211",
+       "ET 300",
+       "MET 111"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EMCH 213",
+       "ET 322",
+       "MET 213"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CE 310Surveying3-4\nor SUR 111 Plane Surveying\nET 323Strength of Materials Laboratory1\nor MET 214 Strength and Properties of Materials Laboratory\nSelect 3 credits from the following:3\nEGT 102& EGT 201Introduction to Computer Aided Draftingand Advanced Computer Aided Drafting\nEDSGN 100Cornerstone Engineering Design\nSelect 3-4 credits from the following:3-4\nPHYS 150Technical Physics I\nPHYS 211General Physics: Mechanics\nPHYS 250Introductory Physics I\nSelect 3-4 credits from the following:3-4\nPHYS 151Technical Physics II\nPHYS 212General Physics: Electricity and Magnetism\nPHYS 251Introductory Physics II\nSelect 3 credits from the following:3\nECON 14Principles of Economics\nECON 102Introductory Microeconomic Analysis and Policy\nECON 104Introductory Macroeconomic Analysis and Policy\nSelect 3 credits from the following:3\nCMPSC 101Introduction to Programming\nCMPSC 121Introduction to Programming Techniques\nCMPSC 201Programming for Engineers with C++\nSelect 3-4 credits from the following:3-4\nACCTG 211Financial and Managerial Accounting for Decision Making\nMGMT 100Survey of Management\nMGMT 301Basic Management Concepts\nAdditional Courses: Require a grade of C or better\nMATH 141Calculus with Analytic Geometry II 4\nor STAT 200 Elementary Statistics\nSelect 3 credits from the following:3\nEMCH 211Statics\nET 300Mechanics I: Statics (does not require a grade of C or better)\nMET 111Mechanics for Technology: Statics\nSelect 3 credits from the following:3\nEMCH 213Strength of Materials\nET 322Strength of Materials\nMET 213Strength and Properties of Materials\n"
+  },
+  {
+   "heading": "Requirements for the Option",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select an option"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select an option19-25\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CE 456",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 458",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 488C",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCE 456Planning and Scheduling3\nCE 458Construction Management II3\nCE 488CCapstone Project - Construction4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ACCTG 211",
+       "MGMT 100",
+       "MGMT 301"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AE 310",
+       "CE 321",
+       "ENVE 430",
+       "MET 435"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3-4 credits from the following:3-4\nACCTG 211Financial and Managerial Accounting for Decision Making\nMGMT 100Survey of Management\nMGMT 301Basic Management Concepts\nSelect 3 credits from the following:3\nAE 310Fundamentals of Heating, Ventilating, and Air Conditioning\nCE 321Highway Engineering\nENVE 430Sustainable Engineering\nMET 435Building Energy Systems\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from approved program list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3-4 credits from approved program list3-4\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CE 445",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 449",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 456",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 458",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCE 445Advanced Structural Analysis3\nCE 449Advanced Structural Design3\nCE 456Planning and Scheduling3\nCE 458Construction Management II3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ET 321",
+      "EMCH 212"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CE 360",
+      "CET 361"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AE 310",
+       "CE 321",
+       "ENVE 430",
+       "MET 435"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CE 488C",
+      "CE 488D"
+     ],
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ET 321Dynamics3\nor EMCH 212 Dynamics\nCE 360Fluid Mechanics3\nor CET 361 Fluid Flow\nSelect 3 credits from the following:3\nAE 310Fundamentals of Heating, Ventilating, and Air Conditioning\nCE 321Highway Engineering\nENVE 430Sustainable Engineering\nMET 435Building Energy Systems\nAdditional Courses: Require a grade of C or better\nCE 488CCapstone Project - Construction4\nor CE 488D Capstone Project - Structural Design\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CE 445",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 449",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CE 488D",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCE 445Advanced Structural Analysis3\nCE 449Advanced Structural Design3\nCE 488DCapstone Project - Structural Design4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CET 361",
+      "CE 360"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ET 321",
+      "EMCH 212"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CET 361Fluid Flow3\nor CE 360 Fluid Mechanics\nET 321Dynamics3\nor EMCH 212 Dynamics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from approved program list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3-4 credits from approved program list3-4\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Structural Design and Construction Engineering Technology, B.S. at Harrisburg Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 15S",
+        "ENGL 30T",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EDSGN 100",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "EDSGN 100S"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 41",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CE 100S",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100S"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 150",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 211",
+        "PHYS 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 151",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 212",
+        "PHYS 251"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "STAT 200"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ET 300",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "EMCH 211"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ACCTG 211",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "MGMT 301"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPSC 101",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CMPSC 131",
+        "CMPSC 200",
+        "CMPSC 201"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ET 322",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "EMCH 213"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ET 323",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CE 254",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CE 333W",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CET 342",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ET 321",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "EMCH 212"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SUR 111",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CE 310"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CET 343",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CET 308",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "CET 361 (S)(G) or ACCTG 211 (C) or MGMT 301 (C)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CET 430",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ET 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CET 431",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CET 432",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CET 435",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "CE 488D (S)(G) or CE 488C (C)",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CE 456",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SSET 295",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Approved Selection (C)(S)",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CET 434",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CE 321",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "MET 435",
+        "ENVE 430"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "CE 488D (S)(G) or CE 488C (C)",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CE 445",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CE 449",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CE 458",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 118,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

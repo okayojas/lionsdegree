@@ -1,0 +1,54 @@
+{
+ "slug": "earth-mineral-sciences-climate-environmental-change-certificate",
+ "name": "Climate and Environmental Change, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/climate-environmental-change-certificate/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "GEOG 310",
+      "GEOG 310W"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9-10 credits from the following (may not choose more than 1 course from GEOG 362, GEOSC 482, or METEO 477)",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EARTH 402",
+       "GEOG 362",
+       "GEOG 410",
+       "GEOG 412W",
+       "GEOG 417",
+       "GEOG 438W",
+       "GEOSC 320",
+       "GEOSC 450",
+       "GEOSC 482",
+       "METEO 436",
+       "METEO 469",
+       "METEO 470",
+       "METEO 477"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Required Courses: Require a grade of C or better\nGEOG 310Introduction to Global Climatic Systems3\nor GEOG 310W Introduction to Global Climatic Systems\nSelect 9-10 credits from the following (may not choose more than 1 course from GEOG 362, GEOSC 482, or METEO 477)9-10\nEARTH 402Modeling the Earth System\nGEOG 362Remote Sensing and Image Analysis\nGEOG 410\nGEOG 412WClimatic Change and Variability\nGEOG 417Satellite Climatology\nGEOG 438WHuman Dimensions of a Changing Climate\nGEOSC 320Geology of Climate Change\nGEOSC 450Risk Analysis in the Earth Sciences\nGEOSC 482Satellite Remote-Sensing For Earth Observation\nMETEO 436Radiation and Climate\nMETEO 469From Meteorology to Mitigation: Understanding Global Warming\nMETEO 470Climate Dynamics\nMETEO 477Fundamentals of Remote Sensing Systems\n"
+  }
+ ],
+ "suggestedPlans": []
+}

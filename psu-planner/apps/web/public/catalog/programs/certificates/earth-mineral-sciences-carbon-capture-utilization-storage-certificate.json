@@ -1,0 +1,63 @@
+{
+ "slug": "earth-mineral-sciences-carbon-capture-utilization-storage-certificate",
+ "name": "Carbon Capture, Utilization, and Storage, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/carbon-capture-utilization-storage-certificate/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EME 428",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PNG 460",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nEME 428Negative Emissions Technologies3\nPNG 460Subsurface Storage Engineering3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-7 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EME 200",
+       "ENVSE 450",
+       "GEOSC 414",
+       "GEOSC 450",
+       "GEOSC 454",
+       "GEOSC 481",
+       "METEO 332N",
+       "MNG 331",
+       "PNG 301",
+       "PNG 440W"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6-7 credits from the following:6-7\nEME 200Subsurface Energy Engineering\nENVSE 450Environmental Health and Safety\nGEOSC 414Carbonate Geochemistry\nGEOSC 450Risk Analysis in the Earth Sciences\nGEOSC 454Geology of Oil and Gas\nGEOSC 481Petroleum Seismology\nMETEO 332NScience and policy of global greenhouse gas emissions and management\nMNG 331Rock Mechanics\nPNG 301Introduction to Petroleum and Natural Gas Engineering\nPNG 440WFormation Evaluation\n"
+  }
+ ],
+ "suggestedPlans": []
+}

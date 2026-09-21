@@ -1,0 +1,120 @@
+{
+ "slug": "altoona-environmental-studies-minor",
+ "name": "Environmental Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "altoona",
+ "campuses": [
+  "Altoona, The Altoona College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/altoona/environmental-studies-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ENVST 100N",
+     "credits": 3,
+     "resolvedFrom": "ENVST 100"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nENVST 1003\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ENVST 200",
+      "ENVST 400W"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 110",
+       "BIOL 220W",
+       "CHEM 20",
+       "CHEM 21",
+       "ECON 429",
+       "ENGL 180",
+       "GEOSC 20",
+       "GEOG 115",
+       "HIST 453",
+       "PHIL 403",
+       "STAT 250"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nENVST 200Research Methods in Environmental Studies3\nor ENVST 400W Senior Seminar in Environmental Studies\nSelect 3 credits of the following:3\nBIOL 110Biology: Basic Concepts and Biodiversity\nBIOL 220WBiology: Populations and Communities\nCHEM 20Environmental Chemistry\nCHEM 21Environmental Chemistry Laboratory\nECON 429Public Finance and Fiscal Policy\nENGL 180Literature and the Natural World\nGEOSC 20Planet Earth\nGEOG 115Landforms of the World\nHIST 453American Environmental History\nPHIL 403Seminar in Environmental Ethics\nSTAT 250Introduction to Biostatistics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits (at least 6 credits at the 400-level) in consultation with an academic adviser, 3 credits in each area listed below:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 240W",
+       "BIOL 417",
+       "BIOL 427",
+       "BIOL 435",
+       "BIOL 446",
+       "BIOL 450",
+       "ENVST 497",
+       "FOR 308",
+       "GEOSC 303",
+       "GEOSC 340",
+       "WFS 408",
+       "ANTH 40",
+       "ANTH 146",
+       "ANTH 152",
+       "ANTH 456",
+       "ENVST 497",
+       "GEOG 423Y",
+       "GEOG 430",
+       "PLSC 444",
+       "PLSC 490",
+       "STS 47",
+       "ENGL 404",
+       "ENGL 412",
+       "ENGL 415",
+       "ENGL 416",
+       "ENGL 421",
+       "ENGL 430",
+       "ENVST 497",
+       "HIST 151",
+       "STS 151"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 9 credits (at least 6 credits at the 400-level) in consultation with an academic adviser, 3 credits in each area listed below: 9\na. Natural Sciences\nBIOL 240WBiology: Function and Development of Organisms\nBIOL 417Invertebrate Zoology\nBIOL 427Evolution\nBIOL 435Ecology of Lakes and Streams\nBIOL 446Physiological Ecology\nBIOL 450\nENVST 497Special Topics in Environmental Studies\nFOR 308Forest Ecology\nFOR/WFS 430Conservation Biology\nGEOSC 303Introduction to Environmental Geology\nGEOSC 340Geomorphology\nWFS 408Mammalogy\nb. Social Sciences\nANTH 40Biocultural Evolution\nANTH 146Indigenous North America\nANTH 152Hunters and Gatherers\nANTH 456\nENVST 497Special Topics in Environmental Studies\nGEOG 423Y\nGEOG 430Human Use of Environment\nPLSC 444Government and the Economy\nPLSC 490Policy Making and Evaluation\nSTS 47Wilderness, Technology, and Society\nc. Arts and Humanities\nENGL 404Mapping Identity, Difference, and Place\nENGL 412Advanced Fiction Writing\nENGL 415Advanced Nonfiction Writing\nENGL 416Science Writing\nENGL 421Advanced Expository Writing\nENGL 430The American Renaissance\nENVST 497Special Topics in Environmental Studies\nHIST/STS 151\nHIST/STS 428The Darwinian Revolution\n"
+  }
+ ],
+ "suggestedPlans": []
+}

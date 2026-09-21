@@ -1,0 +1,338 @@
+{
+ "slug": "information-sciences-technology-information-sciences-technology-bs",
+ "name": "Information Sciences and Technology, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "information-sciences-technology",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/information-sciences-technology/information-sciences-technology-bs/",
+ "totalCredits": 125,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ETI 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HCDD 331",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 220",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 230",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 440W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 495",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "STAT 200",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nETI 301Technology Adoption and Organizational Change3\nHCDD 331Foundations of Human-Centered Design3\nIST 110Information, People and Technology 3\nIST 210Organization of Data3\nIST 220Networking and Telecommunications3\nIST 230Language, Logic, and Discrete Mathematics3\nIST 440WInformation Sciences and Technology Integration and Problem Solving3\nIST 495Internship1\nSTAT 200Elementary Statistics 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "ECON 14",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ECON 102",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ECON 104",
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 202C",
+      "ENGL 202D"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 110",
+      "MATH 140"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 101",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 121",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "IST 140",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select one of the following:3\nECON 14Principles of Economics\nECON 102Introductory Microeconomic Analysis and Policy\nECON 104Introductory Macroeconomic Analysis and Policy\nAdditional Courses: Require a grade of C or better\nENGL 202CEffective Writing: Technical Writing 3\nor ENGL 202D Effective Writing: Business Writing\nMATH 110Techniques of Calculus I 4\nor MATH 140 Calculus With Analytic Geometry I\nSelect one of the following:3\nCMPSC 101Introduction to Programming\nCMPSC 121Introduction to Programming Techniques\nIST 140Introduction to Application Development\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "Attainment of third-level proficiency in a single world language"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of international courses in foreign culture from College-approved list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits at the 400 level in emerging issues and technologies from College-approved list",
+     "from": {
+      "kind": "pattern",
+      "subject": "IN",
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Attainment of third-level proficiency in a single world language 12\nSelect 6 credits of international courses in foreign culture from College-approved list6\nSupporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits at the 400 level in emerging issues and technologies from College-approved list3\n"
+  },
+  {
+   "heading": "Requirements for the Option",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select an option"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select an option24\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "HCDD 311",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 242",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nHCDD 311Object-Oriented Design and Software Applications3\nIST 242Intermediate & Object-Oriented Application Development 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "IST 261",
+      "HCDD 361"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "HCDD 411",
+       "HCDD 412",
+       "HCDD 413"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nIST 261Application Development Design Studio I3\nor HCDD 361 Application Development Design Studio II\nSelect 6 credits of the following:6\nHCDD 411Distributed-Object Computing\nHCDD 412The Engineering of Complex Software Systems\nHCDD 413Usability Engineering\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "SELECT 9",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "LEAST 3",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "THE 400",
+     "credits": null,
+     "unverified": true
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 9 credits from College-approved list (at least 3 credits must be at the 400-level)9\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ETI 302",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ETI 420",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ETI 421",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nETI 302IT Project Management3\nETI 420Fundamentals of Systems and Enterprise Integration3\nETI 421Advanced Enterprise Integration: Technologies and Applications3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "IST 240",
+      "IST 242"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nIST 240Introduction to Computer Languages3\nor IST 242 Intermediate & Object-Oriented Application Development\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "SELECT 12",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "LEAST 3",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "THE 400",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "THAN 6",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "THE 200",
+     "credits": null,
+     "unverified": true
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 12 credits from College-approved list (at least 3 credits at the 400-level and no more than 6 credits below the 200-level)12\n"
+  }
+ ],
+ "suggestedPlans": []
+}

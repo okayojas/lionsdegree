@@ -1,0 +1,154 @@
+[
+ {
+  "code": "CIVCM 211N",
+  "subject": "CIVCM",
+  "number": "211N",
+  "display": "CIVCM 211N",
+  "title": "Foundations: Civic and Community Engagement",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Through readings, discussion, deliberation, listening, and individual as well as collaborative action, this course gives students the opportunity to learn about and practice theories and habits of civic and community engagement and public scholarship with the goal of helping to build democratic capacity and sustain participatory democracy. This course emphasizes concepts and case studies that focus on the people's role in shared governance. The course also provides a foundation for understanding how a wide range of other individual and collective practices have an equally important role to play in building and sustaining community. The course draws from studies in demography, political science, sociology, psychology of racial identity formation and education to help students communicate better about and in shared governance. Among the core concepts are the role of students and other citizens in sustaining and transforming their communities, the historical and contemporary mission of Land Grant universities, the centrality of rhetoric and communication to collaborative judgment, and the relationship among media, cultures, and politics as they affect civic and community engagement. Students also learn together about the range of ways that citizens do, can, and might participate in democratic decision-making and will observe and practice these forms in several communication media and across a range of differences. Finally, learn about models of and opportunities for engaging other citizens across and beyond Penn State, including in global environments.",
+  "enforced": "ENGL 15 or ENGL 30H or CAS 137H or ENGL 137H or CAS 100",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "or",
+    "a": {
+     "op": "or",
+     "a": {
+      "op": "or",
+      "a": {
+       "op": "course",
+       "code": "ENGL 15"
+      },
+      "b": {
+       "op": "course",
+       "code": "ENGL 30H"
+      }
+     },
+     "b": {
+      "op": "course",
+      "code": "CAS 137H"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "ENGL 137H"
+    }
+   },
+   "b": {
+    "op": "or",
+    "a": {
+     "op": "or",
+     "a": {
+      "op": "or",
+      "a": {
+       "op": "course",
+       "code": "CAS 100A"
+      },
+      "b": {
+       "op": "course",
+       "code": "CAS 100B"
+      }
+     },
+     "b": {
+      "op": "course",
+      "code": "CAS 100C"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "CAS 100S"
+    }
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [
+   "GH",
+   "GS",
+   "- Integrative: Interdomain"
+  ],
+  "attributes": [
+   "International Cultures: (IL)",
+   "United States Cultures: (US)",
+   "GLO: Effective Communication",
+   "GLO: Integrative Thinking",
+   "GLO: Soc Resp and Ethic Reason"
+  ],
+  "crossListings": [
+   "AYFCE 211N",
+   "CAS 222N"
+  ],
+  "aliases": [
+   "CIVCM 211N"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/civcm/",
+  "extraRaw": []
+ },
+ {
+  "code": "CIVCM 494",
+  "subject": "CIVCM",
+  "number": "494",
+  "display": "CIVCM 494",
+  "title": "Research Topics",
+  "credits": "1-3 Credits/Maximum of 3",
+  "creditsParsed": {
+   "min": 1,
+   "max": 3,
+   "repeatableMax": 3
+  },
+  "description": "Supervised student activities on research projects identified on an individual basis.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CIVCM 494"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/civcm/",
+  "extraRaw": []
+ },
+ {
+  "code": "CIVCM 495",
+  "subject": "CIVCM",
+  "number": "495",
+  "display": "CIVCM 495",
+  "title": "CIVCM Internship",
+  "credits": "3-6 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 6,
+   "repeatableMax": null
+  },
+  "description": "Supervised off-campus, nongroup instruction including field experiences, practica, or internships. Written and oral critique of activity required.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "CIVCM 495"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/civcm/",
+  "extraRaw": []
+ }
+]

@@ -1,0 +1,79 @@
+{
+ "slug": "behrend-management-information-systems-minor",
+ "name": "Management Information Systems, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/management-information-systems-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MIS 336",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MIS 430",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nMIS 336Database Management Systems3\nMIS 430Systems Analysis3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "MIS 204",
+      "MIS 250"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nMIS 204Introduction to Management Information Systems 3\nor MIS 250 Introduction to Problem Solving with Spreadsheet Analysis and Information Systems Management\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from CMPSC or MIS courses",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from 400-level CMPSC or MIS",
+     "from": {
+      "kind": "pattern",
+      "subject": "CMPSC",
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits from CMPSC or MIS courses6\nSelect 3 credits from 400-level CMPSC or MIS3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

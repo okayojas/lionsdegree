@@ -1,0 +1,42 @@
+{
+ "slug": "liberal-arts-jewish-studies-minor",
+ "name": "Jewish Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/jewish-studies-minor/",
+ "totalCredits": 18,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nJST/HEBR 10Jewish Civilization 3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits in Jewish Studies, 6 credits of which must be at the 400 level",
+     "from": {
+      "kind": "pattern",
+      "subject": "BE",
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 15 credits in Jewish Studies, 6 credits of which must be at the 400 level15\n"
+  }
+ ],
+ "suggestedPlans": []
+}

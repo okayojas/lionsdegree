@@ -1,0 +1,125 @@
+{
+ "slug": "eberly-science-chemistry-minor",
+ "name": "Chemistry, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/chemistry-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 113",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 212",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 213",
+     "credits": 2
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nCHEM 112Chemical Principles II 3\nCHEM 113Experimental Chemistry II 1\nCHEM 210Organic Chemistry I3\nCHEM 212Organic Chemistry II3\nCHEM 213Laboratory in Organic Chemistry2\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "CHEM 227",
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 450",
+      "CHEM 452"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 466",
+      "CHEM 452"
+     ],
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SELECT 6",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "FROM 400",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "CHEM 494",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CHEM 494H",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CHEM 495",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CHEM 496",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect one of the following:4-6\nCHEM 227Analytical Chemistry\nCHEM 450& CHEM 452Physical Chemistry - Thermodynamicsand Physical Chemistry - Quantum Chemistry\nCHEM 466& CHEM 452Molecular Thermodynamicsand Physical Chemistry - Quantum Chemistry\nSelect 6 credits from 400-level CHEM not used above (excluding CHEM 494, CHEM 494H, CHEM 495, and CHEM 496)6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

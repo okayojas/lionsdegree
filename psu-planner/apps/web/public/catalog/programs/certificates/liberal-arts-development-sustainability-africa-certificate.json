@@ -1,0 +1,54 @@
+{
+ "slug": "liberal-arts-development-sustainability-africa-certificate",
+ "name": "Development and Sustainability in Africa, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/development-sustainability-africa-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AFR 105",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AFR 205",
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following (relevant African Studies course, or focal topic course taught by an affiliated faculty member):",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AFR 440",
+       "AFR 444",
+       "AFR 464",
+       "GEOG 230",
+       "GEOG 430",
+       "FOR 418",
+       "FOR 488Y"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Upper-level independent study with approved faculty"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "AFR 105African Biodiversity and Conservation 3\nAFR 205Development and Sustainability in Africa 3\nSelect 6 credits from the following (relevant African Studies course, or focal topic course taught by an affiliated faculty member):6\nAFR 440Globalization and Its Implications\nAFR 444Resource Governance in Africa\nAFR 464Extractive Industries in Africa\nAFR/RPTM 497Special Topics\nGEOG 230Geographic Perspectives on Environment, Society and Sustainability\nGEOG 430Human Use of Environment\nFOR 418Agroforestry: Science, Design, and Practice\nFOR 488Y\nUpper-level independent study with approved faculty\n"
+  }
+ ],
+ "suggestedPlans": []
+}

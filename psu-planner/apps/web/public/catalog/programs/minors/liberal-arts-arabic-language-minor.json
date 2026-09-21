@@ -1,0 +1,82 @@
+{
+ "slug": "liberal-arts-arabic-language-minor",
+ "name": "Arabic Language, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/arabic-language-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ARAB 1",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ARAB 2",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ARAB 3",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nARAB 1Elementary Modern Standard Arabic I4\nARAB 2Elementary Modern Standard Arabic II4\nARAB 3Intermediate Modern Standard Arabic4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ARAB 110",
+       "ARAB 197",
+       "ARAB 199",
+       "ARAB 296",
+       "ARAB 297",
+       "ARAB 299",
+       "ARAB 397",
+       "ARAB 399"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ARAB 401",
+       "ARAB 402",
+       "ARAB 494",
+       "ARAB 496",
+       "ARAB 497",
+       "ARAB 499"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits of the following: 3\nARAB 110Arab Language, Cultures, and Current Topics\nARAB 197Special Topics\nARAB 199Foreign Studies\nARAB 296Independent Studies\nARAB 297Special Topics\nARAB 299Foreign Studies\nARAB 397Special Topics\nARAB 399Foreign Studies\nSelect 6 credits of the following: 6\nARAB 401Advanced Language & Cultures I\nARAB 402Advanced Language & Cultures II\nARAB 494Research Project\nARAB 496Independent Studies\nARAB 497Special Topics\nARAB 499Foreign Studies\n"
+  }
+ ],
+ "suggestedPlans": []
+}

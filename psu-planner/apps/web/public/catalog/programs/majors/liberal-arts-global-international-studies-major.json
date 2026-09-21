@@ -1,0 +1,112 @@
+{
+ "slug": "liberal-arts-global-international-studies-major",
+ "name": "Global and International Studies Major",
+ "type": "major",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/global-international-studies-major/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CMLIT 10",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CMLIT 10World Literatures 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Global Approaches of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AA 100",
+       "ANTH 45N",
+       "CMLIT 13",
+       "CMLIT 143",
+       "ECON 104",
+       "FR 139",
+       "GEOG 40",
+       "HIST 10",
+       "HIST 11",
+       "MUSIC 9",
+       "PLSC 3",
+       "PLSC 14",
+       "RLST 1"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3 credits in Global Approaches of the following:3\nAA 100Introduction to International Arts\nANTH 45NCultural Diversity: A Global Perspective\nCMLIT 13Virtual Worlds: Antiquity to the Present\nCMLIT 143Human Rights and World Literature\nECON 104Introductory Macroeconomic Analysis and Policy\nFR 139France and the French-speaking World\nGEOG 40World Regional Geography\nHIST 10World History to 1500\nHIST 11World History since 1500\nMUSIC 9Introduction to World Musics\nPLSC 3Comparing Politics around the Globe\nPLSC 14International Relations\nRLST 1Introduction to World Religions\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits EITHER in a language beyond the 12th -credit-level proficiency OR in a second world language, or equivalent proficiencies",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from departmental list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select from departmental list 6 credits in courses focused on one of the following world regions:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Africa"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Asia and the Pacific"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Eastern European and Slavic Cultures"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Latin America and the Caribbean"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Middle East"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "A. World Language\nSelect 12 credits EITHER in a language beyond the 12th -credit-level proficiency OR in a second world language, or equivalent proficiencies 12\nB. Global Perspectives\nSelect 6 credits from departmental list 6\nC. World Regions\nSelect from departmental list 6 credits in courses focused on one of the following world regions: 6\nAfrica\nAsia and the Pacific\nEastern European and Slavic Cultures\nLatin America and the Caribbean\nMiddle East\n"
+  }
+ ],
+ "suggestedPlans": []
+}

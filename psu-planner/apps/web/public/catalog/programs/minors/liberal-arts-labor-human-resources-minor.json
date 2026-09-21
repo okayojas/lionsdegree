@@ -1,0 +1,108 @@
+{
+ "slug": "liberal-arts-labor-human-resources-minor",
+ "name": "Labor and Human Resources, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/labor-human-resources-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "LHR 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 304",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 305",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nLHR 100Exploring Work and Employment 3\nLHR 304Labor and Employment Relations Fundamentals 3\nLHR 305Human Resources Fundamentals 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "LHR 201",
+      "LHR 401"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nLHR 201Employment Relationship: Law and Policy 3\nor LHR 401 The Law of Labor-Management Relations\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from any 400-level LHR course",
+     "from": {
+      "kind": "pattern",
+      "subject": "LHR",
+      "minLevel": 400
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following list in consultation with an adviser",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ACCTG 211",
+       "AFAM 100N",
+       "AFAM 110N",
+       "BA 243",
+       "CAS 203",
+       "CAS 352",
+       "ECON 342",
+       "HIST 155",
+       "MGMT 100",
+       "MGMT 301",
+       "MGMT 321",
+       "OLEAD 100",
+       "OLEAD 409",
+       "OLEAD 464",
+       "OLEAD 465",
+       "SOC 103",
+       "SOC 110",
+       "SOC 119N"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Any 400-level AFAM, CAS, ECON, HIST, LTNST, MGMT, PHIL, PSYCH, SPAN, SOC, WMNST course"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits from any 400-level LHR course3\nSelect 3 credits from the following list in consultation with an adviser3\nACCTG 211Financial and Managerial Accounting for Decision Making\nAFAM 100NBlack Freedom Struggles\nAFAM 110NIntroduction to African American Studies\nBA 243Social, Legal, and Ethical Environment of Business\nCAS 203Interpersonal Communication\nCAS 352Organizational Communication\nECON 342Industrial Organization\nHIST 155American Business History\nMGMT 100Survey of Management\nMGMT 301Basic Management Concepts\nMGMT 321Leadership and Motivation\nOLEAD 100Introduction to Leadership\nOLEAD 409\nOLEAD 464Communication Skills for Leaders in Groups and Organizations\nOLEAD 465Collective Decision Making\nSOC 103Racism and Sexism\nSOC 110Sociology of Gender\nSOC 119NRace, Ethnicity and Culture\nAny 400-level AFAM, CAS, ECON, HIST, LTNST, MGMT, PHIL, PSYCH, SPAN, SOC, WMNST course\n"
+  }
+ ],
+ "suggestedPlans": []
+}

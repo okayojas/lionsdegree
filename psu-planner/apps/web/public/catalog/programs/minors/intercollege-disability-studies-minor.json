@@ -1,0 +1,65 @@
+{
+ "slug": "intercollege-disability-studies-minor",
+ "name": "Disability Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "intercollege",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/intercollege/disability-studies-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ENGL 228",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "RHS 100",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nENGL 228Introduction to Disability Studies in the Humanities 3\nRHS 100Introduction to Disability Culture 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from ENGL 496, or an equivalent independent research course or internship approved by the faculty member in charge",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from ENGL 496, or an equivalent independent research course or internship approved by the faculty member in charge3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select at least three courses for at least 9 credits from an approved department list in consultation with adviser",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect at least three courses for at least 9 credits from an approved department list in consultation with adviser9\n"
+  }
+ ],
+ "suggestedPlans": []
+}

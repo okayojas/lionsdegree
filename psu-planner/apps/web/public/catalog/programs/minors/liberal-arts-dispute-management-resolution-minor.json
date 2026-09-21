@@ -1,0 +1,85 @@
+{
+ "slug": "liberal-arts-dispute-management-resolution-minor",
+ "name": "Dispute Management and Resolution, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/dispute-management-resolution-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CAS 203",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 304",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCAS 203Interpersonal Communication 3\nLHR 304Labor and Employment Relations Fundamentals 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits of which 9 credits must be taken at the 400 level:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "LHR 437",
+       "CAS 404"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAS 250",
+       "CAS 403",
+       "CAS 426W",
+       "CAS 452W",
+       "CAS 471",
+       "LHR 201",
+       "LHR 434",
+       "LHR 459",
+       "PSYCH 281"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAS 471"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 12 credits of which 9 credits must be taken at the 400 level:12\nLHR 437Workplace Dispute Resolution\nor CAS 404 Conflict Resolution and Negotiation\nSelect 6 credits from the following:\nCAS 250Small Group Communication\nCAS 403Interpersonal Communication Theory and Research\nCAS 426WCommunication Ethics\nCAS 452WOrganizational Communication Theory and Research\nCAS 471Intercultural Communication Theory and Research\nLHR 201Employment Relationship: Law and Policy\nLHR 434Advanced Collective Bargaining and Contract Administration\nLHR 459Collective Bargaining in Professional Sports\nLHR/OLEAD 465Collective Decision Making\nPSYCH 281Introduction to Industrial-Organizational Psychology\nSelect 3 credits from the following:\nCAS/WMNST 455Topics in Gender and Communication\nCAS 471Intercultural Communication Theory and Research\nLHR/AFAM/WMNST 136Race, Gender, and Employment\n"
+  }
+ ],
+ "suggestedPlans": []
+}

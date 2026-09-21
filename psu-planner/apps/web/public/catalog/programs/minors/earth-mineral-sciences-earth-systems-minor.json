@@ -1,0 +1,69 @@
+{
+ "slug": "earth-mineral-sciences-earth-systems-minor",
+ "name": "Earth Systems, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/earth-systems-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EARTH 2",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nEARTH 2The Earth System and Global Change 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EARTH 103N",
+       "EMSC 470W",
+       "GEOG 430",
+       "GEOSC 310",
+       "METEO 300"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits of the following:6\nEARTH 103NEarth in the Future: Predicting Climate Change and Its Impacts Over the Next Century\nEMSC 470WUndergraduate Collaborative Research in Earth and Materials Sciences\nGEOG 430Human Use of Environment\nGEOSC 310Earth History\nMETEO 300Fundamentals of Atmospheric Science\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the Earth Systems Committee's approved list of courses",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 9 credits from the Earth Systems Committee's approved list of courses9\n"
+  }
+ ],
+ "suggestedPlans": []
+}

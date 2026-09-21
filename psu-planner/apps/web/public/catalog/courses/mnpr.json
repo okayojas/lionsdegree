@@ -1,0 +1,225 @@
+[
+ {
+  "code": "MNPR 301",
+  "subject": "MNPR",
+  "number": "301",
+  "display": "MNPR 301",
+  "title": "Elements of Mineral Processing",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Introduction to mineral process engineering. Sampling, sizing, comminution, physical and chemical processes, applications to industrial practice. Pollution control.",
+  "enforced": "(CHEM 110 or CHEM 106) and MATH 141",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "or",
+    "a": {
+     "op": "course",
+     "code": "CHEM 110"
+    },
+    "b": {
+     "op": "course",
+     "code": "CHEM 106"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "MATH 141"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "MNPR 301"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/mnpr/",
+  "extraRaw": []
+ },
+ {
+  "code": "MNPR 401",
+  "subject": "MNPR",
+  "number": "401",
+  "display": "MNPR 401",
+  "title": "Mineral Process Engineering",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Unit operations for processing particulate materials: comminution, screening, classification, slurry pumping, thickening, filtration, etc.; application to mineral processing plant design.",
+  "enforced": "MNPR 301 and (MATH 250 or MATH 251)",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "MNPR 301"
+   },
+   "b": {
+    "op": "or",
+    "a": {
+     "op": "course",
+     "code": "MATH 250"
+    },
+    "b": {
+     "op": "course",
+     "code": "MATH 251"
+    }
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "MNPR 401"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/mnpr/",
+  "extraRaw": []
+ },
+ {
+  "code": "MNPR 413",
+  "subject": "MNPR",
+  "number": "413",
+  "display": "MNPR 413",
+  "title": "Mineral Processing Laboratory",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "A laboratory study of the chemical and physical principles involved in practical mineral processing operations.",
+  "enforced": "or Concurrent at Enrollment: MNPR 301",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "MNPR 301"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "MNPR 413"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/mnpr/",
+  "extraRaw": []
+ },
+ {
+  "code": "MNPR 426",
+  "subject": "MNPR",
+  "number": "426",
+  "display": "MNPR 426",
+  "title": "Aqueous Processing",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "A study of the chemical and engineering principles pertinent to metal processing in aqueous systems: hydrometallurgical extraction, plating, materials preparation. MATSE (MN PR) 426 Aqueous Processing (3) This 3-credit course deals with the chemical and engineering principles underlying the aqueous processing of metals: metal extraction from primary and secondary sources, electroplating, and metal finishing, powder synthesis, energy storage and conversion, and treatment of recycling of metal-containing toxic wastes.1. Physico-Chemical Principles - Thermodynamic, chemical kinetic and transport factors which control hydrochemical processes (leaching; precipitation; adsorption; solvent extraction; ion exchange; electrowinning, electrorefining and electroplating; membrane processes; energy storage and conversion); graphical representation of homogeneous and solid/solution equilibria; chemical reagents.2. Engineering Principles - Reactor design and staged operations; ideal batch, continuous stirred-tank and plug-flow reactors; fluidized bed reactors; electrochemical reactors; multistage separation processes (solid-liquid, liquid-liquid, and gas-liquid systems).3. Process Synthesis - Design of metal separation (extraction, refining, waste treatment) materials synthesis, metal finishing, and energy storage/conversion processes and system-integration of unit operations, industrial practice. Emphasis on closing circuits to minimize or eliminate waste effluents.",
+  "enforced": "EME 301 or MATSE 401",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "course",
+    "code": "EME 301"
+   },
+   "b": {
+    "op": "course",
+    "code": "MATSE 401"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "MATSE 426"
+  ],
+  "aliases": [
+   "MNPR 426"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/mnpr/",
+  "extraRaw": []
+ },
+ {
+  "code": "MNPR 496",
+  "subject": "MNPR",
+  "number": "496",
+  "display": "MNPR 496",
+  "title": "Independent Studies",
+  "credits": "1-18 Credits/Maximum of 18",
+  "creditsParsed": {
+   "min": 1,
+   "max": 18,
+   "repeatableMax": 18
+  },
+  "description": "Creative projects, including research and design, which are supervised on an individual basis and which fall outside the scope of formal courses.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "MNPR 496"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/mnpr/",
+  "extraRaw": []
+ },
+ {
+  "code": "MNPR 497",
+  "subject": "MNPR",
+  "number": "497",
+  "display": "MNPR 497",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given infrequently to explore, in depth, a comparatively narrow subject which may be topical or of special interest.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "MNPR 497"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/mnpr/",
+  "extraRaw": []
+ }
+]
