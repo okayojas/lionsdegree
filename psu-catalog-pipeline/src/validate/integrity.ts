@@ -66,8 +66,9 @@ export interface IntegrityReport {
   expanded: { program: string; code: string; variants: string[] }[];
   unverified: { program: string; code: string; where: string }[];
   /** Pattern pools whose prose yielded subject tokens that no course uses.
-   * Dropped rather than suggested; when nothing survives the pool becomes null,
-   * which renders as "we don't know" instead of an empty, confident list. */
+   * Dropped rather than suggested; when nothing survives the pool becomes an
+   * empty list, which resolves to "unreadable" -- work still to do -- rather
+   * than "adviser-defined", which would exempt it from coverage. */
   phantomSubjects: { program: string; dropped: string[]; kept: string[]; comment: string }[];
 }
 
@@ -199,8 +200,13 @@ export function validateProgram(program: Program, index: CourseIndex, report: In
         if (dropped.length) {
           report.phantomSubjects.push({ program: program.slug, dropped, kept, comment: rule.commentRaw });
         }
-        // Nothing real left: say we don't know rather than suggest nothing.
-        if (!kept.length) rule.from = null;
+        // Nothing real left. An EMPTY course list, not null: null means the
+        // bulletin pointed somewhere else (a department list, an adviser),
+        // which is excluded from coverage as having no answer by design. This
+        // is a parse failure, and laundering it into "adviser-defined" would
+        // quietly inflate the coverage figure and tell the student their
+        // adviser decides something the bulletin actually spells out.
+        if (!kept.length) rule.from = { kind: "courses", courses: [] };
         else rule.from = { ...rule.from, subjects: kept };
       } else if (rule.type === "oneOf" || rule.type === "chooseN") {
         rule.options = rule.options.flatMap((o) => {

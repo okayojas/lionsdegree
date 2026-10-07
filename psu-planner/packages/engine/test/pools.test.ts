@@ -228,7 +228,12 @@ describe("requirements whose options are indented under them", () => {
     const pools = allSelectPools();
     expect(pools.length).toBeGreaterThan(2000);
     const unreadable = pools.filter((p) => p.pool?.kind === "unreadable");
-    expect(unreadable.length).toBeLessThanOrEqual(90);
+    // 91: the 86 whose option tables genuinely cannot be read, plus the 5
+    // whose every named subject turned out not to exist. Those 5 used to be
+    // filed as adviser-defined, which exempted a parse failure from the
+    // coverage denominator. The bound is a RATCHET -- it may fall when more
+    // are recovered, and a rise means something regressed.
+    expect(unreadable.length).toBeLessThanOrEqual(91);
   });
 
   it("hold each course once, because a Pool is a set", () => {

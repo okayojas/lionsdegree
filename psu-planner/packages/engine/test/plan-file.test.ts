@@ -148,3 +148,13 @@ describe("a hand-edited file that omits an optional map", () => {
     expect(result.plan.added).toEqual([]);
   });
 });
+
+describe("an installation with no bulletin data", () => {
+  it("refuses with a sentence, not with the word undefined", () => {
+    const r = parsePlanFile(exportPlanFile(plan), []);
+    expect(r.ok).toBe(false);
+    if (r.ok) throw new Error("unreachable");
+    expect(r.reason).not.toMatch(/undefined/);
+    expect(r.reason).toMatch(/no bulletin data/i);
+  });
+});

@@ -132,12 +132,18 @@ async function main() {
       const cardTitles: string[] = await page.evaluate(() =>
         Array.from(document.querySelectorAll("div[role='button'] h4")).map((h) => h.textContent?.trim() ?? "").filter(Boolean),
       );
-      cardTitles.forEach((t) => seen.add(t));
+      // Normalized the SAME way payload names are. A heading whose markup
+      // wraps carries newlines and indentation, so it never matched its
+      // payload, got re-clicked on all three sweeps, and polled the full
+      // timeout each time -- tripling the requests the per-card floor exists
+      // to limit.
+      cardTitles.forEach((t) => seen.add(t.replace(/\s+/g, " ").trim()));
       console.log(`[ap] list page ${pageNo}: ${cardTitles.length} cards`);
-      for (const title of cardTitles) {
+      for (const raw of cardTitles) {
+        const title = raw.replace(/\s+/g, " ").trim();
         if (payloads.has(title)) continue;
         try {
-          await page.locator(`h4:has-text("${title.replace(/"/g, '\\"')}")`).first().click({ timeout: 6000, force: true });
+          await page.locator(`h4:has-text("${raw.replace(/"/g, '\\"')}")`).first().click({ timeout: 6000, force: true });
           // POLL for the payload rather than guessing a fixed delay. A flat
           // 1200ms wait silently dropped 8 of 45 exams (Spanish, French,
           // German, Chinese, Physics 2 among them) whenever the server action

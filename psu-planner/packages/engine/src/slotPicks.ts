@@ -59,7 +59,11 @@ export interface SlotPickOptions {
 const OFFERINGS_NOTE =
   "We can't see which semesters a course actually runs — check LionPATH before you commit to one.";
 
-function describePool(pool: Pool | null): string {
+/** Any gen-ed course at all. Used by plans generated before gen-ed slots were
+ * refined into framework categories. */
+const ANY_GENED = "GE";
+
+function describePool(pool: Pool | null, opts?: SlotPickOptions): string {
   if (!pool) return "We couldn't match this requirement to a course list.";
   switch (pool.kind) {
     case "listed":
@@ -71,8 +75,19 @@ function describePool(pool: Pool | null): string {
       const level = pool.minLevel ? `${pool.minLevel}-level and above` : "any level";
       return `Any ${level} course in ${subjects}.`;
     }
-    case "genEd":
-      return `Courses carrying the ${pool.domain} designation.`;
+    case "genEd": {
+      // pool.domain is a framework BUCKET KEY ("EXPGN", "INTER"), not a
+      // designation a course carries. Rendering it raw produced "Courses
+      // carrying the EXPGN designation", which names nothing that exists --
+      // and every plan has those slots.
+      const bucket = BUCKET_BY_KEY.get(pool.domain);
+      const what = bucket ? bucket.label : pool.domain === ANY_GENED ? "any General Education" : `${pool.domain}`;
+      const hint =
+        opts && (opts.needUS || opts.needIL)
+          ? " A course marked “also fulfills US/IL” closes two requirements at once."
+          : "";
+      return `${what} — qualifying courses.${hint}`;
+    }
     case "adviser":
       // The requirement's own words. There is no list to show, and saying so
       // plainly beats an empty one, which reads as "nothing qualifies".
@@ -88,7 +103,7 @@ export function rankSlotPicks(catalog: Catalog, pool: Pool | null, opts: SlotPic
   const result: SlotSuggestions = {
     pool,
     picks: [],
-    poolNote: describePool(pool),
+    poolNote: describePool(pool, opts),
     offeringsNote: OFFERINGS_NOTE,
   };
   // An adviser or unreadable Pool has nothing to enumerate. Returning an empty
@@ -110,7 +125,15 @@ export function rankSlotPicks(catalog: Catalog, pool: Pool | null, opts: SlotPic
           preferHonors: opts.preferHonors,
         })
       : Object.values(catalog)
-          .filter((c) => c.genEd.includes(pool.domain) && !opts.exclude.has(c.code) && c.level === "undergraduate")
+          .filter((c) => {
+            if (opts.exclude.has(c.code) || c.level !== "undergraduate") return false;
+            // "GE" is not a designation any course carries; it means ANY
+            // gen-ed course. Matching it literally returned zero picks under a
+            // confident heading -- an empty list reading as "nothing
+            // qualifies", which is the failure this whole panel exists to
+            // avoid.
+            return pool.domain === ANY_GENED ? c.genEd.length > 0 : c.genEd.includes(pool.domain);
+          })
           .map((course) => ({ course, bonuses: [] as string[], score: 0 }));
     result.picks = withPrereqRanking(picks.map((p) => ({ ...p, ready: false })), catalog, opts);
     return result;

@@ -90,6 +90,12 @@ export function parsePlanFile(text: string, publishedEditions: string[]): PlanFi
     return { ok: false, reason: "That plan file has a term in it that isn't a term, so it can't be opened." };
   }
 
+  if (!publishedEditions.length) {
+    // Without this the next line yields `undefined` and the refusal reads
+    // "That plan follows the undefined bulletin ... It has ." Every failure
+    // here is supposed to be a sentence a student can act on.
+    return { ok: false, reason: "This copy of LionsDegree has no bulletin data, so a plan can't be opened." };
+  }
   // A plan saved before Editions existed was generated against the oldest we
   // publish, which is what it is read as.
   const edition = plan.edition ?? publishedEditions[0];

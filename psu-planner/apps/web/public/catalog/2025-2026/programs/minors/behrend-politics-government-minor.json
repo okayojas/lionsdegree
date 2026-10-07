@@ -39,7 +39,10 @@
      "type": "selectCredits",
      "credits": 12,
      "commentRaw": "Select 12 credits (at least 6 credits at the 400 level) from PL SC courses",
-     "from": null
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
     }
    ],
    "structured": true,

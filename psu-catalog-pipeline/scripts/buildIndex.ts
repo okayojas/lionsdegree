@@ -124,11 +124,37 @@ for (const dir of [path.join(outDir, "courses"), path.join(outDir, "courses", "g
     }
   }
 }
+// program-requirements.json — every program's REQUIREMENTS in one file.
+//
+// For anything that audits an existing plan rather than generating one, the
+// suggested-plan grids are dead weight: 4.8 MB of the 8.2 MB in the program
+// files, describing a schedule the student already has. rawText is another
+// 1.5 MB of display prose that the structured rules already carry. Dropping
+// both leaves the part an audit actually reads.
+const programRequirements: Record<string, unknown> = {};
+for (const sub of ["majors", "minors", "certificates"]) {
+  const dir = path.join(outDir, "programs", sub);
+  if (!fs.existsSync(dir)) continue;
+  for (const f of fs.readdirSync(dir).filter((f) => f.endsWith(".json"))) {
+    const p = JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8"));
+    programRequirements[p.slug] = {
+      slug: p.slug,
+      name: p.name,
+      type: p.type,
+      totalCredits: p.totalCredits ?? null,
+      requirementSections: (p.requirementSections ?? []).map(({ rawText: _raw, ...s }: Record<string, unknown>) => s),
+    };
+  }
+}
+const reqPath = path.join(outDir, "program-requirements.json");
+fs.writeFileSync(reqPath, JSON.stringify(programRequirements), "utf-8");
+
 const searchIndexPath = path.join(outDir, "search-index.json");
 fs.writeFileSync(searchIndexPath, JSON.stringify(slim), "utf-8");
 const slimMb = fs.statSync(searchIndexPath).size / 1048576;
 
 console.log(
   `programs_index: ${programs.length} programs; subjects_index: ${Object.keys(subjects).length} subjects; ` +
-    `search-index: ${slim.length} courses, ${slimMb.toFixed(1)} MB`,
+    `search-index: ${slim.length} courses, ${slimMb.toFixed(1)} MB; ` +
+    `program-requirements: ${Object.keys(programRequirements).length} programs, ${(fs.statSync(reqPath).size / 1048576).toFixed(1)} MB`,
 );

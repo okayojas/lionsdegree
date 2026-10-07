@@ -13,8 +13,16 @@ export function downloadPlan(plan: PlanDoc): void {
   const a = document.createElement("a");
   a.href = url;
   a.download = planFileName(plan);
+  // In the document, and revoked on a later task: Firefox has wanted the
+  // anchor attached for a programmatic click, and revoking synchronously can
+  // abort the transfer before it starts.
+  a.style.display = "none";
+  document.body.appendChild(a);
   a.click();
-  URL.revokeObjectURL(url);
+  setTimeout(() => {
+    a.remove();
+    URL.revokeObjectURL(url);
+  }, 0);
 }
 
 /** Pick a file and open it, or explain why not.

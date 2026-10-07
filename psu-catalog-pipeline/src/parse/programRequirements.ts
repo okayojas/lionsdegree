@@ -144,7 +144,16 @@ const LEVEL_PHRASE = new RegExp(String.raw`\b(\d{3}(?:${LEVEL_SEP}\d{3})*)\s*-?\
  * "with at least 3 credits at the 400-level" parsed as a subject named REDITS.
  * Case-insensitivity on code-shaped regexes has now produced this class of bug
  * twice; see DECISIONS.md 2.4. */
-const SUBJECT_TOKEN = String.raw`[A-Z]{2,7}(?:-[A-Z])?`;
+/** A subject code as the bulletin writes it. Some carry an internal SPACE --
+ * "PL SC courses" is PLSC in the catalog -- and reading only the first half
+ * left the whole requirement with no pool, because PL is not a subject.
+ *
+ * The second part must be ALL CAPS, two or more letters, not a wildcard, and
+ * not the start of a Capitalised word. Without those guards "Advanced IT
+ * Business courses" read as "IT B" -> ITB and destroyed the valid IT, and
+ * "NURS 400-Level ... (NURS XXX)" became NURSXXX. Both are real rows that
+ * regressed before the guards went in. */
+const SUBJECT_TOKEN = String.raw`[A-Z]{2,7}(?:[ -](?!X{2,})[A-Z]{2,5}(?![a-z]))?`;
 const SUBJECT_RUN = new RegExp(String.raw`\b${SUBJECT_TOKEN}(?:${SEP}${SUBJECT_TOKEN})*`, "g");
 const SUBJECT_SPLIT = new RegExp(SEP);
 
@@ -156,7 +165,7 @@ function pickSubjects(segment: string, trailing = false): string[] | null {
         run
           .split(SUBJECT_SPLIT)
           // "A-I" is stored as "AI" with an "A-I" alias, as everywhere else.
-          .map((s) => s.trim().toUpperCase().replace(/-/g, ""))
+          .map((s) => s.trim().toUpperCase().replace(/[\s-]/g, ""))
           .filter((s) => s.length >= 2 && !NOT_SUBJECTS.has(s)),
       ),
     ];
@@ -230,7 +239,14 @@ export function classifyComment(text: string): Rule {
   // courses that cannot satisfy their requirement. Checked last, so anything
   // with an explicit credit count is already handled; bounded to rows that END
   // by introducing a list, which is a strong enough signal to be safe.
-  const conditional = /\b(?:select|choose|take)\s+(one|two|three|four|five|six|\d+)?[^.]*\bfollowing(?:\s+courses?)?\s*:$/i.exec(text);
+  // The leading `.*` is greedy ON PURPOSE: it pushes the match to the LAST
+  // select/choose/take in the row. Anchoring on the first one matched the
+  // "take" of "If you take SPAN 253W, select two of the following" and the
+  // count was never captured, so every conditional list recorded as one
+  // course. Today's catalog says "select one" throughout, so nothing was
+  // wrong yet -- a row saying "select two" would have under-credited a
+  // student by a whole course.
+  const conditional = /^.*\b(?:select|choose|take)\s+(one|two|three|four|five|six|\d+)?[^.]*?\bfollowing(?:\s+courses?)?\s*:$/i.exec(text);
   if (conditional) {
     const word = conditional[1]?.toLowerCase();
     const n = word ? (WORD_NUMS[word] ?? parseInt(word, 10)) : 1;

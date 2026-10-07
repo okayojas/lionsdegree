@@ -165,6 +165,11 @@ export const usePlanner = create<PlannerState>((set, get) => ({
   setPlan: async (plan, opts) => {
     persist(plan, opts?.optimize ? "generated" : "set plan");
     if (!plan) {
+      // Starting over: drop the previous plan's edition pin too. Without this
+      // the catalog stays on whatever that plan used, and onboarding builds a
+      // BRAND-NEW plan pinned to an older bulletin, with no way back short of
+      // a reload.
+      void loadEditions().then((e) => setCatalogEdition(e.latest));
       set({ plan: null, items: [], sched: {}, loading: false });
       return;
     }

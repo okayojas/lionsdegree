@@ -149,7 +149,10 @@
      "type": "selectCredits",
      "credits": 9,
      "commentRaw": "Select 9 credits from the Application Supporting Course list. At least 3 credits must be at the 300- or 400-level. Up to 6 credits of ROTC.",
-     "from": null
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
     }
    ],
    "structured": true,
