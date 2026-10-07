@@ -172,6 +172,18 @@ export async function loadSubject(prefix: string): Promise<Course[]> {
   return courses;
 }
 
+/** One course, with its FULL description, from its subject file.
+ *
+ * The search index carries a shortened description -- enough to find a course,
+ * not enough to read about one. Anything that shows a student prose about a
+ * single course must come through here, or it will quietly render the
+ * search text instead. */
+export async function loadCourse(code: string): Promise<Course | null> {
+  const prefix = code.split(" ")[0];
+  if (!prefix) return null;
+  return (await loadSubject(prefix)).find((c) => c.code === code) ?? null;
+}
+
 /** Load every subject referenced by the given codes, plus one hop of prereq
  * subjects so edges and status checks resolve. */
 export async function loadCatalogFor(codes: string[]): Promise<Catalog> {

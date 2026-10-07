@@ -40,7 +40,10 @@ export default defineConfig({
       scope: "/plan/",
       manifestFilename: "plan/manifest.webmanifest",
       manifest: {
-        id: "/plan/",
+        // Identity stays "/" -- the value an existing install already has.
+        // Changing it would register a SECOND app rather than update the one
+        // a student installed, leaving them with a stale duplicate.
+        id: "/",
         name: "LionsDegree",
         short_name: "LionsDegree",
         description: "LionsDegree — prerequisite-aware degree planning for Penn State students (unofficial).",

@@ -63,7 +63,17 @@ describe("the service worker", () => {
     // /plan/sw.js makes the landing page unreachable to it by construction
     // rather than by configuration that could drift.
     expect(exists("plan/sw.js")).toBe(true);
-    expect(exists("sw.js")).toBe(false);
+  });
+
+  it("leaves a tombstone at the old root path", () => {
+    // A worker from before the split is still registered at the root and
+    // answers "/" from its own cache, so page-side cleanup never runs. The
+    // browser does re-fetch the worker script, and a 404 there makes it KEEP
+    // the registration -- so the file has to exist and has to self-destruct.
+    expect(exists("sw.js")).toBe(true);
+    const sw = read("sw.js");
+    expect(sw).toMatch(/registration\.unregister\(\)/);
+    expect(sw).toMatch(/caches\.delete/);
   });
 
   it("does not precache the landing page it can never serve", () => {
@@ -83,6 +93,8 @@ describe("the service worker", () => {
     const m = JSON.parse(read("plan/manifest.webmanifest"));
     expect(m.start_url).toBe("/plan/");
     expect(m.scope).toBe("/plan/");
+    // An existing install must UPDATE, not be duplicated alongside a new one.
+    expect(m.id).toBe("/");
     // The near-black from two palettes ago framed an installed app wrongly.
     expect(m.theme_color).toBe("#f1ebdf");
   });

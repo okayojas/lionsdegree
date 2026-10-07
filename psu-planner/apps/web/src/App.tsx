@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { progress, type Course, type PlanItem } from "@psu-planner/engine";
 import { usePlanner, loadSavedPlan, getPlanHistory, type PlanHistoryEntry } from "./store";
-import { loadIugIndex, type IugIndexEntry } from "./data/catalogClient";
+import { loadCourse, loadIugIndex, type IugIndexEntry } from "./data/catalogClient";
 import { Onboarding } from "./components/Onboarding";
 import { PlanCanvas } from "./components/PlanCanvas";
 import { CourseModal } from "./components/CourseModal";
@@ -96,7 +96,13 @@ export default function App() {
       setOpenItem(existing);
       return;
     }
+    // Search results come from the search index, whose description is
+    // shortened to what matching needs. This card shows a student prose about
+    // one course, so read the full text from its subject file first.
     setPickedCourse(c);
+    void loadCourse(c.code).then((fullCourse) => {
+      if (fullCourse) setPickedCourse((cur) => (cur?.code === c.code ? fullCourse : cur));
+    });
   };
 
   const addPicked = async (sem: number) => {

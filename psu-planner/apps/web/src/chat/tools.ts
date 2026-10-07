@@ -7,7 +7,7 @@ import {
   type Catalog, type ReqSection, type ScheduleConstraint,
 } from "@psu-planner/engine";
 import { auditIug } from "@psu-planner/engine";
-import { loadCoverage, loadFullCatalog, loadIug, loadIugIndex, loadProgramBySlug, loadProgramsIndex } from "../data/catalogClient";
+import { loadCourse, loadCoverage, loadFullCatalog, loadIug, loadIugIndex, loadProgramBySlug, loadProgramsIndex } from "../data/catalogClient";
 import { usePlanner } from "../store";
 import { appendAction, getActions } from "./ledger";
 
@@ -119,7 +119,11 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
 
     case "get_course_details": {
       const cat = await fullCatalog();
-      const c = cat[requireCode(args.code)];
+      const code = requireCode(args.code);
+      // The search index holds a shortened description; a request for the
+      // DETAILS of one course is exactly the on-demand case that should read
+      // the full text from its subject file.
+      const c = (await loadCourse(code)) ?? cat[code];
       if (!c) return { error: `${args.code} is not in the PSU catalog` };
       return {
         code: c.code, display: c.display, title: c.title, credits: c.credits,

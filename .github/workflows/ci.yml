@@ -23,11 +23,15 @@ jobs:
         working-directory: psu-planner
       - run: pnpm -r typecheck
         working-directory: psu-planner
-      # The engine tests read the catalog committed under
-      # apps/web/public/catalog, so a bad catalog refresh fails here first.
-      - run: pnpm -r test
-        working-directory: psu-planner
+      # BUILD FIRST. The web suite asserts properties of dist -- that the
+      # landing page ships no planner bundle, that the worker is scoped to
+      # /plan/ -- and deliberately fails rather than skipping when dist is
+      # absent, so it cannot run before the build exists.
       - run: pnpm --filter web build
+        working-directory: psu-planner
+      # The engine tests read the catalog committed under
+      # apps/web/public/catalog, so a bad catalog refresh fails here.
+      - run: pnpm -r test
         working-directory: psu-planner
 
   pipeline:
