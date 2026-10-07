@@ -1,7 +1,7 @@
 /** Catalog search. Port of the demo's scorer (L676-727), parameterized on
  * catalog. Designed to run inside a Web Worker over the full ~10k-course
  * catalog. */
-import type { Catalog } from "./types.js";
+import type { Catalog, Course } from "./types.js";
 
 const STOP = new Set("a an the and or of in to for with on by is are as its this that at from".split(" "));
 
@@ -87,4 +87,39 @@ export function snippet(desc: string, stems: string[]): { text: string; ranges: 
   }
   ranges.sort((a, b) => a[0] - b[0]);
   return { text, ranges };
+}
+
+/** Restore whole Course objects from the slim search index.
+ *
+ * The index omits empty fields -- `"crossListings":[]` on most courses,
+ * `"concurrent":null` on nearly all -- because the key names repeat once per
+ * course and that adds up across ~14,600 of them. It also omits the common
+ * `level` and the bulletin `url`. Consumers should never have to know that, so
+ * everything is filled back in here and they receive ordinary Courses.
+ *
+ * Descriptions in the index are truncated to a search blurb. The full text is
+ * one fetch away in the subject file, which is what a course card reads. */
+export function hydrateSearchIndex(raw: unknown[]): Course[] {
+  return (raw as Partial<Course>[]).map((c) => ({
+    code: c.code ?? "",
+    subject: c.subject ?? "",
+    number: c.number ?? "",
+    display: c.display ?? c.code ?? "",
+    title: c.title ?? "",
+    credits: c.credits ?? "",
+    creditsParsed: c.creditsParsed ?? null,
+    description: c.description ?? "",
+    enforced: c.enforced ?? null,
+    concurrent: c.concurrent ?? null,
+    prereqAdvisory: c.prereqAdvisory ?? null,
+    prereqAst: c.prereqAst ?? null,
+    concurrentAst: c.concurrentAst ?? null,
+    astComplete: c.astComplete ?? true,
+    genEd: c.genEd ?? [],
+    attributes: c.attributes ?? [],
+    crossListings: c.crossListings ?? [],
+    aliases: c.aliases ?? [],
+    level: c.level ?? "undergraduate",
+    url: c.url ?? "",
+  }));
 }

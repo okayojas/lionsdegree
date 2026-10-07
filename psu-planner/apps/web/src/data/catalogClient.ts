@@ -1,6 +1,6 @@
 /** Loads pipeline-produced static catalog files (served from /catalog in dev,
  * CDN in prod) and assembles the runtime Catalog for the courses a plan needs. */
-import { astCourses, buildCatalog, type Catalog, type Course, type FlowchartPatterns, type IugSpec } from "@psu-planner/engine";
+import { astCourses, buildCatalog, hydrateSearchIndex, type Catalog, type Course, type FlowchartPatterns, type IugSpec } from "@psu-planner/engine";
 
 const ROOT = "/catalog";
 
@@ -209,6 +209,18 @@ let fullCatalogPromise: Promise<Catalog> | null = null;
 export async function loadFullCatalog(onProgress?: (loaded: number, total: number) => void): Promise<Catalog> {
   if (fullCatalogPromise) return fullCatalogPromise;
   fullCatalogPromise = (async () => {
+    // ONE request for the slim search index (~0.7 MB over the wire) instead of
+    // 275 subject files totalling 20 MB. Descriptions in it are truncated to a
+    // search blurb; a course card reads the full text from its subject file,
+    // which it already loads. Falls back to the slow path if the index is
+    // missing, so an older catalog still works.
+    try {
+      const raw = await getJson<unknown[]>("search-index.json");
+      onProgress?.(1, 1);
+      return buildCatalog(hydrateSearchIndex(raw));
+    } catch {
+      /* no index in this edition — fall through */
+    }
     const idx = await loadSubjectsIndex();
     const prefixes = Object.keys(idx);
     let done = 0;
