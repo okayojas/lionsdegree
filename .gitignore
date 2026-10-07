@@ -56,3 +56,7 @@ logo-size-test.html
 
 # Vite build output (Pages builds from source)
 psu-planner/apps/web/dist/
+
+# MCP package: catalog is copied in at build time, bundle is generated
+psu-planner/packages/mcp/catalog/
+psu-planner/packages/mcp/dist/

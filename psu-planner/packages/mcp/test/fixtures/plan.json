@@ -1,0 +1,478 @@
+{
+  "format": "lionsdegree.plan",
+  "formatVersion": 1,
+  "plan": {
+    "id": "fixture-plan",
+    "rev": 1,
+    "updatedAt": "2026-10-07T06:03:08.629Z",
+    "programs": [
+      "engineering-engineering-science-bs"
+    ],
+    "terms": [
+      {
+        "label": "Fall 2026",
+        "items": [
+          {
+            "code": "CHEM 110",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 0
+            }
+          },
+          {
+            "code": "ECON 102",
+            "alternatives": [
+              "ECON 104"
+            ],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 0
+            }
+          },
+          {
+            "code": "EDSGN 100",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 0
+            }
+          },
+          {
+            "slot": "GE",
+            "id": "GE-0-0",
+            "credits": 3,
+            "label": "General Education Course",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 0
+            }
+          }
+        ]
+      },
+      {
+        "label": "Spring 2027",
+        "items": [
+          {
+            "code": "CHEM 111",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 1
+            }
+          },
+          {
+            "code": "ENGL 15",
+            "alternatives": [
+              "ENGL 30H",
+              "ESL 15"
+            ],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 1
+            }
+          },
+          {
+            "code": "ESC 261M",
+            "alternatives": [
+              "CMPSC 201"
+            ],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 1
+            }
+          },
+          {
+            "code": "MATH 141",
+            "alternatives": [
+              "MATH 141E"
+            ],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 1
+            }
+          },
+          {
+            "code": "PHYS 211",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 1
+            }
+          },
+          {
+            "slot": "EL",
+            "id": "EL-1-1",
+            "credits": 1,
+            "label": "First Year Seminar",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 1
+            }
+          }
+        ]
+      },
+      {
+        "label": "Fall 2027",
+        "items": [
+          {
+            "code": "EMCH 210H",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 2
+            }
+          },
+          {
+            "code": "MATH 220",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 2
+            }
+          },
+          {
+            "code": "MATH 251",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 2
+            }
+          },
+          {
+            "code": "PHYS 212",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 2
+            }
+          },
+          {
+            "slot": "GE",
+            "id": "GE-2-2",
+            "credits": 3,
+            "label": "General Education Course",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 2
+            }
+          }
+        ]
+      },
+      {
+        "label": "Spring 2028",
+        "items": [
+          {
+            "code": "CAS 100A",
+            "alternatives": [
+              "CAS 100B"
+            ],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 3
+            }
+          },
+          {
+            "code": "EMCH 212H",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 3
+            }
+          },
+          {
+            "code": "EMCH 302H",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 3
+            }
+          },
+          {
+            "code": "MATH 230",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 3
+            }
+          },
+          {
+            "code": "PHYS 214",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 3
+            }
+          }
+        ]
+      },
+      {
+        "label": "Fall 2028",
+        "items": [
+          {
+            "code": "EE 210",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 4
+            }
+          },
+          {
+            "code": "ESC 312",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 4
+            }
+          },
+          {
+            "code": "ESC 407",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 4
+            }
+          },
+          {
+            "code": "ESC 414M",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 4
+            }
+          },
+          {
+            "code": "ESC 433",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 4
+            }
+          },
+          {
+            "slot": "GE",
+            "id": "GE-4-3",
+            "credits": 3,
+            "label": "General Education Course",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 4
+            }
+          }
+        ]
+      },
+      {
+        "label": "Spring 2029",
+        "items": [
+          {
+            "code": "ESC 409",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 5
+            }
+          },
+          {
+            "slot": "EL",
+            "id": "EL-5-4",
+            "credits": 3,
+            "label": "Foundational Elective",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 5
+            }
+          },
+          {
+            "slot": "EL",
+            "id": "EL-5-5",
+            "credits": 3,
+            "label": "Foundational Elective",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 5
+            }
+          },
+          {
+            "slot": "EL",
+            "id": "EL-5-6",
+            "credits": 3,
+            "label": "Foundational Elective",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 5
+            }
+          },
+          {
+            "slot": "EL",
+            "id": "EL-5-7",
+            "credits": 3,
+            "label": "Foundational Elective",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 5
+            }
+          },
+          {
+            "slot": "EL",
+            "id": "EL-5-8",
+            "credits": 3,
+            "label": "Foundational Elective",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 5
+            }
+          }
+        ]
+      },
+      {
+        "label": "Fall 2029",
+        "items": [
+          {
+            "code": "ENGL 202C",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 6
+            }
+          },
+          {
+            "code": "ESC 404",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 6
+            }
+          },
+          {
+            "code": "ESC 410H",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 6
+            }
+          },
+          {
+            "slot": "EL",
+            "id": "EL-6-9",
+            "credits": 3,
+            "label": "Technical Elective",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 6
+            }
+          },
+          {
+            "slot": "EL",
+            "id": "EL-6-10",
+            "credits": 3,
+            "label": "Technical Elective",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 6
+            }
+          },
+          {
+            "slot": "GHW",
+            "id": "GHW-6-11",
+            "credits": 1.5,
+            "label": "General Education Course (GHW)",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 6
+            }
+          }
+        ]
+      },
+      {
+        "label": "Spring 2030",
+        "items": [
+          {
+            "code": "ESC 411",
+            "alternatives": [],
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 7
+            }
+          },
+          {
+            "slot": "EL",
+            "id": "EL-7-12",
+            "credits": 3,
+            "label": "Technical Elective",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 7
+            }
+          },
+          {
+            "slot": "EL",
+            "id": "EL-7-13",
+            "credits": 3,
+            "label": "Technical Elective",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 7
+            }
+          },
+          {
+            "slot": "GE",
+            "id": "GE-7-14",
+            "credits": 3,
+            "label": "General Education Course",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 7
+            }
+          },
+          {
+            "slot": "GE",
+            "id": "GE-7-15",
+            "credits": 3,
+            "label": "General Education Course",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 7
+            }
+          },
+          {
+            "slot": "GHW",
+            "id": "GHW-7-16",
+            "credits": 1.5,
+            "label": "General Education Course (GHW)",
+            "program": "engineering-engineering-science-bs",
+            "origin": {
+              "program": "engineering-engineering-science-bs",
+              "templateSem": 7
+            }
+          }
+        ]
+      }
+    ],
+    "completed": {
+      "MATH 140": true,
+      "ENGL 015": true
+    },
+    "moves": {},
+    "slotFills": {},
+    "added": [],
+    "removed": {},
+    "view": null,
+    "edition": "2026-2027"
+  }
+}
