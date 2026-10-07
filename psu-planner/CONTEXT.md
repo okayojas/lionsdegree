@@ -57,16 +57,21 @@ from and how far it can be trusted. Provenance is part of the Pool, not metadata
 about it, because the five sources differ enormously in reliability and the
 student has to be told which one they are looking at.
 
-A Pool is one of five kinds:
+A Pool is one of six kinds:
 
 - **Listed**: the bulletin names the courses outright. Authoritative.
 - **Patterned**: derived from the subjects and course levels the requirement
   describes. Only as good as our reading of that description.
 - **General Education**: any course carrying a given Gen Ed designation.
-- **Registered**: a list from a Registry Entry, carrying its source and date.
-- **Adviser**: no list exists, because the requirement is defined by a
+- **Registry**: a list from a Registry Entry, carrying its source and date.
+- **Adviser**: no list exists anywhere, because the requirement is settled by a
   conversation. A kind of Pool in its own right, never an empty one — an empty
   list would tell the student no course qualifies, which is false.
+- **Unreadable**: a list exists but we failed to read it. Distinct from
+  Adviser, which is the absence of a list rather than a failure to find one.
+  The two look similar to a student and must not be confused in counting:
+  Adviser requirements are excluded from coverage because they have no answer
+  by design, Unreadable ones are work still to do.
 
 **Suggestion**:
 A Course offered to the student for a particular Slot, ranked by how well it

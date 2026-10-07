@@ -116,6 +116,11 @@ async function main() {
   await page.goto("https://www.psu.edu/admission/undergraduate/credit/ap-credit", { waitUntil: "domcontentloaded", timeout: 90_000 });
   await page.waitForTimeout(5000);
 
+  /** Minimum time to spend per exam card, matching the pace this scrape ran at
+   * before payload polling made it faster. The shared fetcher's 1 req/s rule
+   * does not cover browser-driven clicks, so the floor is enforced here. */
+  const MIN_PER_CARD_MS = 1500;
+
   /** Every exam card the listing offered, across all pagination pages. The
    * capture is complete only when we hold a payload for each one. */
   const seen = new Set<string>();
@@ -137,11 +142,17 @@ async function main() {
           // 1200ms wait silently dropped 8 of 45 exams (Spanish, French,
           // German, Chinese, Physics 2 among them) whenever the server action
           // came back slower than the guess.
-          const deadline = Date.now() + waitMs;
+          const started = Date.now();
+          const deadline = started + waitMs;
           while (!payloads.has(title) && Date.now() < deadline) await page.waitForTimeout(150);
           if (!payloads.has(title)) console.log(`  [ap] no payload yet: ${title}`);
           await page.keyboard.press("Escape");
-          await page.waitForTimeout(250);
+          // Politeness floor. Polling returns as soon as the payload lands,
+          // which would otherwise let us click faster than the old fixed wait
+          // did -- and retry sweeps multiply that. Each card costs psu.edu at
+          // least one server action, so hold the old ~1.5s per-card pace.
+          const spent = Date.now() - started;
+          await page.waitForTimeout(Math.max(250, MIN_PER_CARD_MS - spent));
         } catch { console.log(`  [ap] click failed: ${title}`); }
       }
       // Next pagination page: a button/link with the bare number.

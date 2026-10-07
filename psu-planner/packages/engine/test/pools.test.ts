@@ -1,5 +1,5 @@
 /** Pool resolution on REAL catalog data: a Requirement Rule becomes a Pool of
- * one of five kinds, carrying where the knowledge came from.
+ * one of its kinds, carrying where the knowledge came from.
  *
  * The provenance is the point. A bulletin table is authoritative; a department
  * list read off an off-bulletin page is not; and "ask your adviser" is a real
@@ -12,6 +12,7 @@ import {
   codeMatchesPool,
   fingerprintRequirement,
   poolFromRule,
+  poolIsAdviserDefined,
   resolveSlotPool,
   type Pool,
   type Registry,
@@ -135,6 +136,43 @@ describe("a Pool sourced from the Registry", () => {
       },
     });
     expect(pool?.kind).toBe("listed");
+  });
+});
+
+describe("unreadable is not the same as adviser-defined", () => {
+  // Coverage reporting excludes adviser-defined requirements from its
+  // denominator because they have no answer by design. A row we simply failed
+  // to parse must NOT get that exemption, or the published coverage figure
+  // silently inflates by the ~594 unstructured rows in each edition.
+  it("a row we could not parse is unreadable, not adviser", () => {
+    const dir = path.join(CATALOG_DIR, "programs/majors");
+    let checked = 0;
+    for (const f of fs.readdirSync(dir)) {
+      const p = JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8"));
+      for (const s of (p.requirementSections ?? []) as ReqSection[]) {
+        for (const r of s.rules) {
+          if (r.type !== "unstructured") continue;
+          expect(poolFromRule(r)?.kind).toBe("unreadable");
+          checked++;
+        }
+      }
+    }
+    expect(checked).toBeGreaterThan(100); // the corpus really does contain them
+  });
+
+  it("only genuinely adviser-defined requirements count as adviser", () => {
+    const adviser = poolFromRule(ruleWhere("abington-health-humanities-ba", "In consultation with adviser"));
+    expect(poolIsAdviserDefined(adviser)).toBe(true);
+    expect(poolIsAdviserDefined({ kind: "unreadable", prose: "whatever" })).toBe(false);
+  });
+
+  it("a choice whose options we failed to read does not become an approved list", () => {
+    // Previously the sibling-section fallback fired for any pool with no
+    // courses, so an unreadable chooseN absorbed the whole section and
+    // rendered as an authoritative list. Iron rule 2: unparseable must never
+    // present as satisfied.
+    const pool = poolFromRule({ type: "chooseN", n: 2, options: [], credits: null, commentRaw: "Select two of the following:" });
+    expect(pool?.kind).toBe("unreadable");
   });
 });
 

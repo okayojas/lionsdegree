@@ -26,6 +26,16 @@ export interface CourseIndex {
   subjects: Set<string>;
 }
 
+/** Record every subject prefix a course is reachable under, including its
+ * aliases ("A-I 100" is stored as "AI"). Shared by both index builders so the
+ * two cannot drift. */
+function addSubjects(subjects: Set<string>, c: { code: string; aliases?: string[] }): void {
+  for (const code of [c.code, ...(c.aliases ?? [])]) {
+    const s = /^([A-Z-]+)\s/.exec(code)?.[1];
+    if (s) subjects.add(s.replace(/-/g, ""));
+  }
+}
+
 export function buildCourseIndex(outDir: string): CourseIndex {
   const known = new Set<string>();
   const subjects = new Set<string>();
@@ -38,10 +48,7 @@ export function buildCourseIndex(outDir: string): CourseIndex {
       for (const c of courses) {
         known.add(c.code);
         for (const a of c.aliases ?? []) known.add(a);
-        for (const code of [c.code, ...(c.aliases ?? [])]) {
-          const s = /^([A-Z-]+)\s/.exec(code)?.[1];
-          if (s) subjects.add(s.replace(/-/g, ""));
-        }
+        addSubjects(subjects, c);
         const m = /^([A-Z]+ \d{1,3})[A-Z]*$/.exec(c.code);
         if (m) {
           const list = variantsByBase.get(m[1]) ?? [];
@@ -88,10 +95,7 @@ export function indexFromCourses(courses: { code: string; aliases?: string[] }[]
   for (const c of courses) {
     known.add(c.code);
     for (const a of c.aliases ?? []) known.add(a);
-    for (const code of [c.code, ...(c.aliases ?? [])]) {
-      const s = /^([A-Z-]+)\s/.exec(code)?.[1];
-      if (s) subjects.add(s.replace(/-/g, ""));
-    }
+    addSubjects(subjects, c);
     const m = /^([A-Z]+ \d{1,3})[A-Z]*$/.exec(c.code);
     if (m) {
       const list = variantsByBase.get(m[1]) ?? [];

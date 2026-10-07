@@ -3,7 +3,7 @@
  *
  * A POOL is the set of courses that may fill a Slot, together with where that
  * knowledge came from and how far it can be trusted. Provenance is part of the
- * Pool rather than metadata about it: the five sources differ enormously in
+ * Pool rather than metadata about it: the sources differ enormously in
  * reliability -- a bulletin table is authoritative, a department page read off
  * the bulletin is not, and "ask your adviser" is the requirement's actual
  * content rather than a gap in our data -- and the student has to be told
@@ -56,16 +56,17 @@ export type Pool =
       campusScope: string;
       confirmedBy: "html-parse" | "human";
     }
-  /** No list exists to show. A kind in its own right, NEVER an empty one: an
-   * empty list tells the student no course qualifies, which is false. The
-   * requirement's own wording is the answer, and the adviser is the authority.
-   *
-   * This covers both requirements that are adviser-defined by design ("in
-   * consultation with your adviser") and ones whose list we could not derive.
-   * The honest presentation is identical -- show the wording, name the
-   * adviser -- so they share a kind; the prose itself tells the student which
-   * situation they are in. */
-  | { kind: "adviser"; prose: string };
+  /** No list exists ANYWHERE, because the requirement is settled by a
+   * conversation. A kind in its own right, NEVER an empty one: an empty list
+   * tells the student no course qualifies, which is false. The requirement's
+   * own wording is the answer and the adviser is the authority. */
+  | { kind: "adviser"; prose: string }
+  /** We could not read this requirement at all. Distinct from `adviser`: that
+   * one means no list EXISTS, this one means we failed to find a list that
+   * does. Collapsing them would let unreadable rows out of the coverage
+   * denominator and inflate the published coverage figure. The requirement's
+   * raw text is all we have, and it is still shown rather than hidden. */
+  | { kind: "unreadable"; prose: string };
 
 export interface RegistryEntry {
   entryId: string;
@@ -128,8 +129,13 @@ function registryEntryFor(prose: string, ctx?: PoolContext): RegistryEntry | nul
   );
 }
 
-const listed = (courses: string[], prose: string): Pool =>
-  courses.length ? { kind: "listed", courses } : { kind: "adviser", prose };
+/** A rule that should name courses but names none is unreadable, not
+ * adviser-defined: the bulletin meant to list something and we did not get it.
+ * `prose` may be empty (oneOf carries no comment); that is honest -- we have
+ * nothing to show -- and is why this is not an `adviser` Pool, whose whole
+ * contract is that the wording IS the answer. */
+const listedOrUnreadable = (courses: string[], prose: string): Pool =>
+  courses.length ? { kind: "listed", courses } : { kind: "unreadable", prose };
 
 function fromRegistryOrAdviser(prose: string, ctx?: PoolContext): Pool {
   const e = registryEntryFor(prose, ctx);
@@ -159,9 +165,9 @@ export function poolFromRule(rule: ReqRule, ctx?: PoolContext): Pool | null {
     case "course":
       return { kind: "listed", courses: [rule.code] };
     case "oneOf":
-      return listed(rule.options, "");
+      return listedOrUnreadable(rule.options, "");
     case "chooseN":
-      return listed(rule.options, rule.commentRaw);
+      return listedOrUnreadable(rule.options, rule.commentRaw);
     case "genEd":
       return { kind: "genEd", domain: rule.domain };
     case "selectCredits": {
@@ -174,8 +180,9 @@ export function poolFromRule(rule: ReqRule, ctx?: PoolContext): Pool | null {
     }
     case "unstructured":
       // A row we could not read. We still know a requirement is there, so show
-      // its wording rather than pretending it does not exist.
-      return { kind: "adviser", prose: rule.commentRaw };
+      // its wording rather than pretending it does not exist -- but it is NOT
+      // adviser-defined, and must not be counted as one.
+      return { kind: "unreadable", prose: rule.commentRaw };
     case "note":
       return null;
   }
@@ -227,8 +234,11 @@ export function resolveSlotPool(label: string, sections: ReqSection[], ctx?: Poo
 
   const pool = poolFromRule(best.rule, ctx);
   // Nothing concrete on the rule itself: sibling indented courses in the
-  // matched section can also fill it.
-  if (pool?.kind === "adviser") {
+  // matched section can also fill it. Gated to selectCredits, as it always
+  // was -- a chooseN whose options we failed to read is an unreadable rule,
+  // and handing it the whole section's courses would dress a parse failure up
+  // as an approved list (iron rule 2).
+  if (best.rule.type === "selectCredits" && pool?.kind === "adviser") {
     const siblings = sectionCourses(best.section);
     if (siblings.length) return { kind: "listed", courses: siblings };
   }
@@ -260,6 +270,13 @@ export function poolHasMembership(
   return !!pool && (pool.kind === "listed" || pool.kind === "registry" || pool.kind === "patterned");
 }
 
+/** Whether this Pool's absence of courses is the requirement's real content
+ * (ask your adviser) rather than our failure to read it. Coverage reporting
+ * excludes the former from its denominator and must NOT exclude the latter. */
+export function poolIsAdviserDefined(pool: Pool | null): boolean {
+  return pool?.kind === "adviser";
+}
+
 export function codeMatchesPool(code: string, pool: Pool | null): boolean {
   if (!pool) return false;
   switch (pool.kind) {
@@ -277,6 +294,7 @@ export function codeMatchesPool(code: string, pool: Pool | null): boolean {
     // Pool has no membership to test by construction.
     case "genEd":
     case "adviser":
+    case "unreadable":
       return false;
   }
 }

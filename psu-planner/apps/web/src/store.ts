@@ -174,8 +174,14 @@ export const usePlanner = create<PlannerState>((set, get) => ({
     // 2025-2026; serving it the newest edition would silently re-plan it
     // against requirements that do not govern this student.
     const editions = await loadEditions();
+    // A plan saved before editions existed was generated against the oldest we
+    // publish, so that is what it reads as. An edition we do not have falls
+    // back to the OLDEST, not the newest: editions accumulate forward, so a
+    // plan older than our range is nearer the oldest in requirements than the
+    // newest (ADR-0001). The student is told which one they are seeing; that
+    // notice is part of the onboarding edition work.
     const pinned = plan.edition ?? editions.editions[0];
-    setCatalogEdition(editions.editions.includes(pinned) ? pinned : editions.latest);
+    setCatalogEdition(editions.editions.includes(pinned) ? pinned : editions.editions[0]);
     const catalog = await loadCatalogFor(planCodes(plan));
     const coverage = await loadCoverage();
     set({ coverage });

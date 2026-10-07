@@ -1,7 +1,7 @@
 /** Generate a personalized PlanDoc from pipeline suggested-plan templates.
  * Merging rule for multi-program: union by term index, dedupe shared courses
  * (first program wins the card; both get credit via sourcePrograms tags). */
-import { codeMatchesPool, resolveSlotPool, type ReqSection } from "./requirements.js";
+import { codeMatchesPool, poolHasMembership, resolveSlotPool, type Registry, type ReqSection } from "./requirements.js";
 import type { PlanDoc, PlanItemSpec, PlanTerm } from "./types.js";
 
 export interface TemplateEntry {
@@ -49,6 +49,14 @@ export interface GenPlanOptions {
    * courses whose content subsumes X (MATH 250 -> [MATH 251]). A completed
    * covering course satisfies the requirement for X; never the reverse. */
   coveredBy?: Record<string, string[]>;
+  /** Department course lists the bulletin names but does not contain, keyed by
+   * program and Edition. INJECTED like the mined scheduling priors so the
+   * engine stays pure and reads no files. Absent: requirements that point at a
+   * department list resolve to an adviser Pool, which is the honest answer. */
+  registry?: Registry;
+  /** Which bulletin Edition this plan is being generated against. Registry
+   * entries are Edition-scoped, so a lookup without it is not attempted. */
+  edition?: string;
 }
 
 function termLabels(start: GenPlanOptions["startTerm"], count: number): string[] {
@@ -135,10 +143,15 @@ export function generatePlan(programs: ProgramTemplate[], opts: GenPlanOptions, 
    * courses + completed courses (each usable once across all slots). */
   const slotFulfilledBy = (prog: ProgramTemplate, label: string): string | null => {
     if (!prog.requirements?.length) return null;
-    const pool = resolveSlotPool(label, prog.requirements);
-    // genEd slots are fulfilled by the gen-ed audit, and an adviser Pool has no
-    // membership to test, so neither can absorb another program's course.
-    if (!pool || pool.kind === "genEd" || pool.kind === "adviser") return null;
+    const pool = resolveSlotPool(label, prog.requirements, {
+      programSlug: prog.slug,
+      edition: opts.edition,
+      registry: opts.registry,
+    });
+    // Only a Pool with testable membership can absorb another program's course:
+    // genEd is answered by the gen-ed audit, and adviser/unreadable Pools have
+    // nothing to test.
+    if (!poolHasMembership(pool)) return null;
     for (const [slug, codes] of coursesByProgram) {
       if (slug === prog.slug) continue;
       for (const code of codes) {
