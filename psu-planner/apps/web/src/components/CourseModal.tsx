@@ -4,102 +4,93 @@
  * tags over the full catalog. */
 import { useEffect, useMemo, useState } from "react";
 import {
-  GENED_BUCKETS, SAT, SUMMER_MAX_CREDITS, UNK, auditGenEd, checkCourse, codeMatchesPool,
-  countableCourses, majorDeptPrefixes, parseTermLabel, poolHasMembership, rankGenEdPicks, resolveSlotPool, searchCatalog,
-  type Catalog, type Course, type PlanItem, type ReqSection,
+  GENED_BUCKETS, SAT, SUMMER_MAX_CREDITS, UNK, auditGenEd, checkCourse,
+  countableCourses, majorDeptPrefixes, parseTermLabel, rankSlotPicks, resolveSlotPool,
+  type Catalog, type PlanItem, type Pool, type ReqSection, type SlotSuggestions as SlotSuggestionsResult,
 } from "@psu-planner/engine";
 import { loadFullCatalog, loadProgramBySlug } from "../data/catalogClient";
 import { usePlanner } from "../store";
 
 const GENED_KEYS = new Set(GENED_BUCKETS.map((b) => b.key));
 
-interface Suggestion { course: Course; bonuses: string[] }
-
+/** ONE path for every Slot.
+ *
+ * Gen-ed Slots and elective Slots used to branch here into separate rankings,
+ * which meant two different ideas of what a good suggestion is and a blank
+ * card whenever the elective branch found no list. The engine now answers
+ * both from the Slot's Pool. */
 function SlotSuggestions({ item, onFill }: { item: PlanItem; onFill: (code: string) => void }) {
   const { plan, items } = usePlanner();
-  const [suggestions, setSuggestions] = useState<Suggestion[] | null>(null);
-  const [note, setNote] = useState("");
+  const [result, setResult] = useState<SlotSuggestionsResult | null>(null);
 
   useEffect(() => {
     let alive = true;
     (async () => {
       const full: Catalog = await loadFullCatalog();
+      if (!plan) return;
       const inPlan = new Set(items.filter((i) => i.kind === "course").map((i) => i.code as string));
-      const completed = new Set(Object.keys(plan?.completed ?? {}));
-      const usable = (c: Course) =>
-        !inPlan.has(c.code) && !completed.has(c.code) && c.level === "undergraduate";
+      const completed = new Set(Object.keys(plan.completed ?? {}));
+      const prefixes = majorDeptPrefixes(plan);
+      const audit = auditGenEd(countableCourses(plan), full, prefixes);
 
-      let picks: Suggestion[] = [];
-      if (item.slot && GENED_KEYS.has(item.slot) && plan) {
-        // Category-aware gen-ed picks: filtered to the slot's framework bucket,
-        // own-department courses excluded (bulletin restriction), and courses
-        // that also knock out an unmet US/IL overlay ranked to the top.
-        const prefixes = majorDeptPrefixes(plan);
-        const audit = auditGenEd(countableCourses(plan), full, prefixes);
-        const bucket = GENED_BUCKETS.find((b) => b.key === item.slot)!;
-        picks = rankGenEdPicks(full, item.slot, {
-          majorPrefixes: prefixes,
-          needUS: audit.us.remaining,
-          needIL: audit.il.remaining,
-          exclude: new Set([...inPlan, ...completed]),
-          preferHonors: !!plan.honors,
-        }).filter((p) => usable(p.course)).map((p) => ({ course: p.course, bonuses: p.bonuses }));
-        const overlay = audit.il.remaining || audit.us.remaining
-          ? " Courses topped with “also fulfills IL/US” cover two requirements at once — the efficient pick."
-          : "";
-        setNote(`${bucket.label} — qualifying courses:${overlay}`);
+      // A gen-ed Slot carries its domain on the item; an elective Slot names a
+      // requirement in its program, which the engine resolves to a Pool.
+      let pool: Pool | null = null;
+      if (item.slot && GENED_KEYS.has(item.slot)) {
+        pool = { kind: "genEd", domain: item.slot };
       } else if (item.slot === "GE") {
-        // Legacy plans generated before category refinement.
-        picks = Object.values(full).filter((c) => c.genEd.length > 0 && usable(c)).map((course) => ({ course, bonuses: [] }));
-        setNote("Courses carrying any General Education attribute:");
-      } else {
-        // Elective slot: resolve the matching requirement rule for its program.
-        const prog = item.slotProgram
-          ? await loadProgramBySlug<{ requirementSections: ReqSection[] }>(item.slotProgram)
-          : null;
-        const pool = prog && item.slotLabel ? resolveSlotPool(item.slotLabel, prog.requirementSections) : null;
-        if (poolHasMembership(pool)) {
-          picks = Object.values(full).filter((c) => codeMatchesPool(c.code, pool) && usable(c)).map((course) => ({ course, bonuses: [] }));
-          const options = pool.kind === "patterned" ? "pattern-based" : pool.courses.length;
-          setNote(`From this requirement's approved list (${options} options):`);
-        } else {
-          picks = searchCatalog(full, item.slotLabel ?? "elective", 40).map((k) => full[k]).filter(usable).map((course) => ({ course, bonuses: [] }));
-          setNote(`No published list for “${item.slotLabel ?? "this requirement"}” — talk to your adviser about what counts. You can still add a course once you've confirmed it:`);
-        }
+        // Plans generated before gen-ed categories were refined.
+        pool = { kind: "genEd", domain: "GE" };
+      } else if (item.slotProgram && item.slotLabel) {
+        const prog = await loadProgramBySlug<{ requirementSections: ReqSection[] }>(item.slotProgram);
+        pool = prog ? resolveSlotPool(item.slotLabel, prog.requirementSections) : null;
       }
-      // Dedupe by code; gen-ed picks keep their double-count ranking, others
-      // sort by course number.
-      const seen = new Set<string>();
-      picks = picks.filter((p) => (seen.has(p.course.code) ? false : (seen.add(p.course.code), true)));
-      if (!(item.slot && GENED_KEYS.has(item.slot))) {
-        picks.sort((a, b) => a.course.subject.localeCompare(b.course.subject) || a.course.number.localeCompare(b.course.number, undefined, { numeric: true }));
-      }
-      if (alive) setSuggestions(picks.slice(0, 60));
+
+      const ranked = rankSlotPicks(full, pool, {
+        exclude: new Set([...inPlan, ...completed]),
+        majorPrefixes: prefixes,
+        needUS: audit.us.remaining,
+        needIL: audit.il.remaining,
+        preferHonors: !!plan.honors,
+        sched: usePlanner.getState().sched,
+        termIndex: item.sem,
+        limit: 60,
+      });
+      if (alive) setResult(ranked);
     })();
     return () => { alive = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item.id]);
 
-  if (!suggestions) return <p className="desc">Loading suggestions from the catalog…</p>;
-  if (!suggestions.length) return <p className="desc">No matching courses found — use the toolbar search to pick one manually.</p>;
+  if (!result) return <p className="desc">Loading suggestions from the catalog…</p>;
+
   return (
     <>
-      <p className="desc">{note}</p>
-      <div style={{ maxHeight: "40vh", overflow: "auto" }}>
-        {suggestions.map(({ course: s, bonuses }) => (
-          <button
-            key={s.code}
-            style={{ display: "block", width: "100%", textAlign: "left", marginBottom: 6 }}
-            onClick={() => onFill(s.code)}
-          >
-            <b>{s.display}</b> · {s.credits}{s.genEd.length ? ` · ${s.genEd.join("/")}` : ""}
-            {bonuses.map((b) => (
-              <span key={b} style={{ marginLeft: 6, padding: "1px 6px", borderRadius: 8, fontSize: 11, background: "var(--primary)", color: "var(--primary-fg)" }}>{b}</span>
+      <p className="desc">{result.poolNote}</p>
+      {result.picks.length > 0 && (
+        <>
+          <p className="desc slot-offerings">{result.offeringsNote}</p>
+          <div className="slot-picks">
+            {result.picks.map(({ course: s, bonuses }) => (
+              <button key={s.code} className="slot-pick" onClick={() => onFill(s.code)}>
+                <span className="code">{s.display}</span>
+                <span className="slot-pick-title">{s.title}</span>
+                <span className="slot-pick-meta">
+                  {s.credits}
+                  {bonuses.map((b) => (
+                    <span key={b} className="slot-pick-chip">{b}</span>
+                  ))}
+                </span>
+              </button>
             ))}
-            {" — "}{s.title}
-          </button>
-        ))}
-      </div>
+          </div>
+        </>
+      )}
+      {result.picks.length === 0 && (
+        <p className="desc">
+          Use the toolbar search to add a course once you've confirmed it counts.
+        </p>
+      )}
     </>
   );
 }

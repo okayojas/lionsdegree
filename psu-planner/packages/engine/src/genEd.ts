@@ -58,12 +58,12 @@ export const GENED_BUCKETS: GenEdBucket[] = [
   { key: "EXPGN", label: "Exploration: Natural Sciences (GN)", credits: 3, domains: ["GN"], interdomain: "no", deptRestricted: true },
   { key: "EXP", label: "Exploration (GA/GH/GN/GS or inter-domain)", credits: 6, domains: ["GA", "GH", "GN", "GS"], interdomain: "also", deptRestricted: true },
 ];
-const BUCKET_BY_KEY = new Map(GENED_BUCKETS.map((b) => [b.key, b]));
+export const BUCKET_BY_KEY = new Map(GENED_BUCKETS.map((b) => [b.key, b]));
 
 export function isInterdomain(c: Course): boolean {
   return c.genEd.includes(INTERDOMAIN_ATTR);
 }
-function domainsOf(c: Course): string[] {
+export function domainsOf(c: Course): string[] {
   return c.genEd.filter((g) => g !== INTERDOMAIN_ATTR);
 }
 

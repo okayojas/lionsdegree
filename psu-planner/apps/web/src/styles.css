@@ -406,3 +406,50 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   @starting-style { opacity: 0; transform: translateX(-50%) translateY(14px); }
 }
 .loading { display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-muted); }
+
+/* ---- Slot suggestions -------------------------------------------------
+   One row per candidate course. The code is the anchor the eye lands on, so
+   it leads in mono; the title carries the meaning and takes the room; the
+   chips explain why this one is worth choosing and sit last, where they read
+   as annotation rather than as the subject. */
+.slot-offerings {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  border-left: 2px solid var(--border-strong);
+  padding-left: var(--sp-2);
+  margin: var(--sp-2) 0 var(--sp-3);
+}
+.slot-picks { max-height: 40vh; overflow: auto; display: grid; gap: var(--sp-1); }
+.slot-pick {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, auto) 1fr auto;
+  gap: var(--sp-3);
+  align-items: baseline;
+  width: 100%;
+  text-align: left;
+  font-weight: 500;
+}
+.slot-pick .code { font-family: var(--font-mono); font-weight: 600; color: var(--accent-text); }
+.slot-pick-title { color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.slot-pick-meta {
+  display: flex; align-items: center; gap: var(--sp-1);
+  font-size: var(--fs-xs); color: var(--text-muted); white-space: nowrap;
+}
+.slot-pick-chip {
+  padding: 1px var(--sp-2);
+  border-radius: var(--r-full);
+  font-size: var(--fs-xs);
+  background: var(--primary-tint);
+  color: var(--accent-text);
+  border: 1px solid var(--border);
+}
+/* The first chip is always "prerequisites met" when it applies, and that is
+   the one fact that changes whether a student can act on the row at all. */
+.slot-pick-chip:first-of-type { background: var(--success-bg); color: var(--success); border-color: var(--success-border); }
+
+@media (max-width: 560px) {
+  /* Stacked: a three-column row at phone width truncates the title to
+     nothing, which is the part that tells you what the course is. */
+  .slot-pick { grid-template-columns: 1fr; gap: 2px; }
+  .slot-pick-title { white-space: normal; }
+}
