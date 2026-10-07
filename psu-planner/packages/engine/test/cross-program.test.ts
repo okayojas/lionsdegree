@@ -20,16 +20,20 @@ const toTemplate = (p: any, planIdx = 0): ProgramTemplate => ({
 });
 
 describe("ESC slot pools from department overrides", () => {
+  const coursesOf = (pool: ReturnType<typeof resolveSlotPool>): string[] => {
+    if (!pool || (pool.kind !== "listed" && pool.kind !== "registry")) throw new Error(`expected a course list, got ${pool?.kind}`);
+    return pool.courses;
+  };
   it("Foundational Elective pool has the ESM list (72 courses)", () => {
-    const pool = resolveSlotPool("Foundational Elective", esc.requirementSections);
-    expect(pool.courses.size).toBeGreaterThanOrEqual(70);
-    expect(pool.courses.has("CMPSC 221")).toBe(true);
-    expect(pool.courses.has("EE 330")).toBe(true);
+    const courses = coursesOf(resolveSlotPool("Foundational Elective", esc.requirementSections));
+    expect(courses.length).toBeGreaterThanOrEqual(70);
+    expect(courses).toContain("CMPSC 221");
+    expect(courses).toContain("EE 330");
   });
   it("Technical Elective pool has the ESM list (227 verified courses)", () => {
-    const pool = resolveSlotPool("Technical Elective", esc.requirementSections);
-    expect(pool.courses.size).toBe(227); // deterministic parse of esm.psu.edu 2026-07-11; the earlier ~275 included LLM-fabricated codes
-    expect(pool.courses.has("CMPSC 465")).toBe(true);
+    const courses = coursesOf(resolveSlotPool("Technical Elective", esc.requirementSections));
+    expect(courses.length).toBe(227); // deterministic parse of esm.psu.edu 2026-07-11; the earlier ~275 included LLM-fabricated codes
+    expect(courses).toContain("CMPSC 465");
   });
 });
 

@@ -4,7 +4,7 @@
  * published list, the course can still be placed but is labelled adviser-verify. */
 import { useEffect, useState } from "react";
 import {
-  GENED_BUCKETS, bucketAccepts, codeMatchesPool, resolveSlotPool,
+  GENED_BUCKETS, bucketAccepts, codeMatchesPool, poolHasMembership, resolveSlotPool,
   type Course, type ReqSection,
 } from "@psu-planner/engine";
 import { loadProgramBySlug } from "../data/catalogClient";
@@ -38,7 +38,7 @@ export function SlotFillPicker({ course, onFill }: { course: Course; onFill: (sl
             cache.set(s.slotProgram, sections);
           }
           const pool = sections && s.slotLabel ? resolveSlotPool(s.slotLabel, sections) : null;
-          if (pool && (pool.courses.size || pool.patterns.length)) {
+          if (poolHasMembership(pool)) {
             if (codeMatchesPool(course.code, pool)) out.push({ id: s.id, label: s.slotLabel ?? "Elective", kind: "approved" });
             // On a published list but this course isn't on it → don't offer it.
           } else {

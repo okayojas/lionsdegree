@@ -5,7 +5,7 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   GENED_BUCKETS, SAT, SUMMER_MAX_CREDITS, UNK, auditGenEd, checkCourse, codeMatchesPool,
-  countableCourses, majorDeptPrefixes, parseTermLabel, rankGenEdPicks, resolveSlotPool, searchCatalog,
+  countableCourses, majorDeptPrefixes, parseTermLabel, poolHasMembership, rankGenEdPicks, resolveSlotPool, searchCatalog,
   type Catalog, type Course, type PlanItem, type ReqSection,
 } from "@psu-planner/engine";
 import { loadFullCatalog, loadProgramBySlug } from "../data/catalogClient";
@@ -58,9 +58,10 @@ function SlotSuggestions({ item, onFill }: { item: PlanItem; onFill: (code: stri
           ? await loadProgramBySlug<{ requirementSections: ReqSection[] }>(item.slotProgram)
           : null;
         const pool = prog && item.slotLabel ? resolveSlotPool(item.slotLabel, prog.requirementSections) : null;
-        if (pool && (pool.courses.size || pool.patterns.length)) {
+        if (poolHasMembership(pool)) {
           picks = Object.values(full).filter((c) => codeMatchesPool(c.code, pool) && usable(c)).map((course) => ({ course, bonuses: [] }));
-          setNote(`From this requirement's approved list (${pool.courses.size || "pattern-based"} options):`);
+          const options = pool.kind === "patterned" ? "pattern-based" : pool.courses.length;
+          setNote(`From this requirement's approved list (${options} options):`);
         } else {
           picks = searchCatalog(full, item.slotLabel ?? "elective", 40).map((k) => full[k]).filter(usable).map((course) => ({ course, bonuses: [] }));
           setNote(`No published list for “${item.slotLabel ?? "this requirement"}” — talk to your adviser about what counts. You can still add a course once you've confirmed it:`);

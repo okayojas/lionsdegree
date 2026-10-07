@@ -136,7 +136,9 @@ export function generatePlan(programs: ProgramTemplate[], opts: GenPlanOptions, 
   const slotFulfilledBy = (prog: ProgramTemplate, label: string): string | null => {
     if (!prog.requirements?.length) return null;
     const pool = resolveSlotPool(label, prog.requirements);
-    if (!pool.courses.size && !pool.patterns.length) return null;
+    // genEd slots are fulfilled by the gen-ed audit, and an adviser Pool has no
+    // membership to test, so neither can absorb another program's course.
+    if (!pool || pool.kind === "genEd" || pool.kind === "adviser") return null;
     for (const [slug, codes] of coursesByProgram) {
       if (slug === prog.slug) continue;
       for (const code of codes) {
