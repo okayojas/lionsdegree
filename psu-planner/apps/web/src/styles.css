@@ -2,7 +2,10 @@
    LionsDegree — "Transit map" identity, muted edition.
    A degree as a subway map: station-dot stops, route-line connectors.
    Muted WARM CREAM in light, muted SLATE-GRAY in dark (never stark white /
-   near-black), one dusty transit-blue accent, desaturated status colors.
+   near-black), ONE accent taken from the LionsDegree logo -- its mid blue in
+   light, a softened Pugh Blue in dark -- plus the logo's navy as a structural
+   tone for the wordmark. Status colors stay desaturated. The second route
+   line stays GREEN so two converging routes read as two routes.
    ONE unifying sans throughout; monospace reserved strictly for course codes.
    Tiers: primitives -> semantic roles -> legacy aliases (no component churn).
    ===================================================================== */
@@ -35,16 +38,27 @@
   --text: #2b2822;            /* warm soft-black ink */
   --text-muted: #6b6353;      /* warm taupe */
   --text-inverse: #faf5ea;
-  --primary: #6b3fa0;         /* deep violet — the one accent */
-  --primary-hover: #58347f;
+  /* Sampled from the LionsDegree lion/data logo, not transcribed from a brand
+     book: its mid blue is softer than Penn State's published Beaver Blue, and
+     matching our own asset is what keeps the product and its logo coherent. */
+  --primary: #1d417f;         /* the one accent — the logo's mid blue */
+  --primary-hover: #16335f;
   --primary-fg: #f7f3ea;
-  --primary-tint: #ece7f5;    /* selected / on-route bg */
-  --accent-text: #6b3fa0;
+  --primary-tint: #e4eaf3;    /* selected / on-route bg */
+  --accent-text: #1d417f;
+  --navy: #041f46;            /* the logo's deep blue: wordmark, headings */
   --route-b: #4a7c59;         /* muted green second line (hero) */
-  --success: #4a7c59; --success-solid: #5a8c69; --success-bg: #e9efe4; --success-border: #c3d4bf;
-  --warning: #a5763a; --warning-solid: #bf8a44; --warning-bg: #f4ecdb; --warning-border: #e2cfa8;
-  --danger: #a85450;  --danger-solid: #bf6360;  --danger-bg: #f3e5e2;  --danger-border: #e0bcb7;
-  --focus-ring: #6b3fa0;
+  /* --success is DARKER than --route-b although both are the muted green.
+     They are different jobs: a route line needs 3:1, a status message is text
+     and needs 4.5:1. Sharing one value left status text at 4.10:1. */
+  /* All three were below AA against cream when measured: success 4.10,
+     warning 3.37, danger 4.37. Desaturating a palette quietly costs contrast,
+     and amber on cream is the hardest case. Darkened until each passes; the
+     -solid variants are fills, not text, and keep their original weight. */
+  --success: #3d6848; --success-solid: #5a8c69; --success-bg: #e9efe4; --success-border: #c3d4bf;
+  --warning: #8a5f28; --warning-solid: #bf8a44; --warning-bg: #f4ecdb; --warning-border: #e2cfa8;
+  --danger: #9c4a46;  --danger-solid: #bf6360;  --danger-bg: #f3e5e2;  --danger-border: #e0bcb7;
+  --focus-ring: #1d417f;
   --shadow-color: 35 25% 30%;
   --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / .08);
   --shadow: 0 2px 12px hsl(var(--shadow-color) / .10);
@@ -52,7 +66,7 @@
 
   /* ---- legacy aliases (old names -> new roles) ---- */
   --card: var(--surface); --ink: var(--text); --muted: var(--text-muted);
-  --blue: var(--primary); --lblue: #b7a3d8; --line: var(--border);
+  --blue: var(--primary); --lblue: #9fb4d4; --line: var(--border);
   --green: var(--success); --amber: var(--warning); --red: var(--danger);
   --green-bg: var(--success-bg); --amber-bg: var(--warning-bg); --red-bg: var(--danger-bg);
 
@@ -65,12 +79,15 @@
     --bg: #2b2a27; --surface: #33322e; --surface-2: #3c3a35; --surface-hover: #43413c; --surface-active: #4d4a44;
     --border: #45423c; --border-strong: #5e584e;
     --text: #ece6da; --text-muted: #a39b8c; --text-inverse: #2b2a27;
-    --primary: #cba3ee; --primary-hover: #d9bdf6; --primary-fg: #2b2a27; --primary-tint: #39323f;
-    --accent-text: #d8bdf6; --route-b: #7fae8b;
+    /* Pugh Blue is Penn State's own light blue; softened here because this
+       identity is muted and the published value is not. Navy is unusable in
+       dark at 1.42:1, so the structural tone lightens too. */
+    --primary: #8db6d8; --primary-hover: #a6c4dc; --primary-fg: #2b2a27; --primary-tint: #2f3742;
+    --accent-text: #9bbdd6; --navy: #b8cbe4; --route-b: #7fae8b;
     --success: #86b394; --success-solid: #6fa07e; --success-bg: #232f28; --success-border: #3a4d40;
     --warning: #d3ab6b; --warning-solid: #c39a58; --warning-bg: #342f1f; --warning-border: #4e4530;
     --danger: #cd908b; --danger-solid: #bd7a75; --danger-bg: #352625; --danger-border: #533b39;
-    --focus-ring: #cba3ee; --lblue: #d8bdf6;
+    --focus-ring: #8db6d8; --lblue: #a6c4dc;
     --shadow-color: 220 30% 3%;
     --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / .4);
     --shadow: 0 2px 12px hsl(var(--shadow-color) / .45);
@@ -82,12 +99,15 @@
   --bg: #2b2a27; --surface: #33322e; --surface-2: #3c3a35; --surface-hover: #43413c; --surface-active: #4d4a44;
   --border: #45423c; --border-strong: #5e584e;
   --text: #ece6da; --text-muted: #a39b8c; --text-inverse: #2b2a27;
-  --primary: #cba3ee; --primary-hover: #d9bdf6; --primary-fg: #2b2a27; --primary-tint: #39323f;
-  --accent-text: #d8bdf6; --route-b: #7fae8b;
+  /* Pugh Blue is Penn State's own light blue; softened here because this
+     identity is muted and the published value is not. Navy is unusable in
+     dark at 1.42:1, so the structural tone lightens too. */
+  --primary: #8db6d8; --primary-hover: #a6c4dc; --primary-fg: #2b2a27; --primary-tint: #2f3742;
+  --accent-text: #9bbdd6; --navy: #b8cbe4; --route-b: #7fae8b;
   --success: #86b394; --success-solid: #6fa07e; --success-bg: #232f28; --success-border: #3a4d40;
   --warning: #d3ab6b; --warning-solid: #c39a58; --warning-bg: #342f1f; --warning-border: #4e4530;
   --danger: #cd908b; --danger-solid: #bd7a75; --danger-bg: #352625; --danger-border: #533b39;
-  --focus-ring: #cba3ee; --lblue: #d8bdf6;
+  --focus-ring: #8db6d8; --lblue: #a6c4dc;
   --shadow-color: 220 30% 3%;
   --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / .4);
   --shadow: 0 2px 12px hsl(var(--shadow-color) / .45);

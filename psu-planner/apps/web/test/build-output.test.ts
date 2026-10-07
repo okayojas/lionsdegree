@@ -57,6 +57,32 @@ describe("the planner", () => {
   });
 });
 
+describe("the icons", () => {
+  it("are the logo, not the placeholder squares", () => {
+    // The placeholders were flat navy squares, which PNG compresses to a few
+    // hundred bytes. Artwork does not. Crude, but it is the property that
+    // actually distinguishes them without decoding the image.
+    for (const icon of ["icon-192.png", "icon-512.png", "apple-touch-icon.png"]) {
+      expect(exists(icon), `${icon} missing`).toBe(true);
+      expect(fs.statSync(path.join(dist, icon)).size, icon).toBeGreaterThan(5_000);
+    }
+    expect(exists("favicon.ico")).toBe(true);
+  });
+
+  it("are declared by both entry points", () => {
+    for (const page of ["index.html", "plan/index.html"]) {
+      expect(read(page), page).toMatch(/rel="icon"/);
+      expect(read(page), page).toMatch(/rel="apple-touch-icon"/);
+    }
+  });
+
+  it("set a theme colour for each scheme, matching the palette", () => {
+    const html = read("index.html");
+    expect(html).toMatch(/theme-color[^>]*prefers-color-scheme: light[^>]*#f1ebdf|#f1ebdf[^>]*light/);
+    expect(html).toContain("#2b2a27");
+  });
+});
+
 describe("the service worker", () => {
   it("lives under the planner, which caps its scope there", () => {
     // A worker cannot control paths above its own location, so emitting it at
