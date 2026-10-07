@@ -241,11 +241,6 @@
    "to": "DS 440"
   },
   {
-   "program": "university-college-diversity-studies-certificate",
-   "from": "HIST 153Y",
-   "to": "HIST 153"
-  },
-  {
    "program": "earth-mineral-sciences-earth-sustainability-minor",
    "from": "EARTH 111",
    "to": "EARTH 111N"
@@ -381,26 +376,6 @@
    "to": "FRNSC 415"
   },
   {
-   "program": "liberal-arts-global-spanish-business-certificate",
-   "from": "SPAN 354",
-   "to": "SPAN 354W"
-  },
-  {
-   "program": "agricultural-sciences-international-agriculture-minor",
-   "from": "ENT 202",
-   "to": "ENT 202N"
-  },
-  {
-   "program": "agricultural-sciences-international-agriculture-minor",
-   "from": "ENT 222",
-   "to": "ENT 222N"
-  },
-  {
-   "program": "agricultural-sciences-international-agriculture-minor",
-   "from": "FOR 201",
-   "to": "FOR 201N"
-  },
-  {
    "program": "university-college-introduction-corporate-communication-certificate",
    "from": "COMM 100",
    "to": "COMM 100N"
@@ -444,16 +419,6 @@
    "program": "university-college-psychology-ba",
    "from": "PSYCH 495B",
    "to": "PSYCH 495"
-  },
-  {
-   "program": "liberal-arts-psychology-bs",
-   "from": "GEOG 424",
-   "to": "GEOG 424W"
-  },
-  {
-   "program": "liberal-arts-psychology-bs",
-   "from": "HIST 151",
-   "to": "HIST 151N"
   },
   {
    "program": "university-college-psychology-bs",
@@ -2645,21 +2610,6 @@
    "where": "plan:Year 3 Spring"
   },
   {
-   "program": "university-college-administration-justice-bs",
-   "code": "LER 100",
-   "where": "req:Additional Courses"
-  },
-  {
-   "program": "university-college-administration-justice-bs",
-   "code": "LST 370",
-   "where": "req:Additional Courses"
-  },
-  {
-   "program": "university-college-administration-justice-bs",
-   "code": "PLSC 2",
-   "where": "req:Additional Courses"
-  },
-  {
    "program": "liberal-arts-african-american-studies-ba",
    "code": "LA 283",
    "where": "plan:Year 2 Spring"
@@ -2900,11 +2850,6 @@
    "where": "req-opt:Additional Courses"
   },
   {
-   "program": "capital-business-administration-minor",
-   "code": "BESC 408",
-   "where": "req:Supporting Courses and Related Areas"
-  },
-  {
    "program": "abington-chemical-dependency-prevention-counseling-certificate",
    "code": "HLHED 443",
    "where": "req-opt:Required Courses"
@@ -3070,11 +3015,6 @@
    "where": "plan:Year 3 Fall"
   },
   {
-   "program": "liberal-arts-criminology-bs",
-   "code": "PLSC 417",
-   "where": "req:Additional Courses"
-  },
-  {
    "program": "university-college-cybersecurity-analytics-operations-bs",
    "code": "SRA 221",
    "where": "plan:Year 1 Spring"
@@ -3200,11 +3140,6 @@
    "where": "req:Prescribed Courses"
   },
   {
-   "program": "altoona-elementary-kindergarten-education-bs",
-   "code": "EDLDR 405",
-   "where": "req:Supporting Courses and Related Areas"
-  },
-  {
    "program": "berks-elementary-kindergarten-education-bs",
    "code": "LLED 402",
    "where": "req:Prescribed Courses"
@@ -3235,11 +3170,6 @@
    "where": "req:Prescribed Courses"
   },
   {
-   "program": "berks-elementary-kindergarten-education-bs",
-   "code": "EDLDR 405",
-   "where": "req:Supporting Courses and Related Areas"
-  },
-  {
    "program": "education-elementary-kindergarten-education-bs",
    "code": "LLED 402",
    "where": "req:Prescribed Courses"
@@ -3268,11 +3198,6 @@
    "program": "education-elementary-kindergarten-education-bs",
    "code": "ECE 454",
    "where": "req:Prescribed Courses"
-  },
-  {
-   "program": "education-elementary-kindergarten-education-bs",
-   "code": "EDLDR 405",
-   "where": "req:Supporting Courses and Related Areas"
   },
   {
    "program": "capital-elementary-education-beled",
@@ -3348,11 +3273,6 @@
    "program": "intercollege-environmental-inquiry-minor",
    "code": "STS 135",
    "where": "req-opt:Additional Courses"
-  },
-  {
-   "program": "intercollege-environmental-inquiry-minor",
-   "code": "GEOG 436",
-   "where": "req:Additional Courses"
   },
   {
    "program": "intercollege-environmental-inquiry-minor",
@@ -3532,11 +3452,6 @@
   {
    "program": "agricultural-sciences-environmental-resource-management-minor",
    "code": "THE 400",
-   "where": "req:Additional Courses"
-  },
-  {
-   "program": "agricultural-sciences-environmental-soil-science-minor",
-   "code": "ASM 327",
    "where": "req:Additional Courses"
   },
   {
@@ -3815,11 +3730,6 @@
    "where": "req:Additional Courses"
   },
   {
-   "program": "capital-humanities-ba",
-   "code": "ENGL 488",
-   "where": "req:Supporting Courses and Related Areas"
-  },
-  {
    "program": "university-college-humanities-ba",
    "code": "HUM 311N",
    "where": "req:Additional Courses"
@@ -3838,11 +3748,6 @@
    "program": "university-college-humanities-ba",
    "code": "HUM 461",
    "where": "req:Additional Courses"
-  },
-  {
-   "program": "university-college-humanities-ba",
-   "code": "ENGL 488",
-   "where": "req:Supporting Courses and Related Areas"
   },
   {
    "program": "information-sciences-technology-information-sciences-technology-bs",
@@ -4237,12 +4142,12 @@
   {
    "program": "agricultural-sciences-international-agriculture-minor",
    "code": "AGECO 3",
-   "where": "req:Additional Courses"
+   "where": "req-opt:Additional Courses"
   },
   {
    "program": "agricultural-sciences-international-agriculture-minor",
    "code": "FOR 488Y",
-   "where": "req:Additional Courses"
+   "where": "req-opt:Additional Courses"
   },
   {
    "program": "liberal-arts-international-politics-ba",
@@ -4833,56 +4738,6 @@
    "program": "liberal-arts-psychology-bs",
    "code": "LA 283",
    "where": "plan:Year 3 Fall"
-  },
-  {
-   "program": "liberal-arts-psychology-bs",
-   "code": "LER 464",
-   "where": "req:Additional Courses"
-  },
-  {
-   "program": "liberal-arts-psychology-bs",
-   "code": "GEOG 439",
-   "where": "req:Additional Courses"
-  },
-  {
-   "program": "liberal-arts-psychology-bs",
-   "code": "AFAM 445Y",
-   "where": "req-opt:Additional Courses"
-  },
-  {
-   "program": "liberal-arts-psychology-bs",
-   "code": "LER 445Y",
-   "where": "req-opt:Additional Courses"
-  },
-  {
-   "program": "liberal-arts-psychology-bs",
-   "code": "PLSC 445Y",
-   "where": "req-opt:Additional Courses"
-  },
-  {
-   "program": "liberal-arts-psychology-bs",
-   "code": "LER 136",
-   "where": "req-opt:Additional Courses"
-  },
-  {
-   "program": "liberal-arts-psychology-bs",
-   "code": "LER 201",
-   "where": "req:Additional Courses"
-  },
-  {
-   "program": "liberal-arts-psychology-bs",
-   "code": "LER 410",
-   "where": "req-opt:Additional Courses"
-  },
-  {
-   "program": "liberal-arts-psychology-bs",
-   "code": "LER 472",
-   "where": "req-opt:Additional Courses"
-  },
-  {
-   "program": "liberal-arts-psychology-bs",
-   "code": "LER 475",
-   "where": "req:Additional Courses"
   },
   {
    "program": "abington-public-history-minor",

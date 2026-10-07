@@ -140,93 +140,29 @@
        "ANTH 401",
        "BBH 410",
        "HPA 310",
-       "NUTR 251"
+       "NUTR 251",
+       "HDFS 417",
+       "RHS 100",
+       "RHS 300",
+       "RHS 403",
+       "BIOL 110",
+       "BIOL 141",
+       "BIOL 155",
+       "BIOL 161",
+       "BIOL 177",
+       "CHEM 110",
+       "CHEM 111",
+       "CHEM 112",
+       "CHEM 113",
+       "CHEM 210",
+       "CHEM 212",
+       "CHEM 213"
       ]
      }
     },
     {
      "type": "course",
      "code": "BBH 310",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "HDFS 417",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "RHS 100",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "RHS 300",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "RHS 403",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "BIOL 110",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "BIOL 141",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "BIOL 155",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "BIOL 161",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "BIOL 177",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "CHEM 110",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "CHEM 111",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "CHEM 112",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "CHEM 113",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "CHEM 210",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "CHEM 212",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "CHEM 213",
      "credits": null
     }
    ],
@@ -297,147 +233,41 @@
        "PHIL 418",
        "SCM 301",
        "LER 100",
-       "LER 304"
+       "LER 304",
+       "CAS 352",
+       "CAS 450W",
+       "CAS 452",
+       "ENGL 419",
+       "ENGL 460",
+       "LER 464",
+       "ENGR 451",
+       "GEOG 424",
+       "GEOG 439",
+       "GLIS 102N",
+       "HPA 401",
+       "IB 303",
+       "LA 202",
+       "AFAM 445Y",
+       "LER 445Y",
+       "PLSC 445Y",
+       "LER 136",
+       "WMNST 136",
+       "LER 201",
+       "LER 410",
+       "RHS 410",
+       "LER 472",
+       "WMNST 472",
+       "LER 475",
+       "RHS 300",
+       "HIST 151",
+       "HIST 155",
+       "IST 110"
       ]
      }
     },
     {
      "type": "unstructured",
      "commentRaw": "Any LER 400-level course"
-    },
-    {
-     "type": "course",
-     "code": "CAS 352",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "CAS 450W",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "CAS 452",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ENGL 419",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ENGL 460",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "LER 464",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "ENGR 451",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "GEOG 424W",
-     "credits": null,
-     "resolvedFrom": "GEOG 424"
-    },
-    {
-     "type": "course",
-     "code": "GEOG 439",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "GLIS 102N",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "HPA 401",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "IB 303",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "LA 202",
-     "credits": null
-    },
-    {
-     "type": "oneOf",
-     "options": [
-      "AFAM 445Y",
-      "LER 445Y",
-      "PLSC 445Y"
-     ],
-     "credits": null
-    },
-    {
-     "type": "oneOf",
-     "options": [
-      "LER 136",
-      "WMNST 136"
-     ],
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "LER 201",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "oneOf",
-     "options": [
-      "LER 410",
-      "RHS 410"
-     ],
-     "credits": null
-    },
-    {
-     "type": "oneOf",
-     "options": [
-      "LER 472",
-      "WMNST 472"
-     ],
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "LER 475",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "RHS 300",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "HIST 151N",
-     "credits": null,
-     "resolvedFrom": "HIST 151"
-    },
-    {
-     "type": "course",
-     "code": "HIST 155",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "IST 110",
-     "credits": null
     }
    ],
    "structured": false,

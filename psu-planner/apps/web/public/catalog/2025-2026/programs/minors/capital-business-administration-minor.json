@@ -81,28 +81,16 @@
      "commentRaw": "Select 6 credits at the 400 level of the following:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "BESC 408",
+       "COMM 414",
+       "PSYCH 473"
+      ]
      }
     },
     {
      "type": "unstructured",
      "commentRaw": "ACCTG, BA, ECON, FIN, HCM, MIS, IST, MGMT, MKTG"
-    },
-    {
-     "type": "course",
-     "code": "BESC 408",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "COMM 414",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "PSYCH 473",
-     "credits": null
     },
     {
      "type": "unstructured",

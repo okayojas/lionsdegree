@@ -408,7 +408,11 @@
      "commentRaw": "Select 6 credits of the following:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "EDLDR 405",
+       "EDLDR 497",
+       "LLED 497"
+      ]
      }
     },
     {
@@ -422,22 +426,6 @@
     {
      "type": "unstructured",
      "commentRaw": "SPLED at the 400 level"
-    },
-    {
-     "type": "course",
-     "code": "EDLDR 405",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "EDLDR 497",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "LLED 497",
-     "credits": null
     },
     {
      "type": "selectCredits",

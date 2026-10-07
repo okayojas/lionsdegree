@@ -215,26 +215,17 @@
      "commentRaw": "Select 15 credits of the following:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "BA 100",
+       "BA 241",
+       "BA 242",
+       "BA 243"
+      ]
      }
     },
     {
      "type": "unstructured",
      "commentRaw": "Any ACCTG course"
-    },
-    {
-     "type": "course",
-     "code": "BA 100",
-     "credits": null
-    },
-    {
-     "type": "oneOf",
-     "options": [
-      "BA 241",
-      "BA 242",
-      "BA 243"
-     ],
-     "credits": null
     },
     {
      "type": "unstructured",

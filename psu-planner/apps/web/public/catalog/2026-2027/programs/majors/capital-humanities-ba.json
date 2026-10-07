@@ -134,7 +134,21 @@
      "commentRaw": "Select 12 credits in one of the four following areas and 9 credits in a second area:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "CAS 271N",
+       "ENGL 486",
+       "ENGL 488",
+       "INTST 100",
+       "COMM 215",
+       "COMM 241",
+       "COMM 242",
+       "COMM 250",
+       "COMM 230W",
+       "COMM 260W",
+       "COMM 332",
+       "COMM 346",
+       "COMM 474"
+      ]
      }
     },
     {
@@ -142,49 +156,8 @@
      "commentRaw": "HIST, CMLIT, and SPAN courses"
     },
     {
-     "type": "course",
-     "code": "CAS 271N",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ENGL 486",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ENGL 488",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "INTST 100",
-     "credits": null
-    },
-    {
      "type": "unstructured",
      "commentRaw": "ART, ARTH, INART, MUSIC, AND THEA courses"
-    },
-    {
-     "type": "course",
-     "code": "COMM 215",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "COMM 241",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "COMM 242",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "COMM 250",
-     "credits": null
     },
     {
      "type": "unstructured",
@@ -193,31 +166,6 @@
     {
      "type": "unstructured",
      "commentRaw": "ENGL and CMLIT courses"
-    },
-    {
-     "type": "course",
-     "code": "COMM 230W",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "COMM 260W",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "COMM 332",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "COMM 346",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "COMM 474",
-     "credits": null
     },
     {
      "type": "selectCredits",

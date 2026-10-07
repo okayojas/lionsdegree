@@ -63,7 +63,10 @@
      "commentRaw": "Select 4 credits from the following:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "PSYCH 200",
+       "STAT 200"
+      ]
      }
     },
     {
@@ -71,20 +74,17 @@
      "commentRaw": "Category 1 (Statistics)"
     },
     {
-     "type": "oneOf",
-     "options": [
-      "PSYCH 200",
-      "STAT 200"
-     ],
-     "credits": null
-    },
-    {
      "type": "selectCredits",
      "credits": 6,
      "commentRaw": "Select 6 credits from two different developmental categories (3 credits each category):",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "PSYCH 212",
+       "PSYCH 416",
+       "PSYCH 410",
+       "PSYCH 412"
+      ]
      }
     },
     {
@@ -92,36 +92,16 @@
      "commentRaw": "Category 2a (Lifespan)"
     },
     {
-     "type": "course",
-     "code": "PSYCH 212",
-     "credits": null
-    },
-    {
      "type": "unstructured",
      "commentRaw": "Category 2b (Adult)"
-    },
-    {
-     "type": "course",
-     "code": "PSYCH 416",
-     "credits": null
     },
     {
      "type": "unstructured",
      "commentRaw": "Category 2c (Child)"
     },
     {
-     "type": "course",
-     "code": "PSYCH 410",
-     "credits": null
-    },
-    {
      "type": "unstructured",
      "commentRaw": "Category 2d (Adolescence)"
-    },
-    {
-     "type": "course",
-     "code": "PSYCH 412",
-     "credits": null
     },
     {
      "type": "selectCredits",
@@ -129,7 +109,15 @@
      "commentRaw": "Select 6 credits from two different individual difference categories (3 credits each category):",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "PSYCH 221",
+       "PSYCH 420",
+       "PSYCH 238",
+       "PSYCH 438",
+       "PSYCH 243",
+       "PSYCH 471",
+       "PSYCH 441"
+      ]
      }
     },
     {
@@ -137,45 +125,16 @@
      "commentRaw": "Category 3a (Social Psychology)"
     },
     {
-     "type": "oneOf",
-     "options": [
-      "PSYCH 221",
-      "PSYCH 420"
-     ],
-     "credits": null
-    },
-    {
      "type": "unstructured",
      "commentRaw": "Category 3b (Personality Psychology)"
-    },
-    {
-     "type": "oneOf",
-     "options": [
-      "PSYCH 238",
-      "PSYCH 438"
-     ],
-     "credits": null
     },
     {
      "type": "unstructured",
      "commentRaw": "Category 3c (Personal Adjustment)"
     },
     {
-     "type": "oneOf",
-     "options": [
-      "PSYCH 243",
-      "PSYCH 471"
-     ],
-     "credits": null
-    },
-    {
      "type": "unstructured",
      "commentRaw": "Category 3d (Health Psychology)"
-    },
-    {
-     "type": "course",
-     "code": "PSYCH 441",
-     "credits": null
     },
     {
      "type": "selectCredits",
@@ -183,7 +142,14 @@
      "commentRaw": "Select 6 credits from two different clinical categories (3 credits each category):",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "PSYCH 370",
+       "PSYCH 476",
+       "PSYCH 270",
+       "PSYCH 470",
+       "PSYCH 473",
+       "PSYCH 443"
+      ]
      }
     },
     {
@@ -191,48 +157,20 @@
      "commentRaw": "Category 4a (Physical Disabilities)"
     },
     {
-     "type": "course",
-     "code": "PSYCH 370",
-     "credits": null
-    },
-    {
      "type": "unstructured",
      "commentRaw": "Category 4b (Childhood Disorders)"
-    },
-    {
-     "type": "course",
-     "code": "PSYCH 476",
-     "credits": null
     },
     {
      "type": "unstructured",
      "commentRaw": "Category 4c (Abnormal Psychology)"
     },
     {
-     "type": "oneOf",
-     "options": [
-      "PSYCH 270",
-      "PSYCH 470"
-     ],
-     "credits": null
-    },
-    {
      "type": "unstructured",
      "commentRaw": "Category 4d (Behavior Modification)"
     },
     {
-     "type": "course",
-     "code": "PSYCH 473",
-     "credits": null
-    },
-    {
      "type": "unstructured",
      "commentRaw": "Category 4e (Developmental Disabilities)"
-    },
-    {
-     "type": "course",
-     "code": "PSYCH 443",
-     "credits": null
     },
     {
      "type": "selectCredits",
@@ -240,7 +178,15 @@
      "commentRaw": "Select 6 credits from two different experimental categories (3 credits in each category):",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "PSYCH 260",
+       "PSYCH 462",
+       "PSYCH 256",
+       "PSYCH 452",
+       "PSYCH 456",
+       "PSYCH 261",
+       "PSYCH 461"
+      ]
      }
     },
     {
@@ -248,37 +194,12 @@
      "commentRaw": "Category 5a (Physiological Psychology)"
     },
     {
-     "type": "oneOf",
-     "options": [
-      "PSYCH 260",
-      "PSYCH 462"
-     ],
-     "credits": null
-    },
-    {
      "type": "unstructured",
      "commentRaw": "Category 5b (Cognitive Psychology)"
     },
     {
-     "type": "oneOf",
-     "options": [
-      "PSYCH 256",
-      "PSYCH 452",
-      "PSYCH 456"
-     ],
-     "credits": null
-    },
-    {
      "type": "unstructured",
      "commentRaw": "Category 5c (Learning Theory)"
-    },
-    {
-     "type": "oneOf",
-     "options": [
-      "PSYCH 261",
-      "PSYCH 461"
-     ],
-     "credits": null
     },
     {
      "type": "selectCredits",
@@ -286,21 +207,16 @@
      "commentRaw": "Select 3 credits from applications in psychology:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "PSYCH 395",
+       "PSYCH 494",
+       "PSYCH 495"
+      ]
      }
     },
     {
      "type": "unstructured",
      "commentRaw": "Category 6 (Applied Experience)"
-    },
-    {
-     "type": "oneOf",
-     "options": [
-      "PSYCH 395",
-      "PSYCH 494",
-      "PSYCH 495"
-     ],
-     "credits": null
     },
     {
      "type": "selectCredits",

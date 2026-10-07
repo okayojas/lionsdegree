@@ -371,11 +371,21 @@ export function parseRequirementTables(html: string): RequirementsParseResult {
             return;
           }
           const bool = parseBooleanRow(text, credits);
-          if (bool) { current!.rules.push(...bool); collector = null; return; }
+          if (bool) { current!.rules.push(...bool); if (!indented) collector = null; return; }
 
           const rule = classifyComment(text);
           current!.rules.push(rule);
-          collector = rule.type === "selectCredits" || rule.type === "chooseN" ? rule : null;
+          // INDENTATION IS THE BOUNDARY of an option list. The bulletin writes
+          // "Select 6 credits of the following:" and indents the options under
+          // it, and some of those options are prose we cannot read ("EDTHP at
+          // the 400 level") sitting above ones we can. Closing the list on the
+          // first such row orphaned every course below it into the section,
+          // leaving the requirement itself with an empty list -- which reads
+          // as "no course qualifies" -- while the orphans looked like
+          // separately REQUIRED courses. An indented row is a member of the
+          // open list; only a non-indented row ends it.
+          if (rule.type === "selectCredits" || rule.type === "chooseN") collector = rule;
+          else if (!indented) collector = null;
           if ((rule.type === "selectCredits" || rule.type === "chooseN") && credits !== null && rule.credits === null) rule.credits = credits;
           if (rule.type === "unstructured") needsReview.push({ heading: current!.heading, text });
           return;

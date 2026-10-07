@@ -231,7 +231,15 @@
      "commentRaw": "Select 6 credits from the following:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "IE 302",
+       "SUR 313",
+       "SUR 362",
+       "SUR 424",
+       "SUR 432",
+       "SUR 496",
+       "SUR 497"
+      ]
      }
     },
     {
@@ -241,41 +249,6 @@
     {
      "type": "unstructured",
      "commentRaw": "CE 400-level courses"
-    },
-    {
-     "type": "course",
-     "code": "IE 302",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SUR 313",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SUR 362",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SUR 424",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SUR 432",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SUR 496",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SUR 497",
-     "credits": null
     }
    ],
    "structured": false,

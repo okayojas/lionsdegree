@@ -191,7 +191,20 @@
      "commentRaw": "Select 9 credits from one of the following clusters:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "BIOL 419",
+       "BIOL 461",
+       "CED 410",
+       "ERM 430",
+       "GEOG 412W",
+       "GEOG 430",
+       "GEOG 436",
+       "GEOSC 451",
+       "NUTR 497",
+       "SOC 422",
+       "SOILS 422",
+       "STS 420"
+      ]
      }
     },
     {
@@ -225,67 +238,6 @@
     {
      "type": "note",
      "commentRaw": "Select one of the following:"
-    },
-    {
-     "type": "course",
-     "code": "BIOL 419",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "BIOL 461",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "CED 410",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ERM 430",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "GEOG 412W",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "GEOG 430",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "GEOG 436",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "GEOSC 451",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "NUTR 497",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SOC 422",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SOILS 422",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "STS 420",
-     "credits": null
     }
    ],
    "structured": false,

@@ -34,7 +34,25 @@
      "commentRaw": "Select 9 credits chosen from Lists II and III; at least 3 credits must be at the 400 level; students must take at least 3 credits from each list:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "CRIMJ 453",
+       "ENGL 194",
+       "HDFS 405",
+       "HIST 117",
+       "NURS 452",
+       "PSYCH 231",
+       "PSYCH 422",
+       "SOC 456",
+       "THEA 207",
+       "THEA 407W",
+       "CRIMJ 451",
+       "ENGL 135",
+       "ENGL 139",
+       "HIST 152",
+       "HIST 153Y",
+       "PHIL 9",
+       "RLST 1"
+      ]
      }
     },
     {
@@ -42,94 +60,8 @@
      "commentRaw": "List II: Courses on Women, Gender, and Sexuality"
     },
     {
-     "type": "course",
-     "code": "CRIMJ 453",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ENGL 194",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "HDFS 405",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "HIST 117",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "NURS 452",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "PSYCH 231",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "PSYCH 422",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SOC 456",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "THEA 207",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "THEA 407W",
-     "credits": null
-    },
-    {
      "type": "unstructured",
      "commentRaw": "List III: Courses on Race, Ethnicity, and Religion"
-    },
-    {
-     "type": "course",
-     "code": "CRIMJ 451",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ENGL 135",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ENGL 139",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "HIST 152",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "HIST 153",
-     "credits": null,
-     "resolvedFrom": "HIST 153Y"
-    },
-    {
-     "type": "course",
-     "code": "PHIL 9",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "RLST 1",
-     "credits": null
     }
    ],
    "structured": false,

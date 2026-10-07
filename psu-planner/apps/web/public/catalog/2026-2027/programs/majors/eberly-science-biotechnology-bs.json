@@ -211,17 +211,14 @@
      "commentRaw": "Select 6 credits from the following:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "FDSC 408"
+      ]
      }
     },
     {
      "type": "unstructured",
      "commentRaw": "Any 400-level BMB/BIOTC/MICRB lecture course"
-    },
-    {
-     "type": "course",
-     "code": "FDSC 408",
-     "credits": null
     },
     {
      "type": "unstructured",

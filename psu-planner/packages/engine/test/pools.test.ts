@@ -201,6 +201,47 @@ describe("no Pool is a confident empty list", () => {
   });
 });
 
+describe("requirements whose options are indented under them", () => {
+  /** Every selectCredits rule in the edition, with its resolved Pool. */
+  function allSelectPools(): { slug: string; pool: ReturnType<typeof poolFromRule> }[] {
+    const out: { slug: string; pool: ReturnType<typeof poolFromRule> }[] = [];
+    for (const kind of ["majors", "minors", "certificates"]) {
+      const dir = path.join(CATALOG_DIR, "programs", kind);
+      for (const f of fs.readdirSync(dir)) {
+        const p = JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8"));
+        for (const s of (p.requirementSections ?? []) as ReqSection[]) {
+          for (const r of s.rules) {
+            if (r.type === "selectCredits") out.push({ slug: p.slug, pool: poolFromRule(r) });
+          }
+        }
+      }
+    }
+    return out;
+  }
+
+  it("resolve to a Pool holding those options, not to nothing", () => {
+    // A parent comment with its options indented beneath used to lose every
+    // course below the first unreadable row. 110 such requirements resolved
+    // to nothing; the recoverable ones now carry their courses. The rest
+    // genuinely publish no list -- they name topic areas like "American
+    // literature" -- and must stay unreadable rather than be invented.
+    const pools = allSelectPools();
+    expect(pools.length).toBeGreaterThan(2000);
+    const unreadable = pools.filter((p) => p.pool?.kind === "unreadable");
+    expect(unreadable.length).toBeLessThanOrEqual(90);
+  });
+
+  it("do not sweep in the next requirement's courses", () => {
+    // Indentation bounds the list. A pool that swallowed its whole section
+    // would be far larger than any real published list.
+    const huge = allSelectPools().filter(
+      (p) => (p.pool?.kind === "listed" || p.pool?.kind === "registry") && p.pool.courses.length > 300,
+    );
+    // ESM's technical-elective list (227) is the largest legitimate one.
+    expect(huge.map((h) => h.slug)).toEqual([]);
+  });
+});
+
 describe("existing slot fulfilment is unchanged", () => {
   const esc = major("engineering-engineering-science-bs");
 

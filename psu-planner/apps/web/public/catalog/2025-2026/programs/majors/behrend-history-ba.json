@@ -79,22 +79,15 @@
      "commentRaw": "Select 12 credits of the following:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "ANTH 420",
+       "ANTH 492"
+      ]
      }
     },
     {
      "type": "unstructured",
      "commentRaw": "HIST at the 400-level"
-    },
-    {
-     "type": "course",
-     "code": "ANTH 420",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ANTH 492",
-     "credits": null
     }
    ],
    "structured": false,

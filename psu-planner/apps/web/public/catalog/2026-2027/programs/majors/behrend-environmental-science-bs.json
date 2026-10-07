@@ -273,22 +273,15 @@
      "commentRaw": "Select 3 credits of the following:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "GEOSC 418",
+       "ENVSC 404"
+      ]
      }
     },
     {
      "type": "unstructured",
      "commentRaw": "Any Biology 400-level field/lab course"
-    },
-    {
-     "type": "course",
-     "code": "GEOSC 418",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ENVSC 404",
-     "credits": null
     }
    ],
    "structured": false,

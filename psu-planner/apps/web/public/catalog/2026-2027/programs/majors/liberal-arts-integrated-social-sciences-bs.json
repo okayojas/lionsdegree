@@ -96,27 +96,16 @@
      "commentRaw": "In consultation with your adviser, select 30 credits from social science courses in the following areas:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "LA 295",
+       "LA 395",
+       "LA 495"
+      ]
      }
     },
     {
      "type": "unstructured",
      "commentRaw": "ANTH, CAS, ECON, PLSC, PSYCH, or SOC"
-    },
-    {
-     "type": "course",
-     "code": "LA 295",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "LA 395",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "LA 495",
-     "credits": null
     }
    ],
    "structured": false,

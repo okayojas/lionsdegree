@@ -335,23 +335,15 @@
      "commentRaw": "Select 3 credits of the following:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "GEOSC 412",
+       "GEOSC 418"
+      ]
      }
     },
     {
      "type": "unstructured",
      "commentRaw": "Any Biology 400-level field/lab course"
-    },
-    {
-     "type": "course",
-     "code": "GEOSC 412",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "GEOSC 418",
-     "credits": null
     }
    ],
    "structured": false,

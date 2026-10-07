@@ -137,9 +137,7 @@ function registryEntryFor(prose: string, ctx?: PoolContext): RegistryEntry | nul
 const listedOrUnreadable = (courses: string[], prose: string): Pool =>
   courses.length ? { kind: "listed", courses } : { kind: "unreadable", prose };
 
-function fromRegistryOrAdviser(prose: string, ctx?: PoolContext): Pool {
-  const e = registryEntryFor(prose, ctx);
-  if (!e) return { kind: "adviser", prose };
+function poolFromRegistryEntry(e: RegistryEntry): Pool {
   return {
     kind: "registry",
     courses: e.courses,
@@ -176,7 +174,17 @@ export function poolFromRule(rule: ReqRule, ctx?: PoolContext): Pool | null {
       if (from?.kind === "pattern" && from.subjects.length)
         return { kind: "patterned", subjects: from.subjects, minLevel: from.minLevel };
       if (from?.kind === "genEd") return { kind: "genEd", domain: from.domain };
-      return fromRegistryOrAdviser(rule.commentRaw, ctx);
+      // The Registry may hold the list the bulletin points at, whichever way
+      // the bulletin failed to give us one.
+      const registered = registryEntryFor(rule.commentRaw, ctx);
+      if (registered) return poolFromRegistryEntry(registered);
+      // An EMPTY course list is a list the bulletin meant to publish and we
+      // could not read; no `from` at all means the bulletin pointed somewhere
+      // else (a department list, or the student's adviser). The first is work
+      // still to do, the second has no answer by design, and only the second
+      // may be excluded from coverage.
+      const unreadable = from?.kind === "courses" && from.courses.length === 0;
+      return { kind: unreadable ? "unreadable" : "adviser", prose: rule.commentRaw };
     }
     case "unstructured":
       // A row we could not read. We still know a requirement is there, so show

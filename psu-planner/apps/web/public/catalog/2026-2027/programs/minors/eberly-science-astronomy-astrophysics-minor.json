@@ -44,42 +44,19 @@
      "commentRaw": "Select 6-7 credits of the following:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "AERSP 308",
+       "AERSP 312",
+       "EE 472",
+       "GEOSC 474",
+       "METEO 466",
+       "PHYS 458"
+      ]
      }
     },
     {
      "type": "unstructured",
      "commentRaw": "Additional ASTRO 400-level courses"
-    },
-    {
-     "type": "course",
-     "code": "AERSP 308",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "AERSP 312",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "EE 472",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "GEOSC 474",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "METEO 466",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "PHYS 458",
-     "credits": null
     }
    ],
    "structured": false,

@@ -47,7 +47,26 @@
      "commentRaw": "Select 3 credits from the following Culture Course Lists:",
      "from": {
       "kind": "courses",
-      "courses": []
+      "courses": [
+       "SPAN 315N",
+       "SPAN 411",
+       "SPAN 412",
+       "SPAN 423",
+       "SPAN 425",
+       "SPAN 315N",
+       "SPAN 353",
+       "SPAN 354",
+       "SPAN 355",
+       "SPAN 356",
+       "SPAN 439",
+       "SPAN 412",
+       "SPAN 470",
+       "SPAN 474",
+       "SPAN 476",
+       "SPAN 479",
+       "SPAN 490",
+       "SPAN 491"
+      ]
      }
     },
     {
@@ -55,99 +74,8 @@
      "commentRaw": "If you take SPAN 215N or SPAN 215Q, select one of the following courses:"
     },
     {
-     "type": "course",
-     "code": "SPAN 315N",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SPAN 411",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SPAN 412",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SPAN 423",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SPAN 425",
-     "credits": null
-    },
-    {
      "type": "unstructured",
      "commentRaw": "If you take SPAN 253W, select one of the following courses:"
-    },
-    {
-     "type": "course",
-     "code": "SPAN 315N",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SPAN 353",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SPAN 354W",
-     "credits": null,
-     "resolvedFrom": "SPAN 354"
-    },
-    {
-     "type": "course",
-     "code": "SPAN 355",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SPAN 356",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SPAN 439",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SPAN 412",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SPAN 470",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SPAN 474",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SPAN 476",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SPAN 479",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SPAN 490",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SPAN 491",
-     "credits": null
     }
    ],
    "structured": false,

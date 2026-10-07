@@ -59,7 +59,23 @@
       "NUTR 425",
       "SPAN 105",
       "SPAN 106",
-      "WMNST 420W"
+      "WMNST 420W",
+      "AFR 105",
+      "AGECO 3",
+      "AGECO 457",
+      "EARTH 2",
+      "ENT 202N",
+      "ENT 222N",
+      "ENT 457",
+      "ERM 210",
+      "FDSC 105",
+      "FOR 201N",
+      "FOR 418",
+      "FOR 488Y",
+      "GEOG 210",
+      "INTAG 300",
+      "PPEM 405",
+      "SOILS 71"
      ],
      "credits": null,
      "commentRaw": "Select three courses from the first two categories (9 credits) and one internationally-oriented experience from the third category (3 credits)"
@@ -75,91 +91,6 @@
     {
      "type": "note",
      "commentRaw": "Select up to two courses from this category:"
-    },
-    {
-     "type": "course",
-     "code": "AFR 105",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "AGECO 3",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "AGECO 457",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "EARTH 2",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ENT 202N",
-     "credits": null,
-     "resolvedFrom": "ENT 202"
-    },
-    {
-     "type": "course",
-     "code": "ENT 222N",
-     "credits": null,
-     "resolvedFrom": "ENT 222"
-    },
-    {
-     "type": "course",
-     "code": "ENT 457",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ERM 210",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "FDSC 105",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "FOR 201N",
-     "credits": null,
-     "resolvedFrom": "FOR 201"
-    },
-    {
-     "type": "course",
-     "code": "FOR 418",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "FOR 488Y",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "GEOG 210",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "INTAG 300",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "PPEM 405",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SOILS 71",
-     "credits": null
     },
     {
      "type": "selectCredits",
