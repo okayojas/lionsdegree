@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { progress, type Course, type PlanItem } from "@psu-planner/engine";
 import { usePlanner, loadSavedPlan, getPlanHistory, type PlanHistoryEntry } from "./store";
 import { loadCourse, loadIugIndex, type IugIndexEntry } from "./data/catalogClient";
+import { downloadPlan, openPlanFile } from "./data/planFileIO";
 import { Onboarding } from "./components/Onboarding";
 import { PlanCanvas } from "./components/PlanCanvas";
 import { CourseModal } from "./components/CourseModal";
@@ -168,6 +169,8 @@ export default function App() {
                 Optimize schedule
               </button>
               <button role="menuitem" onClick={() => setShowImport(true)}>Import courses / AP credit</button>
+              <button role="menuitem" onClick={() => downloadPlan(plan)}>Save plan to a file</button>
+              <button role="menuitem" onClick={() => void openPlanFile(setPlan, setToast)}>Open a plan file</button>
               <button
                 role="menuitem"
                 onClick={async () => {
