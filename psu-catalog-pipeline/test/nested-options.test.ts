@@ -48,6 +48,32 @@ describe("options indented under a requirement", () => {
   });
 });
 
+describe("mutually exclusive branches indented under one header", () => {
+  const chooseNWith = (needle: string) =>
+    rules().find((r): r is Extract<Rule, { type: "chooseN" }> =>
+      r.type === "chooseN" && r.commentRaw.includes(needle),
+    );
+
+  it("each branch is its own list", () => {
+    // "If you take SPAN 215N..., select one of the following courses:" is a
+    // list header whose condition comes first, so the anchored patterns miss
+    // it. Left as prose, it does not close the open list and both branches
+    // collect into one pool.
+    expect(chooseNWith("If you take SPAN 215N")?.options).toEqual(["SPAN 411"]);
+    expect(chooseNWith("If you take SPAN 253W")?.options).toEqual(["SPAN 474"]);
+  });
+
+  it("a student is never offered the other branch's courses", () => {
+    const a = chooseNWith("If you take SPAN 215N")!;
+    expect(a.options).not.toContain("SPAN 474");
+  });
+
+  it("the header above them does not absorb either branch", () => {
+    const header = selectWith("Culture Course Lists");
+    expect((header!.from as { courses: string[] }).courses).toEqual([]);
+  });
+});
+
 describe("options that name areas rather than courses", () => {
   it("stays empty rather than inventing a list", () => {
     // "American literature" / "American history" are topic areas. No course

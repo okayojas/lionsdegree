@@ -44,36 +44,20 @@
      "credits": 3
     },
     {
-     "type": "unstructured",
+     "type": "chooseN",
+     "n": 3,
+     "options": [
+      "MGMT 415",
+      "MGMT 418",
+      "SCM 445",
+      "SCM 455",
+      "SCM 460"
+     ],
+     "credits": 9,
      "commentRaw": "Select three 400-level MGMT and SCM courses of the following:"
-    },
-    {
-     "type": "course",
-     "code": "MGMT 415",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "MGMT 418",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SCM 445",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SCM 455",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SCM 460",
-     "credits": null
     }
    ],
-   "structured": false,
+   "structured": true,
    "llmNormalized": false,
    "rawText": "Additional Courses: Require a grade of C or better\nMGMT 410Project Management3\nor BA 421 Project Management\nSelect three 400-level MGMT and SCM courses of the following: 9\nMGMT 415Project Portfolio Management and Organizations\nMGMT 418Project Planning and Resource Management\nSCM 445Operations Planning and Control\nSCM 455Logistics Systems Analysis and Design\nSCM 460Purchasing and Materials Management\n"
   }

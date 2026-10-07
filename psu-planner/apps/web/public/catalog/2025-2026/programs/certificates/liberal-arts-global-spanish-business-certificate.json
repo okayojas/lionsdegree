@@ -47,38 +47,45 @@
      "commentRaw": "Select 3 credits from the following Culture Course Lists:",
      "from": {
       "kind": "courses",
-      "courses": [
-       "SPAN 315N",
-       "SPAN 411",
-       "SPAN 412",
-       "SPAN 423",
-       "SPAN 425",
-       "SPAN 315N",
-       "SPAN 353",
-       "SPAN 354",
-       "SPAN 355",
-       "SPAN 356",
-       "SPAN 439",
-       "SPAN 412",
-       "SPAN 470",
-       "SPAN 474",
-       "SPAN 476",
-       "SPAN 479",
-       "SPAN 490",
-       "SPAN 491"
-      ]
+      "courses": []
      }
     },
     {
-     "type": "unstructured",
+     "type": "chooseN",
+     "n": 1,
+     "options": [
+      "SPAN 315N",
+      "SPAN 411",
+      "SPAN 412",
+      "SPAN 423",
+      "SPAN 425"
+     ],
+     "credits": null,
      "commentRaw": "If you take SPAN 215N or SPAN 215Q, select one of the following courses:"
     },
     {
-     "type": "unstructured",
+     "type": "chooseN",
+     "n": 1,
+     "options": [
+      "SPAN 315N",
+      "SPAN 353",
+      "SPAN 354W",
+      "SPAN 355",
+      "SPAN 356",
+      "SPAN 439",
+      "SPAN 412",
+      "SPAN 470",
+      "SPAN 474",
+      "SPAN 476",
+      "SPAN 479",
+      "SPAN 490",
+      "SPAN 491"
+     ],
+     "credits": null,
      "commentRaw": "If you take SPAN 253W, select one of the following courses:"
     }
    ],
-   "structured": false,
+   "structured": true,
    "llmNormalized": false,
    "rawText": "SPAN 100Intermediate Grammar and Composition (or students may place into 200)3\nor SPAN 100A Intermediate Grammar and Composition for Spanish Bilinguals\nor SPAN 100B Intermediate Grammar and Composition for Students in Medical-Related Fields\nSPAN 215NThe Science of Spanish: A Beginner's Guide to Hispanic Linguistics 3\nor SPAN 215Q The Science of Spanish: A Beginner's Guide to Hispanic Linguistics\nor SPAN 253W Introduction to Literary & Cultural Studies en Español\nSPAN 310Business Spanish3\nSPAN 420Spanish for Business and International Trade3\nSelect 3 credits from the following Culture Course Lists:3\nIf you take SPAN 215N or SPAN 215Q, select one of the following courses:\nSPAN 315NSpanish and Spanish-speakers in the U.S.\nSPAN 411The ABCs of Bilingualism: Acquisition, Brain, and Community\nSPAN 412Translation\nSPAN 423Spanish in Contact with Other Languages\nSPAN 425The Spanish Your Teachers Never Taught You\nIf you take SPAN 253W, select one of the following courses:\nSPAN 315NSpanish and Spanish-speakers in the U.S.\nSPAN 353Topics in the Cultures of Spain\nSPAN 354Topics in Cultural Contact and Exchange\nSPAN 355Topics in the Cultures of Latin America\nSPAN 356Topics in the Cultures of the Americas\nSPAN 439Don Quijote\nSPAN 412Translation\nSPAN 470Youth Cultures in Latin(a/o) America\nSPAN 474Many Mexicos\nSPAN 476Masterpieces of Spanish American Literature\nSPAN 479U.S. Latina/o Culture en Espanol\nSPAN 490Masterpieces of Spanish Prose\nSPAN 491Masterpieces of Spanish Drama and Poetry\n"
   }

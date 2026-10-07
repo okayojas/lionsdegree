@@ -223,6 +223,20 @@ export function classifyComment(text: string): Rule {
   const ged = /^(GWS|GQ|GA|GH|GHW|GN|GS)\b.*course/i.exec(text);
   if (ged) return { type: "genEd", domain: ged[1].toUpperCase(), credits: null, commentRaw: text };
 
+  // A CONDITIONAL list header: "If you take SPAN 215N or SPAN 215Q, select one
+  // of the following courses:". The condition comes first, so the anchored
+  // patterns above miss it and the row reads as prose -- which let two
+  // mutually exclusive branches collect into a single pool, offering a student
+  // courses that cannot satisfy their requirement. Checked last, so anything
+  // with an explicit credit count is already handled; bounded to rows that END
+  // by introducing a list, which is a strong enough signal to be safe.
+  const conditional = /\b(?:select|choose|take)\s+(one|two|three|four|five|six|\d+)?[^.]*\bfollowing(?:\s+courses?)?\s*:$/i.exec(text);
+  if (conditional) {
+    const word = conditional[1]?.toLowerCase();
+    const n = word ? (WORD_NUMS[word] ?? parseInt(word, 10)) : 1;
+    return { type: "chooseN", n: Number.isFinite(n) && n > 0 ? n : 1, options: [], credits: null, commentRaw: text };
+  }
+
   return { type: "unstructured", commentRaw: text };
 }
 
@@ -243,10 +257,19 @@ export function parseRequirementTables(html: string): RequirementsParseResult {
     /** Open rule that collects option codes from following indented rows. */
     let collector: Extract<Rule, { type: "selectCredits" | "chooseN" }> | null = null;
 
+    /** A Pool is a SET of courses that may fill the requirement. The bulletin
+     * repeats a code when it appears in several sub-lists under one heading
+     * ("18 credits of 400-level biology" lists BIOL 406 under both Ecology and
+     * Genetics), and an or-pair row repeats its left side. Collecting those
+     * verbatim gave one requirement 157 entries for 84 real courses. */
+    const pushUnique = (into: string[], codes: string[]) => {
+      for (const c of codes) if (!into.includes(c)) into.push(c);
+    };
+
     const collectInto = (codes: string[]): boolean => {
       if (!collector) return false;
-      if (collector.type === "chooseN") { collector.options.push(...codes); return true; }
-      if (collector.from?.kind === "courses") { collector.from.courses.push(...codes); return true; }
+      if (collector.type === "chooseN") { pushUnique(collector.options, codes); return true; }
+      if (collector.from?.kind === "courses") { pushUnique(collector.from.courses, codes); return true; }
       return false;
     };
 
@@ -334,7 +357,15 @@ export function parseRequirementTables(html: string): RequirementsParseResult {
             .map((_, a) => normDisplayCode(clean($(a).attr("title") ?? $(a).text())))
             .get()
             .filter((c): c is string => !!c);
-          if (!codesInCell.length) return;
+          if (!codesInCell.length) {
+            // The cell is hyperlinked but no title resolved to a code --
+            // cross-listed titles like "LTNST/ENGL 226" are the common case.
+            // Surfacing it beats dropping the row on the floor: silently
+            // discarding a course the bulletin published is the failure mode
+            // the review queue exists to catch.
+            needsReview.push({ heading: current!.heading, text: rowText });
+            return;
+          }
 
           if (cls.includes("orclass")) {
             foldIntoPrev(codesInCell, credits);

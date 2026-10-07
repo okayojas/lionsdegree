@@ -231,14 +231,43 @@ describe("requirements whose options are indented under them", () => {
     expect(unreadable.length).toBeLessThanOrEqual(90);
   });
 
-  it("do not sweep in the next requirement's courses", () => {
-    // Indentation bounds the list. A pool that swallowed its whole section
-    // would be far larger than any real published list.
-    const huge = allSelectPools().filter(
-      (p) => (p.pool?.kind === "listed" || p.pool?.kind === "registry") && p.pool.courses.length > 300,
+  it("hold each course once, because a Pool is a set", () => {
+    const repeated = allSelectPools()
+      .filter((p) => p.pool?.kind === "listed" || p.pool?.kind === "registry")
+      .filter((p) => {
+        const c = (p.pool as { courses: string[] }).courses;
+        return new Set(c).size !== c.length;
+      });
+    expect(repeated.map((m) => m.slug)).toEqual([]);
+  });
+
+  it("do not merge two mutually exclusive branches into one list", () => {
+    // Real regression: the Spanish certificate offers one list to students who
+    // took SPAN 215N and a different one to students who took SPAN 253W. Both
+    // branch headers are indented under a shared heading, so leaving the list
+    // open across them merged 5 + 13 courses into one pool and offered a
+    // student courses that cannot satisfy their requirement. A size threshold
+    // would never have caught it -- the merged pool was only 18 courses.
+    const p = JSON.parse(
+      fs.readFileSync(
+        path.join(CATALOG_DIR, "programs/certificates/liberal-arts-global-spanish-business-certificate.json"),
+        "utf-8",
+      ),
     );
-    // ESM's technical-elective list (227) is the largest legitimate one.
-    expect(huge.map((h) => h.slug)).toEqual([]);
+    const branches = (p.requirementSections as ReqSection[])
+      .flatMap((s) => s.rules)
+      .filter((r) => r.type === "chooseN" && r.commentRaw.startsWith("If you take"));
+    expect(branches.length).toBe(2);
+    const [a, b] = branches.map((r) => poolFromRule(r));
+    const aCourses = (a as { courses: string[] }).courses;
+    const bCourses = (b as { courses: string[] }).courses;
+    expect(aCourses.length).toBeLessThan(10);
+    expect(aCourses.some((c) => bCourses.includes(c) && !aCourses.includes(c))).toBe(false);
+    // The shared heading above them absorbs neither branch.
+    const header = (p.requirementSections as ReqSection[])
+      .flatMap((s) => s.rules)
+      .find((r) => r.type === "selectCredits" && r.commentRaw.includes("Culture Course Lists"));
+    expect(ofKind(poolFromRule(header!), "unreadable")).toBeTruthy();
   });
 });
 
