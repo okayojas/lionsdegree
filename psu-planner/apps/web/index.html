@@ -3,10 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LionsDegree</title>
+    <title>LionsDegree — prerequisite-aware degree planning for Penn State</title>
+    <meta
+      name="description"
+      content="Pick your majors, minors and certificates; LionsDegree builds a semester-by-semester plan that respects every prerequisite. Unofficial, not affiliated with Penn State."
+    />
+    <link rel="canonical" href="https://lionsdegree.com/" />
+    <!-- This page is deliberately plain. The real landing page is a separate
+         piece of work; what matters here is that it is a STATIC DOCUMENT with
+         no planner JavaScript, because link previewers do not run scripts. -->
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <main>
+      <h1>LionsDegree</h1>
+      <p>
+        Prerequisite-aware degree planning for Penn State. Pick your majors,
+        minors and certificates; the planner builds a semester-by-semester
+        schedule that respects every prerequisite, stays under the credit cap,
+        and tells you what breaks when you move things around.
+      </p>
+      <p><a href="/plan/">Open the planner</a></p>
+      <p>
+        <small>
+          Unofficial. Not affiliated with, endorsed by, or an official product
+          of The Pennsylvania State University. Course data may be out of date
+          or wrong — verify everything with your academic adviser and LionPATH.
+        </small>
+      </p>
+    </main>
+    <script type="module" src="/src/landing.ts"></script>
   </body>
 </html>

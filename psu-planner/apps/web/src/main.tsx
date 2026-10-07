@@ -13,6 +13,16 @@ if (savedTheme === "dark" || savedTheme === "light") {
   document.documentElement.dataset.theme = savedTheme;
 }
 
+// Registered here rather than injected into every HTML entry, so the landing
+// page stays script-light and the worker only ever controls the planner.
+if (import.meta.env.PROD && "serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    void navigator.serviceWorker.register("/plan/sw.js", { scope: "/plan/" }).catch(() => {
+      /* offline support is a bonus, never a reason to fail boot */
+    });
+  });
+}
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />
