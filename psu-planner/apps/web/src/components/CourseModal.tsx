@@ -71,12 +71,25 @@ function SlotSuggestions({ item, onFill }: { item: PlanItem; onFill: (code: stri
         <>
           <p className="desc slot-offerings">{result.offeringsNote}</p>
           <div className="slot-picks">
-            {result.picks.map(({ course: s, bonuses }) => (
-              <button key={s.code} className="slot-pick" onClick={() => onFill(s.code)}>
-                <span className="code">{s.display}</span>
-                <span className="slot-pick-title">{s.title}</span>
-                <span className="slot-pick-meta">
+            {result.picks.map(({ course: s, ready, bonuses }) => (
+              <button
+                key={s.code}
+                className="slot-pick"
+                onClick={() => onFill(s.code)}
+                aria-label={[
+                  `${s.display}, ${s.title}, ${s.credits}`,
+                  ready ? "prerequisites met" : null,
+                  ...bonuses,
+                ].filter(Boolean).join(". ")}
+              >
+                <span className="code" aria-hidden="true">{s.display}</span>
+                <span className="slot-pick-title" aria-hidden="true">{s.title}</span>
+                <span className="slot-pick-meta" aria-hidden="true">
                   {s.credits}
+                  {/* Rendered from `ready`, never from position in the list:
+                      styling whichever chip came first turned "also fulfills
+                      IL" green on a course the student cannot yet take. */}
+                  {ready && <span className="slot-pick-chip is-ready">prerequisites met</span>}
                   {bonuses.map((b) => (
                     <span key={b} className="slot-pick-chip">{b}</span>
                   ))}

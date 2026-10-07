@@ -3,8 +3,8 @@
    A degree as a subway map: station-dot stops, route-line connectors.
    Muted WARM CREAM in light, muted SLATE-GRAY in dark (never stark white /
    near-black), ONE accent taken from the LionsDegree logo -- its mid blue in
-   light, a softened Pugh Blue in dark -- plus the logo's navy as a structural
-   tone for the wordmark. Status colors stay desaturated. The second route
+   light, a softened Pugh Blue in dark -- plus the logo's navy for the
+   wordmark. Status colors stay desaturated. The second route
    line stays GREEN so two converging routes read as two routes.
    ONE unifying sans throughout; monospace reserved strictly for course codes.
    Tiers: primitives -> semantic roles -> legacy aliases (no component churn).
@@ -56,7 +56,7 @@
      and amber on cream is the hardest case. Darkened until each passes; the
      -solid variants are fills, not text, and keep their original weight. */
   --success: #3d6848; --success-solid: #5a8c69; --success-bg: #e9efe4; --success-border: #c3d4bf;
-  --warning: #8a5f28; --warning-solid: #bf8a44; --warning-bg: #f4ecdb; --warning-border: #e2cfa8;
+  --warning: #8a5f28; --warning-solid: #a2722f; --warning-bg: #f4ecdb; --warning-border: #e2cfa8;
   --danger: #9c4a46;  --danger-solid: #bf6360;  --danger-bg: #f3e5e2;  --danger-border: #e0bcb7;
   --focus-ring: #1d417f;
   --shadow-color: 35 25% 30%;
@@ -167,7 +167,8 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 }
 .toolbar h1 {
   font-size: var(--fs-md); margin: 0 var(--sp-2) 0 0; font-weight: 800; white-space: nowrap;
-  color: var(--text); letter-spacing: var(--track-tight); display: flex; align-items: center; gap: 8px;
+  /* The logo's deep blue, matching the "Lions" half of the wordmark. */
+  color: var(--navy); letter-spacing: var(--track-tight); display: flex; align-items: center; gap: 8px;
 }
 .toolbar h1::before {  /* wordmark station-dot */
   content: ""; width: 12px; height: 12px; border-radius: 50%;
@@ -443,9 +444,11 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   color: var(--accent-text);
   border: 1px solid var(--border);
 }
-/* The first chip is always "prerequisites met" when it applies, and that is
-   the one fact that changes whether a student can act on the row at all. */
-.slot-pick-chip:first-of-type { background: var(--success-bg); color: var(--success); border-color: var(--success-border); }
+/* Driven by the DATA, not by position. Styling the first chip in the list
+   meant "also fulfills IL" rendered in success green on a course whose
+   prerequisites were NOT met -- a green badge saying the opposite of the
+   truth. */
+.slot-pick-chip.is-ready { background: var(--success-bg); color: var(--success); border-color: var(--success-border); }
 
 @media (max-width: 560px) {
   /* Stacked: a three-column row at phone width truncates the title to

@@ -10,6 +10,7 @@ import path from "node:path";
 import {
   buildCatalog,
   buildItems,
+  checkCourse,
   buildSchedule,
   generatePlan,
   hydrateSearchIndex,
@@ -58,12 +59,30 @@ describe("an elective Slot", () => {
     expect(codes).toContain("CMPSC 465");
   });
 
-  it("ranks a course whose prerequisites the plan already satisfies above one it does not", () => {
+  it("marks a course ready only when the plan really does satisfy it", () => {
+    // Asserting that ready courses sort first would only test the comparator:
+    // the flag adds +10 and the sort is by score, so it is true by
+    // construction. Check the FLAG against an independent evaluation instead.
+    // Checked at several terms, because readiness legitimately changes as the
+    // plan fills: early on, nothing with prerequisites is satisfied yet.
+    let everReady = 0;
+    for (const term of [1, Math.floor(plan.terms.length / 2), plan.terms.length - 1]) {
+      const { picks } = rankSlotPicks(catalog, pool, { ...base, termIndex: term });
+      for (const p of picks.filter((x) => x.ready)) {
+        everReady++;
+        expect(checkCourse(catalog, p.course.code, term, sched).value, `${p.course.code} @${term}`).toBe(2);
+        // And only claimed where there was something to satisfy.
+        expect(!!(p.course.prereqAst ?? p.course.enforced), p.course.code).toBe(true);
+      }
+    }
+    expect(everReady, "the readiness signal never fired at any term").toBeGreaterThan(0);
+  });
+
+  it("does not claim prerequisites are met on a course that has none", () => {
     const { picks } = rankSlotPicks(catalog, pool, base);
-    const ready = picks.findIndex((p) => p.bonuses.includes("prerequisites met"));
-    const notReady = picks.findIndex((p) => !p.bonuses.includes("prerequisites met"));
-    expect(ready).toBeGreaterThanOrEqual(0);
-    expect(ready).toBeLessThan(notReady);
+    const noPrereqs = picks.filter((p) => !(p.course.prereqAst ?? p.course.enforced));
+    expect(noPrereqs.length).toBeGreaterThan(0);
+    expect(noPrereqs.every((p) => !p.ready)).toBe(true);
   });
 
   it("never offers a course already in the plan", () => {

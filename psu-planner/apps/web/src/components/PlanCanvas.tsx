@@ -127,7 +127,11 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
     if (e.bad) return "#dc2626";
     let h = 0;
     for (let i = 0; i < e.to.length; i++) h = (h * 31 + e.to.charCodeAt(i)) >>> 0;
-    const HUES = [215, 158, 30, 275, 340, 100, 190, 250, 15, 130];
+    // Per-course route hues. Violet (around 275) is deliberately absent: the
+    // accent is the logo's blue, and a violet route line was the last of the
+    // old palette still rendering. Spread around the wheel so adjacent
+    // courses stay distinguishable.
+    const HUES = [215, 158, 30, 340, 100, 190, 15, 130, 45, 175];
     return `hsl(${HUES[h % HUES.length]}, 55%, 42%)`;
   };
 

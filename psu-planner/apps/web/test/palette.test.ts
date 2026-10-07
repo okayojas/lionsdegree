@@ -119,6 +119,32 @@ describe("the dark theme is declared once, in effect", () => {
 });
 
 describe("the outgoing accent is gone", () => {
+  it("no violet hue survives in colour emitted from components", () => {
+    // The stylesheet is not the only place colour comes from: the canvas
+    // builds route lines with hsl(). An earlier version of this test scanned
+    // only styles.css and reported clean while violet edges still rendered.
+    const srcDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "src");
+    const files: string[] = [];
+    const walk = (d: string) => {
+      for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+        const f = path.join(d, e.name);
+        if (e.isDirectory()) walk(f);
+        else if (/\.tsx?$/.test(e.name)) files.push(f);
+      }
+    };
+    walk(srcDir);
+    const violetHues: string[] = [];
+    for (const f of files) {
+      const text = fs.readFileSync(f, "utf-8");
+      for (const m of text.matchAll(/(2[5-9]\d|3[0-1]\d)(?=[,\s\]])/g)) {
+        // Only inside an array of hues or an hsl() call.
+        const around = text.slice(Math.max(0, m.index! - 80), m.index! + 20);
+        if (/HUES|hsl\(/.test(around)) violetHues.push(`${path.basename(f)}: ${m[0]}`);
+      }
+    }
+    expect(violetHues).toEqual([]);
+  });
+
   it("no violet survives anywhere in the stylesheet", () => {
     // Retuning a palette by changing --primary alone leaves the old hue in
     // hover states, tints and legacy aliases, which reads as a bug.

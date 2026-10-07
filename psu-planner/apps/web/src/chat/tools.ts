@@ -3,7 +3,8 @@
  * Every executor returns a JSON-serializable result the model can read. */
 import {
   GENED_BUCKETS, astCourses, auditGenEd, auditHonors, auditProgram, bucketAccepts, buildPool,
-  checkCourse, countableCourses, credOf, majorDeptPrefixes, progress, rankGenEdPicks, searchCatalog,
+  checkCourse, codeMatchesPool, countableCourses, credOf, majorDeptPrefixes, poolHasMembership,
+  progress, rankGenEdPicks, rankSlotPicks, resolveSlotPool, searchCatalog,
   type Catalog, type ReqSection, type ScheduleConstraint,
 } from "@psu-planner/engine";
 import { auditIug } from "@psu-planner/engine";
@@ -347,6 +348,26 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
           efficient_picks: picks,
           note: "picks flagged 'also fulfills IL/US' cover two requirements with one course",
         };
+      }
+      // ELECTIVE slots were ungated here. A gen-ed slot checked its bucket
+      // above, but an elective slot accepted any course in the catalog, so the
+      // assistant could fill a Technical Elective with something that does not
+      // count toward it -- which the course card itself would have refused.
+      if (!bucket && slot.slotProgram && slot.slotLabel) {
+        const prog = await loadProgramBySlug<{ requirementSections: ReqSection[] }>(slot.slotProgram);
+        const slotPool = prog ? resolveSlotPool(slot.slotLabel, prog.requirementSections) : null;
+        if (poolHasMembership(slotPool) && !codeMatchesPool(code, slotPool)) {
+          const ranked = rankSlotPicks(cat, slotPool, {
+            exclude: new Set(s.items.filter((i) => i.kind === "course").map((i) => i.code!)),
+            majorPrefixes: majorDeptPrefixes(plan),
+            needUS: false, needIL: false, limit: 5,
+          });
+          return {
+            error: `${code} is not on the approved list for ${slot.slotLabel}`,
+            approved_picks: ranked.picks.map((p) => ({ code: p.course.code, title: p.course.title })),
+            note: ranked.offeringsNote,
+          };
+        }
       }
       const revFill = plan.rev;
       s.mutatePlan((p) => { p.slotFills[slotId] = code; });

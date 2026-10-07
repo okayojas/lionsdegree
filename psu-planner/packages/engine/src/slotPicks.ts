@@ -7,14 +7,22 @@
  *
  * The ranking answers one question in order of how much it helps a student:
  * can I take this next, does it also close something else, and does it fit. */
-import { bucketAccepts, domainsOf, isInterdomain, rankGenEdPicks, BUCKET_BY_KEY, IL_ATTR, US_ATTR } from "./genEd.js";
+import { domainsOf, isInterdomain, rankGenEdPicks, BUCKET_BY_KEY, IL_ATTR, US_ATTR } from "./genEd.js";
 import { checkCourse } from "./evaluate.js";
 import { codeMatchesPool, type Pool } from "./requirements.js";
 import type { Catalog, Course, Schedule } from "./types.js";
 
 export interface SlotPick {
   course: Course;
-  /** Why this one is worth choosing — rendered as short chips. */
+  /** The course has prerequisites AND the plan satisfies them by this term.
+   * A SEPARATE field rather than another entry in `bonuses`, because the view
+   * styles this one differently and deciding which chip it is by position in
+   * an array is how a "not ready" course ends up wearing a green badge.
+   *
+   * False for a course with no prerequisites at all: "prerequisites met" is
+   * noise when there were none to meet, and the chip should mean something. */
+  ready: boolean;
+  /** Why else this one is worth choosing — rendered as neutral chips. */
   bonuses: string[];
   score: number;
 }
@@ -104,7 +112,7 @@ export function rankSlotPicks(catalog: Catalog, pool: Pool | null, opts: SlotPic
       : Object.values(catalog)
           .filter((c) => c.genEd.includes(pool.domain) && !opts.exclude.has(c.code) && c.level === "undergraduate")
           .map((course) => ({ course, bonuses: [] as string[], score: 0 }));
-    result.picks = withPrereqRanking(picks, catalog, opts);
+    result.picks = withPrereqRanking(picks.map((p) => ({ ...p, ready: false })), catalog, opts);
     return result;
   }
 
@@ -127,7 +135,7 @@ export function rankSlotPicks(catalog: Catalog, pool: Pool | null, opts: SlotPic
     // A course that also carries a gen-ed designation closes two requirements.
     const doms = domainsOf(c);
     if (doms.length) { bonuses.push(`also counts as ${doms.join("+")}`); score += isInterdomain(c) ? 2 : 1; }
-    picks.push({ course: c, bonuses, score });
+    picks.push({ course: c, ready: false, bonuses, score });
   }
   result.picks = withPrereqRanking(picks, catalog, opts);
   return result;
@@ -139,10 +147,15 @@ export function rankSlotPicks(catalog: Catalog, pool: Pool | null, opts: SlotPic
 function withPrereqRanking(picks: SlotPick[], catalog: Catalog, opts: SlotPickOptions): SlotPick[] {
   const ranked = picks.map((p) => {
     if (!opts.sched || opts.termIndex === undefined) return p;
+    // A course with no stated prerequisites has nothing to be "met". Saying so
+    // would make the chip meaningless on the many courses that simply have
+    // none, and would dress the absence of data up as a verified fact.
+    const hasPrereqs = !!(p.course.prereqAst ?? p.course.enforced);
+    if (!hasPrereqs) return p;
     const chk = checkCourse(catalog, p.course.code, opts.termIndex, opts.sched);
     // 2 = satisfied. 1 means the requirement is free text we could not judge,
     // which is not the same as met and must not be presented as met.
-    if (chk.value === 2) return { ...p, bonuses: ["prerequisites met", ...p.bonuses], score: p.score + 10 };
+    if (chk.value === 2) return { ...p, ready: true, score: p.score + 10 };
     return p;
   });
   ranked.sort((a, b) =>
