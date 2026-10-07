@@ -85,13 +85,25 @@ jobs:
             cp ../psu-planner/apps/web/public/catalog/flowchart-patterns.json                "data/out/$EDITION/flowchart-patterns.json"
           fi
 
+      # ADDITIVE: the new edition lands in public/catalog/<edition>/ alongside
+      # the ones already committed. Editions ship forward-only because Penn
+      # State's archive is robots-disallowed, so an edition dropped here can
+      # never be re-fetched (docs/adr/0001-forward-only-catalog-editions.md).
+      # An earlier version of sync-catalog.mjs deleted the whole catalog first,
+      # which would have silently re-planned every continuing student.
       - name: Sync into the app
         working-directory: psu-planner
         env:
           EDITION: ${{ steps.ed.outputs.edition }}
         run: |
           pnpm install --frozen-lockfile
+          BEFORE=$(ls -d apps/web/public/catalog/*/ 2>/dev/null | wc -l)
           node apps/web/scripts/sync-catalog.mjs "$EDITION"
+          AFTER=$(ls -d apps/web/public/catalog/*/ 2>/dev/null | wc -l)
+          if [ "$AFTER" -lt "$BEFORE" ]; then
+            echo "::error::catalog lost an edition ($BEFORE -> $AFTER); refusing to continue"
+            exit 1
+          fi
 
       # Gate: the plan-generation and flowchart-validation suites run against
       # the freshly synced catalog. If the new edition broke a parser, this
@@ -106,12 +118,21 @@ jobs:
           ADDED=$(git status --porcelain psu-planner/apps/web/public/catalog | grep -c '^??' || true)
           CHANGED=$(git status --porcelain psu-planner/apps/web/public/catalog | grep -c '^ M' || true)
           DELETED=$(git status --porcelain psu-planner/apps/web/public/catalog | grep -c '^ D' || true)
+          EDITIONS=$(ls -d psu-planner/apps/web/public/catalog/*/ 2>/dev/null \
+            | xargs -n1 basename | paste -sd', ' -)
           {
             echo "summary<<EOF"
-            echo "- Edition: \`${{ steps.ed.outputs.edition }}\`"
+            echo "- Edition scraped: \`${{ steps.ed.outputs.edition }}\`"
+            echo "- Editions now published: \`$EDITIONS\`"
             echo "- Catalog files added: $ADDED"
             echo "- Catalog files changed: $CHANGED"
             echo "- Catalog files removed: $DELETED"
+            echo ""
+            echo "A non-zero \"removed\" count outside the scraped edition's own"
+            echo "directory means an edition was dropped. Editions are"
+            echo "forward-only and the archive is robots-disallowed, so a"
+            echo "dropped edition cannot be recovered from Penn State -- only"
+            echo "from this repository's git history. Do not merge if so."
             echo ""
             echo "Engine tests passed against this catalog before the PR was opened."
             echo "Review \`manifest.json\` for the new counts, and skim"

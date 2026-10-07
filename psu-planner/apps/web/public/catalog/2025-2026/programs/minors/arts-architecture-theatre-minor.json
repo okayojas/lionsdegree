@@ -1,0 +1,59 @@
+{
+ "slug": "arts-architecture-theatre-minor",
+ "name": "Theatre, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "arts-architecture",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/arts-architecture/theatre-minor/",
+ "totalCredits": 6,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "THEA 100",
+       "THEA 101N",
+       "THEA 105"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nTHEA 100The Art of the Theatre\nTHEA 101NPerformance and Society\nTHEA 105Introduction to Theatre\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits of THEA, DANCE, or courses from the approved list. A minimum of 6 credits from the 15 must be at the 400 level.",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "THEA",
+       "DANCE"
+      ],
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 15 credits of THEA, DANCE, or courses from the approved list. A minimum of 6 credits from the 15 must be at the 400 level. 15\n"
+  }
+ ],
+ "suggestedPlans": []
+}

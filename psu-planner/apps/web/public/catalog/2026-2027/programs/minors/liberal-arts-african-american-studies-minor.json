@@ -1,0 +1,57 @@
+{
+ "slug": "liberal-arts-african-american-studies-minor",
+ "name": "African American Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/african-american-studies-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AFAM 100N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AFAM 110N",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAFAM 100NBlack Freedom Struggles 3\nAFAM/WMNST 101NAfrican American Women 3\nAFAM 110NIntroduction to African American Studies 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following (at least 6 credits must be at the 400 level):",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AFAM 226N",
+       "AFAM 401",
+       "AFAM 410",
+       "SOC 119N"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 9 credits from the following (at least 6 credits must be at the 400 level):9\nAFAM/WMNST 102Women of the African Diaspora\nAFAM/SOC/WMNST 103Racism and Sexism\nAFAM/INART 126NThe Popular Arts in America: The History of Hip-Hop\nAFAM/RLST 145African Diaspora Religions and Spiritualities\nAFAM/RLST 146The Life and Thought of Martin Luther King, Jr.\nAFAM/RLST 147The Life and Thought of Malcolm X\nAFAM/MUSIC 207NJazz and the African American Experience\nAFAM/THEA 208Workshop: Theatre in Diverse Cultures\nAFAM/HIST 210Freedom's First Generation: African American Life and Work, from the Civil War to World War II\nAFAM 226NCritical Approaches to Hip-Hop\nAFAM/ENGL 235From Folk Shouts and Songs to Hip Hop Poetry\nAFAM 401Afro-American Studies Seminar\nAFAM/SOC 409Racial and Ethnic Inequality in America\nAFAM 410Spirit, Space, Survival: Contemporary Black Women\nAFAM/THEA 412African American Theatre\nAFAM/CAS 422Contemporary African American Communication\nAFAM/HIST 431Black Liberation and American Foreign Policy\nAFAM/ENGL 463African American Autobiography\nAFAM/HIST 465The Post-World War II Civil Rights Movement\nAFAM/ENGL 469Slavery and the Literary Imagination\nCOMM/WMNST 205Gender, Diversity and the Media\nCRIMJ/CRIM 451Race, Crime, and Justice\nSOC 119NRace, Ethnicity and Culture\n"
+  }
+ ],
+ "suggestedPlans": []
+}

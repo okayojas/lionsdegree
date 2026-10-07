@@ -1,0 +1,123 @@
+{
+ "slug": "eberly-science-natural-science-minor",
+ "name": "Natural Science, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/natural-science-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "SC 400",
+     "credits": 1
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nSC 400Consequences of Science1\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ASTRO 1",
+       "ASTRO 10",
+       "ASTRO 11",
+       "BISC 1",
+       "BISC 2",
+       "BISC 3",
+       "BISC 4",
+       "BMB 1",
+       "CHEM 1",
+       "CHEM 3",
+       "MICRB 106",
+       "MICRB 107",
+       "PHYS 1"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPSC 101",
+       "CMPSC 121",
+       "CMPSC 201",
+       "CMPSC 202",
+       "CMPSC 203",
+       "MATH 110",
+       "MATH 140",
+       "STAT 200",
+       "STAT 250"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 8,
+     "commentRaw": "Select 8-9 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 11",
+       "BIOL 12",
+       "BIOL 110",
+       "CHEM 110",
+       "CHEM 111",
+       "CHEM 112",
+       "CHEM 113",
+       "MICRB 201",
+       "MICRB 202",
+       "PHYS 250",
+       "PHYS 251"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3-4 credits of the following:3-4\nASTRO 1Astronomical Universe\nASTRO 10& ASTRO 11Elementary Astronomy and Elementary Astronomy Laboratory\nBISC 1Structure and Function of Organisms\nBISC 2Genetics, Ecology, and Evolution\nBISC 3Environmental Science\nBISC 4Human Body: Form and Function\nBMB 1The Science of Sickness\nCHEM 1Molecular Science\nCHEM 3Molecular Science With Laboratory\nMICRB 106& MICRB 107Elementary Microbiology and Elementary Microbiology Laboratory\nPHYS 1The Science of Physics\nSelect 3-4 credits of the following:3-4\nCMPSC 101Introduction to Programming\nCMPSC 121Introduction to Programming Techniques\nCMPSC 201Programming for Engineers with C++\nor CMPSC 202\nCMPSC 203Introduction to Spreadsheets and Databases\nMATH 110Techniques of Calculus I\nMATH 140Calculus With Analytic Geometry I\nSTAT 200Elementary Statistics\nSTAT 250Introduction to Biostatistics\nSelect 8-9 credits of the following:8-9\nBIOL 11& BIOL 12Introductory Biology I and Introductory Biology II\nBIOL 110Biology: Basic Concepts and Biodiversity\nCHEM 110& CHEM 111Chemical Principles I and Experimental Chemistry I\nCHEM 112& CHEM 113Chemical Principles II and Experimental Chemistry II\nMICRB 201& MICRB 202Introductory Microbiologyand Introductory Microbiology Laboratory\nPHYS 250Introductory Physics I\nPHYS 251Introductory Physics II\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 0,
+     "commentRaw": "Select 0-2 credits of 496 (independent studies) courses from the Eberly College of Science course offerings",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-5 credits of 400-level courses (other than independent studies) from the Eberly College of Science course offerings",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 0-2 credits of 496 (independent studies) courses from the Eberly College of Science course offerings0-2\nSelect 3-5 credits of 400-level courses (other than independent studies) from the Eberly College of Science course offerings3-5\n"
+  }
+ ],
+ "suggestedPlans": []
+}

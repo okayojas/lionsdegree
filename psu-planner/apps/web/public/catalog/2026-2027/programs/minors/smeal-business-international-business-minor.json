@@ -1,0 +1,102 @@
+{
+ "slug": "smeal-business-international-business-minor",
+ "name": "International Business, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "smeal-business",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/smeal-business/international-business-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BA 411",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCM 301",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBA 411Analyzing Business and Industry3\nFIN 301Corporation Finance3\nSCM 301Supply Chain Management3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "IB 303",
+       "IB 403",
+       "IB 404",
+       "IB 450",
+       "IB 460",
+       "IB 470"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits from the following:6\nIB 303International Business Operations\nIB 403International Business and National Policies\nIB 404Contemporary Issues in International Business\nIB 450The Business Enviornment of Europe\nIB 460International Business in Emerging Nations\nIB 470International Development in an African Context\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following tracks:"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from an approved study abroad program",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of global business, culture, or language courses in consultation with program faculty",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of global business or business-related coursework in consultation with program faculty",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of global business, culture, or languages courses in consultation with program faculty",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect one of the following tracks:12\nGlobal Immersion Track\nSelect 6 credits from an approved study abroad program\nSelect 6 credits of global business, culture, or language courses in consultation with program faculty\nGlobal Business Track\nSelect 6 credits of global business or business-related coursework in consultation with program faculty\nSelect 6 credits of global business, culture, or languages courses in consultation with program faculty\n"
+  }
+ ],
+ "suggestedPlans": []
+}

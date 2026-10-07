@@ -1,0 +1,380 @@
+{
+ "slug": "engineering-surveying-engineering-technology-aengt",
+ "name": "Surveying Engineering Technology, A.ENGT.",
+ "type": "major",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/surveying-engineering-technology-aengt/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EDSGN 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SUR 132",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SUR 213",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SUR 222",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SUR 241",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SUR 361",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SUR 382",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "SUR 121",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SUR 122",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SUR 221",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SUR 373W",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "EDSGN 100Cornerstone Engineering Design3\nSUR 132Surveying Software Analysis Tools 3\nSUR 213Route and Construction Surveying 3\nSUR 222Photogrammetry3\nSUR 241Surveying Measurement Analysis3\nSUR 361Surveying Laser Scanning 3\nSUR 382Subdivision Design 2\nPrescribed Courses: Require a grade of C or better\nSUR 121Elementary Surveying 3\nSUR 122Control Surveying 3\nSUR 221Large-scale Mapping Surveys 3\nSUR 373WCadastral and Legal Aspects of Surveying 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 202C",
+      "ENGL 202D"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 22",
+      "MATH 26",
+      "MATH 41"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PHYS 150",
+       "PHYS 211",
+       "PHYS 250"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PHYS 151",
+       "PHYS 212",
+       "PHYS 251"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 15",
+      "ENGL 30H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 110",
+      "MATH 140"
+     ],
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ENGL 202CEffective Writing: Technical Writing 3\nor ENGL 202D Effective Writing: Business Writing\nMATH 22& MATH 26College Algebra With Analytic Geometry and Applications II and Plane Trigonometry and Applications of Trigonometry 4-6\nor MATH 41 Trigonometry and Analytic Geometry\nSelect 3-4 credits from the following:3-4\nPHYS 150Technical Physics I\nPHYS 211General Physics: Mechanics\nPHYS 250Introductory Physics I\nSelect 3-4 credits from the following:3-4\nPHYS 151Technical Physics II\nPHYS 212General Physics: Electricity and Magnetism\nPHYS 251Introductory Physics II\nAdditional Courses: Require a grade of C or better\nCAS 100AEffective Speech 3\nor CAS 100B Effective Speech\nENGL 15Rhetoric and Composition 3\nor ENGL 30H Honors Rhetoric and Composition\nMATH 110Techniques of Calculus I 4\nor MATH 140 Calculus With Analytic Geometry I\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Surveying Engineering Technology, A.ENGT. at Wilkes-Barre Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 41",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "MATH 22",
+        "MATH 26"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EDSGN 100",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SUR 121",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 150",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SUR 122",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SUR 132",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PHYS 151",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "PHYS 251"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SUR 221",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SUR 213",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SUR 241",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SUR 361",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SUR 222",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SUR 373W",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SUR 382",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 65,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

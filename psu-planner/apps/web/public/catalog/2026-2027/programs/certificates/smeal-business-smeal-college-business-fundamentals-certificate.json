@@ -1,0 +1,40 @@
+{
+ "slug": "smeal-business-smeal-college-business-fundamentals-certificate",
+ "name": "Smeal College Business Fundamentals, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "smeal-business",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/smeal-business/smeal-college-business-fundamentals-certificate/",
+ "totalCredits": 15,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select five (5) courses from the following list for a total of 15 credits:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BA 205",
+       "BA 301",
+       "BA 302",
+       "BA 303",
+       "BA 304",
+       "BLAW 243",
+       "IB 303"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Required Courses: Require a grade of C or better\nSelect five (5) courses from the following list for a total of 15 credits:15\nBA 205Accounting\nBA 301Finance\nBA 302Supply Chains\nBA 303Marketing\nBA 304Management and Organization\nBLAW 243Legal Environment of Business\nor IB 303 International Business Operations\n"
+  }
+ ],
+ "suggestedPlans": []
+}

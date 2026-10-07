@@ -1,0 +1,70 @@
+{
+ "slug": "capital-sales-minor",
+ "name": "Sales, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/sales-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MGMT 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MKTG 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MKTG 410",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MKTG 476",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nMGMT 301Basic Management Concepts3\nMKTG 301Principles of Marketing3\nMKTG 410Personal Selling3\nMKTG 476Sales Management3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MGMT 420",
+       "MKTG 395",
+       "MKTG 422",
+       "MKTG 443",
+       "MKTG 485"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits from the following:6\nMGMT 420Negotiation and Conflict Management\nMKTG 395Sales Internship\nMKTG 422Advertising and Sales Promotion Management\nMKTG 443Sports Marketing\nMKTG 485Business-to-Business Marketing\n"
+  }
+ ],
+ "suggestedPlans": []
+}

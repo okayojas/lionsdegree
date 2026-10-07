@@ -1,0 +1,730 @@
+{
+ "slug": "engineering-mechanical-engineering-technology-aengt",
+ "name": "Mechanical Engineering Technology, A.ENGT. (Engineering)",
+ "type": "major",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/mechanical-engineering-technology-aengt/",
+ "totalCredits": 65,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B",
+      "CAS 100C",
+      "CAS 100S"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IET 215",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "IET 216",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MET 213",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MET 214",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MET 210W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IET 101",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MET 111",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MET 206",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CAS 100Effective Speech3\nIET 215Production Design2\nIET 216Production Design Laboratory2\nMET 213Strength and Properties of Materials3\nMET 214Strength and Properties of Materials Laboratory 1\nMET 210WMachine Design3\nPrescribed Courses: Require a grade of C or better\nIET 101Manufacturing Materials, Processes, and Laboratory3\nMET 111Mechanics for Technology: Statics3\nMET 206Dynamics3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 15",
+      "ENGL 30H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 5,
+     "commentRaw": "Select 5-6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MATH 22",
+       "MATH 26",
+       "MATH 40",
+       "MATH 81",
+       "MATH 82",
+       "MATH 82"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PHYS 150",
+       "PHYS 211",
+       "PHYS 250"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PHYS 151",
+       "PHYS 212",
+       "PHYS 251"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 19,
+     "commentRaw": "Select at least 19-24 credits from one of the following three tracks:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EDSGN 100",
+       "EDSGN 110",
+       "EGT 114",
+       "EET 105",
+       "MET 107",
+       "STS 200",
+       "STS 233",
+       "STS 245"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select at least 6 credits from the approved supporting course list for this track",
+     "from": null
+    },
+    {
+     "type": "course",
+     "code": "CMPET 117",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPET 120",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 100",
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "EDSGN 110",
+      "EGT 114"
+     ],
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EET 105",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EET 114",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EET 118",
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 83",
+      "MATH 140"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "STS 200",
+      "STS 245N"
+     ],
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EET 100",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EGT 120",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EGT 121",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MET 107",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 1,
+     "commentRaw": "Select 1 credit of First-Year Seminar",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the approved supporting course list for this track",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ENGL 15Rhetoric and Composition 3\nor ENGL 30H Honors Rhetoric and Composition\nSelect 5-6 credits of the following:5-6\nMATH 22& MATH 26College Algebra With Analytic Geometry and Applications II and Plane Trigonometry and Applications of Trigonometry\nMATH 40\nMATH 81& MATH 82Technical Mathematics I and Technical Mathematics II\nMATH 82Technical Mathematics II\nSelect 3-4 credits of the following:3-4\nPHYS 150Technical Physics I\nPHYS 211General Physics: Mechanics\nPHYS 250Introductory Physics I\nSelect 3-4 credits of the following:3-4\nPHYS 151Technical Physics II\nPHYS 212General Physics: Electricity and Magnetism\nPHYS 251Introductory Physics II\nSelect at least 19-24 credits from one of the following three tracks:19-24\nGeneral Track\nEDSGN 100Cornerstone Engineering Design\nEDSGN 110Spatial Analysis in Engineering Design\nor EGT 114 Spatial Analysis and Computer-Aided Drafting\nEET 105Electrical Systems\nMET 107Computer Applications for Technologists\nSTS 200Critical Issues in Science, Technology, and Society\nor STS 233 Ethics and the Design of Technology\nor STS 245\nSelect at least 6 credits from the approved supporting course list for this track\nBaccalaureate Electro-Mechanical Engineering Technology (EMET) Track\nCMPET 117Digital Electronics\nCMPET 120Digital Electronics Laboratory\nEDSGN 100Cornerstone Engineering Design\nEDSGN 110Spatial Analysis in Engineering Design\nor EGT 114 Spatial Analysis and Computer-Aided Drafting\nEET 105Electrical Systems\nEET 114Electrical Circuits II\nEET 118Electrical Circuits Laboratory\nMATH 83Technical Calculus\nor MATH 140 Calculus With Analytic Geometry I\nSTS 200Critical Issues in Science, Technology, and Society\nor STS/PHIL 233 Ethics and the Design of Technology\nor STS 245\nBaccalaureate Mechanical Engineering Technology (METBC or MET) Track\nEET 100Electric Circuits, Power, and Electronics\nEGT 120Introduction to Graphics and Solid Modeling\nEGT 121Applied Solid Modeling\nMET 107Computer Applications for Technologists\nSelect 1 credit of First-Year Seminar\nSelect 6 credits from the approved supporting course list for this track\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "​Mechanical Engineering Technology, A.ENGT. Ending at DuBois Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EDSGN 100",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IET 101",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 107",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 26",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MET 111",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "EET 105",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDSGN 110",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": [
+        "EGT 114"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "CAS 100 (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MET 213",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 214",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 206",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IET 216",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IET 215",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 150",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "PHYS 250"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Electives",
+       "credits": 2,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MET 210W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 151",
+       "credits": 3,
+       "footnotes": [
+        "†",
+        "2"
+       ],
+       "alternatives": [
+        "PHYS 251"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STS 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Electives",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Electives",
+       "credits": 2,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 65,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Mechanical Engineering Technology, A.ENGT. Ending at York Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EDSGN 100",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IET 101",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EET 105",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 26",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MET 111",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "MET 107",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 150",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "PHYS 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MET 213",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 214",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 206",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDSGN 110",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": [
+        "EGT 114"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 151",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 251"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STS 233",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 19,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MET 210W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IET 215",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IET 216",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Electives",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Electives",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 64,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

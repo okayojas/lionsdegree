@@ -1,0 +1,2850 @@
+{
+ "slug": "eberly-science-microbiology-bs",
+ "name": "Microbiology, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/microbiology-bs/",
+ "totalCredits": 121,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BMB 400",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "BMB 401",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BMB 402",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BMB 442",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 113",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 212",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 213",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MICRB 201",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MICRB 401",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MICRB 421W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MICRB 450",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PPEM 456",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BMB 400Molecular Biology of the Gene2\nBMB 401General Biochemistry3\nBMB 402General Biochemistry3\nBMB 442Laboratory in Proteins, Nucleic Acids, and Molecular Cloning3\nCHEM 113Experimental Chemistry II 1\nCHEM 210Organic Chemistry I3\nCHEM 212Organic Chemistry II3\nCHEM 213Laboratory in Organic Chemistry2\nMICRB 201Introductory Microbiology 3\nMICRB 401Microbial Physiology and Structure3\nMICRB 421WLaboratory of General and Applied Microbiology3\nMICRB 450Microbial/Molecular Genetics3\nPPEM 456Applied Microbial Ecology3\nPrescribed Courses: Require a grade of C or better\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nCHEM 112Chemical Principles II 3\nMATH 140Calculus With Analytic Geometry I 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "MICRB 202",
+      "MICRB 203"
+     ],
+     "credits": 2
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 250",
+      "PHYS 211"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 251",
+      "PHYS 212"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MATH 141",
+       "STAT 200",
+       "STAT 240",
+       "STAT 250"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "MICRB 202Introductory Microbiology Laboratory2\nor MICRB 203 Inquiry-based Microbiology Laboratory\nPHYS 250Introductory Physics I 4\nor PHYS 211 General Physics: Mechanics\nPHYS 251Introductory Physics II 4\nor PHYS 212 General Physics: Electricity and Magnetism\nAdditional Courses: Require a grade of C or better\nSelect 3-4 credits from the following:3-4\nMATH 141Calculus with Analytic Geometry II\nSTAT 200Elementary Statistics\nSTAT 240Introduction to Biometry\nSTAT 250Introduction to Biostatistics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from MICRB Elective List A (Applied)",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from MICRB Elective List B",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 11,
+     "commentRaw": "Select 11 credits from MICRB Elective List C (free electives)",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3 credits from MICRB Elective List A (Applied) 3\nSelect 3 credits from MICRB Elective List B 3\nSelect 11 credits from MICRB Elective List C (free electives)11\n"
+  },
+  {
+   "heading": "Requirements for the Option",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select an option"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select an option18-21\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MICRB 415",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "MICRB 415General Virology: Bacterial and Animal Viruses3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following Sequences:"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 222",
+      "BIOL 322"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BMB 251",
+      "BIOL 230W"
+     ],
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BMB 252",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 110",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 220W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 230W",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select one of the following Sequences:9-12\nSequence 1\nBIOL 222Genetics\nor BIOL 322 Genetic Analysis\nBMB 251Molecular and Cell Biology I\nor BIOL 230W Biology: Molecules and Cells\nBMB 252Molecular and Cell Biology II\nSequence 2\nBIOL 110Biology: Basic Concepts and Biodiversity\nBIOL 220WBiology: Populations and Communities\nBIOL 230WBiology: Molecules and Cells\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from MICRB Elective List B",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 6 credits from MICRB Elective List B6\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BMB 252",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MICRB 410",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MICRB 412",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BMB 252Molecular and Cell Biology II3\nMICRB 410Principles of Immunology3\nMICRB 412Medical Microbiology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 322",
+      "BIOL 222"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BMB 251",
+      "BIOL 230W"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MICRB 435",
+      "MICRB 415"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 322Genetic Analysis3\nor BIOL 222 Genetics\nBMB 251Molecular and Cell Biology I 3-4\nor BIOL 230W Biology: Molecules and Cells\nMICRB 435Viral Pathogensis3\nor MICRB 415 General Virology: Bacterial and Animal Viruses\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "General Microbiology Option, Emphasis in Cell Biology and Genetics: Microbiology, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 201",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 202",
+       "credits": 2,
+       "footnotes": [
+        "7"
+       ],
+       "alternatives": [
+        "MICRB 203"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†",
+        "6"
+       ],
+       "alternatives": [
+        "STAT 200",
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 251",
+       "credits": 3,
+       "footnotes": [
+        "1",
+        ",",
+        "3",
+        ",",
+        "4"
+       ],
+       "alternatives": [
+        "MICRB 251"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 250"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 3,
+       "footnotes": [
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 252",
+       "credits": 3,
+       "footnotes": [
+        "1",
+        ",",
+        "3"
+       ],
+       "alternatives": [
+        "MICRB 252"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 322",
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 251"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 400",
+       "credits": 2,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 401",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 421W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 450",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "BMB 450"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 402",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 442",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 415",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List B)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 401",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 456",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "PPEM 456"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List B)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 3,
+       "footnotes": [
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List A)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List B)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202A",
+        "ENGL 202B",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 3,
+       "footnotes": [
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "General Microbiology Option, Emphasis in Cell Biology and Ecology: Microbiology, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115",
+        "BIOL 114",
+        "BIOL 116"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 201",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 202",
+       "credits": 2,
+       "footnotes": [
+        "7"
+       ],
+       "alternatives": [
+        "MICRB 203"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†",
+        "6"
+       ],
+       "alternatives": [
+        "STAT 200",
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [
+        "†",
+        "1",
+        ",",
+        "3"
+       ],
+       "alternatives": [
+        "BIOL 224",
+        "BIOL 225W",
+        "BIOL 224",
+        "BIOL 226W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 250"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 1,
+       "footnotes": [
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "†",
+        "1",
+        ",",
+        "3"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 251"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 400",
+       "credits": 2,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 401",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 421W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 450",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "BMB 450"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 402",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 442",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 415",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List B)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 401",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 456",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "PPEM 456"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List B)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 3,
+       "footnotes": [
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List A)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List B)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202A",
+        "ENGL 202B",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 3,
+       "footnotes": [
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 125,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Medical Microbiology Option: Microbiology, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 201",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 202",
+       "credits": 2,
+       "footnotes": [
+        "7"
+       ],
+       "alternatives": [
+        "MICRB 203"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†",
+        "6"
+       ],
+       "alternatives": [
+        "STAT 200",
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 251",
+       "credits": 3,
+       "footnotes": [
+        "1",
+        ",",
+        "3",
+        ",",
+        "4"
+       ],
+       "alternatives": [
+        "MICRB 251"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 250"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 3,
+       "footnotes": [
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 252",
+       "credits": 3,
+       "footnotes": [
+        "1",
+        ",",
+        "3"
+       ],
+       "alternatives": [
+        "MICRB 252"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 322",
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 251"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 400",
+       "credits": 2,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 401",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 421W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 450",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "BMB 450"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 402",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 442",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 410",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 3,
+       "footnotes": [
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 401",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 456",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "PPEM 456"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List B)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 3,
+       "footnotes": [
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 412",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 415",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "4"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List A)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202A",
+        "ENGL 202B",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 0,
+       "footnotes": [
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "General Microbiology Option, Emphasis in Cell Biology and Ecology: Microbiology, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115",
+        "BIOL 114",
+        "BIOL 116"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†",
+        "6"
+       ],
+       "alternatives": [
+        "STAT 200",
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 3,
+       "footnotes": [
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [
+        "†",
+        "1",
+        ",",
+        "3"
+       ],
+       "alternatives": [
+        "BIOL 224",
+        "BIOL 225W",
+        "BIOL 224",
+        "BIOL 226W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 250"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 1,
+       "footnotes": [
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "†",
+        "1",
+        ",",
+        "3"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 251"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 201",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 202",
+       "credits": 2,
+       "footnotes": [
+        "7"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 401",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 450",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "BMB 450"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 1,
+       "footnotes": [
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 400",
+       "credits": 2,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 402",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 442",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List B)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 401",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 421W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 456",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "PPEM 456"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List B)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 415",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List A)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List B)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202A",
+        "ENGL 202B",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 2,
+       "footnotes": [
+        "7"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 125,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Medical Microbiology Option: Microbiology, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115",
+        "BIOL 114",
+        "BIOL 116"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "†",
+        "1"
+       ],
+       "alternatives": [
+        "BIOL 234"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†",
+        "6"
+       ],
+       "alternatives": [
+        "STAT 200",
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202A",
+        "ENGL 202B",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 6,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 251"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 6,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Summer",
+     "label": "Year 2 Summer",
+     "credits": 3,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 401",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 222",
+       "credits": 3,
+       "footnotes": [
+        "3",
+        ",",
+        "4"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 252",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": [
+        "MICRB 252"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MICRB 201",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 202",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 400",
+       "credits": 2,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 402",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 442",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 412",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "7"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Summer",
+     "label": "Year 3 Summer",
+     "credits": 3,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 410",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 401",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 421W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 450",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "BMB 450"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MICRB 456",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "PPEM 456"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 2,
+       "footnotes": [
+        "7"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 415",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "4",
+        ",",
+        "7"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List A)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "MICRB Elective (List B)",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "5",
+        ",",
+        "7"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Department List C",
+       "credits": 4,
+       "footnotes": [
+        "7"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 125,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

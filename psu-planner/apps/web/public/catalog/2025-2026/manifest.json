@@ -1,0 +1,5146 @@
+{
+ "edition": "2025-2026",
+ "generatedAt": "2026-10-06T22:43:29.395Z",
+ "schemaVersion": 1,
+ "counts": {
+  "courses": 14563,
+  "coursesAstIncomplete": 682,
+  "majors": 414,
+  "minors": 243,
+  "reviewRows": 591
+ },
+ "files": {
+  "courses/acctg.json": {
+   "sha256": "ef2dd7ab1691c6ec",
+   "bytes": 67150
+  },
+  "courses/acs.json": {
+   "sha256": "0e59ef05d065251a",
+   "bytes": 3738
+  },
+  "courses/adted.json": {
+   "sha256": "06ca61b1debc206f",
+   "bytes": 16794
+  },
+  "courses/aersp.json": {
+   "sha256": "8659beb8ce914581",
+   "bytes": 73655
+  },
+  "courses/afam.json": {
+   "sha256": "0033fe738ee16a48",
+   "bytes": 139713
+  },
+  "courses/afr.json": {
+   "sha256": "5bbdd337584f5cab",
+   "bytes": 71339
+  },
+  "courses/agbm.json": {
+   "sha256": "dbf17db6b25650df",
+   "bytes": 48348
+  },
+  "courses/absm.json": {
+   "sha256": "96bbd67a81be32e5",
+   "bytes": 53601
+  },
+  "courses/aee.json": {
+   "sha256": "88266a6398a283ba",
+   "bytes": 37457
+  },
+  "courses/agcom.json": {
+   "sha256": "7254ec07adf52e67",
+   "bytes": 3735
+  },
+  "courses/agsc.json": {
+   "sha256": "36ae3aefbba66995",
+   "bytes": 9755
+  },
+  "courses/ag.json": {
+   "sha256": "e948e373452d6fed",
+   "bytes": 13255
+  },
+  "courses/ageco.json": {
+   "sha256": "d12b8bf832f1c294",
+   "bytes": 23109
+  },
+  "courses/agro.json": {
+   "sha256": "2756c1054ec4019f",
+   "bytes": 13798
+  },
+  "courses/air.json": {
+   "sha256": "d1a19c883aad9a0f",
+   "bytes": 11352
+  },
+  "courses/amst.json": {
+   "sha256": "d5a54c322e83a54e",
+   "bytes": 97240
+  },
+  "courses/ansc.json": {
+   "sha256": "48df8cc51d35e67a",
+   "bytes": 108957
+  },
+  "courses/anth.json": {
+   "sha256": "5e95ed98ea7ac04b",
+   "bytes": 176658
+  },
+  "courses/aba.json": {
+   "sha256": "7c1e00bab87353fb",
+   "bytes": 2594
+  },
+  "courses/aplng.json": {
+   "sha256": "8c3914a329831fad",
+   "bytes": 48750
+  },
+  "courses/ayfce.json": {
+   "sha256": "e0b8e22c45fcd9bb",
+   "bytes": 12482
+  },
+  "courses/arab.json": {
+   "sha256": "1515dc7497cec787",
+   "bytes": 29217
+  },
+  "courses/ae.json": {
+   "sha256": "e1c1fd798d8ab303",
+   "bytes": 112342
+  },
+  "courses/aet.json": {
+   "sha256": "e72ee3aa6ebde453",
+   "bytes": 1519
+  },
+  "courses/arch.json": {
+   "sha256": "2eed647be39bb581",
+   "bytes": 89411
+  },
+  "courses/army.json": {
+   "sha256": "bfbb262f3e81811e",
+   "bytes": 13783
+  },
+  "courses/art.json": {
+   "sha256": "8881ef2edd4bf8b2",
+   "bytes": 153629
+  },
+  "courses/aed.json": {
+   "sha256": "c972bf05d32291df",
+   "bytes": 51309
+  },
+  "courses/arth.json": {
+   "sha256": "6e22d9970365f1c1",
+   "bytes": 169337
+  },
+  "courses/a-i.json": {
+   "sha256": "52bc1b856c10958c",
+   "bytes": 17591
+  },
+  "courses/aie.json": {
+   "sha256": "34b756da82987ee8",
+   "bytes": 4459
+  },
+  "courses/aima.json": {
+   "sha256": "ef82614828b5a18e",
+   "bytes": 17031
+  },
+  "courses/artsa.json": {
+   "sha256": "0987fc596f682838",
+   "bytes": 8773
+  },
+  "courses/aa.json": {
+   "sha256": "23c18ebf757f29eb",
+   "bytes": 48196
+  },
+  "courses/aas.json": {
+   "sha256": "2044b7054752f7f9",
+   "bytes": 1999
+  },
+  "courses/asia.json": {
+   "sha256": "727e7ecb5404ea77",
+   "bytes": 155788
+  },
+  "courses/astro.json": {
+   "sha256": "dcea639275cd2965",
+   "bytes": 76417
+  },
+  "courses/athtr.json": {
+   "sha256": "6cf76b71bc46889f",
+   "bytes": 33751
+  },
+  "courses/besc.json": {
+   "sha256": "1101fdd4e41e3c0a",
+   "bytes": 4003
+  },
+  "courses/bbh.json": {
+   "sha256": "b6e9fb16d3ec3e3f",
+   "bytes": 116726
+  },
+  "courses/bmb.json": {
+   "sha256": "551398335e702ab6",
+   "bytes": 101792
+  },
+  "courses/bioet.json": {
+   "sha256": "47b3dd975fb43a38",
+   "bytes": 13558
+  },
+  "courses/bmh.json": {
+   "sha256": "7154ed7ebc9794ad",
+   "bytes": 778
+  },
+  "courses/be.json": {
+   "sha256": "2f4c09e89a5a31d7",
+   "bytes": 55191
+  },
+  "courses/bisc.json": {
+   "sha256": "07f734b9f48d1351",
+   "bytes": 8601
+  },
+  "courses/biol.json": {
+   "sha256": "b6a080401d6f4180",
+   "bytes": 265723
+  },
+  "courses/bme.json": {
+   "sha256": "8dc6c9e6d44909d8",
+   "bytes": 58762
+  },
+  "courses/be_t.json": {
+   "sha256": "4f53cda18c2baa0c",
+   "bytes": 2
+  },
+  "courses/brs.json": {
+   "sha256": "87d8d0b1cc849b0f",
+   "bytes": 3714
+  },
+  "courses/biotc.json": {
+   "sha256": "cf4d5cc543fda458",
+   "bytes": 16219
+  },
+  "courses/ba.json": {
+   "sha256": "88aeff1738b4183f",
+   "bytes": 69468
+  },
+  "courses/blaw.json": {
+   "sha256": "6bd98fe6543560cd",
+   "bytes": 26730
+  },
+  "courses/che.json": {
+   "sha256": "b36c3110bc42e90f",
+   "bytes": 65128
+  },
+  "courses/chem.json": {
+   "sha256": "c03aab597007472b",
+   "bytes": 134771
+  },
+  "courses/cmas.json": {
+   "sha256": "3e96ff94df493edd",
+   "bytes": 7855
+  },
+  "courses/chns.json": {
+   "sha256": "90e43e82f0a014ce",
+   "bytes": 59027
+  },
+  "courses/civcm.json": {
+   "sha256": "a0602834798a53a0",
+   "bytes": 4782
+  },
+  "courses/ce.json": {
+   "sha256": "0ef519b17050a692",
+   "bytes": 103838
+  },
+  "courses/cet.json": {
+   "sha256": "d71147076a945e2b",
+   "bytes": 8504
+  },
+  "courses/cams.json": {
+   "sha256": "cdfc8ba153203d79",
+   "bytes": 173959
+  },
+  "courses/cas.json": {
+   "sha256": "8cd6c871a49b1aa7",
+   "bytes": 162387
+  },
+  "courses/csd.json": {
+   "sha256": "872cb71201c40fe6",
+   "bytes": 55162
+  },
+  "courses/comm.json": {
+   "sha256": "4c444617af6c0e12",
+   "bytes": 395020
+  },
+  "courses/cedev.json": {
+   "sha256": "4209209113195eb2",
+   "bytes": 4449
+  },
+  "courses/ced.json": {
+   "sha256": "92ecd52222e74c76",
+   "bytes": 98591
+  },
+  "courses/cied.json": {
+   "sha256": "185408bb448fc7a2",
+   "bytes": 8193
+  },
+  "courses/cmlit.json": {
+   "sha256": "57a3423b0bbf76dc",
+   "bytes": 158363
+  },
+  "courses/cmpmt.json": {
+   "sha256": "609a1b953a64cc44",
+   "bytes": 2132
+  },
+  "courses/cmpen.json": {
+   "sha256": "4ca5be5f9684d5b0",
+   "bytes": 68363
+  },
+  "courses/cmpet.json": {
+   "sha256": "3f14c6629f08b5f0",
+   "bytes": 25733
+  },
+  "courses/cmpsc.json": {
+   "sha256": "377bfd0a9c96b778",
+   "bytes": 147991
+  },
+  "courses/cc.json": {
+   "sha256": "3e6198ad9a466d22",
+   "bytes": 13942
+  },
+  "courses/cned.json": {
+   "sha256": "702b7d7c9090d00b",
+   "bytes": 26893
+  },
+  "courses/crimj.json": {
+   "sha256": "1248a157b77290df",
+   "bytes": 101529
+  },
+  "courses/crim.json": {
+   "sha256": "f29f3ae9714372e6",
+   "bytes": 75432
+  },
+  "courses/ci.json": {
+   "sha256": "b76f4e1626c8836e",
+   "bytes": 60233
+  },
+  "courses/c-s.json": {
+   "sha256": "69c784ce0f82ad2c",
+   "bytes": 761
+  },
+  "courses/cyber.json": {
+   "sha256": "9cd653e622fdad17",
+   "bytes": 33456
+  },
+  "courses/dance.json": {
+   "sha256": "9e691a5ad692f40d",
+   "bytes": 98442
+  },
+  "courses/da.json": {
+   "sha256": "e2b22e35bbfef41b",
+   "bytes": 17469
+  },
+  "courses/ds.json": {
+   "sha256": "e190452b749af0c9",
+   "bytes": 43720
+  },
+  "courses/dart.json": {
+   "sha256": "19b4a5137afe4c13",
+   "bytes": 65064
+  },
+  "courses/digit.json": {
+   "sha256": "eb46f8b48bc0420d",
+   "bytes": 16078
+  },
+  "courses/dmd.json": {
+   "sha256": "3624fb831770af40",
+   "bytes": 7769
+  },
+  "courses/ece.json": {
+   "sha256": "859f43c4d3d05462",
+   "bytes": 6124
+  },
+  "courses/emsc.json": {
+   "sha256": "7f70237b6fab309b",
+   "bytes": 27143
+  },
+  "courses/earth.json": {
+   "sha256": "1a9c1da09f856d75",
+   "bytes": 49285
+  },
+  "courses/econ.json": {
+   "sha256": "3dddd9a9c4a2ff1b",
+   "bytes": 107271
+  },
+  "courses/educ.json": {
+   "sha256": "be045b9108c3e5c0",
+   "bytes": 96732
+  },
+  "courses/edmth.json": {
+   "sha256": "473c7146f16516cb",
+   "bytes": 10364
+  },
+  "courses/edldr.json": {
+   "sha256": "8dad0b82d00fbb33",
+   "bytes": 10066
+  },
+  "courses/edpsy.json": {
+   "sha256": "c67c6bd76876df0a",
+   "bytes": 29869
+  },
+  "courses/edtec.json": {
+   "sha256": "b3eecab03036b63e",
+   "bytes": 825
+  },
+  "courses/edthp.json": {
+   "sha256": "4273cac8470f5d29",
+   "bytes": 41174
+  },
+  "courses/ee.json": {
+   "sha256": "caba110b7d742c24",
+   "bytes": 162506
+  },
+  "courses/eet.json": {
+   "sha256": "a25884c4baed29e0",
+   "bytes": 84387
+  },
+  "courses/emet.json": {
+   "sha256": "4350156272d358a0",
+   "bytes": 42337
+  },
+  "courses/eledm.json": {
+   "sha256": "1d03d27ce454385f",
+   "bytes": 1537
+  },
+  "courses/egee.json": {
+   "sha256": "8d237ec4911ef5cf",
+   "bytes": 63728
+  },
+  "courses/eme.json": {
+   "sha256": "03ab336e0ee0abea",
+   "bytes": 16652
+  },
+  "courses/ebf.json": {
+   "sha256": "485ea32b0287b0f9",
+   "bytes": 21138
+  },
+  "courses/ennec.json": {
+   "sha256": "94de8173de91f8dc",
+   "bytes": 783
+  },
+  "courses/engr.json": {
+   "sha256": "bd9baa36f8ac210b",
+   "bytes": 120907
+  },
+  "courses/edsgn.json": {
+   "sha256": "9e2d27d62c556c0e",
+   "bytes": 61821
+  },
+  "courses/egt.json": {
+   "sha256": "1d7132a2a9ea28b0",
+   "bytes": 12418
+  },
+  "courses/emch.json": {
+   "sha256": "01c49e92354677fb",
+   "bytes": 46574
+  },
+  "courses/esc.json": {
+   "sha256": "d40170fba3b2c650",
+   "bytes": 89209
+  },
+  "courses/et.json": {
+   "sha256": "115ea2ed23cba68a",
+   "bytes": 9580
+  },
+  "courses/engl.json": {
+   "sha256": "87ab3eafd3d052e4",
+   "bytes": 493054
+  },
+  "courses/esl.json": {
+   "sha256": "6d26ca121d3c3108",
+   "bytes": 13795
+  },
+  "courses/eti.json": {
+   "sha256": "0686cce38e2f193d",
+   "bytes": 35083
+  },
+  "courses/ent.json": {
+   "sha256": "01467aad7167c4c4",
+   "bytes": 36551
+  },
+  "courses/entr.json": {
+   "sha256": "f9fa44c776b51f96",
+   "bytes": 6161
+  },
+  "courses/enve.json": {
+   "sha256": "0b8d8d73622b23a9",
+   "bytes": 9908
+  },
+  "courses/erm.json": {
+   "sha256": "48fe347d39d980c7",
+   "bytes": 52323
+  },
+  "courses/envsc.json": {
+   "sha256": "9fd7b47bc6558255",
+   "bytes": 9364
+  },
+  "courses/envst.json": {
+   "sha256": "075670b75b2e51e1",
+   "bytes": 16847
+  },
+  "courses/envse.json": {
+   "sha256": "46d579c09515f43c",
+   "bytes": 18308
+  },
+  "courses/fin.json": {
+   "sha256": "81cd592cba2c4e2d",
+   "bytes": 103250
+  },
+  "courses/cap.json": {
+   "sha256": "afb7668446fcdaf7",
+   "bytes": 1515
+  },
+  "courses/fdsc.json": {
+   "sha256": "0ecb065e34c80a43",
+   "bytes": 63318
+  },
+  "courses/fdsys.json": {
+   "sha256": "6a668ea53975eb34",
+   "bytes": 8069
+  },
+  "courses/frnar.json": {
+   "sha256": "91b83677404d92c5",
+   "bytes": 3615
+  },
+  "courses/frnsc.json": {
+   "sha256": "1edae6fe5e6bb917",
+   "bytes": 45812
+  },
+  "courses/fort.json": {
+   "sha256": "0b7c73f7a633d507",
+   "bytes": 28375
+  },
+  "courses/for.json": {
+   "sha256": "a58cd4dc1f3a7d58",
+   "bytes": 76350
+  },
+  "courses/fr.json": {
+   "sha256": "e2d16408a008efee",
+   "bytes": 75035
+  },
+  "courses/fsc.json": {
+   "sha256": "9c748680603f39c5",
+   "bytes": 7503
+  },
+  "courses/game.json": {
+   "sha256": "01aa0929ef06b162",
+   "bytes": 31075
+  },
+  "courses/geog.json": {
+   "sha256": "e5ae278a9e966514",
+   "bytes": 213175
+  },
+  "courses/geosc.json": {
+   "sha256": "d61387d2d41cccf5",
+   "bytes": 100104
+  },
+  "courses/ger.json": {
+   "sha256": "bcb16c6f003b2cf2",
+   "bytes": 75579
+  },
+  "courses/glis.json": {
+   "sha256": "ce1599f7b71b2fc6",
+   "bytes": 14730
+  },
+  "courses/gd.json": {
+   "sha256": "83f742a30cb3f138",
+   "bytes": 51418
+  },
+  "courses/greek.json": {
+   "sha256": "fa9df1d1ef0cea8a",
+   "bytes": 14735
+  },
+  "courses/hhd.json": {
+   "sha256": "d9a44ba5a5cf98a2",
+   "bytes": 21714
+  },
+  "courses/hlhed.json": {
+   "sha256": "0a000b109b211a0c",
+   "bytes": 2518
+  },
+  "courses/hhum.json": {
+   "sha256": "d8e7636967aed1f2",
+   "bytes": 12428
+  },
+  "courses/hpa.json": {
+   "sha256": "96a772c6b6ae0d1f",
+   "bytes": 80599
+  },
+  "courses/hebr.json": {
+   "sha256": "17ddaf6365b93a0f",
+   "bytes": 25189
+  },
+  "courses/hied.json": {
+   "sha256": "aefe669f7520c7b7",
+   "bytes": 7399
+  },
+  "courses/hindi.json": {
+   "sha256": "c3e1d2430c51fdd3",
+   "bytes": 3170
+  },
+  "courses/hist.json": {
+   "sha256": "3043bbdadbc97a76",
+   "bytes": 336816
+  },
+  "courses/hls.json": {
+   "sha256": "4af99a838882559c",
+   "bytes": 8845
+  },
+  "courses/honor.json": {
+   "sha256": "bd6f3b161a41b6f5",
+   "bytes": 8955
+  },
+  "courses/hort.json": {
+   "sha256": "eff41f5393fb6cb1",
+   "bytes": 55842
+  },
+  "courses/hm.json": {
+   "sha256": "caf380efc24b5adc",
+   "bytes": 106788
+  },
+  "courses/hdfs.json": {
+   "sha256": "77e2b40d84539648",
+   "bytes": 151646
+  },
+  "courses/hrm.json": {
+   "sha256": "1379da0304e62d68",
+   "bytes": 1506
+  },
+  "courses/hcdd.json": {
+   "sha256": "ea24dd455d6e6fbf",
+   "bytes": 35333
+  },
+  "courses/hum.json": {
+   "sha256": "030d923f6d05745f",
+   "bytes": 26539
+  },
+  "courses/hss.json": {
+   "sha256": "dee1f03335a8b55b",
+   "bytes": 7538
+  },
+  "courses/ie.json": {
+   "sha256": "04269ec58ce2706e",
+   "bytes": 66316
+  },
+  "courses/iet.json": {
+   "sha256": "d764924a515969ac",
+   "bytes": 7024
+  },
+  "courses/insc.json": {
+   "sha256": "d472eda9f1798d80",
+   "bytes": 1505
+  },
+  "courses/ist.json": {
+   "sha256": "0472a048014d849a",
+   "bytes": 119614
+  },
+  "courses/itech.json": {
+   "sha256": "a83abf8b4fe6e737",
+   "bytes": 11526
+  },
+  "courses/iec.json": {
+   "sha256": "f80d1627cde2bf04",
+   "bytes": 14705
+  },
+  "courses/insys.json": {
+   "sha256": "976ea29ebbc3f153",
+   "bytes": 1738
+  },
+  "courses/inart.json": {
+   "sha256": "1a8cfe717829a439",
+   "bytes": 72182
+  },
+  "courses/isb.json": {
+   "sha256": "d9a8d0070c415115",
+   "bytes": 4153
+  },
+  "courses/intag.json": {
+   "sha256": "f2233a6f399d6198",
+   "bytes": 25980
+  },
+  "courses/ib.json": {
+   "sha256": "41c2a03a96800de4",
+   "bytes": 26730
+  },
+  "courses/intst.json": {
+   "sha256": "7c4be8b6b6f0927a",
+   "bytes": 4048
+  },
+  "courses/intsp.json": {
+   "sha256": "9018471c27ef80d3",
+   "bytes": 4746
+  },
+  "courses/it.json": {
+   "sha256": "d0adb804e9993b0e",
+   "bytes": 64688
+  },
+  "courses/japns.json": {
+   "sha256": "e9efc5848fd7170c",
+   "bytes": 69607
+  },
+  "courses/jst.json": {
+   "sha256": "29382b110ca25df7",
+   "bytes": 141760
+  },
+  "courses/kines.json": {
+   "sha256": "aee91691e995216b",
+   "bytes": 362289
+  },
+  "courses/kor.json": {
+   "sha256": "1f90096876596349",
+   "bytes": 58995
+  },
+  "courses/ler.json": {
+   "sha256": "f0bb3e39395362f6",
+   "bytes": 13170
+  },
+  "courses/lhr.json": {
+   "sha256": "704fe98b45fc01be",
+   "bytes": 91786
+  },
+  "courses/larch.json": {
+   "sha256": "1426c593d9a3d2ab",
+   "bytes": 75880
+  },
+  "courses/lled.json": {
+   "sha256": "0d642430c94ab357",
+   "bytes": 50053
+  },
+  "courses/lang.json": {
+   "sha256": "0a822dc29152773c",
+   "bytes": 9763
+  },
+  "courses/latin.json": {
+   "sha256": "a9ea3b6781292458",
+   "bytes": 19106
+  },
+  "courses/latam.json": {
+   "sha256": "62b470dd6eecfb7b",
+   "bytes": 4655
+  },
+  "courses/ltnst.json": {
+   "sha256": "9b327e4d3d2cc0be",
+   "bytes": 31906
+  },
+  "courses/lpe.json": {
+   "sha256": "8bbabc54c34a7bcf",
+   "bytes": 1534
+  },
+  "courses/ldt.json": {
+   "sha256": "73c1badfe043d0eb",
+   "bytes": 20449
+  },
+  "courses/la.json": {
+   "sha256": "e3a46ada8b763b6f",
+   "bytes": 30875
+  },
+  "courses/lst.json": {
+   "sha256": "be9146c29a50b1de",
+   "bytes": 3854
+  },
+  "courses/ling.json": {
+   "sha256": "c955ec66b56a528c",
+   "bytes": 37111
+  },
+  "courses/mgmt.json": {
+   "sha256": "bfd123f6c8e25136",
+   "bytes": 104771
+  },
+  "courses/mis.json": {
+   "sha256": "9e22e6fef8ec3543",
+   "bytes": 80572
+  },
+  "courses/mktg.json": {
+   "sha256": "97f9b5075ad8663e",
+   "bytes": 68466
+  },
+  "courses/maet.json": {
+   "sha256": "aa3665b3f9f09fe2",
+   "bytes": 754
+  },
+  "courses/matse.json": {
+   "sha256": "6502e49d67571bc3",
+   "bytes": 92411
+  },
+  "courses/math.json": {
+   "sha256": "15b413146ac6ecab",
+   "bytes": 194688
+  },
+  "courses/mthed.json": {
+   "sha256": "f8bd24081a8f7c67",
+   "bytes": 36369
+  },
+  "courses/me.json": {
+   "sha256": "eff7f5d321fb1ff1",
+   "bytes": 136961
+  },
+  "courses/met.json": {
+   "sha256": "b4d3676c25fba9b7",
+   "bytes": 69667
+  },
+  "courses/medvl.json": {
+   "sha256": "162f6c141acf5508",
+   "bytes": 14969
+  },
+  "courses/meteo.json": {
+   "sha256": "8d555a31e493c2fe",
+   "bytes": 127204
+  },
+  "courses/micrb.json": {
+   "sha256": "216e110bf243024f",
+   "bytes": 80919
+  },
+  "courses/mnpr.json": {
+   "sha256": "b1a5dc051d7a39d7",
+   "bytes": 6733
+  },
+  "courses/mng.json": {
+   "sha256": "79f01ff3842bf7b4",
+   "bytes": 24152
+  },
+  "courses/mngt.json": {
+   "sha256": "9d9662c653b43b24",
+   "bytes": 14435
+  },
+  "courses/music.json": {
+   "sha256": "dac7861a3bb25cd8",
+   "bytes": 281081
+  },
+  "courses/brass.json": {
+   "sha256": "0aa7512208cca321",
+   "bytes": 80162
+  },
+  "courses/jazz.json": {
+   "sha256": "f8486809c6457e5c",
+   "bytes": 4060
+  },
+  "courses/keybd.json": {
+   "sha256": "b3d33bea7f9437f0",
+   "bytes": 21539
+  },
+  "courses/percn.json": {
+   "sha256": "d2dd3e1d259649da",
+   "bytes": 17876
+  },
+  "courses/strng.json": {
+   "sha256": "6244dcabb89112fb",
+   "bytes": 82880
+  },
+  "courses/voice.json": {
+   "sha256": "c47627d3ec5931fa",
+   "bytes": 19342
+  },
+  "courses/wwnds.json": {
+   "sha256": "e2fd7a69795cf7a2",
+   "bytes": 78181
+  },
+  "courses/navsc.json": {
+   "sha256": "812d4c81d1550e53",
+   "bytes": 16629
+  },
+  "courses/nuce.json": {
+   "sha256": "bf8a9f0cc0489460",
+   "bytes": 42580
+  },
+  "courses/nurs.json": {
+   "sha256": "60e60cd752106b0f",
+   "bytes": 135701
+  },
+  "courses/nutr.json": {
+   "sha256": "5d229aa4e32fa44a",
+   "bytes": 69679
+  },
+  "courses/os.json": {
+   "sha256": "e60f573f42e133fc",
+   "bytes": 5666
+  },
+  "courses/ot.json": {
+   "sha256": "ed0abf2c50560ed8",
+   "bytes": 32200
+  },
+  "courses/olead.json": {
+   "sha256": "2b896d6bb85a0402",
+   "bytes": 24427
+  },
+  "courses/png.json": {
+   "sha256": "ecc0a38cece9af35",
+   "bytes": 42117
+  },
+  "courses/phil.json": {
+   "sha256": "f3f30b42815b6500",
+   "bytes": 174825
+  },
+  "courses/photo.json": {
+   "sha256": "97d832462e4e4952",
+   "bytes": 48250
+  },
+  "courses/pt.json": {
+   "sha256": "aa9fa16898f1e037",
+   "bytes": 80689
+  },
+  "courses/phys.json": {
+   "sha256": "a576398cb60c3e48",
+   "bytes": 83767
+  },
+  "courses/plant.json": {
+   "sha256": "c05fd3279d3a4f89",
+   "bytes": 23989
+  },
+  "courses/ppem.json": {
+   "sha256": "1d31ad3dfa769d90",
+   "bytes": 39366
+  },
+  "courses/plet.json": {
+   "sha256": "b9329f32fc75fdd9",
+   "bytes": 45399
+  },
+  "courses/pol.json": {
+   "sha256": "7ac2ebe299024d69",
+   "bytes": 7649
+  },
+  "courses/plsc.json": {
+   "sha256": "50f7dafdf817fdc2",
+   "bytes": 225425
+  },
+  "courses/pes.json": {
+   "sha256": "6e5bf6091f9c381a",
+   "bytes": 28669
+  },
+  "courses/port.json": {
+   "sha256": "06bf2a87fef142e3",
+   "bytes": 27401
+  },
+  "courses/psu.json": {
+   "sha256": "39d3cf26361109c8",
+   "bytes": 17882
+  },
+  "courses/psych.json": {
+   "sha256": "2ca97b6371f6947b",
+   "bytes": 198260
+  },
+  "courses/pubh.json": {
+   "sha256": "189a6483e6deae33",
+   "bytes": 11936
+  },
+  "courses/php.json": {
+   "sha256": "26a3146fd5358538",
+   "bytes": 1752
+  },
+  "courses/pubpl.json": {
+   "sha256": "ab698b8f015b8199",
+   "bytes": 26494
+  },
+  "courses/ppol.json": {
+   "sha256": "5e7750df3ca6e746",
+   "bytes": 1796
+  },
+  "courses/qmm.json": {
+   "sha256": "9cb03d46429b3b14",
+   "bytes": 773
+  },
+  "courses/qc.json": {
+   "sha256": "db0095a9c049f750",
+   "bytes": 791
+  },
+  "courses/reths.json": {
+   "sha256": "a1f4a54cb5034635",
+   "bytes": 1564
+  },
+  "courses/radsc.json": {
+   "sha256": "dbeafd0e17093293",
+   "bytes": 20755
+  },
+  "courses/rte.json": {
+   "sha256": "49535b5eb93cee21",
+   "bytes": 9124
+  },
+  "courses/rptm.json": {
+   "sha256": "c14084f56fab4aec",
+   "bytes": 138531
+  },
+  "courses/rhs.json": {
+   "sha256": "5eeec320f44115c9",
+   "bytes": 42810
+  },
+  "courses/rlst.json": {
+   "sha256": "9f1840a4b3601659",
+   "bytes": 120871
+  },
+  "courses/rm.json": {
+   "sha256": "be0ab72467eefa1a",
+   "bytes": 50344
+  },
+  "courses/rsoc.json": {
+   "sha256": "ca64fe09dc192b4b",
+   "bytes": 7183
+  },
+  "courses/rus.json": {
+   "sha256": "5e29323eab1a283f",
+   "bytes": 43914
+  },
+  "courses/sset.json": {
+   "sha256": "0d40fc5f0a6497fb",
+   "bytes": 9467
+  },
+  "courses/spsy.json": {
+   "sha256": "2fa32337454ca997",
+   "bytes": 2400
+  },
+  "courses/sc.json": {
+   "sha256": "7e4715616f4669b8",
+   "bytes": 62485
+  },
+  "courses/scied.json": {
+   "sha256": "a8746498db9fe954",
+   "bytes": 27050
+  },
+  "courses/sts.json": {
+   "sha256": "84ea6515eec07f1c",
+   "bytes": 35264
+  },
+  "courses/sra.json": {
+   "sha256": "8586156f9ed5856e",
+   "bytes": 38608
+  },
+  "courses/slav.json": {
+   "sha256": "8859e7b02b5cf970",
+   "bytes": 8187
+  },
+  "courses/soda.json": {
+   "sha256": "0cb1bd6e27feb458",
+   "bytes": 6042
+  },
+  "courses/ssed.json": {
+   "sha256": "5a1bae6eca64aadb",
+   "bytes": 10416
+  },
+  "courses/socw.json": {
+   "sha256": "f66ccd5aaa2b0872",
+   "bytes": 23049
+  },
+  "courses/soc.json": {
+   "sha256": "16db8d5da2fe72bc",
+   "bytes": 162726
+  },
+  "courses/sweng.json": {
+   "sha256": "e8a8775596d70262",
+   "bytes": 25471
+  },
+  "courses/soils.json": {
+   "sha256": "88d80c95ec997d30",
+   "bytes": 40809
+  },
+  "courses/span.json": {
+   "sha256": "0c292bbb2e1013df",
+   "bytes": 106736
+  },
+  "courses/spled.json": {
+   "sha256": "9f47fcc6cf59a453",
+   "bytes": 61771
+  },
+  "courses/stat.json": {
+   "sha256": "832d9c6a5aca2c1a",
+   "bytes": 58554
+  },
+  "courses/scm.json": {
+   "sha256": "59a2cbdb833e6964",
+   "bytes": 36982
+  },
+  "courses/sur.json": {
+   "sha256": "b1d39ebeff602d4d",
+   "bytes": 68619
+  },
+  "courses/sust.json": {
+   "sha256": "170412ed027c94ba",
+   "bytes": 15038
+  },
+  "courses/swa.json": {
+   "sha256": "d03682363efc5616",
+   "bytes": 12758
+  },
+  "courses/edab.json": {
+   "sha256": "456c2f36df244d66",
+   "bytes": 1590
+  },
+  "courses/thea.json": {
+   "sha256": "1e4f97bb7275cf3a",
+   "bytes": 195958
+  },
+  "courses/turf.json": {
+   "sha256": "e2cfecb3fdb34eff",
+   "bytes": 21390
+  },
+  "courses/ukr.json": {
+   "sha256": "9377208e63cfc3a5",
+   "bytes": 11923
+  },
+  "courses/vbsc.json": {
+   "sha256": "8a68933031a01f37",
+   "bytes": 80776
+  },
+  "courses/wildl.json": {
+   "sha256": "ef158d82dbf4ae39",
+   "bytes": 16505
+  },
+  "courses/wfs.json": {
+   "sha256": "8bebbef9869c5ce0",
+   "bytes": 51686
+  },
+  "courses/wgss.json": {
+   "sha256": "6ab7b521d1bef80a",
+   "bytes": 3533
+  },
+  "courses/wmnst.json": {
+   "sha256": "c91d7c504e514b60",
+   "bytes": 178337
+  },
+  "courses/wp.json": {
+   "sha256": "6bc1b835664fb6c3",
+   "bytes": 6832
+  },
+  "courses/wfed.json": {
+   "sha256": "36597fdcaca0586e",
+   "bytes": 52373
+  },
+  "courses/wled.json": {
+   "sha256": "6920c31ad2b41d14",
+   "bytes": 16272
+  },
+  "courses/grad/acctg.json": {
+   "sha256": "33d7320376609bf8",
+   "bytes": 35781
+  },
+  "courses/grad/acct.json": {
+   "sha256": "e7ff80d112f0a156",
+   "bytes": 17396
+  },
+  "courses/grad/acs.json": {
+   "sha256": "3e44945eb74bc54c",
+   "bytes": 41944
+  },
+  "courses/grad/amd.json": {
+   "sha256": "093f992c1ba3ff1b",
+   "bytes": 29475
+  },
+  "courses/grad/adted.json": {
+   "sha256": "edca7f1070bd4c1e",
+   "bytes": 44991
+  },
+  "courses/grad/aersp.json": {
+   "sha256": "c107b7dee1a7781f",
+   "bytes": 31315
+  },
+  "courses/grad/afam.json": {
+   "sha256": "22f925e6da718e9e",
+   "bytes": 12050
+  },
+  "courses/grad/afr.json": {
+   "sha256": "673bb8993539d501",
+   "bytes": 23938
+  },
+  "courses/grad/abe.json": {
+   "sha256": "a06d57cb68c5e94d",
+   "bytes": 16673
+  },
+  "courses/grad/aeps.json": {
+   "sha256": "3a2ba19a601c5635",
+   "bytes": 15516
+  },
+  "courses/grad/agbio.json": {
+   "sha256": "0a7db0e148478472",
+   "bytes": 5427
+  },
+  "courses/grad/aerec.json": {
+   "sha256": "39f1cbb05aec47f8",
+   "bytes": 6966
+  },
+  "courses/grad/agro.json": {
+   "sha256": "664b1ae0c60406b4",
+   "bytes": 6915
+  },
+  "courses/grad/amst.json": {
+   "sha256": "57635ce0113098de",
+   "bytes": 28295
+  },
+  "courses/grad/anat.json": {
+   "sha256": "81aecafb1ddaadc3",
+   "bytes": 12764
+  },
+  "courses/grad/aml.json": {
+   "sha256": "9caadc50bafd14ef",
+   "bytes": 3265
+  },
+  "courses/grad/ansc.json": {
+   "sha256": "41be707d3afecf38",
+   "bytes": 17207
+  },
+  "courses/grad/anth.json": {
+   "sha256": "19decaa975440f31",
+   "bytes": 31027
+  },
+  "courses/grad/aba.json": {
+   "sha256": "7c5256747fb6a261",
+   "bytes": 18541
+  },
+  "courses/grad/aplng.json": {
+   "sha256": "74d9a692ec480aac",
+   "bytes": 55080
+  },
+  "courses/grad/ae.json": {
+   "sha256": "530031f9ca6939db",
+   "bytes": 68337
+  },
+  "courses/grad/arch.json": {
+   "sha256": "b8589ad450a8fca6",
+   "bytes": 34299
+  },
+  "courses/grad/art.json": {
+   "sha256": "5e7b1e26d5f8506a",
+   "bytes": 15140
+  },
+  "courses/grad/aed.json": {
+   "sha256": "0436af22b7bb4207",
+   "bytes": 35866
+  },
+  "courses/grad/arth.json": {
+   "sha256": "c9be54a07896ab39",
+   "bytes": 10818
+  },
+  "courses/grad/ai.json": {
+   "sha256": "d2b392c7bd8aecd9",
+   "bytes": 23263
+  },
+  "courses/grad/asia.json": {
+   "sha256": "e9b8f427176c70eb",
+   "bytes": 11243
+  },
+  "courses/grad/abiol.json": {
+   "sha256": "1aceb033743470ee",
+   "bytes": 8964
+  },
+  "courses/grad/astro.json": {
+   "sha256": "f09ad7145847533c",
+   "bytes": 30469
+  },
+  "courses/grad/athtr.json": {
+   "sha256": "5f44f5eddded9efe",
+   "bytes": 35797
+  },
+  "courses/grad/bbh.json": {
+   "sha256": "be147a96f28db3e2",
+   "bytes": 19585
+  },
+  "courses/grad/bmmb.json": {
+   "sha256": "ecc33758b340b105",
+   "bytes": 37954
+  },
+  "courses/grad/bioe.json": {
+   "sha256": "f2b5580efb576bf1",
+   "bytes": 27355
+  },
+  "courses/grad/bioet.json": {
+   "sha256": "dc7a3448aa63319f",
+   "bytes": 14546
+  },
+  "courses/grad/bgen.json": {
+   "sha256": "3df464b0cd0c9ddc",
+   "bytes": 9837
+  },
+  "courses/grad/bchem.json": {
+   "sha256": "6461c07dbcf456ad",
+   "bytes": 17475
+  },
+  "courses/grad/biol.json": {
+   "sha256": "bd16e52b1cd9424a",
+   "bytes": 23105
+  },
+  "courses/grad/bme.json": {
+   "sha256": "895ad7b779065471",
+   "bytes": 7644
+  },
+  "courses/grad/bms.json": {
+   "sha256": "93f08d91a7efa980",
+   "bytes": 52839
+  },
+  "courses/grad/brs.json": {
+   "sha256": "d66860ea889b3c82",
+   "bytes": 15271
+  },
+  "courses/grad/biost.json": {
+   "sha256": "b387ae12fc00e2b6",
+   "bytes": 3616
+  },
+  "courses/grad/bus.json": {
+   "sha256": "e8bfc2cab399d26b",
+   "bytes": 16242
+  },
+  "courses/grad/ba.json": {
+   "sha256": "df38937a2f133fa3",
+   "bytes": 58624
+  },
+  "courses/grad/badm.json": {
+   "sha256": "60d8a5b6327b2c82",
+   "bytes": 22734
+  },
+  "courses/grad/busad.json": {
+   "sha256": "08af50c83712cfe1",
+   "bytes": 48941
+  },
+  "courses/grad/ban.json": {
+   "sha256": "00c50be542c8140b",
+   "bytes": 16065
+  },
+  "courses/grad/busec.json": {
+   "sha256": "a78f239ff6c4bfe9",
+   "bytes": 6415
+  },
+  "courses/grad/blaw.json": {
+   "sha256": "9e3dae03728436ab",
+   "bytes": 2168
+  },
+  "courses/grad/cmbio.json": {
+   "sha256": "1b52d31095d9f226",
+   "bytes": 2773
+  },
+  "courses/grad/che.json": {
+   "sha256": "06eda52ff4c785e9",
+   "bytes": 23378
+  },
+  "courses/grad/chem.json": {
+   "sha256": "1d5f64d9b7e88058",
+   "bytes": 38398
+  },
+  "courses/grad/chns.json": {
+   "sha256": "330eee5fb6800bc8",
+   "bytes": 761
+  },
+  "courses/grad/ce.json": {
+   "sha256": "4f3f35651130bf7a",
+   "bytes": 71432
+  },
+  "courses/grad/cams.json": {
+   "sha256": "af9c9b5545e0d0a7",
+   "bytes": 16197
+  },
+  "courses/grad/cts.json": {
+   "sha256": "507a75ef2e347767",
+   "bytes": 5947
+  },
+  "courses/grad/cas.json": {
+   "sha256": "8d109ea6303bae20",
+   "bytes": 54080
+  },
+  "courses/grad/csd.json": {
+   "sha256": "8ce0ac7c90f750a9",
+   "bytes": 46954
+  },
+  "courses/grad/comm.json": {
+   "sha256": "db2599571c1a4fa9",
+   "bytes": 66084
+  },
+  "courses/grad/comms.json": {
+   "sha256": "18ce67374dc37545",
+   "bytes": 14883
+  },
+  "courses/grad/cedev.json": {
+   "sha256": "e7e17401cb3372a8",
+   "bytes": 23417
+  },
+  "courses/grad/cmpsy.json": {
+   "sha256": "ca8f665979bc14a2",
+   "bytes": 8705
+  },
+  "courses/grad/cied.json": {
+   "sha256": "ae83e1b8c5dd5b74",
+   "bytes": 38419
+  },
+  "courses/grad/cmlit.json": {
+   "sha256": "7e8596dfa797a879",
+   "bytes": 40483
+  },
+  "courses/grad/cmed.json": {
+   "sha256": "d943fc9ed8760cff",
+   "bytes": 11708
+  },
+  "courses/grad/cmpmt.json": {
+   "sha256": "0f09eff8c0797d70",
+   "bytes": 1185
+  },
+  "courses/grad/cmpsc.json": {
+   "sha256": "6c2b2d6223ce4a67",
+   "bytes": 813
+  },
+  "courses/grad/csc.json": {
+   "sha256": "4725e712a22dbb9a",
+   "bytes": 19236
+  },
+  "courses/grad/comp.json": {
+   "sha256": "d87526727031aa0c",
+   "bytes": 13802
+  },
+  "courses/grad/cse.json": {
+   "sha256": "d0fa901bf60453d2",
+   "bytes": 69300
+  },
+  "courses/grad/cnpsy.json": {
+   "sha256": "bc1a1dd7909e23a4",
+   "bytes": 10773
+  },
+  "courses/grad/cned.json": {
+   "sha256": "4652ef883eee58d1",
+   "bytes": 43815
+  },
+  "courses/grad/crimj.json": {
+   "sha256": "22448620e09116fd",
+   "bytes": 24295
+  },
+  "courses/grad/cjpa.json": {
+   "sha256": "d31c10bd33e28679",
+   "bytes": 19339
+  },
+  "courses/grad/crim.json": {
+   "sha256": "34109a95878851dd",
+   "bytes": 19664
+  },
+  "courses/grad/ci.json": {
+   "sha256": "b5440358afbd563e",
+   "bytes": 61244
+  },
+  "courses/grad/c_s.json": {
+   "sha256": "ceb8399036d1e3a4",
+   "bytes": 15684
+  },
+  "courses/grad/daan.json": {
+   "sha256": "a79a1e11cb6e4e56",
+   "bytes": 25365
+  },
+  "courses/grad/ds.json": {
+   "sha256": "6cca4d169be3d5ee",
+   "bytes": 3982
+  },
+  "courses/grad/demog.json": {
+   "sha256": "5be61b8f34671a3c",
+   "bytes": 25988
+  },
+  "courses/grad/ece.json": {
+   "sha256": "9194ae3b7c4605cc",
+   "bytes": 5384
+  },
+  "courses/grad/earth.json": {
+   "sha256": "ffff5955369afec8",
+   "bytes": 13803
+  },
+  "courses/grad/eclgy.json": {
+   "sha256": "f6cfe9b2a3d12d0b",
+   "bytes": 7659
+  },
+  "courses/grad/econ.json": {
+   "sha256": "400d9cf11dbe3c3a",
+   "bytes": 22910
+  },
+  "courses/grad/emgt.json": {
+   "sha256": "d99f76c40676f052",
+   "bytes": 6851
+  },
+  "courses/grad/esm.json": {
+   "sha256": "f83a0c4e1c3c7aec",
+   "bytes": 2955
+  },
+  "courses/grad/educ.json": {
+   "sha256": "245b25a19c67fc42",
+   "bytes": 37567
+  },
+  "courses/grad/epl.json": {
+   "sha256": "c1908f79c49c90d7",
+   "bytes": 10853
+  },
+  "courses/grad/edce.json": {
+   "sha256": "6a909583a8a3e01e",
+   "bytes": 25148
+  },
+  "courses/grad/edldr.json": {
+   "sha256": "8cc2e710bc609ae5",
+   "bytes": 87368
+  },
+  "courses/grad/edpsy.json": {
+   "sha256": "51f29d75d86fa049",
+   "bytes": 41827
+  },
+  "courses/grad/edtec.json": {
+   "sha256": "6cc5cb88723adf9f",
+   "bytes": 3694
+  },
+  "courses/grad/edthp.json": {
+   "sha256": "a08b580d1a993b1d",
+   "bytes": 44663
+  },
+  "courses/grad/ee.json": {
+   "sha256": "abbcb4baf55b4ebb",
+   "bytes": 68581
+  },
+  "courses/grad/egee.json": {
+   "sha256": "9bb0adf0e24ca85e",
+   "bytes": 2937
+  },
+  "courses/grad/eme.json": {
+   "sha256": "d11f3e0e1b006352",
+   "bytes": 36800
+  },
+  "courses/grad/eefe.json": {
+   "sha256": "1fa82d49adb4a02c",
+   "bytes": 20287
+  },
+  "courses/grad/ennec.json": {
+   "sha256": "12d9a1fb69648716",
+   "bytes": 2996
+  },
+  "courses/grad/engr.json": {
+   "sha256": "b0cc562fe5548562",
+   "bytes": 28537
+  },
+  "courses/grad/edsgn.json": {
+   "sha256": "68c5b1d8e1f9092e",
+   "bytes": 26278
+  },
+  "courses/grad/edi.json": {
+   "sha256": "efae3b3f1e783dbc",
+   "bytes": 5035
+  },
+  "courses/grad/engmt.json": {
+   "sha256": "2885cc22c9fb9b52",
+   "bytes": 11685
+  },
+  "courses/grad/emch.json": {
+   "sha256": "8a5fce370d2abbf0",
+   "bytes": 33857
+  },
+  "courses/grad/esc.json": {
+   "sha256": "60bf7a92b59d6640",
+   "bytes": 62299
+  },
+  "courses/grad/engl.json": {
+   "sha256": "84858a1f233df504",
+   "bytes": 51110
+  },
+  "courses/grad/ea.json": {
+   "sha256": "71743ea33c7eb489",
+   "bytes": 10415
+  },
+  "courses/grad/ent.json": {
+   "sha256": "b064a8a66bf3683f",
+   "bytes": 16756
+  },
+  "courses/grad/entr.json": {
+   "sha256": "81e9d56c71675420",
+   "bytes": 11484
+  },
+  "courses/grad/enve.json": {
+   "sha256": "9598fdcc6ccd3e78",
+   "bytes": 5906
+  },
+  "courses/grad/epc.json": {
+   "sha256": "c084e3d2f0575f2f",
+   "bytes": 1333
+  },
+  "courses/grad/epid.json": {
+   "sha256": "ee4b8c9e2e42330f",
+   "bytes": 3543
+  },
+  "courses/grad/fin.json": {
+   "sha256": "8db82ef183183782",
+   "bytes": 32706
+  },
+  "courses/grad/finan.json": {
+   "sha256": "6fd92bd59d357a49",
+   "bytes": 9520
+  },
+  "courses/grad/fdsc.json": {
+   "sha256": "434bb9c2135b5509",
+   "bytes": 32809
+  },
+  "courses/grad/frnsc.json": {
+   "sha256": "67a8157d15100029",
+   "bytes": 11455
+  },
+  "courses/grad/for.json": {
+   "sha256": "5ea707ae997a9f35",
+   "bytes": 16101
+  },
+  "courses/grad/fr.json": {
+   "sha256": "d3cf7c520e51e02c",
+   "bytes": 24706
+  },
+  "courses/grad/fsc.json": {
+   "sha256": "3c6576f4339710d1",
+   "bytes": 4943
+  },
+  "courses/grad/genet.json": {
+   "sha256": "25ba4d3b846eab4b",
+   "bytes": 11462
+  },
+  "courses/grad/geodz.json": {
+   "sha256": "bb3b9b4164e2bd79",
+   "bytes": 7554
+  },
+  "courses/grad/geog.json": {
+   "sha256": "7a8bce3761bcf508",
+   "bytes": 67508
+  },
+  "courses/grad/geosc.json": {
+   "sha256": "27913459293ca55e",
+   "bytes": 39421
+  },
+  "courses/grad/ger.json": {
+   "sha256": "3e4fe4fbafcbe8a6",
+   "bytes": 33578
+  },
+  "courses/grad/greek.json": {
+   "sha256": "708038119198630e",
+   "bytes": 4393
+  },
+  "courses/grad/hadm.json": {
+   "sha256": "f5783d04315443ae",
+   "bytes": 14982
+  },
+  "courses/grad/hhd.json": {
+   "sha256": "84f3b416b4cd4764",
+   "bytes": 705
+  },
+  "courses/grad/hlhed.json": {
+   "sha256": "6e308aeb623715d7",
+   "bytes": 8908
+  },
+  "courses/grad/hpa.json": {
+   "sha256": "a5dd24567ff1319e",
+   "bytes": 66454
+  },
+  "courses/grad/hebr.json": {
+   "sha256": "b8ef52737f63f200",
+   "bytes": 761
+  },
+  "courses/grad/hied.json": {
+   "sha256": "01fb9944f52867a1",
+   "bytes": 67487
+  },
+  "courses/grad/hist.json": {
+   "sha256": "6a437e5dd98118f6",
+   "bytes": 99857
+  },
+  "courses/grad/hls.json": {
+   "sha256": "1f23375381fa3de1",
+   "bytes": 27999
+  },
+  "courses/grad/hort.json": {
+   "sha256": "d45d44dfdee04c79",
+   "bytes": 6858
+  },
+  "courses/grad/hm.json": {
+   "sha256": "cb30411ff44446a5",
+   "bytes": 21440
+  },
+  "courses/grad/hdfs.json": {
+   "sha256": "accf4fbbebb4cb4f",
+   "bytes": 57231
+  },
+  "courses/grad/hrer.json": {
+   "sha256": "ff22dbb899e9d305",
+   "bytes": 55067
+  },
+  "courses/grad/hum.json": {
+   "sha256": "1dca17e553cc6b53",
+   "bytes": 8217
+  },
+  "courses/grad/ie.json": {
+   "sha256": "81b835e7b29e07d5",
+   "bytes": 75777
+  },
+  "courses/grad/ihs.json": {
+   "sha256": "47930dde1283abbe",
+   "bytes": 1854
+  },
+  "courses/grad/insc.json": {
+   "sha256": "b252a9708045024a",
+   "bytes": 10245
+  },
+  "courses/grad/ist.json": {
+   "sha256": "3e2dc238fe83189d",
+   "bytes": 72460
+  },
+  "courses/grad/infsy.json": {
+   "sha256": "506fdf84bb1918b3",
+   "bytes": 23227
+  },
+  "courses/grad/insys.json": {
+   "sha256": "085dba70a697a075",
+   "bytes": 836
+  },
+  "courses/grad/ins.json": {
+   "sha256": "8cc002a5bfcc0d76",
+   "bytes": 1467
+  },
+  "courses/grad/ibios.json": {
+   "sha256": "358cab37e08ad06b",
+   "bytes": 10126
+  },
+  "courses/grad/imba.json": {
+   "sha256": "cf6549166b2af4cf",
+   "bytes": 20994
+  },
+  "courses/grad/intaf.json": {
+   "sha256": "13aafd8cbd2ec152",
+   "bytes": 65643
+  },
+  "courses/grad/intad.json": {
+   "sha256": "8041097385cf8b74",
+   "bytes": 3113
+  },
+  "courses/grad/ib.json": {
+   "sha256": "9ea79b9c2dc02340",
+   "bytes": 2187
+  },
+  "courses/grad/it.json": {
+   "sha256": "7f01cd41b9d20c94",
+   "bytes": 1533
+  },
+  "courses/grad/japns.json": {
+   "sha256": "5e5c15cde183b128",
+   "bytes": 766
+  },
+  "courses/grad/jst.json": {
+   "sha256": "33b0f769b0d10f1d",
+   "bytes": 11652
+  },
+  "courses/grad/kines.json": {
+   "sha256": "665077071f822ac8",
+   "bytes": 22717
+  },
+  "courses/grad/lgwr.json": {
+   "sha256": "5996f4508c22b893",
+   "bytes": 19618
+  },
+  "courses/grad/larch.json": {
+   "sha256": "ac16c28147e35e6c",
+   "bytes": 27108
+  },
+  "courses/grad/lled.json": {
+   "sha256": "fd27257798e9d368",
+   "bytes": 19244
+  },
+  "courses/grad/lngsc.json": {
+   "sha256": "70d2ea72f809e4ac",
+   "bytes": 2546
+  },
+  "courses/grad/latin.json": {
+   "sha256": "a967b1ce8b265b94",
+   "bytes": 1397
+  },
+  "courses/grad/ltnst.json": {
+   "sha256": "beb361aec19c8449",
+   "bytes": 2396
+  },
+  "courses/grad/lpe.json": {
+   "sha256": "78b0273651f309e9",
+   "bytes": 12748
+  },
+  "courses/grad/lead.json": {
+   "sha256": "4f3d6195a1e1e56a",
+   "bytes": 15488
+  },
+  "courses/grad/ldt.json": {
+   "sha256": "65cbca11740b6648",
+   "bytes": 36460
+  },
+  "courses/grad/la.json": {
+   "sha256": "00cb5db7d92712c4",
+   "bytes": 1528
+  },
+  "courses/grad/ling.json": {
+   "sha256": "2b029a86493b5d8c",
+   "bytes": 15519
+  },
+  "courses/grad/mgmt.json": {
+   "sha256": "06ae7ccbc1f16ecf",
+   "bytes": 43479
+  },
+  "courses/grad/mangt.json": {
+   "sha256": "ff2f10cabc27109f",
+   "bytes": 22370
+  },
+  "courses/grad/mngmt.json": {
+   "sha256": "24f6355dbab31e70",
+   "bytes": 16572
+  },
+  "courses/grad/mfgse.json": {
+   "sha256": "79da74514d3fa84a",
+   "bytes": 1592
+  },
+  "courses/grad/mktg.json": {
+   "sha256": "bd2998225a957279",
+   "bytes": 35022
+  },
+  "courses/grad/mrkt.json": {
+   "sha256": "6566fd5a1517a3a9",
+   "bytes": 11075
+  },
+  "courses/grad/mfe.json": {
+   "sha256": "ce49a669bf9c41b2",
+   "bytes": 14836
+  },
+  "courses/grad/mbadm.json": {
+   "sha256": "785d50b537ceefb2",
+   "bytes": 21083
+  },
+  "courses/grad/matse.json": {
+   "sha256": "bf3037542adf8b5f",
+   "bytes": 77201
+  },
+  "courses/grad/math.json": {
+   "sha256": "f6e5661dbc787708",
+   "bytes": 53659
+  },
+  "courses/grad/mthed.json": {
+   "sha256": "86c9779fc3fc5bb6",
+   "bytes": 17839
+  },
+  "courses/grad/me.json": {
+   "sha256": "0c92746e0b2f923b",
+   "bytes": 53366
+  },
+  "courses/grad/meteo.json": {
+   "sha256": "fab4ba1143ff64c1",
+   "bytes": 62650
+  },
+  "courses/grad/micro.json": {
+   "sha256": "295abbc5e29de1ec",
+   "bytes": 11979
+  },
+  "courses/grad/mbiom.json": {
+   "sha256": "a5e189b22886bbf4",
+   "bytes": 2014
+  },
+  "courses/grad/mnpr.json": {
+   "sha256": "3b10540c4d24e650",
+   "bytes": 5731
+  },
+  "courses/grad/mng.json": {
+   "sha256": "adcb562fefeceef0",
+   "bytes": 7060
+  },
+  "courses/grad/mcibs.json": {
+   "sha256": "6cd9f1897119c1e3",
+   "bytes": 23028
+  },
+  "courses/grad/music.json": {
+   "sha256": "b062344a415666d6",
+   "bytes": 46073
+  },
+  "courses/grad/mued.json": {
+   "sha256": "84fab1dba24a414f",
+   "bytes": 16919
+  },
+  "courses/grad/brass.json": {
+   "sha256": "94f225c39b7d819a",
+   "bytes": 10335
+  },
+  "courses/grad/keybd.json": {
+   "sha256": "7541a0a2ca56556a",
+   "bytes": 4178
+  },
+  "courses/grad/percn.json": {
+   "sha256": "560e3d2df6b01535",
+   "bytes": 2054
+  },
+  "courses/grad/strng.json": {
+   "sha256": "68986ec0ef9d9535",
+   "bytes": 8379
+  },
+  "courses/grad/voice.json": {
+   "sha256": "6ce1185512384c60",
+   "bytes": 2047
+  },
+  "courses/grad/wwnds.json": {
+   "sha256": "67a3c692f7bb671d",
+   "bytes": 10156
+  },
+  "courses/grad/nano.json": {
+   "sha256": "894cc0479585d4dd",
+   "bytes": 4148
+  },
+  "courses/grad/ne.json": {
+   "sha256": "7780c11ef5ff4b7f",
+   "bytes": 700
+  },
+  "courses/grad/neuro.json": {
+   "sha256": "8884cf4699f6f51b",
+   "bytes": 21726
+  },
+  "courses/grad/nuce.json": {
+   "sha256": "28f3656aa895c903",
+   "bytes": 25643
+  },
+  "courses/grad/nurs.json": {
+   "sha256": "170dd8eca02bba58",
+   "bytes": 151323
+  },
+  "courses/grad/nutr.json": {
+   "sha256": "85990c2d7302d3e9",
+   "bytes": 52348
+  },
+  "courses/grad/ot.json": {
+   "sha256": "c05111751fbe40a1",
+   "bytes": 11883
+  },
+  "courses/grad/or.json": {
+   "sha256": "1a951f3d0eaba919",
+   "bytes": 711
+  },
+  "courses/grad/path.json": {
+   "sha256": "fd7731078701ef2c",
+   "bytes": 1557
+  },
+  "courses/grad/png.json": {
+   "sha256": "49392e2bccea14b9",
+   "bytes": 15542
+  },
+  "courses/grad/pharm.json": {
+   "sha256": "1b1fdf1d2af66d80",
+   "bytes": 13527
+  },
+  "courses/grad/phil.json": {
+   "sha256": "aa70f4b588156b5b",
+   "bytes": 34199
+  },
+  "courses/grad/phys.json": {
+   "sha256": "4e9d176314ce0779",
+   "bytes": 41511
+  },
+  "courses/grad/phsio.json": {
+   "sha256": "927dee7b4fe7a57b",
+   "bytes": 8656
+  },
+  "courses/grad/psio.json": {
+   "sha256": "d0a6eedda3e78c7f",
+   "bytes": 9485
+  },
+  "courses/grad/plbio.json": {
+   "sha256": "1fc33ee035e0fa8e",
+   "bytes": 8015
+  },
+  "courses/grad/ppath.json": {
+   "sha256": "152b0e895ac40785",
+   "bytes": 20016
+  },
+  "courses/grad/plsc.json": {
+   "sha256": "5d8b88f1b052ef68",
+   "bytes": 66178
+  },
+  "courses/grad/port.json": {
+   "sha256": "d5b56d70239d33b2",
+   "bytes": 1469
+  },
+  "courses/grad/psy.json": {
+   "sha256": "529f8e7309d78b74",
+   "bytes": 91480
+  },
+  "courses/grad/psyc.json": {
+   "sha256": "96e32506b5101ac7",
+   "bytes": 47620
+  },
+  "courses/grad/padm.json": {
+   "sha256": "2ed4123f8b8a10ed",
+   "bytes": 56255
+  },
+  "courses/grad/php.json": {
+   "sha256": "a3df7971e3950a7c",
+   "bytes": 9451
+  },
+  "courses/grad/phs.json": {
+   "sha256": "1b7d8c9428c22ead",
+   "bytes": 110495
+  },
+  "courses/grad/ppol.json": {
+   "sha256": "22e7977c00a436c1",
+   "bytes": 39805
+  },
+  "courses/grad/qmm.json": {
+   "sha256": "d3b0491d352cf21f",
+   "bytes": 9184
+  },
+  "courses/grad/rest.json": {
+   "sha256": "d9352efb1a4c0df9",
+   "bytes": 18513
+  },
+  "courses/grad/rptm.json": {
+   "sha256": "a59837a3acd61d5a",
+   "bytes": 13760
+  },
+  "courses/grad/rlst.json": {
+   "sha256": "260c2eacb17fb39f",
+   "bytes": 2832
+  },
+  "courses/grad/rise.json": {
+   "sha256": "f5669395394dbb87",
+   "bytes": 3246
+  },
+  "courses/grad/rm.json": {
+   "sha256": "4b5a4064779d6aa5",
+   "bytes": 1776
+  },
+  "courses/grad/rsoc.json": {
+   "sha256": "84fa8ce8fc8715e1",
+   "bytes": 23238
+  },
+  "courses/grad/rus.json": {
+   "sha256": "fd26cca4f8783084",
+   "bytes": 1389
+  },
+  "courses/grad/spsy.json": {
+   "sha256": "017f99f000fcd1ad",
+   "bytes": 30761
+  },
+  "courses/grad/sc.json": {
+   "sha256": "c5ce33e01bc366cf",
+   "bytes": 789
+  },
+  "courses/grad/scied.json": {
+   "sha256": "b570576de2ff65a4",
+   "bytes": 11473
+  },
+  "courses/grad/sts.json": {
+   "sha256": "401fceeec050ba9e",
+   "bytes": 775
+  },
+  "courses/grad/sbn.json": {
+   "sha256": "1ec35b033218393d",
+   "bytes": 7801
+  },
+  "courses/grad/soda.json": {
+   "sha256": "baa9acd219e8ec11",
+   "bytes": 3743
+  },
+  "courses/grad/ssed.json": {
+   "sha256": "1d016077fcc849ee",
+   "bytes": 8494
+  },
+  "courses/grad/socth.json": {
+   "sha256": "88efd0ae5139bf04",
+   "bytes": 752
+  },
+  "courses/grad/msw.json": {
+   "sha256": "17b598e38daad828",
+   "bytes": 71246
+  },
+  "courses/grad/soc.json": {
+   "sha256": "1f61909fbfc88062",
+   "bytes": 72197
+  },
+  "courses/grad/sweng.json": {
+   "sha256": "ebdf1dadf70a4982",
+   "bytes": 24370
+  },
+  "courses/grad/soils.json": {
+   "sha256": "9f0673e48ee3755a",
+   "bytes": 25330
+  },
+  "courses/grad/span.json": {
+   "sha256": "b156e00247698d14",
+   "bytes": 26491
+  },
+  "courses/grad/spled.json": {
+   "sha256": "952aff3e2014066a",
+   "bytes": 59591
+  },
+  "courses/grad/stat.json": {
+   "sha256": "044924cffa9046d8",
+   "bytes": 48575
+  },
+  "courses/grad/scis.json": {
+   "sha256": "94d155a82476ffbf",
+   "bytes": 28771
+  },
+  "courses/grad/scm.json": {
+   "sha256": "2423488f1606a230",
+   "bytes": 40464
+  },
+  "courses/grad/sysen.json": {
+   "sha256": "3fdbef3e7931371c",
+   "bytes": 24777
+  },
+  "courses/grad/thea.json": {
+   "sha256": "d2f1ffa2a51851fc",
+   "bytes": 70977
+  },
+  "courses/grad/trdev.json": {
+   "sha256": "8036a02c812e6059",
+   "bytes": 24897
+  },
+  "courses/grad/trees.json": {
+   "sha256": "023bd284a851bc09",
+   "bytes": 6044
+  },
+  "courses/grad/cic.json": {
+   "sha256": "4adddb728c466896",
+   "bytes": 1652
+  },
+  "courses/grad/turf.json": {
+   "sha256": "9da02f6973baa1f6",
+   "bytes": 4259
+  },
+  "courses/grad/vbsc.json": {
+   "sha256": "0e20b119a2010db3",
+   "bytes": 19251
+  },
+  "courses/grad/virim.json": {
+   "sha256": "a4579c2076ac42ae",
+   "bytes": 1380
+  },
+  "courses/grad/vstud.json": {
+   "sha256": "1195aac69597febd",
+   "bytes": 13564
+  },
+  "courses/grad/wfs.json": {
+   "sha256": "6910390cf00a34dd",
+   "bytes": 12470
+  },
+  "courses/grad/wgss.json": {
+   "sha256": "fb358171c91b2f3d",
+   "bytes": 4170
+  },
+  "courses/grad/wmnst.json": {
+   "sha256": "9d997d52efd2085b",
+   "bytes": 26431
+  },
+  "courses/grad/wp.json": {
+   "sha256": "dd98542ac8247fc5",
+   "bytes": 4232
+  },
+  "courses/grad/wfed.json": {
+   "sha256": "eefb6c627408e2e0",
+   "bytes": 47436
+  },
+  "programs/majors/abington-accounting-bs.json": {
+   "sha256": "6e4c929be96b945d",
+   "bytes": 14042
+  },
+  "programs/majors/altoona-accounting-bs.json": {
+   "sha256": "b3d287e7901761fc",
+   "bytes": 13608
+  },
+  "programs/majors/behrend-accounting-bs.json": {
+   "sha256": "1231bc6ea2b88b8a",
+   "bytes": 15250
+  },
+  "programs/majors/berks-accounting-bs.json": {
+   "sha256": "cca510d565e3edb8",
+   "bytes": 13341
+  },
+  "programs/majors/smeal-business-accounting-bs.json": {
+   "sha256": "98df25fcdc3bfe64",
+   "bytes": 22766
+  },
+  "programs/majors/capital-accounting-bs.json": {
+   "sha256": "c26784668b54312f",
+   "bytes": 13443
+  },
+  "programs/minors/behrend-accounting-minor.json": {
+   "sha256": "6074851d82aa37ae",
+   "bytes": 1710
+  },
+  "programs/majors/arts-architecture-acting-bfa.json": {
+   "sha256": "b355c480c7a9888f",
+   "bytes": 14542
+  },
+  "programs/certificates/behrend-actuarial-mathematics-statistics-certificate.json": {
+   "sha256": "678054d23ab944e9",
+   "bytes": 2240
+  },
+  "programs/majors/smeal-business-actuarial-science-bs.json": {
+   "sha256": "bf19760fc039aa6f",
+   "bytes": 21743
+  },
+  "programs/minors/education-addictions-recovery-minor.json": {
+   "sha256": "434b2844f06fb51e",
+   "bytes": 3193
+  },
+  "programs/majors/university-college-administration-justice-ba.json": {
+   "sha256": "522c2c10176f8556",
+   "bytes": 52406
+  },
+  "programs/majors/university-college-administration-justice-bs.json": {
+   "sha256": "ffc405c91626643d",
+   "bytes": 77480
+  },
+  "programs/certificates/education-advanced-instructor-development-professionals-certificate.json": {
+   "sha256": "006a43dcaf746a89",
+   "bytes": 1003
+  },
+  "programs/certificates/behrend-advertising-certificate.json": {
+   "sha256": "31b27d0d60bdb349",
+   "bytes": 1092
+  },
+  "programs/majors/bellisario-communications-advertising-public-relations-ba.json": {
+   "sha256": "e82b830c3f13fd34",
+   "bytes": 23026
+  },
+  "programs/majors/engineering-aerospace-engineering-bs.json": {
+   "sha256": "aa3613e3a638372b",
+   "bytes": 16527
+  },
+  "programs/certificates/liberal-arts-africa-asia-studies-certificate.json": {
+   "sha256": "6a86957a3d760556",
+   "bytes": 2105
+  },
+  "programs/majors/liberal-arts-african-american-studies-ba.json": {
+   "sha256": "dd8271ff78fdb237",
+   "bytes": 14459
+  },
+  "programs/minors/liberal-arts-african-american-studies-minor.json": {
+   "sha256": "389dfc261c3e002e",
+   "bytes": 2748
+  },
+  "programs/majors/liberal-arts-african-african-american-studies-ba.json": {
+   "sha256": "1ff17bb64680f385",
+   "bytes": 9103
+  },
+  "programs/majors/liberal-arts-african-african-american-studies-bs.json": {
+   "sha256": "6c001db495540446",
+   "bytes": 9579
+  },
+  "programs/majors/liberal-arts-african-studies-ba.json": {
+   "sha256": "5ff657c4d98bd13f",
+   "bytes": 11773
+  },
+  "programs/minors/liberal-arts-african-studies-minor.json": {
+   "sha256": "7c38a3dbdb65277d",
+   "bytes": 2635
+  },
+  "programs/majors/agricultural-sciences-agribusiness-management-bs.json": {
+   "sha256": "8112f4e532a28733",
+   "bytes": 37877
+  },
+  "programs/minors/agricultural-sciences-agribusiness-management-minor.json": {
+   "sha256": "efe3c8485a615e4b",
+   "bytes": 3125
+  },
+  "programs/majors/agricultural-sciences-agricultural-biorenewable-systems-management-bs.json": {
+   "sha256": "049a06da12c5a8c6",
+   "bytes": 23522
+  },
+  "programs/majors/agricultural-sciences-agricultural-extension-education-bs.json": {
+   "sha256": "547f1a797e1eaa50",
+   "bytes": 41104
+  },
+  "programs/majors/agricultural-sciences-agricultural-science-bs.json": {
+   "sha256": "04ff798dc968a16a",
+   "bytes": 26087
+  },
+  "programs/certificates/agricultural-sciences-agricultural-stewardship-conservation-certificate.json": {
+   "sha256": "fccf6a12e18aa482",
+   "bytes": 1710
+  },
+  "programs/minors/agricultural-sciences-agricultural-systems-management-minor.json": {
+   "sha256": "88aac608a21a37c2",
+   "bytes": 2467
+  },
+  "programs/minors/agricultural-sciences-agronomy-minor.json": {
+   "sha256": "3f41b15d5f1a9d55",
+   "bytes": 2047
+  },
+  "programs/majors/joint-service-rotc-air-force-rotc.json": {
+   "sha256": "fe493fea2b960f92",
+   "bytes": 331
+  },
+  "programs/minors/health-human-development-american-sign-language-minor.json": {
+   "sha256": "6bedad9e2e20718b",
+   "bytes": 1910
+  },
+  "programs/majors/abington-american-studies-ba.json": {
+   "sha256": "afa7a36381930a35",
+   "bytes": 9995
+  },
+  "programs/majors/capital-american-studies-ba.json": {
+   "sha256": "23ebebb6a3feeb9a",
+   "bytes": 10032
+  },
+  "programs/majors/university-college-american-studies-ba.json": {
+   "sha256": "82abae19fca93f02",
+   "bytes": 9969
+  },
+  "programs/minors/capital-american-studies-minor.json": {
+   "sha256": "8c71fe5bcf299f6c",
+   "bytes": 1963
+  },
+  "programs/majors/agricultural-sciences-animal-science-bs.json": {
+   "sha256": "f9ac976e97261494",
+   "bytes": 31901
+  },
+  "programs/minors/agricultural-sciences-animal-science-minor.json": {
+   "sha256": "ec2f5234ae4835fb",
+   "bytes": 2684
+  },
+  "programs/majors/liberal-arts-anthropological-science-bs.json": {
+   "sha256": "489c21ec597007e6",
+   "bytes": 78275
+  },
+  "programs/majors/liberal-arts-anthropology-ba.json": {
+   "sha256": "38ef08ce282688bf",
+   "bytes": 18875
+  },
+  "programs/minors/liberal-arts-anthropology-minor.json": {
+   "sha256": "630d9aebd7dff941",
+   "bytes": 1598
+  },
+  "programs/minors/behrend-applied-economics-minor.json": {
+   "sha256": "d26adf05332fb15b",
+   "bytes": 1548
+  },
+  "programs/majors/liberal-arts-applied-linguistics-ba.json": {
+   "sha256": "e0235e45f15b4f06",
+   "bytes": 18669
+  },
+  "programs/minors/liberal-arts-applied-linguistics-minor.json": {
+   "sha256": "0576513288d92d7a",
+   "bytes": 1989
+  },
+  "programs/minors/liberal-arts-arabic-language-minor.json": {
+   "sha256": "52767dc1b1ac13d4",
+   "bytes": 2311
+  },
+  "programs/minors/agricultural-sciences-arboriculture-minor.json": {
+   "sha256": "954c0b24fbd3107c",
+   "bytes": 2256
+  },
+  "programs/majors/engineering-architectural-engineering-bae.json": {
+   "sha256": "be670b6868f0540a",
+   "bytes": 95871
+  },
+  "programs/minors/arts-architecture-architectural-history-minor.json": {
+   "sha256": "ad1e050f91eac339",
+   "bytes": 2459
+  },
+  "programs/minors/arts-architecture-architecture-studies-minor.json": {
+   "sha256": "accd855ac7387953",
+   "bytes": 2174
+  },
+  "programs/majors/arts-architecture-architecture-barch.json": {
+   "sha256": "ad21eea7c435c0f5",
+   "bytes": 14710
+  },
+  "programs/majors/arts-architecture-architecture-bs.json": {
+   "sha256": "2b79ecff1ffec446",
+   "bytes": 3895
+  },
+  "programs/majors/joint-service-rotc-army-rotc.json": {
+   "sha256": "cdb1749a80357c09",
+   "bytes": 316
+  },
+  "programs/majors/arts-architecture-art-education-bs.json": {
+   "sha256": "09c91d8a45a94fb1",
+   "bytes": 13810
+  },
+  "programs/majors/arts-architecture-art-history-ba.json": {
+   "sha256": "4e8bf2048786e4ac",
+   "bytes": 14268
+  },
+  "programs/minors/arts-architecture-art-history-minor.json": {
+   "sha256": "b140bfb6cef8c57b",
+   "bytes": 2921
+  },
+  "programs/majors/abington-art-ba.json": {
+   "sha256": "9845e091238af93a",
+   "bytes": 10680
+  },
+  "programs/majors/arts-architecture-art-ba.json": {
+   "sha256": "ab6679b319c1395a",
+   "bytes": 11297
+  },
+  "programs/majors/arts-architecture-art-bfa.json": {
+   "sha256": "86c237345a4fa61c",
+   "bytes": 11369
+  },
+  "programs/minors/arts-architecture-art-minor.json": {
+   "sha256": "f72448aa63b6ac98",
+   "bytes": 3149
+  },
+  "programs/certificates/behrend-artificial-intelligence-society-certificate.json": {
+   "sha256": "c377bcbbc72b164b",
+   "bytes": 2487
+  },
+  "programs/majors/engineering-artificial-intelligence-engineering-bs.json": {
+   "sha256": "4d4f919988db69ea",
+   "bytes": 13614
+  },
+  "programs/minors/engineering-artificial-intelligence-engineering-minor.json": {
+   "sha256": "72696993d534009f",
+   "bytes": 1970
+  },
+  "programs/majors/capital-artificial-intelligence-methods-applications-bs.json": {
+   "sha256": "6020b1cef5fe852a",
+   "bytes": 13012
+  },
+  "programs/majors/information-sciences-technology-artificial-intelligence-methods-applications-bs.json": {
+   "sha256": "73995686f90c815f",
+   "bytes": 13007
+  },
+  "programs/majors/university-college-arts-administration-ba.json": {
+   "sha256": "35ef86323e419c27",
+   "bytes": 15305
+  },
+  "programs/minors/arts-architecture-arts-entrepreneurship-minor.json": {
+   "sha256": "28635d134b9fd543",
+   "bytes": 13522
+  },
+  "programs/majors/liberal-arts-asian-studies-ba.json": {
+   "sha256": "cc8db98bfd6d385d",
+   "bytes": 19016
+  },
+  "programs/minors/liberal-arts-asian-studies-minor.json": {
+   "sha256": "7e5dd19211d1b454",
+   "bytes": 2129
+  },
+  "programs/minors/intercollege-astrobiology-minor.json": {
+   "sha256": "8c9bd9f92460714e",
+   "bytes": 2379
+  },
+  "programs/majors/eberly-science-astronomy-astrophysics-bs.json": {
+   "sha256": "d6766ca4d7a3b8a2",
+   "bytes": 26989
+  },
+  "programs/minors/eberly-science-astronomy-astrophysics-minor.json": {
+   "sha256": "a85d466e78a0e318",
+   "bytes": 2905
+  },
+  "programs/certificates/altoona-autocad-certificate.json": {
+   "sha256": "04fed0b1cdf9f157",
+   "bytes": 1037
+  },
+  "programs/majors/intercollege-bachelor-philosophy-degree.json": {
+   "sha256": "147398ac40ed5d10",
+   "bytes": 350
+  },
+  "programs/minors/health-human-development-beer-wine-industry-management-minor.json": {
+   "sha256": "b873625bd413e22b",
+   "bytes": 2181
+  },
+  "programs/minors/capital-behavior-analysis-minor.json": {
+   "sha256": "f8d097ce6fe2c3ab",
+   "bytes": 2536
+  },
+  "programs/certificates/behrend-behavioral-finance-certificate.json": {
+   "sha256": "8c7d65d4e2ca6d5a",
+   "bytes": 1301
+  },
+  "programs/certificates/behrend-behavioral-health-counseling-psychology-certificate.json": {
+   "sha256": "ae91a795fbe540e4",
+   "bytes": 2100
+  },
+  "programs/certificates/liberal-arts-biblical-studies-certificate.json": {
+   "sha256": "d9fcf406cd186821",
+   "bytes": 3016
+  },
+  "programs/majors/behrend-biobehavioral-health-bs.json": {
+   "sha256": "1acc02d2bd893f9a",
+   "bytes": 20305
+  },
+  "programs/majors/capital-biobehavioral-health-bs.json": {
+   "sha256": "647d6e7ce918e6e0",
+   "bytes": 29560
+  },
+  "programs/majors/health-human-development-biobehavioral-health-bs.json": {
+   "sha256": "18ed96a47f1f1a2e",
+   "bytes": 29852
+  },
+  "programs/majors/university-college-biobehavioral-health-bs.json": {
+   "sha256": "98754de6c84006fd",
+   "bytes": 36602
+  },
+  "programs/majors/berks-biochemistry-molecular-biology-bs.json": {
+   "sha256": "b4940d55375acc02",
+   "bytes": 25690
+  },
+  "programs/majors/eberly-science-biochemistry-molecular-biology-bs.json": {
+   "sha256": "e7ecbba06cb0a4b1",
+   "bytes": 81091
+  },
+  "programs/minors/eberly-science-biochemistry-molecular-biology-minor.json": {
+   "sha256": "5f751cd8dd5ac1ba",
+   "bytes": 2669
+  },
+  "programs/minors/intercollege-bioethics-medical-humanities-minor.json": {
+   "sha256": "b42ec67ee543c26b",
+   "bytes": 2378
+  },
+  "programs/majors/engineering-biological-engineering-bs.json": {
+   "sha256": "8bdb1483f3d6d768",
+   "bytes": 39128
+  },
+  "programs/minors/engineering-biological-engineering-minor.json": {
+   "sha256": "d249e2524511c065",
+   "bytes": 3862
+  },
+  "programs/majors/abington-biology-bs.json": {
+   "sha256": "bc2d545dc8edce03",
+   "bytes": 107766
+  },
+  "programs/majors/altoona-biology-bs.json": {
+   "sha256": "01edc0854e3af7c4",
+   "bytes": 107807
+  },
+  "programs/majors/behrend-biology-bs.json": {
+   "sha256": "5ec05b690e030881",
+   "bytes": 76273
+  },
+  "programs/majors/berks-biology-bs.json": {
+   "sha256": "e8d51ba1e087c8e0",
+   "bytes": 99939
+  },
+  "programs/majors/capital-biology-bs.json": {
+   "sha256": "e530a6ab31b068a0",
+   "bytes": 99199
+  },
+  "programs/majors/eberly-science-biology-bs.json": {
+   "sha256": "d0d0869ca2b704ea",
+   "bytes": 161072
+  },
+  "programs/majors/university-college-biology-bs.json": {
+   "sha256": "d5e0e36b9fc189ee",
+   "bytes": 146967
+  },
+  "programs/minors/eberly-science-biology-minor.json": {
+   "sha256": "8a371d80fafc16b3",
+   "bytes": 2360
+  },
+  "programs/majors/engineering-biomedical-engineering-technology-aet.json": {
+   "sha256": "4c08e51d1c2b69e9",
+   "bytes": 13507
+  },
+  "programs/majors/engineering-biomedical-engineering-bs.json": {
+   "sha256": "41f6911cc5703890",
+   "bytes": 48706
+  },
+  "programs/minors/engineering-biomedical-engineering-minor.json": {
+   "sha256": "98ffda732c2804d9",
+   "bytes": 2441
+  },
+  "programs/majors/eberly-science-biotechnology-bs.json": {
+   "sha256": "0e1ab7690de54d65",
+   "bytes": 76352
+  },
+  "programs/minors/liberal-arts-black-diaspora-studies-minor.json": {
+   "sha256": "0ed711137562b4e8",
+   "bytes": 1886
+  },
+  "programs/certificates/behrend-building-artificial-intelligence-certificate.json": {
+   "sha256": "567012e55e6a8f23",
+   "bytes": 1109
+  },
+  "programs/majors/abington-business-administration-as.json": {
+   "sha256": "b3434ab6cbea5d08",
+   "bytes": 10154
+  },
+  "programs/majors/altoona-business-administration-as.json": {
+   "sha256": "c482b42d5411f0b0",
+   "bytes": 14479
+  },
+  "programs/majors/berks-business-administration-as.json": {
+   "sha256": "e384ee9b4b72fefe",
+   "bytes": 9683
+  },
+  "programs/majors/capital-business-administration-as.json": {
+   "sha256": "4eddb025fb01789e",
+   "bytes": 9778
+  },
+  "programs/majors/university-college-business-administration-as.json": {
+   "sha256": "9cb9558d7aec91ee",
+   "bytes": 57135
+  },
+  "programs/minors/capital-business-administration-minor.json": {
+   "sha256": "beef523044b831b2",
+   "bytes": 3379
+  },
+  "programs/majors/smeal-business-business-analytics-information-systems-bs.json": {
+   "sha256": "11a88a33aa7ec30a",
+   "bytes": 22570
+  },
+  "programs/minors/liberal-arts-business-liberal-arts-minor.json": {
+   "sha256": "eec958f153ae025d",
+   "bytes": 6720
+  },
+  "programs/majors/behrend-business-economics-bs.json": {
+   "sha256": "e5b90e859c3f8924",
+   "bytes": 13802
+  },
+  "programs/majors/abington-business-bs.json": {
+   "sha256": "a1fb5b527a25b5b9",
+   "bytes": 67013
+  },
+  "programs/majors/altoona-business-bs.json": {
+   "sha256": "45a689a1cfb1561c",
+   "bytes": 49475
+  },
+  "programs/majors/berks-business-bs.json": {
+   "sha256": "67688594792fc894",
+   "bytes": 56868
+  },
+  "programs/majors/intercollege-business-bs.json": {
+   "sha256": "0bb09e035d1929f3",
+   "bytes": 64825
+  },
+  "programs/majors/university-college-business-bs.json": {
+   "sha256": "4c81df7e62863d2e",
+   "bytes": 352409
+  },
+  "programs/minors/university-college-business-minor.json": {
+   "sha256": "6d6f00592ac7a104",
+   "bytes": 5099
+  },
+  "programs/certificates/earth-mineral-sciences-carbon-capture-utilization-storage-certificate.json": {
+   "sha256": "aaec376fab64e77d",
+   "bytes": 2012
+  },
+  "programs/certificates/abington-chemical-dependency-prevention-counseling-certificate.json": {
+   "sha256": "37d16040934cca44",
+   "bytes": 2073
+  },
+  "programs/majors/engineering-chemical-engineering-bs.json": {
+   "sha256": "bbc0200c0c5c8668",
+   "bytes": 15513
+  },
+  "programs/majors/behrend-chemistry-bs.json": {
+   "sha256": "fcb20a5de87021c8",
+   "bytes": 60501
+  },
+  "programs/majors/eberly-science-chemistry-bs.json": {
+   "sha256": "c919a7776da244ec",
+   "bytes": 57175
+  },
+  "programs/minors/eberly-science-chemistry-minor.json": {
+   "sha256": "4ec68ee4a5ea7286",
+   "bytes": 2890
+  },
+  "programs/certificates/behrend-child-development-certificate.json": {
+   "sha256": "8ded3535f8a88fc3",
+   "bytes": 1877
+  },
+  "programs/minors/intercollege-child-maltreatment-advocacy-studies-minor.json": {
+   "sha256": "c1b9fb7a1557e86c",
+   "bytes": 3639
+  },
+  "programs/minors/liberal-arts-chinese-language-minor.json": {
+   "sha256": "85170ed8c2e680cc",
+   "bytes": 2496
+  },
+  "programs/majors/liberal-arts-chinese-ba.json": {
+   "sha256": "27c46b6a327361e0",
+   "bytes": 18889
+  },
+  "programs/minors/intercollege-civic-community-engagement-minor.json": {
+   "sha256": "54b7f9b4cceabf3e",
+   "bytes": 1935
+  },
+  "programs/certificates/health-human-development-civically-engaged-health-equity-certificate.json": {
+   "sha256": "39c7890954472aa4",
+   "bytes": 1426
+  },
+  "programs/majors/capital-civil-engineering-bs.json": {
+   "sha256": "eab967036dfdff4c",
+   "bytes": 15330
+  },
+  "programs/majors/engineering-civil-engineering-bs.json": {
+   "sha256": "608307f3c25cbc0a",
+   "bytes": 15658
+  },
+  "programs/majors/liberal-arts-classics-ancient-mediterranean-studies-ba.json": {
+   "sha256": "99bce654d803bac9",
+   "bytes": 52080
+  },
+  "programs/minors/liberal-arts-classics-ancient-mediterranean-studies-minor.json": {
+   "sha256": "795befc23d0eaecc",
+   "bytes": 1142
+  },
+  "programs/certificates/earth-mineral-sciences-climate-environmental-change-certificate.json": {
+   "sha256": "03842b4c9bbfaa2c",
+   "bytes": 2054
+  },
+  "programs/minors/earth-mineral-sciences-climatology-minor.json": {
+   "sha256": "262adfe4afdb0902",
+   "bytes": 1277
+  },
+  "programs/minors/bellisario-communications-communication-social-justice-minor.json": {
+   "sha256": "64adcc2c2fd27aa4",
+   "bytes": 5752
+  },
+  "programs/minors/behrend-communication-arts-mass-media-minor.json": {
+   "sha256": "16dac5652b6d3b16",
+   "bytes": 2711
+  },
+  "programs/majors/berks-communication-arts-sciences-ba.json": {
+   "sha256": "75da501f6f143daf",
+   "bytes": 14079
+  },
+  "programs/majors/liberal-arts-communication-arts-sciences-ba.json": {
+   "sha256": "9eaa5b2a16045a06",
+   "bytes": 13840
+  },
+  "programs/majors/university-college-communication-arts-sciences-ba.json": {
+   "sha256": "1cb872017ee1fd2a",
+   "bytes": 12550
+  },
+  "programs/majors/liberal-arts-communication-arts-sciences-bs.json": {
+   "sha256": "880c7615a6d9cd60",
+   "bytes": 12144
+  },
+  "programs/minors/liberal-arts-communication-arts-sciences-minor.json": {
+   "sha256": "04826940b6e267ff",
+   "bytes": 2375
+  },
+  "programs/majors/capital-communication-sciences-disorders-bs.json": {
+   "sha256": "580d44dc40acb4b4",
+   "bytes": 21286
+  },
+  "programs/majors/health-human-development-communication-sciences-disorders-bs.json": {
+   "sha256": "f83da1649403fe60",
+   "bytes": 21243
+  },
+  "programs/minors/health-human-development-communication-sciences-disorders-minor.json": {
+   "sha256": "859b1fa5fb7453b1",
+   "bytes": 5451
+  },
+  "programs/majors/altoona-communications-ba.json": {
+   "sha256": "e7917be2682e956f",
+   "bytes": 13675
+  },
+  "programs/majors/capital-communications-ba.json": {
+   "sha256": "2f9f1122bb747951",
+   "bytes": 13136
+  },
+  "programs/majors/university-college-communications-ba.json": {
+   "sha256": "072deda56c30f76f",
+   "bytes": 54250
+  },
+  "programs/minors/altoona-communications-minor.json": {
+   "sha256": "8f1c0f001d29be3e",
+   "bytes": 1902
+  },
+  "programs/minors/capital-communications-minor.json": {
+   "sha256": "02be74518dc79859",
+   "bytes": 1605
+  },
+  "programs/certificates/agricultural-sciences-community-forestry-certificate.json": {
+   "sha256": "4c35b1e7ade05b31",
+   "bytes": 1723
+  },
+  "programs/majors/agricultural-sciences-community-environment-development-bs.json": {
+   "sha256": "9ff81032a708c136",
+   "bytes": 76966
+  },
+  "programs/majors/liberal-arts-comparative-literature-ba.json": {
+   "sha256": "980d82575e234226",
+   "bytes": 20209
+  },
+  "programs/minors/engineering-computational-sciences-minor.json": {
+   "sha256": "1cceaa9139c45c29",
+   "bytes": 1707
+  },
+  "programs/majors/behrend-computer-engineering-bs.json": {
+   "sha256": "b1da0cf3ba840416",
+   "bytes": 13851
+  },
+  "programs/majors/engineering-computer-engineering-bs.json": {
+   "sha256": "8f917c1962f0b26d",
+   "bytes": 16003
+  },
+  "programs/minors/behrend-computer-engineering-minor.json": {
+   "sha256": "ed90aed9b01d735c",
+   "bytes": 2519
+  },
+  "programs/minors/engineering-computer-engineering-minor.json": {
+   "sha256": "8a2b44e75516dccd",
+   "bytes": 2088
+  },
+  "programs/majors/abington-computer-science-bs.json": {
+   "sha256": "f91930b7510c5c7d",
+   "bytes": 28112
+  },
+  "programs/majors/behrend-computer-science-bs.json": {
+   "sha256": "6b362b24d2086f5e",
+   "bytes": 14733
+  },
+  "programs/majors/capital-computer-science-bs.json": {
+   "sha256": "da4fd82a9a6e4660",
+   "bytes": 34430
+  },
+  "programs/majors/engineering-computer-science-bs.json": {
+   "sha256": "aa33b6bcf3d65994",
+   "bytes": 41047
+  },
+  "programs/minors/behrend-computer-science-minor.json": {
+   "sha256": "deb7b1c8d5dc09cf",
+   "bytes": 2330
+  },
+  "programs/minors/capital-computer-science-minor.json": {
+   "sha256": "5d522cd89ee94a4b",
+   "bytes": 2194
+  },
+  "programs/majors/abington-corporate-communication-ba.json": {
+   "sha256": "c039b91830ff2023",
+   "bytes": 13525
+  },
+  "programs/majors/university-college-corporate-communication-ba.json": {
+   "sha256": "f2e12f75afc3cb3b",
+   "bytes": 52113
+  },
+  "programs/minors/university-college-corporate-communication-minor.json": {
+   "sha256": "22c22041809de71c",
+   "bytes": 3392
+  },
+  "programs/majors/smeal-business-corporate-innovation-entrepreneurship-bs.json": {
+   "sha256": "11718c1a8ed8e443",
+   "bytes": 22701
+  },
+  "programs/majors/behrend-creative-writing-bfa.json": {
+   "sha256": "c635e469fab9ec3d",
+   "bytes": 13571
+  },
+  "programs/minors/liberal-arts-creative-writing-minor.json": {
+   "sha256": "387da0ccaaa0324a",
+   "bytes": 2454
+  },
+  "programs/minors/behrend-crime-law-psychology-minor.json": {
+   "sha256": "2ca5d51fae66e18a",
+   "bytes": 2791
+  },
+  "programs/certificates/university-college-crime-psychology-public-policy-certificate.json": {
+   "sha256": "9dcc381a09492ab8",
+   "bytes": 1872
+  },
+  "programs/majors/altoona-criminal-justice-as.json": {
+   "sha256": "0239b698382bca5d",
+   "bytes": 1901
+  },
+  "programs/majors/capital-criminal-justice-as.json": {
+   "sha256": "374d1ebc6195d641",
+   "bytes": 1904
+  },
+  "programs/majors/university-college-criminal-justice-as.json": {
+   "sha256": "48a5d749b9f600ee",
+   "bytes": 6111
+  },
+  "programs/majors/abington-criminal-justice-ba.json": {
+   "sha256": "0e0ea0fff963ab40",
+   "bytes": 10594
+  },
+  "programs/majors/altoona-criminal-justice-ba.json": {
+   "sha256": "663e520c7024006f",
+   "bytes": 10657
+  },
+  "programs/majors/berks-criminal-justice-ba.json": {
+   "sha256": "48b64aba0e5e12dc",
+   "bytes": 10807
+  },
+  "programs/majors/university-college-criminal-justice-ba.json": {
+   "sha256": "639e1811ee1f6d54",
+   "bytes": 79212
+  },
+  "programs/majors/abington-criminal-justice-bs.json": {
+   "sha256": "0475a51e8c22d0c7",
+   "bytes": 11850
+  },
+  "programs/majors/altoona-criminal-justice-bs.json": {
+   "sha256": "b74714c3b6b00545",
+   "bytes": 12202
+  },
+  "programs/majors/berks-criminal-justice-bs.json": {
+   "sha256": "3fe0803468e9e1fe",
+   "bytes": 11702
+  },
+  "programs/majors/capital-criminal-justice-bs.json": {
+   "sha256": "63e7a27155838f90",
+   "bytes": 21187
+  },
+  "programs/majors/university-college-criminal-justice-bs.json": {
+   "sha256": "6247e7c61c2ce9a9",
+   "bytes": 82384
+  },
+  "programs/minors/altoona-criminal-justice-minor.json": {
+   "sha256": "bd074d3454b00428",
+   "bytes": 1705
+  },
+  "programs/majors/liberal-arts-criminology-ba.json": {
+   "sha256": "9e4eb9e4b46f8d53",
+   "bytes": 20717
+  },
+  "programs/majors/liberal-arts-criminology-bs.json": {
+   "sha256": "55efef3fd280a048",
+   "bytes": 31443
+  },
+  "programs/majors/abington-cybersecurity-analytics-operations-bs.json": {
+   "sha256": "b05348d18c37c4de",
+   "bytes": 15555
+  },
+  "programs/majors/altoona-cybersecurity-analytics-operations-bs.json": {
+   "sha256": "6f3f9efce2b662f0",
+   "bytes": 14902
+  },
+  "programs/majors/berks-cybersecurity-analytics-operations-bs.json": {
+   "sha256": "82f5482999d875de",
+   "bytes": 14912
+  },
+  "programs/majors/capital-cybersecurity-analytics-operations-bs.json": {
+   "sha256": "8356cf17b10a0a6e",
+   "bytes": 14687
+  },
+  "programs/majors/information-sciences-technology-cybersecurity-analytics-operations-bs.json": {
+   "sha256": "9af56a6614caa042",
+   "bytes": 14903
+  },
+  "programs/majors/university-college-cybersecurity-analytics-operations-bs.json": {
+   "sha256": "2c1762c5daf5728b",
+   "bytes": 57779
+  },
+  "programs/minors/engineering-cybersecurity-computational-foundations-minor.json": {
+   "sha256": "bcb7f46bd0e2a03e",
+   "bytes": 2369
+  },
+  "programs/minors/altoona-dance-studies-minor.json": {
+   "sha256": "7d541127206b99b3",
+   "bytes": 2146
+  },
+  "programs/majors/abington-data-sciences-bs.json": {
+   "sha256": "3b90f4f02f2cdddf",
+   "bytes": 27420
+  },
+  "programs/majors/engineering-data-sciences-bs.json": {
+   "sha256": "65f6946f2bc6ef85",
+   "bytes": 18943
+  },
+  "programs/majors/information-sciences-technology-data-sciences-bs.json": {
+   "sha256": "b3be4731bc9cdbd8",
+   "bytes": 19247
+  },
+  "programs/majors/eberly-science-data-sciences-bs.json": {
+   "sha256": "47edbb0b8878267a",
+   "bytes": 26790
+  },
+  "programs/minors/behrend-data-visualization-minor.json": {
+   "sha256": "d61aa1e55e38c8ef",
+   "bytes": 3322
+  },
+  "programs/certificates/liberal-arts-development-sustainability-africa-certificate.json": {
+   "sha256": "80cfffdbb5ea700d",
+   "bytes": 1894
+  },
+  "programs/majors/arts-architecture-digital-arts-media-design-bdes.json": {
+   "sha256": "84a92ac518e93515",
+   "bytes": 19097
+  },
+  "programs/certificates/arts-architecture-digital-arts-certificate.json": {
+   "sha256": "48214718019bc4ab",
+   "bytes": 1731
+  },
+  "programs/minors/liberal-arts-digital-humanities-minor.json": {
+   "sha256": "1ebd4ff837a3879b",
+   "bytes": 2547
+  },
+  "programs/majors/bellisario-communications-digital-journalism-media-ba.json": {
+   "sha256": "a50f948ae02b98ad",
+   "bytes": 3452
+  },
+  "programs/minors/bellisario-communications-digital-media-trends-analytics-minor.json": {
+   "sha256": "7f0df9ec159e8377",
+   "bytes": 1545
+  },
+  "programs/majors/behrend-digital-media-arts-technology-ba.json": {
+   "sha256": "1542f752470be8db",
+   "bytes": 22114
+  },
+  "programs/majors/arts-architecture-digital-multimedia-design-bdes.json": {
+   "sha256": "119a378d90ac80bb",
+   "bytes": 13871
+  },
+  "programs/minors/intercollege-disability-studies-minor.json": {
+   "sha256": "5a483c8982cd4505",
+   "bytes": 2056
+  },
+  "programs/minors/liberal-arts-dispute-management-resolution-minor.json": {
+   "sha256": "e9fc8fe40ab473dc",
+   "bytes": 2828
+  },
+  "programs/minors/health-human-development-diversity-inclusion-health-human-development-minor.json": {
+   "sha256": "6b4f16925c92f471",
+   "bytes": 5234
+  },
+  "programs/certificates/liberal-arts-diversity-studies-certificate.json": {
+   "sha256": "980d5eee0fe46eb7",
+   "bytes": 4367
+  },
+  "programs/certificates/university-college-diversity-studies-certificate.json": {
+   "sha256": "331b506eae417e03",
+   "bytes": 4029
+  },
+  "programs/minors/education-early-development-education-minor.json": {
+   "sha256": "865916eea24dddf2",
+   "bytes": 3352
+  },
+  "programs/minors/earth-mineral-sciences-earth-sustainability-minor.json": {
+   "sha256": "1900e345f787dcfa",
+   "bytes": 3139
+  },
+  "programs/majors/earth-mineral-sciences-earth-science-policy-bs.json": {
+   "sha256": "4b1a5fcfb546c5ce",
+   "bytes": 83712
+  },
+  "programs/majors/earth-mineral-sciences-earth-sciences-bs.json": {
+   "sha256": "f4be3b72ead9ca60",
+   "bytes": 23753
+  },
+  "programs/certificates/earth-mineral-sciences-earth-sustainability-certificate.json": {
+   "sha256": "cf079239c3ff112f",
+   "bytes": 1237
+  },
+  "programs/minors/earth-mineral-sciences-earth-systems-minor.json": {
+   "sha256": "c97831bc0252714a",
+   "bytes": 2092
+  },
+  "programs/minors/liberal-arts-east-european-studies-minor.json": {
+   "sha256": "1f63fc415c9dfaf1",
+   "bytes": 5019
+  },
+  "programs/majors/behrend-economics-ba.json": {
+   "sha256": "2ae4f08f3f1f8b0d",
+   "bytes": 10874
+  },
+  "programs/majors/liberal-arts-economics-ba.json": {
+   "sha256": "077dbe75640c5dec",
+   "bytes": 18471
+  },
+  "programs/majors/liberal-arts-economics-bs.json": {
+   "sha256": "58b242acd517ada6",
+   "bytes": 20117
+  },
+  "programs/minors/liberal-arts-economics-minor.json": {
+   "sha256": "3b8814d477f5a432",
+   "bytes": 1671
+  },
+  "programs/majors/education-education-public-policy-bs.json": {
+   "sha256": "f41a0c3b08bee5e0",
+   "bytes": 13602
+  },
+  "programs/minors/education-education-public-policy-minor.json": {
+   "sha256": "1f4f7d9257febd40",
+   "bytes": 1798
+  },
+  "programs/majors/behrend-electrical-computer-engineering-technology-bs.json": {
+   "sha256": "885a25c0b8169744",
+   "bytes": 28455
+  },
+  "programs/majors/behrend-electrical-engineering-technology-aengt.json": {
+   "sha256": "61d94c1bf381d94a",
+   "bytes": 12328
+  },
+  "programs/majors/engineering-electrical-engineering-technology-aengt.json": {
+   "sha256": "3da5f3168144a35f",
+   "bytes": 16572
+  },
+  "programs/majors/capital-electrical-engineering-technology-bs.json": {
+   "sha256": "3e8a9205d26b83a7",
+   "bytes": 26308
+  },
+  "programs/majors/engineering-electrical-engineering-technology-bs.json": {
+   "sha256": "ba31d87461c741ed",
+   "bytes": 23188
+  },
+  "programs/majors/behrend-electrical-engineering-bs.json": {
+   "sha256": "31d7a2b1ef5cf1ac",
+   "bytes": 13767
+  },
+  "programs/majors/capital-electrical-engineering-bs.json": {
+   "sha256": "562085593400e8ea",
+   "bytes": 18798
+  },
+  "programs/majors/engineering-electrical-engineering-bs.json": {
+   "sha256": "16d47e1606d3f23f",
+   "bytes": 14916
+  },
+  "programs/majors/altoona-electro-mechanical-engineering-technology-bs.json": {
+   "sha256": "b0e01252ac19b0a8",
+   "bytes": 16650
+  },
+  "programs/majors/berks-electro-mechanical-engineering-technology-bs.json": {
+   "sha256": "5830974957fe5877",
+   "bytes": 16560
+  },
+  "programs/majors/engineering-electro-mechanical-engineering-technology-bs.json": {
+   "sha256": "bf8d742e86ca7c51",
+   "bytes": 42630
+  },
+  "programs/minors/earth-mineral-sciences-electrochemical-engineering-minor.json": {
+   "sha256": "780ff482a49a75d6",
+   "bytes": 2900
+  },
+  "programs/majors/education-elementary-early-childhood-education-bs.json": {
+   "sha256": "8bc94c209498fd90",
+   "bytes": 73093
+  },
+  "programs/majors/altoona-elementary-kindergarten-education-bs.json": {
+   "sha256": "b2c12605b71e57a3",
+   "bytes": 11712
+  },
+  "programs/majors/berks-elementary-kindergarten-education-bs.json": {
+   "sha256": "db0a8f8be97fe61e",
+   "bytes": 11700
+  },
+  "programs/majors/education-elementary-kindergarten-education-bs.json": {
+   "sha256": "4b7d33347dc07ef0",
+   "bytes": 11685
+  },
+  "programs/majors/capital-elementary-education-beled.json": {
+   "sha256": "d08dfa66a3ed9fee",
+   "bytes": 68490
+  },
+  "programs/majors/earth-mineral-sciences-energy-sustainability-policy-ba.json": {
+   "sha256": "b31f9647119a7d4f",
+   "bytes": 3864
+  },
+  "programs/majors/earth-mineral-sciences-energy-sustainability-policy-bs.json": {
+   "sha256": "32215ba06f6ad716",
+   "bytes": 5282
+  },
+  "programs/majors/earth-mineral-sciences-energy-business-finance-bs.json": {
+   "sha256": "4a04e8147d0a78ef",
+   "bytes": 38081
+  },
+  "programs/minors/earth-mineral-sciences-energy-business-finance-minor.json": {
+   "sha256": "ea11418d9798a6a8",
+   "bytes": 4116
+  },
+  "programs/majors/earth-mineral-sciences-energy-engineering-bs.json": {
+   "sha256": "707aca4a7e75091b",
+   "bytes": 25499
+  },
+  "programs/minors/earth-mineral-sciences-energy-engineering-minor.json": {
+   "sha256": "01f9a3d5e89e7a2d",
+   "bytes": 1932
+  },
+  "programs/certificates/behrend-energy-finance-certificate.json": {
+   "sha256": "5bede7005cea1334",
+   "bytes": 1290
+  },
+  "programs/certificates/engineering-engineering-community-engagement-certificate.json": {
+   "sha256": "27d3db1ecb2abf0a",
+   "bytes": 1759
+  },
+  "programs/certificates/engineering-engineering-design-digital-tools-certificate.json": {
+   "sha256": "5c650b90068bf2f2",
+   "bytes": 1636
+  },
+  "programs/certificates/engineering-engineering-design-certificate.json": {
+   "sha256": "c771310aa6d905cd",
+   "bytes": 1544
+  },
+  "programs/minors/engineering-engineering-design-minor.json": {
+   "sha256": "30ddb30a8c489396",
+   "bytes": 3054
+  },
+  "programs/minors/engineering-engineering-leadership-development-minor.json": {
+   "sha256": "ed041782f34a6ee5",
+   "bytes": 2309
+  },
+  "programs/minors/engineering-engineering-mechanics-minor.json": {
+   "sha256": "aafcf2716ae64c18",
+   "bytes": 1494
+  },
+  "programs/majors/engineering-engineering-science-bs.json": {
+   "sha256": "ddd0d6158e52f8ca",
+   "bytes": 20164
+  },
+  "programs/majors/engineering-engineering-bs.json": {
+   "sha256": "0369be6d447dfdab",
+   "bytes": 57829
+  },
+  "programs/majors/abington-english-ba.json": {
+   "sha256": "0bc10c36e871751c",
+   "bytes": 12101
+  },
+  "programs/majors/altoona-english-ba.json": {
+   "sha256": "0ac06954161fe238",
+   "bytes": 12646
+  },
+  "programs/majors/behrend-english-ba.json": {
+   "sha256": "9d2c07ac03d2a9f2",
+   "bytes": 11804
+  },
+  "programs/majors/liberal-arts-english-ba.json": {
+   "sha256": "ff1549dedf7d061a",
+   "bytes": 20312
+  },
+  "programs/majors/university-college-english-ba.json": {
+   "sha256": "d5cc57d33ff4d53e",
+   "bytes": 35713
+  },
+  "programs/majors/capital-english-bhum.json": {
+   "sha256": "58f0cc25c5ae1aab",
+   "bytes": 38564
+  },
+  "programs/minors/behrend-english-minor.json": {
+   "sha256": "b6e9db5ee32505e3",
+   "bytes": 1067
+  },
+  "programs/minors/liberal-arts-english-minor.json": {
+   "sha256": "abc3c20a613d05ff",
+   "bytes": 1116
+  },
+  "programs/certificates/behrend-enterprise-resource-planning-oracle-certificate.json": {
+   "sha256": "2026a89748d4661b",
+   "bytes": 1119
+  },
+  "programs/certificates/behrend-erp-with-sap-certificate.json": {
+   "sha256": "fa6b4abb8c692e65",
+   "bytes": 988
+  },
+  "programs/majors/capital-enterprise-technology-integration-bs.json": {
+   "sha256": "5f812cd02ee94a47",
+   "bytes": 15749
+  },
+  "programs/majors/information-sciences-technology-enterprise-technology-integration-bs.json": {
+   "sha256": "6d5ed4597eb3728c",
+   "bytes": 16375
+  },
+  "programs/minors/agricultural-sciences-entomology-minor.json": {
+   "sha256": "ff00a1923e0eec4b",
+   "bytes": 2980
+  },
+  "programs/minors/intercollege-entrepreneurship-innovation-minor.json": {
+   "sha256": "7e24527cd00c00d2",
+   "bytes": 22287
+  },
+  "programs/minors/altoona-entrepreneurship-minor.json": {
+   "sha256": "31afcf90cffb45d9",
+   "bytes": 1780
+  },
+  "programs/certificates/earth-mineral-sciences-environment-society-geography-certificate.json": {
+   "sha256": "cd0808fa9ca01de5",
+   "bytes": 2369
+  },
+  "programs/minors/agricultural-sciences-environmental-renewable-resource-economics-minor.json": {
+   "sha256": "89ccd1130d9fe4ef",
+   "bytes": 2184
+  },
+  "programs/majors/engineering-environmental-engineering-bs.json": {
+   "sha256": "cff3ecc8b857ad36",
+   "bytes": 10978
+  },
+  "programs/minors/engineering-environmental-engineering-minor.json": {
+   "sha256": "5311b8eecafc7361",
+   "bytes": 4390
+  },
+  "programs/minors/earth-mineral-sciences-environmental-health-safety-minor.json": {
+   "sha256": "d038c571a059405b",
+   "bytes": 4511
+  },
+  "programs/minors/intercollege-environmental-inquiry-minor.json": {
+   "sha256": "8ecf29ad6a5e1bca",
+   "bytes": 33962
+  },
+  "programs/majors/agricultural-sciences-environmental-resource-management-bs.json": {
+   "sha256": "d2860e8fa8e0845a",
+   "bytes": 64860
+  },
+  "programs/minors/agricultural-sciences-environmental-resource-management-minor.json": {
+   "sha256": "8de86f02d498506e",
+   "bytes": 1396
+  },
+  "programs/majors/behrend-environmental-science-bs.json": {
+   "sha256": "8e81de546e64f400",
+   "bytes": 30748
+  },
+  "programs/minors/agricultural-sciences-environmental-soil-science-minor.json": {
+   "sha256": "e8057be6cad10a30",
+   "bytes": 2663
+  },
+  "programs/majors/altoona-environmental-studies-ba.json": {
+   "sha256": "53b3f022ffdbdcd3",
+   "bytes": 12857
+  },
+  "programs/majors/altoona-environmental-studies-bs.json": {
+   "sha256": "4d77925f93375ba2",
+   "bytes": 14562
+  },
+  "programs/minors/altoona-environmental-studies-minor.json": {
+   "sha256": "315fded50dcc7373",
+   "bytes": 4416
+  },
+  "programs/majors/earth-mineral-sciences-environmental-systems-engineering-bs.json": {
+   "sha256": "34a04c51cce5376b",
+   "bytes": 14876
+  },
+  "programs/minors/earth-mineral-sciences-environmental-systems-engineering-minor.json": {
+   "sha256": "a83d18911eb35bf1",
+   "bytes": 2009
+  },
+  "programs/minors/agricultural-sciences-equine-science-minor.json": {
+   "sha256": "c9154f820059aca5",
+   "bytes": 2938
+  },
+  "programs/minors/liberal-arts-ethics-minor.json": {
+   "sha256": "3b2200185cfd0473",
+   "bytes": 7398
+  },
+  "programs/majors/bellisario-communications-film-production-ba.json": {
+   "sha256": "514cb96e9338093a",
+   "bytes": 11732
+  },
+  "programs/minors/bellisario-communications-film-studies-minor.json": {
+   "sha256": "7f63d4cc2a20a3f6",
+   "bytes": 1403
+  },
+  "programs/majors/abington-finance-bs.json": {
+   "sha256": "c6144f8a1513f940",
+   "bytes": 15260
+  },
+  "programs/majors/behrend-finance-bs.json": {
+   "sha256": "d8355f013e7232a6",
+   "bytes": 14258
+  },
+  "programs/majors/smeal-business-finance-bs.json": {
+   "sha256": "50d5a5e548d4ad3a",
+   "bytes": 23069
+  },
+  "programs/majors/capital-finance-bs.json": {
+   "sha256": "50117d8240e67304",
+   "bytes": 15145
+  },
+  "programs/minors/behrend-finance-minor.json": {
+   "sha256": "ebea72442998fbd2",
+   "bytes": 1555
+  },
+  "programs/certificates/behrend-financial-controllership-certificate.json": {
+   "sha256": "2f47e1e2f08be29e",
+   "bytes": 1921
+  },
+  "programs/certificates/behrend-financial-planning-certificate.json": {
+   "sha256": "1f78585595dc3520",
+   "bytes": 1518
+  },
+  "programs/certificates/behrend-financial-risk-management-certificate.json": {
+   "sha256": "af3018739e466b4b",
+   "bytes": 1547
+  },
+  "programs/majors/agricultural-sciences-food-science-bs.json": {
+   "sha256": "c1179b51cf91075f",
+   "bytes": 21714
+  },
+  "programs/minors/agricultural-sciences-food-systems-minor.json": {
+   "sha256": "349b69be1fb79e44",
+   "bytes": 8187
+  },
+  "programs/majors/eberly-science-forensic-science-bs.json": {
+   "sha256": "fec52ae6aa77c4ab",
+   "bytes": 82286
+  },
+  "programs/majors/agricultural-sciences-forest-ecosystems-bs.json": {
+   "sha256": "17d7789a63fca5fe",
+   "bytes": 63761
+  },
+  "programs/minors/agricultural-sciences-forest-ecosystems-minor.json": {
+   "sha256": "37e2add335c6f348",
+   "bytes": 2805
+  },
+  "programs/majors/agricultural-sciences-forest-technology-as.json": {
+   "sha256": "f8f5af1ae74b3aae",
+   "bytes": 8552
+  },
+  "programs/certificates/university-college-foundations-business-certificate.json": {
+   "sha256": "bf168a06efcf7af4",
+   "bytes": 2092
+  },
+  "programs/certificates/berks-foundations-organizational-leadership-certificate.json": {
+   "sha256": "4f09e04c7077ad6e",
+   "bytes": 1032
+  },
+  "programs/majors/liberal-arts-french-francophone-studies-ba.json": {
+   "sha256": "1ef3a05e107ef4ac",
+   "bytes": 54518
+  },
+  "programs/majors/liberal-arts-french-francophone-studies-bs.json": {
+   "sha256": "d0f3392a4a8c38c4",
+   "bytes": 57712
+  },
+  "programs/minors/liberal-arts-french-francophone-studies-minor.json": {
+   "sha256": "21450e128bc0ac97",
+   "bytes": 2571
+  },
+  "programs/majors/behrend-functional-data-analytics-bs.json": {
+   "sha256": "e35d3fa6a746e343",
+   "bytes": 13792
+  },
+  "programs/minors/behrend-game-development-minor.json": {
+   "sha256": "a541eabc2f2817aa",
+   "bytes": 2013
+  },
+  "programs/majors/behrend-general-business-as.json": {
+   "sha256": "d652a7095a00ddc5",
+   "bytes": 9073
+  },
+  "programs/majors/earth-mineral-sciences-geobiology-bs.json": {
+   "sha256": "45fb41137588905a",
+   "bytes": 21167
+  },
+  "programs/certificates/earth-mineral-sciences-geographic-information-science-certificate.json": {
+   "sha256": "a54c272c777eb6dc",
+   "bytes": 2211
+  },
+  "programs/minors/earth-mineral-sciences-geographic-information-science-minor.json": {
+   "sha256": "42bad69107fda851",
+   "bytes": 5658
+  },
+  "programs/majors/earth-mineral-sciences-geography-ba.json": {
+   "sha256": "dfe59a72766df757",
+   "bytes": 23189
+  },
+  "programs/majors/earth-mineral-sciences-geography-bs.json": {
+   "sha256": "bd0c64a8d62f2f1d",
+   "bytes": 25199
+  },
+  "programs/minors/earth-mineral-sciences-geography-minor.json": {
+   "sha256": "6c2fb120224663b8",
+   "bytes": 1519
+  },
+  "programs/minors/earth-mineral-sciences-geophysics-minor.json": {
+   "sha256": "c26cf7239e0c3031",
+   "bytes": 3855
+  },
+  "programs/majors/earth-mineral-sciences-geosciences-ba.json": {
+   "sha256": "5d67d6c034cff1d5",
+   "bytes": 20572
+  },
+  "programs/majors/earth-mineral-sciences-geosciences-bs.json": {
+   "sha256": "37cc0450c0a671d6",
+   "bytes": 42352
+  },
+  "programs/minors/earth-mineral-sciences-geosciences-minor.json": {
+   "sha256": "fa7d0a1822cc1cde",
+   "bytes": 2071
+  },
+  "programs/certificates/earth-mineral-sciences-geospatial-big-data-analytics-certificate.json": {
+   "sha256": "97fe77864702929c",
+   "bytes": 3043
+  },
+  "programs/certificates/behrend-german-studies-certificate.json": {
+   "sha256": "f46912991218df3c",
+   "bytes": 2551
+  },
+  "programs/majors/liberal-arts-german-ba.json": {
+   "sha256": "407c48110f2f46da",
+   "bytes": 19782
+  },
+  "programs/majors/liberal-arts-german-bs.json": {
+   "sha256": "b0e9b201092aa0cb",
+   "bytes": 56563
+  },
+  "programs/minors/liberal-arts-german-minor.json": {
+   "sha256": "3d9622e7c7e8c824",
+   "bytes": 1445
+  },
+  "programs/majors/liberal-arts-global-international-studies-major.json": {
+   "sha256": "7b8420f432dfdf60",
+   "bytes": 3616
+  },
+  "programs/majors/liberal-arts-global-international-studies-ba.json": {
+   "sha256": "1eb23bdb08b1350b",
+   "bytes": 17610
+  },
+  "programs/majors/liberal-arts-global-international-studies-bs.json": {
+   "sha256": "ec3320c6411be901",
+   "bytes": 18637
+  },
+  "programs/minors/liberal-arts-global-international-studies-minor.json": {
+   "sha256": "0a0240bd6fbade3e",
+   "bytes": 1762
+  },
+  "programs/certificates/behrend-global-awareness-certificate.json": {
+   "sha256": "9604aff69be3e22d",
+   "bytes": 918
+  },
+  "programs/certificates/earth-mineral-sciences-global-environmental-systems-certificate.json": {
+   "sha256": "c8d2fd4b348b6928",
+   "bytes": 2542
+  },
+  "programs/minors/health-human-development-global-health-minor.json": {
+   "sha256": "c0944939fa3eb2a6",
+   "bytes": 2644
+  },
+  "programs/minors/altoona-global-language-culture-minor.json": {
+   "sha256": "19dd78caba5df301",
+   "bytes": 2660
+  },
+  "programs/certificates/bellisario-communications-global-media-certificate.json": {
+   "sha256": "f5939f59613e71bf",
+   "bytes": 1220
+  },
+  "programs/minors/liberal-arts-global-security-minor.json": {
+   "sha256": "69304f1bf1a398f2",
+   "bytes": 3509
+  },
+  "programs/certificates/liberal-arts-global-spanish-business-certificate.json": {
+   "sha256": "3fcb3b53e5e13697",
+   "bytes": 4495
+  },
+  "programs/majors/berks-global-studies-ba.json": {
+   "sha256": "a7f9d7732d5d1e97",
+   "bytes": 12798
+  },
+  "programs/minors/berks-global-studies-minor.json": {
+   "sha256": "13be1ed27e361472",
+   "bytes": 3528
+  },
+  "programs/majors/arts-architecture-graphic-design-bdes.json": {
+   "sha256": "10c929102fc3a954",
+   "bytes": 11915
+  },
+  "programs/minors/arts-architecture-graphic-design-minor.json": {
+   "sha256": "0631f7b32763b512",
+   "bytes": 1327
+  },
+  "programs/minors/liberal-arts-greek-minor.json": {
+   "sha256": "edd0fabe7f553708",
+   "bytes": 1040
+  },
+  "programs/certificates/health-human-development-health-care-administration-certificate.json": {
+   "sha256": "7d3c611a9b6c69b9",
+   "bytes": 1228
+  },
+  "programs/majors/abington-health-humanities-ba.json": {
+   "sha256": "970da55ebf8c3479",
+   "bytes": 10902
+  },
+  "programs/majors/abington-health-humanities-bs.json": {
+   "sha256": "22be6b3441b1227b",
+   "bytes": 11782
+  },
+  "programs/majors/capital-health-policy-administration-bs.json": {
+   "sha256": "fc7b333ee4ed626b",
+   "bytes": 12645
+  },
+  "programs/majors/health-human-development-health-policy-administration-bs.json": {
+   "sha256": "c74554afccdbd398",
+   "bytes": 22002
+  },
+  "programs/majors/university-college-health-policy-administration-bs.json": {
+   "sha256": "5163047f44dd339f",
+   "bytes": 51627
+  },
+  "programs/minors/health-human-development-health-policy-administration-minor.json": {
+   "sha256": "3247a56baea6c971",
+   "bytes": 2044
+  },
+  "programs/certificates/health-human-development-health-policy-certificate.json": {
+   "sha256": "bf49f8124fa5c187",
+   "bytes": 1177
+  },
+  "programs/certificates/university-college-healthcare-informatics-certificate.json": {
+   "sha256": "3f83554ab09c2e87",
+   "bytes": 1299
+  },
+  "programs/minors/liberal-arts-hebrew-minor.json": {
+   "sha256": "a9f29bb0fbd6557e",
+   "bytes": 2326
+  },
+  "programs/majors/abington-history-ba.json": {
+   "sha256": "71d4079393d3db9d",
+   "bytes": 10379
+  },
+  "programs/majors/altoona-history-ba.json": {
+   "sha256": "ba6430ada9194749",
+   "bytes": 10250
+  },
+  "programs/majors/behrend-history-ba.json": {
+   "sha256": "9d01581da7111e08",
+   "bytes": 10715
+  },
+  "programs/majors/liberal-arts-history-ba.json": {
+   "sha256": "f0365b5e7dcdaa22",
+   "bytes": 18290
+  },
+  "programs/minors/behrend-history-minor.json": {
+   "sha256": "24603db06cc2025b",
+   "bytes": 1104
+  },
+  "programs/minors/liberal-arts-history-minor.json": {
+   "sha256": "29f3903ae2d91f32",
+   "bytes": 1056
+  },
+  "programs/certificates/liberal-arts-holocaust-genocide-studies-certificate.json": {
+   "sha256": "8f78dfa5d2c48185",
+   "bytes": 1205
+  },
+  "programs/minors/capital-homeland-security-minor.json": {
+   "sha256": "d2aee21352ed109b",
+   "bytes": 1672
+  },
+  "programs/minors/agricultural-sciences-horticulture-minor.json": {
+   "sha256": "71abab6d0bc3c51e",
+   "bytes": 2492
+  },
+  "programs/majors/berks-hospitality-management-bs.json": {
+   "sha256": "d162a1271e6528f1",
+   "bytes": 14916
+  },
+  "programs/majors/health-human-development-hospitality-management-bs.json": {
+   "sha256": "83711327990ac9ea",
+   "bytes": 22961
+  },
+  "programs/majors/capital-human-capital-management-bs.json": {
+   "sha256": "b5b11f9c52202e81",
+   "bytes": 14958
+  },
+  "programs/certificates/capital-human-capital-management-certificate.json": {
+   "sha256": "d8203d5f6afd9deb",
+   "bytes": 1055
+  },
+  "programs/majors/altoona-human-development-family-studies-as.json": {
+   "sha256": "4014bbfa6f7f31ff",
+   "bytes": 6768
+  },
+  "programs/majors/health-human-development-human-development-family-studies-as.json": {
+   "sha256": "f0469ce289f51a44",
+   "bytes": 15682
+  },
+  "programs/majors/university-college-human-development-family-studies-as.json": {
+   "sha256": "5c5831c2ecd3fe41",
+   "bytes": 55754
+  },
+  "programs/majors/altoona-human-development-family-studies-bs.json": {
+   "sha256": "d91497131960ed59",
+   "bytes": 20311
+  },
+  "programs/majors/capital-human-development-family-studies-bs.json": {
+   "sha256": "cae74190bce4cc37",
+   "bytes": 27478
+  },
+  "programs/majors/health-human-development-human-development-family-studies-bs.json": {
+   "sha256": "a0daba60a7a50c41",
+   "bytes": 28199
+  },
+  "programs/majors/university-college-human-development-family-studies-bs.json": {
+   "sha256": "5f2bed78ff6cc29c",
+   "bytes": 119642
+  },
+  "programs/minors/health-human-development-human-development-family-studies-minor.json": {
+   "sha256": "71f9cdf52717dcc5",
+   "bytes": 1531
+  },
+  "programs/certificates/behrend-human-factors-certificate.json": {
+   "sha256": "06158f7db3525a1b",
+   "bytes": 2036
+  },
+  "programs/minors/capital-human-resource-management-minor.json": {
+   "sha256": "fea03137ae2fbef5",
+   "bytes": 3136
+  },
+  "programs/majors/capital-human-centered-design-development-bs.json": {
+   "sha256": "4c6799d668a93b4c",
+   "bytes": 14557
+  },
+  "programs/majors/information-sciences-technology-human-centered-design-development-bs.json": {
+   "sha256": "f5a416a0b03b836d",
+   "bytes": 22662
+  },
+  "programs/majors/capital-humanities-ba.json": {
+   "sha256": "7dc8e8e6337cd4e9",
+   "bytes": 13576
+  },
+  "programs/majors/university-college-humanities-ba.json": {
+   "sha256": "61e92e247dcdb4d3",
+   "bytes": 13850
+  },
+  "programs/majors/agricultural-sciences-immunology-infectious-disease-bs.json": {
+   "sha256": "31f7dfd890cab850",
+   "bytes": 22445
+  },
+  "programs/majors/behrend-industrial-engineering-bs.json": {
+   "sha256": "bca72d637dc45356",
+   "bytes": 17273
+  },
+  "programs/majors/engineering-industrial-engineering-bs.json": {
+   "sha256": "a60b1f9055016875",
+   "bytes": 25720
+  },
+  "programs/minors/capital-information-sciences-technology-accounting-minor.json": {
+   "sha256": "c925730454560b37",
+   "bytes": 2086
+  },
+  "programs/minors/engineering-information-sciences-technology-aerospace-engineering-minor.json": {
+   "sha256": "0e389454bedf90d4",
+   "bytes": 1863
+  },
+  "programs/minors/earth-mineral-sciences-information-sciences-technology-earth-mineral-sciences-minor.json": {
+   "sha256": "499e4121b35ece6b",
+   "bytes": 2142
+  },
+  "programs/minors/engineering-information-sciences-technology-industrial-engineering-minor.json": {
+   "sha256": "17355b4278770159",
+   "bytes": 2391
+  },
+  "programs/minors/liberal-arts-information-sciences-technology-labor-studies-employment-relations-minor.json": {
+   "sha256": "c8c31e37e6780659",
+   "bytes": 2366
+  },
+  "programs/minors/eberly-science-information-sciences-technology-mathematics-minor.json": {
+   "sha256": "88e73f47dc49356d",
+   "bytes": 1766
+  },
+  "programs/minors/bellisario-communications-information-sciences-technology-telecommunications-minor.json": {
+   "sha256": "90eea08c23b5d44f",
+   "bytes": 1918
+  },
+  "programs/minors/liberal-arts-information-sciences-technology-communication-arts-sciences-labor-employment-relations-minor.json": {
+   "sha256": "f649021705994f01",
+   "bytes": 3186
+  },
+  "programs/minors/health-human-development-information-sciences-technology-health-policy-administration-minor.json": {
+   "sha256": "3e6a19271a557e1b",
+   "bytes": 1938
+  },
+  "programs/majors/berks-information-sciences-technology-as.json": {
+   "sha256": "f074c7bc3914c569",
+   "bytes": 28408
+  },
+  "programs/majors/information-sciences-technology-information-sciences-technology-as.json": {
+   "sha256": "c8c489f17a2d3b34",
+   "bytes": 9291
+  },
+  "programs/majors/university-college-information-sciences-technology-as.json": {
+   "sha256": "7f96125876a611d8",
+   "bytes": 75580
+  },
+  "programs/majors/information-sciences-technology-information-sciences-technology-bs.json": {
+   "sha256": "ec0919b78814b312",
+   "bytes": 8704
+  },
+  "programs/minors/information-sciences-technology-information-sciences-technology-minor.json": {
+   "sha256": "40b32fc37928bae0",
+   "bytes": 2599
+  },
+  "programs/minors/capital-information-sciences-technology-finance-minor.json": {
+   "sha256": "8aba2b100b7236b2",
+   "bytes": 1936
+  },
+  "programs/minors/smeal-business-information-systems-management-minor.json": {
+   "sha256": "2e43e722f029f9cb",
+   "bytes": 1669
+  },
+  "programs/majors/capital-information-systems-bs.json": {
+   "sha256": "7d47fa83fba5d646",
+   "bytes": 17191
+  },
+  "programs/majors/information-sciences-technology-information-technology-ethics-compliance-bs.json": {
+   "sha256": "1e7fe6fc2981c113",
+   "bytes": 13539
+  },
+  "programs/majors/abington-information-technology-bs.json": {
+   "sha256": "cfd1a185f94178d6",
+   "bytes": 44974
+  },
+  "programs/majors/altoona-information-technology-bs.json": {
+   "sha256": "9fde0a0a4d0dde31",
+   "bytes": 25583
+  },
+  "programs/majors/berks-information-technology-bs.json": {
+   "sha256": "5cc8d62cff8442ae",
+   "bytes": 58030
+  },
+  "programs/majors/university-college-information-technology-bs.json": {
+   "sha256": "d508a8b055f7a201",
+   "bytes": 380001
+  },
+  "programs/certificates/education-instructor-development-professionals-certificate.json": {
+   "sha256": "0dd571adad2a9e14",
+   "bytes": 953
+  },
+  "programs/majors/liberal-arts-integrated-social-sciences-bs.json": {
+   "sha256": "d41a4b4c4d8be8d4",
+   "bytes": 3845
+  },
+  "programs/majors/abington-integrative-arts-ba.json": {
+   "sha256": "a1e45216e6049450",
+   "bytes": 8667
+  },
+  "programs/majors/arts-architecture-integrative-arts-ba.json": {
+   "sha256": "5fe12db36d490724",
+   "bytes": 8971
+  },
+  "programs/majors/capital-integrative-arts-ba.json": {
+   "sha256": "e24e06b26071fc44",
+   "bytes": 1197
+  },
+  "programs/majors/abington-integrative-science-bs.json": {
+   "sha256": "a3431de0d9ab14b0",
+   "bytes": 52002
+  },
+  "programs/majors/berks-integrative-science-bs.json": {
+   "sha256": "d362db4af103e3e7",
+   "bytes": 43543
+  },
+  "programs/majors/capital-integrative-science-bs.json": {
+   "sha256": "130648b21ab29c88",
+   "bytes": 51475
+  },
+  "programs/majors/eberly-science-integrative-science-bs.json": {
+   "sha256": "6ab0dedbb3fcb657",
+   "bytes": 105414
+  },
+  "programs/majors/university-college-integrative-science-bs.json": {
+   "sha256": "84326389821d0916",
+   "bytes": 59246
+  },
+  "programs/majors/behrend-interdisciplinary-business-engineering-studies-bs.json": {
+   "sha256": "23d1165854e40b1c",
+   "bytes": 15890
+  },
+  "programs/majors/berks-interdisciplinary-business-engineering-studies-bs.json": {
+   "sha256": "9d130f6f82d9df4f",
+   "bytes": 15870
+  },
+  "programs/majors/behrend-interdisciplinary-science-business-bs.json": {
+   "sha256": "f9b983607e9215bc",
+   "bytes": 22558
+  },
+  "programs/minors/agricultural-sciences-international-agriculture-minor.json": {
+   "sha256": "e4700c7bf9a27c38",
+   "bytes": 6733
+  },
+  "programs/minors/arts-architecture-international-arts-minor.json": {
+   "sha256": "521fe2e1797676d4",
+   "bytes": 1573
+  },
+  "programs/minors/capital-international-business-administration-minor.json": {
+   "sha256": "89465ead8ec0a6c6",
+   "bytes": 2003
+  },
+  "programs/majors/behrend-international-business-bs.json": {
+   "sha256": "5a59402327699058",
+   "bytes": 14498
+  },
+  "programs/minors/smeal-business-international-business-minor.json": {
+   "sha256": "94626015b9759cc4",
+   "bytes": 3390
+  },
+  "programs/certificates/engineering-international-engineering-certificate.json": {
+   "sha256": "2523555b6e8a2734",
+   "bytes": 1496
+  },
+  "programs/minors/engineering-international-engineering-minor.json": {
+   "sha256": "1f2f1eb91c2f24d9",
+   "bytes": 2011
+  },
+  "programs/majors/liberal-arts-international-politics-ba.json": {
+   "sha256": "4e548a40fbc4c40c",
+   "bytes": 64654
+  },
+  "programs/certificates/eberly-science-international-science-certificate.json": {
+   "sha256": "c736054d529d0866",
+   "bytes": 1731
+  },
+  "programs/certificates/university-college-international-studies-certificate.json": {
+   "sha256": "ff60fb5bd8311b06",
+   "bytes": 3714
+  },
+  "programs/certificates/university-college-introduction-business-management-certificate.json": {
+   "sha256": "a4f0519f354c70d5",
+   "bytes": 1502
+  },
+  "programs/certificates/university-college-introduction-corporate-communication-certificate.json": {
+   "sha256": "fbc96da01e722805",
+   "bytes": 1434
+  },
+  "programs/majors/liberal-arts-italian-ba.json": {
+   "sha256": "bc74b68143a26259",
+   "bytes": 20407
+  },
+  "programs/majors/liberal-arts-italian-bs.json": {
+   "sha256": "a68c2ac936f75c36",
+   "bytes": 20596
+  },
+  "programs/minors/liberal-arts-italian-minor.json": {
+   "sha256": "868e014d58f64302",
+   "bytes": 959
+  },
+  "programs/minors/liberal-arts-japanese-language-minor.json": {
+   "sha256": "4ed7d0bc47ca851a",
+   "bytes": 2437
+  },
+  "programs/majors/liberal-arts-japanese-ba.json": {
+   "sha256": "2cf7dd27c406dc00",
+   "bytes": 19217
+  },
+  "programs/minors/arts-architecture-jazz-performance-minor.json": {
+   "sha256": "99b28c9f89f995cc",
+   "bytes": 2322
+  },
+  "programs/majors/liberal-arts-jewish-studies-ba.json": {
+   "sha256": "a804c037411f9a62",
+   "bytes": 18102
+  },
+  "programs/minors/liberal-arts-jewish-studies-minor.json": {
+   "sha256": "5a912b35e4bcc10d",
+   "bytes": 1137
+  },
+  "programs/majors/bellisario-communications-journalism-ba.json": {
+   "sha256": "cbd185cdad3e9d8d",
+   "bytes": 35099
+  },
+  "programs/minors/bellisario-communications-journalism-minor.json": {
+   "sha256": "9dd0a9c77d57b545",
+   "bytes": 2184
+  },
+  "programs/certificates/earth-mineral-sciences-justice-ethics-diversity-space-certificate.json": {
+   "sha256": "1bd62fd4cca38a16",
+   "bytes": 2426
+  },
+  "programs/certificates/berks-keystone-certificate-integrative-humanities-certificate.json": {
+   "sha256": "1c5a05c52e68dc83",
+   "bytes": 22995
+  },
+  "programs/majors/altoona-kinesiology-bs.json": {
+   "sha256": "c9ecf2c8b38459ca",
+   "bytes": 46656
+  },
+  "programs/majors/berks-kinesiology-bs.json": {
+   "sha256": "42d03f03453785c8",
+   "bytes": 38189
+  },
+  "programs/majors/capital-kinesiology-bs.json": {
+   "sha256": "0f83431000296ec4",
+   "bytes": 37464
+  },
+  "programs/majors/health-human-development-kinesiology-bs.json": {
+   "sha256": "39e4c0037b15ed6a",
+   "bytes": 74395
+  },
+  "programs/minors/health-human-development-kinesiology-minor.json": {
+   "sha256": "d5c74e5198f572cf",
+   "bytes": 2717
+  },
+  "programs/minors/liberal-arts-korean-language-minor.json": {
+   "sha256": "3689b62df7832d33",
+   "bytes": 1966
+  },
+  "programs/majors/liberal-arts-korean-ba.json": {
+   "sha256": "e9d6b4d9b3218265",
+   "bytes": 19588
+  },
+  "programs/majors/liberal-arts-labor-human-resources-as.json": {
+   "sha256": "99a72a5bfe702f75",
+   "bytes": 4816
+  },
+  "programs/majors/liberal-arts-labor-human-resources-ba.json": {
+   "sha256": "3ecddd4aface917d",
+   "bytes": 20362
+  },
+  "programs/majors/liberal-arts-labor-human-resources-bs.json": {
+   "sha256": "c7b38dddd09e2f48",
+   "bytes": 43655
+  },
+  "programs/certificates/liberal-arts-labor-human-resources-certificate.json": {
+   "sha256": "e5cd0ad113f4b302",
+   "bytes": 1474
+  },
+  "programs/minors/liberal-arts-labor-human-resources-minor.json": {
+   "sha256": "ba0607b71a81eab9",
+   "bytes": 3555
+  },
+  "programs/majors/arts-architecture-landscape-architecture-bla.json": {
+   "sha256": "fbc3eb06eedfec21",
+   "bytes": 13262
+  },
+  "programs/minors/arts-architecture-landscape-architecture-minor.json": {
+   "sha256": "165b99e3091fc2ef",
+   "bytes": 2625
+  },
+  "programs/majors/agricultural-sciences-landscape-contracting-bs.json": {
+   "sha256": "0993730c9e231e90",
+   "bytes": 42858
+  },
+  "programs/certificates/earth-mineral-sciences-landscape-ecology-certificate.json": {
+   "sha256": "97a9bdb1cc2a9346",
+   "bytes": 2790
+  },
+  "programs/certificates/earth-mineral-sciences-landscapes-societies-cultures-political-economies-certificate.json": {
+   "sha256": "1b0edbf46a8ae6e4",
+   "bytes": 2767
+  },
+  "programs/majors/liberal-arts-latin-american-studies-ba.json": {
+   "sha256": "527d4911a2443c1d",
+   "bytes": 19889
+  },
+  "programs/minors/liberal-arts-latin-american-studies-minor.json": {
+   "sha256": "718cb088544af35a",
+   "bytes": 1964
+  },
+  "programs/minors/liberal-arts-latin-minor.json": {
+   "sha256": "ce9da6cfe0115400",
+   "bytes": 1040
+  },
+  "programs/minors/liberal-arts-latina-latino-studies-minor.json": {
+   "sha256": "3415c75e33634132",
+   "bytes": 2116
+  },
+  "programs/majors/liberal-arts-law-society-ba.json": {
+   "sha256": "f286b5ddd4ad03df",
+   "bytes": 4067
+  },
+  "programs/minors/agricultural-sciences-leadership-development-minor.json": {
+   "sha256": "5703ae56ff183183",
+   "bytes": 1924
+  },
+  "programs/minors/education-learning-design-technology-minor.json": {
+   "sha256": "51aac6942c6f6383",
+   "bytes": 2906
+  },
+  "programs/minors/smeal-business-legal-environment-business-minor.json": {
+   "sha256": "fa2aee1d06f52efd",
+   "bytes": 1914
+  },
+  "programs/minors/liberal-arts-legal-studies-minor.json": {
+   "sha256": "c950ad926b7b48fe",
+   "bytes": 6961
+  },
+  "programs/majors/liberal-arts-linguistics-ba.json": {
+   "sha256": "1fbaa9f9ff3e063e",
+   "bytes": 19452
+  },
+  "programs/minors/liberal-arts-linguistics-minor.json": {
+   "sha256": "4b248d80f046d200",
+   "bytes": 1632
+  },
+  "programs/minors/agricultural-sciences-livestock-production-minor.json": {
+   "sha256": "eb541d2e4319b682",
+   "bytes": 3010
+  },
+  "programs/minors/intercollege-longevity-aging-generational-studies-minor.json": {
+   "sha256": "67432b1a245b0c85",
+   "bytes": 4737
+  },
+  "programs/majors/behrend-management-information-systems-bs.json": {
+   "sha256": "ac9352f674d84487",
+   "bytes": 23264
+  },
+  "programs/minors/behrend-management-information-systems-minor.json": {
+   "sha256": "5f20109d8734540c",
+   "bytes": 2127
+  },
+  "programs/majors/smeal-business-management-bs.json": {
+   "sha256": "9a2d2c62ab4fc4fe",
+   "bytes": 20746
+  },
+  "programs/majors/capital-management-bs.json": {
+   "sha256": "c36837ba265a6dd8",
+   "bytes": 13877
+  },
+  "programs/minors/university-college-management-minor.json": {
+   "sha256": "199ce888ce45ae52",
+   "bytes": 2255
+  },
+  "programs/minors/eberly-science-marine-sciences-minor.json": {
+   "sha256": "a35a344854074ed2",
+   "bytes": 2589
+  },
+  "programs/majors/behrend-marketing-bs.json": {
+   "sha256": "298f85f046b69e44",
+   "bytes": 14669
+  },
+  "programs/majors/smeal-business-marketing-bs.json": {
+   "sha256": "cfca70336a11ed4c",
+   "bytes": 23621
+  },
+  "programs/majors/capital-marketing-bs.json": {
+   "sha256": "61a2b6b1856b1d00",
+   "bytes": 14674
+  },
+  "programs/minors/behrend-marketing-minor.json": {
+   "sha256": "adc08b10a31f4332",
+   "bytes": 1660
+  },
+  "programs/majors/earth-mineral-sciences-materials-science-engineering-bs.json": {
+   "sha256": "394b07d488a7d074",
+   "bytes": 26844
+  },
+  "programs/minors/earth-mineral-sciences-materials-science-engineering-minor.json": {
+   "sha256": "e80ed3bbe80d2a64",
+   "bytes": 6429
+  },
+  "programs/majors/capital-mathematical-sciences-bs.json": {
+   "sha256": "89c0e21faadc2208",
+   "bytes": 42225
+  },
+  "programs/minors/abington-mathematics-applications-minor.json": {
+   "sha256": "6d017935c7edf10b",
+   "bytes": 2645
+  },
+  "programs/majors/eberly-science-mathematics-ba.json": {
+   "sha256": "a48274842e0b6d87",
+   "bytes": 11978
+  },
+  "programs/majors/behrend-mathematics-bs.json": {
+   "sha256": "73f7e25e7afb4f7a",
+   "bytes": 50160
+  },
+  "programs/majors/eberly-science-mathematics-bs.json": {
+   "sha256": "04fe3e9112d33d3c",
+   "bytes": 169419
+  },
+  "programs/minors/behrend-mathematics-minor.json": {
+   "sha256": "62c948c6056d2e92",
+   "bytes": 1505
+  },
+  "programs/minors/eberly-science-mathematics-minor.json": {
+   "sha256": "1349bd2479a7b0e3",
+   "bytes": 2363
+  },
+  "programs/majors/behrend-mechanical-engineering-technology-aengt.json": {
+   "sha256": "14110a9cf5c09822",
+   "bytes": 11530
+  },
+  "programs/majors/engineering-mechanical-engineering-technology-aengt.json": {
+   "sha256": "5a93f1e2bb80d7ef",
+   "bytes": 16316
+  },
+  "programs/majors/behrend-mechanical-engineering-technology-bs.json": {
+   "sha256": "7ca96317cd6944ca",
+   "bytes": 15568
+  },
+  "programs/majors/capital-mechanical-engineering-technology-bs.json": {
+   "sha256": "94fa3ad70bfe8e58",
+   "bytes": 15462
+  },
+  "programs/majors/altoona-mechanical-engineering-bs.json": {
+   "sha256": "33cb075e21b522d4",
+   "bytes": 16302
+  },
+  "programs/majors/behrend-mechanical-engineering-bs.json": {
+   "sha256": "2a6438bdde122082",
+   "bytes": 14477
+  },
+  "programs/majors/berks-mechanical-engineering-bs.json": {
+   "sha256": "8b3db2ae18e065ba",
+   "bytes": 14163
+  },
+  "programs/majors/capital-mechanical-engineering-bs.json": {
+   "sha256": "b0bdfe9d3f873ab5",
+   "bytes": 14024
+  },
+  "programs/majors/engineering-mechanical-engineering-bs.json": {
+   "sha256": "94eb9c485a2c7dfa",
+   "bytes": 34196
+  },
+  "programs/minors/capital-mechatronics-technology-minor.json": {
+   "sha256": "f64e6f13a40a2879",
+   "bytes": 3489
+  },
+  "programs/minors/capital-mechatronics-minor.json": {
+   "sha256": "c15905bd90b8a6b7",
+   "bytes": 3011
+  },
+  "programs/majors/behrend-media-communication-ba.json": {
+   "sha256": "a5f498404f512248",
+   "bytes": 11730
+  },
+  "programs/minors/behrend-media-production-minor.json": {
+   "sha256": "20079b647486a756",
+   "bytes": 3788
+  },
+  "programs/majors/bellisario-communications-media-studies-ba.json": {
+   "sha256": "7c7d3d7dd50fbb6e",
+   "bytes": 30766
+  },
+  "programs/minors/bellisario-communications-media-studies-minor.json": {
+   "sha256": "9b4f2241cbe91ee1",
+   "bytes": 3024
+  },
+  "programs/majors/university-college-medical-laboratory-technology-as.json": {
+   "sha256": "cdf8108cbf6ea7ec",
+   "bytes": 10138
+  },
+  "programs/certificates/behrend-medical-plastics-certificate.json": {
+   "sha256": "95dd5778a6394eb5",
+   "bytes": 1348
+  },
+  "programs/majors/liberal-arts-medieval-studies-ba.json": {
+   "sha256": "85b1edc4ce30bce2",
+   "bytes": 20140
+  },
+  "programs/minors/liberal-arts-medieval-studies-minor.json": {
+   "sha256": "ee25fc481fe491c2",
+   "bytes": 4600
+  },
+  "programs/certificates/health-human-development-meeting-event-management-certificate.json": {
+   "sha256": "c12329d274d894ae",
+   "bytes": 2035
+  },
+  "programs/majors/earth-mineral-sciences-meteorology-atmospheric-science-bs.json": {
+   "sha256": "154493e4f9d9638a",
+   "bytes": 114262
+  },
+  "programs/minors/earth-mineral-sciences-meteorology-minor.json": {
+   "sha256": "32bcc6ceeb267766",
+   "bytes": 2216
+  },
+  "programs/majors/eberly-science-microbiology-bs.json": {
+   "sha256": "ca689dedfcce10cf",
+   "bytes": 54361
+  },
+  "programs/minors/eberly-science-microbiology-minor.json": {
+   "sha256": "df15f3a262a35e85",
+   "bytes": 2300
+  },
+  "programs/majors/liberal-arts-middle-east-studies-ba.json": {
+   "sha256": "ae2ae73e0ec39b93",
+   "bytes": 4557
+  },
+  "programs/minors/liberal-arts-middle-east-studies-minor.json": {
+   "sha256": "7f60d7a1fad828b3",
+   "bytes": 4458
+  },
+  "programs/majors/education-middle-level-education-bs.json": {
+   "sha256": "f31dc070072f2a22",
+   "bytes": 57665
+  },
+  "programs/minors/intercollege-military-studies-minor.json": {
+   "sha256": "ca034f0eac7a210c",
+   "bytes": 7300
+  },
+  "programs/majors/earth-mineral-sciences-mining-engineering-bs.json": {
+   "sha256": "13383a512b54c667",
+   "bytes": 23851
+  },
+  "programs/minors/earth-mineral-sciences-mining-engineering-minor.json": {
+   "sha256": "f50b2589c8993ffa",
+   "bytes": 1420
+  },
+  "programs/majors/university-college-mining-technology-as.json": {
+   "sha256": "7ef049282a7eb011",
+   "bytes": 3618
+  },
+  "programs/majors/behrend-multidisciplinary-arts-social-sciences-sciences-humanities-ba.json": {
+   "sha256": "ddafecd355c688db",
+   "bytes": 13562
+  },
+  "programs/majors/abington-multidisciplinary-studies-aa.json": {
+   "sha256": "646f9761b2cb5dcb",
+   "bytes": 3514
+  },
+  "programs/majors/altoona-multidisciplinary-studies-aa.json": {
+   "sha256": "d12544baf9b1fe74",
+   "bytes": 7795
+  },
+  "programs/majors/behrend-multidisciplinary-studies-aa.json": {
+   "sha256": "65118d5636b920b4",
+   "bytes": 7791
+  },
+  "programs/majors/berks-multidisciplinary-studies-aa.json": {
+   "sha256": "80f054f322f1f797",
+   "bytes": 7803
+  },
+  "programs/majors/capital-multidisciplinary-studies-aa.json": {
+   "sha256": "c0d4add71e81a954",
+   "bytes": 7080
+  },
+  "programs/majors/liberal-arts-multidisciplinary-studies-aa.json": {
+   "sha256": "9f3b726467796c70",
+   "bytes": 7604
+  },
+  "programs/majors/university-college-multidisciplinary-studies-aa.json": {
+   "sha256": "4b68887d2c8e3a5f",
+   "bytes": 45968
+  },
+  "programs/majors/abington-multidisciplinary-studies-ba.json": {
+   "sha256": "2f70d7e6b987351f",
+   "bytes": 10573
+  },
+  "programs/majors/altoona-multidisciplinary-studies-ba.json": {
+   "sha256": "1eecb27a06a3b165",
+   "bytes": 10450
+  },
+  "programs/majors/liberal-arts-multidisciplinary-studies-ba.json": {
+   "sha256": "3c61d124cad927bb",
+   "bytes": 18650
+  },
+  "programs/majors/university-college-multidisciplinary-studies-ba.json": {
+   "sha256": "6573a0a0a872f76e",
+   "bytes": 57070
+  },
+  "programs/certificates/arts-architecture-museum-studies-certificate.json": {
+   "sha256": "3ec72ce17ad4aebd",
+   "bytes": 2968
+  },
+  "programs/minors/agricultural-sciences-mushroom-science-technology-minor.json": {
+   "sha256": "1a1f1fa8d4ce4eaa",
+   "bytes": 1989
+  },
+  "programs/majors/arts-architecture-music-education-bme.json": {
+   "sha256": "8cbedf8707543479",
+   "bytes": 21759
+  },
+  "programs/minors/arts-architecture-music-performance-minor.json": {
+   "sha256": "bcfdc9723b4d3ad3",
+   "bytes": 1483
+  },
+  "programs/minors/arts-architecture-music-studies-minor.json": {
+   "sha256": "382c5f4d96432268",
+   "bytes": 2625
+  },
+  "programs/majors/arts-architecture-music-technology-bm.json": {
+   "sha256": "532e9a6867dc650a",
+   "bytes": 16605
+  },
+  "programs/minors/arts-architecture-music-technology-minor.json": {
+   "sha256": "d27096b5e78aadf3",
+   "bytes": 1628
+  },
+  "programs/majors/arts-architecture-music-ba.json": {
+   "sha256": "868714acb894fa2c",
+   "bytes": 26001
+  },
+  "programs/majors/arts-architecture-music-bm.json": {
+   "sha256": "f5ffefe28947a1a7",
+   "bytes": 60919
+  },
+  "programs/majors/arts-architecture-musical-arts-bma.json": {
+   "sha256": "5383b2035cae24e5",
+   "bytes": 14979
+  },
+  "programs/majors/arts-architecture-musical-theatre-bfa.json": {
+   "sha256": "1cf5a87a85f1f758",
+   "bytes": 17589
+  },
+  "programs/certificates/engineering-nanotechnology-certificate.json": {
+   "sha256": "1df27dff4ff780d1",
+   "bytes": 1302
+  },
+  "programs/minors/engineering-nanotechnology-minor.json": {
+   "sha256": "01fef38ab32d8541",
+   "bytes": 1423
+  },
+  "programs/minors/university-college-natural-resources-minor.json": {
+   "sha256": "ce04243cff1c685f",
+   "bytes": 1667
+  },
+  "programs/minors/eberly-science-natural-science-minor.json": {
+   "sha256": "ae29218ce6812d92",
+   "bytes": 4416
+  },
+  "programs/majors/joint-service-rotc-naval-rotc.json": {
+   "sha256": "ecc12e62e5992007",
+   "bytes": 367
+  },
+  "programs/majors/eberly-science-neurobiology-bs.json": {
+   "sha256": "9c23769264b705ef",
+   "bytes": 17596
+  },
+  "programs/minors/intercollege-neuroscience-minor.json": {
+   "sha256": "6f85ec975f79c01c",
+   "bytes": 2045
+  },
+  "programs/majors/engineering-nuclear-engineering-bs.json": {
+   "sha256": "87d2a385e8a35c29",
+   "bytes": 15450
+  },
+  "programs/minors/engineering-nuclear-engineering-minor.json": {
+   "sha256": "9162c2acf3a8c614",
+   "bytes": 2942
+  },
+  "programs/certificates/nursing-nursing-forensics-certificate.json": {
+   "sha256": "2211b15ea37201ac",
+   "bytes": 1031
+  },
+  "programs/certificates/nursing-nursing-informatics-certificate.json": {
+   "sha256": "adf2497ec6bbe009",
+   "bytes": 935
+  },
+  "programs/certificates/nursing-nursing-management-certificate.json": {
+   "sha256": "e6f6e6719c083cde",
+   "bytes": 1045
+  },
+  "programs/majors/nursing-nursing-bsn.json": {
+   "sha256": "a5b6230ebdb57e42",
+   "bytes": 33100
+  },
+  "programs/minors/health-human-development-nutrition-studies-minor.json": {
+   "sha256": "1d2e432170d7abf4",
+   "bytes": 1831
+  },
+  "programs/majors/health-human-development-nutritional-sciences-bs.json": {
+   "sha256": "9357f5570c5ce9ad",
+   "bytes": 45305
+  },
+  "programs/minors/health-human-development-nutritional-sciences-minor.json": {
+   "sha256": "6fd3252c83f26b2a",
+   "bytes": 1868
+  },
+  "programs/majors/university-college-occupational-science-bs.json": {
+   "sha256": "a41fcb1db4205175",
+   "bytes": 8194
+  },
+  "programs/majors/berks-occupational-therapy-as.json": {
+   "sha256": "ef196d1fb1f42e09",
+   "bytes": 8726
+  },
+  "programs/majors/university-college-occupational-therapy-as.json": {
+   "sha256": "a8670e45f0f970e1",
+   "bytes": 18860
+  },
+  "programs/minors/agricultural-sciences-off-road-equipment-minor.json": {
+   "sha256": "6e58f8d391e9b140",
+   "bytes": 2769
+  },
+  "programs/minors/agricultural-sciences-one-health-minor.json": {
+   "sha256": "392693b7e6ede65c",
+   "bytes": 3281
+  },
+  "programs/certificates/agricultural-sciences-one-health-environment-climate-certificate.json": {
+   "sha256": "d593ae32adfd31e1",
+   "bytes": 1606
+  },
+  "programs/certificates/agricultural-sciences-one-health-human-animal-interface-certificate.json": {
+   "sha256": "d6773eeaac548bd3",
+   "bytes": 1572
+  },
+  "programs/certificates/education-operational-excellence-professionals-certificate.json": {
+   "sha256": "1e9614f4f227af69",
+   "bytes": 966
+  },
+  "programs/minors/behrend-operations-supply-chain-management-minor.json": {
+   "sha256": "fb86797f810b714d",
+   "bytes": 1814
+  },
+  "programs/majors/liberal-arts-organizational-professional-communication-ba.json": {
+   "sha256": "96e26a6b41c50b80",
+   "bytes": 5048
+  },
+  "programs/majors/liberal-arts-organizational-professional-communication-bs.json": {
+   "sha256": "27e5bad90e7fa68c",
+   "bytes": 5516
+  },
+  "programs/certificates/liberal-arts-organizational-communication-certificate.json": {
+   "sha256": "547eaa8f96eaca2c",
+   "bytes": 1300
+  },
+  "programs/majors/liberal-arts-organizational-leadership-ba.json": {
+   "sha256": "4f2c88cf9ee55362",
+   "bytes": 11120
+  },
+  "programs/majors/liberal-arts-organizational-leadership-bs.json": {
+   "sha256": "f0ab8a4fffe40add",
+   "bytes": 13710
+  },
+  "programs/minors/liberal-arts-organizational-leadership-minor.json": {
+   "sha256": "6d2273a1f8754290",
+   "bytes": 1576
+  },
+  "programs/minors/university-college-peace-conflict-studies-minor.json": {
+   "sha256": "14de14ce3ed719c2",
+   "bytes": 2153
+  },
+  "programs/minors/liberal-arts-pennsylvania-studies-minor.json": {
+   "sha256": "ecda3c65ec274d3b",
+   "bytes": 2421
+  },
+  "programs/majors/earth-mineral-sciences-petroleum-natural-gas-engineering-bs.json": {
+   "sha256": "24a9384a9ccd2f92",
+   "bytes": 24458
+  },
+  "programs/majors/agricultural-sciences-pharmacology-toxicology-bs.json": {
+   "sha256": "27f6d6dcb7f791da",
+   "bytes": 22237
+  },
+  "programs/majors/liberal-arts-philosophy-ba.json": {
+   "sha256": "49eb0f8edab7bcc5",
+   "bytes": 64323
+  },
+  "programs/majors/liberal-arts-philosophy-bs.json": {
+   "sha256": "e3d193bcf5a0f42f",
+   "bytes": 12184
+  },
+  "programs/minors/liberal-arts-philosophy-minor.json": {
+   "sha256": "6e9c7a652f528715",
+   "bytes": 1343
+  },
+  "programs/minors/arts-architecture-photography-minor.json": {
+   "sha256": "c31b0c2f8c69d992",
+   "bytes": 1599
+  },
+  "programs/majors/university-college-physical-therapist-assistant-as.json": {
+   "sha256": "06dd03af44b15c81",
+   "bytes": 26676
+  },
+  "programs/majors/behrend-physics-bs.json": {
+   "sha256": "8a45f8e9ed85e558",
+   "bytes": 26025
+  },
+  "programs/majors/eberly-science-physics-bs.json": {
+   "sha256": "853eed6228e154b6",
+   "bytes": 66134
+  },
+  "programs/minors/eberly-science-physics-minor.json": {
+   "sha256": "06b49dc23a6fa268",
+   "bytes": 1854
+  },
+  "programs/majors/eberly-science-planetary-science-and-astronomy-bs.json": {
+   "sha256": "77e9767c704ff000",
+   "bytes": 15055
+  },
+  "programs/minors/eberly-science-planetary-science-astronomy-minor.json": {
+   "sha256": "2105435c849faf53",
+   "bytes": 2564
+  },
+  "programs/minors/agricultural-sciences-plant-pathology-minor.json": {
+   "sha256": "19c39002aeb9293a",
+   "bytes": 2731
+  },
+  "programs/majors/agricultural-sciences-plant-sciences-bs.json": {
+   "sha256": "b3c2c8bca8912c5d",
+   "bytes": 119646
+  },
+  "programs/majors/behrend-plastics-engineering-technology-bs.json": {
+   "sha256": "ef2ed38f1fd206b0",
+   "bytes": 15052
+  },
+  "programs/certificates/behrend-plastics-processing-certificate.json": {
+   "sha256": "62690abcc2538e8d",
+   "bytes": 1736
+  },
+  "programs/majors/behrend-political-science-ba.json": {
+   "sha256": "e01c80b8aabb20ab",
+   "bytes": 22860
+  },
+  "programs/majors/capital-political-science-ba.json": {
+   "sha256": "91ca26e70bd17870",
+   "bytes": 9120
+  },
+  "programs/majors/liberal-arts-political-science-ba.json": {
+   "sha256": "336d6fdd64f24476",
+   "bytes": 16818
+  },
+  "programs/majors/liberal-arts-political-science-bs.json": {
+   "sha256": "76d2807cd8bcc055",
+   "bytes": 21560
+  },
+  "programs/minors/liberal-arts-political-science-minor.json": {
+   "sha256": "127e1ac32ee72a38",
+   "bytes": 1051
+  },
+  "programs/minors/behrend-politics-government-minor.json": {
+   "sha256": "85085260e3738785",
+   "bytes": 1392
+  },
+  "programs/minors/liberal-arts-politics-public-policy-minor.json": {
+   "sha256": "77199318841548ae",
+   "bytes": 12036
+  },
+  "programs/majors/behrend-polymer-engineering-science-bs.json": {
+   "sha256": "e89b92d087dba1cc",
+   "bytes": 16455
+  },
+  "programs/minors/earth-mineral-sciences-polymer-science-minor.json": {
+   "sha256": "e10502516ddaac7e",
+   "bytes": 2907
+  },
+  "programs/minors/liberal-arts-portuguese-minor.json": {
+   "sha256": "c4e07e9ed3158426",
+   "bytes": 1740
+  },
+  "programs/minors/agricultural-sciences-poultry-avian-science-minor.json": {
+   "sha256": "a335e6d5a2ff4b41",
+   "bytes": 3191
+  },
+  "programs/majors/eberly-science-premedical-medical-bs.json": {
+   "sha256": "08200dff8be44eb4",
+   "bytes": 12086
+  },
+  "programs/majors/eberly-science-premedicine-bs.json": {
+   "sha256": "1e50300fc62d0dd2",
+   "bytes": 32147
+  },
+  "programs/certificates/intercollege-presidential-leadership-academy-certificate.json": {
+   "sha256": "e6a72d4e8b285820",
+   "bytes": 957
+  },
+  "programs/certificates/engineering-product-innovation-entrepreneurship-certificate.json": {
+   "sha256": "786119b868560465",
+   "bytes": 1493
+  },
+  "programs/majors/arts-architecture-professional-photography-bdes.json": {
+   "sha256": "adc997221b1861f3",
+   "bytes": 15352
+  },
+  "programs/certificates/health-human-development-professional-snowsports-education-certificate.json": {
+   "sha256": "9b6a9cd31128fbdb",
+   "bytes": 983
+  },
+  "programs/certificates/health-human-development-professional-snowsports-leadership-certificate.json": {
+   "sha256": "edd0c80bceeb4e98",
+   "bytes": 1027
+  },
+  "programs/certificates/health-human-development-professional-snowsports-management-certificate.json": {
+   "sha256": "0c74e633643e7e32",
+   "bytes": 1076
+  },
+  "programs/certificates/behrend-project-supply-chain-analytics-certificate.json": {
+   "sha256": "4903daf57775d400",
+   "bytes": 1058
+  },
+  "programs/majors/abington-project-supply-chain-management-bs.json": {
+   "sha256": "6b75edeb0afeb343",
+   "bytes": 15439
+  },
+  "programs/majors/behrend-project-supply-chain-management-bs.json": {
+   "sha256": "255988d803df9d4a",
+   "bytes": 23331
+  },
+  "programs/majors/capital-project-supply-chain-management-bs.json": {
+   "sha256": "43c8be631460c9ca",
+   "bytes": 14906
+  },
+  "programs/majors/university-college-project-supply-chain-management-bs.json": {
+   "sha256": "d3e3792c66f9f002",
+   "bytes": 94877
+  },
+  "programs/minors/behrend-project-supply-chain-management-minor.json": {
+   "sha256": "d7416f8fa3719e08",
+   "bytes": 2105
+  },
+  "programs/majors/abington-psychological-social-sciences-ba.json": {
+   "sha256": "0196a381c0df2e15",
+   "bytes": 11190
+  },
+  "programs/majors/abington-psychological-social-sciences-bs.json": {
+   "sha256": "872ecaf33c993afb",
+   "bytes": 12849
+  },
+  "programs/minors/behrend-psychological-science-minor.json": {
+   "sha256": "e4e95c8def2fff82",
+   "bytes": 1345
+  },
+  "programs/majors/altoona-psychology-ba.json": {
+   "sha256": "95aef7460cdd72b5",
+   "bytes": 13737
+  },
+  "programs/majors/behrend-psychology-ba.json": {
+   "sha256": "c7285ff228572c90",
+   "bytes": 21162
+  },
+  "programs/majors/berks-psychology-ba.json": {
+   "sha256": "528a479e76424e1d",
+   "bytes": 14216
+  },
+  "programs/majors/liberal-arts-psychology-ba.json": {
+   "sha256": "c449e3eaec3c8e8f",
+   "bytes": 20858
+  },
+  "programs/majors/university-college-psychology-ba.json": {
+   "sha256": "21df960f882e843b",
+   "bytes": 90924
+  },
+  "programs/majors/altoona-psychology-bs.json": {
+   "sha256": "aa0e70001e8bc5f9",
+   "bytes": 25773
+  },
+  "programs/majors/behrend-psychology-bs.json": {
+   "sha256": "7718432ab2dbe4f8",
+   "bytes": 21659
+  },
+  "programs/majors/berks-psychology-bs.json": {
+   "sha256": "bf162a10010de984",
+   "bytes": 27831
+  },
+  "programs/majors/capital-psychology-bs.json": {
+   "sha256": "e52705798c9cb8d4",
+   "bytes": 35218
+  },
+  "programs/majors/liberal-arts-psychology-bs.json": {
+   "sha256": "153a712b919afbb1",
+   "bytes": 38505
+  },
+  "programs/majors/university-college-psychology-bs.json": {
+   "sha256": "b3429cc7a8374949",
+   "bytes": 168596
+  },
+  "programs/minors/liberal-arts-psychology-minor.json": {
+   "sha256": "0c51d7cdd6dc5648",
+   "bytes": 1369
+  },
+  "programs/minors/abington-public-history-minor.json": {
+   "sha256": "c146d2e41c5066a2",
+   "bytes": 4286
+  },
+  "programs/minors/liberal-arts-public-policy-leadership-across-sectors-minor.json": {
+   "sha256": "b0fd2032cf9ee4ab",
+   "bytes": 4024
+  },
+  "programs/majors/capital-public-policy-bs.json": {
+   "sha256": "b9bd02fdfda29519",
+   "bytes": 12996
+  },
+  "programs/certificates/behrend-public-relations-certificate.json": {
+   "sha256": "8ce1e45561f7313a",
+   "bytes": 1107
+  },
+  "programs/minors/eberly-science-quantum-information-science-engineering-minor.json": {
+   "sha256": "33a2f5fc0d61f476",
+   "bytes": 1862
+  },
+  "programs/majors/abington-race-ethnic-studies-ba.json": {
+   "sha256": "10f8800da47f9757",
+   "bytes": 10686
+  },
+  "programs/majors/university-college-radiological-sciences-as.json": {
+   "sha256": "9164c96f8aa42679",
+   "bytes": 14575
+  },
+  "programs/majors/altoona-rail-transportation-engineering-bs.json": {
+   "sha256": "52f0b612aa767d4c",
+   "bytes": 13683
+  },
+  "programs/minors/altoona-rail-transportation-engineering-minor.json": {
+   "sha256": "f263d4cbcf5c857f",
+   "bytes": 2790
+  },
+  "programs/certificates/smeal-business-real-estate-analysis-development-certificate.json": {
+   "sha256": "bc051b7d72e786bc",
+   "bytes": 2404
+  },
+  "programs/majors/smeal-business-real-estate-bs.json": {
+   "sha256": "5b7b003d19dcfb10",
+   "bytes": 22293
+  },
+  "programs/majors/abington-recreation-park-tourism-management-bs.json": {
+   "sha256": "3c437aa32143cac7",
+   "bytes": 27688
+  },
+  "programs/majors/health-human-development-recreation-park-tourism-management-bs.json": {
+   "sha256": "65e9d174c42a73d8",
+   "bytes": 70050
+  },
+  "programs/majors/university-college-recreation-park-tourism-management-bs.json": {
+   "sha256": "d4beb4b0f5bf64c7",
+   "bytes": 27436
+  },
+  "programs/minors/health-human-development-recreation-park-tourism-management-minor.json": {
+   "sha256": "4ef396edf722e2cf",
+   "bytes": 1561
+  },
+  "programs/majors/abington-rehabilitation-human-services-bs.json": {
+   "sha256": "73a3155463d6fa7c",
+   "bytes": 13715
+  },
+  "programs/majors/education-rehabilitation-human-services-bs.json": {
+   "sha256": "1afcb75d223ad6ee",
+   "bytes": 13317
+  },
+  "programs/majors/university-college-rehabilitation-human-services-bs.json": {
+   "sha256": "1a5c09597f4011c0",
+   "bytes": 21077
+  },
+  "programs/minors/education-rehabilitation-human-services-minor.json": {
+   "sha256": "138817e362a28755",
+   "bytes": 7868
+  },
+  "programs/minors/liberal-arts-religious-studies-minor.json": {
+   "sha256": "467c87f4c1c50969",
+   "bytes": 1517
+  },
+  "programs/minors/agricultural-sciences-renewable-bioproducts-minor.json": {
+   "sha256": "b277890052c52903",
+   "bytes": 2638
+  },
+  "programs/minors/engineering-residential-construction-engineering-minor.json": {
+   "sha256": "03b0615d04e92f78",
+   "bytes": 3310
+  },
+  "programs/minors/liberal-arts-rhetoric-minor.json": {
+   "sha256": "0faf4754dff25e3d",
+   "bytes": 3984
+  },
+  "programs/majors/smeal-business-risk-management-bs.json": {
+   "sha256": "ad89e969a732e173",
+   "bytes": 25249
+  },
+  "programs/majors/liberal-arts-russian-ba.json": {
+   "sha256": "d54fac4877658f77",
+   "bytes": 17635
+  },
+  "programs/minors/liberal-arts-russian-minor.json": {
+   "sha256": "7a8fe7431fab2e1c",
+   "bytes": 2581
+  },
+  "programs/minors/capital-sales-minor.json": {
+   "sha256": "8e06c6f4fbfee89f",
+   "bytes": 1793
+  },
+  "programs/certificates/eberly-science-science-research-distinction-certificate.json": {
+   "sha256": "faf1b83e4cf477da",
+   "bytes": 1808
+  },
+  "programs/majors/altoona-science-as.json": {
+   "sha256": "d07a99cd4cf948c7",
+   "bytes": 4680
+  },
+  "programs/majors/behrend-science-bs.json": {
+   "sha256": "fbce17493084da88",
+   "bytes": 49218
+  },
+  "programs/majors/eberly-science-science-bs-business-administration-mba.json": {
+   "sha256": "5f3b7f507d4a1c34",
+   "bytes": 15607
+  },
+  "programs/minors/intercollege-science-technology-society-minor.json": {
+   "sha256": "7e38396f4a87ed12",
+   "bytes": 1550
+  },
+  "programs/majors/capital-secondary-education-social-studies-bsosc.json": {
+   "sha256": "61f01ab37d613672",
+   "bytes": 15053
+  },
+  "programs/majors/behrend-secondary-education-bs.json": {
+   "sha256": "b32a5d654e2da90f",
+   "bytes": 82911
+  },
+  "programs/majors/education-secondary-education-bs.json": {
+   "sha256": "bfa17c2234e97635",
+   "bytes": 119822
+  },
+  "programs/majors/altoona-security-risk-analysis-bs.json": {
+   "sha256": "b59482c45d984d12",
+   "bytes": 17324
+  },
+  "programs/majors/berks-security-risk-analysis-bs.json": {
+   "sha256": "0e2cb517e0d88d99",
+   "bytes": 16940
+  },
+  "programs/majors/capital-security-risk-analysis-bs.json": {
+   "sha256": "df0fb6b157f7fa9b",
+   "bytes": 16784
+  },
+  "programs/majors/information-sciences-technology-security-risk-analysis-bs.json": {
+   "sha256": "ae8176b7e1409a54",
+   "bytes": 25738
+  },
+  "programs/certificates/information-sciences-technology-security-risk-analysis-certificate.json": {
+   "sha256": "ba385a752d97cda8",
+   "bytes": 1688
+  },
+  "programs/minors/information-sciences-technology-security-risk-analysis-minor.json": {
+   "sha256": "4f3f639171ccb214",
+   "bytes": 2549
+  },
+  "programs/certificates/engineering-semiconductor-manufacturing-microelectronics-certificate.json": {
+   "sha256": "f075ed565b4c1387",
+   "bytes": 2683
+  },
+  "programs/minors/engineering-service-enterprise-engineering-minor.json": {
+   "sha256": "eb379e22495b8528",
+   "bytes": 2566
+  },
+  "programs/minors/liberal-arts-sexuality-gender-studies-minor.json": {
+   "sha256": "054ec25878a923e4",
+   "bytes": 4370
+  },
+  "programs/minors/engineering-six-sigma-minor.json": {
+   "sha256": "da0468de0b551bac",
+   "bytes": 1295
+  },
+  "programs/certificates/liberal-arts-small-group-conflict-collaboration-certificate.json": {
+   "sha256": "5f05123138556034",
+   "bytes": 996
+  },
+  "programs/certificates/smeal-business-smeal-college-business-fundamentals-certificate.json": {
+   "sha256": "129abdbdd093e113",
+   "bytes": 1877
+  },
+  "programs/majors/liberal-arts-social-data-analytics-bs.json": {
+   "sha256": "8be699f8f07c7a25",
+   "bytes": 23047
+  },
+  "programs/minors/education-social-justice-education-minor.json": {
+   "sha256": "ef31020644871da6",
+   "bytes": 4454
+  },
+  "programs/certificates/berks-social-justice-certificate.json": {
+   "sha256": "adacafce3f167fd1",
+   "bytes": 3269
+  },
+  "programs/majors/university-college-social-work-bsw.json": {
+   "sha256": "fff95c83f5c039af",
+   "bytes": 20213
+  },
+  "programs/majors/liberal-arts-sociology-ba.json": {
+   "sha256": "9ba362c60702bc25",
+   "bytes": 17283
+  },
+  "programs/majors/capital-sociology-bs.json": {
+   "sha256": "5fe0e9ed34cc0622",
+   "bytes": 36311
+  },
+  "programs/majors/liberal-arts-sociology-bs.json": {
+   "sha256": "37a182b5138d804e",
+   "bytes": 23423
+  },
+  "programs/minors/liberal-arts-sociology-minor.json": {
+   "sha256": "e4f8ae9b03f4428d",
+   "bytes": 3008
+  },
+  "programs/majors/behrend-software-engineering-bs.json": {
+   "sha256": "da05fe542a9a7c90",
+   "bytes": 22669
+  },
+  "programs/minors/liberal-arts-south-asian-studies-minor.json": {
+   "sha256": "925c5cdc8d1b5118",
+   "bytes": 3243
+  },
+  "programs/certificates/engineering-space-systems-engineering-certificate.json": {
+   "sha256": "3b4e0861cbc58690",
+   "bytes": 4404
+  },
+  "programs/certificates/berks-spanish-healthcare-certificate.json": {
+   "sha256": "9648dda556a6d95c",
+   "bytes": 1216
+  },
+  "programs/majors/liberal-arts-spanish-ba.json": {
+   "sha256": "818c80c664e87e18",
+   "bytes": 24603
+  },
+  "programs/majors/liberal-arts-spanish-bs.json": {
+   "sha256": "4dbf6bd12d8267bf",
+   "bytes": 45891
+  },
+  "programs/minors/liberal-arts-spanish-minor.json": {
+   "sha256": "23c2024c04982719",
+   "bytes": 4021
+  },
+  "programs/certificates/university-college-spatial-analysis-engineering-design-principles-certificate.json": {
+   "sha256": "def62744697b3ce9",
+   "bytes": 1029
+  },
+  "programs/majors/education-special-education-bs.json": {
+   "sha256": "2e79fbf7538094b6",
+   "bytes": 17505
+  },
+  "programs/minors/education-special-education-minor.json": {
+   "sha256": "698e7550a7f597b6",
+   "bytes": 2883
+  },
+  "programs/minors/health-human-development-sport-studies-minor.json": {
+   "sha256": "1f39ebae10db28e9",
+   "bytes": 4782
+  },
+  "programs/certificates/behrend-sports-administration-certificate.json": {
+   "sha256": "b4f14d3a72c89bec",
+   "bytes": 3359
+  },
+  "programs/certificates/bellisario-communications-sports-journalism-certificate.json": {
+   "sha256": "b2109d6e6403a67b",
+   "bytes": 952
+  },
+  "programs/minors/health-human-development-sports-nutrition-minor.json": {
+   "sha256": "a925a0222ffe87da",
+   "bytes": 1661
+  },
+  "programs/majors/eberly-science-statistics-bs.json": {
+   "sha256": "68e819856ff763d9",
+   "bytes": 108453
+  },
+  "programs/minors/behrend-statistics-minor.json": {
+   "sha256": "6e11e9d3b9281e95",
+   "bytes": 2307
+  },
+  "programs/minors/eberly-science-statistics-minor.json": {
+   "sha256": "b92c848590cf62c0",
+   "bytes": 2200
+  },
+  "programs/majors/bellisario-communications-strategic-communications-ba.json": {
+   "sha256": "79b7b70b075bfc7f",
+   "bytes": 3480
+  },
+  "programs/majors/capital-structural-design-construction-engineering-technology-bs.json": {
+   "sha256": "6b6e2c205ac9840f",
+   "bytes": 21370
+  },
+  "programs/minors/earth-mineral-sciences-subsurface-energy-engineering-minor.json": {
+   "sha256": "389030d5ea6e9431",
+   "bytes": 2056
+  },
+  "programs/certificates/education-supervisory-leadership-professionals-certificate.json": {
+   "sha256": "7671363d35c1173e",
+   "bytes": 1019
+  },
+  "programs/minors/smeal-business-supply-chain-information-sciences-technology-minor.json": {
+   "sha256": "b71fc97dceb07df1",
+   "bytes": 1757
+  },
+  "programs/majors/smeal-business-supply-chain-information-systems-bs.json": {
+   "sha256": "fd1981729f9a9cd0",
+   "bytes": 22338
+  },
+  "programs/minors/smeal-business-supply-chain-information-systems-minor.json": {
+   "sha256": "cc8c39911a3b5225",
+   "bytes": 1700
+  },
+  "programs/certificates/university-college-supply-chain-management-certificate.json": {
+   "sha256": "8f7295b5bf4eb21a",
+   "bytes": 1045
+  },
+  "programs/majors/engineering-surveying-engineering-technology-aengt.json": {
+   "sha256": "67a00972902213eb",
+   "bytes": 8322
+  },
+  "programs/majors/engineering-surveying-engineering-bs.json": {
+   "sha256": "48ff20ed9298b018",
+   "bytes": 14896
+  },
+  "programs/minors/intercollege-sustainability-leadership-minor.json": {
+   "sha256": "86195db1a1ef5d9e",
+   "bytes": 11596
+  },
+  "programs/majors/earth-mineral-sciences-sustainability-society-environmental-geography-ba.json": {
+   "sha256": "8f27b771c4db62ad",
+   "bytes": 24738
+  },
+  "programs/majors/health-human-development-systems-neuroscience-bs.json": {
+   "sha256": "acb737af6558bb36",
+   "bytes": 24295
+  },
+  "programs/minors/behrend-technical-sales-minor.json": {
+   "sha256": "d828e1dfded8d02e",
+   "bytes": 2104
+  },
+  "programs/minors/liberal-arts-technical-writing-minor.json": {
+   "sha256": "d4dd3f3adbc5812e",
+   "bytes": 3503
+  },
+  "programs/majors/bellisario-communications-telecommunications-media-industries-ba.json": {
+   "sha256": "ddf795d10dbce421",
+   "bytes": 12995
+  },
+  "programs/certificates/liberal-arts-tesol-certificate.json": {
+   "sha256": "b62efabd09fe4353",
+   "bytes": 1008
+  },
+  "programs/majors/arts-architecture-theatre-ba.json": {
+   "sha256": "b68a68eaf28759ea",
+   "bytes": 13787
+  },
+  "programs/majors/arts-architecture-theatre-bfa.json": {
+   "sha256": "b37a3da261e8071e",
+   "bytes": 65532
+  },
+  "programs/minors/arts-architecture-theatre-minor.json": {
+   "sha256": "12d625a9dfaa9548",
+   "bytes": 1698
+  },
+  "programs/certificates/behrend-trauma-studies-certificate.json": {
+   "sha256": "d2a79cde60ab047c",
+   "bytes": 6656
+  },
+  "programs/certificates/agricultural-sciences-turfgrass-management-advanced-certificate.json": {
+   "sha256": "cef3b2709da65feb",
+   "bytes": 1799
+  },
+  "programs/certificates/agricultural-sciences-turfgrass-management-certificate.json": {
+   "sha256": "295d9e9040bb90af",
+   "bytes": 1525
+  },
+  "programs/majors/agricultural-sciences-turfgrass-science-management-as.json": {
+   "sha256": "1ef83a656ea7a2af",
+   "bytes": 7344
+  },
+  "programs/majors/agricultural-sciences-turfgrass-science-bs.json": {
+   "sha256": "0e77a47db49da837",
+   "bytes": 30735
+  },
+  "programs/majors/agricultural-sciences-veterinary-biomedical-sciences-bs.json": {
+   "sha256": "244ea5f2e710aa54",
+   "bytes": 24882
+  },
+  "programs/majors/altoona-visual-art-studies-ba.json": {
+   "sha256": "bb7ec6db5272d833",
+   "bytes": 10154
+  },
+  "programs/minors/altoona-vocal-studies-minor.json": {
+   "sha256": "d2cdb61c611f5e78",
+   "bytes": 2540
+  },
+  "programs/minors/earth-mineral-sciences-watersheds-water-resources-minor.json": {
+   "sha256": "e225e3149e9a6fd0",
+   "bytes": 2742
+  },
+  "programs/certificates/earth-mineral-sciences-weather-forecasting-certificate.json": {
+   "sha256": "8e67c68dc1861995",
+   "bytes": 1103
+  },
+  "programs/majors/agricultural-sciences-wildlife-fisheries-science-bs.json": {
+   "sha256": "e9086ff3f1fd71a7",
+   "bytes": 43062
+  },
+  "programs/minors/agricultural-sciences-wildlife-fisheries-science-minor.json": {
+   "sha256": "8c430eea31c907af",
+   "bytes": 1989
+  },
+  "programs/majors/agricultural-sciences-wildlife-technology-as.json": {
+   "sha256": "2258285791c4b799",
+   "bytes": 7407
+  },
+  "programs/majors/liberal-arts-womens-gender-sexuality-studies-ba.json": {
+   "sha256": "528f1fa84fedda16",
+   "bytes": 19726
+  },
+  "programs/majors/liberal-arts-womens-gender-sexuality-studies-bs.json": {
+   "sha256": "86d7e171aae5775a",
+   "bytes": 20733
+  },
+  "programs/minors/liberal-arts-womens-gender-sexuality-studies-minor.json": {
+   "sha256": "3c34cb076698e5b3",
+   "bytes": 2634
+  },
+  "programs/majors/education-workforce-education-development-as.json": {
+   "sha256": "5c4c648c6e789c24",
+   "bytes": 1482
+  },
+  "programs/majors/education-workforce-education-development-bs.json": {
+   "sha256": "af7c947e652fc90b",
+   "bytes": 16545
+  },
+  "programs/certificates/education-worklink-strategies-employability-certificate.json": {
+   "sha256": "c46590f029b893d0",
+   "bytes": 912
+  },
+  "programs/majors/education-world-languages-k-12-education-bs.json": {
+   "sha256": "e6e0ab7e93603d89",
+   "bytes": 74033
+  },
+  "programs/minors/liberal-arts-world-literature-minor.json": {
+   "sha256": "b50a9e4459654e7e",
+   "bytes": 1875
+  },
+  "programs/majors/berks-writing-digital-media-ba.json": {
+   "sha256": "b5338fa2facf2fba",
+   "bytes": 11187
+  },
+  "programs/minors/berks-writing-digital-media-minor.json": {
+   "sha256": "439c0795283d0ca1",
+   "bytes": 3146
+  },
+  "programs/minors/capital-writing-minor.json": {
+   "sha256": "08dfdafec67c6673",
+   "bytes": 2909
+  },
+  "programs/certificates/university-college-youth-development-social-justice-certificate.json": {
+   "sha256": "f52e7398ef3bec77",
+   "bytes": 4081
+  },
+  "programs/minors/university-college-youth-development-social-justice-minor.json": {
+   "sha256": "62e42cfde04aed61",
+   "bytes": 3091
+  }
+ }
+}

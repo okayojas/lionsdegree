@@ -7,7 +7,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { generatePlan, resolveSlotPool, type ProgramTemplate } from "../src/index.js";
 
-const outDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../../apps/web/public/catalog");
+import { CATALOG_DIR } from "./edition.js";
+const outDir = CATALOG_DIR;
 const load = (rel: string) => JSON.parse(fs.readFileSync(path.join(outDir, rel), "utf-8"));
 
 const esc = load("programs/majors/engineering-engineering-science-bs.json");

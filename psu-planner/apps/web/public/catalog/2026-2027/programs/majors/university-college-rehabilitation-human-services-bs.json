@@ -1,0 +1,995 @@
+{
+ "slug": "university-college-rehabilitation-human-services-bs",
+ "name": "Rehabilitation and Human Services, B.S. (University College)",
+ "type": "major",
+ "degree": "BS",
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/rehabilitation-human-services-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "PSYCH 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 270",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOC 119N",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "RHS 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "RHS 300",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "RHS 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "RHS 302",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "RHS 303",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "RHS 400W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "RHS 401",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "RHS 402",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "RHS 403",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "RHS 493",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "RHS 495A",
+     "credits": 12
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "PSYCH 100Introductory Psychology 3\nPSYCH 270Introduction to Abnormal Psychology3\nSOC 119NRace, Ethnicity and Culture 4\nPrescribed Courses: Require a grade of C or better\nRHS 100Introduction to Disability Culture 3\nRHS 300Introduction to Rehabilitation and Human Services3\nRHS 301Introduction to Counseling as a Profession3\nRHS 302Client Assessment in Rehabilitation and Human Services3\nRHS 303Group Work in Rehabilitation Practice and Human Services3\nRHS 400WCase Management and Communication Skills3\nRHS 401Community Mental Health Practice and Services3\nRHS 402Children and Families in Rehabilitation Settings and Human Services3\nRHS 403Medical Aspects of Disability3\nRHS 493Professional Development and Internship Preparation in RHS3\nRHS 495ARehabilitation and Human Services Internship12\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CI 185",
+      "SOC 1"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "EDPSY 10",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HDFS 239",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 212",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ANTH 21",
+       "BIOL 110",
+       "BIOL 133",
+       "BIOL 141",
+       "BISC 1",
+       "BISC 2",
+       "BISC 3",
+       "BISC 4",
+       "EDPSY 101",
+       "STAT 100",
+       "STAT 200"
+      ]
+     }
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CI 185Principles of Social Justice in Education 3\nor SOC 1 Introductory Sociology\nSelect one of the following:3\nEDPSY 10Individual Differences and Education\nHDFS 239Adolescent Development\nPSYCH 212Introduction to Developmental Psychology\nSelect 3-4 credits from the following:3-4\nANTH 21Introductory Biological Anthropology\nBIOL 110Biology: Basic Concepts and Biodiversity\nBIOL 133Genetics and Evolution of the Human Species\nBIOL 141Introduction to Human Physiology\nBISC 1Structure and Function of Organisms\nBISC 2Genetics, Ecology, and Evolution\nBISC 3Environmental Science\nBISC 4Human Body: Form and Function\nAdditional Courses: Require a grade of C or better\nSelect one of the following:3-4\nEDPSY 101Analysis and Interpretation of Statistical Data in Education\nSTAT 100Statistical Concepts and Reasoning\nSTAT 200Elementary Statistics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the approved courses in this list:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CNED 401",
+       "CNED 416",
+       "CNED 421",
+       "CNED 422",
+       "RHS 226",
+       "RHS 410",
+       "RHS 428",
+       "RHS 433",
+       "SPLED 400",
+       "SPLED 461"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 6 credits from the approved courses in this list:6\nCNED 401Foundations of Chemical Dependency Counseling\nCNED 416Interpersonal Relationships and Alcohol and Other Drugs (AOD) Dependency\nCNED 421Counseling Strategies for Preventing Chemical Dependency\nCNED 422Foundations of Addictions Counseling\nRHS 226College Student Mental Health and Wellness\nRHS 410Employment Strategies for People with Disabilities\nRHS 428Rehabilitation in the Justice System\nRHS 433Trauma-informed care for school & human service professionals\nSPLED 400Inclusive Special Ed Foundations: Legal, Characteristics, Collaboration, Assessment, and Management\nSPLED 461Introduction to Autism Spectrum Disorders: Issues and Concerns\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Rehabilitation and Human Services, B.S. at Hazleton Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 34",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "1"
+       ],
+       "alternatives": [
+        "MATH 21"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SOC 1",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "RHS 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PSU 8",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "RHS 300",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN)",
+       "domain": "GN",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective/Minor",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ANTH 21",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "BIOL 133",
+        "BIOL 110",
+        "BIOL 141",
+        "BISC 1",
+        "BISC 2",
+        "BISC 3",
+        "BISC 4"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "RHS 301",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Exploration)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective/Minor",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "RHS 302",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "RHS 303",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": null,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "RHS 400W",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOC 119N",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 270",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective/Minor",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective/Minor",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 212",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "HDFS 239"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "RHS 403",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective/Minor",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "RHS 401",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "RHS 402",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "RHS 493",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective/Minor",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "course",
+       "code": "RHS 495A",
+       "credits": 12,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Rehabilitation and Human Services, B.S. at Wilkes-Barre Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education (GQ) Course",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PSU 8",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "RHS 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOC 1",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 270",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "†",
+        "‡"
+       ],
+       "alternatives": [
+        "STAT 100"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "RHS 300",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BISC 1",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "BISC 2",
+        "BISC 3",
+        "BISC 4",
+        "BIOL 110"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 212",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOC 119N",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "RHS 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "RHS 302",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "RHS 303",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "RHS 403",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "RHS 400W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "RHS 401",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "RHS 402",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "RHS 493",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "course",
+       "code": "RHS 495A",
+       "credits": 12,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 123,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

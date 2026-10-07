@@ -1,0 +1,63 @@
+{
+ "slug": "information-sciences-technology-security-risk-analysis-certificate",
+ "name": "Security and Risk Analysis, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "information-sciences-technology",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/information-sciences-technology/security-risk-analysis-certificate/",
+ "totalCredits": 15,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "IST 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SRA 111",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SRA 211",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SRA 221",
+     "credits": 3,
+     "unverified": true
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 101",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 121",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "IST 140",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nIST 110Information, People and Technology 3\nSRA 111Introduction to Security and Risk Analysis 3\nSRA 211Threat of Terrorism and Crime3\nSRA 221Overview of Information Security3\nSelect one of the following:3\nCMPSC 101Introduction to Programming\nCMPSC 121Introduction to Programming Techniques\nIST 140Introduction to Application Development\n"
+  }
+ ],
+ "suggestedPlans": []
+}

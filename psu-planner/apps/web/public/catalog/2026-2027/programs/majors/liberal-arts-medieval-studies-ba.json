@@ -1,0 +1,876 @@
+{
+ "slug": "liberal-arts-medieval-studies-ba",
+ "name": "Medieval Studies, B.A.",
+ "type": "major",
+ "degree": "BA",
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/medieval-studies-ba/",
+ "totalCredits": 123,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "MEDVL 107",
+      "HIST 107"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MEDVL 108",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nMEDVL 107Medieval Europe 3\nor HIST 107 Medieval Europe\nMEDVL 108Medieval Civilization 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 24,
+     "commentRaw": "Select 24 credits (at least 12 credits at the 400-level) from the program list of courses dealing with the Middle Ages from no less than three of the following areas:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ARTH 201",
+       "ARTH 312",
+       "ARTH 402",
+       "ARTH 412",
+       "ARTH 422",
+       "ARTH 442",
+       "ARTH 452",
+       "HIST 105",
+       "HIST 108",
+       "HIST 141",
+       "HIST 165",
+       "HIST 407",
+       "HIST 408",
+       "HIST 411",
+       "HIST 412",
+       "HIST 413",
+       "HIST 471Y",
+       "HIST 480",
+       "CMLIT 1",
+       "CMLIT 106",
+       "CMLIT 401Y",
+       "CMLIT 408",
+       "ENGL 221W",
+       "ENGL 441",
+       "ENGL 442",
+       "FR 351",
+       "GER 175",
+       "GER 430",
+       "GER 431",
+       "HEBR 10",
+       "IT 415",
+       "IT 490",
+       "SPAN 130",
+       "SPAN 353",
+       "SPAN 418",
+       "MEDVL 197",
+       "MEDVL 199",
+       "MEDVL 294",
+       "MEDVL 299",
+       "MEDVL 395",
+       "MEDVL 399",
+       "MEDVL 411",
+       "MEDVL 413",
+       "MEDVL 494",
+       "MEDVL 496",
+       "MEDVL 497",
+       "MEDVL 499",
+       "PHIL 201",
+       "RLST 120",
+       "RLST 420"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 24 credits (at least 12 credits at the 400-level) from the program list of courses dealing with the Middle Ages from no less than three of the following areas:24\nArt\nARTH 201Ancient to Medieval Architecture\nARTH 312Romanesque and Gothic Art\nARTH 402The Illuminated Manuscript\nARTH 412The Gothic Cathedral\nARTH 422Studies in Medieval Sculpture\nARTH 442Late Antique and Early Christian Art\nARTH 452Byzantine Art\nHistory\nHIST 105The Byzantine Empire\nHIST 108Crusades: Holy War in the Middle Ages\nHIST 141Medieval and Modern Russia\nHIST 165Islamic States, Societies and Cultures c. 600-1500\nHIST 407Early Medieval Society\nHIST 408Church and State in the High Middle Ages\nHIST 411Medieval Britain\nHIST 412Innovation in Medieval Europe\nHIST 413Medieval Celtic Studies\nHIST 471YClassical Islamic Civilization, 600-1258\nHIST 480Japan in the Age of Warriors\nLiterature and Language\nCMLIT 1Introduction to Western Literatures Through the Renaissance\nCMLIT 106The Arthurian Legend\nCMLIT 401Y\nCMLIT 408Heroic Literature\nENGL 221WBritish Literature to 1798\nENGL 441Chaucer\nENGL 442Medieval English Literature\nFR 351French and Francophone Literature: Poetry, Theatre, and Performance\nGER 175Germanic Heroic and Medieval Literature in English Translation\nGER 430History of the German Language\nGER 431Dragons, the Divine, and the Demonic: German Literature, Culture, and Media from the Middle Ages to 1750\nHEBR 10Jewish Civilization\nIT 415Dante\nIT 490Dante in Translation\nSPAN 130Iberian Civilization\nSPAN 353Topics in the Cultures of Spain\nSPAN 418The Evolution of Spanish\nMedieval Studies\nMEDVL 197Special Topics\nMEDVL 199Foreign Studies\nMEDVL 294Research Project\nMEDVL 299Foreign Studies\nMEDVL 395Internship\nMEDVL 399Foreign Studies\nMEDVL 411Medieval Britain\nMEDVL 413Medieval Celtic Studies\nMEDVL 494Research Project\nMEDVL 496Independent Studies\nMEDVL 497Special Topics\nMEDVL 499Foreign Studies\nPhilosophy and Religious Studies\nPHIL 201Medieval Philosophy\nRLST 120New Testament\nRLST 420 (upon advising)\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Medieval Studies, B.A. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MEDVL 107",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 83",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 1",
+       "credits": 4,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MEDVL 108",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 2",
+       "credits": 4,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Course at Any Level in Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 3",
+       "credits": 4,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "Course at Any Level in Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Course at Any Level in Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "B.A. Knowledge Domains",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level Course in MEDVL or Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Course at Any Level in Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "B.A. Knowledge Domains",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level Course in MEDVL or Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level Course in MEDVL or Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Cultures",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "B.A. Knowledge Domains",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level Course in MEDVL or Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 126,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Medieval Studies, B.A. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 1",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 2",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Course at Any Level in Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 3",
+       "credits": 4,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Course at Any Level in Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Course at Any Level in Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "B.A. Knowledge Domains",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MEDVL 107",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level Course in MEDVL or Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Course at Any Level in Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "B.A. Knowledge Domains",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MEDVL 108",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level Course in MEDVL or Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level Course in MEDVL or Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Cultures",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "B.A. Knowledge Domains",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level Course in MEDVL or Related Area",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 127,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

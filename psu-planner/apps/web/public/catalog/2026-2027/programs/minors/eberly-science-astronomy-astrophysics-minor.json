@@ -1,0 +1,118 @@
+{
+ "slug": "eberly-science-astronomy-astrophysics-minor",
+ "name": "Astronomy and Astrophysics, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/astronomy-astrophysics-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ASTRO 291",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ASTRO 292",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PHYS 211",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nASTRO 291Astronomical Methods and the Solar System 3\nASTRO 292Astronomy of the Distant Universe3\nPHYS 211General Physics: Mechanics 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-7 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Additional ASTRO 400-level courses"
+    },
+    {
+     "type": "course",
+     "code": "AERSP 308",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "AERSP 312",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 472",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOSC 474",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "METEO 466",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PHYS 458",
+     "credits": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6-7 credits of the following:6-7\nAdditional ASTRO 400-level courses\nAERSP 308Mechanics of Fluids\nAERSP 312Aerodynamics II\nEE 472Space Astronomy and Introduction to Space Science\nGEOSC 474Astrobiology\nMETEO 466Planetary Atmospheres\nPHYS 458Intermediate Optics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "SELECT 6",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "FROM 400",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "ASTRO 496",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits from 400-level ASTRO courses (except ASTRO 496)6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

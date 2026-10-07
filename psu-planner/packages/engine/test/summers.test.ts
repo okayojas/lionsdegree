@@ -11,7 +11,8 @@ import {
   type Catalog, type Course, type PlanDoc, type ProgramTemplate,
 } from "../src/index.js";
 
-const outDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../../apps/web/public/catalog");
+import { CATALOG_DIR } from "./edition.js";
+const outDir = CATALOG_DIR;
 const load = (rel: string) => JSON.parse(fs.readFileSync(path.join(outDir, rel), "utf-8"));
 const subjects = load("subjects_index.json") as Record<string, string>;
 

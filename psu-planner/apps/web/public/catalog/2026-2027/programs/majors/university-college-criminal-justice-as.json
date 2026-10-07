@@ -1,0 +1,305 @@
+{
+ "slug": "university-college-criminal-justice-as",
+ "name": "Criminal Justice, A.S. (University College)",
+ "type": "major",
+ "degree": null,
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/criminal-justice-as/",
+ "totalCredits": 64,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CRIMJ 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CRIMJ 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CRIMJ 220",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CRIMJ 230",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PHIL 103",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOC 12",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOC 119N",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "STAT 200",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCRIMJ 100Introduction to Criminal Justice 3\nCRIMJ 210Policing in America3\nCRIMJ 220Courts and the Prosecution Process3\nCRIMJ 230Corrections in America3\nPHIL 103Ethics 3\nSOC 12Criminology 3\nSOC 119NRace, Ethnicity and Culture 4\nSTAT 200Elementary Statistics 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CRIMJ 250W",
+      "SOC 207"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nCRIMJ 2503\nor SOC 207 Research Methods in Sociology\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Criminal Justice, A.S. at Greater Allegheny Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CRIMJ 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SOC 119N",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOC 12",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHIL 103",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CRIMJ 210",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CRIMJ 250W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SOC 207"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CRIMJ 230",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CRIMJ 220",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 65,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

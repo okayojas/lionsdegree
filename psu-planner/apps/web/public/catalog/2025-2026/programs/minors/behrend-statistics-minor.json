@@ -1,0 +1,96 @@
+{
+ "slug": "behrend-statistics-minor",
+ "name": "Statistics, Minor (Behrend)",
+ "type": "minor",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/statistics-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "STAT 301",
+     "credits": 3,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "STAT 401",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "STAT 461",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "STAT 462",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\nSTAT 3013\nSTAT 401Experimental Methods3\nSTAT 461Analysis of Variance3\nSTAT 462Applied Regression Analysis3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 230",
+      "MATH 231"
+     ],
+     "credits": 2
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nMATH 230Calculus and Vector Analysis2-4\nor MATH 231 Calculus of Several Variables\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level STAT or related MATH courses",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "STAT"
+      ],
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits of 400-level STAT or related MATH courses 6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

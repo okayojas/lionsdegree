@@ -1,0 +1,752 @@
+{
+ "slug": "engineering-aerospace-engineering-bs",
+ "name": "Aerospace Engineering, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/aerospace-engineering-bs/",
+ "totalCredits": 131,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AERSP 304",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AERSP 305W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AERSP 312",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AERSP 410",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EMCH 315",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "EMCH 316",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MATH 220",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MATH 230",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ME 201",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PHYS 214",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "AERSP 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AERSP 306",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AERSP 309",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AERSP 311",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AERSP 313",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EMCH 212",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202C",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 212",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "AERSP 304Dynamics and Control of Aerospace Systems3\nAERSP 305WAerospace Technology Laboratory3\nAERSP 312Aerodynamics II3\nAERSP 410Aerospace Propulsion3\nEMCH 315Mechanical Response of Engineering Materials2\nEMCH 316Experimental Determination of Mechanical Response of Materials1\nMATH 220Matrices 2-3\nMATH 230Calculus and Vector Analysis4\nME 201Introduction to Thermal Science3\nPHYS 214General Physics: Wave Motion and Quantum Physics 2\nPrescribed Courses: Require a grade of C or better\nAERSP 301Aerospace Structures3\nAERSP 306Aeronautics3\nAERSP 309Astronautics3\nAERSP 311Aerodynamics I3\nAERSP 313Aerospace Analysis3\nCHEM 110Chemical Principles I 3\nEDSGN 100Cornerstone Engineering Design3\nEMCH 212Dynamics3\nENGL 202CEffective Writing: Technical Writing 3\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\nPHYS 211General Physics: Mechanics 4\nPHYS 212General Physics: Electricity and Magnetism 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 1,
+     "commentRaw": "Select 1 credit of First-Year Seminar",
+     "from": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "AERSP 413",
+      "AERSP 450"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPSC 121",
+       "CMPSC 131",
+       "CMPSC 200",
+       "CMPSC 201"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ECON 102",
+       "ECON 104",
+       "ECON 14"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 5,
+     "commentRaw": "Select 5-6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EMCH 210",
+       "EMCH 211",
+       "EMCH 213",
+       "AERSP 401A",
+       "AERSP 401B",
+       "AERSP 402A",
+       "AERSP 402B"
+      ]
+     }
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following sequences:"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AERSP 424",
+       "EE 210",
+       "EE 212"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 15",
+      "ENGL 30H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 250",
+      "MATH 251"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 1 credit of First-Year Seminar1\nAERSP 413Stability and Control of Aircraft3\nor AERSP 450 Orbit and Attitude Control of Spacecraft\nSelect 3 credits from the following:3\nCMPSC 121Introduction to Programming Techniques\nCMPSC 131Programming and Computation I: Fundamentals\nCMPSC 200Programming for Engineers with MATLAB\nCMPSC 201Programming for Engineers with C++\nSelect 3 credits from the following:3\nECON 102Introductory Microeconomic Analysis and Policy\nECON 104Introductory Macroeconomic Analysis and Policy\nECON 14Principles of Economics\nSelect 5-6 credits of the following:5-6\nEMCH 210Statics and Strength of Materials\nEMCH 211& EMCH 213Staticsand Strength of Materials\nSelect one of the following sequences:5\nAERSP 401A& AERSP 401BSpacecraft Design--Preliminaryand Spacecraft Design--Detailed\nAERSP 402A& AERSP 402BAircraft Design--Preliminaryand Aircraft Design--Detailed\nSelect 3-4 credits from the following:3-4\nAERSP 424Advanced Computer Programming\nEE 210Circuits and Devices\nEE 212Introduction to Electronic Measuring Systems\nAdditional Courses: Require a grade of C or better\nCAS 100AEffective Speech 3\nor CAS 100B Effective Speech\nENGL 15Rhetoric and Composition 3\nor ENGL 30H Honors Rhetoric and Composition\nMATH 250Ordinary Differential Equations3-4\nor MATH 251 Ordinary and Partial Differential Equations\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of Aerospace Technical Elective (ATE) courses from department list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of General Technical Elective (GTE) courses from department list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of Limited Elective (LE) courses from department list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 6 credits of Aerospace Technical Elective (ATE) courses from department list6\nSelect 3 credits of General Technical Elective (GTE) courses from department list3\nSelect 3 credits of Limited Elective (LE) courses from department list 3\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Aerospace Engineering, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140E"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AERSP 1",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "AERSP 97"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EDSGN 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 141E"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPSC 201",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EMCH 210",
+       "credits": 5,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 220",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 250",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EMCH 212",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EMCH 315",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EMCH 316",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 230",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ME 201",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AERSP 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AERSP 309",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AERSP 311",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AERSP 313",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AERSP 304",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AERSP 305W",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AERSP 306",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AERSP 312",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 214",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AERSP 401A",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AERSP 402A"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AERSP 410",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AERSP 413",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AERSP 450"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "AERSP Technical Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "General Technical Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AERSP 401B",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": [
+        "AERSP 402B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AERSP 424",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "EE 210",
+        "EE 212"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "AERSP Technical Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Limited Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 131,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

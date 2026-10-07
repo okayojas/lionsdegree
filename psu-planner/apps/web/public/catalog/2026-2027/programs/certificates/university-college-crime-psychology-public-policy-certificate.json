@@ -1,0 +1,52 @@
+{
+ "slug": "university-college-crime-psychology-public-policy-certificate",
+ "name": "Crime, Psychology, and Public Policy, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/crime-psychology-public-policy-certificate/",
+ "totalCredits": 15,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "SOC 12",
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the Crime and the Individual area from approved department list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the Crime and Society area from approved department list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the Crime and Public Policy area from approved department list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the Crime and Law area from approved department list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Criminology\nSOC 12Criminology 3\nCrime and the Individual\nSelect 3 credits from the Crime and the Individual area from approved department list3\nCrime and Society\nSelect 3 credits from the Crime and Society area from approved department list3\nCrime and Public Policy\nSelect 3 credits from the Crime and Public Policy area from approved department list3\nCrime and Law\nSelect 3 credits from the Crime and Law area from approved department list3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

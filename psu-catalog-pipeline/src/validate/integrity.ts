@@ -19,10 +19,16 @@ export interface CourseIndex {
   known: Set<string>;
   /** "CAS 100" (subject + bare number) -> ["CAS 100A", "CAS 100B", ...] */
   variantsByBase: Map<string, string[]>;
+  /** Every subject prefix that actually has courses. Requirement prose yields
+   * plausible-looking subject tokens that are not subjects ("Advanced IT
+   * courses" -> IT), and a pattern pool over a nonexistent subject suggests
+   * nothing while looking authoritative. */
+  subjects: Set<string>;
 }
 
 export function buildCourseIndex(outDir: string): CourseIndex {
   const known = new Set<string>();
+  const subjects = new Set<string>();
   const variantsByBase = new Map<string, string[]>();
   const dirs = [path.join(outDir, "courses"), path.join(outDir, "courses", "grad")];
   for (const dir of dirs) {
@@ -32,6 +38,10 @@ export function buildCourseIndex(outDir: string): CourseIndex {
       for (const c of courses) {
         known.add(c.code);
         for (const a of c.aliases ?? []) known.add(a);
+        for (const code of [c.code, ...(c.aliases ?? [])]) {
+          const s = /^([A-Z-]+)\s/.exec(code)?.[1];
+          if (s) subjects.add(s.replace(/-/g, ""));
+        }
         const m = /^([A-Z]+ \d{1,3})[A-Z]*$/.exec(c.code);
         if (m) {
           const list = variantsByBase.get(m[1]) ?? [];
@@ -41,13 +51,17 @@ export function buildCourseIndex(outDir: string): CourseIndex {
       }
     }
   }
-  return { known, variantsByBase };
+  return { known, variantsByBase, subjects };
 }
 
 export interface IntegrityReport {
   resolved: { program: string; from: string; to: string }[];
   expanded: { program: string; code: string; variants: string[] }[];
   unverified: { program: string; code: string; where: string }[];
+  /** Pattern pools whose prose yielded subject tokens that no course uses.
+   * Dropped rather than suggested; when nothing survives the pool becomes null,
+   * which renders as "we don't know" instead of an empty, confident list. */
+  phantomSubjects: { program: string; dropped: string[]; kept: string[]; comment: string }[];
 }
 
 type Resolution =
@@ -69,10 +83,15 @@ function resolveCode(code: string, index: CourseIndex): Resolution {
  * are written). */
 export function indexFromCourses(courses: { code: string; aliases?: string[] }[]): CourseIndex {
   const known = new Set<string>();
+  const subjects = new Set<string>();
   const variantsByBase = new Map<string, string[]>();
   for (const c of courses) {
     known.add(c.code);
     for (const a of c.aliases ?? []) known.add(a);
+    for (const code of [c.code, ...(c.aliases ?? [])]) {
+      const s = /^([A-Z-]+)\s/.exec(code)?.[1];
+      if (s) subjects.add(s.replace(/-/g, ""));
+    }
     const m = /^([A-Z]+ \d{1,3})[A-Z]*$/.exec(c.code);
     if (m) {
       const list = variantsByBase.get(m[1]) ?? [];
@@ -80,7 +99,7 @@ export function indexFromCourses(courses: { code: string; aliases?: string[] }[]
       variantsByBase.set(m[1], list);
     }
   }
-  return { known, variantsByBase };
+  return { known, variantsByBase, subjects };
 }
 
 /** Resolve course leaves inside a prereq AST: bulletins' prereq strings carry
@@ -170,6 +189,15 @@ export function validateProgram(program: Program, index: CourseIndex, report: In
           report.unverified.push({ program: program.slug, code: rule.code, where: `req:${section.heading}` });
           rule.unverified = true;
         }
+      } else if (rule.type === "selectCredits" && rule.from?.kind === "pattern") {
+        const kept = rule.from.subjects.filter((s) => index.subjects.has(s));
+        const dropped = rule.from.subjects.filter((s) => !index.subjects.has(s));
+        if (dropped.length) {
+          report.phantomSubjects.push({ program: program.slug, dropped, kept, comment: rule.commentRaw });
+        }
+        // Nothing real left: say we don't know rather than suggest nothing.
+        if (!kept.length) rule.from = null;
+        else rule.from = { ...rule.from, subjects: kept };
       } else if (rule.type === "oneOf" || rule.type === "chooseN") {
         rule.options = rule.options.flatMap((o) => {
           const r = resolveCode(o, index);

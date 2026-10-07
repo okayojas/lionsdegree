@@ -1,0 +1,107 @@
+{
+ "slug": "eberly-science-biochemistry-molecular-biology-minor",
+ "name": "Biochemistry and Molecular Biology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/biochemistry-molecular-biology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BMB 251",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BMB 252",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BMB 400",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "BMB 401",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BMB 402",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BMB 442",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 212",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBMB 251Molecular and Cell Biology I3\nBMB 252Molecular and Cell Biology II3\nBMB 400Molecular Biology of the Gene2-3\nBMB 401General Biochemistry3\nBMB 402General Biochemistry3\nBMB 442Laboratory in Proteins, Nucleic Acids, and Molecular Cloning3\nCHEM 110Chemical Principles I 3\nCHEM 112Chemical Principles II 3\nCHEM 210Organic Chemistry I3\nCHEM 212Organic Chemistry II3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 222",
+      "BIOL 322"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nBIOL 222Genetics3\nor BIOL 322 Genetic Analysis\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 0,
+     "commentRaw": "Select 0-3 credits of B M B courses at the 400-level",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 0-3 credits of B M B courses at the 400-level0-3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

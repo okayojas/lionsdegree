@@ -1,0 +1,1402 @@
+[
+ {
+  "code": "ME 504",
+  "subject": "ME",
+  "number": "504",
+  "display": "ME 504",
+  "title": "Advanced Engineering Thermodynamics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Pure and applied thermodynamics including its application to advanced engineering problems; collateral reading and discussion of the classical works on the subject.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 504"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 505",
+  "subject": "ME",
+  "number": "505",
+  "display": "ME 505",
+  "title": "Atomistic Scale Simulations for Engineer",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course aims to provide an overview of atomistic-scale methods - in particular, ab-initio based methods like Density Functional Theory and empirical force field methods - to an engineering audience. Due to the increasing availability of computers, atomistic-scale simulation methods are becoming increasingly relevant to engineers, as they can provide key thermodynamic and material properties necessary for the design and analysis of engineering material performance. The main aim of the course is to encourage students to integrate atomistic-scale concepts in their current research. As such, there is a strong emphasis on hands-on experience with various software codes, including commercial codes and academic codes. The students learn the basic concepts of quantum mechanics, statistical thermodynamics, crystallography, physics and chemistry as they relate to ab initio and empirical force field methods and their integration in energy minimization, molecular dynamics and Monte Carlo methods. These concepts are discussed on a conceptual level, enabling students to understand their application range and validity. Furthermore, we dedicate a significant amount of class time to engineer-relevant applications of these force engines and methods.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "CHE 505"
+  ],
+  "aliases": [
+   "ME 505"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 507",
+  "subject": "ME",
+  "number": "507",
+  "display": "ME 507",
+  "title": "Advanced Gas Turbine System and Component Design",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Covers fundamental design/analysis theory and modern developments in gas turbine engines used for aircraft propulsion and power generation. Both system-level and component-level considerations will be discussed. Modern computational tools in gas turbine design will be employed on a limited basis to explore system integration effects as well as component-level physics and bring awareness to their usefulness and limitations.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 507"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": [
+   "Recommended Preparation: This course will require some foundational knowledge in thermodynamics, fluid dynamics, and heat transfer, as well as ability to use a programming language."
+  ]
+ },
+ {
+  "code": "ME 512",
+  "subject": "ME",
+  "number": "512",
+  "display": "ME 512",
+  "title": "Heat Transfer--Conduction",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "One- and two-dimensional conduction heat transfer for steady state and transient systems with varying boundary conditions.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 512"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 513",
+  "subject": "ME",
+  "number": "513",
+  "display": "ME 513",
+  "title": "Heat Transfer--Convection",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Laminar and turbulent flow heat transfer in natural and forced convection systems.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 513"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 514",
+  "subject": "ME",
+  "number": "514",
+  "display": "ME 514",
+  "title": "Heat Transfer--Radiation",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Thermal radiation fundamentals; specular and diffuse systems; differential and integral methods; numerical techniques; industrial applications.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 514"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 515",
+  "subject": "ME",
+  "number": "515",
+  "display": "ME 515",
+  "title": "Two-Phase Heat Transfer",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Heat transfer processes involving evaporation, boiling, and condensation.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 515"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 520",
+  "subject": "ME",
+  "number": "520",
+  "display": "ME 520",
+  "title": "Compressible Flow II",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Two-dimensional subsonic flow; similarity rules; theory of characteristics; supersonic and hypersonic flows; nonsteady flow; oblique shock waves.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "M E 420",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 520"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 521",
+  "subject": "ME",
+  "number": "521",
+  "display": "ME 521",
+  "title": "Foundations of Fluid Mechanics I",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "First semester of core sequence in fluid mechanics; Navier-Stokes equations, potential flow, low Re flow, laminar boundary layers.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "M E 300 , M E 320",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 521"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 522",
+  "subject": "ME",
+  "number": "522",
+  "display": "ME 522",
+  "title": "Foundations of Fluid Mechanics II",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Second semester of core sequence in fluid mechanics; continuation of boundary layers, stability, transition, turbulence, turbulent boundary layers, turbulence models.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "M E 421 or M E 521",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 522"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 523",
+  "subject": "ME",
+  "number": "523",
+  "display": "ME 523",
+  "title": "Numerical Solutions Applied to Heat Transfer and Fluid Mechanics Problems",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Application of finite difference methods to the study of potential and viscous flows and conduction and convection heat transfer.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 523"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 524",
+  "subject": "ME",
+  "number": "524",
+  "display": "ME 524",
+  "title": "Turbulence and Applications to CFD: DNS and LES",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "First of two courses: Scalings, decompositions, turbulence equations; scale representations, Direct and Large-Eddy Simulation modeling; pseudo-spectral methods; 3 computer projects.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "AERSP508 or M E 521",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "AERSP 524"
+  ],
+  "aliases": [
+   "ME 524"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 525",
+  "subject": "ME",
+  "number": "525",
+  "display": "ME 525",
+  "title": "Turbulence and Applications to CFD: RANS",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Second in two courses: Scalings, decomposition, turbulence equations; Reynolds Averaged Navier Stokes (RANS) modeling; phenomenological models; 3 computer projects.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "AERSP508 or M E 521",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "AERSP 525"
+  ],
+  "aliases": [
+   "ME 525"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 530",
+  "subject": "ME",
+  "number": "530",
+  "display": "ME 530",
+  "title": "Fundamentals of Combustion",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Theoretical formulations and methods of solution of engineering problems and physical/chemical processes in various propulsion systems. ME 530 Fundamentals of Combustion (3) This course is devoted to the fundamentals of chemically reactive flow systems with application to modern jet, rocket, air-breathing engines, and other power generation systems. Experimental and theoretical foundations of steady-state reactions of homogeneous gas mixtures; application of mass and heat diffusion concepts to premixed and non-premixed gaseous flames, liquid-fuel droplet combustion; detonation waves, deflagration-to-detonation transition processes; ignition of gaseous mixtures. Methods for evaluation of thermal and transport properties of gases and liquids will also be discussed. While there are no prerequisites for ME 531, this course serves as a prerequisite for ME 532 (Turbulent and Two-Phase Combustion). The course will: 1) help students acquire a better understanding of the fluid flow, heat transfer, and chemical reaction processes in combustion systems by presenting a systematic description of various analyses developed for describing the fundamental processes involved in chemically reacting flow systems; 2) demonstrate the usefulness of basic principles by performing analyses and obtaining solutions for various combustion problems encountered in engineering so that individuals can utilize them to solve \"real-world\" problems. 3) provide graduate students with the opportunity to demonstrate their abilities to absorb new materials and to present project results to the class. It is anticipated that, upon completion of this course, students will be able to formulate models for simulating ignition and combustion problems in laminar flow conditions, solve certain types of models, and design laboratory experiments for some diagnostic measurements. Students will be evaluated on the basis of class participation (5%), homework (20%), quizzes (5%), projects (25%), a mid-semester examination (20%) and a final examination (25%). ME 531 will be offered each spring with an anticipated enrollment of 12 students; ME 532 will be offered each fall with an anticipated enrollment of 12.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 530"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 532",
+  "subject": "ME",
+  "number": "532",
+  "display": "ME 532",
+  "title": "Turbulent and Two-Phase Combustion",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Fundamentals of chemically reacting turbulent flows in homogeneous systems including turbulent flames, spray combustion, ignition, reacting boundary layers. M E 532 Turbulent and Two-Phase Combustion (3) M E 532 is the second course of two-course sequence. Continuing where M E 531 (Fundamentals of Combustion) left off, this course is devoted to the fundamentals of chemically reacting turbulent flows in both homogeneous and heterogeneous systems with special emphasis on turbulent flames in gases; heterogeneous combustion; chemical reactions in boundary-layer flows; spray combustion of liquid fuel droplets; two-phase combustion of solid particles; and, ignition of gaseous mixtures and condensed phases.Upon completion of this course, students should be able to: 1) formulate a theoretical model to simulate a combustion problem, based upon knowledge of existing research. 2) identify the major mechanisms involved in a given combustion problem. 3) design a laboratory-scale test apparatus and test matrix to observe combustion phenomena and to take measurements. 4) interpret experimental results in terms of the trend of operating parameters. 5) validate the model using the experimental data and observations. 6) evaluate the merit of a model or experimental design presented in a technical article. 7) analyze realistic combustion problems using the basic principles of combustion and state-of-the-art technology.Students will be evaluated on the basis of homework (20%), projects (25%), a mid-semester examination (25%), a final examination (25%), and class participation (5%).M E 531 will be offered each spring with an anticipated enrollment of 12 students; M E 532 will be offered each fall with an anticipated enrollment of 12.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "F SC 421 or M E 430 or M E 531",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 532"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 535",
+  "subject": "ME",
+  "number": "535",
+  "display": "ME 535",
+  "title": "Physics of Gases",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "An introduction to kinetic theory, statistical mechanics, quantum mechanics, atomic and molecular structure, chemical thermodynamics, and chemical kinetics of gases.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "AERSP 535"
+  ],
+  "aliases": [
+   "ME 535"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 537",
+  "subject": "ME",
+  "number": "537",
+  "display": "ME 537",
+  "title": "Laser Diagnostics for Combustion",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "A study of laser-based techniques for measuring gas temperature and concentration in chemically reacting flows.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "M E 535",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 537"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 544",
+  "subject": "ME",
+  "number": "544",
+  "display": "ME 544",
+  "title": "Engineering Mathematics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course covers ordinary and partial differential equations, linear algebra, numerical methods, special functions, vector calculus, Fourier methods, and complex analysis. These methods will prepare the student for a wide breadth of Mechanical Engineering research and applications in the sub-disciplines of - fluid and thermal sciences, - mechanical sciences, - dynamics, sensors and controls, - transportation systems, - design and manufacturing, - energy systems, and - biomedicine. After successfully completing this course, students will be able to synthesize important elements of Applied Mathematics to research endeavors in Mechanical Engineering. Broadly, they will be able to solve Engineering Mathematics problems using ordinary and partial differential equation methods, vector calculus, linear algebra, numerical methods, spectral methods, special functions, integral transform methods, symbolic mathematics, and complex analysis. The breadth and depth of coverage of ME 544 provides the student with the theoretical framework to synthesize numerous relevant advanced mathematics topics in their research and future scholarly and career activities in Mechanical Engineering. Six of the nine modules in 544 include brief review content introduced at the undergraduate level. 544 significantly extends the breadth and depth of these treatments. Topics not treated at the undergraduate level are incorporated in each module. Applications specific to research activities within Mechanical Engineering are emphasized in lecture examples and assignments.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 544"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 545",
+  "subject": "ME",
+  "number": "545",
+  "display": "ME 545",
+  "title": "Mechatronics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This class will facilitate the hands-on investigation of mechatronic systems using a problem-based approach, with specific focus on system-level implementations. M E 545 Mechatronics (3) This class will facilitate hands-on investigation and learning of mechatronic systems using a problem-based approach. The course consists of lectures, lab activities, and major projects that train students to develop system-level implementations of mechatronics. This course complements and builds on the existing undergraduate-level microcomputer interfacing course, which presents model-free design of single-processor, single-sensor, single-task, and/or single actuator mechatronic systems. This course focuses on model-based design of multi-processor, multi-sensor, multi-actuator, and multi-tasking mechatronic systems. Students are expected to be familiar with systems and signals analysis including Laplace transforms, Eigenvalues, Bode plots, stability margins, basic feedback loop performance and stability analysis, etc. Students should have a firm understanding of electrical circuits and structured programming. Nearly all assignments will require the use of MATLAB and/or some C-style programming.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "M E 445",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 545"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 546",
+  "subject": "ME",
+  "number": "546",
+  "display": "ME 546",
+  "title": "Designing Product Families",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Product families, product platforms, mass customization, product variety, modularity, commonality, robust design, product architectures. I E (M E) 546 Designing Products Families (3) Designing Product Families is a graduate-level course generally offered in the spring. It is designed for students interested in product realization, engineering design, and manufacturing to gain an understanding of mass customization and methods for designing families of products based on modular and scalable product platforms. The transition from craft production to mass production to mass customization will be covered in this course along with methods and tools for designing robust, modular, and scalable product platforms. Platform leveraging strategies and commonality metrics will be investigated through product dissection activities, which will also be integrated with lectures on evaluating manufacturing and assembly. Several industry case studies will also be discussed in the course to examine the implications of producing a variety of products and strategies for effective mass customization and product postponement.Students interested in taking this course should be familiar with product design and manufacturing.Students are evaluated through individual and group homework assignments, in-class participation and activities, and a group project report and presentation.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "M E 414 or M E 415 or I E 466",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "IE 546"
+  ],
+  "aliases": [
+   "ME 546"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 547",
+  "subject": "ME",
+  "number": "547",
+  "display": "ME 547",
+  "title": "Designing for Human Variability",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Statistics, optimization, and robust design methodologies to design products and environments that are robust to variability in users.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "EDSGN 547"
+  ],
+  "aliases": [
+   "ME 547"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 550",
+  "subject": "ME",
+  "number": "550",
+  "display": "ME 550",
+  "title": "Foundations of Engineering Systems Analysis",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Analytical methods are developed using the vector space approach for solving control and estimation problems; examples from different engineering applications. E E (M E) 550 Foundations of Engineering Systems Analysis (3) This 3-credit course is offered at the first-year graduate level and provides a systems-theoretic background for more advanced graduate courses in the disciplines of engineering and science. The course uses the vector space approach to develop the analytical foundations for solutions of science and engineering problems in diverse application areas such as optimal control, estimation, and signal processing. First, the theoretical foundation of vector spaces, function spaces, and Hilbert spaces are developed. Linear transformations are then introduced, followed by the Reisz-Frechet theorem and Hahn-Banach theorem, with applications to optimization problems. Spectral analysis is then covered. Finally, diverse applications of these various techniques are presented throughout this course to illustrate the wide range of engineering problems that can be solved using the vector space approach.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "MATH 436",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "EE 550"
+  ],
+  "aliases": [
+   "ME 550"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 551",
+  "subject": "ME",
+  "number": "551",
+  "display": "ME 551",
+  "title": "High Power Energy Storage",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "High-power energy storage technologies including advanced batteries, ultracapacitors, and flywheels. E SC (M E) 551 High Power Energy Storage (3) The course focuses on high-power, in-vehicle energy storage technologies used in hybrid electric vehicles, including advanced batteries, fuel cells, ultracapacitors, and flywheels. An interdisciplinary approach with mechanical, materials, electrical, and chemistry-based concepts provides the foundation to understand the operation and application of these energy storage devices. The course provides a synopsis of hybrid electric and fuel cell vehicle design, control, and simulation to determine the effect of energy storage components on performance and fuel efficiency.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "ESC 551"
+  ],
+  "aliases": [
+   "ME 551"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 552",
+  "subject": "ME",
+  "number": "552",
+  "display": "ME 552",
+  "title": "Optimal Control of Energy Systems",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course provides an overview of the fundamental principles and methods of optimal control, dynamic programming, and extremum-seeking control, with a focus on the application of these tools to a variety of problems in the energy generation, storage, and management domain. Fundamental topics covered include bond graph modeling of energetic systems, constrained and unconstrained static optimization, the Karush-Kuhn-Tucker conditions, extremum-seeking control, the Bellman principle of optimality, deterministic dynamic programming, Markov chains, stochastic dynamic programming, the Bolza optimal control problem, the Pontryagin maximum principle, the Hamilton-Jacobi-Bellman equation, linear quadratic regulation, bang-bang control, and pseudo-spectral optimal control. Applications examined include impedance matching in photovoltaics and wind power plants, fuel-minimizing optimal vehicle path planning, optimal Lithium-ion battery charging/discharging, optimal power management in hybrid electric and hybrid hydraulic vehicles, and optimal building energy management. The course serves as a broad overview of fundamental topics covered in more depth in other classes on dynamic programming, adaptive control, and optimal control. Equal emphasis is placed on the tools and methods of optimal control theory and their practical application to optimal energy management problems. The course is intended for graduate students in engineering interested in energy management research, and already possessing a basic familiarity with energy systems and dynamic system modeling.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "ME 450",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 552"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 554",
+  "subject": "ME",
+  "number": "554",
+  "display": "ME 554",
+  "title": "Digital Process Control",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Analysis and design of control systems with digital controllers, including PID, finite settling time, state feedback, and minimum variance algorithms.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "M E 450 , M E 455",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 554"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 555",
+  "subject": "ME",
+  "number": "555",
+  "display": "ME 555",
+  "title": "Linear System Theory and Control",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Advanced problems and techniques in the design of automatic control systems with emphasis on stability, controller design, and optimum performance. M E 555 Linear System Theory and Control (3) This course examines problems and techniques in the analysis and design of linear systems. The course assumes a fundamental background in dynamic system modeling and frequency-domain SISO control input analysis and design. Topics include: vectors and vector spaces; Eigenvalues and Eigenvectors; the Cayley-Hamilton theorem; Jordan canonical forms; internal and BIBO stability; Lyapunov stability analysis; observability and controllability; similarity transformations, state-space realization, and observer/controller canonical forms; pole placement; elementary observer and state-feedback controller design; the separation principle; Kalman filtering; and linear quadratic regulation.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "M E 455",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 555"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 556",
+  "subject": "ME",
+  "number": "556",
+  "display": "ME 556",
+  "title": "Robotic Concepts",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Analysis of robotic systems; end effectors, vision systems, sensors, stability and control, off-line programming, simulation of robotic systems.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "I E 456 or M E 456",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 556"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 558",
+  "subject": "ME",
+  "number": "558",
+  "display": "ME 558",
+  "title": "Robust Control Theory",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Fundamentals of Robust Control Theory with emphasis on stability, performance analysis, and design.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E E 580 or M E 555",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "EE 584"
+  ],
+  "aliases": [
+   "ME 558"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 559",
+  "subject": "ME",
+  "number": "559",
+  "display": "ME 559",
+  "title": "Nonlinear Control and Stability",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Design of nonlinear automatic control systems; phase-plane methods; describing functions; optimum switched systems; Liapunov stability; special topics in stability.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E E 380",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "EE 587"
+  ],
+  "aliases": [
+   "ME 559"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 560",
+  "subject": "ME",
+  "number": "560",
+  "display": "ME 560",
+  "title": "Solid Mechanics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Introduction to continuum mechanics, variational methods, and finite element formulations; application to bars, beams, cylinders, disks, and plates. E MCH (M E 560) 500 Solid Mechanics (3) This course introduces students to the fundamental principles and basic methods used in solid mechanics. Using indicial notation and integral formulations provides a foundation for more advanced study in continuum mechanics (E MCH 540) and finite element analysis (E MCH 560) specifically and in mechanics in general. The materials behavior is restricted to linear elastic and the emphasis is on stress analysis. Students are expected to have an understanding of elementary mechanics of materials (such as E MCH 013).The course objectives are to: 1) provide students with a firm foundation in solid mechanics. 2) introduce continuum mechanics concepts, variational methods, and the formulation used in finite element analysis. 3) enable students to formulate and solve the boundary value problems commonly encountered in the analysis of structures.The study of solid mechanics starts with the definition of stress and strain and how the two are related by material law. Field equations that relate strain to displacement, ensure a single valued displacement field, and the balance momentum are formulated. These are partial differential equations that can only be solved subject to known boundary and initial conditions. The field equations and boundary conditions comprise a boundary value problem that is usually difficult to solve exactly. Variational methods are used to bound or approximate the solution. The finite element method employs variational methods to formulate generic elements and is a computational tool for solving boundary value problems for complex geometries.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "EMCH 500"
+  ],
+  "aliases": [
+   "ME 560"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 561",
+  "subject": "ME",
+  "number": "561",
+  "display": "ME 561",
+  "title": "Structural Optimization Using Variational and Numerical Methods",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Shape and size optimization of elastic structures, continuous and discrete solution methods and numerical algorithms, design of compliant mechanisms. ME 561 Structural Optimization Using Variational and Numerical Methods (3) Optimal Structural Design is a graduate-level course generally offered in spring semester. The course is designed for graduate students in mechanical engineering or related fields who have already taken a course in finite element analysis. The course covers techniques in structural optimization from classical variational-based methods to modern numerical and finite element-based methods. Topics include shape and size optimization of elastic structures, continuous and discrete methods for least weight maximum stiffness design, solution using optimality criteria methods, structural topology optimization, gradient-based solution methods and numerical algorithms, and design project(s) using these methods. Methods are applied to examples such as beam and truss structures, compliant mechanisms, and piezoelectric actuators.Computer programming skills using software such as Matlab are required. Students are evaluated based on homework assignments, review and presentation of articles from the literature, class participation, and a group design project.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "M E 461",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 561"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 563",
+  "subject": "ME",
+  "number": "563",
+  "display": "ME 563",
+  "title": "Nonlinear Finite Elements",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Advanced theory of semidiscrete formulations for continua and structures; emphasizes dynamic and nonlinear problems.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "A B E513 , E MCH461 , or E MCH560",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 563"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 564",
+  "subject": "ME",
+  "number": "564",
+  "display": "ME 564",
+  "title": "Elastic and Dynamic Stability of Structures",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "An introduction to the concept and analysis methods of structural stability; structures under static/dynamic loading and high speed conditions.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E MCH213 , M E 450 ; students need to have basic understanding of mechanical behavior of materials to follow the equations in this course, and basic concepts of system stability to expand them to elastic structures",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 564"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 565",
+  "subject": "ME",
+  "number": "565",
+  "display": "ME 565",
+  "title": "Optimal Design of Mechanical and Structural Systems",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Application of numerical optimization techniques to design mechanical and structural systems; design sensitivity analysis.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 565"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 566",
+  "subject": "ME",
+  "number": "566",
+  "display": "ME 566",
+  "title": "Metal Additive Manufacturing Laboratory",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course will provide in-depth and hands-on laboratory experience in metal-based additive manufacturing. The laboratory activities will expose students to all aspects of the additive manufacturing workflow for metal components, starting with conceptual design, proceeding through fabrication, post-processing, and part inspection. Laboratory activities will include part design and analysis, process simulation and modeling, build preparation and machine set up, fabrication and post-processing, and non-destructive inspection and measurement. Laboratories will include computational design tools and simulation models as well as fabrication and post-processing (e.g., heat treatment, machining). Finally, the laboratory activities will also stress safe powder handling, equipment, and laser safety, which is particularly important when working with metallic powders and feedstocks. The laboratory is intended for students that have a basic understanding of the different additive manufacturing processes and are gaining familiarity with the engineering and science of additive manufacturing. The laboratory activities will provide students with the scientific foundation and research skills necessary to rigorously ascertain the performance of additively manufacturing materials, processes, and parts. Upon completion of the laboratory, students should be able to describe the workflow for additive manufacturing, identify main cost drivers, and describe the differences when using metals versus polymers. They should also understand the key tradeoffs between design, manufacturing, and materials as it relates to the additive manufacturing processes utilized in the laboratory activities.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "AMD 566"
+  ],
+  "aliases": [
+   "ME 566"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": [
+   "Recommended Preparation: This course is intended for students that have a basic understanding of the different additive manufacturing processes and are interested in gaining familiarity with the engineering and science of additive manufacturing"
+  ]
+ },
+ {
+  "code": "ME 571",
+  "subject": "ME",
+  "number": "571",
+  "display": "ME 571",
+  "title": "Foundations of Structural Dynamics and Vibration",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Modeling approaches and analysis methods of structural dynamics and vibration.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "AERSP304 , E MCH470 , M E 450 , or M E 570",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "AERSP 571",
+   "EMCH 571"
+  ],
+  "aliases": [
+   "ME 571"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 577",
+  "subject": "ME",
+  "number": "577",
+  "display": "ME 577",
+  "title": "Stochastic Systems for Science and Engineering",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "The course develops the theory of stochastic processes and linear and nonlinear stochastic differential equations for applications to science and engineering.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "MATH 414 or MATH 418 ; M E 550 or MATH 501",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "MATH 577"
+  ],
+  "aliases": [
+   "ME 577"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 578",
+  "subject": "ME",
+  "number": "578",
+  "display": "ME 578",
+  "title": "Theory and Applications of Wavelets",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Theory and physical interpretation of continuous and discrete wavelet transforms for applications in different engineering disciplines.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "M E 550 or MATH 501",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "MATH 578"
+  ],
+  "aliases": [
+   "ME 578"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 581",
+  "subject": "ME",
+  "number": "581",
+  "display": "ME 581",
+  "title": "Simulation Multibody Dynamics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course addresses kinematic and dynamic analyses of planar and spatial constrained multibody systems. The first half addresses planar methods while the second half is devoted to extensions for spatial analyses. Kinematic mobility and topology are introduced to help students recognize joint constraints within kinematic chains embedded in larger systems. Joint constraint models using matrix methods are formulated to describe kinematically driven chains. Systemic differential-algebraic equations are then derived that can be used for both inverse dynamics and forward dynamic time integration. Numerical integration methods for time domain simulation are also discussed. Overall goals are for students to be able to identify forward versus inverse dynamic problems; program their own planar and spatial kinematic models; and simulate forward dynamics.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 581"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": [
+   "Recommended Preparations: Advanced mathematical or computational experience"
+  ]
+ },
+ {
+  "code": "ME 590",
+  "subject": "ME",
+  "number": "590",
+  "display": "ME 590",
+  "title": "Colloquium",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "Continuing seminars that consist of a series of individual lectures by faculty, students, or outside speakers.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 590"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 596",
+  "subject": "ME",
+  "number": "596",
+  "display": "ME 596",
+  "title": "Individual Studies",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Creative projects, including nonthesis research, which are supervised on an individual basis and which fall outside the scope of formal courses.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 596"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 597",
+  "subject": "ME",
+  "number": "597",
+  "display": "ME 597",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given on a topical or special interest subject which may be offered infrequently.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 597"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 600",
+  "subject": "ME",
+  "number": "600",
+  "display": "ME 600",
+  "title": "Thesis Research",
+  "credits": "1-15 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 1,
+   "max": 15,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 600"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 601",
+  "subject": "ME",
+  "number": "601",
+  "display": "ME 601",
+  "title": "Ph.D. Dissertation Full-Time",
+  "credits": "0 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 0,
+   "max": 0,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 601"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 602",
+  "subject": "ME",
+  "number": "602",
+  "display": "ME 602",
+  "title": "Suprvised Experience in College Teaching",
+  "credits": "1-3 Credits/Maximum of 6",
+  "creditsParsed": {
+   "min": 1,
+   "max": 3,
+   "repeatableMax": 6
+  },
+  "description": "For graduate students helping to teach the beginning thermodynamics course, M.E. 22. Must have taken M.E. 504.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 602"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 610",
+  "subject": "ME",
+  "number": "610",
+  "display": "ME 610",
+  "title": "Thesis Research Off Campus",
+  "credits": "1-15 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 1,
+   "max": 15,
+   "repeatableMax": 999
+  },
+  "description": "No Description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 610"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ },
+ {
+  "code": "ME 611",
+  "subject": "ME",
+  "number": "611",
+  "display": "ME 611",
+  "title": "Ph.D. Dissertation Part-Time",
+  "credits": "0 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 0,
+   "max": 0,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "ME 611"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/me/",
+  "extraRaw": []
+ }
+]

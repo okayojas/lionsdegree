@@ -1,0 +1,527 @@
+{
+ "slug": "arts-architecture-art-ba",
+ "name": "Art, B.A. (Arts and Architecture)",
+ "type": "major",
+ "degree": "BA",
+ "college": "arts-architecture",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/arts-architecture/art-ba/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ART 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ART 111",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ART 122Y",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ARTH 111",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ARTH 112",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nART 110Ideas as Visual Images3\nART 111Ideas as Objects3\nART 122YCommentary on Art3\nARTH 111Ancient to Medieval Art 3\nARTH 112Renaissance to Modern Art 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ART 11",
+      "PSU 1"
+     ],
+     "credits": 1
+    },
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ART 211",
+       "ART 220",
+       "ART 223",
+       "ART 230",
+       "ART 240",
+       "ART 250",
+       "ART 260",
+       "ART 280",
+       "ART 296",
+       "ART 297",
+       "ART 299",
+       "DART 202",
+       "DART 206",
+       "PHOTO 100",
+       "PHOTO 201"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nART 11First-Year Seminar- School of Visual Arts1\nor PSU 1 First-Year Seminar Abington\nSelect 15 credits from the following:15\nART 211Introduction to Digital Art and Design Criticism\nART 220Figure Drawing\nART 223Drawing: Techniques, Materials, and Tools\nART 230Beginning Sculpture\nART 240Beginning Printmaking\nART 250Beginning Oil Painting\nART 260Water Media\nART 280Beginning Ceramics\nART 296Independent Studies (3 credits)\nART 297Special Topics (3 credits)\nART 299Foreign Study--Art (3 credits)\nDART 2022D Digital Art & Computer Graphics\nDART 206Web Design and Visual Web Development\nPHOTO 100Introduction to Photography\nPHOTO 201A Chronological Survey of Photography\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits in art history",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits from one of the following areas of concentration: ceramics, drawing and painting, new media, photography, printmaking, and sculpture",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 6 credits in art history6\nSupporting Courses and Related Areas: Require a grade of C or better\nSelect 15 credits from one of the following areas of concentration: ceramics, drawing and painting, new media, photography, printmaking, and sculpture15\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Art, B.A. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ART 11",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ART 110",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ARTH 111",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 15A",
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language",
+       "credits": 4,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ART 111",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ART 122Y",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ARTH 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language",
+       "credits": 4,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major (see list)",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major (see list)",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language",
+       "credits": 4,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Art History",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major (see list)",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major (see list)",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major (see list)",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Fields",
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Art History",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Concentration",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Concentration",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BA Fields",
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Cultures Course",
+       "credits": 3,
+       "footnotes": [
+        "5"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Concentration",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Elective Course",
+       "credits": 2,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Fields",
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Concentration",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

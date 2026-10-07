@@ -1,0 +1,44 @@
+{
+ "slug": "earth-mineral-sciences-earth-sustainability-certificate",
+ "name": "Earth Sustainability, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/earth-sustainability-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EARTH 103N",
+     "credits": 3,
+     "resolvedFrom": "EARTH 103"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EARTH 104N",
+       "EARTH 107N",
+       "EARTH 109",
+       "EARTH 111",
+       "GEOG 3N"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "EARTH 1033\nSelect 9 credits from the following:9\nEARTH 104NClimate, Energy and Our Future\nEARTH 107NCoastal Processes, Hazards and Society\nEARTH 109The Fundamentals of Shale Energy Development\nEARTH 111\nGEOG 3NFood and the Future Environment\n"
+  }
+ ],
+ "suggestedPlans": []
+}

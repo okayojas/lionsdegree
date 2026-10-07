@@ -1,0 +1,863 @@
+{
+ "slug": "liberal-arts-history-ba",
+ "name": "History, B.A. (Liberal Arts)",
+ "type": "major",
+ "degree": "BA",
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/history-ba/",
+ "totalCredits": 123,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "HIST 302W",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nHIST 302WUndergraduate Seminar3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select one sequence of the following:"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "HIST 1",
+      "HIST 2"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "HIST 10",
+      "HIST 11"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "HIST 20",
+      "HIST 21"
+     ],
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect one sequence of the following:6\nHIST 1& HIST 2Western Civilization I and Western Civilization II\nHIST 10& HIST 11World History to 1500 and World History since 1500\nHIST 20& HIST 21American Civilization to 1877 and American Civilization Since 1877\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits, in consultation with an adviser, at the 100-200-level, one course from each of the following field categories: Europe, United States, Global, Pre-Modern",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits at the 100-400-level",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits at the 400-level, at least one course which must be in Global History",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 12 credits, in consultation with an adviser, at the 100-200-level, one course from each of the following field categories: Europe, United States, Global, Pre-Modern 12\nSelect 3 credits at the 100-400-level3\nSelect 12 credits at the 400-level, at least one course which must be in Global History12\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "History, B.A. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LA 83",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "HIST Survey Course I",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 1",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Hist Survey Course II",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 2",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "100- or 200-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 3",
+       "credits": 4,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "100- or 200-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "100- or 200-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "B.A. Knowledge Domains",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HIST 302W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "100- or 200-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "B.A. Knowledge Domains",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "100- or 200-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Cultures",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "B.A. Knowledge Domains",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "History, B.A. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "HIST Survey Course I",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 1",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Hist Survey Course II",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 2",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "100- or 200-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 3",
+       "credits": 4,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "100- or 200-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "100- or 200-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "B.A. Knowledge Domains",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HIST 302W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "100- or 200-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "B.A. Knowledge Domains",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "100- or 200-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Cultures",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "B.A. Knowledge Domains",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level HIST Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 122,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

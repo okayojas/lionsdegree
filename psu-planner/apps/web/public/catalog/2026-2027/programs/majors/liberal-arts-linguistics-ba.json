@@ -1,0 +1,940 @@
+{
+ "slug": "liberal-arts-linguistics-ba",
+ "name": "Linguistics, B.A.",
+ "type": "major",
+ "degree": "BA",
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/linguistics-ba/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "LING 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LING 402",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LING 404",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LING 449",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nLING 100Foundations of Linguistics 3\nLING 402Syntax I 3\nLING 404Phonology I 3\nLING 449Semantics I3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "STAT 200 or appropriate statistics course"
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "LING 405",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "LING 448",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "APLNG 200",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "FR 316",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "FR 417",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "FR 418",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "FR 419",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GER 412",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GER 430",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "LATIN 450W",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "LING 493",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 314",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 315N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 316",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 418",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Select 6 additional credits in Linguistics at the 400 level (list kept in department)"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Select 6 additional credits from Linguistics courses and/or approved related fields"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSTAT 200 or appropriate statistics course3-4\nSelect one of the following:3\nLING 405Introduction to Historical Linguistics\nLING 448Sociolinguistics\nAPLNG 200Introduction to Language, Culture, and Social Interaction\nSelect one of the following:3\nFR 316French Linguistics\nFR 417French Phonology\nFR 418French Syntax\nFR 419French Semantics\nGER 412Introduction to German linguistics\nGER 430History of the German Language\nLATIN 450W\nLING 493Field Methods\nSPAN 314Spanish Sounds\nSPAN 315NSpanish and Spanish-speakers in the U.S.\nSPAN 316Building Words and Sentences in Spanish\nSPAN 418The Evolution of Spanish\nSelect 6 additional credits in Linguistics at the 400 level (list kept in department)6\nSelect 6 additional credits from Linguistics courses and/or approved related fields6\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Linguistics, B.A. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ENGL 137H",
+        "CAS 137H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LING 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 1",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 138T",
+        "ENGL 138T"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Linguistics Social Science Requirement",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 2",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LING 404",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 3",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LING 402",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Field Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Field Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LING 449",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D",
+        "ENGL 202H"
+       ],
+       "resolvedFrom": "ENGL 202"
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Non-English Linguistics Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Field Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA World Cultures Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Any LING 4XX Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Related Area Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 12.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Any LING 4XX Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Related Area Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 123,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Linguistics, B.A. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ENGL 137H",
+        "CAS 137H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LING 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 1",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 138T",
+        "ENGL 138T"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Linguistics Social Science Requirement",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 2",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LING 404",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 3",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LING 402",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Field Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Field Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LING 449",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D",
+        "ENGL 202H"
+       ],
+       "resolvedFrom": "ENGL 202"
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Non-English Linguistics Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Field Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA World Cultures Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Any LING 4XX Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Related Area Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 12.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Any LING 4XX Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Related Area Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 121,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

@@ -1,0 +1,856 @@
+{
+ "slug": "liberal-arts-global-international-studies-ba",
+ "name": "Global and International Studies, B.A.",
+ "type": "major",
+ "degree": "BA",
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/global-international-studies-ba/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "GLIS 101N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "GLIS 102N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "GLIS 400Y",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "GLIS 101NGlobalization 3\nGLIS 102NGlobal Pathways 3\nGLIS 400YSeminar in Global and International Studies3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select EITHER 6 credits in a language beyond 12th-credit level proficiency, OR 6 credits in a second world language, or equivalent proficiencies",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select EITHER 6 credits in a language beyond 12th-credit level proficiency, OR 6 credits in a second world language, or equivalent proficiencies 6\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 21,
+     "commentRaw": "Select 21 credits in the Pathway courses",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 21 credits in the Pathway courses 21\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Global And International Studies, B.A. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15",
+        "ENGL 137H",
+        "CAS 137H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "GLIS 101N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 83",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 1",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "GLIS 102N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "ENGL 138T",
+        "CAS 138T"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 2",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Major Course from List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 3",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "Major Course from List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 4 or Second World Language Level 1",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Requirement",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Major Course from List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 5 or Second World Language Level 2",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Requirement",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "4XX Level Major Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "4XX Level Major Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BA World Cultures Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Requirement",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "4XX Level Major Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "GLIS 400Y",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Writing Across the Curriculum Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "4XX Level Major Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 123,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Global And International Studies, B.A. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "GLIS 101N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15",
+        "ENGL 137H",
+        "CAS 137H"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 1",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "GLIS 102N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "ENGL 138T",
+        "CAS 138T"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 2",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Major Course from List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 3",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Major Course from List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 4 or Second World Language Level 1",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Requirement",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "Major Course from List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 5 or Second World Language Level 2",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Requirement",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "4XX Level Major Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "4XX Level Major Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BA World Cultures Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Requirement",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "4XX Level Major Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "GLIS 400Y",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Writing Across the Curriculum Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "4XX Level Major Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 121,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

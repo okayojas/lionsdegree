@@ -1,0 +1,80 @@
+{
+ "slug": "behrend-game-development-minor",
+ "name": "Game Development, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/game-development-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "GAME 220",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "GAME 250",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "GAME 480",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nGAME 220Introduction to Game Design 3\nGAME 250Technical Game Development 3\nGAME 480Game Development Project3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "3 credits of 100 or 200-level GAME courses (excluding GAME 220 and 250)"
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 244",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SELECT 6",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "OF 400",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "GAME 480",
+     "credits": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect one of the following:3\n3 credits of 100 or 200-level GAME courses (excluding GAME 220 and 250)\nPSYCH 244Introduction to the Psychology of Human Factors Engineering\nSelect 6 credits of 400-level GAME courses (excluding GAME 480)6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

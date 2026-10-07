@@ -1,0 +1,7031 @@
+{
+ "slug": "eberly-science-biology-bs",
+ "name": "Biology, B.S. (Science)",
+ "type": "major",
+ "degree": "BS",
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/biology-bs/",
+ "totalCredits": 124,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CHEM 111Experimental Chemistry I 1\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 113",
+      "CHEM 113B"
+     ],
+     "credits": 1
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 211",
+      "PHYS 212",
+      "PHYS 213",
+      "PHYS 214"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 250",
+      "PHYS 251"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 220W",
+      "BIOL 220M"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 230W",
+      "BIOL 230M"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 240W",
+      "BIOL 240M"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 110",
+      "CHEM 110H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 112",
+      "CHEM 112H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 110",
+       "BIOL 110H",
+       "BIOL 110S"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MATH 140",
+       "MATH 140B",
+       "MATH 140H"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "STAT 200",
+       "STAT 240",
+       "STAT 250"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CHEM 113Experimental Chemistry II 1\nor CHEM 113B Experimental Chemistry II--Bioscience\nSelect one of the following:8-12\nPHYS 211& PHYS 212& PHYS 213& PHYS 214General Physics: Mechanicsand General Physics: Electricity and Magnetismand General Physics: Fluids and Thermal Physicsand General Physics: Wave Motion and Quantum Physics\nPHYS 250& PHYS 251Introductory Physics Iand Introductory Physics II\nAdditional Courses: Require a grade of C or better\nBIOL 220WBiology: Populations and Communities4\nor BIOL 220M Honors Biology: Populations and Communities\nBIOL 230WBiology: Molecules and Cells4\nor BIOL 230M Honors Biology: Molecules and Cells\nBIOL 240WBiology: Function and Development of Organisms4\nor BIOL 240M Honors Biology: Function and Development of Organisms\nCHEM 110Chemical Principles I 3\nor CHEM 110H Chemical Principles I - Honors\nCHEM 112Chemical Principles II 3\nor CHEM 112H Chemical Principles II - Honors\nSelect 4 credits from the following:4\nBIOL 110Biology: Basic Concepts and Biodiversity\nBIOL 110HHonors Biology: Basic Concepts and Biodiversity\nBIOL 110SBiology: Basic Concepts and Biodiversity\nSelect 4 credits from the following:4\nMATH 140Calculus With Analytic Geometry I\nMATH 140BCalculus and Biology I\nMATH 140HHonors Calculus with Analytic Geometry I\nSelect 3-4 credits from the following:3-4\nSTAT 200Elementary Statistics\nSTAT 240Introduction to Biometry\nSTAT 250Introduction to Biostatistics\n"
+  },
+  {
+   "heading": "Requirements for the Option",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select an option"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select an option50-55\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 463",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 463General Ecology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "STAT 462",
+      "STAT 464"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 202",
+      "CHEM 203"
+     ],
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CHEM 210",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CHEM 212",
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 213",
+      "CHEM 213W",
+      "CHEM 213M"
+     ],
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select a minimum of 15 credits of 400-level biology courses, with at least 6 credits from the Ecology group, 3 credits from the Evolution group, and 3 credits from the Practicum group. A maximum of 3 credits of BIOL 400, 494, 495, 496, and SC 295, 395, 495 may be used to fulfill 15 credits minimum in the 400-level biology course requirements.",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "BIOL"
+      ],
+      "minLevel": 400
+     }
+    },
+    {
+     "type": "note",
+     "commentRaw": "Ecology Group:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 406",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 412",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 415",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 417",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 418",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 419",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 429",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 435",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 436",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 444",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 445",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 446",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 448",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 450W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 464",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 482",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 483",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 484",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 489",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 499A",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Evolution Group:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 405",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 406",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 414",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 417",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 420",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 421",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 422",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 427",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 428",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 429",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 430",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 432",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 433",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 434",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 436",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 439",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 440",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 442",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 443",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 446",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 451",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 460",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 460H",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 464",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 474",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 478",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 484",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENT 402W",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Practicum Group:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 400",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 402W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 403W",
+     "credits": null,
+     "resolvedFrom": "BIOL 403"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 407",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 414",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 417",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 419",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 421",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 422",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 433",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 437",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 439",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 444",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 450W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 459",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 465",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 473",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 476",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 477",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 478",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 483",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 484",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 489",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 494",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 495",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 496",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 499A",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BMB 442",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PPEM 427",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 220",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 295",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 395",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 475N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 495",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "STAT 462Applied Regression Analysis3\nor STAT 464 Applied Nonparametric Statistics\nSelect one of the following:6-8\nCHEM 202& CHEM 203Fundamentals of Organic Chemistry Iand Fundamentals of Organic Chemistry II\nCHEM 210 & CHEM 212 & (CHEM 213 or CHEM 213W or CHEM 213M)\nGroups\nSelect a minimum of 15 credits of 400-level biology courses, with at least 6 credits from the Ecology group, 3 credits from the Evolution group, and 3 credits from the Practicum group. A maximum of 3 credits of BIOL 400, 494, 495, 496, and SC 295, 395, 495 may be used to fulfill 15 credits minimum in the 400-level biology course requirements.15\nEcology Group:\nBIOL 406Symbiosis\nBIOL 412Ecology of Infectious Diseases\nBIOL 415Ecotoxicology\nBIOL 417Invertebrate Zoology\nBIOL 418Biology of Human Infectious Diseases\nBIOL 419Ecological and Environmental Problem Solving\nBIOL/PPEM 425Biology of Fungi\nBIOL 429Animal Behavior\nBIOL 435Ecology of Lakes and Streams\nBIOL 436Population Ecology and Global Climate Change\nBIOL 444Field Ecology\nBIOL 445Molecular Ecology\nBIOL 446Physiological Ecology\nBIOL 448Ecology of Plant Reproduction\nBIOL 450WExperimental Field Biology\nBIOL 464Sociobiology\nBIOL 482Coastal Biology\nBIOL 483Coastal Biology Travel Experience\nBIOL 484Biodiversity of Pennsylvania\nBIOL 489Biology of Ecohealth in Tanzania\nBIOL 499ATropical Field Ecology\nEvolution Group:\nBIOL 405Molecular Evolution\nBIOL 406Symbiosis\nBIOL 414Taxonomy of Seed Plants\nBIOL 417Invertebrate Zoology\nBIOL 420Paleobotany\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL 422Advanced Genetics\nBIOL/PPEM 425Biology of Fungi\nBIOL 427Evolution\nBIOL 428Population Genetics\nBIOL 429Animal Behavior\nBIOL 430Developmental Biology\nBIOL 432Developmental Genetics\nBIOL 433Evolution of Vertebrates\nBIOL 434Pathobiology of Emerging Infectious Disease\nBIOL 436Population Ecology and Global Climate Change\nBIOL 439Practical Bioinformatics\nBIOL 440Evolution of Infectious Diseases\nBIOL 442Evolutionary Medicine\nBIOL 443Evo-devo: Evolution of Developmental Mechanisms\nBIOL 446Physiological Ecology\nBIOL 451Biology of RNA\nBIOL 460Human Genetics\nBIOL 460HHonors Human Genetics\nBIOL 464Sociobiology\nBIOL 474Astrobiology\nBIOL 478HUMAN NEUROANATOMY\nBIOL 484Biodiversity of Pennsylvania\nENT 402WBiology of Animal Parasites\nPracticum Group:\nBIOL 400Teaching in Biology\nBIOL 402WBiological Experimental Design\nBIOL 403Biological Writing and Communication for Research\nBIOL 407Plant Developmental Anatomy\nBIOL 414Taxonomy of Seed Plants\nBIOL 417Invertebrate Zoology\nBIOL 419Ecological and Environmental Problem Solving\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL 422Advanced Genetics\nBIOL/PPEM 425Biology of Fungi\nBIOL 433Evolution of Vertebrates\nBIOL 437Histology\nBIOL 439Practical Bioinformatics\nBIOL 444Field Ecology\nBIOL 450WExperimental Field Biology\nBIOL 459Plant Tissue Culture and Biotechnology\nBIOL 465Network analysis of biological systems\nBIOL 473Laboratory in Mammalian Physiology\nBIOL 476Advanced Human Anatomy - cadaver based\nBIOL 477Biology Cadaver Dissection\nBIOL 478HUMAN NEUROANATOMY\nBIOL 483Coastal Biology Travel Experience\nBIOL 484Biodiversity of Pennsylvania\nBIOL 489Biology of Ecohealth in Tanzania\nBIOL 494Research Project\nBIOL 495Internship in Biology\nBIOL 496Independent Studies\nBIOL 499ATropical Field Ecology\nBMB 442Laboratory in Proteins, Nucleic Acids, and Molecular Cloning\nPPEM 427Mycotoxins: Effects of Fungal Toxins on Human and Animal Health\nSC 220Principles and Strategies for Effective STEM Learning I\nSC 295Science Co-op Work Experience I\nSC 395Science Co-op Work Experience II\nSC 475NAnatomy in Italy: Cadavers, Culture, and Science\nSC 495Science Co-op Work Experience III\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 21,
+     "commentRaw": "Select 21-28 credits from department list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 21-28 credits from department list21-28\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 202",
+      "CHEM 203"
+     ],
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CHEM 210",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CHEM 212",
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 213",
+      "CHEM 213W",
+      "CHEM 213M"
+     ],
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select a minimum of 18 credits of 400-level biology courses, with at least 3 credits from each of the following groups (each course may be used to satisfy a requirement in only one group). Moreover, a maximum of 3 credits of BIOL 400, 494, 495, 496 and SC 295, 395, 495 may be used to fulfill the 18 credit minimum in the 400-level biology course requirements.",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 406",
+       "BIOL 407",
+       "BIOL 414",
+       "BIOL 420",
+       "BIOL 424",
+       "BIOL 431",
+       "BIOL 441",
+       "BIOL 444",
+       "BIOL 446",
+       "BIOL 448",
+       "BIOL 451",
+       "BIOL 482",
+       "BIOL 484",
+       "BIOL 499A",
+       "HORT 407",
+       "HORT 445",
+       "PPEM 416",
+       "PPEM 427",
+       "BIOL 405",
+       "BIOL 406",
+       "BIOL 414",
+       "BIOL 417",
+       "BIOL 418",
+       "BIOL 420",
+       "BIOL 421",
+       "BIOL 422",
+       "BIOL 427",
+       "BIOL 428",
+       "BIOL 429",
+       "BIOL 430",
+       "BIOL 432",
+       "BIOL 433",
+       "BIOL 434",
+       "BIOL 436",
+       "BIOL 439",
+       "BIOL 440",
+       "BIOL 442",
+       "BIOL 443",
+       "BIOL 446",
+       "BIOL 451",
+       "BIOL 460",
+       "BIOL 460H",
+       "BIOL 464",
+       "BIOL 474",
+       "BIOL 478",
+       "BIOL 484",
+       "ENT 402W",
+       "BIOL 404",
+       "BIOL 405",
+       "BIOL 407",
+       "BIOL 409",
+       "BIOL 411",
+       "BIOL 413",
+       "BIOL 416",
+       "BIOL 422",
+       "BIOL 426",
+       "BIOL 428",
+       "BIOL 430",
+       "BIOL 431",
+       "BIOL 432",
+       "BIOL 439",
+       "BIOL 443",
+       "BIOL 445",
+       "BIOL 448",
+       "BIOL 451",
+       "BIOL 455",
+       "BIOL 460",
+       "BIOL 460H",
+       "BIOL 467",
+       "BIOL 469",
+       "BMB 450",
+       "BMB 464",
+       "BMB 484",
+       "HORT 407",
+       "MICRB 410",
+       "BIOL 406",
+       "BIOL 412",
+       "BIOL 415",
+       "BIOL 417",
+       "BIOL 418",
+       "BIOL 419",
+       "BIOL 429",
+       "BIOL 435",
+       "BIOL 436",
+       "BIOL 444",
+       "BIOL 445",
+       "BIOL 446",
+       "BIOL 448",
+       "BIOL 450W",
+       "BIOL 463",
+       "BIOL 464",
+       "BIOL 482",
+       "BIOL 483",
+       "BIOL 484",
+       "BIOL 489",
+       "BIOL 499A",
+       "ENT 402W",
+       "BIOL 404",
+       "BIOL 406",
+       "BIOL 409",
+       "BIOL 411",
+       "BIOL 413",
+       "BIOL 415",
+       "BIOL 416",
+       "BIOL 421",
+       "BIOL 424",
+       "BIOL 426",
+       "BIOL 430",
+       "BIOL 431",
+       "BIOL 432",
+       "BIOL 437",
+       "BIOL 443",
+       "BIOL 446",
+       "BIOL 460",
+       "BIOL 460H",
+       "BIOL 465",
+       "BIOL 469",
+       "BIOL 470",
+       "BIOL 472",
+       "BIOL 475",
+       "BIOL 476",
+       "BIOL 478",
+       "BIOL 479",
+       "BIOL 400",
+       "BIOL 402W",
+       "BIOL 403",
+       "BIOL 407",
+       "BIOL 414",
+       "BIOL 417",
+       "BIOL 419",
+       "BIOL 421",
+       "BIOL 422",
+       "BIOL 433",
+       "BIOL 437",
+       "BIOL 439",
+       "BIOL 440",
+       "BIOL 444",
+       "BIOL 450W",
+       "BIOL 461",
+       "BIOL 465",
+       "BIOL 473",
+       "BIOL 476",
+       "BIOL 477",
+       "BIOL 478",
+       "BIOL 483",
+       "BIOL 484",
+       "BIOL 489",
+       "BIOL 495",
+       "BIOL 496",
+       "BIOL 499A",
+       "BMB 442",
+       "PPEM 427",
+       "SC 220",
+       "SC 295",
+       "SC 395",
+       "SC 475N",
+       "SC 495"
+      ]
+     }
+    },
+    {
+     "type": "note",
+     "commentRaw": "Plant and Fungi Group:"
+    },
+    {
+     "type": "note",
+     "commentRaw": "Evolution Group:"
+    },
+    {
+     "type": "note",
+     "commentRaw": "Genetics and Developmental Biology Group:"
+    },
+    {
+     "type": "note",
+     "commentRaw": "Ecology Group:"
+    },
+    {
+     "type": "note",
+     "commentRaw": "Physiology Group:"
+    },
+    {
+     "type": "note",
+     "commentRaw": "Practicum Group:"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select one of the following:6-8\nCHEM 202& CHEM 203Fundamentals of Organic Chemistry Iand Fundamentals of Organic Chemistry II\nCHEM 210 & CHEM 212 & (CHEM 213 or CHEM 213W or CHEM 213M)\nGroups\nSelect a minimum of 18 credits of 400-level biology courses, with at least 3 credits from each of the following groups (each course may be used to satisfy a requirement in only one group). Moreover, a maximum of 3 credits of BIOL 400, 494, 495, 496 and SC 295, 395, 495 may be used to fulfill the 18 credit minimum in the 400-level biology course requirements.18\nPlant and Fungi Group:\nBIOL 406Symbiosis\nBIOL 407Plant Developmental Anatomy\nBIOL 414Taxonomy of Seed Plants\nBIOL 420Paleobotany\nBIOL 424Seeds of Change: The Uses of Plants\nBIOL/PPEM 425Biology of Fungi\nBIOL 431Reproductive Biology\nBIOL 441Plant Physiology\nBIOL 444Field Ecology\nBIOL 446Physiological Ecology\nBIOL 448Ecology of Plant Reproduction\nBIOL 451Biology of RNA\nBIOL 482Coastal Biology\nBIOL 484Biodiversity of Pennsylvania\nBIOL 499ATropical Field Ecology\nHORT 407Plant Breeding\nHORT 445Plant Ecology\nPPEM 416Plant Virology: Molecules to Populations\nPPEM 427Mycotoxins: Effects of Fungal Toxins on Human and Animal Health\nEvolution Group:\nBIOL 405Molecular Evolution\nBIOL 406Symbiosis\nBIOL 414Taxonomy of Seed Plants\nBIOL 417Invertebrate Zoology\nBIOL 418Biology of Human Infectious Diseases\nBIOL 420Paleobotany\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL 422Advanced Genetics\nBIOL/PPEM 425Biology of Fungi\nBIOL 427Evolution\nBIOL 428Population Genetics\nBIOL 429Animal Behavior\nBIOL 430Developmental Biology\nBIOL 432Developmental Genetics\nBIOL 433Evolution of Vertebrates\nBIOL 434Pathobiology of Emerging Infectious Disease\nBIOL 436Population Ecology and Global Climate Change\nBIOL 439Practical Bioinformatics\nBIOL 440Evolution of Infectious Diseases\nBIOL 442Evolutionary Medicine\nBIOL 443Evo-devo: Evolution of Developmental Mechanisms\nBIOL 446Physiological Ecology\nBIOL 451Biology of RNA\nBIOL 460Human Genetics\nBIOL 460HHonors Human Genetics\nBIOL 464Sociobiology\nBIOL 474Astrobiology\nBIOL 478HUMAN NEUROANATOMY\nBIOL 484Biodiversity of Pennsylvania\nENT 402WBiology of Animal Parasites\nGenetics and Developmental Biology Group:\nBIOL 404Cellular Mechanisms in Vertebrate Physiology\nBIOL 405Molecular Evolution\nBIOL 407Plant Developmental Anatomy\nBIOL 409Biology of Aging\nBIOL 411Medical Embryology\nBIOL 413Cell Signaling and Regulation\nBIOL 416Biology of Cancer\nBIOL 422Advanced Genetics\nBIOL 426Developmental Neurobiology\nBIOL 428Population Genetics\nBIOL 430Developmental Biology\nBIOL 431Reproductive Biology\nBIOL 432Developmental Genetics\nBIOL 439Practical Bioinformatics\nBIOL 443Evo-devo: Evolution of Developmental Mechanisms\nBIOL 445Molecular Ecology\nBIOL 448Ecology of Plant Reproduction\nBIOL 451Biology of RNA\nBIOL 455Stem Cell Biology and Therapy\nBIOL 460Human Genetics\nBIOL 460HHonors Human Genetics\nBIOL 467Molecular Basis of Neurological Diseases\nBIOL 469Neurobiology\nBMB 450Microbial/Molecular Genetics\nBMB 464Molecular Medicine\nBMB 484Functional Genomics\nHORT 407Plant Breeding\nMICRB 410Principles of Immunology\nEcology Group:\nBIOL 406Symbiosis\nBIOL 412Ecology of Infectious Diseases\nBIOL 415Ecotoxicology\nBIOL 417Invertebrate Zoology\nBIOL 418Biology of Human Infectious Diseases\nBIOL 419Ecological and Environmental Problem Solving\nBIOL/PPEM 425Biology of Fungi\nBIOL 429Animal Behavior\nBIOL 435Ecology of Lakes and Streams\nBIOL 436Population Ecology and Global Climate Change\nBIOL 444Field Ecology\nBIOL 445Molecular Ecology\nBIOL 446Physiological Ecology\nBIOL 448Ecology of Plant Reproduction\nBIOL 450WExperimental Field Biology\nBIOL 463General Ecology\nBIOL 464Sociobiology\nBIOL 482Coastal Biology\nBIOL 483Coastal Biology Travel Experience\nBIOL 484Biodiversity of Pennsylvania\nBIOL 489Biology of Ecohealth in Tanzania\nBIOL 499ATropical Field Ecology\nENT 402WBiology of Animal Parasites\nPhysiology Group:\nBIOL 404Cellular Mechanisms in Vertebrate Physiology\nBIOL 406Symbiosis\nBIOL 409Biology of Aging\nBIOL 411Medical Embryology\nBIOL 413Cell Signaling and Regulation\nBIOL 415Ecotoxicology\nBIOL 416Biology of Cancer\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL 424Seeds of Change: The Uses of Plants\nBIOL 426Developmental Neurobiology\nBIOL 430Developmental Biology\nBIOL 431Reproductive Biology\nBIOL 432Developmental Genetics\nBIOL 437Histology\nBIOL 443Evo-devo: Evolution of Developmental Mechanisms\nBIOL 446Physiological Ecology\nBIOL 460Human Genetics\nBIOL 460HHonors Human Genetics\nBIOL 465Network analysis of biological systems\nBIOL 469Neurobiology\nBIOL 470Functional and Integrative Neuroscience\nBIOL 472Human Physiology\nBIOL 475Human Pathophysiology\nBIOL 476Advanced Human Anatomy - cadaver based\nBIOL 478HUMAN NEUROANATOMY\nBIOL 479General Endocrinology\nPracticum Group:\nBIOL 400Teaching in Biology\nBIOL 402WBiological Experimental Design\nBIOL 403Biological Writing and Communication for Research\nBIOL 407Plant Developmental Anatomy\nBIOL 414Taxonomy of Seed Plants\nBIOL 417Invertebrate Zoology\nBIOL 419Ecological and Environmental Problem Solving\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL 422Advanced Genetics\nBIOL/PPEM 425Biology of Fungi\nBIOL 433Evolution of Vertebrates\nBIOL 437Histology\nBIOL 439Practical Bioinformatics\nBIOL 440Evolution of Infectious Diseases\nBIOL 444Field Ecology\nBIOL 450WExperimental Field Biology\nBIOL/BIOTC 459Plant Tissue Culture and Biotechnology\nBIOL 461Contemporary Issues in Science and Medicine\nBIOL 465Network analysis of biological systems\nBIOL 473Laboratory in Mammalian Physiology\nBIOL 476Advanced Human Anatomy - cadaver based\nBIOL 477Biology Cadaver Dissection\nBIOL 478HUMAN NEUROANATOMY\nBIOL 483Coastal Biology Travel Experience\nBIOL 484Biodiversity of Pennsylvania\nBIOL 489Biology of Ecohealth in Tanzania\nBIOL 495Internship in Biology\nBIOL 496Independent Studies\nBIOL 499ATropical Field Ecology\nBMB 442Laboratory in Proteins, Nucleic Acids, and Molecular Cloning\nPPEM 427Mycotoxins: Effects of Fungal Toxins on Human and Animal Health\nSC 220Principles and Strategies for Effective STEM Learning I\nSC 295Science Co-op Work Experience I\nSC 395Science Co-op Work Experience II\nSC 475NAnatomy in Italy: Cadavers, Culture, and Science\nSC 495Science Co-op Work Experience III\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 24,
+     "commentRaw": "Select 24-31 credits from department list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 24-31 credits from department list24-31\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 322",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BIOL 430",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 212",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 322Genetic Analysis3\nBIOL 430Developmental Biology3\nCHEM 210Organic Chemistry I3\nCHEM 212Organic Chemistry II3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BMB 401",
+      "BMB 401H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BMB 402",
+      "BMB 402H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 2,
+     "commentRaw": "Select 2 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CHEM 213",
+       "CHEM 213M",
+       "CHEM 213W"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 2,
+     "commentRaw": "Select 2-5 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MATH 220",
+       "MATH 231",
+       "MATH 240",
+       "MICRB 201",
+       "MICRB 202"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select a minimum of 12 credits of 400-level courses, with at least 6 credits from the Genetics and Developmental Biology group, 3 credits from Evolution, and 3 credits from the Practicum group. A maximum of 3 credits of BIOL 400, 494, 495, 496 and SC 295, 395, 495 may be used to fulfill the 12 credit minimum in the 400-level biology course requirements.",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "BIOL"
+      ],
+      "minLevel": 400
+     }
+    },
+    {
+     "type": "note",
+     "commentRaw": "Genetics and Developmental Biology Group:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 404",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 405",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 407",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 409",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 411",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 413",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 416",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 422",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 426",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 428",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 431",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 432",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 439",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 443",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 448",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 451",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 455",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 460",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 460H",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 467",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 469",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "A maximum of 3 credits may be chosen from:"
+    },
+    {
+     "type": "course",
+     "code": "BMB 400",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BMB 450",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BMB 464",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BMB 484",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HORT 407",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MICRB 410",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Evolution Group:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 405",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 406",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 414",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 417",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 418",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 420",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 421",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 422",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 427",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 428",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 429",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 430",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 432",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 433",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 434",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 436",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 440",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 442",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 443",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 446",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 451",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 460",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 460H",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 464",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 474",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 478",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 484",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENT 402W",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Practicum Group:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 400",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 402W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 403W",
+     "credits": null,
+     "resolvedFrom": "BIOL 403"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 407",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 414",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 417",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 419",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 421",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 422",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 433",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 437",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 439",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 444",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 450W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 461",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 473",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 476",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 477",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 478",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 483",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 484",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 489",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 494",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 495",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 496",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 499A",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BMB 442",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PPEM 427",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 220",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 295",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 395",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 475N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 495",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BMB 401General Biochemistry3\nor BMB 401H General Biochemistry\nBMB 402General Biochemistry3\nor BMB 402H General Biochemistry\nSelect 2 credits from the following:2\nCHEM 213Laboratory in Organic Chemistry\nCHEM 213MLaboratory in Organic Chemistry - Honors, Writing Intensive\nCHEM 213WLaboratory in Organic Chemistry - Writing Intensive\nSelect 2-5 credits from the following:2-5\nMATH 220Matrices\nMATH 231Calculus of Several Variables\nMATH 240Mathematical Methods for Biology and the Life Sciences\nMICRB 201Introductory Microbiology\nMICRB 202Introductory Microbiology Laboratory\nGroups\nSelect a minimum of 12 credits of 400-level courses, with at least 6 credits from the Genetics and Developmental Biology group, 3 credits from Evolution, and 3 credits from the Practicum group. A maximum of 3 credits of BIOL 400, 494, 495, 496 and SC 295, 395, 495 may be used to fulfill the 12 credit minimum in the 400-level biology course requirements.12\nGenetics and Developmental Biology Group:\nBIOL 404Cellular Mechanisms in Vertebrate Physiology\nBIOL 405Molecular Evolution\nBIOL 407Plant Developmental Anatomy\nBIOL 409Biology of Aging\nBIOL 411Medical Embryology\nBIOL 413Cell Signaling and Regulation\nBIOL 416Biology of Cancer\nBIOL 422Advanced Genetics\nBIOL 426Developmental Neurobiology\nBIOL 428Population Genetics\nBIOL 431Reproductive Biology\nBIOL 432Developmental Genetics\nBIOL 439Practical Bioinformatics\nBIOL 443Evo-devo: Evolution of Developmental Mechanisms\nBIOL 448Ecology of Plant Reproduction\nBIOL 451Biology of RNA\nBIOL 455Stem Cell Biology and Therapy\nBIOL 460Human Genetics\nBIOL 460HHonors Human Genetics\nBIOL 467Molecular Basis of Neurological Diseases\nBIOL 469Neurobiology\nA maximum of 3 credits may be chosen from:\nBMB 400Molecular Biology of the Gene\nBMB 450Microbial/Molecular Genetics\nBMB 464Molecular Medicine\nBMB 484Functional Genomics\nHORT 407Plant Breeding\nMICRB 410Principles of Immunology\nEvolution Group:\nBIOL 405Molecular Evolution\nBIOL 406Symbiosis\nBIOL 414Taxonomy of Seed Plants\nBIOL 417Invertebrate Zoology\nBIOL 418Biology of Human Infectious Diseases\nBIOL 420Paleobotany\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL 422Advanced Genetics\nBIOL/PPEM 425Biology of Fungi\nBIOL 427Evolution\nBIOL 428Population Genetics\nBIOL 429Animal Behavior\nBIOL 430Developmental Biology\nBIOL 432Developmental Genetics\nBIOL 433Evolution of Vertebrates\nBIOL 434Pathobiology of Emerging Infectious Disease\nBIOL 436Population Ecology and Global Climate Change\nBIOL 440Evolution of Infectious Diseases\nBIOL 442Evolutionary Medicine\nBIOL 443Evo-devo: Evolution of Developmental Mechanisms\nBIOL 446Physiological Ecology\nBIOL 451Biology of RNA\nBIOL 460Human Genetics\nBIOL 460HHonors Human Genetics\nBIOL 464Sociobiology\nBIOL 474Astrobiology\nBIOL 478HUMAN NEUROANATOMY\nBIOL 484Biodiversity of Pennsylvania\nENT 402WBiology of Animal Parasites\nPracticum Group:\nBIOL 400Teaching in Biology\nBIOL 402WBiological Experimental Design\nBIOL 403Biological Writing and Communication for Research\nBIOL 407Plant Developmental Anatomy\nBIOL 414Taxonomy of Seed Plants\nBIOL 417Invertebrate Zoology\nBIOL 419Ecological and Environmental Problem Solving\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL 422Advanced Genetics\nBIOL/PPEM 425Biology of Fungi\nBIOL 433Evolution of Vertebrates\nBIOL 437Histology\nBIOL 439Practical Bioinformatics\nBIOL 444Field Ecology\nBIOL 450WExperimental Field Biology\nBIOL/BIOTC 459Plant Tissue Culture and Biotechnology\nBIOL 461Contemporary Issues in Science and Medicine\nBIOL 473Laboratory in Mammalian Physiology\nBIOL 476Advanced Human Anatomy - cadaver based\nBIOL 477Biology Cadaver Dissection\nBIOL 478HUMAN NEUROANATOMY\nBIOL 483Coastal Biology Travel Experience\nBIOL 484Biodiversity of Pennsylvania\nBIOL 489Biology of Ecohealth in Tanzania\nBIOL 494Research Project\nBIOL 495Internship in Biology\nBIOL 496Independent Studies\nBIOL 499ATropical Field Ecology\nBMB 442Laboratory in Proteins, Nucleic Acids, and Molecular Cloning\nPPEM 427Mycotoxins: Effects of Fungal Toxins on Human and Animal Health\nSC 220Principles and Strategies for Effective STEM Learning I\nSC 295Science Co-op Work Experience I\nSC 395Science Co-op Work Experience II\nSC 475NAnatomy in Italy: Cadavers, Culture, and Science\nSC 495Science Co-op Work Experience III\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 13,
+     "commentRaw": "Select 13-21 credits from department list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 13-21 credits from department list13-21\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 469",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BMB 401",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BMB 402",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 212",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 469Neurobiology3\nBMB 401General Biochemistry3\nBMB 402General Biochemistry3\nCHEM 210Organic Chemistry I3\nCHEM 212Organic Chemistry II3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 426",
+       "BIOL 470",
+       "BIOL 478"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 2,
+     "commentRaw": "Select 2 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CHEM 213",
+       "CHEM 213M",
+       "CHEM 213W"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select a minimum of 12 credits of 400-level biology courses, with at least 6 credits from the Neuroscience group, 3 credits from the Evolution group, and 3 credits from the Practicum Group. A maximum of 3 credits of BIOL 400, 494, 495, 496 and SC 295, 395, 495 may be used to fulfill the 12 credit minimum in the 400-level biology course requirements.",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "BIOL"
+      ],
+      "minLevel": 400
+     }
+    },
+    {
+     "type": "note",
+     "commentRaw": "Neuroscience Group:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 404",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 413",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 424",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 426",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 430",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 467",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 470",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 472",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 478",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 479",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "A maximum of 3 credits may be chosen from:"
+    },
+    {
+     "type": "course",
+     "code": "BBH 432",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BBH 451",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BBH 468",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "NUTR 445",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 452",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 462",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 478",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Evolution Group:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 405",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 406",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 414",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 417",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 418",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 420",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 421",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 422",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 427",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 428",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 429",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 430",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 432",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 433",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 434",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 436",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 439",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 440",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 442",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 443",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 446",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 451",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 460",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 460H",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 464",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 474",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 478",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 484",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENT 402W",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Practicum Group:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 400",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 402W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 403W",
+     "credits": null,
+     "resolvedFrom": "BIOL 403"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 407",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 414",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 417",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 419",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 421",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 422",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 433",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 437",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 439",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 444",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 450W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 461",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 465",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 473",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 476",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 477",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 478",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 483",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 484",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 489",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 494",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 495",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 496",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BMB 442",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PPEM 427",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 220",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 295",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 395",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 475N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 495",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3 credits from the following:3\nBIOL 426Developmental Neurobiology\nBIOL 470Functional and Integrative Neuroscience\nBIOL 478HUMAN NEUROANATOMY\nSelect 2 credits from the following:2\nCHEM 213Laboratory in Organic Chemistry\nCHEM 213MLaboratory in Organic Chemistry - Honors, Writing Intensive\nCHEM 213WLaboratory in Organic Chemistry - Writing Intensive\nGroups\nSelect a minimum of 12 credits of 400-level biology courses, with at least 6 credits from the Neuroscience group, 3 credits from the Evolution group, and 3 credits from the Practicum Group. A maximum of 3 credits of BIOL 400, 494, 495, 496 and SC 295, 395, 495 may be used to fulfill the 12 credit minimum in the 400-level biology course requirements.12\nNeuroscience Group:\nBIOL 404Cellular Mechanisms in Vertebrate Physiology\nBIOL 413Cell Signaling and Regulation\nBIOL 424Seeds of Change: The Uses of Plants\nBIOL 426Developmental Neurobiology\nBIOL 430Developmental Biology\nBIOL 467Molecular Basis of Neurological Diseases\nBIOL 470Functional and Integrative Neuroscience\nBIOL 472Human Physiology\nBIOL 478HUMAN NEUROANATOMY\nBIOL 479General Endocrinology\nA maximum of 3 credits may be chosen from:\nBBH 432Biobehavioral Aspects of Stress\nBBH 451Pharmacological Influences on Health\nBBH 468Neuroanatomical Bases for Disorders of Behavior and Health\nNUTR 445Energy and Macronutrient Metabolism\nPSYCH 452Learning and Memory\nPSYCH 462Physiological Psychology\nPSYCH 478Clinical Neuropsychology\nEvolution Group:\nBIOL 405Molecular Evolution\nBIOL 406Symbiosis\nBIOL 414Taxonomy of Seed Plants\nBIOL 417Invertebrate Zoology\nBIOL 418Biology of Human Infectious Diseases\nBIOL 420Paleobotany\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL 422Advanced Genetics\nBIOL/PPEM 425Biology of Fungi\nBIOL 427Evolution\nBIOL 428Population Genetics\nBIOL 429Animal Behavior\nBIOL 430Developmental Biology\nBIOL 432Developmental Genetics\nBIOL 433Evolution of Vertebrates\nBIOL 434Pathobiology of Emerging Infectious Disease\nBIOL 436Population Ecology and Global Climate Change\nBIOL 439Practical Bioinformatics\nBIOL 440Evolution of Infectious Diseases\nBIOL 442Evolutionary Medicine\nBIOL 443Evo-devo: Evolution of Developmental Mechanisms\nBIOL 446Physiological Ecology\nBIOL 451Biology of RNA\nBIOL 460Human Genetics\nBIOL 460HHonors Human Genetics\nBIOL 464Sociobiology\nBIOL 474Astrobiology\nBIOL 478HUMAN NEUROANATOMY\nBIOL 484Biodiversity of Pennsylvania\nENT 402WBiology of Animal Parasites\nPracticum Group:\nBIOL 400Teaching in Biology\nBIOL 402WBiological Experimental Design\nBIOL 403Biological Writing and Communication for Research\nBIOL 407Plant Developmental Anatomy\nBIOL 414Taxonomy of Seed Plants\nBIOL 417Invertebrate Zoology\nBIOL 419Ecological and Environmental Problem Solving\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL 422Advanced Genetics\nBIOL/PPEM 425Biology of Fungi\nBIOL 433Evolution of Vertebrates\nBIOL 437Histology\nBIOL 439Practical Bioinformatics\nBIOL 444Field Ecology\nBIOL 450WExperimental Field Biology\nBIOL/BIOTC 459Plant Tissue Culture and Biotechnology\nBIOL 461Contemporary Issues in Science and Medicine\nBIOL 465Network analysis of biological systems\nBIOL 473Laboratory in Mammalian Physiology\nBIOL 476Advanced Human Anatomy - cadaver based\nBIOL 477Biology Cadaver Dissection\nBIOL 478HUMAN NEUROANATOMY\nBIOL 483Coastal Biology Travel Experience\nBIOL 484Biodiversity of Pennsylvania\nBIOL 489Biology of Ecohealth in Tanzania\nBIOL 494Research Project\nBIOL 495Internship in Biology\nBIOL 496Independent Studies\nBMB 442Laboratory in Proteins, Nucleic Acids, and Molecular Cloning\nPPEM 427Mycotoxins: Effects of Fungal Toxins on Human and Animal Health\nSC 220Principles and Strategies for Effective STEM Learning I\nSC 295Science Co-op Work Experience I\nSC 395Science Co-op Work Experience II\nSC 475NAnatomy in Italy: Cadavers, Culture, and Science\nSC 495Science Co-op Work Experience III\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18-23 credits from department list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 18-23 credits from department list18-23\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 407",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BIOL 441",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BMB 401",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BMB 402",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 212",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 407Plant Developmental Anatomy3\nBIOL 441Plant Physiology3\nBMB 401General Biochemistry3\nBMB 402General Biochemistry3\nCHEM 210Organic Chemistry I3\nCHEM 212Organic Chemistry II3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 2,
+     "commentRaw": "Select 2 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CHEM 213",
+       "CHEM 213M",
+       "CHEM 213W"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select a minimum of 12 credits of 400-level biology courses, with at least 6 credits from the Plant and Fungi group, 3 credits from the Evolution group, and 3 credits from the Practicum group. A maximum of 3 credits of BIOL 400, 494, 495, 496 and SC 295, 395, 495 may be used to fulfill the 12 credit minimum in the 400-level biology course requirements.",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "BIOL"
+      ],
+      "minLevel": 400
+     }
+    },
+    {
+     "type": "note",
+     "commentRaw": "Plant and Fungi Group:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 406",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 414",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 420",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 424",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 431",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 444",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 446",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 448",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 451",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 459",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 482",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 484",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 499A",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "A maximum of 3 credits may be chosen from:"
+    },
+    {
+     "type": "course",
+     "code": "HORT 407",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HORT 445",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PPEM 416",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PPEM 427",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Evolution Group:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 405",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 406",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 414",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 417",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 418",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 420",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 421",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 422",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 427",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 428",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 429",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 430",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 432",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 433",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 434",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 436",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 439",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 440",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 442",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 443",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 444",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 446",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 451",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 460",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 460H",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 464",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 474",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 484",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENT 402W",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Practicum Group:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 400",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 402W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 403W",
+     "credits": null,
+     "resolvedFrom": "BIOL 403"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 407",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 414",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 417",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 419",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 421",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 422",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 433",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 437",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 439",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 444",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 450W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 461",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 465",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 473",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 476",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 477",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 478",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 483",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 484",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 489",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 494",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 495",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 496",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 499A",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BMB 442",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PPEM 427",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 220",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 295",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 395",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 475N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 495",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 2 credits from the following:2\nCHEM 213Laboratory in Organic Chemistry\nCHEM 213MLaboratory in Organic Chemistry - Honors, Writing Intensive\nCHEM 213WLaboratory in Organic Chemistry - Writing Intensive\nGroups\nSelect a minimum of 12 credits of 400-level biology courses, with at least 6 credits from the Plant and Fungi group, 3 credits from the Evolution group, and 3 credits from the Practicum group. A maximum of 3 credits of BIOL 400, 494, 495, 496 and SC 295, 395, 495 may be used to fulfill the 12 credit minimum in the 400-level biology course requirements.12\nPlant and Fungi Group:\nBIOL 406Symbiosis\nBIOL 414Taxonomy of Seed Plants\nBIOL 420Paleobotany\nBIOL 424Seeds of Change: The Uses of Plants\nBIOL 431Reproductive Biology\nBIOL 444Field Ecology\nBIOL 446Physiological Ecology\nBIOL 448Ecology of Plant Reproduction\nBIOL 451Biology of RNA\nBIOL 459Plant Tissue Culture and Biotechnology\nBIOL 482Coastal Biology\nBIOL 484Biodiversity of Pennsylvania\nBIOL 499ATropical Field Ecology\nA maximum of 3 credits may be chosen from:\nHORT 407Plant Breeding\nHORT 445Plant Ecology\nPPEM 416Plant Virology: Molecules to Populations\nPPEM 427Mycotoxins: Effects of Fungal Toxins on Human and Animal Health\nEvolution Group:\nBIOL 405Molecular Evolution\nBIOL 406Symbiosis\nBIOL 414Taxonomy of Seed Plants\nBIOL 417Invertebrate Zoology\nBIOL 418Biology of Human Infectious Diseases\nBIOL 420Paleobotany\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL 422Advanced Genetics\nBIOL/PPEM 425Biology of Fungi\nBIOL 427Evolution\nBIOL 428Population Genetics\nBIOL 429Animal Behavior\nBIOL 430Developmental Biology\nBIOL 432Developmental Genetics\nBIOL 433Evolution of Vertebrates\nBIOL 434Pathobiology of Emerging Infectious Disease\nBIOL 436Population Ecology and Global Climate Change\nBIOL 439Practical Bioinformatics\nBIOL 440Evolution of Infectious Diseases\nBIOL 442Evolutionary Medicine\nBIOL 443Evo-devo: Evolution of Developmental Mechanisms\nBIOL 444Field Ecology\nBIOL 446Physiological Ecology\nBIOL 451Biology of RNA\nBIOL 460Human Genetics\nBIOL 460HHonors Human Genetics\nBIOL 464Sociobiology\nBIOL 474Astrobiology\nBIOL 484Biodiversity of Pennsylvania\nENT 402WBiology of Animal Parasites\nPracticum Group:\nBIOL 400Teaching in Biology\nBIOL 402WBiological Experimental Design\nBIOL 403Biological Writing and Communication for Research\nBIOL 407Plant Developmental Anatomy\nBIOL 414Taxonomy of Seed Plants\nBIOL 417Invertebrate Zoology\nBIOL 419Ecological and Environmental Problem Solving\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL 422Advanced Genetics\nBIOL/PPEM 425Biology of Fungi\nBIOL 433Evolution of Vertebrates\nBIOL 437Histology\nBIOL 439Practical Bioinformatics\nBIOL 444Field Ecology\nBIOL 450WExperimental Field Biology\nBIOL 461Contemporary Issues in Science and Medicine\nBIOL 465Network analysis of biological systems\nBIOL 473Laboratory in Mammalian Physiology\nBIOL 476Advanced Human Anatomy - cadaver based\nBIOL 477Biology Cadaver Dissection\nBIOL 478HUMAN NEUROANATOMY\nBIOL 483Coastal Biology Travel Experience\nBIOL 484Biodiversity of Pennsylvania\nBIOL 489Biology of Ecohealth in Tanzania\nBIOL 494Research Project\nBIOL 495Internship in Biology\nBIOL 496Independent Studies\nBIOL 499ATropical Field Ecology\nBMB 442Laboratory in Proteins, Nucleic Acids, and Molecular Cloning\nPPEM 427Mycotoxins: Effects of Fungal Toxins on Human and Animal Health\nSC 220Principles and Strategies for Effective STEM Learning I\nSC 295Science Co-op Work Experience I\nSC 395Science Co-op Work Experience II\nSC 475NAnatomy in Italy: Cadavers, Culture, and Science\nSC 495Science Co-op Work Experience III\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18-23 credits from department list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 18-23 credits from department list18-23\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 472",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BIOL 473",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "CHEM 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 212",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 472Human Physiology3\nBIOL 473Laboratory in Mammalian Physiology2\nCHEM 210Organic Chemistry I3\nCHEM 212Organic Chemistry II3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BMB 401",
+      "BMB 401H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BMB 402",
+      "BMB 402H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 213",
+      "CHEM 213M",
+      "CHEM 213W"
+     ],
+     "credits": 2
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select a minimum of 12 credits of 400-level courses, with at least 6 credits from the Physiology group, 3 credits from the Evolution group, and 3 credits from the Practicum group. A maximum of 3 credits of BIOL 400, 494, 495, 496 and SC 295, 395, 495 may be used to fulfill the 12 credit minimum in the 400-level biology course requirements.",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "BIOL"
+      ],
+      "minLevel": 400
+     }
+    },
+    {
+     "type": "note",
+     "commentRaw": "Physiology Group:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 404",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 406",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 409",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 411",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 413",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 415",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 416",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 418",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 421",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 424",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 426",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 430",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 431",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 432",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 437",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 443",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 446",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 460",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 460H",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 465",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 467",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 469",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 470",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 478",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 479",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "A maximum of 3 credits may be chosen from:"
+    },
+    {
+     "type": "course",
+     "code": "ANSC 431",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ANTH 466",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENT 402W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MICRB 401",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MICRB 410",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MICRB 412",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MICRB 435",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 462",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Evolution Group:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 405",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 406",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 414",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 417",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 418",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 420",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 421",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 422",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 427",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 428",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 429",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 430",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 432",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 433",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 434",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 436",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 440",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 442",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 443",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 446",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 451",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 460",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 460H",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 464",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 474",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 478",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 484",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENT 402W",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Practicum Group:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 400",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 402W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 403W",
+     "credits": null,
+     "resolvedFrom": "BIOL 403"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 407",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 414",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 417",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 419",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 421",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 433",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 437",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 439",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 444",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 448",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 450W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 461",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 465",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 473",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 476",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 477",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 478",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 483",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 484",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 489",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 494",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 495",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 496",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BMB 442",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PPEM 427",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 220",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 295",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 395",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 475N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SC 495",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BMB 401General Biochemistry3\nor BMB 401H General Biochemistry\nBMB 402General Biochemistry3\nor BMB 402H General Biochemistry\nCHEM 213Laboratory in Organic Chemistry2\nor CHEM 213M Laboratory in Organic Chemistry - Honors, Writing Intensive\nor CHEM 213W Laboratory in Organic Chemistry - Writing Intensive\nGroups\nSelect a minimum of 12 credits of 400-level courses, with at least 6 credits from the Physiology group, 3 credits from the Evolution group, and 3 credits from the Practicum group. A maximum of 3 credits of BIOL 400, 494, 495, 496 and SC 295, 395, 495 may be used to fulfill the 12 credit minimum in the 400-level biology course requirements.12\nPhysiology Group:\nBIOL 404Cellular Mechanisms in Vertebrate Physiology\nBIOL 406Symbiosis\nBIOL 409Biology of Aging\nBIOL 411Medical Embryology\nBIOL 413Cell Signaling and Regulation\nBIOL 415Ecotoxicology\nBIOL 416Biology of Cancer\nBIOL 418Biology of Human Infectious Diseases\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL 424Seeds of Change: The Uses of Plants\nBIOL 426Developmental Neurobiology\nBIOL 430Developmental Biology\nBIOL 431Reproductive Biology\nBIOL 432Developmental Genetics\nBIOL 437Histology\nBIOL 443Evo-devo: Evolution of Developmental Mechanisms\nBIOL 446Physiological Ecology\nBIOL 460Human Genetics\nBIOL 460HHonors Human Genetics\nBIOL 465Network analysis of biological systems\nBIOL 467Molecular Basis of Neurological Diseases\nBIOL 469Neurobiology\nBIOL 470Functional and Integrative Neuroscience\nBIOL 478HUMAN NEUROANATOMY\nBIOL 479General Endocrinology\nA maximum of 3 credits may be chosen from:\nANSC 431Physiology of Animal Reproduction\nANTH 466The Skull\nENT 402WBiology of Animal Parasites\nMICRB 401Microbial Physiology and Structure\nMICRB 410Principles of Immunology\nMICRB 412Medical Microbiology\nMICRB 435Viral Pathogensis\nPSYCH 462Physiological Psychology\nEvolution Group:\nBIOL 405Molecular Evolution\nBIOL 406Symbiosis\nBIOL 414Taxonomy of Seed Plants\nBIOL 417Invertebrate Zoology\nBIOL 418Biology of Human Infectious Diseases\nBIOL 420Paleobotany\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL 422Advanced Genetics\nBIOL/PPEM 425Biology of Fungi\nBIOL 427Evolution\nBIOL 428Population Genetics\nBIOL 429Animal Behavior\nBIOL 430Developmental Biology\nBIOL 432Developmental Genetics\nBIOL 433Evolution of Vertebrates\nBIOL 434Pathobiology of Emerging Infectious Disease\nBIOL 436Population Ecology and Global Climate Change\nBIOL 440Evolution of Infectious Diseases\nBIOL 442Evolutionary Medicine\nBIOL 443Evo-devo: Evolution of Developmental Mechanisms\nBIOL 446Physiological Ecology\nBIOL 451Biology of RNA\nBIOL 460Human Genetics\nBIOL 460HHonors Human Genetics\nBIOL 464Sociobiology\nBIOL 474Astrobiology\nBIOL 478HUMAN NEUROANATOMY\nBIOL 484Biodiversity of Pennsylvania\nENT 402WBiology of Animal Parasites\nPracticum Group:\nBIOL 400Teaching in Biology\nBIOL 402WBiological Experimental Design\nBIOL 403Biological Writing and Communication for Research\nBIOL 407Plant Developmental Anatomy\nBIOL 414Taxonomy of Seed Plants\nBIOL 417Invertebrate Zoology\nBIOL 419Ecological and Environmental Problem Solving\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL/PPEM 425Biology of Fungi\nBIOL 433Evolution of Vertebrates\nBIOL 437Histology\nBIOL 439Practical Bioinformatics\nBIOL 444Field Ecology\nBIOL 448Ecology of Plant Reproduction\nBIOL 450WExperimental Field Biology\nBIOL 461Contemporary Issues in Science and Medicine\nBIOL 465Network analysis of biological systems\nBIOL 473Laboratory in Mammalian Physiology\nBIOL 476Advanced Human Anatomy - cadaver based\nBIOL 477Biology Cadaver Dissection\nBIOL 478HUMAN NEUROANATOMY\nBIOL 483Coastal Biology Travel Experience\nBIOL 484Biodiversity of Pennsylvania\nBIOL 489Biology of Ecohealth in Tanzania\nBIOL 494Research Project\nBIOL 495Internship in Biology\nBIOL 496Independent Studies\nBMB 442Laboratory in Proteins, Nucleic Acids, and Molecular Cloning\nPPEM 427Mycotoxins: Effects of Fungal Toxins on Human and Animal Health\nSC 220Principles and Strategies for Effective STEM Learning I\nSC 295Science Co-op Work Experience I\nSC 395Science Co-op Work Experience II\nSC 475NAnatomy in Italy: Cadavers, Culture, and Science\nSC 495Science Co-op Work Experience III\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 19,
+     "commentRaw": "Select 19-24 credits from department list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 19-24 credits from department list19-24\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Ecology Option: Biology, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115",
+        "BIOL 114",
+        "BIOL 116"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or ENGL 30H or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSU 16",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or ENGL 30H or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 250",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 200",
+        "STAT 240"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 224",
+        "BIOL 225W",
+        "BIOL 224"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 202"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 203"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 463",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GS)",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 251",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 462",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "STAT 464"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (US)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "General Biology Option: Biology, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115",
+        "BIOL 114",
+        "BIOL 116"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or ENGL 30H or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSU 16",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 250",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 200",
+        "STAT 240"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or ENGL 30H or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 224",
+        "BIOL 225W",
+        "BIOL 224"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 202"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 203"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GS)",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 251",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Electve (see notes)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (US)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "General Biology Option (Starting with MATH 21): Biology, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 161",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 133"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 162",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 21",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 250",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 200",
+        "STAT 240"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSU 16",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 163",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 161",
+        "BIOL 133"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 164",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 26",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115",
+        "BIOL 114",
+        "BIOL 116"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 108",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 250",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "STAT 200",
+        "STAT 240"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 224",
+        "BIOL 225W",
+        "BIOL 224"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 202"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX (could take this over summer and take an elective here instead to ease up course load)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 203"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or ENGL 202C",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 251",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 123,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "General Biology Option (Starting with MATH 22 and MATH 26): Biology, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115",
+        "BIOL 114",
+        "BIOL 116"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 26",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSU 16",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 224",
+        "BIOL 225W",
+        "BIOL 224"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 250",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 200",
+        "STAT 240"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 202"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 203"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 251",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or ENGL 202C",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or Elective (see notes)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 126,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Genetics and Development Option: Biology, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115",
+        "BIOL 114",
+        "BIOL 116"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or ENGL 30H or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSU 16",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 250",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 200",
+        "STAT 240"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or ENGL 30H or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 224",
+        "BIOL 225W",
+        "BIOL 224"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 202"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 203"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 430",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BMB 430"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BMB 401",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GS)",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 322",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 402",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 251",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (US)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Neuroscience Option: Biology, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115",
+        "BIOL 114",
+        "BIOL 116"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or ENGL 30H or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSU 16",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or ENGL 30H or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 250",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 200",
+        "STAT 240"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 224",
+        "BIOL 225W",
+        "BIOL 224"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 202"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 203"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 401",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GS)",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 402",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 251",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 469",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 426",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 470",
+        "BIOL 478"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (US)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Plant Biology Option: Biology, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115",
+        "BIOL 114",
+        "BIOL 116"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or ENGL 30H or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSU 16",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or ENGL 30H or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 250",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 200",
+        "STAT 240"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 224",
+        "BIOL 225W",
+        "BIOL 224"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 202"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 203"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 441",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 401",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GS)",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 402",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 251",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (US)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Vertebrate Physiology Option: Biology, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115",
+        "BIOL 114",
+        "BIOL 116"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or ENGL 30H or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSU 16",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "ENGL 15 or ENGL 30H or General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 250",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 200",
+        "STAT 240"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 224",
+        "BIOL 225W",
+        "BIOL 224"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 202"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W",
+        "BIOL 234",
+        "BIOL 236W",
+        "BIOL 240W",
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 203"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 401",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GS)",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 402W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 251",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 472",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 473",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (US)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (see notes)",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 125,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Biology, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting course (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 240W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting course (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 400 Level Selection (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting course (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting course (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 400 Level Selection (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 251",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting course (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting course (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 400 Level Selection (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 400 Level Selection (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ENGL 202A",
+        "ENGL 202B",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting course (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting course (consult with an academic adviser for options)",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BIOL 400 Level Selection (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BIOL 400 Level Selection (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting course (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

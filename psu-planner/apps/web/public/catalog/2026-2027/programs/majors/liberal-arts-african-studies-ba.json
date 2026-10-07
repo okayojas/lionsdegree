@@ -1,0 +1,515 @@
+{
+ "slug": "liberal-arts-african-studies-ba",
+ "name": "African Studies, B.A.",
+ "type": "major",
+ "degree": "BA",
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/african-studies-ba/",
+ "totalCredits": 123,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AFR 105",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AFR 110N",
+     "credits": 3,
+     "resolvedFrom": "AFR 110"
+    },
+    {
+     "type": "course",
+     "code": "AFR 191",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AFR 192",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAFR 105African Biodiversity and Conservation 3\nAFR 1103\nAFR 191Early African History 3\nAFR 192Modern African History 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits of the following (100-300 level courses):",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AFAM 100N",
+       "AFAM 211",
+       "AFAM 302",
+       "AFR 150",
+       "AFR 197",
+       "AFR 199",
+       "AFR 202N",
+       "AFR 294",
+       "AFR 297",
+       "AFR 299",
+       "AFR 395",
+       "AFR 399",
+       "ARTH 335",
+       "ECON 102",
+       "ECON 104"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18 credits with at least 12 from AFR or AFR cross-listed courses of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AFR 403",
+       "AFR 405",
+       "AFR 459",
+       "PLSC 459",
+       "AFR 464",
+       "AFR 494",
+       "AFR 495",
+       "AFR 496",
+       "AFR 497",
+       "AFR 499",
+       "GEOG 436",
+       "GEOG 444",
+       "GEOG 475",
+       "LER 475",
+       "PLSC 481"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 15 credits of the following (100-300 level courses):15\nAFAM 100NBlack Freedom Struggles\nAFAM 211Slavery and Freedom in the Black Atlantic\nAFAM 302Diversity and Health\nAFR 150Africa in Cinema\nAFR 197Special Topics\nAFR 199Foreign Studies\nAFR 202NWomen, Gender, and Feminisms in Africa\nAFR 294Research Project\nAFR 297Special Topics\nAFR 299Foreign Studies\nAFR 395Internship\nAFR 399Foreign Studies\nARTH 335African Art\nECON 102Introductory Microeconomic Analysis and Policy\nECON 104Introductory Macroeconomic Analysis and Policy\nSelect 18 credits with at least 12 from AFR or AFR cross-listed courses of the following:18\nAFR 403South Africa Today\nAFR 405African Studies Methodologies\nAFR/PLSC 434War and Development in Africa\nAFR/PLSC/IB 440Globalization and Its Implications\nAFR/PLSC 443Ethnic Conflict in Africa\nAFR/PLSC 454Government and Politics of Africa\nAFR/PLSC 459\nAFR 464Extractive Industries in Africa\nAFR 494Research Project\nAFR 495Internship\nAFR 496Independent Studies\nAFR 497Special Topics\nAFR 499Foreign Studies\nGEOG 436\nGEOG 444Resource Governance in Africa\nGEOG/LER 475\nPLSC 481Global Political Economy\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "African Studies, B.A. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15",
+        "ENGL 137H",
+        "CAS 137H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AFR 110N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [],
+       "resolvedFrom": "AFR 110"
+      },
+      {
+       "type": "course",
+       "code": "LA 83",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 1",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "First Year Seminar",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 138T",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 138T"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AFR 105",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Quantification Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 2",
+       "credits": 4,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AFR 191",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "HIST 191"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 3",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Major Course from Additional Course List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AFR 192",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "HIST 192"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Quantification Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Major Course from Additional Course List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Knowledge Domain Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Major Course from Additional Course List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Major Course from Additional Course List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Major Course from Additional Course List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Major Course from Additional Course List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Knowledge Domain Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Major Course from Additional Course List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Major Course from Additional Course List AFR 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Knowledge Domain Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "AFR 4XX",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Health and Wellness (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Major Course from Additional Course List AFR 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Major Course from Additional Course List AFR 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Health and Wellness (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 126,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

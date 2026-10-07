@@ -1,0 +1,451 @@
+{
+ "slug": "university-college-medical-laboratory-technology-as",
+ "name": "Medical Laboratory Technology, A.S.",
+ "type": "major",
+ "degree": null,
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/medical-laboratory-technology-as/",
+ "totalCredits": 72,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 202",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "KINES 203",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MICRB 201",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MICRB 202",
+     "credits": 2
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B",
+      "CAS 100C",
+      "CAS 100S"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 15",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MICRB 150",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MICRB 151A",
+     "credits": 5
+    },
+    {
+     "type": "course",
+     "code": "MICRB 151B",
+     "credits": 5
+    },
+    {
+     "type": "course",
+     "code": "MICRB 151C",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MICRB 151D",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MICRB 151E",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MICRB 151F",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MICRB 151G",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MICRB 151W",
+     "credits": 5
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nCHEM 202Fundamentals of Organic Chemistry I3\nKINES 203Medical Terminology for Allied Health Professionals3\nMICRB 201Introductory Microbiology3\nMICRB 202Introductory Microbiology Laboratory2\nPrescribed Courses: Require a grade of C or better\nCAS 100Effective Speech3\nENGL 15Rhetoric and Composition 3\nMICRB 150Introductory Medical Laboratory Technology4\nMICRB 151AClinical Chemistry for Medical Laboratory Technicians5\nMICRB 151BHematology for Medical Laboratory Technicians5\nMICRB 151CImmunohematology and Serology for Medical Laboratory Technicians4\nMICRB 151DClinical Chemistry Practicum2\nMICRB 151EHematology Practicum2\nMICRB 151FImmunohematology Practicum2\nMICRB 151GClinical Microbiology and Body Fluids Practicum2\nMICRB 151WClinical Microbiology and Body Fluid Analysis for Medical Laboratory Technicians5\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 8,
+     "commentRaw": "Select 8 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 110",
+       "BIOL 240W",
+       "BIOL 161",
+       "BIOL 162",
+       "BIOL 163",
+       "BIOL 164"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MATH 21",
+       "MATH 22",
+       "MATH 26",
+       "MATH 81",
+       "MATH 110",
+       "MATH 140",
+       "STAT 200",
+       "STAT 250"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 8 credits from the following:8\nBIOL 110& BIOL 240WBiology: Basic Concepts and Biodiversity and Biology: Function and Development of Organisms\nBIOL 161& BIOL 162& BIOL 163& BIOL 164Human Anatomy and Physiology I - Lecture and Human Anatomy and Physiology I - Laboratory and Human Anatomy and Physiology II - Lecture and Human Anatomy and Physiology II - Laboratory\nAdditional Courses: Require a grade of C or better\nSelect 3-4 credits from the following:3-4\nMATH 21College Algebra with Analytic Geometry with Applications I\nMATH 22College Algebra With Analytic Geometry and Applications II\nMATH 26Plane Trigonometry and Applications of Trigonometry\nMATH 81Technical Mathematics I\nMATH 110Techniques of Calculus I\nMATH 140Calculus With Analytic Geometry I\nSTAT 200Elementary Statistics\nSTAT 250Introduction to Biostatistics\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Medical Laboratory Technology, A.S. at Hazleton Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 161",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 162",
+       "credits": 1,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSU 8",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 108",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 201",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 202",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 163",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 164",
+       "credits": 1,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "KINES 203",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Summer",
+     "label": "Year 1 Summer",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 202",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 100S"
+       ],
+       "resolvedFrom": "CAS 100"
+      },
+      {
+       "type": "course",
+       "code": "MICRB 150",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 151A",
+       "credits": 5,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 151B",
+       "credits": 5,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 151D",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 151E",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MICRB 151C",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 151F",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 151G",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 151W",
+       "credits": 5,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 74,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

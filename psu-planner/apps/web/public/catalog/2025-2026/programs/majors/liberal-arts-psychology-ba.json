@@ -1,0 +1,995 @@
+{
+ "slug": "liberal-arts-psychology-ba",
+ "name": "Psychology, B.A. (Liberal Arts)",
+ "type": "major",
+ "degree": "BA",
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/psychology-ba/",
+ "totalCredits": 123,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "PSYCH 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 105",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 301W",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 490",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nPSYCH 100Introductory Psychology 3\nPSYCH 105Psychology as a Science and Profession3\nPSYCH 301WBasic Research Methods in Psychology4\nPSYCH 490Senior Seminar in Psychology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of GQ courses",
+     "from": {
+      "kind": "genEd",
+      "domain": "GQ"
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 200",
+      "STAT 200"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits of 200-level PSYCH courses",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "PSYCH"
+      ],
+      "minLevel": 200
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "At least 3 credits must be from each group a, b, and c:"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "a."
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 253",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 256",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 260",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 261",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "b."
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 212",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 221",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 231",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 238",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "c."
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 243",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 269",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 270",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 281",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits of PSYCH courses at the 400 level",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "PSYCH"
+      ],
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits of GQ courses6\nPSYCH 200Elementary Statistics in Psychology 4\nor STAT 200 Elementary Statistics\nSelect 12 credits of 200-level PSYCH courses 12\nAt least 3 credits must be from each group a, b, and c:\na.\nPSYCH 253Introduction to Sensation and Perception\nPSYCH 256Introduction to Cognitive Psychology\nPSYCH 260Neurological Bases of Human Behavior\nPSYCH 261Introduction to Psychology of Learning\nb.\nPSYCH 212Introduction to Developmental Psychology\nPSYCH 221Introduction to Social Psychology\nPSYCH 231Introduction to the Psychology of Gender\nPSYCH 238Introduction to Personality Psychology\nc.\nPSYCH 243Introduction to Well-being and Positive Psychology\nPSYCH 269Evolutionary Psychology\nPSYCH 270Introduction to Abnormal Psychology\nPSYCH 281Introduction to Industrial-Organizational Psychology\nSelect 12 credits of PSYCH courses at the 400 level 12\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Psychology, B.A. at University Park Campus and World Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15",
+        "ENGL 137H",
+        "CAS 137H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LA 83",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 1",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "First-Year Seminar/General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 138T",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 138T"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 2xx Level (Group A, B, C or Additional)",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 2",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GS)",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "PSYCH 200"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 2XX Level Course (Group A, B, C or Additional)",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 3",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Integrative Studies)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 105",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 2XX Level Course (Group A, B, C, or Additional)",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Integrative Studies)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (US)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BA Knowledge Domains Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 4XX Level Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 2XX Level Course (Group A, B, C or Additional)",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PSYCH 4XX Level Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 301W",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 301M"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BA World Cultures Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Knowledge Domains Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 4XX Level Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PSYCH 4XX Level Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 490",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Knowledge Domain Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 126,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Psychology, B.A. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15",
+        "ENGL 137H",
+        "CAS 137H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "#",
+        "†"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 1",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "First-Year Seminar/General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 138T",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "CAS 138T"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 2XX Level Course (Group A, B, C, or Additional)",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 2",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Integrative Studies)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "PSYCH 200"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 2XX Level Course (Group A, B, C or Additional)",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 3",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Knowledge Domain Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PSYCH 2XX Level Course (Group A, B, C, or Additional)",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Integrative Studies)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (US)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 2XX Level Course (Group A, B, C or Additional)",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 4XX Level Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 105",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PSYCH 4XX Level Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 301W",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 301M"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BA World Cultures Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PSYCH 4XX Level Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Knowledge Domain Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PSYCH 4XX Level Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 490",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Knowledge Domain Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

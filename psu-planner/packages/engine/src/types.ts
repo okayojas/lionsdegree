@@ -89,6 +89,14 @@ export interface PlanDoc {
   id: string;
   rev: number;
   updatedAt: string;
+  /** The bulletin edition that governs this plan, e.g. "2025-2026". A Penn
+   * State student's requirements are fixed by the edition in force when they
+   * entered their major, NOT the newest one — so this is pinned at creation
+   * and never silently upgraded. Absent on plans created before editions
+   * existed; those are read as the oldest published edition, which is what
+   * they were in fact generated against.
+   * See docs/adr/0001-forward-only-catalog-editions.md. */
+  edition?: string;
   programs: string[]; // program slugs
   terms: PlanTerm[];
   completed: Record<string, boolean>;

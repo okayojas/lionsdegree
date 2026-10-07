@@ -1,0 +1,83 @@
+{
+ "slug": "capital-criminal-justice-as",
+ "name": "Criminal Justice, A.S. (Capital)",
+ "type": "major",
+ "degree": null,
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/criminal-justice-as/",
+ "totalCredits": 64,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CRIMJ 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CRIMJ 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CRIMJ 220",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CRIMJ 230",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PHIL 103",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOC 12",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOC 119N",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "STAT 200",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCRIMJ 100Introduction to Criminal Justice 3\nCRIMJ 210Policing in America3\nCRIMJ 220Courts and the Prosecution Process3\nCRIMJ 230Corrections in America3\nPHIL 103Ethics 3\nSOC 12Criminology 3\nSOC 119NRace, Ethnicity and Culture 4\nSTAT 200Elementary Statistics 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CRIMJ 250W",
+      "SOC 207"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nCRIMJ 2503\nor SOC 207 Research Methods in Sociology\n"
+  }
+ ],
+ "suggestedPlans": []
+}

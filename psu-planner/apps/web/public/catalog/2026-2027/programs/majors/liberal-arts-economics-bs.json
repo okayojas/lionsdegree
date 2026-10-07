@@ -1,0 +1,961 @@
+{
+ "slug": "liberal-arts-economics-bs",
+ "name": "Economics, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/economics-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ECON 102",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 104",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 106",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 302",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 304",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 306",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nECON 102Introductory Microeconomic Analysis and Policy 3\nECON 104Introductory Macroeconomic Analysis and Policy 3\nECON 106Statistical Foundations for Econometrics 3\nECON 302Intermediate Microeconomic Analysis 3\nECON 304Intermediate Macroeconomic Analysis 3\nECON 306Introduction to Econometrics3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CMPSC 101",
+      "CMPSC 203"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 110",
+      "MATH 140"
+     ],
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nCMPSC 101Introduction to Programming 3-4\nor CMPSC 203 Introduction to Spreadsheets and Databases\nMATH 110Techniques of Calculus I 4\nor MATH 140 Calculus With Analytic Geometry I\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in social and behavioral sciences from department list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits in arts, humanities, social and behavioral sciences from department list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in quantification from department list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18 credits in economics at the 300 or 400 level with department approval, including at least 9 credits at the 400 level",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits in social and behavioral sciences from department list3\nSelect 6 credits in arts, humanities, social and behavioral sciences from department list6\nSelect 3 credits in quantification from department list3\nSelect 18 credits in economics at the 300 or 400 level with department approval, including at least 9 credits at the 400 level18\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Economics, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LA 83",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (First Year Seminar)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL or US Cultures)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ECON 106",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 302",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ECON 304"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL or US Cultures)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ECON 302",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ECON 304"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CMPSC 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡"
+       ],
+       "alternatives": [
+        "CMPSC 203"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "300 Level ECON Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Arts, Humanities, Social and Behavioral Science from approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "300/400 Level ECON Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ECON 306",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Arts, Humanities, Social and Behavioral Science from approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Writing Across the Curriculum)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "300/400 Level ECON Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400 level ECON Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Social and Behavioral Science from approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Quantification from approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400 Level ECON Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400 Level ECON Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 123,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Economics, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (First Year Seminar)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL or US Cultures)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPSC 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡"
+       ],
+       "alternatives": [
+        "CMPSC 203"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Social and Behavioral Science from approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL or US Cultures)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Writing Across the Curriculum)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Arts, Humanities, Social and Behavioral Science from approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ECON 302",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ECON 304"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ECON 106",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "Quantification from approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ECON 302",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ECON 304"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ECON 306",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "300 Level ECON Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Arts, Humanities, Social and Behavioral Science from approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "300/400 Level ECON Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "300/400 Level ECON Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400 Level ECON Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400 Level ECON Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400 Level ECON Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 121,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

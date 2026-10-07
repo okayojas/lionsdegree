@@ -1,0 +1,2040 @@
+{
+ "slug": "liberal-arts-labor-human-resources-bs",
+ "name": "Labor and Human Resources, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/labor-human-resources-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "LHR 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 201",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 304",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 305",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 312",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 460",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nLHR 100Exploring Work and Employment 3\nLHR 201Employment Relationship: Law and Policy 3\nLHR 304Labor and Employment Relations Fundamentals 3\nLHR 305Human Resources Fundamentals 3\nLHR 312Research Methods in Labor and Employment Relations3\nLHR 460Ethics in the Workplace3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "LHR 202",
+      "PSYCH 281",
+      "LHR 458Y"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "SCM 200",
+      "STAT 200"
+     ],
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nLHR 202Understanding Employee Behavior 3\nor PSYCH 281 Introduction to Industrial-Organizational Psychology\nLHR/WMNST 136YRace, Gender, and Employment 3\nor LHR 458Y History of Work in America\nSCM 200Introduction to Statistics for Business 4\nor STAT 200 Elementary Statistics\n"
+  },
+  {
+   "heading": "Requirements for the Option",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select an option"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Requirements for the Option: Require a grade of C or better\nSelect an option30-31\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "LHR 403",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 426",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 427",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 428",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nLHR 403International Human Resource Studies3\nLHR 426Staffing and Training Strategies in Organizations3\nLHR 427Understanding Business Processes for LHR Professionals3\nLHR 428Total Rewards3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from 400-level LHR courses (only 3 credits of LHR 495 or LHR 496 may be used to satisfy this requirement)",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "LHR"
+      ],
+      "minLevel": 400
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9-10 credits from the following list in consultation with an adviser:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ACCTG 211",
+       "AFAM 100N",
+       "AFAM 110N",
+       "BA 243",
+       "BLAW 243",
+       "CAS 203",
+       "CAS 352",
+       "ECON 102",
+       "ECON 104",
+       "ECON 315",
+       "ECON 342",
+       "HIST 155",
+       "MGMT 100",
+       "MGMT 301",
+       "MGMT 321",
+       "SOC 103",
+       "SOC 110",
+       "SOC 119N"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Any OLEAD course"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Any 400-level AFAM, CAS, ECON, HIST, LTNST, MGMT, PHIL, PSYCH, SPAN, SOC, WMNST course"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses: Require a grade of C or better\nSelect 9 credits from 400-level LHR courses (only 3 credits of LHR 495 or LHR 496 may be used to satisfy this requirement)9\nSelect 9-10 credits from the following list in consultation with an adviser:9-10\nACCTG 211Financial and Managerial Accounting for Decision Making\nAFAM 100NBlack Freedom Struggles\nAFAM 110NIntroduction to African American Studies\nBA 243Social, Legal, and Ethical Environment of Business\nBLAW 243Legal Environment of Business\nCAS 203Interpersonal Communication\nCAS 352Organizational Communication\nECON 102Introductory Microeconomic Analysis and Policy\nECON 104Introductory Macroeconomic Analysis and Policy\nECON 315Labor Economics\nECON 342Industrial Organization\nHIST 155American Business History\nMGMT 100Survey of Management\nMGMT 301Basic Management Concepts\nMGMT 321Leadership and Motivation\nSOC 103Racism and Sexism\nSOC 110Sociology of Gender\nSOC 119NRace, Ethnicity and Culture\nAny OLEAD course\nAny 400-level AFAM, CAS, ECON, HIST, LTNST, MGMT, PHIL, PSYCH, SPAN, SOC, WMNST course\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "LHR 400",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 401",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nLHR 400Comparative Employment Relations Systems3\nLHR 401The Law of Labor-Management Relations3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "LHR 428",
+       "LHR 434",
+       "LHR 435",
+       "LHR 437",
+       "LHR 444",
+       "LHR 459",
+       "LHR 466",
+       "LHR 468",
+       "LHR 472",
+       "LHR 475H"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits from the following:6\nLHR 428Total Rewards\nLHR 434Advanced Collective Bargaining and Contract Administration\nLHR 435Labor Relations in the Public Sector\nLHR 437Workplace Dispute Resolution\nLHR 444Workplace Safety and Health: Principles and Practices\nLHR 459Collective Bargaining in Professional Sports\nLHR 466Labor Union Structure, Administration and Governance\nLHR 468American Labor Unions\nLHR 472Work-Life Practices and Policies\nLHR 475HLabor in the Global Economy\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from 400-level LHR courses (only 3 credits of LHR 495 or LHR 496 may be used to satisfy this requirement)",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "LHR"
+      ],
+      "minLevel": 400
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12-13 credits from the following list in consultation with an adviser:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ACCTG 211",
+       "AFAM 100N",
+       "AFAM 110N",
+       "BA 243",
+       "BLAW 243",
+       "CAS 203",
+       "CAS 352",
+       "ECON 102",
+       "ECON 104",
+       "ECON 315",
+       "ECON 342",
+       "HIST 155",
+       "MGMT 100",
+       "MGMT 301",
+       "MGMT 321",
+       "SOC 103",
+       "SOC 110",
+       "SOC 119N"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Any 400-level AFAM, CAS, ECON, HIST, LTNST, MGMT, PHIL, PSYCH, SPAN, SOC, WMNST course"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Any OLEAD course"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses: Require a grade of C or better\nSelect 6 credits from 400-level LHR courses (only 3 credits of LHR 495 or LHR 496 may be used to satisfy this requirement)6\nSelect 12-13 credits from the following list in consultation with an adviser:12-13\nACCTG 211Financial and Managerial Accounting for Decision Making\nAFAM 100NBlack Freedom Struggles\nAFAM 110NIntroduction to African American Studies\nBA 243Social, Legal, and Ethical Environment of Business\nBLAW 243Legal Environment of Business\nCAS 203Interpersonal Communication\nCAS 352Organizational Communication\nECON 102Introductory Microeconomic Analysis and Policy\nECON 104Introductory Macroeconomic Analysis and Policy\nECON 315Labor Economics\nECON 342Industrial Organization\nHIST 155American Business History\nMGMT 100Survey of Management\nMGMT 301Basic Management Concepts\nMGMT 321Leadership and Motivation\nSOC 103Racism and Sexism\nSOC 110Sociology of Gender\nSOC 119NRace, Ethnicity and Culture\nAny 400-level AFAM, CAS, ECON, HIST, LTNST, MGMT, PHIL, PSYCH, SPAN, SOC, WMNST course\nAny OLEAD course\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Human Resources Option: Labor and Human Resources, B.S. at University Park Campus and World Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ENGL 137H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LA 83",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GS) - PSYCH 100 suggested",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN - Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "First-Year Seminar (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 138T",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 138T"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LHR 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 281",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†",
+        "1"
+       ],
+       "alternatives": [
+        "LHR 202"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ECON 14",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course - STAT 200 or SCM 200 (GQ)",
+       "domain": "GQ",
+       "credits": 4,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LHR 201",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN)",
+       "domain": "GN",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH - Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "LHR 312",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LHR 305",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LHR 304",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX - Prescribed HR Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX - Prescribed HR Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN)",
+       "domain": "GN",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LHR 460",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX - Prescribed HR Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX - Prescribed HR Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HIST 458Y",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "LHR 458Y"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 126,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Labor and Employment Relations Option: Labor and Human Resources, B.S. at University Park Campus and World Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ENGL 137H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LA 83",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GS) - PSYCH 100 suggested",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN - Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "First Year Seminar (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 138T",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 138T"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LHR 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 281",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†",
+        "1"
+       ],
+       "alternatives": [
+        "LHR 202"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ECON 14",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course - STAT 200 or SCM 200 (GQ)",
+       "domain": "GQ",
+       "credits": 4,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LHR 201",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN)",
+       "domain": "GN",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "LHR 312",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LHR 305",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LHR 304",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX - Prescribed LHR Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LHR 401",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LHR 401",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LHR 460",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX - LHR Option Course from Approved List",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX - LHR Option Course from Approved List",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HIST 458Y",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "LHR 458Y"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 129,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Human Resources Option: Labor and Human Resources, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ENGL 137H"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GS) - PSYCH 100 suggested",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN - Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "First-Year Seminar (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 138T",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 138T"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH - Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 14",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course - STAT 200 or SCM 200 (GQ)",
+       "domain": "GQ",
+       "credits": 4,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN)",
+       "domain": "GN",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LHR 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LHR 202",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†",
+        "1"
+       ],
+       "alternatives": [
+        "PSYCH 281"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LHR 201",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX (one which does not have LHR 304 or 305 as a prerequisite)",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LHR 304",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LHR 305",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LHR 312",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX - Prescribed HR Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX - Prescribed HR Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HIST 458Y",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "LHR 458Y"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LHR 460",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX - Prescribed HR Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX - Prescribed HR Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Labor and Employment Relations Option: Labor and Human Resources, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ENGL 137H"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GS) - PSYCH 100 suggested",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN - Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "First-Year Seminar (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 138T",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 138T"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH - Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 14",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course - STAT 200 or SCM 200 (GQ)",
+       "domain": "GQ",
+       "credits": 4,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN)",
+       "domain": "GN",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LHR 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LHR 202",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†",
+        "1"
+       ],
+       "alternatives": [
+        "PSYCH 281"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LHR 201",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX (one which does not have LHR 304 or 305 as a prerequisite)",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LHR 304",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LHR 305",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LHR 312",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LHR 401",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX - LHR Option Course from Approved List",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LHR 460",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LHR 400",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX - LHR Option Course from Approved List",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "LHR 4XX",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HIST 458Y",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "LHR 458Y"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

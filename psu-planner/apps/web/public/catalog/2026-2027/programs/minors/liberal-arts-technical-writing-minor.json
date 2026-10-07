@@ -1,0 +1,114 @@
+{
+ "slug": "liberal-arts-technical-writing-minor",
+ "name": "Technical Writing, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/technical-writing-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ENGL 418",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nENGL 418Advanced Technical Writing and Editing3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAS 452",
+       "CAS 452W",
+       "ENGL 470",
+       "ENGL 471",
+       "ENGL 472",
+       "ENGL 473",
+       "ENGL 474",
+       "STS 407",
+       "PHIL 407",
+       "STS 433",
+       "PHIL 433"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 415",
+       "ENGL 416",
+       "ENGL 417",
+       "ENGL 419",
+       "ENGL 420",
+       "ENGL 421",
+       "ENGL 480",
+       "ENGL 495"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ART 2",
+       "ART 3",
+       "ART 101",
+       "GD 100",
+       "LDT 100",
+       "INSYS 441",
+       "PSYCH 444",
+       "PSYCH 456"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3-6 credits from the following:3-6\nCAS 452Organizational Communication Theory and Research\nCAS 452WOrganizational Communication Theory and Research\nENGL 470Rhetorical Theory and Practice\nENGL 471Rhetorical Traditions\nENGL 472Current Theories of Writing and Reading\nENGL 473Rhetorical Approaches to Discourse\nENGL 474Issues in Rhetoric and Composition\nSTS/PHIL 407\nSTS/PHIL 433\nSelect 6-9 credits from the following:6-9\nENGL 415Advanced Nonfiction Writing\nENGL 416Science Writing\nENGL 417The Editorial Process\nENGL 419Advanced Business Writing\nENGL 420Writing for the Web\nENGL 421Advanced Expository Writing\nENGL 480Communication Design for Writers\nENGL 495Internship\nSelect 3-6 credits from the following:3-6\nART 2Interactive Learning and Web-Design\nART 3Visual Images on the Web\nART 101Introduction to Web Design\nGD 100Introduction to Graphic Design\nLDT 100World Technologies and Learning\nINSYS 441\nPSYCH 444Engineering Psychology\nPSYCH 456Advanced Cognitive Psychology\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 0,
+     "commentRaw": "Select 0-3 credits",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 0-3 credits0-3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

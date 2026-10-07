@@ -1,0 +1,1571 @@
+{
+ "slug": "university-college-biobehavioral-health-bs",
+ "name": "Biobehavioral Health, B.S. (University College)",
+ "type": "major",
+ "degree": "BS",
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/biobehavioral-health-bs/",
+ "totalCredits": 121,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "NUTR 251",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BBH 101",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BBH 310",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BBH 311",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BBH 316",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BBH 411W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BIOL 110",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "BIOL 161",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BIOL 163",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 100",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "NUTR 251Introductory Principles of Nutrition 3\nPrescribed Courses: Require a grade of C or better\nBBH 101Introduction to Biobehavioral Health 3\nBBH/AFAM 302Diversity and Health3\nBBH 310Research Strategies for Studying Biobehavioral Health3\nBBH 311Interdisciplinary Integration in Biobehavioral Health3\nBBH 316Foundations and Principles of Health Promotion3\nBBH 411WResearch and Applications in Biobehavioral Health3\nBBH/HPA 440Principles of Epidemiology3\nBIOL 110Biology: Basic Concepts and Biodiversity 4\nBIOL 161Human Anatomy and Physiology I - Lecture 3\nBIOL 163Human Anatomy and Physiology II - Lecture 3\nPSYCH 100Introductory Psychology 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BBH 210",
+       "BIOL 133",
+       "BIOL 222"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BBH 301W",
+       "PHIL 110",
+       "PHIL 132"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ANTH 21",
+       "ANTH 22",
+       "ANTH 216N",
+       "BIOL 155",
+       "BIOL 162",
+       "BIOL 164",
+       "BIOL 220W",
+       "BIOL 230W",
+       "BIOL 240W",
+       "BIOL 409",
+       "BIOL 422",
+       "BMB 211",
+       "CHEM 110",
+       "CHEM 111",
+       "CHEM 112",
+       "CHEM 113",
+       "CHEM 130",
+       "CHEM 202",
+       "CHEM 210",
+       "CHEM 203",
+       "CHEM 213",
+       "CHEM 212",
+       "EARTH 100",
+       "EARTH 100H",
+       "EARTH 103N",
+       "EGEE 101H",
+       "EGEE 102",
+       "EGEE 102H",
+       "FDSC 404",
+       "FDSC 405",
+       "FDSC 406W",
+       "FDSC 407",
+       "FDSC 408",
+       "GEOG 314",
+       "MICRB 106",
+       "MICRB 107",
+       "MICRB 201",
+       "MICRB 202",
+       "PHYS 250",
+       "PHYS 251",
+       "PSYCH 260",
+       "PSYCH 460",
+       "PSYCH 461",
+       "PSYCH 462",
+       "PSYCH 464",
+       "PSYCH 470",
+       "PSYCH 473",
+       "VBSC 211",
+       "VBSC 230"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CSD 100",
+       "CSD 146",
+       "CSD 218",
+       "CSD 230",
+       "CSD 269",
+       "HDFS 229",
+       "HDFS 239",
+       "HDFS 249N",
+       "HDFS 302A",
+       "HDFS 311",
+       "HDFS 315",
+       "HDFS 405",
+       "HDFS 416",
+       "HDFS 418",
+       "HDFS 428",
+       "HDFS 429",
+       "HDFS 433",
+       "HDFS 445",
+       "HPA 57",
+       "HPA 101",
+       "HPA 310",
+       "KINES 100",
+       "KINES 101",
+       "KINES 203",
+       "KINES 356",
+       "KINES 358",
+       "NURS 401",
+       "NUTR 358",
+       "NUTR 360",
+       "PSYCH 212",
+       "PSYCH 243",
+       "PSYCH 270"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "HDFS 129",
+       "HDFS 229",
+       "HDFS 239",
+       "HDFS 249N"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "STAT 200",
+      "STAT 250"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 230W",
+       "CHEM 101",
+       "CHEM 110",
+       "CHEM 110H",
+       "CHEM 130",
+       "MICRB 106"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from the following (at least 6 credits must be at the 400 level):",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BBH 203",
+       "BBH 251",
+       "BBH 315",
+       "BBH 324",
+       "BBH 325",
+       "BBH 368",
+       "BBH 370",
+       "BBH 390A",
+       "BBH 402",
+       "BBH 407",
+       "BBH 410",
+       "BBH 416",
+       "BBH 432",
+       "BBH 446",
+       "BBH 451",
+       "BBH 468",
+       "BBH 490"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3 credits from the following:3\nBBH 210Biobehavioral Aspects of Genetics\nBIOL 133Genetics and Evolution of the Human Species\nBIOL 222Genetics\nSelect 3 credits from the following:3\nBBH 301WValues and Ethics in Biobehavioral Health Research and Practice\nPHIL 110Philosophy of Science\nPHIL 132/BIOET 100Bioethics\nSelect 9 credits from the following:9\nANTH 21Introductory Biological Anthropology\nANTH 22Humans as Primates\nANTH 216NSex and Evolution\nBIOL 155Introduction to the Biology of Aging\nBIOL 162Human Anatomy and Physiology I - Laboratory\nBIOL 164Human Anatomy and Physiology II - Laboratory\nBIOL 220WBiology: Populations and Communities\nBIOL 230WBiology: Molecules and Cells\nBIOL 240WBiology: Function and Development of Organisms\nBIOL 409Biology of Aging\nBIOL 422Advanced Genetics\nBMB 211Elementary Biochemistry\nCHEM 110Chemical Principles I\nCHEM 111Experimental Chemistry I\nCHEM 112Chemical Principles II\nCHEM 113Experimental Chemistry II\nCHEM 130Introduction to General, Organic, and Biochemistry\nCHEM 202Fundamentals of Organic Chemistry I\nor CHEM 210 Organic Chemistry I\nCHEM 203Fundamentals of Organic Chemistry II\nor CHEM 213 Laboratory in Organic Chemistry\nCHEM 212Organic Chemistry II\nEARTH 100Environment Earth\nEARTH 100HEnvironment Earth: Environment and Energy\nEARTH 103NEarth in the Future: Predicting Climate Change and Its Impacts Over the Next Century\nEGEE/MATSE 101Energy and the Environment\nEGEE 101HEnergy and the Environment\nEGEE 102Energy Conservation for Environmental Protection\nEGEE 102HEnergy Conservation for Environmental Protection\nFDSC 404Sensory Evaluation of Foods\nFDSC 405Food Engineering Principles\nFDSC 406WPhysiology of Nutrition\nFDSC 407Food Toxins\nFDSC 408Food Microbiology\nGEOG 314Biogeography and Global Ecology\nMICRB 106Elementary Microbiology\nMICRB 107Elementary Microbiology Laboratory\nMICRB 201Introductory Microbiology\nMICRB 202Introductory Microbiology Laboratory\nPHYS 250Introductory Physics I\nPHYS 251Introductory Physics II\nPSYCH 260/BBH 203Neurological Bases of Human Behavior\nPSYCH 460Comparative Psychology\nPSYCH 461Advanced Conditioning and Learning\nPSYCH 462Physiological Psychology\nPSYCH 464Behavior Genetics\nPSYCH 470Abnormal Psychology\nPSYCH 473Behavioral Interventions\nVBSC 211The Immune System and Disease\nVBSC 230The Science of Poisons\nSelect 9 credits from the following:9\nCSD 100Vocal Health for Life\nCSD 146Introduction to Communication Sciences and Disorders\nCSD 218American Sign Language I\nCSD 230Introduction to Audiology\nCSD 269Deaf Culture\nHDFS 229Infant and Child Development\nHDFS 239Adolescent Development\nHDFS 249NAdult Development and Aging\nHDFS/WMNST 250Sexual and Gender Identity Over the Lifespan\nHDFS 302ALeadership and Technology Skills for Human Services Professionals A\nHDFS 311Human Development and Family Studies Interventions\nHDFS 315Family Development\nHDFS 405Gender and Social Development\nHDFS 416/SOC 411Racial and Ethnic Diversity and the American Family\nHDFS 418Family Relationships\nHDFS 428Infant Development\nHDFS 429Advanced Child Development\nHDFS/SOC 431Family Disorganization: Stress Points in the Contemporary Family\nHDFS 433Developmental Transition to Adulthood\nHDFS 445/PSYCH 416Development Throughout Adulthood\nHPA 57Consumer Choices in Health Care\nHPA 101Introduction to Health Services Organization\nHPA 310Health Care and Medical Needs\nKINES 100The Cultural and Behavioral Foundations of Kinesiology\nKINES 101The Biophysical Foundations of Kinesiology\nKINES 203Medical Terminology for Allied Health Professionals\nKINES 356Activity and Disease\nKINES 358Ergogenic Aids\nNURS 401Concepts of Health\nNURS/BBH 452Women's Health Issues\nNUTR 358Assessment of Nutritional Status\nNUTR 360Nutrition Education and Behavior Change Theory\nPSYCH 212Introduction to Developmental Psychology\nPSYCH 243Introduction to Well-being and Positive Psychology\nPSYCH 270Introduction to Abnormal Psychology\nSelect 3 credits from the following:3\nHDFS 129Introduction to Human Development and Family Studies\nHDFS 229Infant and Child Development\nHDFS 239Adolescent Development\nHDFS 249NAdult Development and Aging\nAdditional Courses: Require a grade of C or better\nSTAT 200Elementary Statistics 3-4\nor STAT 250 Introduction to Biostatistics\nSelect 3-4 credits from the following:3-4\nBIOL 230WBiology: Molecules and Cells\nCHEM 101Introductory Chemistry\nCHEM 110Chemical Principles I\nCHEM 110HChemical Principles I - Honors\nCHEM 130Introduction to General, Organic, and Biochemistry\nMICRB 106Elementary Microbiology\nSelect 12 credits from the following (at least 6 credits must be at the 400 level):12\nBBH 203/PSYCH 260Neurological Bases of Human Behavior\nBBH 251Straight Talks I: Advanced Sexual Orientation/Gender Identity Peer Education\nBBH/AFR 305Introduction to Global Health Issues\nBBH 315Gender and Biobehavioral Health\nBBH 324HealthWorks Peer Education Training\nBBH 325Health Promotion Services Training\nBBH 368Neuroanatomy, Behavior, and Health\nBBH 370Environmental Health and Sustainability\nBBH 390APreparation for Global Health Field Experience\nBBH 402African Health & Development\nBBH 407Global Health Equity\nBBH 410Developmental and Health Genetics\nBBH 416Health Promotion II: Planning, Implementation, and Evaluation\nBBH 432Biobehavioral Aspects of Stress\nBBH 446Human Sexuality as a Health Concern\nBBH 451Pharmacological Influences on Health\nBBH/NURS 452Women's Health Issues\nBBH/WMNST 458Critical Feminist Issues in Reproduction\nBBH 468Neuroanatomical Bases for Disorders of Behavior and Health\nBBH/BIOL 469Neurobiology\nBBH/BIOL 470Functional and Integrative Neuroscience\nBBH 490Introduction to Internship Experience\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in health promotion from approved list, in consultation with adviser",
+     "from": null
+    },
+    {
+     "type": "course",
+     "code": "SELECT 12",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "APPLY 6",
+     "credits": null,
+     "unverified": true
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3 credits in health promotion from approved list, in consultation with adviser3\nSelect 12 credits in University-wide offerings from approved list, in consultation with adviser (Students may apply 6 credits of ROTC.)12\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Biobehavioral Health, B.S. at Greater Allegheny Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HDFS 129",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BBH 101",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSU 8",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "MICRB 106"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Basic Science",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BBH 311",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 161",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Developmental Science Course",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from University-Wide Offerings",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BBH 316",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 163",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 222",
+       "credits": 3,
+       "footnotes": [
+        "5"
+       ],
+       "alternatives": [
+        "BBH 210"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUTR 251",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BBH 302",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "6"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BBH Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "6"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Basic Science",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Developmental Science Course",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BBH 310",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BBH Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "6"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BBH 301W",
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from University-Wide Offerings",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BBH 440",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "400-level BBH Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "6"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Basic Science",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Developmental Science Course",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BBH 411W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BBH 416",
+       "credits": 3,
+       "footnotes": [
+        "7"
+       ],
+       "alternatives": [
+        "PSYCH 441"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-level BBH Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "6"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from University-Wide Offerings",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from University-Wide Offerings",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 122,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Biobehavioral Health, B.S. at Lehigh Valley Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BBH 101",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSU 8",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BBH 301W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "BIOL 230W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HDFS 129",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "HDFS 229",
+        "HDFS 239",
+        "HDFS 249N"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "NUTR 251",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BBH 311",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 161",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 162",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "University-wide Offerings",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BBH 316",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 163",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 164",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Developmental Science",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BBH Elective Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BBH Elective Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Basic Science",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Human Development",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 133",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 222"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BBH 310",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BBH Elective Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "University-wide Offering",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BBH 411W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BBH 440",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Basic Science",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BBH Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "University-wide Offerings",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BBH 416",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BBH Elective Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Basic Science",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "University-wide Offerings",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Biobehavioral Health, B.S. at New Kensington Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BBH 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSU 8",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or General Quantification",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HDFS 129",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUTR 251",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or General Quantification",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or General Quantification",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 161",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BBH 311",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "University-Wide Offerings",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Developmental Sciences",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 163",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BBH 301W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BBH 316",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 100S"
+       ],
+       "resolvedFrom": "CAS 100"
+      },
+      {
+       "type": "placeholder",
+       "label": "Health and Developmental Science",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BBH Elective Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BBH 302",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Basic Science",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Healthy and Developmental Science",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BBH Elective Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BBH 416",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 441"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 133",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "BIOL 222"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "University-Wide Offerings",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or General Quantification",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BBH 310",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BBH Elective Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Basic Science",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Unversity-Wide Offerings",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course or General Quantifications",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BBH 411W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BBH 440",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BBH Elective Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Basic Science",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "University-Wide Offerings",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 123,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

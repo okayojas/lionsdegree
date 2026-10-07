@@ -1,0 +1,2156 @@
+{
+ "slug": "liberal-arts-spanish-bs",
+ "name": "Spanish, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/spanish-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "SPAN 215N",
+      "SPAN 215Q"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SPAN 253W",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nSPAN 215The Science of Spanish: A Beginner's Guide to Hispanic Linguistics3\nSPAN 253WIntroduction to Literary & Cultural Studies en Español 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "SPAN 200",
+      "SPAN 200A"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "SPAN 100",
+       "SPAN 100A",
+       "SPAN 100B",
+       "SPAN 100C"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "SPAN 210",
+       "SPAN 220",
+       "SPAN 297",
+       "SPAN 299",
+       "SPAN 300",
+       "SPAN 300B",
+       "SPAN 305",
+       "SPAN 314",
+       "SPAN 315N",
+       "SPAN 316",
+       "SPAN 353",
+       "SPAN 354",
+       "SPAN 355",
+       "SPAN 356",
+       "SPAN 397",
+       "SPAN 399",
+       "SPAN 411",
+       "SPAN 417",
+       "SPAN 474",
+       "SPAN 491"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSPAN 200¡Hablemos! Language and Culture 3\nor SPAN 200A Language and Culture for Spanish Bilinguals\nSelect 3 credits from the following:3\nSPAN 100Intermediate Grammar and Composition\nSPAN 100AIntermediate Grammar and Composition for Spanish Bilinguals\nSPAN 100BIntermediate Grammar and Composition for Students in Medical-Related Fields\nSPAN 100C\nSelect 9 credits from the following:9\nSPAN 210\nSPAN 220Readings in Ibero-American Civilization\nSPAN 297Special Topics\nSPAN 299Foreign Study--Intermediate Conversational Spanish\nSPAN 300Advanced Grammar and Composition Through Reading\nSPAN 300BAdvanced Grammar and composition for Students in Medical-related Fields\nSPAN 305Spanish for Social Services\nSPAN 314Spanish Sounds\nSPAN 315NSpanish and Spanish-speakers in the U.S.\nSPAN 316Building Words and Sentences in Spanish\nSPAN 353Topics in the Cultures of Spain\nSPAN 354Topics in Cultural Contact and Exchange\nSPAN 355Topics in the Cultures of Latin America\nSPAN 356Topics in the Cultures of the Americas\nSPAN 397Special Topics\nSPAN 399Foreign Study--Spanish\nSPAN 411The ABCs of Bilingualism: Acquisition, Brain, and Community\nSPAN 417How Languages Are Learned\nSPAN/LTNST 470Youth Cultures in Latin(a/o) America\nSPAN 474Many Mexicos\nSPAN 491Masterpieces of Spanish Drama and Poetry\n"
+  },
+  {
+   "heading": "Requirements for the Option",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select an option"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Requirements for the Option: Require a grade of C or better\nSelect an option39-50\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of 400-level Hispanic Linguistics:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "SPAN 411",
+       "SPAN 417",
+       "SPAN 418",
+       "SPAN 497"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of 400-level Hispanic Literature:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "SPAN 439",
+       "SPAN 472",
+       "SPAN 474",
+       "SPAN 476",
+       "SPAN 488",
+       "SPAN 490",
+       "SPAN 491",
+       "SPAN 497"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Select 12 additional credits from the following 400-level course list:"
+    },
+    {
+     "type": "course",
+     "code": "SPAN 410",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 411",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 412",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 413",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 417",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 418",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 420",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 439",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 472",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 474",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 476",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 488",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 490",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 491",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 497",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SPAN 499",
+     "credits": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits of 400-level Hispanic Linguistics:3\nSPAN 411The ABCs of Bilingualism: Acquisition, Brain, and Community\nSPAN 417How Languages Are Learned\nSPAN 418The Evolution of Spanish\nSPAN 497Special Topics\nSelect 3 credits of 400-level Hispanic Literature:3\nSPAN 439Don Quijote\nSPAN/LTNST 470Youth Cultures in Latin(a/o) America\nSPAN 472The Contemporary Spanish American Novel\nSPAN 474Many Mexicos\nSPAN 476Masterpieces of Spanish American Literature\nSPAN/LTNST 479U.S. Latina/o Culture en Espanol\nSPAN 488War, Revolution, and the Struggles for Modernity: Spain 1898-1939\nSPAN 490Masterpieces of Spanish Prose\nSPAN 491Masterpieces of Spanish Drama and Poetry\nSPAN 497Special Topics\nSelect 12 additional credits from the following 400-level course list: 12\nSPAN 410Advanced Oral Expression and Communication\nSPAN 411The ABCs of Bilingualism: Acquisition, Brain, and Community\nSPAN 412Translation\nSPAN 413Interpretation\nSPAN 417How Languages Are Learned\nSPAN 418The Evolution of Spanish\nSPAN 420Spanish for Business and International Trade\nSPAN 439Don Quijote\nSPAN/LTNST 470Youth Cultures in Latin(a/o) America\nSPAN 472The Contemporary Spanish American Novel\nSPAN 474Many Mexicos\nSPAN 476Masterpieces of Spanish American Literature\nSPAN/LTNST 479U.S. Latina/o Culture en Espanol\nSPAN 488War, Revolution, and the Struggles for Modernity: Spain 1898-1939\nSPAN 490Masterpieces of Spanish Prose\nSPAN 491Masterpieces of Spanish Drama and Poetry\nSPAN 497Special Topics\nSPAN 499Foreign Study--Spanish\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 21,
+     "commentRaw": "Select 21 credits (at least 6 credits at the 400 level) in consultation with the adviser in any related area of study such as social services, the teaching of English as a second language, or in any other professional area in which competency in Spanish is desirable",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 21 credits (at least 6 credits at the 400 level) in consultation with the adviser in any related area of study such as social services, the teaching of English as a second language, or in any other professional area in which competency in Spanish is desirable21\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ACCTG 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ECON 102",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 104",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 333",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202D",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IB 303",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IB 403",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SPAN 420",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nACCTG 211Financial and Managerial Accounting for Decision Making4\nECON 102Introductory Microeconomic Analysis and Policy 3\nECON 104Introductory Macroeconomic Analysis and Policy 3\nECON 333International Economics 3\nENGL 202DEffective Writing: Business Writing 3\nIB 303International Business Operations3\nIB 403International Business and National Policies3\nSPAN 420Spanish for Business and International Trade3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BA 301",
+      "FIN 301"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BA 303",
+      "MKTG 301"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BA 304",
+      "MGMT 301"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "SCM 200",
+      "STAT 200"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "SPAN 410",
+       "SPAN 411",
+       "SPAN 412",
+       "SPAN 413",
+       "SPAN 417",
+       "SPAN 418",
+       "SPAN 439",
+       "SPAN 472",
+       "SPAN 474",
+       "SPAN 476",
+       "SPAN 488",
+       "SPAN 490",
+       "SPAN 491",
+       "SPAN 497",
+       "SPAN 499"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nBA 301Finance3\nor FIN 301 Corporation Finance\nBA 303Marketing3\nor MKTG 301 Principles of Marketing\nBA 304Management and Organization3\nor MGMT 301 Basic Management Concepts\nSCM 200Introduction to Statistics for Business 4\nor STAT 200 Elementary Statistics\nSelect 12 credits from the following:12\nSPAN 410Advanced Oral Expression and Communication\nSPAN 411The ABCs of Bilingualism: Acquisition, Brain, and Community\nSPAN 412Translation\nSPAN 413Interpretation\nSPAN 417How Languages Are Learned\nSPAN 418The Evolution of Spanish\nSPAN 439Don Quijote\nSPAN/LTNST 470Youth Cultures in Latin(a/o) America\nSPAN 472The Contemporary Spanish American Novel\nSPAN 474Many Mexicos\nSPAN 476Masterpieces of Spanish American Literature\nSPAN/LTNST 479U.S. Latina/o Culture en Espanol\nSPAN 488War, Revolution, and the Struggles for Modernity: Spain 1898-1939\nSPAN 490Masterpieces of Spanish Prose\nSPAN 491Masterpieces of Spanish Drama and Poetry\nSPAN 497Special Topics\nSPAN 499Foreign Study--Spanish\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Applied Spanish Option: Spanish, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ENGL 137H",
+        "CAS 137H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 1",
+       "credits": 4,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 83",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 138T",
+        "ENGL 138T"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 2",
+       "credits": 4,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Applied Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SPAN 3",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SPAN 100A",
+        "SPAN 100B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "Applied Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (US)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SPAN 200",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SPAN 200A"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SPAN 215N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SPAN 215Q"
+       ],
+       "resolvedFrom": "SPAN 215"
+      },
+      {
+       "type": "placeholder",
+       "label": "Applied Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Applied Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SPAN 253W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200- or 300-Level Course in SPAN",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "200- or 300-Level Course in SPAN",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Applied Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "ENGL 202 (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200- or 300-level course in SPAN",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Literature",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Linguistics",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level Applied Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level Applied Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 123,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Business Option: Spanish, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ENGL 137H",
+        "CAS 137H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 1",
+       "credits": 4,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 83",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 138T",
+        "ENGL 138T"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 104",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 2",
+       "credits": 4,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 3",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SPAN 100A",
+        "SPAN 100B"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (US)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ACCTG 211",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SPAN 200",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SPAN 200A"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SPAN 215N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SPAN 215Q"
+       ],
+       "resolvedFrom": "SPAN 215"
+      },
+      {
+       "type": "course",
+       "code": "BA 303",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MKTG 301"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BA 304",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MGMT 301"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SPAN 253W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 333",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200- or 300-Level Course in SPAN",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "200- or 300-Level Course in SPAN",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202D",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 420",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IB 303",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200- or 300-Level Course in SPAN",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BA 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "FIN 301"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "IB 403",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Applied Spanish Option: Spanish, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ENGL 137H",
+        "CAS 137H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 1",
+       "credits": 4,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 138T",
+        "ENGL 138T"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 2",
+       "credits": 4,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Applied Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SPAN 3",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SPAN 100A",
+        "SPAN 100B"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Applied Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (US)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SPAN 200",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SPAN 200A"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SPAN 215N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SPAN 215Q"
+       ],
+       "resolvedFrom": "SPAN 215"
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "Applied Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Applied Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SPAN 253W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200- or 300-Level Course in SPAN",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "200- or 300-Level Course in SPAN",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Applied Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "ENGL 202 (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200- or 300-level course in SPAN",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Literature",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Linguistics",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level Applied Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level Applied Option Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 121,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Business Option: Spanish, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ENGL 137H",
+        "CAS 137H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 1",
+       "credits": 4,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 138T",
+        "ENGL 138T"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (N)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 104",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 2",
+       "credits": 4,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 3",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SPAN 100A",
+        "SPAN 100B"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (US)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ACCTG 211",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SPAN 200",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SPAN 200A"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SPAN 215N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SPAN 215Q"
+       ],
+       "resolvedFrom": "SPAN 215"
+      },
+      {
+       "type": "course",
+       "code": "BA 303",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MKTG 301"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BA 304",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MGMT 301"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SPAN 253W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 333",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200- or 300-Level Course in SPAN",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "200- or 300-Level Course in SPAN",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202D",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPAN 420",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IB 303",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200- or 300-Level Course in SPAN",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level SPAN Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BA 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "FIN 301"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "IB 403",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 122,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

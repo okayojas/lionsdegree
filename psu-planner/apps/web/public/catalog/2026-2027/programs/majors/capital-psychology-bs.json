@@ -1,0 +1,1589 @@
+{
+ "slug": "capital-psychology-bs",
+ "name": "Psychology, B.S. (Capital)",
+ "type": "major",
+ "degree": "BS",
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/psychology-bs/",
+ "totalCredits": 122,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ENGL 202A",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 301W",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nENGL 202AEffective Writing: Writing in the Social Sciences 3\nPSYCH 100Introductory Psychology 3\nPSYCH 301WBasic Research Methods in Psychology4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 141",
+       "BIOL 161",
+       "BISC 4"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "At least 15 credits of the following courses must be at the 400 level:"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 1 (Statistics)"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 200",
+      "STAT 200"
+     ],
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from two different developmental categories (3 credits each category):",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 2a (Lifespan)"
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 212",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 2b (Adult)"
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 416",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 2c (Child)"
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 410",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 2d (Adolescence)"
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 412",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from two different individual difference categories (3 credits each category):",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 3a (Social Psychology)"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 221",
+      "PSYCH 420"
+     ],
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 3b (Personality Psychology)"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 238",
+      "PSYCH 438"
+     ],
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 3c (Personal Adjustment)"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 243",
+      "PSYCH 471"
+     ],
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 3d (Health Psychology)"
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 441",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from two different clinical categories (3 credits each category):",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 4a (Physical Disabilities)"
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 370",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 4b (Childhood Disorders)"
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 476",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 4c (Abnormal Psychology)"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 270",
+      "PSYCH 470"
+     ],
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 4d (Behavior Modification)"
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 473",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 4e (Developmental Disabilities)"
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 443",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from two different experimental categories (3 credits in each category):",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 5a (Physiological Psychology)"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 260",
+      "PSYCH 462"
+     ],
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 5b (Cognitive Psychology)"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 256",
+      "PSYCH 452",
+      "PSYCH 456"
+     ],
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 5c (Learning Theory)"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 261",
+      "PSYCH 461"
+     ],
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from applications in psychology:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Category 6 (Applied Experience)"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 395",
+      "PSYCH 494",
+      "PSYCH 495"
+     ],
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits of any PSYCH courses not used above, with the exception that only one course selected from any Category 1 through 5 will count for the major",
+     "from": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nBIOL 141Introduction to Human Physiology\nBIOL 161Human Anatomy and Physiology I - Lecture\nBISC 4Human Body: Form and Function\nAt least 15 credits of the following courses must be at the 400 level:\nSelect 4 credits from the following:4\nCategory 1 (Statistics)\nPSYCH 200Elementary Statistics in Psychology\nor STAT 200 Elementary Statistics\nSelect 6 credits from two different developmental categories (3 credits each category):6\nCategory 2a (Lifespan)\nPSYCH 212Introduction to Developmental Psychology\nCategory 2b (Adult)\nPSYCH 416/HDFS 445Development Throughout Adulthood\nCategory 2c (Child)\nPSYCH 410Child Development\nCategory 2d (Adolescence)\nPSYCH 412Adolescence\nSelect 6 credits from two different individual difference categories (3 credits each category):6\nCategory 3a (Social Psychology)\nPSYCH 221Introduction to Social Psychology\nor PSYCH 420 Advanced Social Psychology\nCategory 3b (Personality Psychology)\nPSYCH 238Introduction to Personality Psychology\nor PSYCH 438 Personality Theory\nCategory 3c (Personal Adjustment)\nPSYCH 243Introduction to Well-being and Positive Psychology\nor PSYCH 471 Psychology of Adjustment and Social Relationships\nCategory 3d (Health Psychology)\nPSYCH 441Health Psychology\nSelect 6 credits from two different clinical categories (3 credits each category):6\nCategory 4a (Physical Disabilities)\nPSYCH 370Psychology of the Differently-Abled\nCategory 4b (Childhood Disorders)\nPSYCH 476Child Psychopathology\nCategory 4c (Abnormal Psychology)\nPSYCH 270Introduction to Abnormal Psychology\nor PSYCH 470 Abnormal Psychology\nCategory 4d (Behavior Modification)\nPSYCH 473Behavior Modification\nCategory 4e (Developmental Disabilities)\nPSYCH 443Treatment and Education in Developmental Disabilities\nSelect 6 credits from two different experimental categories (3 credits in each category):6\nCategory 5a (Physiological Psychology)\nPSYCH 260/BBH 203Neurological Bases of Human Behavior\nor PSYCH 462 Physiological Psychology\nCategory 5b (Cognitive Psychology)\nPSYCH 256Introduction to Cognitive Psychology\nor PSYCH 452 Learning and Memory\nor PSYCH 456 Advanced Cognitive Psychology\nCategory 5c (Learning Theory)\nPSYCH 261Introduction to Psychology of Learning\nor PSYCH 461 Advanced Conditioning and Learning\nSelect 3 credits from applications in psychology:3\nCategory 6 (Applied Experience)\nPSYCH 395Internship\nor PSYCH 494 Research Projects\nor PSYCH 495 Internship\nSelect 12 credits of any PSYCH courses not used above, with the exception that only one course selected from any Category 1 through 5 will count for the major12\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Complete 18 credits from department approved list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Complete 18 credits from department approved list18\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Psychology, B.S. at Harrisburg Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 15S",
+        "ENGL 30T",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "Quantification (GQ) (MATH 21 recommended for PSYCH 200 prerequisite)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100S"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "Quantification (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 141",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "BISC 4",
+        "BIOL 161"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 200",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "STAT 200"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 221",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 420",
+        "PSYCH 238",
+        "PSYCH 438",
+        "PSYCH 243",
+        "PSYCH 471",
+        "PSYCH 441"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 301W",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 212",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 410",
+        "PSYCH 412",
+        "PSYCH 416"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 212",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 410",
+        "PSYCH 412",
+        "PSYCH 416"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 260",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 462",
+        "PSYCH 261",
+        "PSYCH 461",
+        "PSYCH 256",
+        "PSYCH 452",
+        "PSYCH 456"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 270",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 470",
+        "PSYCH 443",
+        "PSYCH 476",
+        "PSYCH 370",
+        "PSYCH 473"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Select from Department Approved List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select from Department Approved List",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 221",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 420",
+        "PSYCH 238",
+        "PSYCH 438",
+        "PSYCH 471",
+        "PSYCH 441"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 270",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 470",
+        "PSYCH 443",
+        "PSYCH 476",
+        "PSYCH 370",
+        "PSYCH 473"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 260",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 462",
+        "PSYCH 261",
+        "PSYCH 461",
+        "PSYCH 256",
+        "PSYCH 452",
+        "PSYCH 456"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Select from Department Approved List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 495",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 494"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Select any PSYCH courses not used above",
+       "credits": 6,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Select from Department Approved List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Select any PSYCH courses not used above",
+       "credits": 6,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Select from Department Approved List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select from Department Approved List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 122,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Psychology, B.S. (3-Year Fast-Track) at Harrisburg Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 15S",
+        "ENGL 30T",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "Quantification (GQ) (MATH 21 recommended for PSYCH 200 prerequisite)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100S"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 141",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "BISC 4",
+        "BIOL 161"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "Quantification (GQ) MATH 21",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200-level Psychology course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "200-level Psychology course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Summer",
+     "label": "Year 1 Summer",
+     "credits": 6,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 212",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PSYCH 270 or 470; PSYCH 443, PSYCH 476, PSYCH 370 or PSYCH 473* PSYCH 260 or PSYCH 462; PSYCH 261 or PSYCH 461; PSYCH 256, PSYCH 452, or PSYCH 456",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 221 or PSYCH 420; PSYCH 238 or PSYCH 438; PSYCH 243, PSYCH 471, or PSYCH 441",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 410",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 412",
+        "PSYCH 416"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Department List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 200",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "STAT 200"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 270 or 470; PSYCH 443, PSYCH 476, PSYCH 370 or PSYCH 473",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 260 or PSYCH 462; PSYCH 261 or PSYCH 461; PSYCH 256, PSYCH 452, or PSYCH 456",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Department List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Summer",
+     "label": "Year 2 Summer",
+     "credits": 9,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 175N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 412"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 301W",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional PSYCH",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Department List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Department List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PSYCH 221 or PSYCH 420; PSYCH 238 or PSYCH 438; PSYCH 243, PSYCH 471, or PSYCH 441 PSYCH 212, 410, 412, or 416*",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional PSYCH",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Department List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Department List",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 495",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 494"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 122,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Psychology, B.S. (3-Year Fast-Track with Dual Enrollment) at Harrisburg Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 6,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 15S",
+        "ENGL 30T",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 9,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100S"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "Quantification (GQ) (MATH 21 recommended for PSYCH 200 prerequisite)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Department List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200-level Psychology course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 141",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "BISC 4",
+        "BIOL 161"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "Quantification (GQ) MATH 21",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200-level Psychology course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Summer",
+     "label": "Year 3 Summer",
+     "credits": 6,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 212",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 200",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "STAT 200"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 270, PSYCH 221 or PSYCH 420; PSYCH 238 or PSYCH 438; PSYCH 243, PSYCH 471, or PSYCH 441",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 410",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 412",
+        "PSYCH 416"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Department List",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 301W",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 470; PSYCH 443, PSYCH 476, PSYCH 370 or PSYCH 473",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PSYCH 260 or PSYCH 462; PSYCH 261 or PSYCH 461; PSYCH 256, PSYCH 452, or PSYCH 456",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Department List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Department List",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Summer",
+     "label": "Year 4 Summer",
+     "credits": 6,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 175N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 412"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 5,
+     "term": "Fall",
+     "label": "Year 5 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PSYCH 270, PSYCH 221 or PSYCH 420; PSYCH 238 or PSYCH 438; PSYCH 243, PSYCH 471, or PSYCH 441* PSYCH 212, 410, 412, or 416",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional PSYCH",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Department List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 5,
+     "term": "Spring",
+     "label": "Year 5 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PSYCH 470; PSYCH 443, PSYCH 476, PSYCH 370 or PSYCH 473 * PSYCH 260 or PSYCH 462; PSYCH 261 or PSYCH 461; PSYCH 256, PSYCH 452, or PSYCH 456",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional PSYCH",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Department List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 495",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PSYCH 494"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 122,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

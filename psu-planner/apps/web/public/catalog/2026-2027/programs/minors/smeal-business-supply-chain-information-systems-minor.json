@@ -1,0 +1,66 @@
+{
+ "slug": "smeal-business-supply-chain-information-systems-minor",
+ "name": "Supply Chain and Information Systems, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "smeal-business",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/smeal-business/supply-chain-information-systems-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "SCM 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCM 404",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCM 406",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCM 445",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nSCM 301Supply Chain Management3\nSCM 404Demand Fulfillment3\nSCM 406Strategic Procurement3\nSCM 445Operations Planning and Control3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MIS 404",
+       "SCM 460",
+       "SCM 465"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits of the following:6\nMIS 404Introduction to ERP and Business Processes\nSCM 460Purchasing and Materials Management\nSCM 465\n"
+  }
+ ],
+ "suggestedPlans": []
+}

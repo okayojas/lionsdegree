@@ -101,7 +101,13 @@ async function main() {
         if (!jm) continue;
         try {
           const obj = JSON.parse(jm[1]) as { examName?: string; creditEvaluation?: { json?: unknown } };
-          if (obj.examName) payloads.set(obj.examName, obj as { examName: string; creditEvaluation?: { json?: unknown } });
+          // Trim: at least one exam ships with trailing spaces in the payload
+          // ("Cybersecurity  "), and this name is both the lookup key and the
+          // label a student picks from.
+          if (obj.examName) {
+            const name = obj.examName.replace(/\s+/g, " ").trim();
+            payloads.set(name, { ...obj, examName: name } as { examName: string; creditEvaluation?: { json?: unknown } });
+          }
         } catch { /* not the payload line */ }
       }
     } catch { /* stream closed */ }
@@ -110,31 +116,83 @@ async function main() {
   await page.goto("https://www.psu.edu/admission/undergraduate/credit/ap-credit", { waitUntil: "domcontentloaded", timeout: 90_000 });
   await page.waitForTimeout(5000);
 
-  for (let pageNo = 1; pageNo <= 6; pageNo++) {
-    const cardTitles: string[] = await page.evaluate(() =>
-      Array.from(document.querySelectorAll("div[role='button'] h4")).map((h) => h.textContent?.trim() ?? "").filter(Boolean),
-    );
-    console.log(`[ap] list page ${pageNo}: ${cardTitles.length} cards`);
-    for (const title of cardTitles) {
-      if (payloads.has(title)) continue;
-      try {
-        await page.locator(`h4:has-text("${title.replace(/"/g, '\\"')}")`).first().click({ timeout: 6000, force: true });
-        await page.waitForTimeout(1200);
-        await page.keyboard.press("Escape");
-        await page.waitForTimeout(300);
-      } catch { console.log(`  [ap] click failed: ${title}`); }
+  /** Every exam card the listing offered, across all pagination pages. The
+   * capture is complete only when we hold a payload for each one. */
+  const seen = new Set<string>();
+
+  /** Walk every pagination page, clicking the cards we do not yet hold a
+   * payload for. Returns once the walk ends; call again to retry stragglers. */
+  async function sweep(waitMs: number): Promise<void> {
+    for (let pageNo = 1; pageNo <= 6; pageNo++) {
+      const cardTitles: string[] = await page.evaluate(() =>
+        Array.from(document.querySelectorAll("div[role='button'] h4")).map((h) => h.textContent?.trim() ?? "").filter(Boolean),
+      );
+      cardTitles.forEach((t) => seen.add(t));
+      console.log(`[ap] list page ${pageNo}: ${cardTitles.length} cards`);
+      for (const title of cardTitles) {
+        if (payloads.has(title)) continue;
+        try {
+          await page.locator(`h4:has-text("${title.replace(/"/g, '\\"')}")`).first().click({ timeout: 6000, force: true });
+          // POLL for the payload rather than guessing a fixed delay. A flat
+          // 1200ms wait silently dropped 8 of 45 exams (Spanish, French,
+          // German, Chinese, Physics 2 among them) whenever the server action
+          // came back slower than the guess.
+          const deadline = Date.now() + waitMs;
+          while (!payloads.has(title) && Date.now() < deadline) await page.waitForTimeout(150);
+          if (!payloads.has(title)) console.log(`  [ap] no payload yet: ${title}`);
+          await page.keyboard.press("Escape");
+          await page.waitForTimeout(250);
+        } catch { console.log(`  [ap] click failed: ${title}`); }
+      }
+      // Next pagination page: a button/link with the bare number.
+      const moved = await page.evaluate((n) => {
+        const el = document.querySelector(`li[aria-label="Go to page ${n}"]`);
+        if (el) { (el as HTMLElement).click(); return true; }
+        return false;
+      }, pageNo + 1);
+      if (!moved) break;
+      await page.waitForTimeout(2500);
     }
-    // Next pagination page: a button/link with the bare number.
-    const moved = await page.evaluate((n) => {
-      const el = document.querySelector(`li[aria-label="Go to page ${n}"]`);
-      if (el) { (el as HTMLElement).click(); return true; }
-      return false;
-    }, pageNo + 1);
-    if (!moved) break;
-    await page.waitForTimeout(2500);
+  }
+
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    await sweep(attempt * 6000);
+    const missing = [...seen].filter((t) => !payloads.has(t));
+    if (!missing.length) break;
+    console.log(`[ap] attempt ${attempt}: ${missing.length} still missing, retrying — ${missing.join(", ")}`);
+    await page.goto("https://www.psu.edu/admission/undergraduate/credit/ap-credit", { waitUntil: "domcontentloaded", timeout: 90_000 });
+    await page.waitForTimeout(5000);
   }
   await browser.close();
-  console.log(`[ap] captured ${payloads.size} exam payloads`);
+
+  console.log(`[ap] captured ${payloads.size} of ${seen.size} exam payloads`);
+
+  // Iron rule 2: a partial AP table is worse than none. A student holding an
+  // exam we dropped would silently receive no credit for it, which reads as a
+  // planner bug and costs them real course placement. The original script
+  // waited a flat 1200ms per card and wrote whatever it happened to have --
+  // 37 of 45 on one run, silently dropping Spanish, French, German, Chinese
+  // and Physics 2. Fail rather than write a partial table.
+  if (payloads.size < seen.size) {
+    const unmatched = [...seen].filter((t) => !payloads.has(t));
+    throw new Error(
+      `AP capture incomplete: ${payloads.size} payloads for ${seen.size} cards after 3 attempts ` +
+        `(no payload for: ${unmatched.join(", ")}). Refusing to write a partial ap_credits.json.`,
+    );
+  }
+
+  // Equal counts but differing names: the card's heading and the payload's
+  // examName disagree for some exam. Every card produced a payload, so no data
+  // was lost -- but say so, because it means one exam is filed under a name the
+  // listing does not use.
+  const cardOnly = [...seen].filter((t) => !payloads.has(t));
+  const payloadOnly = [...payloads.keys()].filter((n) => !seen.has(n));
+  if (cardOnly.length || payloadOnly.length) {
+    console.log(
+      `[ap] NOTE: card/payload name mismatch -- card heading(s) [${cardOnly.join(", ")}] ` +
+        `vs payload examName(s) [${payloadOnly.join(", ")}]. Payload names are authoritative.`,
+    );
+  }
 
   const exams: ApExam[] = [];
   for (const [name, payload] of payloads) {

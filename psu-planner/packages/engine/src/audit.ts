@@ -61,9 +61,9 @@ export function buildPool(plan: PlanDoc, catalog: Catalog): PoolCourse[] {
   return pool;
 }
 
-function matchesPattern(code: string, subject: string, minLevel: number | null): boolean {
+function matchesPattern(code: string, subjects: string[], minLevel: number | null): boolean {
   const s = splitCode(code);
-  if (!s || s.subject !== subject) return false;
+  if (!s || !subjects.includes(s.subject)) return false;
   return minLevel === null || parseInt(s.number, 10) >= minLevel;
 }
 
@@ -139,7 +139,7 @@ export function auditProgram(
     const matches = (code: string): boolean => {
       if (!rule.from) return false;
       if (rule.from.kind === "courses") return rule.from.courses.includes(code);
-      if (rule.from.kind === "pattern") return matchesPattern(code, rule.from.subject, rule.from.minLevel);
+      if (rule.from.kind === "pattern") return matchesPattern(code, rule.from.subjects, rule.from.minLevel);
       if (rule.from.kind === "genEd") {
         const domain = rule.from.domain;
         return catalog[code]?.genEd.includes(domain) ?? false;

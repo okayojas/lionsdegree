@@ -1,0 +1,997 @@
+{
+ "slug": "engineering-engineering-science-bs",
+ "name": "Engineering Science, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/engineering-science-bs/",
+ "totalCredits": 131,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "EE 210",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "EMCH 302H",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ESC 312",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ESC 409",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "ESC 410H",
+     "credits": 3,
+     "resolvedFrom": "ESC 410"
+    },
+    {
+     "type": "course",
+     "code": "ESC 411",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "ESC 433",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MATH 220",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MATH 230",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 214",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202C",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ESC 404",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ESC 407",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ESC 414M",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 251",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 212",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CHEM 111Experimental Chemistry I 1\nEE 210Circuits and Devices4\nEMCH 302HThermodynamics, Heat Conduction, and Principles of Modeling, Honors4\nESC 312Engineering Applications of Wave, Particle, and Ensemble Concepts3\nESC 409Senior Research and Design Project Preparation, Honors1\nESC 4103\nESC 411Senior Research and Design Project II, Honors2\nESC 433Engineering Science Research Laboratory Experience1\nMATH 220Matrices 2\nMATH 230Calculus and Vector Analysis4\nPHYS 214General Physics: Wave Motion and Quantum Physics 2\nPrescribed Courses: Require a grade of C or better\nCHEM 110Chemical Principles I 3\nEDSGN 100Cornerstone Engineering Design3\nENGL 202CEffective Writing: Technical Writing 3\nESC 404Analysis in Engineering Science3\nESC 407Computer Methods in Engineering Science, Honors3\nESC 414MElements of Material Engineering3\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\nMATH 251Ordinary and Partial Differential Equations4\nPHYS 211General Physics: Mechanics 4\nPHYS 212General Physics: Electricity and Magnetism 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 1,
+     "commentRaw": "Select 1 credit of First-Year Seminar",
+     "from": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CMPSC 201",
+      "ESC 261M"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "ECON 14",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ECON 102",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ECON 104",
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "EMCH 210H",
+      "EMCH 210"
+     ],
+     "credits": 5
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "EMCH 212H",
+      "EMCH 212"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 15",
+      "ENGL 30H"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 1 credit of First-Year Seminar1\nCMPSC 201Programming for Engineers with C++ 3\nor ESC 261M Computational Methods in Engineering\nSelect one of the following:3\nECON 14Principles of Economics\nECON 102Introductory Microeconomic Analysis and Policy\nECON 104Introductory Macroeconomic Analysis and Policy\nAdditional Courses: Require a grade of C or better\nCAS 100AEffective Speech 3\nor CAS 100B Effective Speech\nEMCH 210HStatics and Strength of Materials, Honors5\nor EMCH 210 Statics and Strength of Materials\nEMCH 212HDynamics3\nor EMCH 212 Dynamics\nENGL 15Rhetoric and Composition 3\nor ENGL 30H Honors Rhetoric and Composition\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits from the department Foundational Elective List",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AE 311",
+       "AERSP 301",
+       "AERSP 304",
+       "AERSP 308H",
+       "AERSP 309",
+       "AERSP 311",
+       "AERSP 312",
+       "BE 300",
+       "BE 302",
+       "BE 304",
+       "BE 306",
+       "BIOL 110",
+       "BIOL 141",
+       "BIOL 230M",
+       "BIOL 240M",
+       "BMB 251",
+       "BME 201",
+       "BME 301",
+       "BME 303",
+       "BME 409",
+       "CE 335",
+       "CE 340",
+       "CE 360",
+       "CE 370",
+       "CHE 210H",
+       "CHE 320H",
+       "CHE 330H",
+       "CHEM 112",
+       "CHEM 210",
+       "CMPEN 270",
+       "CMPEN 331",
+       "CMPSC 122",
+       "CMPSC 221",
+       "CMPSC 311",
+       "CMPSC 312",
+       "CMPSC 360",
+       "EE 310",
+       "EE 320",
+       "EE 330",
+       "EE 340",
+       "EE 350",
+       "EGEE 302",
+       "EGEE 304",
+       "EMCH 416H",
+       "EME 303",
+       "ENGR 320",
+       "ESC 313",
+       "ESC 314",
+       "ESC 400H",
+       "ESC 419",
+       "IE 305",
+       "IE 311",
+       "IE 312",
+       "IE 322H",
+       "IE 323",
+       "IE 327",
+       "IE 330",
+       "MATH 311M",
+       "MATH 315",
+       "MATSE 400",
+       "MATSE 402",
+       "MATSE 443",
+       "ME 320",
+       "ME 360",
+       "ME 367",
+       "ME 370",
+       "ME 380",
+       "METEO 308",
+       "NUCE 300",
+       "NUCE 301",
+       "NUCE 309",
+       "PHYS 400"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from the department Technical Elective List",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AE 421",
+       "AE 424",
+       "AE 430",
+       "AE 456",
+       "AE 461",
+       "AE 464",
+       "AE 467",
+       "AE 470",
+       "AERSP 412",
+       "AERSP 424",
+       "AERSP 440",
+       "AERSP 460",
+       "AERSP 473",
+       "AERSP 490",
+       "AERSP 492",
+       "BE 461",
+       "BE 465",
+       "BE 467",
+       "BE 468",
+       "BE 477",
+       "BE 487",
+       "BME 402",
+       "BME 406",
+       "BME 409",
+       "CE 447",
+       "CE 461",
+       "CE 462",
+       "CE 475",
+       "CE 479",
+       "CHE 350",
+       "CHE 432",
+       "CHE 438",
+       "CHE 442",
+       "CHEM 212",
+       "CHEM 402",
+       "CHEM 406",
+       "CHEM 452",
+       "CHEM 466",
+       "CHEM 472",
+       "CMPEN 416",
+       "CMPEN 417",
+       "CMPEN 431",
+       "CMPEN 441",
+       "CMPEN 454",
+       "CMPEN 455",
+       "CMPEN 461",
+       "CMPEN 471",
+       "CMPEN 472",
+       "CMPEN 475",
+       "CMPSC 402",
+       "CMPSC 421",
+       "CMPSC 426",
+       "CMPSC 428",
+       "CMPSC 430",
+       "CMPSC 431W",
+       "CMPSC 436",
+       "CMPSC 438",
+       "CMPSC 441",
+       "CMPSC 442",
+       "CMPSC 448",
+       "CMPSC 450",
+       "CMPSC 456",
+       "CMPSC 457",
+       "CMPSC 458",
+       "CMPSC 459",
+       "CMPSC 461",
+       "CMPSC 462",
+       "CMPSC 463",
+       "CMPSC 464",
+       "CMPSC 465",
+       "CMPSC 467",
+       "CMPSC 469",
+       "CMPSC 471",
+       "CMPSC 473",
+       "CMPSC 474",
+       "CMPSC 479",
+       "EDSGN 401",
+       "EDSGN 452",
+       "EDSGN 479",
+       "EE 413",
+       "EE 416",
+       "EE 417",
+       "EE 420",
+       "EE 422",
+       "EE 424",
+       "EE 430",
+       "EE 432",
+       "EE 438",
+       "EE 439",
+       "EE 441",
+       "EE 442",
+       "EE 450",
+       "EE 453",
+       "EE 454",
+       "EE 455",
+       "EE 456",
+       "EE 458",
+       "EE 460",
+       "EE 461",
+       "EE 471",
+       "EE 472",
+       "EE 474",
+       "EE 477",
+       "EE 481",
+       "EE 483",
+       "EE 484",
+       "EGEE 411",
+       "EGEE 412",
+       "EGEE 420",
+       "EGEE 430",
+       "EGEE 433",
+       "EGEE 436",
+       "EGEE 437",
+       "EGEE 438",
+       "EGEE 441",
+       "EGEE 451",
+       "EGEE 455",
+       "EGEE 456",
+       "EGEE 470",
+       "EMCH 400",
+       "EMCH 402",
+       "EMCH 403",
+       "EMCH 409",
+       "EMCH 416H",
+       "EME 407",
+       "ENGR 295",
+       "ENGR 421",
+       "ENGR 450",
+       "ENVE 417",
+       "ENVE 424",
+       "ENVE 470",
+       "ENVSE 404W",
+       "ENVSE 440",
+       "ENVSE 470",
+       "ESC 400H",
+       "ESC 419",
+       "FSC 431",
+       "IE 405",
+       "IE 408",
+       "IE 418",
+       "IE 419",
+       "IE 424",
+       "IE 425",
+       "IE 428",
+       "IE 433",
+       "IE 434",
+       "IE 436",
+       "IE 454",
+       "IE 455",
+       "IE 456",
+       "IE 460",
+       "IE 462",
+       "IE 463",
+       "IE 464",
+       "IE 466",
+       "IE 467",
+       "IE 468",
+       "IE 470",
+       "IE 477",
+       "IE 478",
+       "IE 479",
+       "MATH 419",
+       "MATH 450",
+       "MATH 461",
+       "MATSE 400",
+       "MATSE 402",
+       "ME 400",
+       "ME 401",
+       "ME 402",
+       "ME 403",
+       "ME 404",
+       "ME 405",
+       "ME 406",
+       "ME 408",
+       "ME 410",
+       "ME 411",
+       "ME 420",
+       "ME 421",
+       "ME 422",
+       "ME 427",
+       "ME 428",
+       "ME 430",
+       "ME 431",
+       "ME 432",
+       "ME 433",
+       "ME 444",
+       "ME 446",
+       "ME 448",
+       "ME 456",
+       "ME 460",
+       "ME 461",
+       "ME 462",
+       "ME 468",
+       "ME 470",
+       "ME 471",
+       "ME 480",
+       "ME 481",
+       "METEO 421",
+       "METEO 436",
+       "METEO 477",
+       "NUCE 401",
+       "NUCE 405",
+       "NUCE 406",
+       "NUCE 408",
+       "NUCE 409",
+       "NUCE 420",
+       "NUCE 428",
+       "NUCE 430",
+       "NUCE 446",
+       "NUCE 450",
+       "NUCE 451",
+       "PHYS 406",
+       "PHYS 410",
+       "PHYS 411",
+       "PHYS 412",
+       "PHYS 414",
+       "PHYS 419",
+       "PHYS 421W",
+       "PHYS 443",
+       "PHYS 457W",
+       "PHYS 458",
+       "PHYS 461",
+       "PHYS 462",
+       "PHYS 472",
+       "PNG 450",
+       "PNG 475",
+       "PNG 480"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 15 credits from the department Foundational Elective List15\nSelect 12 credits from the department Technical Elective List 12\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Engineering Science, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EDSGN 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140E"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ESC 261M",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CMPSC 201"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 141E"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "First Year Seminar",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EMCH 210H",
+       "credits": 5,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 220",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 251",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EMCH 212H",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EMCH 302H",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 230",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 214",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EE 210",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ESC 312",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ESC 407",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ESC 414M",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ESC 433",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ESC 409",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Foundational Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Foundational Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Foundational Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Foundational Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Foundational Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ESC 404",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ESC 410H",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [],
+       "resolvedFrom": "ESC 410"
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ESC 411",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 131,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

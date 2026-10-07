@@ -1,0 +1,1134 @@
+[
+ {
+  "code": "PNG 301",
+  "subject": "PNG",
+  "number": "301",
+  "display": "PNG 301",
+  "title": "Introduction to Petroleum and Natural Gas Engineering",
+  "credits": "3 Credits/Maximum of 3",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": 3
+  },
+  "description": "The first part of the course will introduce the student to the design and implementation of the systems used in the extraction of oil and gas, including terminology and basic calculations in drilling engineering, geology, production, reservoir, and facilities engineering. The course will give an initial overview of the history of the oil industry and the origins of petroleum and natural gas reservoirs, followed by a description of the conventional and unconventional reservoir types. All aspects of petroleum engineering from upstream to downstream will be included in this discussion, including transportation, marketing, and environmental impacts. The remainder of the course will present the various key disciplines in petroleum and natural gas engineering in the chronological order of how the disciplines interact. Key problems in each of these disciplines will be reviewed and solved, using Excel and introductory statistics/computer programming (using Matlab). First, the discipline of drilling engineering will be presented. This will focus on the different types of wells, bits, casing designs, and completion techniques. Topics in the discipline of reservoir engineering will be presented next and will include basic petrophysics, reservoir types and fluids, as well as basic extraction methods. The life cycle of a reservoir and its efficient and environmental friendly management will be discussed, including enhanced oil recovery methods, such as carbon dioxide injection and surfactant flooding. Topics in production engineering will be presented next, and will center on tubing design, artificial lift, stimulation using acids and fracturing, and cased-hole logging. Topics in facility engineering, the last discipline to be discussed, will focus on surface facilities such as separators, gas and water gathering systems, pipelines, stock tanks, chokes, and recycle plants. Finally, differences between unconventional and conventional extractions and systems will be described as this is now critical to the energy security of the United States. Focus here will be on shale properties, fluid property changes owing to tiny pores, diffusion, absorption, and hydraulic fracturing. The course will explain how fracturing in shale reservoirs differs from conventional ones. Transport of oil or gas from these tight rock matrixes by diffusion through the fracture network will be presented. Environmental considerations will also be discussed.",
+  "enforced": "(PHYS 211 or PHYS 250) Enforced Concurrent at Enrollment: GEOSC 1",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "or",
+    "a": {
+     "op": "course",
+     "code": "PHYS 211"
+    },
+    "b": {
+     "op": "course",
+     "code": "PHYS 250"
+    }
+   },
+   "b": {
+    "op": "concurrent",
+    "a": {
+     "op": "course",
+     "code": "GEOSC 1"
+    }
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 301"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 305",
+  "subject": "PNG",
+  "number": "305",
+  "display": "PNG 305",
+  "title": "Rock and Fluid Properties",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course introduces students to rock properties, fluid properties, and interaction between rock and fluids. It covers fundamentals of reservoir rock and fluid properties, including lithology of reservoirs, porosity and permeability of rocks, Darcy's law, and distribution of rock properties, saturation, wettability, capillary pressure, effective and relative permeability, phase behavior of single- and multi-component systems, compositional and black-oil models, solution gas-oil ratios, formation volume factor, compressibility, density, viscosity, and interfacial tension. These topics are covered in the context of fundamental properties needed to engineer subsurface reservoirs for applications in the energy sector, including conventional and unconventional hydrocarbon production, energy or gas storage, carbon geo-storage, wastewater disposal, groundwater, and geothermal energy.",
+  "enforced": "MATH 140",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "MATH 140"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 305"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 397",
+  "subject": "PNG",
+  "number": "397",
+  "display": "PNG 397",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given infrequently to explore, in depth, a comparatively narrow subject that may be topical or of special interest.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 397"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 406",
+  "subject": "PNG",
+  "number": "406",
+  "display": "PNG 406",
+  "title": "Rock and Fluid Laboratory",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "This course offers a systematic study of reservoir rocks and fluids, focusing on their interrelation as applied to petroleum and subsurface energy engineering. Students will engage in both theoretical and laboratory investigations of the physical properties of reservoir rocks. Key topics include lithology, porosity, relative and effective permeability, fluid saturations, capillary characteristics, compressibility, and fluid-rock interaction. Through hands-on laboratory experiments and detailed theoretical analysis, students will gain a comprehensive understanding of the properties and behaviors of reservoir rocks and fluids.",
+  "enforced": null,
+  "concurrent": "PNG 305",
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": {
+   "op": "concurrent",
+   "a": {
+    "op": "course",
+    "code": "PNG 305"
+   }
+  },
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 406"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 410",
+  "subject": "PNG",
+  "number": "410",
+  "display": "PNG 410",
+  "title": "Reservoir Engineering",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course covers hydrocarbon production at well- and field-scale. It teaches methods for calculating hydrocarbons in place and forecasting future hydrocarbon and water production, with a focus on Primary Hydrocarbon Recovery. Students learn reservoir engineering techniques and methods for reserve estimation, production forecasts, and field performance, such as the method of analogy, volumetric method, material balance method, decline curve analysis, and steady and unsteady state flow modeling. They apply these methods to subsurface conventional and unconventional reservoirs. The course also helps students identify primary recovery drive mechanisms, choose appropriate forecasting methods for each mechanism, and understand the data needed for these methods.",
+  "enforced": "PNG 305 and EME 200 Enforced Concurrent at Enrollment: EME 303",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "course",
+     "code": "PNG 305"
+    },
+    "b": {
+     "op": "course",
+     "code": "EME 200"
+    }
+   },
+   "b": {
+    "op": "concurrent",
+    "a": {
+     "op": "course",
+     "code": "EME 303"
+    }
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 410"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 411",
+  "subject": "PNG",
+  "number": "411",
+  "display": "PNG 411",
+  "title": "Introduction to Petroleum and Natural Gas Extraction",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "Introduction to the design and implementation of the systems used in the extraction of oil and gas. Not intended for petroleum and natural gas engineering majors.",
+  "enforced": "PHYS 211",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "PHYS 211"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 411"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 420",
+  "subject": "PNG",
+  "number": "420",
+  "display": "PNG 420",
+  "title": "Applied Reservoir Analysis and Secondary Recovery",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course addresses basic fluid flow topics in reservoir engineering, with a focus on Secondary Hydrocarbon Recovery, especially water flooding and injection in subsurface reservoirs. The displacement of in-situ fluids by water is a complicated physical process that has a substantial impact on recovery efficiencies. This course is organized around understanding areal, vertical, and local displacement efficiencies and the key factors that affect those efficiencies. The course provides strategies for selecting a field pattern for special cases. The impact of mobility ratio on vertical and area sweep efficiency is examined. The extension of the Buckley and Leverett water flooding theory is presented for two-phase flow. The course provides insights on how water moves through a reservoir and how to design a waterflood by specifying locations of production and injection wells, and rate schedules. The course also discusses relevant well-test analyses. Practical aspects of waterflooding in the field are also considered throughout the course.",
+  "enforced": "[MATH 251 or (MATH 250 and MATH 252)] and PNG 410 and CMPSC 204 and EME 210",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "and",
+     "a": {
+      "op": "or",
+      "a": {
+       "op": "course",
+       "code": "MATH 251"
+      },
+      "b": {
+       "op": "and",
+       "a": {
+        "op": "course",
+        "code": "MATH 250"
+       },
+       "b": {
+        "op": "course",
+        "code": "MATH 252"
+       }
+      }
+     },
+     "b": {
+      "op": "course",
+      "code": "PNG 410"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "CMPSC 204"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "EME 210"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 420"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 425",
+  "subject": "PNG",
+  "number": "425",
+  "display": "PNG 425",
+  "title": "Principles of Well Testing and Evaluation",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course examines the mathematical basis for pressure analysis. Both theory and the practice of pressure testing techniques are considered. The objectives are to: 1) Understand fundamentals of pressure transient analysis (well testing) for estimation of key formation parameters for a variety of flow models, including the line source solution, finite wellbore radius with wellbore storage and skin, naturally fractured reservoirs, and infinite and finite conductivity fractures; 2) Solve pressure transient problems using analytical solutions, computer programs, classical graphical methods, and modern well test software; 3) Understand sources of error and assumptions made; and 4) Learn about practical well test evaluation and well configurations for both tight and conventional reservoirs.",
+  "enforced": "[MATH 251 or (MATH 250 and MATH 252)] and PNG 420",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "or",
+    "a": {
+     "op": "course",
+     "code": "MATH 251"
+    },
+    "b": {
+     "op": "and",
+     "a": {
+      "op": "course",
+      "code": "MATH 250"
+     },
+     "b": {
+      "op": "course",
+      "code": "MATH 252"
+     }
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "PNG 420"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 425"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 430",
+  "subject": "PNG",
+  "number": "430",
+  "display": "PNG 430",
+  "title": "Reservoir Modeling",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course focuses on gaining fundamental knowledge and competence in numerically discretizing and solving partial differential equations (PDEs) that govern single- and multiphase fluid flow in porous media and apply them to reservoir simulation and reservoir engineering problems. The course begins with a focus on single-phase flow, wherein the governing equations are derived for the most general case and then specialized in incompressible, slightly compressible, and fully compressible fluids. Subsequent lectures focus on each fluid type and use their physical backdrop to cover basic concepts related to finite-difference/volume discretization of spatial and temporal operators, the consistency, convergence, and stability of the resulting schemes, and ways to handle nonlinearities in numerical computing. Topics related to linear solvers and ways to analyze the numerical stability of a scheme are covered. Incompressible, slightly compressible, and compressible equations conveniently map to elliptic, linear parabolic, and nonlinear parabolic PDEs, incrementally building on the students' computational skills. The course culminates with a generalization of learned concepts to multiphase flow. Issues and intricacies related to discretizing and iteratively coupling the PDEs are addressed.",
+  "enforced": "MATH 220 and MATH 231 and CMPSC 204 and PNG 420",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "and",
+     "a": {
+      "op": "course",
+      "code": "MATH 220"
+     },
+     "b": {
+      "op": "course",
+      "code": "MATH 231"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "CMPSC 204"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "PNG 420"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 430"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 440W",
+  "subject": "PNG",
+  "number": "440W",
+  "display": "PNG 440W",
+  "title": "Formation Evaluation",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course covers the characterization of subsurface reservoir formations and methods for quantifying the fluid volume, such as hydrocarbon and water, in these formations. The course focuses on the petrophysical interpretation of wireline logs and covers the operation and underlying physical principles of those tools. The course covers the basic procedure of open-hole logging, calculation of a geothermal gradient, understanding raster and digital well log files, quick look interpretation, reservoir volumetrics, understanding the physics of and cultivating the ability to interpret data from the traditional logging suite (e.g., gamma ray, spontaneous potential, resistivity devices, density, neutron, and sonic logs), coring, wireline formation testing, nuclear magnetic resonance logging, and interpretation. Best practices and limitations of the various well-log tools are also discussed. As a \"writing across the curriculum\" course, students develop their technical writing skills through homework assignments that present their analyses in written reports.",
+  "enforced": "PNG 305 and PNG 410",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "PNG 305"
+   },
+   "b": {
+    "op": "course",
+    "code": "PNG 410"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [
+   "Writing Across the Curriculum"
+  ],
+  "crossListings": [],
+  "aliases": [
+   "PNG 440W"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 450",
+  "subject": "PNG",
+  "number": "450",
+  "display": "PNG 450",
+  "title": "Drilling Engineering",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course presents the design and analysis of economically and environmentally safe operations for drilling subterranean wells. It helps students gain a thorough knowledge of the mechanics, mathematics, chemistry, physics, and industry practices of drilling systems. The course topics include drilling rigs, drill string, drilling fluids, wellbore hydraulics, drill bits, drilling cost, pore pressure and fracture gradient, directional and horizontal drilling, well control, wellbore stability, and well cementing. The developed practical skills will be applicable to careers in oil and gas, mineral exploration, geothermal, groundwater drilling, underground construction, tunnel engineering, and scientific research.",
+  "enforced": "(EME 303 or CE 360 or ME 320) and [EMCH 210 or (EMCH 211 and EMCH 213)] Enforced Concurrent at Enrollment: PNG 440W",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "or",
+     "a": {
+      "op": "or",
+      "a": {
+       "op": "course",
+       "code": "EME 303"
+      },
+      "b": {
+       "op": "course",
+       "code": "CE 360"
+      }
+     },
+     "b": {
+      "op": "course",
+      "code": "ME 320"
+     }
+    },
+    "b": {
+     "op": "or",
+     "a": {
+      "op": "course",
+      "code": "EMCH 210"
+     },
+     "b": {
+      "op": "and",
+      "a": {
+       "op": "course",
+       "code": "EMCH 211"
+      },
+      "b": {
+       "op": "course",
+       "code": "EMCH 213"
+      }
+     }
+    }
+   },
+   "b": {
+    "op": "concurrent",
+    "a": {
+     "op": "course",
+     "code": "PNG 440W"
+    }
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 450"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 451",
+  "subject": "PNG",
+  "number": "451",
+  "display": "PNG 451",
+  "title": "Drilling Laboratory",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "This course covers well-control procedures and measuring drilling fluid properties. It helps students to apply drilling concepts, quantify fluid properties analytically, and tackle well-control problems in the lab. The course offers hands-on experience with drilling equipment, a rig floor simulator, and various apparatus related to drilling fluids and well cement analysis. It covers essential drilling measurements, error analysis, critical evaluation, and technical report writing.",
+  "enforced": null,
+  "concurrent": "PNG 450",
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": {
+   "op": "concurrent",
+   "a": {
+    "op": "course",
+    "code": "PNG 450"
+   }
+  },
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 451"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 456",
+  "subject": "PNG",
+  "number": "456",
+  "display": "PNG 456",
+  "title": "Hydraulic Fracturing Analysis",
+  "credits": "1 Credits/Maximum of 1",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": 1
+  },
+  "description": "Industry professionals teach hydraulic fracture design and analysis.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 456"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 457",
+  "subject": "PNG",
+  "number": "457",
+  "display": "PNG 457",
+  "title": "Pump Systems for Oil and Gas Production",
+  "credits": "1 Credits/Maximum of 1",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": 1
+  },
+  "description": "Industry professionals teach about sucker-rod pump technology.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 457"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 458",
+  "subject": "PNG",
+  "number": "458",
+  "display": "PNG 458",
+  "title": "Assessment, Classification, and Reporting of Reserves and Resources",
+  "credits": "1 Credits/Maximum of 1",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": 1
+  },
+  "description": "Industry professionals teach how to define and estimate reserves.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 458"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 459",
+  "subject": "PNG",
+  "number": "459",
+  "display": "PNG 459",
+  "title": "Well Control Certification",
+  "credits": "1 Credits/Maximum of 1",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": 1
+  },
+  "description": "Using the most advanced simulator system, industry professionals teach students how to avoid and resolve operational difficulties. Students who successfully complete the course receive a certificate.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 459"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 460",
+  "subject": "PNG",
+  "number": "460",
+  "display": "PNG 460",
+  "title": "Subsurface Storage Engineering",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course provides a comprehensive review of the engineering principles and technologies used for geo-storage of energy, such as natural gas and hydrogen, carbon sequestration, and fluid disposal in subsurface formations. Students will develop an understanding of how sedimentary basins, such as hydrocarbon reservoirs, saline aquifers, or salt caverns can be utilized for storage of these fluids. The course topics include global energy systems and the energy transition, economics of geo-storage, surface facilities, structural geology of storage and seal rocks, related thermodynamics and phase behavior analysis, storage volume calculations, fluid migration, caprock integrity, as well as environmental risks and applications in enhanced recovery techniques.",
+  "enforced": "PNG 405",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "PNG 405"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 460"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 475",
+  "subject": "PNG",
+  "number": "475",
+  "display": "PNG 475",
+  "title": "Production and Completions Engineering",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course introduces principles of production system analysis and mechanical field operations to enhance subsurface reservoir output. Topics include well performance evaluation, forecasting, artificial lift system design and selection, and fluid stimulation procedures in petroleum reservoirs. It covers single-phase and multi-phase flow in porous media and pipes, addressing compressibility in rock and pipes. Near wellbore issues such as skin factors and damage mechanisms are discussed, along with methods for quantifying wellbore performance and delivery. The course also explores production decline analysis and the use of artificial lifts, such as pumps and gas lift systems.",
+  "enforced": "EMCH 210 and PNG 410",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "EMCH 210"
+   },
+   "b": {
+    "op": "course",
+    "code": "PNG 410"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 475"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 480",
+  "subject": "PNG",
+  "number": "480",
+  "display": "PNG 480",
+  "title": "Surface Production Engineering",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course provides the fundamentals of surface production operations, along with the underlying operational principles and design criteria for equipment used in the surface handling of petroleum production fluids. Surface production facilities are detailed as systems responsible for separating Wellstream fluids into three single-phase components (oil, gas, water) and for their subsequent transport and processing into marketable products or environmentally acceptable disposal. The course offers an in-depth overview of hydrocarbon fluid behavior, analysis of hydrocarbon and water separation processes, transportation systems, and flow assurance challenges. Topics include the purpose and description of onshore and offshore surface production facilities and the function of the associated equipment. Furthermore, the course includes the design of various equipment such as separators, hydrocarbon stabilization trains, glycol dehydrator towers, and pipelines, among others.",
+  "enforced": "EME 301 and EME 303",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "EME 301"
+   },
+   "b": {
+    "op": "course",
+    "code": "EME 303"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 480"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 482",
+  "subject": "PNG",
+  "number": "482",
+  "display": "PNG 482",
+  "title": "Production Engineering Laboratory",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "This course introduces students to production engineering principles, hydrocarbon and well fluids analysis, produced fluid treatment and separations, and fluid transport in pipes. It covers essential production monitoring measurements, error analysis, critical evaluation, and technical report writing. Hands-on experiments help students understand engineering and physical concepts related to production engineering.",
+  "enforced": null,
+  "concurrent": "PNG 475 and PNG 480",
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": {
+   "op": "concurrent",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "course",
+     "code": "PNG 475"
+    },
+    "b": {
+     "op": "course",
+     "code": "PNG 480"
+    }
+   }
+  },
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 482"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 488",
+  "subject": "PNG",
+  "number": "488",
+  "display": "PNG 488",
+  "title": "Unconventional Wells",
+  "credits": "3 Credits/Maximum of 3",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": 3
+  },
+  "description": "The course starts with a general overview of different types of unconventional reservoirs and their geological and petrophysical properties. Then, due to the significance of natural fractures in economic production from these reservoirs, special attention will be given to natural fracture characterization. In the next step, drilling and completion techniques adopted for these formations will be discussed. In the second part of the course, the emphasis will be on hydraulic fracturing design and collecting data (such as in situ stresses and rock mechanical properties) for a proper fracture design. Injection tests and Nolte-Smith analysis will be introduced toward the end of the course for fracture assessment purposes. The course will be finished with an overview of fractured well productivity analysis and decline curve analysis in unconventional oil and gas reservoirs.",
+  "enforced": "EME 303 and Enforced Concurrent: EMCH 210",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "EME 303"
+   },
+   "b": {
+    "op": "concurrent",
+    "a": {
+     "op": "course",
+     "code": "EMCH 210"
+    }
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 488"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 490",
+  "subject": "PNG",
+  "number": "490",
+  "display": "PNG 490",
+  "title": "Petroleum and Natural Gas Engineering Capstone Design",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "PNG 490 serves as the capstone design experience for Petroleum and Natural Gas Engineering majors. As such, students will integrate knowledge acquired in other PNG courses and apply it toward the design of a field development plan. Working in teams, students will start by characterizing the target reservoir or geologic formation using available field data. The student teams will then design the drilling and completion of wells in the target formation, while considering technical and economic constraints. The overall field development plan will consider a variety of factors, including (but not limited to): the timing of drilling wells, the forecasted production from these wells, acquisitions and divestitures, surface facilities, and environmental and societal impact assessments. Candidate plans will be compared based on financial metrics, such as rate of return and net present value. The semester-long capstone experience will culminate in a final presentation and a final report.",
+  "enforced": "PNG 430 and PNG 440W and PNG 450 and EME 460 and PNG 475 and GEOSC 454",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "and",
+     "a": {
+      "op": "and",
+      "a": {
+       "op": "and",
+       "a": {
+        "op": "course",
+        "code": "PNG 430"
+       },
+       "b": {
+        "op": "course",
+        "code": "PNG 440W"
+       }
+      },
+      "b": {
+       "op": "course",
+       "code": "PNG 450"
+      }
+     },
+     "b": {
+      "op": "course",
+      "code": "EME 460"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "PNG 475"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "GEOSC 454"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 490"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 491",
+  "subject": "PNG",
+  "number": "491",
+  "display": "PNG 491",
+  "title": "Capstone Design in Drilling and Completions",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "Application of the concepts of reservoir, production, drilling and completions, and economics to petroleum engineering design projects. Engineering design by definition is the integration of knowledge and skills acquired through experience, reading and formal instruction into a final product, the design. To that end, this course is the second course of a 3-course, 3-semester, sequence that will result in a comprehensive capstone-engineering project. As such, PNG 491 will utilize the knowledge gained from PNG 450, 451, and 475 to the project design initiated in PNG 490. The class will be divided into teams and students will be evaluated on the basis of their contribution to the team effort. All reports and presentations will be presented as a product of the team.",
+  "enforced": "PNG 450 and PNG 475 and PNG 490",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "course",
+     "code": "PNG 450"
+    },
+    "b": {
+     "op": "course",
+     "code": "PNG 475"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "PNG 490"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 491"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 492",
+  "subject": "PNG",
+  "number": "492",
+  "display": "PNG 492",
+  "title": "Petroleum Engineering Capstone Design",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "Integration of petroleum and natural gas engineering concepts to project design. Engineering design by definition is the integration of knowledge and skills acquired through experience, reading and formal instruction into a final product, the design. To that end, this course is the third course of a 3-course, 3-semester, sequence that will result in a comprehensive capstone-engineering project. As such, P N G 492 will utilize the knowledge gained from three semesters of formal instruction to the project design initiated in P N G 490 and continued on in P N G 491. Course material will include the application of spreadsheet programming to petroleum and natural gas project design and its use in project economic analysis and risk analysis. The class will be divided into teams and students will be evaluated on the basis of their contribution to the team effort. All reports and presentations will be presented to the class as a product of the team.",
+  "enforced": "PNG 491 and EME 460",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "PNG 491"
+   },
+   "b": {
+    "op": "course",
+    "code": "EME 460"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 492"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 494",
+  "subject": "PNG",
+  "number": "494",
+  "display": "PNG 494",
+  "title": "Thesis",
+  "credits": "1-6 Credits/Maximum of 6",
+  "creditsParsed": {
+   "min": 1,
+   "max": 6,
+   "repeatableMax": 6
+  },
+  "description": "This course involves creative projects, including research and design, that are supervised by a faculty member. This course is for students who want to tackle a problem in petroleum and subsurface energy engineering, which involves a review of the literature and conducting theoretical or experimental research. The course requires the submission of a report, paper, or thesis, demonstrating the student's ability to conduct research, prepare a technical report, and contribute to the field of subsurface energy engineering.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 494"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 494H",
+  "subject": "PNG",
+  "number": "494H",
+  "display": "PNG 494H",
+  "title": "Thesis",
+  "credits": "1-6 Credits/Maximum of 6",
+  "creditsParsed": {
+   "min": 1,
+   "max": 6,
+   "repeatableMax": 6
+  },
+  "description": "This course involves creative projects, including research and design, that are supervised by a faculty member. This course is for students who want to tackle a problem in petroleum and subsurface energy engineering, which involves a review of the literature and conducting theoretical or experimental research. The course requires the submission of a report, paper, or thesis, demonstrating the student's ability to conduct research, prepare a technical report, and contribute to the field of subsurface energy engineering.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [
+   "Honors"
+  ],
+  "crossListings": [],
+  "aliases": [
+   "PNG 494H"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 496",
+  "subject": "PNG",
+  "number": "496",
+  "display": "PNG 496",
+  "title": "Independent Studies",
+  "credits": "1-18 Credits/Maximum of 18",
+  "creditsParsed": {
+   "min": 1,
+   "max": 18,
+   "repeatableMax": 18
+  },
+  "description": "This course is for independent study of a topic related to petroleum and subsurface energy engineering, under the direction of a faculty member, that falls outside the scope of formal courses. It is not intended for scientific research.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 496"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ },
+ {
+  "code": "PNG 497",
+  "subject": "PNG",
+  "number": "497",
+  "display": "PNG 497",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given infrequently to explore, in depth, a comparatively narrow subject that may be topical or of special interest.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PNG 497"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/png/",
+  "extraRaw": []
+ }
+]

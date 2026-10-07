@@ -1,0 +1,195 @@
+{
+ "slug": "altoona-science-as",
+ "name": "Science, A.S.",
+ "type": "major",
+ "degree": null,
+ "college": "altoona",
+ "campuses": [
+  "Altoona, The Altoona College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/altoona/science-as/",
+ "totalCredits": 67,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 110",
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B",
+      "CAS 100C",
+      "CAS 100S"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "ENGL 15",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBIOL 110Biology: Basic Concepts and Biodiversity 4\nCAS 100Effective Speech3\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nENGL 15Rhetoric and Composition 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 112",
+      "CHEM 202"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 22",
+      "MATH 26"
+     ],
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MATH 40",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "STAT 200",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "STAT 250",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "PHIL 2",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PHIL 103",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PHIL 110",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PHIL 118",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PHIL 221",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 100",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 101",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MIS 103",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 150",
+      "PHYS 151"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 250",
+      "PHYS 251"
+     ],
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CHEM 112Chemical Principles II 3\nor CHEM 202 Fundamentals of Organic Chemistry I\nSelect one of the following:4-6\nMATH 22& MATH 26College Algebra With Analytic Geometry and Applications II and Plane Trigonometry and Applications of Trigonometry\nMATH 40\nMATH 140Calculus With Analytic Geometry I\nSelect one of the following:3-4\nSTAT 200Elementary Statistics\nSTAT 250Introduction to Biostatistics\nSelect one of the following:3\nPHIL 2Society and Politics\nPHIL 103Ethics\nPHIL 110Philosophy of Science\nPHIL 118Environmental Philosophy\nPHIL 221\nSelect one of the following:3\nCMPSC 100Computer Fundamentals and Applications\nCMPSC 101Introduction to Programming\nMIS 103Microcomputer Applications in Business\nSelect one of the following:6-8\nPHYS 150& PHYS 151Technical Physics I and Technical Physics II\nPHYS 250& PHYS 251Introductory Physics I and Introductory Physics II\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 20,
+     "commentRaw": "Select 20-25 credits from approved departmental list of BIOLOGICAL/MATH/PHYSICAL SCIENCES",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 20-25 credits from approved departmental list of BIOLOGICAL/MATH/PHYSICAL SCIENCES20-25\n"
+  }
+ ],
+ "suggestedPlans": []
+}

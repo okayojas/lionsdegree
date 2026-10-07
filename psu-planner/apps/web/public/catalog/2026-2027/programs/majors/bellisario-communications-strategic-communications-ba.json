@@ -1,0 +1,131 @@
+{
+ "slug": "bellisario-communications-strategic-communications-ba",
+ "name": "Strategic Communications, B.A.",
+ "type": "major",
+ "degree": "BA",
+ "college": "bellisario-communications",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/bellisario-communications/strategic-communications-ba/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "COMM 160",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "COMM 205",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 230W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 428A",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 428B",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 428C",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 428D",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 428E",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 102",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "STAT 200",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCOMM 160Basic News Writing Skills1\nCOMM 205Gender, Diversity and the Media 3\nCOMM 230WWriting for Media3\nCOMM 428APrinciples of Strategic Communications3\nCOMM 428BStrategic Communications Law3\nCOMM 428CStrategic Communications in a Global Environment3\nCOMM 428DResearch & Analytics3\nCOMM 428ESocial Media Strategies3\nECON 102Introductory Microeconomic Analysis and Policy 3\nPSYCH 100Introductory Psychology 3\nSTAT 200Elementary Statistics 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CC 401",
+       "CC 402",
+       "CC 490W",
+       "COMM 403",
+       "COMM 405",
+       "COMM 409",
+       "COMM 412",
+       "COMM 419",
+       "COMM 495"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nCC 401Internal Communication\nCC 402External Communication\nCC 490WSeminar in Corporate Communication\nCOMM 403Law of Mass Communications\nCOMM 405Political Economy of Communications\nCOMM 409News Media Ethics\nCOMM 412Sports, Media and Society\nCOMM 419Comparative National Media in a Global Context\nCOMM 495Internship\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "SELECT 3",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "COMM 100N",
+      "COMM 120"
+     ],
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits of COMM courses (other than COMM 100 or COMM 120)3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

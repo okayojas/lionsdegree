@@ -1,0 +1,45 @@
+{
+ "slug": "liberal-arts-philosophy-minor",
+ "name": "Philosophy, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/philosophy-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "In consultation with a faculty adviser:"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of Philosophy courses",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of Philosophy courses at the 200 level",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of Philosophy courses at the 400 level",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nIn consultation with a faculty adviser:\nSelect 6 credits of Philosophy courses6\nSelect 6 credits of Philosophy courses at the 200 level 6\nSelect 6 credits of Philosophy courses at the 400 level6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

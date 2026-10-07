@@ -1,0 +1,134 @@
+{
+ "slug": "liberal-arts-labor-human-resources-as",
+ "name": "Labor and Human Resources, A.S.",
+ "type": "major",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/labor-human-resources-as/",
+ "totalCredits": 60,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "LHR 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 201",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 304",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 305",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LHR 312",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nLHR 100Exploring Work and Employment 3\nLHR 201Employment Relationship: Law and Policy 3\nLHR 304Labor and Employment Relations Fundamentals 3\nLHR 305Human Resources Fundamentals 3\nLHR 312Research Methods in Labor and Employment Relations3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ECON 14",
+      "ECON 102",
+      "ECON 104"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "LHR 202",
+      "PSYCH 281"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nECON 14Principles of Economics 3\nor ECON 102 Introductory Microeconomic Analysis and Policy\nor ECON 104 Introductory Macroeconomic Analysis and Policy\nLHR 202Understanding Employee Behavior 3\nor PSYCH 281 Introduction to Industrial-Organizational Psychology\nSelect 3 credits of the following:3\nLHR/WMNST 136Race, Gender, and Employment\nor LHR/HIST 458Y History of Work in America\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of LHR courses. (LHR courses that are used in the Additional Courses category may not be double-counted to satisfy this requirement. Some courses in this category have prerequisites that are not included in the major.)",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following list in consultation with adviser:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ACCTG 211",
+       "AFAM 100N",
+       "AFAM 110N",
+       "BA 243",
+       "BA 304",
+       "BLAW 243",
+       "CAS 203",
+       "CAS 352",
+       "ECON 342",
+       "HIST 155",
+       "MGMT 100",
+       "MGMT 301",
+       "MGMT 321",
+       "OLEAD 100",
+       "OLEAD 409",
+       "OLEAD 464",
+       "OLEAD 465",
+       "SOC 103",
+       "SOC 110",
+       "SOC 119N"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Any 400-level AFAM, CAS, ECON, HIST, LTNST, MGMT, PHIL, PSYCH, SPAN, SOC, WMNST course"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits of LHR courses. (LHR courses that are used in the Additional Courses category may not be double-counted to satisfy this requirement. Some courses in this category have prerequisites that are not included in the major.)3\nSelect 3-4 credits from the following list in consultation with adviser:3-4\nACCTG 211Financial and Managerial Accounting for Decision Making\nAFAM 100NBlack Freedom Struggles\nAFAM 110NIntroduction to African American Studies\nBA 243Social, Legal, and Ethical Environment of Business\nBA 304Management and Organization\nBLAW 243Legal Environment of Business\nCAS 203Interpersonal Communication\nCAS 352Organizational Communication\nECON 342Industrial Organization\nHIST 155American Business History\nMGMT 100Survey of Management\nMGMT 301Basic Management Concepts\nMGMT 321Leadership and Motivation\nOLEAD 100Introduction to Leadership\nOLEAD 409\nOLEAD 464Communication Skills for Leaders in Groups and Organizations\nOLEAD 465Collective Decision Making\nSOC 103Racism and Sexism\nSOC 110Sociology of Gender\nSOC 119NRace, Ethnicity and Culture\nAny 400-level AFAM, CAS, ECON, HIST, LTNST, MGMT, PHIL, PSYCH, SPAN, SOC, WMNST course\n"
+  }
+ ],
+ "suggestedPlans": []
+}

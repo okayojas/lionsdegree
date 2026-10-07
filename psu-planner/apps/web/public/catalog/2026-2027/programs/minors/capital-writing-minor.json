@@ -1,0 +1,92 @@
+{
+ "slug": "capital-writing-minor",
+ "name": "Writing, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/writing-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ENGL 211",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 420",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nENGL 211Introduction to Writing Studies3\nENGL 420Writing for the Web3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-12 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 50",
+       "ENGL 209",
+       "ENGL 212",
+       "ENGL 213",
+       "ENGL 215",
+       "ENGL 412",
+       "ENGL 413",
+       "ENGL 414",
+       "ENGL 415",
+       "ENGL 416",
+       "ENGL 417",
+       "ENGL 418",
+       "ENGL 419",
+       "ENGL 421",
+       "ENGL 422",
+       "ENGL 423",
+       "ENGL 424",
+       "ENGL 425",
+       "ENGL 470",
+       "ENGL 471",
+       "ENGL 474"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6-12 credits of the following: 6-12\nENGL 50Introduction to Creative Writing\nENGL 209Journal or Magazine Practicum\nENGL 212Introduction to Fiction Writing\nENGL 213Introduction to Poetry Writing\nENGL 215Introduction to General Nonfiction Writing\nENGL 412Advanced Fiction Writing\nENGL 413Advanced Poetry Writing\nENGL 414Biographical Writing\nENGL 415Advanced Nonfiction Writing\nENGL 416Science Writing\nENGL 417The Editorial Process\nENGL 418Advanced Technical Writing and Editing\nENGL 419Advanced Business Writing\nENGL 421Advanced Expository Writing\nENGL 422Fiction Workshop\nENGL 423Poetry Writing Workshop\nENGL 424Creative Writing and the Natural World\nENGL 425\nENGL 470Rhetorical Theory and Practice\nENGL 471Rhetorical Traditions\nENGL 474Issues in Rhetoric and Composition\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 0,
+     "commentRaw": "Select 0-6 credits from a department-approved list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 0-6 credits from a department-approved list 0-6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

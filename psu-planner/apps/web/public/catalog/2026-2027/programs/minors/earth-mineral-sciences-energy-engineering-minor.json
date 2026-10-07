@@ -1,0 +1,58 @@
+{
+ "slug": "earth-mineral-sciences-energy-engineering-minor",
+ "name": "Energy Engineering, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/energy-engineering-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EGEE 302",
+       "EGEE 304",
+       "EGEE 411W",
+       "EGEE 420",
+       "EGEE 430",
+       "EME 301"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EGEE 433",
+       "EGEE 437",
+       "EGEE 438",
+       "EGEE 441",
+       "EGEE 451",
+       "EGEE 464W",
+       "EGEE 470",
+       "FSC 431",
+       "FSC 432"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 9 credits of the following:9\nEGEE 302Principles of Energy Engineering\nEGEE 304Heat and Mass Transfer\nEGEE 411WEnergy Science and Engineering Lab\nEGEE 420Hydrogen and Fuel Cells\nEGEE 430Introduction to Combustion\nEME 301Thermodynamics in Energy and Mineral Engineering\nSelect 9 credits of the following:9\nEGEE 433\nEGEE 437Design of Solar Energy Conversion Systems\nEGEE 438Wind and Hydropower Energy Conversion\nEGEE 441Electrochemical Engineering Fundamentals\nEGEE 451Energy Conversion Processes\nEGEE 464WEnergy Design Project\nEGEE 470Air Pollutants from Combustion Sources\nFSC 431The Chemistry of Fuels\nFSC 432Petroleum Processing\n"
+  }
+ ],
+ "suggestedPlans": []
+}

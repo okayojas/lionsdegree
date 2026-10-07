@@ -1,0 +1,621 @@
+{
+ "slug": "engineering-biomedical-engineering-technology-aet",
+ "name": "Biomedical Engineering Technology, A.ENGT.",
+ "type": "major",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/biomedical-engineering-technology-aet/",
+ "totalCredits": 71,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CMPET 117",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPET 120",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "EET 105",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 220",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PHYS 150",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "RADSC 230",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SRA 111",
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B",
+      "CAS 100C",
+      "CAS 100S"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 15",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BE_T 101Introduction to Medical Equipment Maintenance1\nCMPET 117Digital Electronics3\nCMPET 120Digital Electronics Laboratory1\nEET 105Electrical Systems3\nIST 220Networking and Telecommunications3\nPHYS 150Technical Physics I 3\nRADSC 230Radiographic Physics3\nSRA 111Introduction to Security and Risk Analysis 3\nPrescribed Courses: Require a grade of C or better\nBE_T 201Medical Equipment & Systems I5\nBE_T 203Biomedical Equipment Laboratory (Internship) (must be the last course taken for the degree) 4\nBE_T 204WMedical Equipment and Systems II5\nBE_T 205Medical Electronics4\nBE_T 206Medical Computers and Networks4\nCAS 100Effective Speech3\nENGL 15Rhetoric and Composition 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 110",
+      "CHEM 130"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select Sequence A or Sequence B:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 161",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 162",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 162",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 163",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 164",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BISC 4",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of technical list:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 129",
+       "CMPET 211",
+       "CMPSC 101",
+       "EDSGN 100",
+       "EET 213W",
+       "EET 297",
+       "EGT 201",
+       "MET 111"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 22",
+      "MATH 26",
+      "MATH 40"
+     ],
+     "credits": 5
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CHEM 110Chemical Principles I 3\nor CHEM 130 Introduction to General, Organic, and Biochemistry\nSelect Sequence A or Sequence B:6-8\nSequence A:\nBIOL 161Human Anatomy and Physiology I - Lecture\nBIOL 162Human Anatomy and Physiology I - Laboratory\nBIOL 162Human Anatomy and Physiology I - Laboratory\nBIOL 163Human Anatomy and Physiology II - Lecture\nBIOL 164Human Anatomy and Physiology II - Laboratory\nSequence B:\nBISC 4Human Body: Form and Function\nSelect 3 credits of technical list:\nBE_T 210Troubleshooting Medical Equipment\nBE_T 296Independent Studies\nBE_T 297Special Topics\nBIOL 129Mammalian Anatomy\nCMPET 211Embedded Processors and DSP\nCMPSC 101Introduction to Programming\nEDSGN 100Cornerstone Engineering Design\nEET 213WFundamentals of Electrical Machines Using Writing Skills\nEET 297Special Topics\nEGT 201Advanced Computer Aided Drafting\nMET 111Mechanics for Technology: Statics\nAdditional Courses: Require a grade of C or better\nMATH 22& MATH 26College Algebra With Analytic Geometry and Applications IIand Plane Trigonometry and Applications of Trigonometry 5-6\nor MATH 40\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Biomedical Engineering Technology, A.ENGT. at Greater Allegheny Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BE_T 101",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BISC 4",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SRA 111",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EET 105",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "IST 220",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 26",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 130",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "CHEM 110"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BE_T 201",
+       "credits": 5,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BE_T 205",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CMPET 117",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CMPET 120",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "RADSC 230",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BE_T 206",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BE_T 204W",
+       "credits": 5,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 150",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Summer",
+     "label": "Year 2 Summer",
+     "credits": 4,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BE_T 203",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 72,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Biomedical Engineering Technology, A.ENGT. at New Kensington Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BE_T 101",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "EET 105",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SRA 111",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 26",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPET 117",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CMPET 120",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IST 220",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 130"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BE_T 201",
+       "credits": 5,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BE_T 205",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BISC 4",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 150",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "RADSC 230",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BE_T 206",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BE_T 204W",
+       "credits": 5,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Elective (See Adviser for list)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Summer",
+     "label": "Year 2 Summer",
+     "credits": 4,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "BE_T 203",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 72,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

@@ -1,0 +1,111 @@
+{
+ "slug": "education-social-justice-education-minor",
+ "name": "Social Justice in Education, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "education",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/education/social-justice-education-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CI 185",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CI 285",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CI 485",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCI 185Principles of Social Justice in Education 3\nCI 285Active Engagement for Social Justice in Education3\nCI 485Social Justice in Education Capstone Course3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AEE 100",
+       "AFAM 103",
+       "AFAM 431",
+       "AFAM 492",
+       "BBH 446",
+       "CED 375",
+       "CED 440",
+       "CMLIT 100",
+       "CRIMJ 230",
+       "CRIM 453",
+       "EDTHP 200",
+       "EDTHP 420",
+       "EDTHP 430",
+       "EDTHP 440",
+       "ENGL 245",
+       "GLIS 101N",
+       "GLIS 102N",
+       "HDFS 410",
+       "PHIL 437",
+       "PLSC 210N",
+       "PLSC 428",
+       "PLSC 451",
+       "RHS 428",
+       "SOC 103",
+       "SOC 422",
+       "SOC 424",
+       "SOC 447",
+       "WMNST 103",
+       "WMNST 205",
+       "WMNST 453"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CI 280",
+       "CI 295",
+       "CI 385",
+       "CI 395",
+       "CIVCM 211N",
+       "EDTHP 395",
+       "HDFS 301",
+       "LHR 475H",
+       "RHS 420",
+       "SCIED 140",
+       "SOC 5",
+       "WFED 413",
+       "WLED 444"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nAEE 100Agricultural Education Orientation\nAFAM 103Racism and Sexism\nAFAM 431Black Liberation and American Foreign Policy\nAFAM 492Identities, Power and Perceptual Pedagogies in Teaching and Learning\nBBH 446Human Sexuality as a Health Concern\nCED 375Community, Local Knowledge, and Democracy\nCED 440Labor in the Global Economy\nCMLIT 100Reading Across Cultures\nCRIMJ 230Corrections in America\nCRIM 453Women and the Criminal Justice System\nEDTHP 200Reform, Advocacy, and Transformation in Education\nEDTHP 420Shaping Education: Policy Development and Impact\nEDTHP 430History of Education in the United States\nEDTHP 440Introduction to Philosophy of Education\nENGL 245Introduction to LGBTQ Studies\nGLIS 101NGlobalization\nGLIS 102NGlobal Pathways\nHDFS 410Communities and Families\nPHIL 437World Philosophies\nPLSC 210NRights in America\nPLSC 428Gender and Politics\nPLSC 451The Politics of Human Rights\nRHS 428Rehabilitation in the Justice System\nSOC 103Racism and Sexism\nSOC 422World Population Diversity\nSOC 424Social Change\nSOC 447Ethnic Minorities and Schools in the United States\nWMNST 103Racism and Sexism\nWMNST 205Gender, Diversity and the Media\nWMNST 453Women and the Criminal Justice System\nSelect 6-9 credits from the following:6-9\nCI 280Introduction to Teaching Multilingual Learners\nCI 295Introductory Field Experience for Teacher Preparation\nCI 385DC Social Justice in Education: Empowering Communities through Transformative Teaching\nCI 395Internship\nCIVCM 211NFoundations: Civic and Community Engagement\nEDTHP 395Real-World Policy Experience: Field Placement\nHDFS 301Values and Ethics in Health and Human Development Professions\nLHR 475HLabor in the Global Economy\nRHS 420Culture & Disability: Study Abroad in Ireland\nSCIED 140Outdoor School Field Experience\nSOC 5Society's Problems: Causes, Consequences, and Solutions\nWFED 413Vocational Education for Special-Needs Learners\nWLED 444Language, Culture and the Classroom: Issues for Practitioners\n"
+  }
+ ],
+ "suggestedPlans": []
+}

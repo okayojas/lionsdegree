@@ -1,0 +1,78 @@
+{
+ "slug": "agricultural-sciences-horticulture-minor",
+ "name": "Horticulture, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/horticulture-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "HORT 101",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HORT 202",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nHORT 101Horticultural Science 3\nHORT 202Plant Propagation3\nPLANT/AGECO 201Introductory Agroecology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "HORT 131",
+       "HORT 137",
+       "HORT 138",
+       "HORT 232",
+       "PLANT 240"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "HORT 402W",
+       "HORT 407",
+       "HORT 412W",
+       "HORT 431",
+       "HORT 432",
+       "HORT 433",
+       "HORT 451",
+       "HORT 453",
+       "HORT 455",
+       "HORT 459"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nHORT 131Herbaceous Perennial and Annual Identification\nHORT 137Ornamental Plant Materials\nHORT 138Ornamental Plant Materials\nHORT 232Horticultural Systematics\nPLANT 240Fundamentals of Cannabis: An Introduction to the Botany, Cultivation, and Harvesting of Hemp\nSelect 6 credits from the following:6\nHORT 402WPlant Nutrition\nHORT 407Plant Breeding\nHORT 412WPost-Harvest Physiology\nHORT 431Small Fruit Culture\nHORT 432Deciduous Tree Fruits\nHORT 433Vegetable Crops\nHORT 451Hydroponics and Aquaponics\nHORT 453Flower Crop Production and Management\nHORT 455Retail Horticulture Business Management\nHORT 459Plant Tissue Culture and Biotechnology\n"
+  }
+ ],
+ "suggestedPlans": []
+}

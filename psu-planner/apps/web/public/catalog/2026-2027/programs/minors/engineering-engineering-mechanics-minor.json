@@ -1,0 +1,50 @@
+{
+ "slug": "engineering-engineering-mechanics-minor",
+ "name": "Engineering Mechanics, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/engineering-mechanics-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits of EMCH courses, which may include the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EMCH 211",
+       "EMCH 212",
+       "EMCH 213",
+       "EMCH 315",
+       "EMCH 316"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from 400-level EMCH courses",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "EMCH"
+      ],
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 12 credits of EMCH courses, which may include the following:12\nEMCH 211Statics\nEMCH 212Dynamics\nEMCH 213Strength of Materials\nEMCH 315Mechanical Response of Engineering Materials\nEMCH 316Experimental Determination of Mechanical Response of Materials\nSelect 6 credits from 400-level EMCH courses6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

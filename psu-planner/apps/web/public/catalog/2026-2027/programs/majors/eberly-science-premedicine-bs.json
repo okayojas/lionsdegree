@@ -1,0 +1,1584 @@
+{
+ "slug": "eberly-science-premedicine-bs",
+ "name": "Premedicine, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/premedicine-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "HPA 101",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOC 1",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BIOL 110",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "BIOL 230W",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 113",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 212",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 213",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NUTR 251",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "HPA 101Introduction to Health Services Organization3\nPSYCH 100Introductory Psychology 3\nSOC 1Introductory Sociology 3\nPrescribed Courses: Require a grade of C or better\nBIOL 110Biology: Basic Concepts and Biodiversity 4\nBIOL 230WBiology: Molecules and Cells4\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nCHEM 112Chemical Principles II 3\nCHEM 113Experimental Chemistry II 1\nCHEM 210Organic Chemistry I3\nCHEM 212Organic Chemistry II3\nCHEM 213Laboratory in Organic Chemistry2\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\nNUTR 251Introductory Principles of Nutrition 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "STAT 200",
+      "STAT 250"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "chooseN",
+     "n": 1,
+     "options": [
+      "SC 294",
+      "SC 494",
+      "CAS 453",
+      "NURS 464",
+      "BIOL 220W",
+      "BIOL 240W",
+      "MICRB 201",
+      "MICRB 202"
+     ],
+     "credits": 1,
+     "commentRaw": "Select one of the following options for your healthcare internship:"
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 8,
+     "commentRaw": "Select 8-12 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PHYS 211",
+       "PHYS 212",
+       "PHYS 213",
+       "PHYS 214",
+       "PHYS 250",
+       "PHYS 251"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4-5 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 421",
+       "BIOL 437",
+       "BIOL 472",
+       "BIOL 473",
+       "MICRB 412",
+       "MICRB 422"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 5,
+     "commentRaw": "Select 5-6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BMB 400",
+       "BMB 401",
+       "BMB 402",
+       "CHEM 450",
+       "CHEM 452"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "STAT 200Elementary Statistics 3-4\nor STAT 250 Introduction to Biostatistics\nSelect one of the following options for your healthcare internship: 1\nSC 294Research Project Courses\nor SC 494 Research Project Courses\nSelect one of the following:3\nCAS 453Health Communication Theory and Research\nNURS 464Dying and Death\nPHIL/BIOET 432Medical and Health Care Ethics\nSelect one of the following:4-5\nBIOL 220WBiology: Populations and Communities\nBIOL 240WBiology: Function and Development of Organisms\nMICRB 201& MICRB 202Introductory Microbiologyand Introductory Microbiology Laboratory\nAdditional Courses: Require a grade of C or better\nSelect 8-12 credits from the following: 8-12\nPHYS 211& PHYS 212& PHYS 213& PHYS 214General Physics: Mechanicsand General Physics: Electricity and Magnetismand General Physics: Fluids and Thermal Physicsand General Physics: Wave Motion and Quantum Physics\nPHYS 250& PHYS 251Introductory Physics Iand Introductory Physics II\nSelect 4-5 credits from the following:4-5\nBIOL 421Comparative Anatomy of Vertebrates\nBIOL 437Histology\nBIOL 472& BIOL 473Human Physiologyand Laboratory in Mammalian Physiology\nMICRB 412& MICRB 422Medical Microbiologyand Medical Microbiology Laboratory\nSelect 5-6 credits from the following:5-6\nBMB 400Molecular Biology of the Gene\nBMB 401General Biochemistry\nBMB 402General Biochemistry\nCHEM 450& CHEM 452Physical Chemistry - Thermodynamicsand Physical Chemistry - Quantum Chemistry\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits toward Area of Concentration",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 7,
+     "commentRaw": "Select 7-15 credits from program list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 12 credits toward Area of Concentration 12\nSelect 7-15 credits from program list 7-15\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Premedicine, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSU 16",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 141"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HPA 101",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PHYS 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SOC 1",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 250",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 240W",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PHYS 251"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Healthcare Internship",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 401",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "PHIL/BIOET 432 (Consult with an adviser for alternative options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 213",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 214",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 472",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 473",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 402",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUTR 251",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202A",
+        "ENGL 202B",
+        "ENGL 202D"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level Supporting Course (Area of Concentration)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course (Area of Concentration)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course (Consult with adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level Supporting Course (Area of Concentration)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course (Area of Concentration)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course (Consult with adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course (Consult with adviser for options)",
+       "credits": 2,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "General Edcuation Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Premedicine, B.S. for 2+2 Students Starting at a Commonwealth Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSU 16",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 141"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PHYS 250"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PHYS 251"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SOC 1",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 240W",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 213",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 214",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 401",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "PHIL/BIOET 432 (Consult with an adviser for alternative options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 250",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course (Area of Concentration)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course (Consult with an adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 472",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 473",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BMB 402",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUTR 251",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202A",
+        "ENGL 202B",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Healthcare Internship",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "HPA 101",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level Supporting Course (Area of Concentration)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level Supporting Course (Area of Concentration)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course (Area of Concentration)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course (Consult with an adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course (Consult with an adviser for options)",
+       "credits": 2,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "ALEKS Placement into MATH 22: Premedicine, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "BIOL 114",
+        "BIOL 115"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SOC 1",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSU 16",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 230W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "BIOL 234",
+        "BIOL 235W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 26",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Healthcare Internship",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HPA 101",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course (Area of Concentration)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 240W",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 244",
+        "BIOL 245W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141B",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 141"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PHYS 250"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PHIL/BIOET 432 (Consult with an adviser for alternative options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "NUTR 251",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202A",
+        "ENGL 202B",
+        "ENGL 202D"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 472",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 473",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PHYS 251"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 401",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 213",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 214",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level Supporting Course (Area of Concentration)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Healthcare Internship",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BMB 402",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213W",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course (Area of Concentration)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level Supporting Course (Area of Concentration)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

@@ -1,0 +1,78 @@
+{
+ "slug": "liberal-arts-pennsylvania-studies-minor",
+ "name": "Pennsylvania Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/pennsylvania-studies-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "HIST 12",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nHIST 12History of Pennsylvania 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-9 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AMST 50",
+       "GER 157N",
+       "HIST 150",
+       "HIST 200",
+       "PLSC 125"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6-9 credits of the following:6-9\nAMST 50\nGER 157NThe Amish\nHIST 150America in the 1960s: An Introduction\nHIST 200American Local History\nPLSC 125Pennsylvania Government and Politics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-9 credits (at least 6 at the 400 level) in consultation with the Pennsylvania Studies adviser from among courses that focus substantially on Pennsylvania, including the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "LA 496",
+       "LER 100",
+       "PLSC 130",
+       "PLSC 426",
+       "SOC 454"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6-9 credits (at least 6 at the 400 level) in consultation with the Pennsylvania Studies adviser from among courses that focus substantially on Pennsylvania, including the following: 6-9\nLA 496Independent Studies\nLER 100\nPLSC 130\nPLSC 426Political Parties and Interest Groups\nSOC 454\n"
+  }
+ ],
+ "suggestedPlans": []
+}

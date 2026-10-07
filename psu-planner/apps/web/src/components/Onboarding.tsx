@@ -3,7 +3,7 @@
  * major-switchers) -> AP / transfer / other credit -> generate. */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { generatePlan, type ProgramTemplate, type ReqSection } from "@psu-planner/engine";
-import { loadCoverage, loadProgram, loadProgramsIndex, loadSubject } from "../data/catalogClient";
+import { currentEdition, loadCoverage, loadEditions, loadProgram, loadProgramsIndex, loadSubject } from "../data/catalogClient";
 import type { ProgramIndexEntry } from "../data/catalogClient";
 import { extractCodesFromFile, extractCodesFromText } from "../data/importSchedule";
 import { ApCreditPicker, CourseSearchPicker } from "./CreditPickers";
@@ -147,6 +147,11 @@ export function Onboarding() {
         genEdTags,
         coveredBy: await loadCoverage(),
       }, `plan-${Date.now()}`);
+      // Pin the bulletin edition this plan was generated against. Requirements
+      // are governed by the edition in force when the student entered their
+      // major, so the plan carries it rather than tracking whatever is newest
+      // (docs/adr/0001-forward-only-catalog-editions.md).
+      plan.edition = currentEdition() ?? (await loadEditions()).latest;
       // Schreyer scholars get honors-section upgrades + per-year credit audit
       // (applied by the store's plan pipeline).
       if (honors) plan.honors = { admit: honors };

@@ -1,0 +1,118 @@
+{
+ "slug": "capital-business-administration-minor",
+ "name": "Business Administration, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/business-administration-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ACCTG 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MGMT 301",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nACCTG 211Financial and Managerial Accounting for Decision Making4\nMGMT 301Basic Management Concepts3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ECON 102",
+      "ECON 104"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BA 100",
+       "BA 243",
+       "BLAW 243",
+       "BA 364Y",
+       "ECON 342",
+       "ECON 351",
+       "FIN 100",
+       "FIN 301",
+       "MGMT 321",
+       "MIS 390",
+       "MKTG 221",
+       "SCM 320"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nECON 102Introductory Microeconomic Analysis and Policy 3\nor ECON 104 Introductory Macroeconomic Analysis and Policy\nSelect 6 credits of the following: 6\nBA 100Introduction to Business\nBA 243Social, Legal, and Ethical Environment of Business\nor BLAW 243 Legal Environment of Business\nBA 364YInternational Business and Society\nECON 342Industrial Organization\nECON 351Money and Banking\nFIN 100Introduction to Finance\nor FIN 301 Corporation Finance\nMGMT 321Leadership and Motivation\nMIS 390Information Systems Management and Applications\nMKTG 221\nSCM 320Transport Systems\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits at the 400 level of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "ACCTG, BA, ECON, FIN, HCM, MIS, IST, MGMT, MKTG"
+    },
+    {
+     "type": "course",
+     "code": "BESC 408",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "COMM 414",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 473",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Other School-approved courses"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits at the 400 level of the following: 6\nACCTG, BA, ECON, FIN, HCM, MIS, IST, MGMT, MKTG\nBESC 408\nCOMM 414Media Management\nPSYCH 473Behavior Modification\nOther School-approved courses\n"
+  }
+ ],
+ "suggestedPlans": []
+}

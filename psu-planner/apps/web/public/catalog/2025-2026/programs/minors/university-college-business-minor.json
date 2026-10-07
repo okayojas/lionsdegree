@@ -1,0 +1,143 @@
+{
+ "slug": "university-college-business-minor",
+ "name": "Business, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/business-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MGMT 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MKTG 301",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nMGMT 301Basic Management Concepts3\nMKTG 301Principles of Marketing3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ACCTG 211",
+      "ACCTG 201",
+      "ACCTG 202"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ECON 102",
+      "ECON 104"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nACCTG 211Financial and Managerial Accounting for Decision Making4-6\nor ACCTG 201& ACCTG 202 Introduction to Financial Accounting and Introduction to Managerial Accounting\nECON 102Introductory Microeconomic Analysis and Policy 3\nor ECON 104 Introductory Macroeconomic Analysis and Policy\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-6 credits at the 400 level from ACCTG, BA, BLAW, EBF, ECON, ENTR, FIN, FINSV, HPA, IB, LER, MIS, MGMT, MKTG, RM, SCM, or STAT",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "ACCTG",
+       "BA",
+       "BLAW",
+       "EBF",
+       "ECON",
+       "ENTR",
+       "FIN",
+       "HPA",
+       "IB",
+       "LER",
+       "MIS",
+       "MGMT",
+       "MKTG",
+       "RM",
+       "SCM",
+       "STAT"
+      ],
+      "minLevel": 400
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 0,
+     "commentRaw": "Select 0-3 credits at the 400-level from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAS 404",
+       "CAS 452",
+       "CAS 483",
+       "CC 401",
+       "CC 490W",
+       "COMM 421W",
+       "COMM 427",
+       "COMM 471",
+       "CRIMJ 408",
+       "ENGL 419",
+       "ENGL 420",
+       "ENGR 425",
+       "HDFS 401",
+       "HDFS 424",
+       "HDFS 455",
+       "HIST 458Y",
+       "HM 435",
+       "HM 484",
+       "IST 402",
+       "IST 420",
+       "IST 425",
+       "IST 431",
+       "IST 432",
+       "IST 461",
+       "KINES 492W",
+       "PLSC 440",
+       "PSYCH 404",
+       "PSYCH 408",
+       "PSYCH 423",
+       "PSYCH 482",
+       "PSYCH 484",
+       "PSYCH 485",
+       "RPTM 410",
+       "RPTM 415",
+       "SOC 455",
+       "SOC 456"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3-6 credits at the 400 level from ACCTG, BA, BLAW, EBF, ECON, ENTR, FIN, FINSV, HPA, IB, LER, MIS, MGMT, MKTG, RM, SCM, or STAT3-6\nSelect 0-3 credits at the 400-level from the following:0-3\nCAS 404Conflict Resolution and Negotiation\nCAS 452Organizational Communication Theory and Research\nCAS 483Communication and Information Technology II\nCC 401Internal Communication\nCC 490WSeminar in Corporate Communication\nCOMM 421WAdvertising Creative Strategies\nCOMM 427Client/Agency Relations\nCOMM 471Public Relations Media and Methods\nCRIMJ 408Police Administration\nCRIMJ/SOC 467Law and Society\nENGL 419Advanced Business Writing\nENGL 420Writing for the Web\nENGR 425New Venture Creation\nHDFS 401Project Planning, Implementation, and Evaluation in the Human Services\nHDFS 424Family Development in an Economic Context\nHDFS 455Development and Administration of Human Services Programs\nHIST 458YHistory of Work in America\nHM 435Hospitality Corporate Finance\nHM 484Hospitality Entrepreneurship and Innovation\nIST 402Emerging Issues and Technologies\nIST 420Fundamentals of Systems and Enterprise Integration\nIST 425New Venture Creation\nIST 431The Information Environment\nIST 432Legal and Regulatory Environment of Information Science and Technology\nIST 461Advanced Database Management\nKINES 492WProgramming for Business and Agencies\nPLSC 440Globalization and Its Implications\nPSYCH 404Principles of Measurement\nPSYCH 408Program Evaluation\nPSYCH 423Social Psychology of Interpersonal/Intergroup Relationships\nPSYCH 482Selection and Assessment in Organizations\nPSYCH 484Work Attitudes and Motivation\nPSYCH 485Leadership in Work Settings\nRPTM 410Marketing of Recreation Services\nRPTM 415Commercial Recreation Management\nSOC 455Work and Occupations\nSOC 456Gender, Occupations, and Professions\n"
+  }
+ ],
+ "suggestedPlans": []
+}

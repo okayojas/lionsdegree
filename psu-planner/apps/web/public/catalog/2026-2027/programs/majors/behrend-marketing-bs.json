@@ -1,0 +1,681 @@
+{
+ "slug": "behrend-marketing-bs",
+ "name": "Marketing, B.S. (Behrend)",
+ "type": "major",
+ "degree": "BS",
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/marketing-bs/",
+ "totalCredits": 122,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BA 241",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "BA 242",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "PSU 7",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "ACCTG 211",
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B",
+      "CAS 100C",
+      "CAS 100S"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 102",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 104",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202D",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MGMT 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MGMT 471W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MIS 204",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MKTG 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MKTG 342",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MKTG 343",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MKTG 444",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCM 301",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BA 241Legal Environment of Business2\nBA 242Social and Ethical Environment of Business2\nPSU 7First-Year Seminar Behrend1\nPrescribed Courses: Require a grade of C or better\nACCTG 211Financial and Managerial Accounting for Decision Making4\nCAS 100Effective Speech3\nECON 102Introductory Microeconomic Analysis and Policy 3\nECON 104Introductory Macroeconomic Analysis and Policy 3\nENGL 202DEffective Writing: Business Writing 3\nFIN 301Corporation Finance3\nMGMT 301Basic Management Concepts3\nMGMT 471WStrategic Management and Business Policy3\nMIS 204Introduction to Management Information Systems 3\nMKTG 301Principles of Marketing3\nMKTG 342Marketing Research3\nMKTG 343Introduction to Marketing Analytics3\nMKTG 444Buyer Behavior and Applied Research3\nSCM 301Supply Chain Management3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 15",
+      "ENGL 30H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 110",
+      "MATH 140"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MKTG 441",
+      "MKTG 450W"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "SCM 200",
+      "STAT 200"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following list:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ECON 470",
+       "FIN 471",
+       "IB 303",
+       "MGMT 461",
+       "MKTG 445"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Other 300-400-level International Business courses"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits of Marketing electives from:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MKTG 327",
+       "MKTG 410",
+       "MKTG 422",
+       "MKTG 445",
+       "MKTG 473",
+       "MKTG 475",
+       "MKTG 478",
+       "MKTG 480",
+       "MKTG 485",
+       "MKTG 494",
+       "MKTG 495",
+       "MKTG 496",
+       "MKTG 497"
+      ]
+     }
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nENGL 15Rhetoric and Composition 3\nor ENGL 30H Honors Rhetoric and Composition\nMATH 110Techniques of Calculus I 4\nor MATH 140 Calculus With Analytic Geometry I\nMKTG 441Sustainability in Marketing Strategy3\nor MKTG 450W Marketing Strategy\nSCM 200Introduction to Statistics for Business 4\nor STAT 200 Elementary Statistics\nSelect 3 credits from the following list:3\nECON 470International Trade and Finance\nFIN 471International Finance\nIB 303International Business Operations\nMGMT 461International Management\nMKTG 445Global Marketing\nOther 300-400-level International Business courses\nSelect 15 credits of Marketing electives from:15\nMKTG 327Retailing\nMKTG 410Personal Selling\nMKTG 422Advertising and Sales Promotion Management\nMKTG 445Global Marketing\nMKTG 473Digital Marketing\nMKTG 475Innovation and Product Management\nMKTG 478Services Marketing Management\nMKTG 480Intermediate Social Media Marketing\nMKTG 485Business-to-Business Marketing\nMKTG 494Research Project\nMKTG 495Internship\nMKTG 496Independent Studies\nMKTG 497Special Topics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18 credits from any business major field or any non-business major field, except for all KINES (GHW) courses, any ENGL course below ENGL 15, and any MATH course below MATH 110. Exceptions may be petitioned through the applicable department chair.",
+     "from": {
+      "kind": "genEd",
+      "domain": "GHW"
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 18 credits from any business major field or any non-business major field, except for all KINES (GHW) courses, any ENGL course below ENGL 15, and any MATH course below MATH 110. Exceptions may be petitioned through the applicable department chair.18\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Marketing, B.S. at Erie Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN)",
+       "domain": "GN",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSU 7",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MIS 204",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Standalone or Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ACCTG 211",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 104",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MKTG 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SCM 200",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 200"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202D",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FIN 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MGMT 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MKTG 342",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Approved Elective",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BA 241",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "BA 242"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MKTG 343",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SCM 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MKTG 485",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Approved Elective",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MKTG 444",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MKTG 445",
+       "credits": 3,
+       "footnotes": [
+        "4",
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MKTG 327",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA/GH/GS/GN/Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Approved Elective",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MKTG 410",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MGMT 471W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MKTG 480",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Approved Elective",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MKTG 422",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MKTG 450W",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "5"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Approved Elective (or MGMT 471W*)",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Approved Elective",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 122,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

@@ -1,0 +1,141 @@
+{
+ "slug": "university-college-diversity-studies-certificate",
+ "name": "Diversity Studies, Certificate (University College)",
+ "type": "certificate",
+ "degree": null,
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/diversity-studies-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Foundation Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AMST 105",
+       "PSYCH 232",
+       "SOC 5",
+       "WMNST 1",
+       "WMNST 106N"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits chosen from Lists II and III; at least 3 credits must be at the 400 level; students must take at least 3 credits from each list:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "List II: Courses on Women, Gender, and Sexuality"
+    },
+    {
+     "type": "course",
+     "code": "CRIMJ 453",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENGL 194",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HDFS 405",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HIST 117",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "NURS 452",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 231",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 422",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SOC 456",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "THEA 207",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "THEA 407W",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "List III: Courses on Race, Ethnicity, and Religion"
+    },
+    {
+     "type": "course",
+     "code": "CRIMJ 451",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENGL 135",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENGL 139",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HIST 152",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "HIST 153",
+     "credits": null,
+     "resolvedFrom": "HIST 153Y"
+    },
+    {
+     "type": "course",
+     "code": "PHIL 9",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "RLST 1",
+     "credits": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Foundation Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nAMST 105American Popular Culture and Folklife\nPSYCH 232Cross-Cultural Psychology\nSOC 5Society's Problems: Causes, Consequences, and Solutions\nWMNST 1Introduction to Women's Studies\nWMNST 106NRepresenting Women and Gender in Literature, Art and Popular Cultures\nSelect 9 credits chosen from Lists II and III; at least 3 credits must be at the 400 level; students must take at least 3 credits from each list:9\nList II: Courses on Women, Gender, and Sexuality\nCRIMJ 453Women and the Criminal Justice System\nENGL 194Women Writers\nHDFS 405Gender and Social Development\nHIST 117Women in United States History\nNURS 452Women's Health Issues\nPSYCH 231Introduction to the Psychology of Gender\nPSYCH 422Human Sexuality\nSOC 456Gender, Occupations, and Professions\nTHEA 207Gender and Theatre\nTHEA 407WWomen and Theatre\nList III: Courses on Race, Ethnicity, and Religion\nCRIMJ 451Race, Crime, and Justice\nENGL 135Alternative Voices in American Literature\nENGL 139African American Literature\nHIST 152African American History\nHIST 153Y\nPHIL 9Race, Racism, and Diversity\nRLST 1Introduction to World Religions\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,713 @@
+{
+ "slug": "capital-mechanical-engineering-technology-bs",
+ "name": "Mechanical Engineering Technology, B.S. (Capital)",
+ "type": "major",
+ "degree": "BS",
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/mechanical-engineering-technology-bs/",
+ "totalCredits": 128,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202C",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IET 308",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MET 321",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MET 338",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MET 358",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MET 370",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MET 438",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MET 454",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MET 458",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MET 481",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MET 486",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGR 320Y",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MET 332",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MET 336",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MET 341",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MET 431",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nENGL 202CEffective Writing: Technical Writing 3\nIET 308Statistical Quality Control3\nMATH 140Calculus With Analytic Geometry I 4\nMET 321Analytical Techniques2\nMET 338Thermal/Fluids Laboratory1\nMET 358Process Design Engineering3\nMET 370Engineering Materials Laboratory1\nMET 438Thermal Engineering B3\nMET 454Automatic Controls3\nMET 458Controls Laboratory1\nMET 481Project Design3\nMET 486Project Design3\nPrescribed Courses: Require a grade of C or better\nENGR 320YDesign for Global Society 3\nMET 332Thermal Engineering A3\nMET 336Engineering Fluid Mechanics3\nMET 341Mechanical Measurements and Instrumentation3\nMET 431Heat Transfer3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "EDSGN 100",
+      "EGT 120"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "EET 101",
+      "EET 109",
+      "EET 320"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "IET 101",
+      "IET 311"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "IET 215",
+      "IET 216",
+      "IET 321"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MET 210W",
+      "MET 365"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 150",
+      "PHYS 211"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 151",
+      "PHYS 212"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "STAT 200",
+      "MATH 141"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EMCH 211",
+       "ET 300",
+       "MET 111"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EMCH 212",
+       "ET 321",
+       "MET 206"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EMCH 213",
+       "ET 322",
+       "MET 213"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "EDSGN 100Cornerstone Engineering Design3\nor EGT 120 Introduction to Graphics and Solid Modeling\nEET 101& EET 109Electrical Circuits Iand Electrical Circuits Laboratory I3-4\nor EET 320 Industrial Electricity and Electronics\nIET 101Manufacturing Materials, Processes, and Laboratory3\nor IET 311 Elements of Metallurgy\nIET 215& IET 216Production Designand Production Design Laboratory3-4\nor IET 321 Manufacturing Processes\nMET 210WMachine Design3\nor MET 365 Design of Machine Elements\nPHYS 150Technical Physics I 3-4\nor PHYS 211 General Physics: Mechanics\nPHYS 151Technical Physics II 3-4\nor PHYS 212 General Physics: Electricity and Magnetism\nSTAT 200Elementary Statistics 4\nor MATH 141 Calculus with Analytic Geometry II\nAdditional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nEMCH 211Statics\nET 300Mechanics I: Statics\nMET 111Mechanics for Technology: Statics\nSelect 3 credits from the following:3\nEMCH 212Dynamics\nET 321Dynamics\nMET 206Dynamics\nSelect 3 credits from the following:3\nEMCH 213Strength of Materials\nET 322Strength of Materials\nMET 213Strength and Properties of Materials\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 5,
+     "commentRaw": "Select 5-9 credits from the department approved list of courses",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from 300-400 level technology and engineering elective courses in consultation with an academic adviser and in support of the student's interests",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 5-9 credits from the department approved list of courses5-9\nSelect 12 credits from 300-400 level technology and engineering elective courses in consultation with an academic adviser and in support of the student's interests12\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Mechanical Engineering Technology, B.S. at Harrisburg Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 15S",
+        "ENGL 30T",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDSGN 100",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "EDSGN 100S"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "MATH 141"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 150",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 211"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100S"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PHYS 151",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 212"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ET 300",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IET 308",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IET 321",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ET 321",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ET 322",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EET 320",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective as approved by adviser",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "IET 311",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 332",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 336",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 338",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 370",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": [
+        "†"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MET 321",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 358",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 365",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 438",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGR 320Y",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective as approved by adviser",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MET 341",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 454",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 458",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 481",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "300-400 level Technology or Engineering Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "300-400 level Technology or Engineering Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MET 431",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 486",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "300-400 level Technology or Engineering Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "300-400 level Technology or Engineering Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": [
+        "†"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective as approved by adviser",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 128,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

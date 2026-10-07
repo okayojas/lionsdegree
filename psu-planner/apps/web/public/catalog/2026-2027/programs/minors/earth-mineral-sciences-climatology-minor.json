@@ -1,0 +1,40 @@
+{
+ "slug": "earth-mineral-sciences-climatology-minor",
+ "name": "Climatology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/climatology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EARTH 103N",
+       "GEOG 310",
+       "GEOG 412",
+       "GEOG 417",
+       "GEOG 438W",
+       "GEOSC 320",
+       "METEO 300"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 18 credits of the following:18\nEARTH 103NEarth in the Future: Predicting Climate Change and Its Impacts Over the Next Century\nGEOG 310Introduction to Global Climatic Systems\nGEOG 412\nGEOG 417Satellite Climatology\nGEOG 438WHuman Dimensions of a Changing Climate\nGEOSC 320Geology of Climate Change\nMETEO 300Fundamentals of Atmospheric Science\n"
+  }
+ ],
+ "suggestedPlans": []
+}

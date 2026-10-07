@@ -1,0 +1,690 @@
+{
+ "slug": "capital-enterprise-technology-integration-bs",
+ "name": "Enterprise Technology Integration, B.S. (Capital)",
+ "type": "major",
+ "degree": "BS",
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/enterprise-technology-integration-bs/",
+ "totalCredits": 124,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ACCTG 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ETI 300W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ETI 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ETI 302",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ETI 420",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ETI 421",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ETI 461",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 220",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 230",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 256",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 495",
+     "credits": 1
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nACCTG 211Financial and Managerial Accounting for Decision Making4\nETI 300WCloud Design3\nETI 301Technology Adoption and Organizational Change3\nETI 302IT Project Management3\nETI 420Fundamentals of Systems and Enterprise Integration3\nETI 421Advanced Enterprise Integration: Technologies and Applications3\nETI 461Database Management and Administration3\nIST 210Organization of Data3\nIST 220Networking and Telecommunications3\nIST 230Language, Logic, and Discrete Mathematics3\nIST 256Programming for the Web3\nIST 495Internship1\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BA 302",
+      "SCM 301",
+      "CAS 100A",
+      "CAS 100B",
+      "CAS 100C",
+      "CAS 100S"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ECON 102",
+      "ECON 104"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 202C",
+      "ENGL 202D"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "HCDD 264",
+      "HCDD 331"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "IST 402",
+      "ETI 423"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 110",
+      "MATH 140"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "STAT 200",
+      "SCM 200"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BA 243",
+       "BA 301",
+       "BA 303",
+       "BA 304",
+       "BLAW 243",
+       "FIN 301",
+       "IB 303",
+       "MGMT 301",
+       "MKTG 301"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 15",
+       "ENGL 30H"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPSC 121",
+       "CMPSC 131",
+       "IST 140"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPSC 122",
+       "CMPSC 132",
+       "IST 242"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CYBER 100",
+       "CYBER 100S",
+       "HCDD 113",
+       "HCDD 113S",
+       "IST 110"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ETI 435",
+       "ETI 463",
+       "IST 440W"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nBA 302Supply Chains3\nor SCM 301 Supply Chain Management\nCAS/ENGL 138TRhetoric and Civic Life II 3\nor CAS 100 Effective Speech\nECON 102Introductory Microeconomic Analysis and Policy 3\nor ECON 104 Introductory Macroeconomic Analysis and Policy\nENGL 202CEffective Writing: Technical Writing 3\nor ENGL 202D Effective Writing: Business Writing\nHCDD 264Design Practice in Human-Centered Design and Development3\nor HCDD 331 Foundations of Human-Centered Design\nIST 402Emerging Issues and Technologies3\nor ETI 423 Enterprise Information Management and Storage Architecture\nMATH 110Techniques of Calculus I 4\nor MATH 140 Calculus With Analytic Geometry I\nSTAT 200Elementary Statistics 4\nor SCM 200 Introduction to Statistics for Business\nSelect 3-4 credits from the following:3-4\nBA 243Social, Legal, and Ethical Environment of Business\nBA 301Finance\nBA 303Marketing\nBA 304Management and Organization\nBLAW 243Legal Environment of Business\nFIN 301Corporation Finance\nIB 303International Business Operations\nMGMT 301Basic Management Concepts\nMKTG 301Principles of Marketing\nSelect 3 credits from the following:3\nCAS/ENGL 137HRhetoric and Civic Life I\nENGL 15Rhetoric and Composition\nENGL 30HHonors Rhetoric and Composition\nSelect 3 credits from the following:3\nCMPSC 121Introduction to Programming Techniques\nCMPSC 131Programming and Computation I: Fundamentals\nIST 140Introduction to Application Development\nSelect 3 credits from the following:3\nCMPSC 122Intermediate Programming\nCMPSC 132Programming and Computation II: Data Structures\nIST 242Intermediate & Object-Oriented Application Development\nSelect 3 credits from the following:3\nCYBER 100Computer Systems Literacy\nCYBER 100SComputer Systems Literacy\nHCDD 113Foundations of Human-Centered Design and Development\nHCDD 113SFoundations of Human-Centered Design and Development FYS\nIST 110Information, People and Technology\nSelect 3 credits from the following:3\nETI 435Enterprise Analytics\nETI 463Distributed Database Management Systems\nIST 440WInformation Sciences and Technology Integration and Problem Solving\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "A student must complete 12 credits from a single Application Focus. For most focuses, at least 3 of those credits must be at the 400-level.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nA student must complete 12 credits from a single Application Focus. For most focuses, at least 3 of those credits must be at the 400-level. 12\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Enterprise Technology Integration, B.S. at Harrisburg Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HCDD 113",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "CYBER 100",
+        "IST 110"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "IST 140",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 110",
+       "credits": 4,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "IST 210",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IST 242",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "CAS 100 (GWS)",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "IST 220",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IST 230",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ACCTG 211",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "IST 256",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Business Fundamental Course",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Application Focus Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ETI 300W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HCDD 264",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "HCDD 331"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SCM 301",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ETI 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ETI 302",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ETI 461",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Application Focus Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Summer",
+     "label": "Year 3 Summer",
+     "credits": 1,
+     "entries": [
+      {
+       "type": "course",
+       "code": "IST 495",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ETI 420",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "IST 402",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ETI 423"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Application Focus Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ETI 421",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ETI 435",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ETI 463"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Application Focus Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 124,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

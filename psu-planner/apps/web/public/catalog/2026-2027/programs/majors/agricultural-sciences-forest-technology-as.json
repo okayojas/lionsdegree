@@ -1,0 +1,404 @@
+{
+ "slug": "agricultural-sciences-forest-technology-as",
+ "name": "Forest Technology, A.S.",
+ "type": "major",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/forest-technology-as/",
+ "totalCredits": 64,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 127",
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B",
+      "CAS 100C",
+      "CAS 100S"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 15",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FORT 100",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "FORT 140",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FORT 170",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FORT 175",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "FORT 200",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "FORT 220",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "FORT 230",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "FORT 240",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FORT 250",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "GEOG 160",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "GEOG 161",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MATH 21",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FORT 105",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FORT 150",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FORT 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FORT 160",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 127Introduction to Plant Biology 3\nCAS 100Effective Speech3\nENGL 15Rhetoric and Composition 3\nFORT 100Introduction to Forestry1\nFORT 140Forest Surveying3\nFORT 170Forest Harvesting and Operations3\nFORT 175Forest Products Industry Tour1\nFORT 200Wood Identification and Properties1\nFORT 220Forest Ecosystem Protection4\nFORT 230Introduction to Remote Sensing2\nFORT 240Forest Soils and Hydrology3\nFORT 250Forest Management Practices3\nGEOG 160Mapping Our Changing World 3\nGEOG 161Applied Geographic Information Systems1\nMATH 21College Algebra with Analytic Geometry with Applications I 3\nPrescribed Courses: Require a grade of C or better\nFORT 105Forest Measurements3\nFORT 150Dendrology3\nFORT 110Forest Inventories3\nFORT 160Silvicultural Practices3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "MGMT 100W",
+      "MGMT 301W"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "FORT 210",
+       "FORT 260",
+       "WILDL 101",
+       "WILDL 207"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "MGMT 100WSurvey of Management3\nor MGMT 301W Basic Management Concepts\nSelect 6 credits from the following:6\nFORT 210Arboriculture\nFORT 260GIS for Natural Resources Management\nWILDL 101Introduction to Wildlife Management\nWILDL 207Outdoor Recreation\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Forest Technology, A.S. at Mont Alto Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FORT 100",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FORT 105",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FORT 150",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "GEOG 160",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "GEOG 161",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 21",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 19,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FORT 110",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FORT 140",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FORT 160",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FORT 170",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FORT 175",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 127",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "General Educaton Course (GA or GH)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 19,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FORT 200",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FORT 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FORT 220",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FORT 230",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MGMT 100W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "WILDL 207",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA or GH)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FORT 240",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FORT 250",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FORT 260",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "WILDL 101",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 70,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

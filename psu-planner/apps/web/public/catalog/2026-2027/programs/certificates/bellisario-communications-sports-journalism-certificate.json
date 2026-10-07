@@ -1,0 +1,36 @@
+{
+ "slug": "bellisario-communications-sports-journalism-certificate",
+ "name": "Sports Journalism, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "bellisario-communications",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/bellisario-communications/sports-journalism-certificate/",
+ "totalCredits": 6,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "COMM 476",
+       "COMM 477",
+       "COMM 478"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 6 credits of the following:6\nCOMM 476Sports Writing\nCOMM 477Sports Broadcasting\nCOMM 478Sports Information\n"
+  }
+ ],
+ "suggestedPlans": []
+}

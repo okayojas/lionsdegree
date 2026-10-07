@@ -1,0 +1,146 @@
+{
+ "slug": "earth-mineral-sciences-materials-science-engineering-minor",
+ "name": "Materials Science and Engineering, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/materials-science-engineering-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "ESC 414M",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MATSE 201",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MATSE 259",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-9 credits from the following MATSE Core Courses:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MATSE 400",
+       "MATSE 401",
+       "MATSE 402",
+       "MATSE 413",
+       "MATSE 419",
+       "MATSE 430",
+       "MATSE 436"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-12 credits from the following MATSE Supporting Courses:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MATSE 403",
+       "MATSE 404",
+       "MATSE 409",
+       "MATSE 410",
+       "MATSE 411",
+       "MATSE 412",
+       "MATSE 415",
+       "MATSE 417",
+       "MATSE 421",
+       "MATSE 425",
+       "MATSE 426",
+       "MATSE 427",
+       "MATSE 429",
+       "MATSE 435",
+       "MATSE 440",
+       "MATSE 441",
+       "MATSE 445",
+       "MATSE 446",
+       "MATSE 447",
+       "MATSE 449",
+       "MATSE 450",
+       "MATSE 455",
+       "MATSE 497"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect one of the following:3\nESC 414MElements of Material Engineering\nMATSE 201Introduction to Materials Science\nMATSE 259Properties and Processing of Engineering Materials\nSelect 3-9 credits from the following MATSE Core Courses:3-9\nMATSE 400Crystal Chemistry\nMATSE 401Thermodynamics of Materials\nMATSE 402Materials Process Kinetics\nMATSE 413Solid-State Materials\nMATSE 419Computational Materials Science and Engineering\nMATSE 430Materials Characterization\nMATSE 436Mechanical Properties of Materials\nSelect 6-12 credits from the following MATSE Supporting Courses:6-12\nMATSE 403Biomedical Materials\nMATSE 404Surfaces and the Biological Response to Materials\nMATSE 409Nuclear Materials\nMATSE 410Phase Relations in Materials Systems\nMATSE 411Processing of Ceramics\nMATSE 412Thermal Properties of Materials\nMATSE 415Introduction to Glass Science\nMATSE 417Electrical and Magnetic Properties\nMATSE 421Corrosion Engineering\nMATSE 425Processing of Metals\nMATSE 426Aqueous Processing\nMATSE 427Microstructure Design of Structural Materials\nMATSE 429Non-Ferrous Structural Metals\nMATSE 435Optical Properties of Materials\nMATSE 440Nondestructive Evaluation of Flaws\nMATSE 441Polymeric Materials I\nMATSE 445Thermodynamics, Microstructure, and Characterization of Polymers\nMATSE 446Mechanical and Electrical Properties of Polymers and Composities\nMATSE 447Rheology and Processing of Polymers\nMATSE 449Fundamentals of Composite Materials Science and Engineering\nMATSE 450Synthesis and Processing of Electronic and Photonic Materials\nMATSE 455Properties and Characterization of Electronic and Photonic Materials\nMATSE 497Special Topics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 0,
+     "commentRaw": "Select 0-6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BME 408",
+       "BME 443",
+       "BME 444",
+       "BME 446",
+       "CHE 320",
+       "CHE 430",
+       "CHE 443",
+       "CHEM 410",
+       "CHEM 480",
+       "ESC 417",
+       "ESC 419",
+       "ESC 450",
+       "ESC 475",
+       "EE 340",
+       "EE 441",
+       "EE 442",
+       "EGEE 304",
+       "EGEE 420",
+       "EGEE 441",
+       "EGEE 442",
+       "EGEE 455",
+       "EME 301",
+       "EME 303",
+       "EME 407",
+       "IE 311",
+       "IE 312",
+       "IE 428",
+       "ME 403",
+       "ME 404",
+       "PHYS 412"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Additional 300- or 400-level courses within a science or engineering major and with a materials focus may be approved at the discretion of the Materials Science and Engineering department."
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 0-6 credits from the following:0-6\nBME 408Solid Mechanics of Biological Materials\nBME 443Biomedical Materials\nBME 444Surfaces and the Biological Response to Materials\nBME 446Polymers in Biomedical Engineering\nCHE 320Phase and Chemical Equilibria\nCHE 430Chemical Reaction Engineering\nCHE 443Introduction to Polymer Science\nCHEM 410Inorganic Chemistry\nCHEM 480Chemistry and Properties of Polymers\nESC 417Electrical and Magnetic Properties\nESC 419Electronic Properties and Applications of Materials\nESC 450Synthesis and Processing of Electronic and Photonic Materials\nESC 475Particulate Materials Processing\nEE 340Introduction to Nanoelectronics\nEE 441Semiconductor Integrated Circuit Technology\nEE 442Solid State Devices\nEGEE 304Heat and Mass Transfer\nEGEE 420Hydrogen and Fuel Cells\nEGEE 441Electrochemical Engineering Fundamentals\nEGEE 442Electrochemical Methods\nEGEE 455Materials for Energy Applications\nEME 301Thermodynamics in Energy and Mineral Engineering\nEME 303Fluid Mechanics in Energy and Mineral Engineering\nEME 407Electrochemical Energy Storage\nIE 311Principles of Solidification Processing\nIE 312Product Design and Manufacturing Processes\nIE 428Metal Casting\nME 403Polymer Electrolyte Fuel Cell Engines\nME 404Gas Turbines\nPHYS 412Solid State Physics I\nAdditional 300- or 400-level courses within a science or engineering major and with a materials focus may be approved at the discretion of the Materials Science and Engineering department.\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,48 @@
+{
+ "slug": "behrend-advertising-certificate",
+ "name": "Advertising, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/advertising-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "COMM 315",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 320",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 421W",
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "COMM 422",
+      "COMM 424"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "COMM 315Applications for Media Writing3\nCOMM 320Introduction to Advertising3\nCOMM 421WAdvertising Creative Strategies3\nCOMM 422Advertising Media Planning3\nor COMM 424 Advertising Campaigns\n"
+  }
+ ],
+ "suggestedPlans": []
+}

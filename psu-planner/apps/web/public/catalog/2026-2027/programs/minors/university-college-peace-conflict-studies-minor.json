@@ -1,0 +1,74 @@
+{
+ "slug": "university-college-peace-conflict-studies-minor",
+ "name": "Peace and Conflict Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/peace-conflict-studies-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "PLSC 91",
+     "credits": 3,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "PLSC 491",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nPLSC 913\nPLSC 491Peace and Conflict Studies Seminar3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "INTU 200",
+      "PLSC 14"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nINTU 200 (both cannot be taken for credit)3\nor PLSC 14 International Relations\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the additional course list in the Peace and Conflict Studies program office",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the supporting course list in the Peace and Conflict Studies program office",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits from the additional course list in the Peace and Conflict Studies program office3\nSelect 6 credits from the supporting course list in the Peace and Conflict Studies program office6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

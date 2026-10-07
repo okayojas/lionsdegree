@@ -1,0 +1,716 @@
+[
+ {
+  "code": "RADSC 101",
+  "subject": "RADSC",
+  "number": "101",
+  "display": "RADSC 101",
+  "title": "Radiographic Introduction and Procedures/Lab I",
+  "credits": "4 Credits",
+  "creditsParsed": {
+   "min": 4,
+   "max": 4,
+   "repeatableMax": null
+  },
+  "description": "Radiology history, basic radiation protection principles, medical terminology, introduction to radiography and radiographic procedures/lab. As is consistent with the core courses in the Radiography program, a passing grade for enrolled radiography students is 75%.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 101"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": [
+   "Enforced Co-requisite at Enrollment: BIOL 161 and BIOL 162"
+  ]
+ },
+ {
+  "code": "RADSC 102",
+  "subject": "RADSC",
+  "number": "102",
+  "display": "RADSC 102",
+  "title": "Radiographic Procedures/Lab II",
+  "credits": "4 Credits",
+  "creditsParsed": {
+   "min": 4,
+   "max": 4,
+   "repeatableMax": null
+  },
+  "description": "Continuation of Radiographic Procedures/Lab I to include finish appendicular skeleton, axial skeleton and introduction to skull anatomy and positioning.",
+  "enforced": "RADSC 101 and RADSC 110 Co-requisites: BIOL 163 and BIOL 164 and RADSC 295B",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "and",
+     "a": {
+      "op": "and",
+      "a": {
+       "op": "course",
+       "code": "RADSC 101"
+      },
+      "b": {
+       "op": "course",
+       "code": "RADSC 110"
+      }
+     },
+     "b": {
+      "op": "course",
+      "code": "BIOL 163"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "BIOL 164"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "RADSC 295B"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 102"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 103",
+  "subject": "RADSC",
+  "number": "103",
+  "display": "RADSC 103",
+  "title": "Radiographic Procedures/Lab III",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Continuation of Radiographic Procedures/Lab II to include digestive, urinary, and biliary systems and facial bone work.",
+  "enforced": "RADSC 102 Co-requisites: RADSC 295C",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "RADSC 102"
+   },
+   "b": {
+    "op": "course",
+    "code": "RADSC 295C"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 103"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 110",
+  "subject": "RADSC",
+  "number": "110",
+  "display": "RADSC 110",
+  "title": "Patient Care in Radiologic Sciences",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course includes the basic concepts of patient care, including consideration for the physical and psychological needs of the patient and the family. Routine and emergency patient care procedures are addressed from the radiographer's perspective. Students will learn proper infection control techniques and will prove competency in CPR for healthcare workers. Students will learn drug nomenclature, legend drugs and different types of contrast used for procedures. As is consistent with the core courses in Radiological Sciences, students must achieve a grade of \"C\" or better",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 110"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": [
+   "Enforced Co-requisite at Enrollment: RADSC 101 Concurrent Courses: BIOL 161 and BIOL 162. Recommended Preparation: Clinical orientation on campus"
+  ]
+ },
+ {
+  "code": "RADSC 204",
+  "subject": "RADSC",
+  "number": "204",
+  "display": "RADSC 204",
+  "title": "Radiographic Exposure I",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course establishes a knowledge base in factors that govern and influence the production and recording of radiographic images. Topics include the importance of imaging standards, discussion of technique problem-solving for image evaluation and the factors that affect image quality. As is consistent with the core courses in Radiological Sciences students must achieve a grade of \"C\" (minimum of 75% average) or better for successful completion of the course.",
+  "enforced": "RADSC 103",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "RADSC 103"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 204"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 205",
+  "subject": "RADSC",
+  "number": "205",
+  "display": "RADSC 205",
+  "title": "Radiographic Exposure II",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course is a continuation of Radiographic Exposure I, with emphasis on electronic imaging, image formation, quality assurance, & related areas. As is consistent with the core courses in Radiological Sciences, students must achieve a grade of \"C\" or better.",
+  "enforced": "RADSC 204",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "RADSC 204"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 205"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 206",
+  "subject": "RADSC",
+  "number": "206",
+  "display": "RADSC 206",
+  "title": "Advanced Radiographic Procedures",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Emphasis on specialized positioning and advanced radiographic procedures; includes introduction to cross-sectional anatomy. As is consistent with the core courses in the Radiography program, a passing grade for enrolled radiography students is 75%.",
+  "enforced": "BIOL 161 and BIOL 162 and BIOL 163 and BIOL 164 Co-requisites: RADSC 295E",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "and",
+     "a": {
+      "op": "and",
+      "a": {
+       "op": "course",
+       "code": "BIOL 161"
+      },
+      "b": {
+       "op": "course",
+       "code": "BIOL 162"
+      }
+     },
+     "b": {
+      "op": "course",
+      "code": "BIOL 163"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "BIOL 164"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "RADSC 295E"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 206"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 207",
+  "subject": "RADSC",
+  "number": "207",
+  "display": "RADSC 207",
+  "title": "Registry Review",
+  "credits": "2-4 Credits/Maximum of 4",
+  "creditsParsed": {
+   "min": 2,
+   "max": 4,
+   "repeatableMax": 4
+  },
+  "description": "Registry Review includes material from all radiological science courses, with emphasis on National Certification Examination, and career planning.",
+  "enforced": null,
+  "concurrent": "RADSC 206",
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": {
+   "op": "concurrent",
+   "a": {
+    "op": "course",
+    "code": "RADSC 206"
+   }
+  },
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 207"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 210W",
+  "subject": "RADSC",
+  "number": "210W",
+  "display": "RADSC 210W",
+  "title": "Radiographic Pathology",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "RADSC 210W Radiographic Pathology (3) A writing-intensive study of the basic fundamentals of pathology (disease process) with emphasis placed on radiographic presentation. Material covered includes the basic concepts of disease and terms related to pathology, systemic classifications of disease including etiology, examples, complications and prognosis, radiographic procedures and presentation, and the health process. Writing requirements include shorter and longer sequenced papers. All papers will receive instructor feedback and subsequent submission of a final revised paper. An informal writing assignment with peer review is also required. The writing process evolves throughout the course as the student applies knowledge learned to current assignments. This course is a requirement of the radiography (radiological sciences) curriculum and could be utilized as an option for students interested in a visual study of disease process such as health science and biology majors or for students in need of a writing-intensive course. As is consistent with the core courses in the Radiography program, a passing grade of a C or higher is required for all RADSC majors.",
+  "enforced": "BIOL 161 and BIOL 162 and BIOL 163 and BIOL 164",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "and",
+     "a": {
+      "op": "course",
+      "code": "BIOL 161"
+     },
+     "b": {
+      "op": "course",
+      "code": "BIOL 162"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "BIOL 163"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "BIOL 164"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [
+   "Writing Across the Curriculum"
+  ],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 210W"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 220",
+  "subject": "RADSC",
+  "number": "220",
+  "display": "RADSC 220",
+  "title": "Radiation Biology and Protection",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Study the principles of interaction of radiation with living systems, effects on cells and tissues, biological response, and radiation protection. The content of this course includes the basic fundamentals of radiation interactions, basic biology with emphasis placed on effects of radiation exposure on cells and on radiation protection mandates and techniques. This course is a requirement of the radiography (radiologic technology) curriculum and could be utilized as an option for other students interested in radiation effects such as health science, biomedical engineering, health physics or physics and biology majors. As is consistent with the core courses in the Radiography program, a passing grade for enrolled radiography students is 75%.",
+  "enforced": "RADSC 101",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "RADSC 101"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 220"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 230",
+  "subject": "RADSC",
+  "number": "230",
+  "display": "RADSC 230",
+  "title": "Radiographic Physics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Basic knowledge of atomic structure, characteristics of radiation, x-ray production, photon interactions, circuitry, imaging equipment and quality control. This course is a requirement of the radiography curriculum and could be utilized as an option for other students interested in radiation interactions and imaging equipment such as health science, biomedical engineering, health physics or physics majors. As is consistent with the core courses in the radiography program, a passing grade for enrolled radiography students is 75%.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 230"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 295",
+  "subject": "RADSC",
+  "number": "295",
+  "display": "RADSC 295",
+  "title": "**SPECIAL TOPICS**",
+  "credits": "1-2 Credits/Maximum of 2",
+  "creditsParsed": {
+   "min": 1,
+   "max": 2,
+   "repeatableMax": 2
+  },
+  "description": "",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 295"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 295A",
+  "subject": "RADSC",
+  "number": "295A",
+  "display": "RADSC 295A",
+  "title": "Radiologic Science Clinical Internship I",
+  "credits": "1.5 Credits/Maximum of 1.5",
+  "creditsParsed": {
+   "min": 1.5,
+   "max": 1.5,
+   "repeatableMax": 1.5
+  },
+  "description": "Supervised off-campus, non-group instruction including field experiences, practica, or internships. Written and oral critique of activity required.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "admission to 2RCC program; Concurrent: RADSC 101 and RADSC 110",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 295A"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 295B",
+  "subject": "RADSC",
+  "number": "295B",
+  "display": "RADSC 295B",
+  "title": "Radiological Sciences Clinical Internship II",
+  "credits": "1 Credits/Maximum of 1",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": 1
+  },
+  "description": "Supervised off-campus, non-group instruction including field experiences, practica, or internships. Written and oral critique of activity required.",
+  "enforced": "RADSC 295A Co-requisites: RADSC 102",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "RADSC 295A"
+   },
+   "b": {
+    "op": "course",
+    "code": "RADSC 102"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 295B"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 295C",
+  "subject": "RADSC",
+  "number": "295C",
+  "display": "RADSC 295C",
+  "title": "Radiological Sciences Clinical Internship III",
+  "credits": "1.5 Credits",
+  "creditsParsed": {
+   "min": 1.5,
+   "max": 1.5,
+   "repeatableMax": null
+  },
+  "description": "Supervised off-campus, nongroup instruction including field experiences, practica, or internships. Written and oral critique of activity required.",
+  "enforced": "RADSC 102 and RADSC 295B",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "RADSC 102"
+   },
+   "b": {
+    "op": "course",
+    "code": "RADSC 295B"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 295C"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 295D",
+  "subject": "RADSC",
+  "number": "295D",
+  "display": "RADSC 295D",
+  "title": "Radiologic Science Clinical Internship IV",
+  "credits": "1 Credits/Maximum of 1",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": 1
+  },
+  "description": "Supervised off-campus group instruction including field experiences, practica, or internships. Written and oral critique of activity required.",
+  "enforced": "RADSC 103 and RADSC 295C",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "RADSC 103"
+   },
+   "b": {
+    "op": "course",
+    "code": "RADSC 295C"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 295D"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 295E",
+  "subject": "RADSC",
+  "number": "295E",
+  "display": "RADSC 295E",
+  "title": "Radiologic Science Clinical Internship V",
+  "credits": "1.5 Credits",
+  "creditsParsed": {
+   "min": 1.5,
+   "max": 1.5,
+   "repeatableMax": null
+  },
+  "description": "Supervised off-campus, nongroup instruction including field experiences, practica, or internships. Written and oral critique of activity required.",
+  "enforced": "RADSC 295D Co-requisites: RADSC 206",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "RADSC 295D"
+   },
+   "b": {
+    "op": "course",
+    "code": "RADSC 206"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 295E"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 295F",
+  "subject": "RADSC",
+  "number": "295F",
+  "display": "RADSC 295F",
+  "title": "Radiologic Science Clinical Internship VI",
+  "credits": "1.5 Credits",
+  "creditsParsed": {
+   "min": 1.5,
+   "max": 1.5,
+   "repeatableMax": null
+  },
+  "description": "Supervised off-campus, non-group instruction including field experiences, practica, or internships. Written and oral critique of activity required.",
+  "enforced": "RADSC 295E",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "RADSC 295E"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 295F"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ },
+ {
+  "code": "RADSC 295G",
+  "subject": "RADSC",
+  "number": "295G",
+  "display": "RADSC 295G",
+  "title": "Radiologic Science Clinical Internship VI-A",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "Supervised clinical education activities under the direction of registered radiologic technologists.",
+  "enforced": "RADSC 295E",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "RADSC 295E"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "RADSC 295G"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/radsc/",
+  "extraRaw": []
+ }
+]

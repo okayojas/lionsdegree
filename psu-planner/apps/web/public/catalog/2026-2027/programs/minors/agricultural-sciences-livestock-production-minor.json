@@ -1,0 +1,98 @@
+{
+ "slug": "agricultural-sciences-livestock-production-minor",
+ "name": "Livestock Production, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/livestock-production-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ANSC 201",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ANSC 207",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "ANSC 208",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "ANSC 324",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nANSC 201Animal Science4\nANSC 207Animal Products Technology2\nANSC 208Animal Products Technology Laboratory1\nANSC 324Value Determination of Meat Animals3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ANSC 306",
+       "ANSC 308",
+       "ANSC 309"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3-4 credits from the following:3-4\nANSC 306Swine Production and Management\nANSC 308Sheep and Goat Production and Management\nANSC 309Beef Cattle Production and Management\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-7 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGRO 423",
+       "ANSC 418",
+       "ANSC 419W",
+       "ANSC 420",
+       "ANSC 424",
+       "ANSC 426",
+       "ANSC 429",
+       "ANSC 432",
+       "ANSC 480",
+       "FDSC 415",
+       "VBSC 403",
+       "VBSC 407"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6-7 credits from the following:6-7\nAGRO 423Forage Crop Management\nANSC 418Nutrient Management in Agricultural Systems\nANSC 419WApplied Animal Welfare\nANSC 420Animal Nutrition and Feed Technology\nANSC 424Livestock Breeding Evaluation and Selection\nANSC 426Advanced Judging and Selection\nANSC 429Advanced Beef Cattle Production\nANSC 432Techniques in Cattle Reproduction\nANSC 480Animal Growth and Development\nFDSC 415Science and Technology of Muscle Foods\nVBSC 403Principles of Animal Disease Control\nVBSC 407Ruminant Herd Health Management\n"
+  }
+ ],
+ "suggestedPlans": []
+}

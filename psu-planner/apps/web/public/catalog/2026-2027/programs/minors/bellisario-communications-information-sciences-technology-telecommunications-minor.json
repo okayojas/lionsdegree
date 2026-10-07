@@ -1,0 +1,67 @@
+{
+ "slug": "bellisario-communications-information-sciences-technology-telecommunications-minor",
+ "name": "Information Sciences and Technology for Telecommunications, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "bellisario-communications",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/bellisario-communications/information-sciences-technology-telecommunications-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "COMM 180",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 220",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCOMM 180Survey of Electronic Media and Telecommunications 3\nIST 110Information, People and Technology 3\nIST 210Organization of Data3\nIST 220Networking and Telecommunications3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "COMM 479",
+       "COMM 484",
+       "COMM 491",
+       "COMM 492"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits of the following:6\nCOMM 479Telecommunication Economics\nCOMM 484Emerging Telecommunications Technologies\nCOMM 491International Telecommunications\nCOMM 492Internet Law and Policy\n"
+  }
+ ],
+ "suggestedPlans": []
+}

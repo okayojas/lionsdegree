@@ -1,0 +1,438 @@
+{
+ "slug": "capital-integrative-arts-ba",
+ "name": "Integrative Arts, B.A. (Capital)",
+ "type": "major",
+ "degree": "BA",
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/integrative-arts-ba/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 24,
+     "commentRaw": "Select 24 credits from an arts area",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from other arts areas",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of GA",
+     "from": {
+      "kind": "genEd",
+      "domain": "GA"
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 24 credits from an arts area24\nSelect 12 credits from other arts areas12\nSelect 6 credits of GA6\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Integrative Arts, B.A. at Harrisburg Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 15S",
+        "ENGL 30T",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Primary Arts Area",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "First Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Primary Arts Area",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Secondary Area",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language",
+       "credits": 4,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Primary Arts Area",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Secondary Area",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Primary Arts Area",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Secondary Area",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Primary Arts Area",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Secondary Area",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202B",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "B.A. Knowledge Domain",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Primary Arts Area",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "B.A. Knowledge Domain",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Cultures Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Writing Across the Curriculum Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Primary Arts Area",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Secondary Area",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "B.A. Knowledge Domain",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Primary Arts Area",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Secondary Area",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 121,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

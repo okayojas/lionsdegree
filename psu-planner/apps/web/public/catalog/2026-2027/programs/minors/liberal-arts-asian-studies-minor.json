@@ -1,0 +1,58 @@
+{
+ "slug": "liberal-arts-asian-studies-minor",
+ "name": "Asian Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/asian-studies-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ASIA 3",
+       "ASIA 100",
+       "ASIA 101N",
+       "ASIA 102",
+       "ASIA 103",
+       "ASIA 104",
+       "ASIA 105",
+       "ASIA 106N",
+       "ASIA 197"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits from the following:6\nASIA 3Introduction to the Religions of the East\nASIA 100What is Asia?\nASIA 101NSports in Asia\nASIA 102Asian Popular Culture\nASIA 103Introduction to Hinduism\nASIA 104Introduction to Buddhism\nASIA 105War and Memory in Asia: Twentieth Century and beyond\nASIA 106NAsian Traditions of Health, Medicine, and the Body\nASIA 197Special topics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits from a departmental list, at least 6 at the 400 level; independent study credits selected in consultation with adviser; additional further credits in language studies may be permitted up to 6 credits.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 15 credits from a departmental list, at least 6 at the 400 level; independent study credits selected in consultation with adviser; additional further credits in language studies may be permitted up to 6 credits. 15\n"
+  }
+ ],
+ "suggestedPlans": []
+}

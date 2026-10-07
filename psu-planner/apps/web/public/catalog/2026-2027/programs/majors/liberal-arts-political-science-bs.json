@@ -1,0 +1,1034 @@
+{
+ "slug": "liberal-arts-political-science-bs",
+ "name": "Political Science, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/political-science-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "PLSC 309",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PLSC 10",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of B or better\nPLSC 309Quantitative Political Analysis3\nPrescribed Courses: Require a grade of C or better\nPLSC 10Scientific Study of Politics 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 110",
+      "MATH 140"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PLSC 308",
+      "PLSC 300"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PLSC 1",
+       "PLSC 3",
+       "PLSC 7N",
+       "PLSC 14",
+       "PLSC 17N"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPSC 101",
+       "CMPSC 121",
+       "CMPSC 203"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of data intensive PLSC courses from a department list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of any 400-level PLSC course",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "PLSC"
+      ],
+      "minLevel": 400
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of methodology from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "GEOG 363",
+       "GEOG 364",
+       "PLSC 410",
+       "STAT 380",
+       "STAT 461",
+       "STAT 462",
+       "STAT 463",
+       "STAT 466"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Courses from a department approved list"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "LA 495",
+       "PLSC 494",
+       "PLSC 496"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Data intensive course from a department list"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nMATH 110Techniques of Calculus I 4\nor MATH 140 Calculus With Analytic Geometry I\nPLSC 308Introduction to Political Research3\nor PLSC 300 Introduction to Independent Thesis Research\nSelect 9 credits from the following:9\nPLSC 1American Politics: Principles, Processes and Powers\nPLSC 3Comparing Politics around the Globe\nPLSC 7NContemporary Political Ideologies\nPLSC 14International Relations\nPLSC 17NIntroduction to Political Theory\nSelect 3-4 credits from the following:3-4\nCMPSC 101Introduction to Programming\nCMPSC 121Introduction to Programming Techniques\nCMPSC 203Introduction to Spreadsheets and Databases\nSelect 9 credits of data intensive PLSC courses from a department list9\nSelect 9 credits of any 400-level PLSC course9\nSelect 9 credits of methodology from the following:9\nGEOG 363Geographic Information Systems\nGEOG 364Spatial Analysis\nPLSC 410Strategy and Politics\nSTAT 380Data Science Through Statistical Reasoning and Computation\nSTAT 461Analysis of Variance\nSTAT 462Applied Regression Analysis\nSTAT 463Applied Time Series Analysis\nSTAT 466Survey Sampling\nCourses from a department approved list\nSelect 3 credits from the following:3\nLA 495Undergraduate Field Experience or Practicum\nPLSC 494Research Project\nPLSC 496Independent Studies\nData intensive course from a department list\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from department approved list of courses in the arts, humanities, languages, social and behavioral sciences, natural sciences, and related fields. Students can take a range of courses across disciplines or concentrate their selection to complete a minor in a supporting field.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 12 credits from department approved list of courses in the arts, humanities, languages, social and behavioral sciences, natural sciences, and related fields. Students can take a range of courses across disciplines or concentrate their selection to complete a minor in a supporting field.12\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PLSC 10",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLSC 1",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PLSC 3",
+        "PLSC 7N",
+        "PLSC 14",
+        "PLSC 17N"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "FYS/General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ENGL 137H",
+        "CAS 137H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "LA 83",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPSC 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CMPSC 131",
+        "CMPSC 203"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PLSC 1",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PLSC 3",
+        "PLSC 7N",
+        "PLSC 14",
+        "PLSC 17N"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 138T",
+        "ENGL 138T"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "STAT 184",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLSC 1",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PLSC 3",
+        "PLSC 7N",
+        "PLSC 14",
+        "PLSC 17N"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PLSC 309",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "course",
+       "code": "PLSC 308",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "PLSC 400-Level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Related Course In Consultation with Adviser",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (US)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PLSC 400-Level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PLSC 400-Level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Related Course in Consultation with Adviser",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PLSC 400-Level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Methodology Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Related Course in Consultation with Adviser",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PLSC 400-Level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Methodology Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Related Course in Consultation with Adviser",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (WAC)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PLSC Capstone",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PLSC 400-Level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Methodology Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 123,
+   "footnotes": {}
+  },
+  {
+   "campusLabel": "",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PLSC 1",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PLSC 3",
+        "PLSC 7N",
+        "PLSC 14",
+        "PLSC 17N"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "FYS/Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPSC 101",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CMPSC 131",
+        "CMPSC 203"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PLSC 1",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PLSC 3",
+        "PLSC 7N",
+        "PLSC 14",
+        "PLSC 17N"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PLSC 1",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "PLSC 3",
+        "PLSC 7N",
+        "PLSC 14",
+        "PLSC 17N"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (IL)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (WAC)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course (US)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PLSC 10",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLSC 309",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Related Course in Consultation with Adviser",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 184",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PLSC 308",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "PLSC 400-Level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PLSC 400-Level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Related Course in Consultation with Adviser",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Methodology Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PLSC 400-Level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PLSC 400-Level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PLSC 400-Level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Methodology Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Related Course in Consultation with Adviser",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "PLSC Capstone",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PLSC 400-Level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Methodology Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Related Course in Consultation with Adviser",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 121,
+   "footnotes": {}
+  }
+ ]
+}

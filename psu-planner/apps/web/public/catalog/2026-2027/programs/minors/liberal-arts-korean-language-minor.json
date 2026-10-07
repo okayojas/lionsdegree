@@ -1,0 +1,74 @@
+{
+ "slug": "liberal-arts-korean-language-minor",
+ "name": "Korean Language, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/korean-language-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "KOR 2",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "KOR 3",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nKOR 2Level One Korean B4\nKOR 3Level Two Korean A4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "KOR 110",
+       "KOR 296",
+       "KOR 299"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ASIA 499",
+       "KOR 401",
+       "KOR 402",
+       "KOR 424",
+       "KOR 425",
+       "KOR 496",
+       "KOR 498",
+       "KOR 499"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 4 credits of the following:4\nKOR 110Level Two Korean B\nKOR 296Independent Studies\nKOR 299Foreign Studies\nSelect 6 credits of the following:6\nASIA 499Foreign Studies\nKOR 401Level 3 Korean A\nKOR 402Level 3 Korean B\nKOR 424Transnational Korean Literature\nKOR 425Global Korean Cinema\nKOR 496Independent Studies\nKOR 498Special Topics\nKOR 499Foreign Studies\n"
+  }
+ ],
+ "suggestedPlans": []
+}

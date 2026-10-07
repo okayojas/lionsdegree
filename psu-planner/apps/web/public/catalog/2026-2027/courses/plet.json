@@ -1,0 +1,1146 @@
+[
+ {
+  "code": "PLET 50",
+  "subject": "PLET",
+  "number": "50",
+  "display": "PLET 50",
+  "title": "Computer Applications for Plastics Engineering Technology",
+  "credits": "2 Credits",
+  "creditsParsed": {
+   "min": 2,
+   "max": 2,
+   "repeatableMax": null
+  },
+  "description": "Programming, spreadsheets for the solution of technical problems, internet access for background and support information, formatting professional reports, creating presentations. PL ET 050 Computer Applications for Plastics Engineering Technology (3) This course will acquaint first semester students with a variety of computer software programs that will be used in upper level classes. Extensive hands-on laboratory problems are designed to reinforce the lecture. After completing this course, the students should be able to access plastic related information on the Internet, prepare a formal report complete with footnotes or endnotes, create a computer generated technical presentation, import and export data between different software packages, and program technical spreadsheets for solving engineering problems. Student competency will be assessed by graded quizzes, examinations, homework, and special assignments. The course is offered once per year with an enrollment of 40 to 50 students.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 50"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 205",
+  "subject": "PLET",
+  "number": "205",
+  "display": "PLET 205",
+  "title": "Introduction to Plastics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Introduction to the plastics industry including fundamental aspects of plastic materials and processing; introduces the chemical influence on mechanical and flow properties of plastic materials. PL ET 205 Introduction to Plastics (3) Introduction to the plastics industry including fundamental aspects of plastic materials and processing; introduces the chemical influence on mechanical and flow properties of plastic materials.",
+  "enforced": null,
+  "concurrent": "CHEM 110",
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": {
+   "op": "concurrent",
+   "a": {
+    "op": "course",
+    "code": "CHEM 110"
+   }
+  },
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 205"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 206W",
+  "subject": "PLET",
+  "number": "206W",
+  "display": "PLET 206W",
+  "title": "Plastic Materials and Properties",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Coverage of the most common commercial plastics including their additives, fillers, and fibers; includes common physical tests used to determine material characteristics; writing intensive.",
+  "enforced": "PLET 205",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "PLET 205"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [
+   "Writing Across the Curriculum"
+  ],
+  "crossListings": [],
+  "aliases": [
+   "PLET 206W"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 222",
+  "subject": "PLET",
+  "number": "222",
+  "display": "PLET 222",
+  "title": "Introduction to Plastics Processing",
+  "credits": "4 Credits",
+  "creditsParsed": {
+   "min": 4,
+   "max": 4,
+   "repeatableMax": null
+  },
+  "description": "Introduction to plastic processing methods, materials, tooling, design, and equipment. Safe operation and practices are emphasized. PL ET 222 Introduction to Plastics Processing (4) This course provides an introduction to plastics processing and is intended to provide broad foundational knowledge of the different types of plastics processing methods, equipment, and materials. The educational objectives are to develop competency in the determination of potential methods for manufacturing various component designs and the determination of cost effectiveness for the possible process alternatives selected. After completing this course, the student should have a basic understanding of a multitude of plastic processing methods and have knowledge of the interrelationship of part and tool design as it impacts manufacturing. The student should also understand materials and material flow phenomena as it affects processing and should understand the processing and troubleshooting techniques typically found in the industry.",
+  "enforced": null,
+  "concurrent": "PLET 205",
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": {
+   "op": "concurrent",
+   "a": {
+    "op": "course",
+    "code": "PLET 205"
+   }
+  },
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 222"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 232",
+  "subject": "PLET",
+  "number": "232",
+  "display": "PLET 232",
+  "title": "Introduction to Part and Tool Design",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "CAD techniques for designing plastic products and related tooling. PL ET 232 Introduction to Part and Tool Design (3) This is the introductory course for designing plastic parts using CAD solids modeling techniques. This course builds upon fundamental CAD modeling skills developed during earlier courses and initially focuses on the fundamental techniques needed to construct solids models for thin walled plastic parts. Focus then shifts toward using similar solids and surface modeling techniques for designing molds for plastic parts. The course objective is to provide the basic knowledge to construct solid models of plastic parts and related tooling and to lay the foundation for more advanced plastic part and mold design courses.",
+  "enforced": "PLET 222 or Prerequisite or concurrent: EGT 121",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "or",
+    "a": {
+     "op": "course",
+     "code": "PLET 222"
+    },
+    "b": {
+     "op": "phrase",
+     "text": "Prerequisite"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "EGT 121"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": false,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 232"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 235",
+  "subject": "PLET",
+  "number": "235",
+  "display": "PLET 235",
+  "title": "Tool Design & Machining",
+  "credits": "2 Credits",
+  "creditsParsed": {
+   "min": 2,
+   "max": 2,
+   "repeatableMax": null
+  },
+  "description": "Study of the methods used to create the tooling used in plastics fabrication and the methods of maintaining tooling. PL ET 235 Tool Design & Machining (2) This course will provide the students with an understanding of the construction methods and materials used in the creation of plastics tooling. Various methods of mold manufacture are introduced along with the fabrication practices needed to permit successful mold operation. The course concludes with a study of the materials used in mold construction and plastics tooling preventative maintenance practices. The course objective is to provide the knowledge needed to properly design parts for manufacturability. Students will also learn how to set up a system to maintain tooling to reduce catastrophic failures. Through the lab portion of this class, the students will obtain hands-on experience in the actual construction methods. This course uses knowledge gained in earlier plastics materials and processing courses to guide tooling design and fabrication decisions.",
+  "enforced": "Prerequisite or concurrent: PLET 232",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "phrase",
+    "text": "Prerequisite"
+   },
+   "b": {
+    "op": "course",
+    "code": "PLET 232"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": false,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 235"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 296",
+  "subject": "PLET",
+  "number": "296",
+  "display": "PLET 296",
+  "title": "Independent Studies",
+  "credits": "1-18 Credits/Maximum of 18",
+  "creditsParsed": {
+   "min": 1,
+   "max": 18,
+   "repeatableMax": 18
+  },
+  "description": "Creative projects, including research and design, which are supervised on an individual basis and which fall outside the scope of formal courses.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 296"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 297",
+  "subject": "PLET",
+  "number": "297",
+  "display": "PLET 297",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given infrequently to explore, in-depth, a comparatively narrow subject which may be topical or of special interest.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 297"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 304",
+  "subject": "PLET",
+  "number": "304",
+  "display": "PLET 304",
+  "title": "Plastic Material Properties and Applications",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Synthesis, polymerization, and characterization of thermoplastic and thermoset polymeric materials. PL ET 304 Plastic Material Properties and Applications (3) This course studies the fabrication of polymers and macromolecules. Current commercial techniques are covered in detail and encompass the reactions and processes currently being used in the plastics industry today. Also covered is the technology for creating different grades of polymers by using various fillers, additives, and blends to create variations within the known polymers. This is supplemented by laboratory exercises that draw together theory and practice.Polymer synthesis is a key link between the atoms present before they become a part of a polymer molecule and the molded article, the end produce of the molding operation. The course objective is to establish a basic knowledge of these processes to enable a deeper understanding of the capabilities of molding, designing, and the performance of polymer articles. Students will be able to start with a handful of carbon atoms, a synthesis procedure, and an injection molding machine, and understand what affects the polymer at each stage, rather than being limited to understanding a given molding process. It will allow students to adapt to industrial needs and the push towards a scientific approach to problem solving, rather than acting as traditional molding machine processors. Students will also be able to correlate the polymerization process to the performance derived in plastics processes and molded articles. Student competency is assessed by graded quizzes, examinations, homework, and special assignments. The course is offered once per year with an enrollment of 40 to 50 students.",
+  "enforced": "PLET 206W",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "PLET 206W"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 304"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 323",
+  "subject": "PLET",
+  "number": "323",
+  "display": "PLET 323",
+  "title": "Packaging Processes",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "In-depth studies and laboratory experiments will be conducted on processes such as blow molding, thermoforming, extrusion, and rotational molding, and other packaging processes. PLET 323 Packaging Processes (3) In this course the student will learn about plastic packaging processes of blow molding, thermoforming, extrusion. Other minor processes will be presented. The course objectives are to develop student proficiencies in identifying the polymer material requirements for each process, in identifying the mold design and construction techniques for each process, and knowing how plastic packaging processes differ from injection molding. The laboratory will include experiments that show the advantages of each process and to develop student competency in running equipment for each process explored. The students shall also develop competency in conducting elementary process troubleshooting for each process. Student competency is assessed by graded lab reports and projects.",
+  "enforced": "PLET 227 and PLET 304 Enforced Concurrent at Enrollment: PLET 350 and MET 418",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "course",
+     "code": "PLET 227"
+    },
+    "b": {
+     "op": "course",
+     "code": "PLET 304"
+    }
+   },
+   "b": {
+    "op": "concurrent",
+    "a": {
+     "op": "and",
+     "a": {
+      "op": "course",
+      "code": "PLET 350"
+     },
+     "b": {
+      "op": "course",
+      "code": "MET 418"
+     }
+    }
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 323"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 327",
+  "subject": "PLET",
+  "number": "327",
+  "display": "PLET 327",
+  "title": "Plastics Processing & Statistical Methods",
+  "credits": "4 Credits",
+  "creditsParsed": {
+   "min": 4,
+   "max": 4,
+   "repeatableMax": null
+  },
+  "description": "Study of advanced issues in plastics processing, such as design of experiments and SPC/SQC will be covered. PL ET 227 Plastics Processing & Statistical Methods (4) The course is intended to give the students the basic tools needed to identify and troubleshoot plastic processing problems. Injection molding will be the primary focus. The course objectives are: to introduce the student to the root cause of injection molding problems both at the start-up of a new mold and during production runs, to identify when a process has changed and to monitor the effects of attempts to improve the process using statistical process control and other statistical methods, to identify and minimize the sources of process variation; to ascertain the capability of measurement systems, and to gain understanding in the use of designed experiments techniques for developing cause and effect information. During the course, students will build upon knowledge gained in earlier courses in plastics materials and plastics processing.",
+  "enforced": "(PLET 50 or EDSGN 100S) and PLET 222 and 5th semester standing.",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "or",
+     "a": {
+      "op": "course",
+      "code": "PLET 50"
+     },
+     "b": {
+      "op": "course",
+      "code": "EDSGN 100S"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "PLET 222"
+    }
+   },
+   "b": {
+    "op": "phrase",
+    "text": "5th semester standing."
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": false,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 327"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 330",
+  "subject": "PLET",
+  "number": "330",
+  "display": "PLET 330",
+  "title": "Advanced Tooling & Rheology",
+  "credits": "4 Credits",
+  "creditsParsed": {
+   "min": 4,
+   "max": 4,
+   "repeatableMax": null
+  },
+  "description": "Tooling design strategies are developed considering a material's physical and rheological influences on processing and part formation. PL ET 330 Advanced Tooling & Rheology (4) This course is intended to allow the student to develop an understanding of the critical relationship between the physical and rheological properties of plastic materials and their influence upon processing and part formation. The course objective is to establish this relationship since it is the basis of establishing tooling design strategies for optimizing part quality, moldability, and productivity. Upon completing the course, the student will have proficiency in the use of injection molding analysis software (Moldflow) and be able to develop strategies for its efficient and effective application. The software is used as a means to accelerate and enhance the students understanding of the injection molding process. Students will learn how software usage can be interwoven with knowledge of polymer melt rheology, shrinkage, warpage, residual stresses and their relationship to tooling to enable proper process and molded part design. Student competency is assessed by graded quizzes, examinations, homework, and special assignments. The course is offered once per year with an enrollment of 40 to 50 students.",
+  "enforced": "PLET 206W and PLET 227 and PLET 232 and PLET 235 and PHYS 250",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "and",
+     "a": {
+      "op": "and",
+      "a": {
+       "op": "course",
+       "code": "PLET 206W"
+      },
+      "b": {
+       "op": "course",
+       "code": "PLET 227"
+      }
+     },
+     "b": {
+      "op": "course",
+      "code": "PLET 232"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "PLET 235"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "PHYS 250"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 330"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 345",
+  "subject": "PLET",
+  "number": "345",
+  "display": "PLET 345",
+  "title": "Heat Transfer",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Fundamentals of heat transfer including conduction, convection, and radiation. PL ET 345 Heat Transfer (2) The course is intended to allow the student to develop the ability to conceptually evaluate heat transfer problems, and solve practical problems that might be encountered in the plastics industry including those that relate to energy management in plastic materials or processes. The course objectives are accomplished by establishing the concepts of the three principle mechanisms of heat transfer, solving plastics related problems illustrative of each mechanism, and reinforcing theoretical concepts learned through the use of simulation software and hands-on laboratory experiments. During this course students will build upon the knowledge gained in an earlier course in the thermal and fluid sciences. Student competency is assessed by graded quizzes, examinations, homework, and special assignments. The course is offered once per year with an enrollment of 40 to 50 students.",
+  "enforced": "PLET 366",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "PLET 366"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 345"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 350",
+  "subject": "PLET",
+  "number": "350",
+  "display": "PLET 350",
+  "title": "Design of Plastic Parts",
+  "credits": "4 Credits",
+  "creditsParsed": {
+   "min": 4,
+   "max": 4,
+   "repeatableMax": null
+  },
+  "description": "Designing plastic parts utilizing CAD, FEA, and CAE technologies for the design and for structural, dimensional, and process evaluation and optimization. PL ET 350 Design of Plastic Parts (4) The educational object of this course is to develop knowledge in the process of designing plastic parts and products. The course focuses on the critical relationship between the part design and the plastic material, tooling and the specific manufacturing methods used to produce the part. Use of CAE technologies are used for enhancing concurrent engineering strategies and evaluating manufacturability of a design. The course develops special design guidelines to accommodate plastic material characteristics and production requirements. The course also addresses issues of assembly and decoration of plastic parts. Upon completing the course students will demonstrate competency in relating how engineering properties of plastic materials and their unique characteristics relate to product design. This includes understanding visoelasticity and the effects of time, strain, rate, temperature and environment on plastic materials and the product. During this course students will build upon the knowledge gained in previous courses on strength of materials, plastic materials, part and tool design and finite element methods. Student competency is assessed by graded quizzes, examinations, homework, and special assignments. The course is offered once per year with an enrollment of 40-50 students.",
+  "enforced": "MET 213 and PLET232 and PLET304 and PLET330. Prerequisite or concurrent: MET 418",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "and",
+     "a": {
+      "op": "and",
+      "a": {
+       "op": "course",
+       "code": "MET 213"
+      },
+      "b": {
+       "op": "course",
+       "code": "PLET 232"
+      }
+     },
+     "b": {
+      "op": "course",
+      "code": "PLET 304"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "PLET 330"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "MET 418"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 350"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 366",
+  "subject": "PLET",
+  "number": "366",
+  "display": "PLET 366",
+  "title": "Fluid and Thermal Sciences",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Fundamentals of thermodynamic principles, fluid statics, and fluid dynamics. PL ET 366 Fluid and Thermal Sciences (3) This course is intended to develop the student's ability to conceptually evaluate thermal or fluid problems, and solve practical problems that might be encountered in the plastics industry. The course objectives are: to introduce the fundamentals of thermodynamic behavior by defining pertinent material properties that define an equilibrium state based on temperature and pressure, to study internal energy, enthalpy, and the specific heats of liquids, solids, and gases, including ideal gas behavior and changes in energy level as a result of phase changes, and to introduce mechanical and electrical work leading to applications of the First Law of Thermodynamics. Other objectives are to study fluid static principles involving submerged body behavior by investigating topics of buoyancy and centers of pressure. Fluid dynamics studies explore the Bernoulli and Energy equations, head losses, and calculation of pump requirements from pressure drop and volumetric flow data. Criteria for determining laminar and turbulent flow are established. Viscosity of fluids and fluid rheology topics are also introduced. Students will apply the lessons learned in a subsequent course on heat transfer. Student competency is assessed by graded quizzes, examinations, homework, and special assignments. The course is offered once per year with an enrollment of 40 to 50 students.",
+  "enforced": "MATH 083 and PHYS 250 and PLET 222 and PLET 227. Prerequisite or concurrent: PLET 330",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "and",
+     "a": {
+      "op": "and",
+      "a": {
+       "op": "course",
+       "code": "MATH 083"
+      },
+      "b": {
+       "op": "course",
+       "code": "PHYS 250"
+      }
+     },
+     "b": {
+      "op": "course",
+      "code": "PLET 222"
+     }
+    },
+    "b": {
+     "op": "course",
+     "code": "PLET 227"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "PLET 330"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 366"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 380",
+  "subject": "PLET",
+  "number": "380",
+  "display": "PLET 380",
+  "title": "Introduction to Plastic Medical Devices",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "Introduction to plastic medical devices and their manufacture. Also covers the regulatory requirements of plastic medical devices. PL ET 380 Introduction to Plastic Medical Devices (1) This course serves as the introductory course required for the new Certificate in Medical Plastics. It will provide students with an overview of the medical plastics industry. This will be accomplished by providing students with an understanding of the medical device regulatory environment and its impact on medical plastics design, manufacture and material selection.",
+  "enforced": "PLET 205 and PLET 222",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "PLET 205"
+   },
+   "b": {
+    "op": "course",
+    "code": "PLET 222"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 380"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 397",
+  "subject": "PLET",
+  "number": "397",
+  "display": "PLET 397",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given infrequently to explore, in-depth, a comparatively narrow subject which may be topical or of special interest.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 397"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 464",
+  "subject": "PLET",
+  "number": "464",
+  "display": "PLET 464",
+  "title": "Plastics Failure Analysis",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Fundamentals of Plastics Materials Process and Design Failure Analysis. PL ET 464 Plastics Failure Analysis (3) This course is intended to give the student an introduction to failure analysis for plastic articles. Course objectives are to: provide methods for the identification of common failure problems associated with modern molded plastic parts, perform a causal analysis for each failure type, provide an introduction, instruction, and allow operation of several analytical tools used to establish failure mechanisms, and review the relevant polymer physics and chemistry concepts involved in failure analysis. During the course students will be using concepts studied earlier in plastic material properties and applications. Student competency is assessed by graded quizzes, examinations, homework, and special assignments. The course is offered once per year as a technical elective with an enrollment of 15 to 20 students.",
+  "enforced": "PLET 350 and MET 418",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "PLET 350"
+   },
+   "b": {
+    "op": "course",
+    "code": "MET 418"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 464"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 466",
+  "subject": "PLET",
+  "number": "466",
+  "display": "PLET 466",
+  "title": "Thermoplastic Composites",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This class will explore both well-established and emerging composite plastic systems, including the basic chemistries and driving forces to explain composite material properties from micro to nanoscale composite systems. Microcomposites are discussed in terms of both common commercial materials (Glass/nylon, polypropylene/talc, for examples) as well as for cutting-edge composite systems that are explained through the use of current technical literature. The common theme of chemistry to promote interfacial adhesion is developed for each system. Characterization techniques that are common to composite evaluation are taught. Nanocomposites are considered in light of the greatly enhanced surface area of the filler relative to the microcomposite analogue.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "PLET 304",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 466"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 468",
+  "subject": "PLET",
+  "number": "468",
+  "display": "PLET 468",
+  "title": "Rapid Commercialization",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Techniques to help get plastic products to market quicker and to build solids and surface modeling skills. PL ET 468 Rapid Commercialization (3) The educational objective of this course is to develop the student's ability in using techniques to reduce the time to design a product and get it into production. The course objectives are to enable students to understand how to evaluate the differing points of view of each group during the concurrent engineering of plastic products and to analyze various rapid prototyping and tooling methods to determine their applicability to plastic products. Several simulations packages will be used to show their use in the preliminary design stages. During the course students will be using concepts studied earlier in plastic part design. Student competency is assessed by graded quizzes, examinations, homework, and special assignments. The course is offered once per year as a technical elective with an enrollment of 15 to 20 students.",
+  "enforced": "PLET 350",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "PLET 350"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 468"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 481",
+  "subject": "PLET",
+  "number": "481",
+  "display": "PLET 481",
+  "title": "Plastic Product Development",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course provides students with an in-depth overview of the integrated new product development process. PL ET 481 Plastic Product Development (3) Current product development trends have moved toward an integrated and interdisciplinary development process that includes team members from all aspects of the corporation. This course serves as an overview of that integrated product development process. Prior to this course, students will have studied methods and processes for the detailed and structural design requirements for plastic components. In this course, the students will be taught how their detailed design process fits into the remainder of the overall product development process. This will be accomplished by traditional lectures on the process and is underscored by a semester long project in which the students will form teams, invent a product idea, and develop that idea to a prototype state.Among the topics addressed are: -Concept development and selection -Working in a interdisciplinary team environment -Gathering and organizing customer needs -Translating customer needs into product specifications -Product development economics -Prototyping methods and purpose -Industrial design -Intellectual property",
+  "enforced": "PLET 350",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "PLET 350"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 481"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 482",
+  "subject": "PLET",
+  "number": "482",
+  "display": "PLET 482",
+  "title": "Medical Product Development",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "This course provides students with medical device development requirements and processes. The course is to be taken in conjunction with PL ET 481 as both courses will utilize a semester project to invent and design a new product. Over the course of the semester students will review the FDA classifications, filing requirements, and recommended practices for medical device development. This knowledge will be applied and practiced through the semester projects. Students will learn techniques for Failure Modes and Effects Analysis and how to properly document and manage product change through the development process. PL ET 482 Medical Product Development (1) This course provides students with medical device development requirements and processes. The course is to be taken in conjunction with PL ET 481 as both courses will utilize a semester project to invent and design a new product. Over the course of the semester students will review the FDA classifications, filing requirements, and recommended practices for medical device development. This knowledge will be applied and practiced through the semester project.Students will learn techniques for Failure Modes and Effects Analysis and how to properly document and manage product change through the development process.",
+  "enforced": "PLET 380 and PLET 350 or Concurrent: PLET 481",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "course",
+     "code": "PLET 380"
+    },
+    "b": {
+     "op": "course",
+     "code": "PLET 350"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "PLET 481"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 482"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 483",
+  "subject": "PLET",
+  "number": "483",
+  "display": "PLET 483",
+  "title": "Plastics in Medical Applications",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course focuses on plastics materials and properties and how they meet the unique medical application and device requirements. PL ET 483 Plastics in Medical Applications (3) This course studies plastics materials in medical applications and devices. The course focuses on the properties that are important to medical devices such as chemical resistance, sterilization and biocompatibility. A broad range of polymers will be reviewed including commodity resins, such as polyolefins, engineering resins such as polycarbonates, acrylics, nylons and advanced polymers including polysulfones, polyetherether ketones and aramids.The synthesis, production and structure property relationships will be studied with particular emphasis on the effect on sterilization, biocompatibility and FDA regulatory requirements. The effect of additives, stabilizers, fillers and blends will also be reviewed.",
+  "enforced": "PLET 304",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "course",
+   "code": "PLET 304"
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 483"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 484",
+  "subject": "PLET",
+  "number": "484",
+  "display": "PLET 484",
+  "title": "Medical Manufacturing Methods",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course provides instruction in the methods and practices used in the manufacturing of plastic devices in the medical industry. PL ET 484 Medical Manufacturing Methods (3) This course provides instruction in the methods and practices used in the manufacturing of plastic devices in the medical industry. The course includes both manufacturing and regulatory requirements. A large portion of the class will involve a simulated process validation exercise. The concepts will be introduced in lecture, parts will be manufactured and measured in the processing lab, and data analysis will be completed in a computer lab. Injection molding will be emphasized as the major plastic part production method, but other processes will be used as needed. Clean room requirements, sterilization and material handling, and common assembly methods will also be covered.",
+  "enforced": "PLET 222 or PES 351",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "course",
+    "code": "PLET 222"
+   },
+   "b": {
+    "op": "course",
+    "code": "PES 351"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 484"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 494",
+  "subject": "PLET",
+  "number": "494",
+  "display": "PLET 494",
+  "title": "**SPECIAL TOPICS**",
+  "credits": "1-12 Credits/Maximum of 12",
+  "creditsParsed": {
+   "min": 1,
+   "max": 12,
+   "repeatableMax": 12
+  },
+  "description": "",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 494"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 494A",
+  "subject": "PLET",
+  "number": "494A",
+  "display": "PLET 494A",
+  "title": "Plastics Projects",
+  "credits": "1-12 Credits/Maximum of 12",
+  "creditsParsed": {
+   "min": 1,
+   "max": 12,
+   "repeatableMax": 12
+  },
+  "description": "Supervised student activities on research and/or design projects identified on an individual or small group basis. A specific title may be used in each instance and will be entered on the student's transcript.",
+  "enforced": "or Concurrent: MET 418 and PLET 350 and PLET 323",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "and",
+    "a": {
+     "op": "course",
+     "code": "MET 418"
+    },
+    "b": {
+     "op": "course",
+     "code": "PLET 350"
+    }
+   },
+   "b": {
+    "op": "course",
+    "code": "PLET 323"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 494A"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 495",
+  "subject": "PLET",
+  "number": "495",
+  "display": "PLET 495",
+  "title": "Internship",
+  "credits": "1-18 Credits/Maximum of 18",
+  "creditsParsed": {
+   "min": 1,
+   "max": 18,
+   "repeatableMax": 18
+  },
+  "description": "Supervised off-campus, nongroup instruction including field experiences, practica or internships. Written and oral critique of activity required.",
+  "enforced": "Prior approval of proposed assignment by instructor",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "phrase",
+   "text": "Prior approval of proposed assignment by instructor"
+  },
+  "concurrentAst": null,
+  "astComplete": false,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 495"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": [
+   "Full-Time Equivalent Course"
+  ]
+ },
+ {
+  "code": "PLET 496",
+  "subject": "PLET",
+  "number": "496",
+  "display": "PLET 496",
+  "title": "Independent Studies",
+  "credits": "1-18 Credits/Maximum of 18",
+  "creditsParsed": {
+   "min": 1,
+   "max": 18,
+   "repeatableMax": 18
+  },
+  "description": "Creative projects, including research and design, which are supervised on an individual basis and which fall outside the scope of formal courses.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 496"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 497",
+  "subject": "PLET",
+  "number": "497",
+  "display": "PLET 497",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given infrequently to explore, in-depth, a comparatively narrow subject which may be topical or of special interest.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "PLET 497"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ },
+ {
+  "code": "PLET 499",
+  "subject": "PLET",
+  "number": "499",
+  "display": "PLET 499",
+  "title": "Foreign Studies",
+  "credits": "1-12 Credits/Maximum of 12",
+  "creditsParsed": {
+   "min": 1,
+   "max": 12,
+   "repeatableMax": 12
+  },
+  "description": "Courses offered in foreign countries by individual or group instruction.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [
+   "International Cultures: (IL)"
+  ],
+  "crossListings": [],
+  "aliases": [
+   "PLET 499"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/plet/",
+  "extraRaw": []
+ }
+]

@@ -1,0 +1,43 @@
+{
+ "slug": "behrend-history-minor",
+ "name": "History, Minor (Behrend)",
+ "type": "minor",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/history-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits of HIST or HSTRY courses",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level HIST or HSTRY courses",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "HIST"
+      ],
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 12 credits of HIST or HSTRY courses12\nSelect 6 credits of 400-level HIST or HSTRY courses6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,849 @@
+{
+ "slug": "capital-electrical-engineering-bs",
+ "name": "Electrical Engineering, B.S. (Capital)",
+ "type": "major",
+ "degree": "BS",
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/electrical-engineering-bs/",
+ "totalCredits": 129,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CMPEN 372",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EE 311",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EE 330",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "EE 341",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EE 385",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EE 461",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "EE 481",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ENGR 320Y",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 220",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "PHYS 213",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "PHYS 214",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "SSET 295",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPEN 271",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPEN 275",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "EE 210",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "EE 310",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "EE 317",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EE 352",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "EE 405",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "EE 406W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202C",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 212",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CHEM 111Experimental Chemistry I 1\nCMPEN 372Microcontrollers3\nEE 311Electronic Circuit Design II3\nEE 330Engineering Electromagnetics4\nEE 341Semiconductor Device Principles3\nEE 385Energy Systems and Electric Machines3\nEE 461Communications I4\nEE 481Control Systems4\nENGR 320YDesign for Global Society 3\nMATH 220Matrices 2-3\nPHYS 213General Physics: Fluids and Thermal Physics 2\nPHYS 214General Physics: Wave Motion and Quantum Physics 2\nSSET 295Internship1\nPrescribed Courses: Require a grade of C or better\nCHEM 110Chemical Principles I 3\nCMPEN 271Introduction to Digital Systems3\nCMPEN 275Digital Design Laboratory1\nEE 210Circuits and Devices4\nEE 310Electronic Circuit Design I4\nEE 317Circuit Design Tools and Data Acquisition3\nEE 352Signals and Systems: Continuous and Discrete-Time4\nEE 405Capstone Proposal Preparation1-3\nEE 406WElectrical Engineering Capstone Design3\nENGL 202CEffective Writing: Technical Writing 3\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\nPHYS 211General Physics: Mechanics 4\nPHYS 212General Physics: Electricity and Magnetism 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "EDSGN 100S",
+      "EDSGN 100"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 230",
+      "MATH 231",
+      "MATH 232"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 250",
+      "MATH 251"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPSC 121",
+       "CMPSC 131",
+       "CMPSC 201"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ECON 14",
+       "ECON 102",
+       "ECON 104"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EE 465",
+       "STAT 318",
+       "STAT 401",
+       "STAT 414",
+       "STAT 418"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100S"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "EDSGN 100SIntroduction to Engineering Design3\nor EDSGN 100 Cornerstone Engineering Design\nMATH 230Calculus and Vector Analysis4\nor MATH 231& MATH 232 Calculus of Several Variablesand Integral Vector Calculus\nMATH 250Ordinary Differential Equations3-4\nor MATH 251 Ordinary and Partial Differential Equations\nSelect 3 credits from the following:3\nCMPSC 121Introduction to Programming Techniques\nCMPSC 131Programming and Computation I: Fundamentals\nCMPSC 201Programming for Engineers with C++\nSelect 3 credits from the following:3\nECON 14Principles of Economics\nECON 102Introductory Microeconomic Analysis and Policy\nECON 104Introductory Macroeconomic Analysis and Policy\nSelect 3 credits from the following:3\nEE 465Probability for Electrical and Computer Engineers\nSTAT 318Elementary Probability\nSTAT 401Experimental Methods\nSTAT 414Introduction to Probability Theory\nSTAT 418Introduction to Probability and Stochastic Processes for Engineering\nAdditional Courses: Require a grade of C or better\nCAS 100AEffective Speech 3\nor CAS 100S Effective Speech\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits in consultation with an academic adviser and in support of the student's interests.",
+     "from": null
+    },
+    {
+     "type": "course",
+     "code": "EE 410",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 413",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 416",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 417",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 421",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 432",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 434",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 442",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 453",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 456",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 458",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 460",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 480",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 483",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 488",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 489",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "EE 497",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Up to 3 credits of the courses listed below may be taken to satisfy the technical electives requirement. 400-level courses not included on the list below may be used with approval of the program."
+    },
+    {
+     "type": "course",
+     "code": "BME 402",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BME 403",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 436",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PHYS 458",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PHYS 462",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SSET 495",
+     "credits": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Technical Electives\nSelect 9 credits in consultation with an academic adviser and in support of the student's interests. 9\nEE 410Linear Electronic Design\nEE 413Power Electronics\nEE 416Digital Integrated Circuits\nEE 417Digital Design Using Field Programmable Devices\nEE 421Optical Fiber Communications\nEE 432RF and Microwave Engineering\nEE 434Introduction to Signal Integrity for Interconnects\nEE 442Solid State Devices\nEE 453Fundamentals of Digital Signal Processing\nEE 456Introduction to Neural Networks\nEE 458Digital Image Processing and Computer Vision\nEE 460Communication Systems II\nEE 480Linear Systems: Time Domain and Transform Analysis\nEE 483Introduction to Automation and Robotics Systems\nEE 488Power Systems Analysis I\nEE 489Power Systems Analysis II\nEE 497Special Topics\nUp to 3 credits of the courses listed below may be taken to satisfy the technical electives requirement. 400-level courses not included on the list below may be used with approval of the program.\nBME 402Biomedical Instrumentation and Measurements\nBME 403Biomedical Instrumentation Laboratory\nCMPSC 436Communications and Networking\nPHYS 458Intermediate Optics\nPHYS 462Applications of Physics in Medicine\nSSET 495Internship\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Electrical Engineering, B.S. at Harrisburg Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EDSGN 100",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ],
+       "alternatives": [
+        "EDSGN 100S"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "1"
+       ],
+       "alternatives": [
+        "ENGL 15S",
+        "ENGL 30T",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CMPSC 131",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ],
+       "alternatives": [
+        "CMPSC 201"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPEN 271",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CMPEN 275",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EE 210",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 250",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 213",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 214",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EE 317",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CMPEN 372",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 220",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 230",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†",
+        "1"
+       ],
+       "alternatives": [
+        "CAS 100S"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EE 310",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EE 341",
+       "credits": 3,
+       "footnotes": [
+        "4"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 318",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "STAT 414"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EE 311",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EE 330",
+       "credits": 4,
+       "footnotes": [
+        "5"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EE 352",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EE 385",
+       "credits": 3,
+       "footnotes": [
+        "5"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGR 320Y",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SSET 295",
+       "credits": null,
+       "footnotes": [
+        "6"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EE 405",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EE 461",
+       "credits": 4,
+       "footnotes": [
+        "4"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EE 481",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA) (not Inter-Domain)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EE 406W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH) (not Inter-Domain)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 129,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

@@ -1,0 +1,109 @@
+{
+ "slug": "liberal-arts-global-security-minor",
+ "name": "Global Security, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/global-security-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "PLSC 7N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SRA 111",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SRA 211",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nPLSC 7NContemporary Political Ideologies 3\nSRA 111Introduction to Security and Risk Analysis 3\nSRA 211Threat of Terrorism and Crime3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PLSC 410",
+       "PLSC 415",
+       "PLSC 418",
+       "PLSC 437",
+       "PLSC 438",
+       "PLSC 439",
+       "PLSC 442"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits of the following:6\nPLSC 410Strategy and Politics\nPLSC 415\nPLSC 418International Relations Theory\nPLSC 437War in World Politics\nPLSC 438National Security Policies\nPLSC 439The Politics of Terrorism\nPLSC 442American Foreign Policy\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "Demonstrate 12th-credit-level proficiency in one world language by coursework or examination"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "COMM 490",
+       "COMM 491",
+       "COMM 492",
+       "GEOG 424",
+       "GEOG 463",
+       "GEOG 464",
+       "HIST 420",
+       "HIST 434",
+       "HIST 452",
+       "HIST 467",
+       "HIST 473",
+       "HIST 475Y",
+       "HIST 479",
+       "HIST 486"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of appropriate internship work in consultation with adviser",
+     "from": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nDemonstrate 12th-credit-level proficiency in one world language by coursework or examination0-12\nSelect 3 credits of the following:3\nCOMM 490\nCOMM 491International Telecommunications\nCOMM 492Internet Law and Policy\nGEOG 424\nGEOG 463Geospatial Information Management\nGEOG 464Advanced Spatial Analysis\nHIST 420Recent European History\nHIST 434History of the Soviet Union\nHIST 452\nHIST 467Latin America and the United States\nHIST 473The Contemporary Middle East\nHIST 475YThe Making and Emergence of Modern India\nHIST 479History of Imperialism and Nationalism in Africa\nHIST 486China in Revolution\nSelect 3 credits of appropriate internship work in consultation with adviser\n"
+  }
+ ],
+ "suggestedPlans": []
+}

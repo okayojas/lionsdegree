@@ -1,0 +1,92 @@
+{
+ "slug": "behrend-crime-law-psychology-minor",
+ "name": "Crime, Law, and Psychology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/crime-law-psychology-minor/",
+ "totalCredits": 18,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nSOC/CRIM/CRIMJ 12Criminology 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PLSC 471",
+       "PLSC 472",
+       "PLSC 482",
+       "PLSC 487"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PSYCH 445",
+       "PSYCH 473",
+       "PSYCH 476"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nPLSC 471American Constitutional Law\nPLSC 472The American Legal Process\nPLSC 482American State and Urban Politics\nPLSC 487International Law and Organizations\nSelect 3 credits from the following:3\nPSYCH 445Forensic Psychology\nPSYCH 473Behavior Modification\nPSYCH 476Child Psychopathology\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "chooseN",
+     "n": 1,
+     "options": [],
+     "credits": 3,
+     "commentRaw": "Select one course in Criminal Justice, Criminology, and Sociology from approved department list"
+    },
+    {
+     "type": "chooseN",
+     "n": 1,
+     "options": [],
+     "credits": 3,
+     "commentRaw": "Select one course in Psychology from approved department list"
+    },
+    {
+     "type": "chooseN",
+     "n": 1,
+     "options": [],
+     "credits": 3,
+     "commentRaw": "Select one course in Political Science from approved department list"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect one course in Criminal Justice, Criminology, and Sociology from approved department list3\nSelect one course in Psychology from approved department list3\nSelect one course in Political Science from approved department list3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

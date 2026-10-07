@@ -1,0 +1,78 @@
+{
+ "slug": "arts-architecture-landscape-architecture-minor",
+ "name": "Landscape Architecture, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "arts-architecture",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/arts-architecture/landscape-architecture-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AA 121",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LARCH 60",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LARCH 125",
+     "credits": 1
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAA 121Design Thinking and Creativity 3\nLARCH 60Cultural History of Designed Places 3\nLARCH 125Landscape Architecture Orientation Seminar1\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 11,
+     "commentRaw": "Select 11 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ARCH 497",
+       "LARCH 65",
+       "LARCH 115",
+       "LARCH 116",
+       "LARCH 145",
+       "LARCH 155",
+       "LARCH 156",
+       "LARCH 235",
+       "LARCH 245",
+       "LARCH 246",
+       "LARCH 256",
+       "LARCH 276",
+       "LARCH 365W",
+       "LARCH 375",
+       "LARCH 424",
+       "LARCH 450",
+       "LARCH 495",
+       "LARCH 496",
+       "LARCH 497",
+       "LARCH 499"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 11 credits of the following: 11\nARCH 497Special Topics\nLARCH 65Built Environment and Culture: Examining the Modern City\nLARCH 115Design I: Intro Spatial Composition\nLARCH 116Design II: Spatial Design\nLARCH 145Ecology and Plants I\nLARCH 155Skills Lab I: Hand & Digital Graphics\nLARCH 156Skills Lab II: Hand & Digital Graphics\nLARCH 235Design Implementation I: Grading\nLARCH 245Ecology & Plants II\nLARCH 246Ridge & Valley in the Field\nLARCH 256Skills Lab IV: GIS\nLARCH 276Human Dimensions of Design: History & Theory\nLARCH 365WContemporary Trends in Landscape Architecture\nLARCH 375Human Dimensions of Design - Applied\nLARCH 424Design Theory Seminar\nLARCH 450Geodesign: Geospatial Technology for Design\nLARCH 495Internship\nLARCH 496Independent Studies\nLARCH 497Special Topics\nLARCH 499\n"
+  }
+ ],
+ "suggestedPlans": []
+}

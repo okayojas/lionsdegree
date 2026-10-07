@@ -1,0 +1,64 @@
+{
+ "slug": "eberly-science-quantum-information-science-engineering-minor",
+ "name": "Quantum Information Science and Engineering, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/quantum-information-science-engineering-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MATH 220",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "PHYS 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 212",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 214",
+     "credits": 2
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nMATH 220Matrices 2-3\nPHYS 211General Physics: Mechanics 4\nPHYS 212General Physics: Electricity and Magnetism 4\nPHYS 214General Physics: Wave Motion and Quantum Physics 2\nPHYS/EE/ESC 337Introduction to Quantum Information Science and Engineering3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPSC 466"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits from the following:6\nCMPSC 466Introduction to Quantum Computation\nEE/CMPEN 415Computing with Commercial Quantum Computers\nPHYS/EE/ESC 437Physical implementation of qubits\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,2992 @@
+{
+ "slug": "agricultural-sciences-forest-ecosystems-bs",
+ "name": "Forest Ecosystems, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/forest-ecosystems-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "FOR 123N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 204",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "SOILS 101",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 203",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 255",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 308",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "FOR 123NForests, Trees, and People 3\nFOR 204Silvics and Forest Dynamics2\nSOILS 101Introductory Soil Science 3\nPrescribed Courses: Require a grade of C or better\nFOR 203Field Dendrology3\nFOR 255GPS and GIS Applications for Natural Resources Professionals3\nFOR 308Forest Ecology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGBM 101",
+       "ECON 102",
+       "ECON 104",
+       "CAS 100"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 202C",
+      "ENGL 202D"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 15",
+       "ENGL 30H"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "STAT 200",
+       "STAT 240",
+       "STAT 250"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3 credits from the following:3\nAGBM 101Economic Principles of Agribusiness Decision Making\nECON 102Introductory Microeconomic Analysis and Policy\nECON 104Introductory Macroeconomic Analysis and Policy\nAdditional Courses: Require a grade of C or better\nCAS/ENGL 138TRhetoric and Civic Life II 3\nor CAS 100 Effective Speech\nENGL 202CEffective Writing: Technical Writing 3\nor ENGL 202D Effective Writing: Business Writing\nSelect 3 credits from the following:3\nENGL 15Rhetoric and Composition\nENGL 30HHonors Rhetoric and Composition\nENGL/CAS 137HRhetoric and Civic Life I\nSelect 3-4 credits from the following:3-4\nSTAT 200Elementary Statistics\nSTAT 240Introduction to Biometry\nSTAT 250Introduction to Biostatistics\n"
+  },
+  {
+   "heading": "Requirements for the Option",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select an option"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select an option62-66\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 110",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "FOR 201N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 445",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOILS 102",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "BIOL 220W",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 110Biology: Basic Concepts and Biodiversity 4\nFOR 201NGlobal Change and Ecosystems 3\nFOR/WFS 431Conservation Genetics3\nFOR 445Wildlife Habitat Management3\nSOILS 102Introductory Soil Science Laboratory1\nWFS/FOR 430Conservation Biology3\nWFS/FOR 465Restoration Ecology4\nPrescribed Courses: Require a grade of C or better\nBIOL 220WBiology: Populations and Communities4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 110",
+      "CHEM 130"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "FOR 450W",
+      "FOR 480"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "FOR 455",
+       "GEOG 363",
+       "SOILS 450"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 110",
+      "MATH 140"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "FOR 266",
+       "FOR 350",
+       "WFS 310",
+       "WFS 340"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CHEM 110Chemical Principles I 3\nor CHEM 130 Introduction to General, Organic, and Biochemistry\nFOR 450WHuman Dimensions of Natural Resources3\nor FOR 480 Policy and Administration\nSelect 3 credits from the following:3\nFOR 455Remote Sensing and Spatial Data Handling\nGEOG 363Geographic Information Systems\nSOILS 450Environmental Geographic Information Systems\nAdditional Courses: Require a grade of C or better\nMATH 110Techniques of Calculus I 4\nor MATH 140 Calculus With Analytic Geometry I\nSelect 3-4 credits from the following:3-4\nFOR 266Forest Resources Measurements\nFOR 350Forest Ecosystem Monitoring and Data Analysis\nWFS 310Wildlife and Fisheries Measurements\nWFS 340Statistics for Conservation of Wild Populations\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "In consultation with academic adviser, select 21 credits from department list for the option. A minimum of 12 credits must be 300- or 400-level. If FOR 450W is not selected as an Additional Course, then Supporting Course selections must include FOR 450W or WFS 447W."
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "In consultation with academic adviser, select 21 credits from department list for the option. A minimum of 12 credits must be 300- or 400-level. If FOR 450W is not selected as an Additional Course, then Supporting Course selections must include FOR 450W or WFS 447W.21\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ENT 313",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "FOR 320",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 421",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 440",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 442",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 470",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 480",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PPEM 318",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "FOR 266",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "FOR 350",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 455",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 466W",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ENT 313Introduction to Entomology2\nFOR 320Wildland Fire Management3\nFOR 421Silviculture: Applied Forest Ecology3\nFOR 440Forest and Conservation Economics3\nFOR 442Forest Conservation: Principles and Practices3\nFOR 470Watershed Management3\nFOR 480Policy and Administration3\nPPEM 318Diseases of Forest and Shade Trees2\nPrescribed Courses: Require a grade of C or better\nFOR 266Forest Resources Measurements4\nFOR 350Forest Ecosystem Monitoring and Data Analysis3\nFOR 455Remote Sensing and Spatial Data Handling3\nFOR 466WForest Management and Planning3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 110",
+      "BIOL 127"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 110",
+      "CHEM 130"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "FOR 401",
+      "FOR 450W"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "WFS 209N",
+      "FOR 445"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4-6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MATH 22",
+       "MATH 26",
+       "MATH 22",
+       "MATH 33",
+       "MATH 22",
+       "MATH 34",
+       "MATH 22",
+       "AGBM 106",
+       "MATH 41",
+       "MATH 110",
+       "MATH 140"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 110Biology: Basic Concepts and Biodiversity 3-4\nor BIOL 127 Introduction to Plant Biology\nCHEM 110Chemical Principles I 3\nor CHEM 130 Introduction to General, Organic, and Biochemistry\nFOR 401Urban Forest Management3\nor FOR 450W Human Dimensions of Natural Resources\nWFS 209NWildlife and Fisheries Conservation 3\nor FOR 445 Wildlife Habitat Management\nAdditional Courses: Require a grade of C or better\nSelect 4-6 credits from the following:4-6\nMATH 22& MATH 26College Algebra With Analytic Geometry and Applications IIand Plane Trigonometry and Applications of Trigonometry\nMATH 22& MATH 33College Algebra With Analytic Geometry and Applications IIand Mathematics for Sustainability\nMATH 22& MATH 34College Algebra With Analytic Geometry and Applications IIand The Mathematics of Money\nMATH 22& AGBM 106College Algebra With Analytic Geometry and Applications IIand Agribusiness Problem Solving\nMATH 41Trigonometry and Analytic Geometry\nMATH 110Techniques of Calculus I\nMATH 140Calculus With Analytic Geometry I\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "In consultation with academic adviser, select 12 credits from department for the option. A minimum of six credits must be 300- or 400-level.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "In consultation with academic adviser, select 12 credits from department for the option. A minimum of six credits must be 300- or 400-level.12\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CAS 404",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 320",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 403",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 421",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 440",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 480",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOILS 422",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "FOR 266",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "FOR 401",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 450W",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CAS 404Conflict Resolution and Negotiation 3\nFOR 320Wildland Fire Management3\nFOR 403Invasive Forest Plants: Identification, Ecology, and Management3\nFOR 421Silviculture: Applied Forest Ecology3\nFOR 440Forest and Conservation Economics3\nFOR 480Policy and Administration3\nSOILS 422Natural Resources Conservation and Community Sustainability4\nPrescribed Courses: Require a grade of C or better\nFOR 266Forest Resources Measurements4\nFOR 401Urban Forest Management3\nFOR 450WHuman Dimensions of Natural Resources3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BIOL 110",
+      "BIOL 127"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 110",
+      "CHEM 130"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EDPSY 14",
+       "EDTHP 115",
+       "RPTM 325"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AG 160",
+       "ANTH 45N",
+       "METEO 133N",
+       "PHIL 118"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "FOR 455",
+       "GEOG 363",
+       "SOILS 450"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4-6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MATH 22",
+       "MATH 26",
+       "MATH 22",
+       "MATH 33",
+       "MATH 22",
+       "MATH 34",
+       "MATH 22",
+       "AGBM 106",
+       "MATH 41",
+       "MATH 110",
+       "MATH 140"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 110Biology: Basic Concepts and Biodiversity 3-4\nor BIOL 127 Introduction to Plant Biology\nCHEM 110Chemical Principles I 3\nor CHEM 130 Introduction to General, Organic, and Biochemistry\nSelect 3 credits from the following:3\nEDPSY 14Learning and Instruction\nEDTHP 115Education in American Society\nRPTM 325Principles of Environmental Interpretation\nSelect 3 credits from the following:3\nAG 160Introduction into Ethics and Issues in Agriculture\nANTH 45NCultural Diversity: A Global Perspective\nMETEO 133NEthics of Climate Change\nPHIL 118Environmental Philosophy\nSelect 3 credits from the following:3\nFOR 455Remote Sensing and Spatial Data Handling\nGEOG 363Geographic Information Systems\nSOILS 450Environmental Geographic Information Systems\nAdditional Courses: Require a grade of C or better\nSelect 4-6 credits from the following:4-6\nMATH 22& MATH 26College Algebra With Analytic Geometry and Applications IIand Plane Trigonometry and Applications of Trigonometry\nMATH 22& MATH 33College Algebra With Analytic Geometry and Applications IIand Mathematics for Sustainability\nMATH 22& MATH 34College Algebra With Analytic Geometry and Applications IIand The Mathematics of Money\nMATH 22& AGBM 106College Algebra With Analytic Geometry and Applications IIand Agribusiness Problem Solving\nMATH 41Trigonometry and Analytic Geometry\nMATH 110Techniques of Calculus I\nMATH 140Calculus With Analytic Geometry I\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "In consultation with academic adviser, select 12 credits from department for the option. A minimum of 6 credits must be 300- or 400-level.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "In consultation with academic adviser, select 12 credits from department for the option. A minimum of 6 credits must be 300- or 400-level.12\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 110",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 113",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "FOR 475",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 213",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "SOILS 102",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "FOR 350",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 370",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 470",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FOR 477",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BIOL 110Biology: Basic Concepts and Biodiversity 4\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nCHEM 112Chemical Principles II 3\nCHEM 113Experimental Chemistry II 1\nFOR 475Principles of Forest Soils Management3\nMATH 141Calculus with Analytic Geometry II 4\nPHYS 211General Physics: Mechanics 4\nPHYS 213General Physics: Fluids and Thermal Physics 2\nSOILS 102Introductory Soil Science Laboratory1\nPrescribed Courses: Require a grade of C or better\nFOR 350Forest Ecosystem Monitoring and Data Analysis3\nFOR 370Watershed Ecohydrology3\nFOR 470Watershed Management3\nFOR 477Field Methods in Watershed Ecohydrology3\nMATH 140Calculus With Analytic Geometry I 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "FOR 455",
+      "SOILS 450"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "FOR 496",
+      "SOILS 496"
+     ],
+     "credits": 1
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "GEOSC 1",
+      "GEOSC 20"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Select a writing-intensive (W) course offered in the College of Agricultural Sciences"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "FOR 455Remote Sensing and Spatial Data Handling3\nor SOILS 450 Environmental Geographic Information Systems\nFOR 496Independent Studies1\nor SOILS 496 Independent Studies\nGEOSC 1Physical Geology3\nor GEOSC 20 Planet Earth\nSelect a writing-intensive (W) course offered in the College of Agricultural Sciences3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "In consultation with academic adviser, select 12 credits from department list for the option. A minimum of 6 credits must be 300- or 400-level.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "In consultation with academic adviser, select 12 credits from department list for the option. A minimum of 6 credits must be 300- or 400-level.12\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Biodiversity and Conservation Option: Forest Ecosystems, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 110",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 100S"
+       ],
+       "resolvedFrom": "CAS 100"
+      },
+      {
+       "type": "course",
+       "code": "WFS 209N",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 200",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 203",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 255",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 204",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 266",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 202",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 102",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 308",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "FOR 430",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "WFS 430"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": [
+        "FOR 403",
+        "PPEM 318"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "FOR 350",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 409",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 410",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 421",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 445",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": [
+        "FOR 403",
+        "PPEM 318"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "FOR 450W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 119,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Biodiversity and Conservation Option: Forest Ecosystems, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 110",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 100S"
+       ],
+       "resolvedFrom": "CAS 100"
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 200",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 203",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 255",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 102",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "WFS 209N",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 204",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 266",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 202",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 308",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 430",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "WFS 430"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": [
+        "FOR 403",
+        "PPEM 318"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "FOR 350",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 409",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 410",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 421",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 445",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": [
+        "FOR 403",
+        "PPEM 318"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "FOR 450W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 119,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Forest Management Option: Forest Ecosystems, B.S. at University Park Campus and Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 33",
+        "MATH 22",
+        "MATH 34",
+        "MATH 22",
+        "AGBM 106",
+        "MATH 110",
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "BIOL 127"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 100S"
+       ],
+       "resolvedFrom": "CAS 100"
+      },
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 200",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 203",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 255",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 204",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 266",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PPEM 318",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 308",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 440",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 401",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 320",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 350",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "WFS 209N",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 450W",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 455",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ERM 448",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "FOR 439",
+        "FOR 475"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "FOR 421",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 430",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "WFS 430"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 0,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 409",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "SOILS 102"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "FOR 466W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 410",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 470",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 480",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 117,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Forests, Trees, and People Option: Forest Ecosystems, B.S. at University Park Campus and Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 22",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 33",
+        "MATH 22",
+        "MATH 34",
+        "MATH 22",
+        "AGBM 106",
+        "MATH 110",
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "BIOL 127"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 100S"
+       ],
+       "resolvedFrom": "CAS 100"
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 200",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 203",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 255",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "LARCH 60",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "LARCH 65",
+        "ARCH 316"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 204",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 266",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 301",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 313",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENT 314",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 308",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 138",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ERM 448",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "FOR 439",
+        "FOR 475"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "RPTM 320",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "RPTM 325",
+        "RPTM 435",
+        "RPTM 470"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PPEM 318",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLANT 217",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 409",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "SOILS 102"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "FOR 455",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "GEOG 363",
+        "SOILS 450"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 0,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 421",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 495",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "FOR 496"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "FOR 401",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "GEOG 430",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 480",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HORT 408",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 450W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Watershed Ecohydrology Option: Forest Ecosystems, B.S. at University Park Campus and Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "AGBM 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 102",
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 110",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 100S"
+       ],
+       "resolvedFrom": "CAS 100"
+      },
+      {
+       "type": "course",
+       "code": "MATH 111",
+       "credits": 2,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "MATH 141"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 240",
+        "STAT 250"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 200",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 203",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 255",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOILS 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 266",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PHYS GN Selection from List",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Social Sciences GS Selection from List",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 308",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ERM 448",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": [
+        "FOR 439",
+        "FOR 475"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PHYS GN Selection from List",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Resources Management Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Water Sciences Selection from List",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 470",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 471",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FOR 409",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": [
+        "SOILS 102"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Physical Sciences Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Social Sciences GS Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 421",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Physical Sciences Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Water Sciences Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FOR 450W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Resources Management Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Water Sciences Selection from List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Three Additional Credits at the 300- or 400-level from Selections Lists",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 116,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

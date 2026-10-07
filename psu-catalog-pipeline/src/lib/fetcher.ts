@@ -2,6 +2,15 @@
  * - 1 req/s (+jitter), custom User-Agent, 3x exponential backoff on 5xx/network.
  * - Hard-fails the run on repeated 403 (we're blocked; stop, don't hammer).
  * - Every page is cached under data/raw/<edition>/ so re-parsing never re-fetches.
+ *
+ * OFFLINE=1 refuses to fetch at all and fails on a cache miss. Use it whenever
+ * re-parsing an edition that is no longer the live one. bulletins.psu.edu
+ * serves ONE edition at a URL -- the current one -- so a cache miss while
+ * re-parsing an older edition silently writes NEW-edition HTML into the OLD
+ * edition's cache, mixing two editions in one catalog. That corruption is
+ * unrecoverable: the archive is robots-disallowed, so the real pages for a
+ * past edition can never be fetched again
+ * (docs/adr/0001-forward-only-catalog-editions.md).
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -10,6 +19,9 @@ import { config } from "../config.js";
 
 let lastRequestAt = 0;
 let consecutive403 = 0;
+
+/** Module-level so it covers every call site, including the discovery passes. */
+const OFFLINE = process.env.OFFLINE === "1";
 
 function cachePath(edition: string, urlPath: string): string {
   const safe = urlPath.replace(/^\//, "").replace(/\/$/, "").replace(/[^a-zA-Z0-9-_.]/g, "_") || "index";
@@ -25,6 +37,14 @@ export async function fetchPage(urlPath: string, opts: { edition: string; force?
   const file = cachePath(opts.edition, urlPath);
   if (!opts.force && fs.existsSync(file)) {
     return { html: fs.readFileSync(file, "utf-8"), fromCache: true };
+  }
+
+  if (OFFLINE) {
+    throw new Error(
+      `OFFLINE=1 and ${urlPath} is not cached for edition ${opts.edition} (looked in ${file}).\n` +
+        `Refusing to fetch: bulletins.psu.edu serves only the CURRENT edition at this URL, so ` +
+        `fetching now would write the wrong edition's HTML into this edition's cache.`,
+    );
   }
 
   const url = config.baseUrl + urlPath;

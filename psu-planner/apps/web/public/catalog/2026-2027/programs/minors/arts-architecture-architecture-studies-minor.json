@@ -1,0 +1,62 @@
+{
+ "slug": "arts-architecture-architecture-studies-minor",
+ "name": "Architecture Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "arts-architecture",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/arts-architecture/architecture-studies-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AA 121",
+       "ARCH 100",
+       "ARCH 121",
+       "ARCH 122",
+       "ARCH 130A",
+       "ARCH 131",
+       "ARCH 132",
+       "ARCH 170N",
+       "ARCH 210",
+       "ARCH 316",
+       "ARCH 317"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ARCH 410",
+       "ARCH 412",
+       "ARCH 441",
+       "ARCH 442",
+       "ARCH 481",
+       "ARCH 496",
+       "ARCH 497",
+       "ARCH 499"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 12 credits from the following:12\nAA 121Design Thinking and Creativity\nARCH 100Architecture and Ideas\nARCH 121Visual Communications I\nARCH 122Visual Communications II\nARCH 130ABasic Design and Research I (3 credits max)\nARCH 131Basic Design Studio I\nARCH 132Basic Design Studio II\nARCH 170NIntroduction to Sustainable Architecture\nARCH 210Ideas Across Time in Architecture and Urbanism\nARCH 316Analysis of Human Settlements: Cities\nARCH 317Theory of Modern Japanese Architecture\nSelect 6 credits from the following:6\nARCH 410Building Material Reclamation & Reuse\nARCH 412Integrative Energy and Environmental Design\nARCH 441Architectural Design Analysis\nARCH 442Architectural Design Analysis\nARCH 481Digital Design Media\nARCH 496Independent Studies\nARCH 497Special Topics\nARCH 499Foreign Studies\n"
+  }
+ ],
+ "suggestedPlans": []
+}

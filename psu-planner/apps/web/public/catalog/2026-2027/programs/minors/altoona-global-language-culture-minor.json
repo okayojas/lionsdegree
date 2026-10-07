@@ -1,0 +1,69 @@
+{
+ "slug": "altoona-global-language-culture-minor",
+ "name": "Global Language and Culture, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "altoona",
+ "campuses": [
+  "Altoona, The Altoona College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/altoona/global-language-culture-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Language Requirement",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select at least 6 credits beyond the 12-credit proficiency level in a single world language",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Language Requirement: Requires a grade of C or better\nSelect at least 6 credits beyond the 12-credit proficiency level in a single world language6\n"
+  },
+  {
+   "heading": "Study Abroad Requirement",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following options:"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "a) At least 6 credits as participants in a single approved Penn State education abroad program, in a country in which the chosen language is one of the major languages spoken"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "b) At least 6 credits of a single accredited internship abroad, in a country in which the chosen language is one of the major languages spoken"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Study Abroad Requirement: Requires a grade of C or better\nSelect one of the following options:6\na) At least 6 credits as participants in a single approved Penn State education abroad program, in a country in which the chosen language is one of the major languages spoken\nb) At least 6 credits of a single accredited internship abroad, in a country in which the chosen language is one of the major languages spoken\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select at least 6 credits, or as many as needed to complete the 18 credits for the minor after the above two requirements have been met",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect at least 6 credits, or as many as needed to complete the 18 credits for the minor after the above two requirements have been met 6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

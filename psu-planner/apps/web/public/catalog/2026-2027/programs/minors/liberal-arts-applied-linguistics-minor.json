@@ -1,0 +1,69 @@
+{
+ "slug": "liberal-arts-applied-linguistics-minor",
+ "name": "Applied Linguistics, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/applied-linguistics-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "APLNG 200",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "APLNG 290N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "APLNG 412",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "APLNG 491",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAPLNG 200Introduction to Language, Culture, and Social Interaction 3\nAPLNG 290NCritical Approaches to Applied Linguistics 3\nAPLNG 412Teaching Second Language Writing3\nAPLNG 491Theory: Second Language Acquisition3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "APLNG 210",
+       "APLNG 220N",
+       "APLNG 230N",
+       "APLNG 260N",
+       "APLNG 280N",
+       "APLNG 320N"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits from the following:6\nAPLNG 210Global English\nAPLNG 220NMultilingual Lives: Stories of Language and Culture Learning\nAPLNG 230NLanguage and Social Justice\nAPLNG 260NLanguage and Technology\nAPLNG 280NConducting International Comparative Research\nAPLNG 320NLanguage, Ideology, and Propaganda\n"
+  }
+ ],
+ "suggestedPlans": []
+}

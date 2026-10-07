@@ -1,0 +1,982 @@
+{
+ "slug": "arts-architecture-music-education-bme",
+ "name": "Music Education, B.M.E.",
+ "type": "major",
+ "degree": "BME",
+ "college": "arts-architecture",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/arts-architecture/music-education-bme/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CI 280",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 40",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 101",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 112",
+     "credits": 0.5
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 121",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 122",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 131",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 132",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 151",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 153",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 154",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 162",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 221",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 222",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 231",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 261",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 262",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 266",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 295A",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 332",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 341",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 345",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 366",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 395A",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MUSIC 395B",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "SPLED 400",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCI 280Introduction to Teaching Multilingual Learners 3\nMUSIC 40First-Year Seminar in Music 1\nMUSIC 101Music Common Hour1\nMUSIC 112Guitar Techniques I0.5\nMUSIC 121Basic Musicianship I1\nMUSIC 122Basic Musicianship II1\nMUSIC 131Music Theory I2\nMUSIC 132Music Theory II2\nMUSIC 151Brass Techniques I1\nMUSIC 153String Techniques I1\nMUSIC 154Woodwind Techniques I1\nMUSIC 162Introduction to Music History2\nMUSIC 221Basic Musicianship III1\nMUSIC 222Basic Musicianship IV1\nMUSIC 231Music Theory III2\nMUSIC 261Survey of Music History I 3\nMUSIC 262Survey of Music History II 3\nMUSIC 266Basic Conducting1\nMUSIC 295AIntroduction to Music Education1\nMUSIC 332Analysis of Twentieth Century Music2\nMUSIC 341Instructional Materials in Music2\nMUSIC 345Instructional Practices in Music2\nMUSIC 366Intermediate Conducting1\nMUSIC 395ACohort Practicum I1\nMUSIC 395BCohort Practicum II1\nSPLED 400Inclusive Special Ed Foundations: Legal, Characteristics, Collaboration, Assessment, and Management4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "EDPSY 10",
+      "EDPSY 11",
+      "EDPSY 14"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MUSIC 181",
+      "MUSIC 267",
+      "MUSIC 420"
+     ],
+     "credits": 2
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "SPLED 403A",
+      "SPLED 403B"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 7,
+     "commentRaw": "Select 7 credits of ensembles from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MUSIC 76",
+       "MUSIC 77",
+       "MUSIC 78",
+       "MUSIC 80",
+       "MUSIC 81",
+       "MUSIC 82",
+       "MUSIC 84",
+       "MUSIC 86",
+       "MUSIC 87",
+       "MUSIC 89",
+       "MUSIC 90",
+       "MUSIC 91",
+       "MUSIC 92",
+       "MUSIC 93",
+       "MUSIC 100",
+       "MUSIC 103",
+       "MUSIC 189",
+       "MUSIC 190",
+       "MUSIC 191",
+       "MUSIC 192",
+       "MUSIC 193",
+       "MUSIC 194"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 14,
+     "commentRaw": "Select 14 credits in applied music through Primary Level VII",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "HDFS 229",
+       "HDFS 239",
+       "PSYCH 100"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MUSIC 441W",
+       "MUSIC 442W",
+       "MUSIC 443W",
+       "MUSIC 444W",
+       "MUSIC 445W",
+       "MUSIC 446W"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from MUSIC 495A, MUSIC 495B, MUSIC 495C, as follows:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "5 or 7 credits of MUSIC 495A"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "5 or 7 credits of MUSIC 495B or MUSIC 495C"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nEDPSY 10Individual Differences and Education 3\nor EDPSY 11 Educational Implications of Individual Differences in Childhood\nor EDPSY 14 Learning and Instruction\nMUSIC 181Jazz Improvisation I2-3\nor MUSIC 267 Techniques of Composition\nor MUSIC 420 Song Writing and Recording\nSPLED 403AEvidence-Based Instruction for Elementary Students with Disabilities in Reading, Math, and Writin3\nor SPLED 403B Evidence-Based Methods for Teaching Secondary Students with Disabilities in Inclusive Settings\nSelect 7 credits of ensembles from the following:7\nMUSIC 76Chamber Orchestra\nMUSIC 77Philharmonic Orchestra\nMUSIC 78Symphonic Wind Ensemble\nMUSIC 80Symphonic Band\nMUSIC 81Marching Blue Band\nMUSIC 82Concert Band\nMUSIC 84Jazz Ensemble\nMUSIC 86Percussion Ensemble\nMUSIC 87Mallet Ensemble\nMUSIC 89University Choir\nMUSIC 90Glee Club\nMUSIC 91Oriana Singers\nMUSIC 92Chamber Music for Voices\nMUSIC 93Essence of Joy\nMUSIC 100Campus Orchestra\nMUSIC 103Concert Choir\nMUSIC 189Studio Ensemble\nMUSIC 190Chamber Music for Strings\nMUSIC 191Chamber Music for Woodwinds\nMUSIC 192Chamber Music for Brass\nMUSIC 193Sonata Duos\nMUSIC 194Studio and Recital Accompanying\nSelect 14 credits in applied music through Primary Level VII14\nSelect 3 credits from the following:3\nHDFS 229Infant and Child Development\nHDFS 239Adolescent Development\nPSYCH 100Introductory Psychology\nSelect 3 credits from the following:3\nMUSIC 441WEmphasis in Elementary General Music\nMUSIC 442WEmphasis in Secondary General Music\nMUSIC 443WChoral Emphasis in Secondary Music Education\nMUSIC 444WEmphasis in Elementary and Intermediate Band\nMUSIC 445WEmphasis in High School Band\nMUSIC 446WEmphasis in Strings and Orchestra\nSelect 12 credits from MUSIC 495A, MUSIC 495B, MUSIC 495C, as follows:12\n5 or 7 credits of MUSIC 495A\n5 or 7 credits of MUSIC 495B or MUSIC 495C\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 5,
+     "commentRaw": "Select 5 credits for the Individualized Emphasis, an individualized cluster of courses approved in advance by the Music Education Faculty, from an approved department list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 5 credits for the Individualized Emphasis, an individualized cluster of courses approved in advance by the Music Education Faculty, from an approved department list5\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Music Education, B.M.E. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MUSIC 121",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 131",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 40",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education, Literature Course (GH; US)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "#"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major, Applied Music (see note)",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major, Ensemble (see note)",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Major or MUSIC 116 (see note)",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "2",
+        ",",
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "#"
+       ],
+       "alternatives": [
+        "ENGL 15A",
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EDPSY 10",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "EDPSY 11",
+        "EDPSY 14"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 112",
+       "credits": 0.5,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 122",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 132",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 162",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major, Applied Music (see note)",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major, Ensemble (see note)",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Major (see note)",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MUSIC 151",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 153",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "MUSIC 154"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 221",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 231",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 262",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†",
+        "1"
+       ],
+       "alternatives": [
+        "HDFS 229",
+        "HDFS 239"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major, Applied Music (see note)",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major, Ensemble (see note)",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Major (see note)",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 19,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MUSIC 153",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": [
+        "MUSIC 154"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 222",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 261",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 295A",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 332",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major, Applied Music (see note)",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major, Ensemble (see note)",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Major or MUSIC 152 (see note)",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "2",
+        ",",
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Major or MUSIC 270 (see note)",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "2",
+        ",",
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CI 280",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 181",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MUSIC 267",
+        "MUSIC 420"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 266",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 341",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 395A",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major, Applied Music (see note)",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major, Ensemble (see note)",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 345",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 366",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 395B",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPLED 400",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major, Applied Music (see note)",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major, Ensemble (see note)",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MUSIC 101",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SPLED 403A",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": [
+        "SPLED 403B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MUSIC 441W",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": [
+        "MUSIC 442W",
+        "MUSIC 443W",
+        "MUSIC 444W",
+        "MUSIC 445W",
+        "MUSIC 446W"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major, Applied Music (see note)",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course for Major, Ensemble (see note)",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MUSIC 495",
+       "credits": 12,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 129,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

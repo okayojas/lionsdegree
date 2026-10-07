@@ -1,0 +1,1315 @@
+[
+ {
+  "code": "METEO 511",
+  "subject": "METEO",
+  "number": "511",
+  "display": "METEO 511",
+  "title": "The Weather From Global to Micro Scales",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Conceptual models and underlying physics for weather phenomena on scales from the global general circulation to turbulence. METEO 511 The Weather From Global to Micro Scales (3) Earth's weather occurs on a variety of scales from the global general circulation down to microscale turbulence. This spectrum includes synoptic scale storms whose structure and dynamics vary with latitude and topography as well as a broad range of mesoscale phenomena whose structure depends strongly on the vertical structure of the atmosphere. At these intermediate scales, each phenomenon draws energy from conditions created by phenomena of both larger and smaller scale phenomena. Thus, the full spectrum of weather phenomena is linked energetically. This course explores these linkages and the dynamics of the weather phenomena that result. Quantitative results from this theoretical analysis are then used to explain the structure and behavior of the phenomena themselves. Using both theoretical and observational methods students will gain an understanding of the full spectrum of weather phenomena including the physics and dynamics responsible for their structure, development, and evolution.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "METEO520 , METEO521 , METEO531",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 511"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 512",
+  "subject": "METEO",
+  "number": "512",
+  "display": "METEO 512",
+  "title": "Topics in Synoptic Meteorology",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Application of atmospheric dynamics to the diagnosis and prediction of synoptic-scale weather. The primary objective of the course is to investigate midlatitude synoptic-scale weather systems from a quasigeostropic perspective. Topics include Sutcliffe's development theorem, quasigeostrophic height tendency and omega equations, midlatitude extratropical cyclones, fronts and frontogenesis, semigeostropic theory, and the potential vorticity perspective of synoptic-scale analysis. The course builds upon the dynamical understanding acquired in atmospheric dynamics and synoptic meteorology courses, and is well-suited for students seeking careers in a broad range of areas, including but not limited to air quality, weather forecasting and communications, microscale meteorology, mesoscale meteorology, and synoptic meteorology.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "METEO 411",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 512"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 515",
+  "subject": "METEO",
+  "number": "515",
+  "display": "METEO 515",
+  "title": "PRACTICAL STATISTICS FOR ATMOSPHERIC SCIENCES",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "The aim of this course is to build practical statistical tools for data analysis in the atmospheric sciences. The course will first provide the students with a solid foundation in fundamental statistical concepts, including hypothesis testing, maximum likelihood estimation, random variables, and probability density functions. Once the students are familiar with the basic terminology and concepts in statistics, the course will move on to a suite of more advanced statistical techniques that are commonly used in atmospheric science research. The advanced topics include regression analysis, nonparametric tests and resampling techniques, data reduction such as eigendecompositions and principal component analysis, time series analysis, spatial statistics, and Bayesian modeling. The emphasis will be on the sound application of these techniques and their interpretations, rather than technical foundations and derivations. The goal is to build intuition behind commonly used statistical tools and learn how to avoid potential pitfalls in their applications.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 515"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": [
+   "RECOMMENDED PREPARATIONS: The course assumes familiarity with calculus and linear algebra, including basic matrix manipulations and eigendecompositon."
+  ]
+ },
+ {
+  "code": "METEO 520",
+  "subject": "METEO",
+  "number": "520",
+  "display": "METEO 520",
+  "title": "Geophysical Fluid Dynamics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Fundamentals of fluid dynamics with an emphasis on basic concepts that are important for atmospheric and oceanic flows. METEO 520 Geophysical Fluid Dynamics (3)This is a course in the fundamentals of fluid dynamics with an emphasis on basic concepts that are important for geophysical flows, such as those in the atmosphere and ocean. Topics include kinematics, conservation laws, vorticity dynamics, dynamic similarity, laminar flows, and an introduction to waves and instability. Students should leave this course with a solid foundation in fluid dynamics, possessing a conceptual and mathematically rigorous understanding of the fundamental conservation laws for fluids and some basic applications of them. Together, METEO 520 and METEO 521 (Dynamic Meteorology) make up the core dynamics curriculum for graduate students of meteorology.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "Vector calculus, differential equations",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 520"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 521",
+  "subject": "METEO",
+  "number": "521",
+  "display": "METEO 521",
+  "title": "Dynamic Meteorology",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "An overview of the major large-scale atmospheric motions of weather and climate.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "METEO520",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 521"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 523",
+  "subject": "METEO",
+  "number": "523",
+  "display": "METEO 523",
+  "title": "Modeling the Climate System",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "An introduction to the mathematical description and modeling of atmospheric and oceanic motions.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 523"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 526",
+  "subject": "METEO",
+  "number": "526",
+  "display": "METEO 526",
+  "title": "Numerical Weather Prediction",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Finite difference and spectral methods, barotropic and baroclinic models, filtered and primitive equation models, synoptic-scale and mesoscale models.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "METEO422 or METEO522",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 526"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 527",
+  "subject": "METEO",
+  "number": "527",
+  "display": "METEO 527",
+  "title": "Data Assimilation",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Data assimilation (DA) is the process of finding the best estimate of the state and associated uncertainty by combining all available information including model forecasts and observations and their respective uncertainties. DA is best known for producing accurate initial conditions for numerical weather prediction (NWP) models, but has been recently adopted for state and parameter estimation for a wide range of dynamical systems across many disciplines such as ocean, land, water, air quality, climate, ecosystem, and astrophysics. Taking advantages of improved observing networks, better forecast models, and high performing computing, there are two leading types of advanced approaches, namely variational data assimilation through minimization of a cost function, or ensemble-based data assimilation through a Kalman filter. Hybrid techniques, parameter estimation, predictability, and ensemble sensitivity methods will also be covered. Emphasis will be on applications to atmospheric science and numerical weather prediction, and the unique aspects of its observing systems, computer models, and predictability characteristics. The material in this course may be relevant to those in engineering, statistics, mathematics, hydrology, earth systems science, atmospheric science, and many other fields that seek to integrate information from observations and models.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 527"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": [
+   "RECOMMENDED PREPARATIONS: A basic knowledge of probability theory, statistics, calculus, linear algebra/matrices, and computer programming is expected."
+  ]
+ },
+ {
+  "code": "METEO 528",
+  "subject": "METEO",
+  "number": "528",
+  "display": "METEO 528",
+  "title": "Parameterization Schemes",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Parameterization is the process by which important physical processes that cannot be resolved explicitly in a numerical model are represented. Examples include the transfer of shortwave radiation through the atmosphere, and the formation of cloud droplets, both of which occur on the molecular scale. As numerical models have grid spacing of hundreds of meters, molecular processes are not resolved explicitly in current models and so must be parameterized. A parameterization scheme is a representation of our understanding of the physical process as related to the available model variables, such that one can estimate how the behaviors of these important sub-grid physical processes influence the available model variables. In this way, sub-grid scale physical processes are included in models even when they cannot be explicitly represented. The most common parameterization schemes used in numerical models of the atmosphere will be discussed, including land and ocean surface, planetary boundary layer, convection, microphysics, radiation, cloud cover, and orographic drag. Emphasis is placed upon understanding the basic approaches to parameterization and how the differences in approaches influence the resulting behaviors.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 528"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": [
+   "Recommended Preparations: A general, broad knowledge of meteorology and atmospheric science, as well as experience in computer programming."
+  ]
+ },
+ {
+  "code": "METEO 529",
+  "subject": "METEO",
+  "number": "529",
+  "display": "METEO 529",
+  "title": "Mesoscale Dynamics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "A survey of concepts of mesocale systems including frontogenesis, symmetric instability, mountain waves, wave CISK, and frontal waves.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "METEO521",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 529"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 531",
+  "subject": "METEO",
+  "number": "531",
+  "display": "METEO 531",
+  "title": "Atmospheric Thermal Physics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Advanced treatment of thermodynamic principles as they relate to atmospheric cloud physics, radiation and dynamics. M ETEO 531 Atmospheric Thermal Physics (3) Thermal physics concepts are important to understanding many facets of atmospheric cloud physics, radiation and dynamics. This course presents a rigorous treatment of these concepts as they appear in the atmospheric sciences.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 531"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 532",
+  "subject": "METEO",
+  "number": "532",
+  "display": "METEO 532",
+  "title": "Chemistry of the Atmosphere",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Review of chemical principles in gaseous and multiphase environments; characteristics of key atmospheric components and chemical systems in the lower and middle atmosphere.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "CHEM 110",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 532"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 533",
+  "subject": "METEO",
+  "number": "533",
+  "display": "METEO 533",
+  "title": "Cloud Physics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Overview of cloud systems; theories of phase changes in clouds and micro- physical mechanisms of precipitation formation; cloud electrification.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "METEO431",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 533"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 535",
+  "subject": "METEO",
+  "number": "535",
+  "display": "METEO 535",
+  "title": "Radiative Transfer",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Fundamentals of electromagnetic radiation and its interaction with matter; radiation and climate, atmospheric remote sensing, and observable atmospheric optical phenomena.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 535"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 538",
+  "subject": "METEO",
+  "number": "538",
+  "display": "METEO 538",
+  "title": "Atmospheric Convection",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Properties of shallow and deep atmospheric convection and interactions between convection, the boundary layer, and larger-scale weather systems.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 538"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 551",
+  "subject": "METEO",
+  "number": "551",
+  "display": "METEO 551",
+  "title": "Physical Oceanography",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course provides graduate and advanced undergraduate students in the sciences and engineering an overview of the circulation of the ocean and the theories used to explain it. The focus is on the large-scale circulation driven by winds, buoyancy, and tidal forces. The course will also cover the distributions of temperature and salinity in the ocean, the surface ocean mixed layer, mesoscale eddies, and internal waves.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 551"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 554",
+  "subject": "METEO",
+  "number": "554",
+  "display": "METEO 554",
+  "title": "Atmospheric Turbulence",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "An introduction to the physics, structure, modeling, representation, and measurement of atmospheric turbulence.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "METEO520",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 554"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 556",
+  "subject": "METEO",
+  "number": "556",
+  "display": "METEO 556",
+  "title": "The Atmospheric Boundary Layer",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "The atmospheric boundary layer is the layer of the atmosphere that is in frequent contact with the surface of the earth. It is the layer where life exists, and which mediates exchanges of energy, momentum, and chemicals between the earth's surface and the atmosphere. The scales of motion in the atmospheric boundary layer, because of the presence of the earth's surface, are small compared to the rest of the atmosphere. The dynamics, therefore, differ from those found in the 'free' atmosphere. This course describes the physical properties of the layer of the earth's atmosphere that is in frequent contact with the earth's surface, the atmospheric boundary layer. The course includes a descriptive overview of this layer using observations, then presents the governing equations and common simplifications used to describe the boundary layer. Conservation of mass, energy, and momentum, are covered. A core principle is the decomposition of the governing equations into a mean state and turbulent components, and the challenges introduced by this decomposition. The concepts of eddy diffusivity and closure methods are motivated by this challenge. These principles and governing equations are used to understand the typical evolution of the atmospheric boundary layer as a function of time of day. Convective and stable boundary layer conditions are contrasted. The contrasting conditions are linked to changes in the exchange of energy, momentum and water vapor at the earth's surface. The fundamentals of plume dispersion are described and tested. A simple numerical model of the atmospheric boundary layer is discussed and applied to atmospheric data. Stability conditions in the atmosphere are further explored using the equation for turbulent kinetic energy. Parameters describing the turbulence state of the surface layer and boundary layer, including the Obukhov length, friction velocity, convective velocity scale, and Richardson number, are discussed and applied to typical boundary layer conditions and observations. Similarity theory is discussed as a means of describing turbulent properties of the atmospheric boundary layer as a function of stability conditions. Monin-Obukhov similarity theory for the surface layer is applied to atmospheric observations. Additional common atmospheric boundary layer states are described, including cloud topped boundary layers, marine boundary layers, and boundary layers in heterogeneous terrain. Observational, measurement and numerical methods are presented and used in class assignments.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 556"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 560",
+  "subject": "METEO",
+  "number": "560",
+  "display": "METEO 560",
+  "title": "Weather, Climate, and Society",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Successful science communication is critical to all aspects of meteorology, including research, operations, broadcast, and private industry, though scientific literature reveals the wide range of challenges to successful science communication. In this course, students learn primary modes of communication employed by atmospheric scientists, with emphasis on deterministic and probabilistic weather forecasts, global and regional climate projections, and examine their effectiveness. The course builds on this foundation to evaluate the institutional, social, behavioral, political, economic barriers to successful atmospheric science communication and quantify the impact of these challenges on scientific advancements and public responsiveness. Students will learn fundamentals in cognitive versus emotional empathy, communicative responsiveness, prosocial behavior, apply these concepts to the atmospheric sciences, and make inferences about how an individual's or society's perspective impacts decision making behavior.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 560"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 561",
+  "subject": "METEO",
+  "number": "561",
+  "display": "METEO 561",
+  "title": "The Global Carbon Cycle",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course focuses on one of the most challenging environmental issues of our era, the accumulation of carbon dioxide (CO2) and methane (CH4) in our atmosphere due to human modification of the global carbon cycle. We will study the processes, terrestrial, oceanic, atmospheric, and anthropogenic, that govern the sources and sinks of carbon into and out of the global atmosphere, and will study the methods used to quantify the carbon cycle. The primary focus is on the recent past (industrial era) and near-future (~100 years), when carbon cycle management decisions will play a critical role in climate change. The course starts with a review of global atmospheric CO2 and CH4 trends during the industrial era, and examines how atmospheric data inform our understanding of the global carbon cycle. The course then studies contemporary terrestrial biosphere, marine, and anthropogenic processes governing the carbon cycle. The paleorecord of the carbon cycle is reviewed, including glacial / interglacial cycles. Carbon cycle predictions and projections, including options for human management of the carbon cycle, are presented and evaluated. Ethical and economic factors, in addition to physical and biological processes, are considered. The course is appropriate for graduate students or advanced undergraduates with a sound background in quantitative sciences or engineering. The course is suitable for students from a wide variety of degree programs across the university.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 561"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 563",
+  "subject": "METEO",
+  "number": "563",
+  "display": "METEO 563",
+  "title": "Bioclimatology",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Climatic phenomena in their relation to life.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 563"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 570",
+  "subject": "METEO",
+  "number": "570",
+  "display": "METEO 570",
+  "title": "Climate System Dynamics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Climate Dynamics delves into the fundamental processes that control the earth's climate of the past, present, and future. Fundamentals are developed from concepts of basic dynamic meteorology, radiative transfer, and thermodynamics. The surface energy and hydrologic budgets, and the atmospheric and oceanic circulation are covered. The cryosphere and its interactions with the atmosphere are also discussed. A survey of the earth's climate through geologic history is also explored. The concepts developed in this course are applied to the topic of anthropogenic climate change and how various aspects of the climate system could be influenced by global mean, long-term warming.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 570"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 575",
+  "subject": "METEO",
+  "number": "575",
+  "display": "METEO 575",
+  "title": "Climate Dynamics Seminar",
+  "credits": "1-3 Credits/Maximum of 15",
+  "creditsParsed": {
+   "min": 1,
+   "max": 3,
+   "repeatableMax": 15
+  },
+  "description": "Review of evolving climate dynamics and earth system science, including ongoing departmental research.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 575"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 582",
+  "subject": "METEO",
+  "number": "582",
+  "display": "METEO 582",
+  "title": "Ice and Snow Physics",
+  "credits": "1-3 Credits/Maximum of 15",
+  "creditsParsed": {
+   "min": 1,
+   "max": 3,
+   "repeatableMax": 15
+  },
+  "description": "Structure of ice and its electrical, optical, mechanical, and surface properties; snow formation in the atmosphere.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 582"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 590",
+  "subject": "METEO",
+  "number": "590",
+  "display": "METEO 590",
+  "title": "Colloquium",
+  "credits": "1-3 Credits/Maximum of 3",
+  "creditsParsed": {
+   "min": 1,
+   "max": 3,
+   "repeatableMax": 3
+  },
+  "description": "Continuing seminars which consist of a series of individual lectures by faculty, students, or outside speakers.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 590"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 591",
+  "subject": "METEO",
+  "number": "591",
+  "display": "METEO 591",
+  "title": "Development and Ethics in the Atmospheric Sciences",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "Provide a forum for discussion of scholarship and research integrity as well as critical components of professional development. METEO 591 Development and Ethics in the Atmospheric Sciences (1) This course provides a forum with graduate faculty for discussions on responsible conduct of research topics relevant to the atmospheric sciences, including, but not limited to: acquisition, management, sharing, and ownership of data; publication practices and responsible authorship; conflict of interest and commitment; research misconduct; peer review; mentor/trainee responsibilities; collaborative science. Important components to successful professional development of students are also considered.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 591"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 592",
+  "subject": "METEO",
+  "number": "592",
+  "display": "METEO 592",
+  "title": "Research Proposal Preparation in the Atmospheric Sciences",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "This course familiarizes graduate students with research rigor, proposals, and processes. METEO 592 Research Proposal Preparation in the Atmospheric Sciences (1) This course familiarizes graduate students with research rigor, proposals, and processes. The focus of these topics is upon research proposal preparation, research literature surveys, preparing a research proposal, and verbally defending the written research proposal in an oral presentation type setting.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 592"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 596",
+  "subject": "METEO",
+  "number": "596",
+  "display": "METEO 596",
+  "title": "Individual Studies",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Creative projects, including nonthesis research, which are supervised on an individual basis and which fall outside the scope of formal courses.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 596"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 597",
+  "subject": "METEO",
+  "number": "597",
+  "display": "METEO 597",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given on a topical or special interest subject which may be offered infrequently; several different topics may be taught in one year or term.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 597"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 600",
+  "subject": "METEO",
+  "number": "600",
+  "display": "METEO 600",
+  "title": "Thesis Research",
+  "credits": "1-15 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 1,
+   "max": 15,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 600"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 601",
+  "subject": "METEO",
+  "number": "601",
+  "display": "METEO 601",
+  "title": "Ph.D. Dissertation Full-Time",
+  "credits": "0 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 0,
+   "max": 0,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 601"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 602",
+  "subject": "METEO",
+  "number": "602",
+  "display": "METEO 602",
+  "title": "Supervised Experiences in College Teaching",
+  "credits": "1-3 Credits/Maximum of 6",
+  "creditsParsed": {
+   "min": 1,
+   "max": 3,
+   "repeatableMax": 6
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 602"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 610",
+  "subject": "METEO",
+  "number": "610",
+  "display": "METEO 610",
+  "title": "Thesis Research Off Campus",
+  "credits": "1-15 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 1,
+   "max": 15,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 610"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 611",
+  "subject": "METEO",
+  "number": "611",
+  "display": "METEO 611",
+  "title": "Ph.D. Dissertation Part-Time",
+  "credits": "0 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 0,
+   "max": 0,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 611"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 801",
+  "subject": "METEO",
+  "number": "801",
+  "display": "METEO 801",
+  "title": "Understanding Weather Forecasting for Educators",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Fundamental principles of synoptic and physical meteorology, remote sensing and data analysis in the setting of mid-latitude weather forecasting. METEO 801 Understanding Weather Forecasting for Educators (3) Never before has the quantity of available weather information so far exceeded the quality of the public's understanding of atmospheric science. METEO 801 aims to help correct this imbalance by helping secondary teachers to develop the knowledge and skills they need to become critical consumers of weather information and to, in turn, help their own students to do the same. Students who successfully complete METEO 801 will be able to apply knowledge of fundamental concepts of atmospheric science to discriminate between reliable and unreliable weather forecasts, to explain what makes one forecast better than another, and to teach these same concepts and applications to secondary school students. To ensure that students develop the knowledge and skills required to critically assess public weather forecasts, METEO 801 will provide an apprentice-training environment that will encourage students to learn forecast mid-latitude weather themselves. They will discover that weather forecasting involves sophisticated data analysis techniques, a thorough understanding of atmospheric science, and strong verbal and graphic communication skills. METEO 801 will combine digital video, audio, simulation models, virtual field trips to on-line weather data resources, text, and interactive quizzes that provide instantaneous feedback. The course will provide unprecedented access to one of the world's most distinguished meteorology programs. METEO 801 students will be granted licenses to use the courseware developed for this course in their own secondary classrooms. The overarching goal of the course is to help secondary science teachers become informed, critical consumers of the weather information they rely upon every day and to be able to effectively convey their knowledge to their students as part of an Earth science curriculum. Students will be required to complete weekly assignments. There are 12 lessons in METEO 801. Each lesson contains interactive exercises, links, animations, movies, and novel explanations of the basic scientific principles of how the atmosphere works. At the end of each Lesson, students will take an open-book \"Promotion Quiz\" that allows them to improve their status as an apprentice forecaster. In addition to Promotion Quizzes and weekly assignments on the course discussion board, students will be assigned four projects throughout the semester. Projects are also open book but require you to apply the principles students have learned to past case studies of storms and specific weather patterns.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 801"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 802",
+  "subject": "METEO",
+  "number": "802",
+  "display": "METEO 802",
+  "title": "Fundamentals of Tropical Forecasting for Educators",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Applying atmospheric principles to the tropics, with an emphasis on the development, structure, prediction, and destructive impact of hurricanes. METEO 802 Fundamentals of Tropical Forecasting for Educators (3) Worldwide, approximately 80 tropical cyclones develop each year. This global annual average of tropical cyclones is small in comparison to the thousands of low-pressure systems that routinely parade across the middle latitudes each year. Yet tropical storms and hurricanes garner far greater attention from meteorologists and the media. The obvious reason for this lopsided focus is that tropical cyclones can inflict great devastation to life and property. To ensure that students develop the knowledge and skills required to critically assess weather forecasts issues by the National Hurricane Center, METEO 802 provides, like METEO 801, an apprentice-training environment. Under the tutelage of professional weather forecasters, students, in their role as apprentices, work toward the goal of creating their own tropical-weather forecasts. In the process, students in METEO 802 learn about the pitfalls of forecasting the tracks and intensities of tropical storms and hurricanes as they actively work with output from sophisticated numerical models available on the Internet. Moreover, successful students apply their knowledge of the fundamental concepts of atmospheric science in order to competently evaluate forecasts issues by the National Hurricane Center in Miami and the Joint Typhoon Warning Center in Honolulu. Students also gain a broad perspective of the general weather and oceanic patterns in the tropics. For example, students learn about El Nino and La Nina. In the process, they discover the El Nino and La Nina are not to blame for every unusual weather even that occurs anywhere in the world. To facilitate the learning objectives, METEO 802 includes the use of digital video, audio, simulation models, virtual field trips to on-line resources for weather data, text, and interactive quizzes that provide timely feedback. The course will provide unprecedented access to one of the world's most distinguished meteorology programs. METEO 802 students will be granted licenses to use the courseware developed for this course in their own secondary classrooms. One of the primary objectives of METEO 802 is to give secondary science teachers a working knowledge of hurricanes and tropical storms so that they can become critical weather consumers and to be able to effectively convey their knowledge to their students as part of an Earth science curriculum. Students will be required to complete weekly assignments. There are 12 lessons in METEO 802. Each lesson contains interactive exercises, links, animations, movies, and novel explanations of the basic scientific principles of how the atmosphere works. To demonstrate their mastery of the learning objectives, students complete automated online quizzes actively engage in online discussion groups focusing on real-time weather, and publish, to a person \"e-portfolio,\" three comprehensive projects that explore timely case studies related to weather forecasting. The e-portfolio takes the form of a Web site. In addition to posting their work to their e-portfolio, students also use the space to reflect on their learning. By using their Penn State personal Web space to host their e-portfolios, students are able to share their work not only with program faculty and students, but also with external audiences, including potential employers.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "METEO801",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 802"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 803",
+  "subject": "METEO",
+  "number": "803",
+  "display": "METEO 803",
+  "title": "Fundamentals of Mesoscale Weather Forecasting for Educators",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Applying atmospheric principles to small-scale weather systems, with an emphasis on the conceptual modeling and short-range prediction of severe thunderstorms. METEO 803 Fundamentals of Mesoscale Weather Forecasting for Educators (3) When outbreaks of severe weather occur, dire warnings for tornadoes, large hail or damaging straight-line winds urgently scroll across the bottoms of television screens. Simultaneously, television weathercaster's warn viewers to \"take cover immediately.\" Yet, because of the limited spatial and time scales of severe thunderstorms, the areas affected by tornadoes, large hail and damaging straight-line winds often turns out to be relatively small (sometimes as small as a tenth of one percent of the original \"watch area\"). There is no doubt that people should be prepared to take definitive action to protect their lives and the lives of their families when outbreaks of severe weather occur. But the overall impression that entire counties or cities will be destroyed by severe weather can be, and frequently is, misleading. To ensure that students develop the knowledge and skills required to critically assess public weather forecasts, METEO 803 provides an apprentice training environment that guides students, under the tutelage of professional weather forecasters, to actively learn how to create their own mesoscale-weather forecasts. In the process, METEO 803 reinforces the notion that weather forecasting involves sophisticated techniques of data analysis and a thorough understanding of atmospheric science. METEO 803 also stresses that the clear communication of the forecast requires strong verbal and graphic communication skills. Using conceptual models and real-time radar and satellite imagery in concert with output from numerical models designed specifically for mesoscale forecasting, students predict severe weather on time scales of a few hours to one day. For example, students are required to choose a tornado \"watch-box\" issued by the Storm Prediction Center (SPC) in Norman, Oklahoma, and then to evaluate the forecast (and forecast verification) in the setting of a litany of scientifically sophisticated tools on SPC's Web site. In effect, students will mirror the process that professional forecasters follow to create such high-profile forecasts. For more general outlooks that identify regions where there is a potential for severe weather (time scales of one to two days), students will use output from the numerical models that were introduced in METEO 801 to identify the areas likely to be at risk for severe weather. To facilitate the learning objectives, METEO 803 includes the use of digital video, audio, simulation models, virtual field trips to on-line resources for weather data, text, and interactive quizzes that provide timely feedback. The course will provide unprecedented access to one of the world's most distinguished meteorology programs. METEO 803 students will be granted licenses to use the courseware developed for this course in their own secondary classrooms. One of the primary goals of METEO 803 is to give secondary science teachers a scientifically grounded perspective of the spatial and time scales of typical outbreaks of severe weather and other events associated with mesoscale weather systems. In the process, students become better weather consumers and to be able to effectively convey their knowledge to their students as part of an Earth science curriculum. To gain such insights, students learn conceptual models of the life cycles of severe thunderstorms and then apply them in real-time outbreaks of severe weather. In the final analysis, students are able to more accurately weigh the information being disseminated by the media and the Storm Prediction Center in Norman, Oklahoma. Students will be required to complete weekly assignments. There are 8 lessons in METEO 803. Each lesson contains interactive exercises, links, animations, movies, and novel explanations of the basic scientific principles of how the atmosphere works. To demonstrate their mastery of the learning objectives, students complete automated online quizzes, actively engage in online discussion groups focusing on real-time weather, and publish, to a personal \"e-portfolio,\" three comprehensive projects that explore timely case studies related to mesoscale weather forecasting. The e-portfolio takes the form of a Web site. In addition to posting their work to their e-portfolio, students also use the space to reflect on their learning. By using their Penn State personal Web space to host their e-portfolios, students are able to share their work not only with program faculty and students, but also with external audiences, including potential employers.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "METEO801",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 803"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 810",
+  "subject": "METEO",
+  "number": "810",
+  "display": "METEO 810",
+  "title": "Weather and Climate Datasets",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Anticipating weather events first requires an understanding of typical (or expected) conditions at a particular site. Such climatologies are constructed primarily from historical observations but may also include numerically derived forecasts and analyses. In this course, students will learn a variety of methods for accessing appropriate weather and climate datasets available from government and research institutions. Working with very large datasets in a computationally efficient manner will be stressed, as will consideration of factors that affect data reliability. Students will be encouraged to consider numerous possibilities for presenting weather and climate data with a minimum of quantitative analysis. In addition, numerous examples and case studies will augment discussions on such topics as numerical reanalysis datasets, self-describing archives, and typical problems encountered with environmental observations. Finally, students will learn to construct a site-specific or regional climatology and to communicate a qualitative analysis of those data to others.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 810"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": [
+   "RECOMMENDED PREPARATIONS: Coursework and/or experience with basic computer programming"
+  ]
+ },
+ {
+  "code": "METEO 815",
+  "subject": "METEO",
+  "number": "815",
+  "display": "METEO 815",
+  "title": "Applied Atmospheric Data Analysis",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course provides practical guidance in the quantitative analysis of large weather and climate datasets for incorporation into a data analytics system. Students will learn a variety of methods for describing environmental data focusing on bulk characteristics, hypotheses testing, linear modeling, and variability modeling. Furthermore, current data mining strategies used in creating analysis workflows will be presented. Specific emphasis will be placed on data organization and pre-processing for computational analysis, validating assumptions for a particular analysis technique, identification and resolution of non-compliant data sets, and use of analysis/display software to improve communication of results. Numerous examples and case studies will augment discussion on the various analysis methods with the goal being to broaden the student's perspective on the use of weather and climate data in decision-making.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "METEO 810",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 815"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 820",
+  "subject": "METEO",
+  "number": "820",
+  "display": "METEO 820",
+  "title": "Time Series Analytics for Meteorological Data",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course provides practical guidance in the quantitative analysis of large weather and climate time series datasets for incorporation into an analytical modeling system. Students will learn a variety of methods for identifying key temporal patterns in atmospheric datasets, modeling methods based on patterns, trend analyses in climate datasets, advanced modeling methods, frequency domain analyses, and spatial-temporal visualization techniques specific to meteorology. Furthermore, data reduction techniques will be discussed for working with big weather and climate datasets. Specific emphasis will be placed on preparing environmental data for analysis, data visualization techniques, correctly selecting appropriate analyses, validating results, and realistic interpretations of results. Case studies will augment the discussion on the various time series methods with the goal being to broaden the student's perspective on the use of weather and climate data for forecasting and modeling as it pertains to decision making.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "METEO 810, METEO 815",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 820"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 825",
+  "subject": "METEO",
+  "number": "825",
+  "display": "METEO 825",
+  "title": "Predictive Analytic Techniques for Meteorological Data",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course provides practical guidance in forecast systems of weather and climate variables for incorporation into decision-making systems. Students will learn a variety of methods for prognostic modeling of categorical and continuous variables, measuring forecast accuracy, and assessing results through Monte Carlo simulations. Ensemble environmental forecasting techniques will also be presented. Specific emphasis will be placed on the strengths and limitations of each technique, validating assumptions for particular forecast methods, and assessing the results of the weather or climate model using a variety of statistical techniques. Numerous examples and case studies will augment discussion of the techniques with the goal being to grow the student's knowledge on weather and climate forecasting and its usage in decision-making.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "METEO 820",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 825"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 830",
+  "subject": "METEO",
+  "number": "830",
+  "display": "METEO 830",
+  "title": "Weather and Climate Analytics Applications",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "The goal of weather and climate analytics is to better inform decision-makers on the probability of adverse and advantageous weather events. This course will adopt a case study approach whereby students learn to create a weather and climate analytics analysis and presentation. Emphasis will be placed on framing a problem with appropriate research, collecting and analyzing historical data, developing appropriate analytical modeling, and presenting results and recommendations. As preparation for synthesizing their own project, students will scrutinize multiple examples of weather and climate analytic studies from a variety of industries and sectors. Furthermore, the course will provide multiple opportunities for students to receive guidance and feedback from their instructor, fellow classmates, and industry professionals.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "METEO 825",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 830"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 880",
+  "subject": "METEO",
+  "number": "880",
+  "display": "METEO 880",
+  "title": "Communication of Research in Atmospheric Science",
+  "credits": "2 Credits",
+  "creditsParsed": {
+   "min": 2,
+   "max": 2,
+   "repeatableMax": null
+  },
+  "description": "In this course, students will learn how to present the results of their research in the three main forms that atmospheric scientists currently use: peer-reviewed journal articles, poster presentations, and oral presentations. Students will learn how scientific writing differs from other forms of writing and will learn the building blocks for constructing effective paragraphs and sentences for journal articles. The structure of a journal article will be described and students will learn about each of the key elements of a journal article, including the abstract, introduction, methods, results, discussion, conclusions, references, figures, and tables. Authorship and the peer-review process will be discussed. Finally, students will learn techniques for communicating their research to the general public.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 880"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 891",
+  "subject": "METEO",
+  "number": "891",
+  "display": "METEO 891",
+  "title": "Professional Development for Graduate Students",
+  "credits": "1 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": null
+  },
+  "description": "The one-credit pass/fail course will offer practical and helpful advice to graduate students who are ready to begin exploring career opportunities. The course will cover professionalism and ethics, writing and reviewing scientific papers, how to succeed at grant writing, post-doctoral opportunities and examples, careers in industry, careers in government and academic, the job application process, how to interview, career planning after college, financial literacy, the value of professional societies for your career, dealing with new media, and leadership development. There will be guest speakers, including successful alumni, university staff, and others whose participation will enhance the value of the class. Finally, students will be paired with an alum in a similar or related discipline and will interview this alum about their career and any advice they would offer a recent graduate. The students will share what they learned during their alumni interviews with the class. Class discussion is strongly encouraged.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 891"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ },
+ {
+  "code": "METEO 897",
+  "subject": "METEO",
+  "number": "897",
+  "display": "METEO 897",
+  "title": "Special Topics",
+  "credits": "1-9 Credits",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": null
+  },
+  "description": "Formal courses given on a topical or special interest subject which may be offered infrequently.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "METEO 897"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/meteo/",
+  "extraRaw": []
+ }
+]

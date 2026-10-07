@@ -1,0 +1,186 @@
+{
+ "slug": "earth-mineral-sciences-geographic-information-science-minor",
+ "name": "Geographic Information Science, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/geographic-information-science-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of introductory GIScience:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "GEOG 260",
+       "GEOG 160"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of intermediate GIScience:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "GEOG 361",
+       "GEOG 362",
+       "GEOG 363",
+       "GEOG 365"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level GIScience:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EMSC 460",
+       "FOR 455",
+       "GEOG 413",
+       "GEOG 462",
+       "GEOG 463",
+       "GEOG 464",
+       "GEOG 465",
+       "GEOG 467",
+       "GEOG 485",
+       "GEOSC 482",
+       "METEO 477",
+       "SOILS 450",
+       "SRA 468"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Select 3 additional credits of GIScience (not taken above):"
+    },
+    {
+     "type": "course",
+     "code": "EMSC 460",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "FOR 255",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "FOR 455",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "FORT 260",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOG 265",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOG 361",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOG 362",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOG 363",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOG 364",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOG 365",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOG 413",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOG 462",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOG 463",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOG 464",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOG 465",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOG 467",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOG 485",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOSC 482",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "METEO 477",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SOILS 450",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SRA 468",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "WILDL 211",
+     "credits": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits of introductory GIScience:3\nGEOG 260Geographic Information in a Changing World: Introduction to GIScience\nor GEOG 160 Mapping Our Changing World\nSelect 6 credits of intermediate GIScience:6\nGEOG 361Cartography--Maps and Map Construction\nGEOG 362Remote Sensing and Image Analysis\nGEOG 363Geographic Information Systems\nGEOG 365Intermediate GIS Programming\nSelect 6 credits of 400-level GIScience:6\nEMSC 460Environmental Data Analytics\nFOR 455Remote Sensing and Spatial Data Handling\nGEOG 413Cryosphere and Climate Systems\nGEOG 462Advanced Observation of Earth and Its Environment\nGEOG 463Geospatial Information Management\nGEOG 464Advanced Spatial Analysis\nGEOG 465Advanced Geographic Information Systems Modeling\nGEOG 467Applied Cartographic Design\nGEOG 485GIS Programming and Software Development\nGEOSC 482Satellite Remote-Sensing For Earth Observation\nMETEO 477Fundamentals of Remote Sensing Systems\nSOILS 450Environmental Geographic Information Systems\nSRA 468Spatial Analysis of Risks\nSelect 3 additional credits of GIScience (not taken above):3\nEMSC 460Environmental Data Analytics\nFOR 255GPS and GIS Applications for Natural Resources Professionals\nFOR 455Remote Sensing and Spatial Data Handling\nFORT 260GIS for Natural Resources Management\nGEOG 265Fundamentals of Geospatial Data Science\nGEOG 361Cartography--Maps and Map Construction\nGEOG 362Remote Sensing and Image Analysis\nGEOG 363Geographic Information Systems\nGEOG 364Spatial Analysis\nGEOG 365Intermediate GIS Programming\nGEOG 413Cryosphere and Climate Systems\nGEOG 462Advanced Observation of Earth and Its Environment\nGEOG 463Geospatial Information Management\nGEOG 464Advanced Spatial Analysis\nGEOG 465Advanced Geographic Information Systems Modeling\nGEOG 467Applied Cartographic Design\nGEOG 485GIS Programming and Software Development\nGEOSC 482Satellite Remote-Sensing For Earth Observation\nMETEO 477Fundamentals of Remote Sensing Systems\nSOILS 450Environmental Geographic Information Systems\nSRA 468Spatial Analysis of Risks\nWILDL 211GIS and Aerial Photo Interpretation in Wildlife Management\n"
+  }
+ ],
+ "suggestedPlans": []
+}

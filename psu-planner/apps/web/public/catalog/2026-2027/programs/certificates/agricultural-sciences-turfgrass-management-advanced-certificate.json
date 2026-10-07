@@ -1,0 +1,62 @@
+{
+ "slug": "agricultural-sciences-turfgrass-management-advanced-certificate",
+ "name": "Turfgrass Management, Advanced, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/turfgrass-management-advanced-certificate/",
+ "totalCredits": 30,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "TURF 230",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "TURF 235",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "TURF 490",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "TURF 495",
+     "credits": 1
+    },
+    {
+     "type": "selectCredits",
+     "credits": 21,
+     "commentRaw": "Select 21-22 credits from additional courses:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENT 317",
+       "PPEM 412",
+       "SOILS 101",
+       "TURF 238",
+       "TURF 307",
+       "TURF 425",
+       "TURF 434",
+       "TURF 435",
+       "TURF 436W"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "TURF 230Turfgrass Pesticides1\nTURF 235The Turfgrass3\nTURF 490Colloquium1\nTURF 495Internship1-18\nSelect 21-22 credits from additional courses:21-22\nENT 317Turfgrass Insect Pest Management\nPPEM 412Turfgrass Disease Management\nSOILS 101Introductory Soil Science\nTURF 238Turf and Ornamental Weed Control\nTURF 307Golf Course Irrigation and Drainage\nTURF 425Turfgrass Cultural Systems\nTURF 434Turfgrass Edaphology\nTURF 435Turfgrass Nutrition\nTURF 436WCase Studies in Turfgrass Management\n"
+  }
+ ],
+ "suggestedPlans": []
+}

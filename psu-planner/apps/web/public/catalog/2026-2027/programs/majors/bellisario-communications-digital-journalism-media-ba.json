@@ -1,0 +1,125 @@
+{
+ "slug": "bellisario-communications-digital-journalism-media-ba",
+ "name": "Digital Journalism and Media, B.A.",
+ "type": "major",
+ "degree": "BA",
+ "college": "bellisario-communications",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/bellisario-communications/digital-journalism-media-ba/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "COMM 160",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "COMM 180",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 205",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 260W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 269",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 271",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 280",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 409",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCOMM 160Basic News Writing Skills1\nCOMM 180Survey of Electronic Media and Telecommunications 3\nCOMM 205Gender, Diversity and the Media 3\nCOMM 260WNews Writing and Reporting3\nCOMM 269Introduction to Visual Journalism3\nCOMM 271Principles of Journalism3\nCOMM 280Introduction to Telecommunications Technologies3\nCOMM 409News Media Ethics3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "COMM 364",
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "COMM 403",
+      "COMM 492"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "COMM 282",
+       "COMM 460W",
+       "COMM 467"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nCOMM/IST 310Digital Media Metrics3\nor COMM 364 Data Visualization for Journalists\nCOMM 403Law of Mass Communications3\nor COMM 492 Internet Law and Policy\nSelect 3 credits from the following:3\nCOMM 282Television Field Production\nCOMM 460WReporting Methods\nCOMM 467News Editing and Evaluation\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "COMM 228",
+       "COMM 362",
+       "COMM 380",
+       "COMM 461",
+       "COMM 469",
+       "COMM 481"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 9 credits from the following:9\nCOMM 228Introduction to Science Writing and Communication\nCOMM 362Podcasting\nCOMM 380Telecommunications Management\nCOMM 461Magazine Writing\nCOMM 469Advanced Production for Visual Journalists\nCOMM 481Visual Storytelling for Journalists\n"
+  }
+ ],
+ "suggestedPlans": []
+}

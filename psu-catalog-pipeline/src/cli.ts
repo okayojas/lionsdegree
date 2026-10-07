@@ -76,7 +76,7 @@ async function scrapePrograms(): Promise<{ files: string[]; majors: number; mino
   const review: unknown[] = [];
   let majors = 0, minors = 0, unstructuredSections = 0, totalSections = 0;
   const courseIndex = buildCourseIndex(outDir);
-  const integrity: IntegrityReport = { resolved: [], expanded: [], unverified: [] };
+  const integrity: IntegrityReport = { resolved: [], expanded: [], unverified: [], phantomSubjects: [] };
   if (!courseIndex.known.size) console.warn("[programs] WARNING: course index empty — run courses scrape first; integrity validation will mark everything unverified");
 
   for (const link of links) {
@@ -108,6 +108,11 @@ async function scrapePrograms(): Promise<{ files: string[]; majors: number; mino
   fs.writeFileSync(path.join(outDir, "review", "integrity.json"), JSON.stringify(integrity, null, 1), "utf-8");
   console.log(`\n[programs] review rows: ${review.length}`);
   console.log(`[integrity] suffix-resolved: ${integrity.resolved.length}, family-expanded: ${integrity.expanded.length}, unverified: ${integrity.unverified.length}`);
+  const emptied = integrity.phantomSubjects.filter((p) => !p.kept.length).length;
+  console.log(
+    `[integrity] pattern pools with phantom subjects: ${integrity.phantomSubjects.length}` +
+      ` (${emptied} left with none and degraded to "unknown")`,
+  );
   return { files, majors, minors, reviewRows: review.length, unstructuredSections, totalSections };
 }
 

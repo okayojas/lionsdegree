@@ -1,0 +1,71 @@
+{
+ "slug": "liberal-arts-sociology-minor",
+ "name": "Sociology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/sociology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "SOC 1",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nSOC 1Introductory Sociology 3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits in sociology; at least 6 of those credits must be at the 400 level. Note:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Students may count up to 3 credits of Research Project courses (SOC 294/SOC 494) and up to 3 credits of Internship courses (SOC 296/SOC 496) towards the minor."
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Students may count up to 4 credits of SOC 269 or SOC 369 towards the minor."
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Students may count up to 3 credits of SOC 469 towards the minor."
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Students may count up to 3 credits of SOC 469 or SOC 494 or SOC 496 towards the 400-level requirement for the minor."
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Students may count up to 6 credits of SOC 469, SOC 294, SOC 494, SOC 296, or SOC 496 towards the minor, but an individual course may not provide more than 3 credits towards the minor."
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Students may not count SOC 300 (Preceptorship) credits towards the minor."
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 15 credits in sociology; at least 6 of those credits must be at the 400 level. Note:15\nStudents may count up to 3 credits of Research Project courses (SOC 294/SOC 494) and up to 3 credits of Internship courses (SOC 296/SOC 496) towards the minor.\nStudents may count up to 4 credits of SOC 269 or SOC 369 towards the minor.\nStudents may count up to 3 credits of SOC 469 towards the minor.\nStudents may count up to 3 credits of SOC 469 or SOC 494 or SOC 496 towards the 400-level requirement for the minor.\nStudents may count up to 6 credits of SOC 469, SOC 294, SOC 494, SOC 296, or SOC 496 towards the minor, but an individual course may not provide more than 3 credits towards the minor.\nStudents may not count SOC 300 (Preceptorship) credits towards the minor.\n"
+  }
+ ],
+ "suggestedPlans": []
+}

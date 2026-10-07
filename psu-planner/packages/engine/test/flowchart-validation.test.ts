@@ -18,7 +18,8 @@ import {
   repairPrereqOrdering, type Catalog, type Course, type PlanDoc, type ProgramTemplate,
 } from "../src/index.js";
 
-const outDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../../apps/web/public/catalog");
+import { CATALOG_DIR } from "./edition.js";
+const outDir = CATALOG_DIR;
 // parsed.json is force-added to the repo (the source PDFs are not redistributed —
 // see NOTICE), so this stays anchored to the pipeline rather than derived from outDir.
 const flowDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../../../psu-catalog-pipeline/data/flowcharts");

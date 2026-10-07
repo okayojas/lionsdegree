@@ -1,0 +1,68 @@
+{
+ "slug": "education-education-public-policy-minor",
+ "name": "Education and Public Policy, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "education",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/education/education-public-policy-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EDTHP 115",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDTHP 200",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nEDTHP 115Education in American Society 3\nEDTHP 200Reform, Advocacy, and Transformation in Education 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Any 400-level CIED course"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Any 400-level EDLDR course"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Any 200-400 level EDTHP course"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Any 400-level HIED course"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 12 credits from the following:12\nAny 400-level CIED course\nAny 400-level EDLDR course\nAny 200-400 level EDTHP course\nAny 400-level HIED course\n"
+  }
+ ],
+ "suggestedPlans": []
+}

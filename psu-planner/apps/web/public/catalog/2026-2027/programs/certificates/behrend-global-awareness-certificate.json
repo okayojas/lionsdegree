@@ -1,0 +1,38 @@
+{
+ "slug": "behrend-global-awareness-certificate",
+ "name": "Global Awareness, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/global-awareness-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "HIST 11",
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PLSC 14",
+      "PLSC 3"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nHIST 11World History since 1500 3\nPLSC 14International Relations 3\nor PLSC 3 Comparing Politics around the Globe\n"
+  }
+ ],
+ "suggestedPlans": []
+}

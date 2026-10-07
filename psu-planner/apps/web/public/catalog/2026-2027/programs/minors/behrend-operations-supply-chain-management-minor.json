@@ -1,0 +1,68 @@
+{
+ "slug": "behrend-operations-supply-chain-management-minor",
+ "name": "Operations and Supply Chain Management, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/operations-supply-chain-management-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MGMT 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCM 301",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nMGMT 301Basic Management Concepts3\nSCM 301Supply Chain Management3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "SCM 200",
+      "STAT 200"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MGMT 409",
+       "SCM 445",
+       "SCM 455",
+       "SCM 460",
+       "SCM 465"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSCM 200Introduction to Statistics for Business 4\nor STAT 200 Elementary Statistics\nSelect 9 credits of the following:9\nMGMT 409Project Management for Engineers\nSCM 445Operations Planning and Control\nSCM 455Logistics Systems Analysis and Design\nor SCM 460 Purchasing and Materials Management\nSCM 465\n"
+  }
+ ],
+ "suggestedPlans": []
+}

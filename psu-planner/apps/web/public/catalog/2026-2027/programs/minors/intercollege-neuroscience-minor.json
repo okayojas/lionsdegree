@@ -1,0 +1,70 @@
+{
+ "slug": "intercollege-neuroscience-minor",
+ "name": "Neuroscience, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "intercollege",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/intercollege/neuroscience-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 469",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BIOL 470",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 260",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBIOL 469Neurobiology3\nBIOL 470Functional and Integrative Neuroscience3\nPSYCH 260Neurological Bases of Human Behavior3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BBH 410",
+       "BBH 432",
+       "BBH 451",
+       "BBH 497",
+       "BIOL 472",
+       "BIOL 473",
+       "BIOL 479",
+       "KINES 483",
+       "KINES 484",
+       "PSYCH 462",
+       "PSYCH 475",
+       "PSYCH 478"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 9 credits of the following:9\nBBH 410Developmental and Health Genetics\nBBH 432Biobehavioral Aspects of Stress\nBBH 451Pharmacological Influences on Health\nBBH 497Special Topics\nBIOL 472Human Physiology\nBIOL 473Laboratory in Mammalian Physiology\nBIOL 479General Endocrinology\nKINES 483Motor Patterns of Children\nKINES 484Advanced Biomechanics\nPSYCH 462Physiological Psychology\nPSYCH 475Psychology of Fear and Stress\nPSYCH 478Clinical Neuropsychology\n"
+  }
+ ],
+ "suggestedPlans": []
+}

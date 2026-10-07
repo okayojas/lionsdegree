@@ -1,0 +1,549 @@
+{
+ "slug": "intercollege-entrepreneurship-innovation-minor",
+ "name": "Entrepreneurship and Innovation, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "intercollege",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/intercollege/entrepreneurship-innovation-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ENGR 310",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MGMT 215",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nENGR 310Entrepreneurial Leadership3\nENGR/IST/MGMT 425New Venture Creation3\nMGMT 215Entrepreneurial Mindset3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "Select 9 or more credits from one of the clusters listed below"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 9 or more credits from one of the clusters listed below 9-11\n"
+  },
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "Choose one foundational course for the Bio-Tech cluster from the following list:"
+    },
+    {
+     "type": "course",
+     "code": "BIOL 230W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BIOL 230M",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "BMB 251H",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MICRB 201",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "MICRB 201H",
+     "credits": null
+    },
+    {
+     "type": "chooseN",
+     "n": 1,
+     "options": [
+      "BIOL 405",
+      "BIOL 409",
+      "BIOL 412",
+      "BIOL 415",
+      "BIOL 416",
+      "BIOL 419",
+      "BIOL 424",
+      "BIOL 426",
+      "BIOL 431",
+      "BIOL 432",
+      "BIOL 439",
+      "BIOL 443",
+      "BIOL 451",
+      "BIOL 461",
+      "BIOL 467",
+      "BMB 401",
+      "BMB 442",
+      "BMB 482",
+      "BMB 484",
+      "CHEM 402",
+      "CHEM 423W",
+      "CHEM 425W",
+      "CHEM 431W",
+      "CHEM 459W",
+      "CHEM 476",
+      "FRNSC 427W",
+      "MATH 405",
+      "MATH 406",
+      "MATH 448",
+      "MATH 450",
+      "MATH 484",
+      "MATH 486",
+      "MICRB 401",
+      "PHYS 462",
+      "PHYS 465",
+      "PHYS 472"
+     ],
+     "credits": 3,
+     "commentRaw": "Choose one of the following advanced courses for the Bio-Tech cluster:"
+    },
+    {
+     "type": "chooseN",
+     "n": 1,
+     "options": [],
+     "credits": 3,
+     "commentRaw": "Choose one of the following capstone courses for the Bio-Tech cluster:"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Choose one foundational course for the Bio-Tech cluster from the following list:3-4\nBIOL 230WBiology: Molecules and Cells\nBIOL 230MHonors Biology: Molecules and Cells\nBMB/MICRB 251Molecular and Cell Biology I\nBMB 251HMolecular and Cell Biology I\nMICRB 201Introductory Microbiology\nMICRB 201HIntroductory Microbiology\nChoose one of the following advanced courses for the Bio-Tech cluster:3-4\nBIOL 405Molecular Evolution\nBIOL 409Biology of Aging\nBIOL 412Ecology of Infectious Diseases\nBIOL 415Ecotoxicology\nBIOL 416Biology of Cancer\nBIOL 419Ecological and Environmental Problem Solving\nBIOL 424Seeds of Change: The Uses of Plants\nBIOL 426Developmental Neurobiology\nBIOL 431Reproductive Biology\nBIOL 432Developmental Genetics\nBIOL 439Practical Bioinformatics\nBIOL 443Evo-devo: Evolution of Developmental Mechanisms\nBIOL 451Biology of RNA\nBIOL/ANTH 460Human Genetics\nBIOL 461Contemporary Issues in Science and Medicine\nBIOL 467Molecular Basis of Neurological Diseases\nBIOL/BBH 469Neurobiology\nBIOTC/BIOL/HORT 459Plant Tissue Culture and Biotechnology\nBIOTC/AGRO 460Advances and Applications of Plant Biotechnology\nBMB 401General Biochemistry\nBMB 442Laboratory in Proteins, Nucleic Acids, and Molecular Cloning\nBMB/MICRB 480Cancer Development and Progression\nBMB 482Introduction to Computational Biology\nBMB 484Functional Genomics\nBMB/VBSC 485Human Genomics and Biomedical Informatics\nCHEM 402Environment Chemistry: Atmosphere\nCHEM 423WChemical Spectroscopy\nCHEM 425WChromatography and Electrochemistry\nCHEM 431WAdvanced Synthetic Methodologies\nCHEM 459WAdvanced Experimental Physical Chemistry\nCHEM 476Biological Chemistry\nFRNSC 427WForensic Chemistry\nMATH 405Advanced Calculus for Engineers and Scientists I\nMATH 406Advanced Calculus for Engineers and Scientists II\nMATH 448Mathematics of Finance\nMATH 450Mathematical Modeling\nMATH 484Linear Programs and Related Problems\nMATH 486Mathematical Theory of Games\nMICRB 401Microbial Physiology and Structure\nPHYS 462Applications of Physics in Medicine\nPHYS 465Network analysis of biological systems\nPHYS 472Elements of Nuclear Physics and its Applications to Medical Imaging and Treatments\nChoose one of the following capstone courses for the Bio-Tech cluster: 3\nBIOTC/MICRB 416Microbial Biotechnology\nBIOTC/BIOL/HORT 459Plant Tissue Culture and Biotechnology\n"
+  },
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ETI 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ETI 200",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ETI 400",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ETI 100Introduction to Enterprise Technology Integration3\nETI 200Designing AI for the Enterprise3\nETI 400Delivering AI for the Enterprise3\n"
+  },
+  {
+   "heading": "Requirements",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following courses (at least 3 at the 400 level) in the College of Earth and Mineral Sciences:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EARTH 2",
+       "EARTH 100",
+       "EARTH 303",
+       "EBF 200",
+       "EBF 301",
+       "EBF 404W",
+       "EGEE 120",
+       "EME 444",
+       "EME 450",
+       "EME 460",
+       "EMSC 460",
+       "GEOG 438W",
+       "GEOG 444",
+       "GEOSC 1",
+       "GEOSC 20",
+       "GEOSC 201",
+       "GEOSC 202",
+       "GEOSC 203",
+       "GEOSC 210",
+       "GEOSC 320",
+       "GEOSC 401",
+       "GEOSC 402Y",
+       "GEOSC 454",
+       "GEOSC 460",
+       "GEOSC 480",
+       "GEOSC 481",
+       "GEOSC 482",
+       "MATSE 201",
+       "MATSE 259",
+       "MATSE 400",
+       "MATSE 401",
+       "MATSE 402",
+       "MATSE 403",
+       "MATSE 404",
+       "MATSE 411",
+       "MATSE 412",
+       "MATSE 413",
+       "MATSE 415",
+       "MATSE 417",
+       "MATSE 419",
+       "MATSE 421",
+       "MATSE 425",
+       "MATSE 426",
+       "MATSE 427",
+       "MATSE 429",
+       "MATSE 430",
+       "MATSE 435",
+       "MATSE 436",
+       "MATSE 450",
+       "MATSE 455",
+       "MATSE 492W",
+       "METEO 332N",
+       "METEO 469",
+       "MNG 230",
+       "MNG 401",
+       "MNPR 301",
+       "PNG 301",
+       "PNG 405",
+       "PNG 411"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 9 credits from the following courses (at least 3 at the 400 level) in the College of Earth and Mineral Sciences:9\nEARTH 2The Earth System and Global Change\nEARTH 100Environment Earth\nEARTH 303Analysis of Earth Future Scenarios\nEBF 200Introduction to Energy and Earth Sciences Economics\nEBF 301Global Finance for the Earth, Energy, and Materials Industries\nEBF 404WThe Great Energy Transition: Law, Economics, and New Frontiers\nEGEE 120Oil: International Evolution\nEME 444Global Energy Enterprise\nEME 450Energy Crisis Leadership\nEME 460Geo-resource Evaluation and Investment Analysis\nEMSC 460Environmental Data Analytics\nGEOG 438WHuman Dimensions of a Changing Climate\nGEOG 444Resource Governance in Africa\nGEOSC 1Physical Geology\nGEOSC 20Planet Earth\nGEOSC 201Earth Materials\nGEOSC 202Chemical Processes in Geology\nGEOSC 203Physical Processes in Geology\nGEOSC 210Geoscience Data Analytics\nGEOSC 320Geology of Climate Change\nGEOSC 401Geosciences Entrepreneurship: Embrace Change\nGEOSC 402YNatural Disasters\nGEOSC 454Geology of Oil and Gas\nGEOSC 460Principles of Igneous and Metamorphic Petrology\nGEOSC 480Planetary Geophysics\nGEOSC 481Petroleum Seismology\nGEOSC 482Satellite Remote-Sensing For Earth Observation\nMATSE 201Introduction to Materials Science\nMATSE 259Properties and Processing of Engineering Materials\nMATSE 400Crystal Chemistry\nMATSE 401Thermodynamics of Materials\nMATSE 402Materials Process Kinetics\nMATSE 403Biomedical Materials\nMATSE 404Surfaces and the Biological Response to Materials\nMATSE 411Processing of Ceramics\nMATSE 412Thermal Properties of Materials\nMATSE 413Solid-State Materials\nMATSE 415Introduction to Glass Science\nMATSE 417Electrical and Magnetic Properties\nMATSE 419Computational Materials Science and Engineering\nMATSE 421Corrosion Engineering\nMATSE 425Processing of Metals\nMATSE 426Aqueous Processing\nMATSE 427Microstructure Design of Structural Materials\nMATSE 429Non-Ferrous Structural Metals\nMATSE 430Materials Characterization\nMATSE 435Optical Properties of Materials\nMATSE 436Mechanical Properties of Materials\nMATSE 450Synthesis and Processing of Electronic and Photonic Materials\nMATSE 455Properties and Characterization of Electronic and Photonic Materials\nMATSE 492WMaterials Engineering Methodology and Design\nMETEO 332NScience and policy of global greenhouse gas emissions and management\nMETEO 469From Meteorology to Mitigation: Understanding Global Warming\nMNG 230Introduction to Mining Engineering\nMNG 401Introduction to Mining Operations\nMNPR 301Elements of Mineral Processing\nPNG 301Introduction to Petroleum and Natural Gas Engineering\nPNG 405Rock and Fluid Properties\nPNG 411Introduction to Petroleum and Natural Gas Extraction\n"
+  },
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CAS 251",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LA 424",
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AFAM 100N",
+       "CAS 175N",
+       "CAS 210",
+       "CAS 220",
+       "CAS 222N",
+       "CAS 321",
+       "CAS 373",
+       "ENGL 162N",
+       "ENGL 228",
+       "ENGL 236N",
+       "LHR 100",
+       "LHR 201",
+       "PLSC 202",
+       "PLSC 210N",
+       "PLSC 291",
+       "PSYCH 100",
+       "SOC 1",
+       "SOC 5",
+       "SOC 23",
+       "WMNST 100",
+       "WMNST 105N",
+       "WMNST 200"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CAS 251Communication, Advocacy, and Entrepreneurship3\nLA 424Liberal Arts Venture Development3\nSelect 3 credits from the following:3\nAFAM 100NBlack Freedom Struggles\nAFAM/SOC/WMNST 103Racism and Sexism\nAFAM/LHR/WMNST 136Race, Gender, and Employment\nAFAM/HIST/WMNST 213YAfrican American Women's History\nCAS/ENGL 137HRhetoric and Civic Life I\nCAS 175NPersuasion and Propaganda\nCAS 210Landmark Speeches on Democracy and Dissent\nCAS 220Persuasion\nCAS 222N/AYFCE 211N/CIVCM 211NFoundations: Civic and Community Engagement\nCAS 321Rhetoric and Law\nCAS 373The Rhetorics of War and Peace\nENGL 162NCommunicating Care\nENGL 228Introduction to Disability Studies in the Humanities\nENGL 236NLiterature and Inequality\nLHR 100Exploring Work and Employment\nLHR 201Employment Relationship: Law and Policy\nPLSC 202American Public Policy\nPLSC 210NRights in America\nPLSC 291Introduction to Peace and Conflict Studies\nPSYCH 100Introductory Psychology\nSOC 1Introductory Sociology\nSOC 5Society's Problems: Causes, Consequences, and Solutions\nSOC/CRIM/CRIMJ 12Criminology\nSOC 23Population and Policy Issues\nWMNST 100Introduction to Women's and Gender Studies\nWMNST 105NLiving in a Diverse World\nWMNST 200Global Feminisms\n"
+  },
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select up to 6 credits of the following 200-300 level courses in the College of Agricultural Sciences:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AEE 201",
+       "AEE 360",
+       "AGBM 200",
+       "AGBM 302",
+       "AGBM 308W",
+       "AGBM 338",
+       "ANSC 201",
+       "ANSC 306",
+       "ANSC 308",
+       "ANSC 309",
+       "ANSC 310",
+       "ANSC 311",
+       "ANSC 324",
+       "ANSC 327",
+       "ANSC 346",
+       "ANSC 350",
+       "CED 375",
+       "ERM 300",
+       "FDSC 200",
+       "FORT 250",
+       "HORT 250"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select at least 3 credits of the following 400 level courses in the College of Agricultural Sciences:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ABSM 429",
+       "AEE 460",
+       "AGBM 407",
+       "AGBM 408",
+       "AGBM 440",
+       "AGBM 445",
+       "AGBM 460",
+       "ANSC 410",
+       "ANSC 429",
+       "ANSC 450",
+       "BRS 437",
+       "CED 417",
+       "CED 425",
+       "CED 430W",
+       "ERM 411",
+       "ERM 412",
+       "ERM 413W",
+       "FDSC 411",
+       "FDSC 444",
+       "FDSC 450",
+       "FOR 440",
+       "HORT 410W",
+       "HORT 453",
+       "TURF 436W"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select up to 6 credits of the following 200-300 level courses in the College of Agricultural Sciences:6\nAEE 201Interpersonal Skills for Tomorrow's Leaders\nAEE 360Leadership Development for Small Groups\nAGBM 200Introduction to Agricultural Business Management\nAGBM 302Food Product Marketing\nAGBM 308WStrategic Decision Making in Agribusiness\nAGBM 338Agribusiness in the Global Economy\nANSC 201Animal Science\nANSC 306Swine Production and Management\nANSC 308Sheep and Goat Production and Management\nANSC 309Beef Cattle Production and Management\nANSC 310Dairy Cattle Production and Management\nANSC 311Poultry Production and Management\nANSC 324Value Determination of Meat Animals\nANSC 327Horse Production and Management\nANSC 346Animal Enterprise Analysis\nANSC 350Dairy Problem Solving\nBE/ABSM 391Communication Skills for BE and ABSM Students\nBE/ABSM 392Leadership and Ethics for BE and ABSM Students\nCED 375Community, Local Knowledge, and Democracy\nERM 300Basic Principles and Calculations in Environmental Analysis\nFDSC 200Introductory Food Science\nFORT 250Forest Management Practices\nHORT 250Landscape Contracting Design/Build Principles\nSelect at least 3 credits of the following 400 level courses in the College of Agricultural Sciences:3\nABSM/ERM 402Foundations of Sustainable Business\nABSM 429Agricultural and Biorenewable Systems Analysis and Management\nAEE 460Foundations in Leadership Development\nAGBM 407Farm Planning and Financial Management\nAGBM 408Financial Decision Making for Agribusiness\nAGBM 440Food Product Innovation Management\nAGBM 445AgTech Entrepreneurship\nAGBM/HORT 455Retail Horticulture Business Management\nAGBM 460Managing the Food System\nANSC 410Advanced Dairy Herd Management\nANSC 429Advanced Beef Cattle Production\nANSC 450Dairy Farm Management Systems\nBRS 437Bioproduct Marketing and Sales\nCED 417Power, Conflict, and Community Decision Making\nCED 425International Community and Economic Development\nCED 430WPrinciples of Community Economic Development\nERM 411Legal Aspects of Resource Management\nERM 412Resource Systems Analysis\nERM 413WCase Studies in Ecosystem Management\nFDSC 411Managing Food Quality\nFDSC 444Arguing about Food\nFDSC 450Food Innovation and Product Design\nFDSC/INTAG 460International Food Production\nFOR 440Forest and Conservation Economics\nHORT 410WIssues in Landscape Contracting\nHORT 453Flower Crop Production and Management\nHORT/AGBM 455Retail Horticulture Business Management\nTURF 436WCase Studies in Turfgrass Management\n"
+  },
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "HM 484",
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "HM 382",
+       "HM 407",
+       "HM 435",
+       "HM 482",
+       "HM 485",
+       "HM 488"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "HM 484Hospitality Entrepreneurship and Innovation3\nSelect 6 credits from the following:6\nHM 382Franchising in the Hospitality Industry\nHM 407The Sustainable Fork: Food Systems Decisions for Away-From-Home Eating\nHM 435Hospitality Corporate Finance\nHM 482Hospitality Real Estate\nHM 485Advanced Meeting and Event Management\nHM 488Hospitality Asset Management\n"
+  },
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "COMM 271",
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following. At least 3 credits must be at the 400-level.",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "COMM 262",
+       "COMM 361",
+       "COMM 362",
+       "COMM 384",
+       "COMM 461A",
+       "COMM 462",
+       "COMM 483",
+       "COMM 484",
+       "COMM 492",
+       "COMM 493"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "COMM 271Principles of Journalism3\nSelect 6 credits from the following. At least 3 credits must be at the 400-level.6\nCOMM 262Podcasting and Digital Media for Entrepreneurs\nCOMM 361Entrepreneurial Journalism\nCOMM 362Podcasting\nCOMM 384Telecommunications Promotion and Sales\nCOMM 461ADigital Magazine Production\nCOMM 462Feature Writing\nCOMM 483Telecommunications Product Development\nCOMM 484Emerging Telecommunications Technologies\nCOMM 492Internet Law and Policy\nCOMM 493Entrepreneurship in the Information Age\n"
+  },
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-7 credits from the following category:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BA 241",
+       "BA 242",
+       "BA 243",
+       "BLAW 243",
+       "BLAW 341",
+       "BA 250",
+       "MGMT 431",
+       "BA 322",
+       "MGMT 420",
+       "HM 382",
+       "MGMT 365",
+       "MGMT 427",
+       "MGMT 427W",
+       "MGMT 451",
+       "MGMT 451W",
+       "MGMT 453"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following category:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MGMT 427",
+       "MGMT 427W",
+       "MGMT 451",
+       "MGMT 451W",
+       "MGMT 453"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 6-7 credits from the following category: 6-7\nBA 241& BA 242Legal Environment of Businessand Social and Ethical Environment of Business\nor BA 243 Social, Legal, and Ethical Environment of Business\nor BLAW 243 Legal Environment of Business\nor BLAW 341 Business Law I: Introduction to Contracts, Liability Issues, and Intellectual Property\nBA 250Small Business Management\nor MGMT 431 Entrepreneurship and Small Business Management\nBA 322Negotiation Skills for Business Professionals\nor MGMT 420 Negotiation and Conflict Management\nHM 382Franchising in the Hospitality Industry\nMGMT 365Social Entrepreneurship\nMGMT 427Managing an Entrepreneurial Start-Up Company\nMGMT 427WManaging an Entrepreneurial Start-up\nMGMT 451Business, Ethics, and Society\nMGMT 451WBusiness, Ethics, and Society\nMGMT 453Creativity and Innovation\nSelect 3 credits from the following category: 3\nMGMT 427Managing an Entrepreneurial Start-Up Company\nMGMT 427WManaging an Entrepreneurial Start-up\nMGMT 451Business, Ethics, and Society\nMGMT 451WBusiness, Ethics, and Society\nMGMT 453Creativity and Innovation\n"
+  },
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ENGR 407",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGR 411",
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EDSGN 367",
+       "EDSGN 467",
+       "ENGR 408",
+       "ENGR 415"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ENGR 407Product Innovation Entrepreneurship3\nENGR 411Entrepreneurship Business Fundamentals3\nSelect 3 credits from the following:3\nEDSGN 367Design Thinking and Making\nEDSGN 467Prototyping to Launch\nENGR 408Leadership Principles\nENGR 415Launching Innovation: Ideas to Opportunities\n"
+  },
+  {
+   "heading": "Required courses to be taken in the following order:",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ENGR 451",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 452",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 454",
+     "credits": 0.5
+    },
+    {
+     "type": "course",
+     "code": "ENGR 455",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ENGR 451Social Entrepreneurship3\nEDSGN 452Projects in Humanitarian Engineering3\nEDSGN 454Humanitarian Engineering and Social Entrepreneurship Field Experience0.5\nENGR 455Humanitarian Engineering and Social Entrepreneurship Reflection and Research Dissemination3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

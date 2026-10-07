@@ -1,0 +1,48 @@
+{
+ "slug": "berks-spanish-healthcare-certificate",
+ "name": "Spanish for Healthcare, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "berks",
+ "campuses": [
+  "Berks, The Berks College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/berks/spanish-healthcare-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "SPAN 100B",
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "SPAN 200",
+      "SPAN 301"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SPAN 300B",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SPAN 412",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "SPAN 100BIntermediate Grammar and Composition for Students in Medical-Related Fields3\nSPAN 200Intensive Grammar and Composition3\nor SPAN 301 Intensive Grammar and Composition for Spanish Bilinguals\nSPAN 300BAdvanced Grammar and composition for Students in Medical-related Fields3\nSPAN 412Translation3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

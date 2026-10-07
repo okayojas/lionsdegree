@@ -1,0 +1,688 @@
+{
+ "slug": "capital-secondary-education-social-studies-bsosc",
+ "name": "Secondary Education Social Studies, B.SOSC.",
+ "type": "major",
+ "degree": null,
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/secondary-education-social-studies-bsosc/",
+ "totalCredits": 122,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BISC 3",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDPSY 14",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 313",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "EDUC 314",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 315Y",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 385",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 400",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 415",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 458",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 459",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 466N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 490",
+     "credits": 9
+    },
+    {
+     "type": "course",
+     "code": "GEOG 40",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "GEOG 128",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HDFS 239",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HIST 20",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HIST 21",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HIST 320",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PLSC 1",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOC 1",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBISC 3Environmental Science 3\nEDPSY 14Learning and Instruction 3\nEDUC 313Secondary Education Field Experience2\nEDUC 314Learning Theory and Instructional Procedures3\nEDUC 315YSocial and Cultural Factors in Education3\nEDUC 385Professional Development in Teaching3\nEDUC 400Diversity and Cultural Awareness Practices in the K-12 Classroom3\nEDUC 415Teaching Secondary Social Studies3\nEDUC 458Behavior Management Strategies for Inclusive Classrooms3\nEDUC 459Strategies for Effective Teaching in Inclusive Classrooms3\nEDUC 466NFoundations of Teaching English as a Second Language 3\nEDUC 490Student Teaching9\nGEOG 40World Regional Geography 3\nGEOG 128Geography of International Affairs 3\nHDFS 239Adolescent Development 3\nHIST 20American Civilization to 1877 3\nHIST 21American Civilization Since 1877 3\nHIST 320Contemporary World History and Issues3\nPLSC 1American Politics: Principles, Processes and Powers 3\nPSYCH 100Introductory Psychology 3\nSOC 1Introductory Sociology 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ECON 104",
+      "ECON 14"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "HIST 1",
+       "HIST 2",
+       "HIST 10",
+       "HIST 11"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MATH 21",
+       "MATH 22",
+       "MATH 26",
+       "MATH 30",
+       "MATH 35",
+       "MATH 36",
+       "MATH 37",
+       "MATH 38",
+       "MATH 40",
+       "MATH 200",
+       "MATH 220",
+       "STAT 100",
+       "STAT 200"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nECON 104Introductory Macroeconomic Analysis and Policy 3\nor ECON 14 Principles of Economics\nSelect 3 credits from the following:3\nHIST 1Western Civilization I\nHIST 2Western Civilization II\nHIST 10World History to 1500\nHIST 11World History since 1500\nSelect 6 credits from the following:6\nMATH 21College Algebra with Analytic Geometry with Applications I\nMATH 22College Algebra With Analytic Geometry and Applications II\nMATH 26Plane Trigonometry and Applications of Trigonometry\nMATH 30\nMATH 35General View of Mathematics\nMATH 36Insights Into Mathematics\nMATH 37Finite Mathematics\nMATH 38Elementary Linear Algebra\nMATH 40\nMATH 200Problem Solving in Mathematics\nor MATH 220 Matrices\nSTAT 100Statistical Concepts and Reasoning\nSTAT 200Elementary Statistics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of literature courses from approved department list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of African African-American studies, American studies, history or minority studies from approved department list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of anthropology from approved department list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of political science",
+     "from": null
+    },
+    {
+     "type": "course",
+     "code": "SELECT 3",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "A 400",
+     "credits": null,
+     "unverified": true
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits of literature courses from approved department list3\nSelect 3 credits of African African-American studies, American studies, history or minority studies from approved department list3\nSelect 3 credits of anthropology from approved department list3\nSelect 3 credits of political science3\nSelect 3 credits of sociology (must be a 400-level course)3\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Secondary Education Social Studies, B.SOSC. at Harrisburg Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 15S",
+        "ENGL 30T"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 200",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOC 1",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HIST 1",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "HIST 10"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100S"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 201",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BISC 3",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HIST 20",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "Dept. Approved Literature Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EDPSY 14",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HIST 21",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "GEOG 30N",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HDFS 239",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 14",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PLSC 1",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "GEOG 40",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EDUC 313",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDUC 314",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "GEOG 128",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HIST 320",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ANTH 45N",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "PLSC Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EDUC 315Y",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDUC 458",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDUC 466N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "SOC 400-Level Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "AFAM, AMST, HIST, WMNST, or minority studies supporting course (US)",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Exploration: GA, GH, GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EDUC 400",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDUC 415",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDUC 459",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDUC 495",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EDUC 385",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDUC 490",
+       "credits": 9,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 122,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

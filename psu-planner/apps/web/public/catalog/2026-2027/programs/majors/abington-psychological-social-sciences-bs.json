@@ -1,0 +1,561 @@
+{
+ "slug": "abington-psychological-social-sciences-bs",
+ "name": "Psychological and Social Sciences, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "abington",
+ "campuses": [
+  "Abington, The Abington College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/abington/psychological-social-sciences-bs/",
+ "totalCredits": 121,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ANTH 45N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 200",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nANTH 45NCultural Diversity: A Global Perspective 3\nPSYCH 100Introductory Psychology 3\nPSYCH 200Elementary Statistics in Psychology 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BBH 301W",
+      "HDFS 301"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "HDFS 129",
+      "PSYCH 212"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 301W",
+      "HDFS 312W"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "SOC 1",
+      "SOC 5"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ANTH 495",
+       "HDFS 495C",
+       "PSYCH 495",
+       "SOC 495"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ANTH 494",
+       "HDFS 494",
+       "PSYCH 494",
+       "SOC 494"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ANTH 494",
+       "HDFS 494",
+       "PSYCH 494",
+       "SOC 494"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BISC 4",
+       "BIOL 133",
+       "BIOL 155",
+       "BIOL 161"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nBBH 301WValues and Ethics in Biobehavioral Health Research and Practice3\nor HDFS 301 Values and Ethics in Health and Human Development Professions\nHDFS 129Introduction to Human Development and Family Studies 3\nor PSYCH 212 Introduction to Developmental Psychology\nPSYCH 301WBasic Research Methods in Psychology3-4\nor HDFS 312W Empirical Inquiry in Human Development\nSOC 1Introductory Sociology 3\nor SOC 5 Society's Problems: Causes, Consequences, and Solutions\nSelect 3 credits from the following:3\nANTH 495Internship\nHDFS 495CProfessional Practicum in Human Services\nPSYCH 495Internship\nSOC 495Internship\nSelect 3 credits from the following:3\nANTH 494Research Project\nHDFS 494Research Project\nPSYCH 494Research Projects\nSOC 494Research Project\nSelect 4 credits from the following:4\nANTH 494Research Project\nHDFS 494Research Project\nPSYCH 494Research Projects\nSOC 494Research Project\nSelect 3 credits from the following:3\nBISC 4Human Body: Form and Function\nBIOL 133Genetics and Evolution of the Human Species\nBIOL 155Introduction to the Biology of Aging\nBIOL 161Human Anatomy and Physiology I - Lecture\nBIOL/PSYCH 169NWhat it means to be human\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from PSYCH/HDFS (any level)",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of SOC/ANTH (any level)",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from PSYCH/HDFS/SOC/ANTH",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits from PSYCH/HDFS (any level)6\nSelect 6 credits of SOC/ANTH (any level)6\nSelect 9 credits from PSYCH/HDFS/SOC/ANTH9\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Psychological and Social Sciences, B.S. at Abington Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 212",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "HDFS 129"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BISC 4",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "BIOL 133",
+        "BIOL 155",
+        "BIOL 161",
+        "BIOL 169N"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 200",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ANTH 45N",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SOC 1",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SOC 5"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "Humanities (GH) (US;IL)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CAS 100B"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 301W",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400 level class from Methods and Analysis Section",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Major Selection any level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Major Selection any level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "HDFS 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "400 level class from Methods and Analysis Section",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Major Selection 400 level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "XXX 494 Senior Thesis 1",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Major Selection 400 level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Major Selection 400 level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective (US/IL)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "XXX 495 Internship",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Major Selection 400 level",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "XXX 494 Senior Thesis 2",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 121,
+   "footnotes": {
+    "1": "At least 15 of 21 required major selection credits must be at the 400 level. 6-15 credits of major courses are required in courses designated PSYCH and/or HDFS. 6-15 credits of major courses are required in courses designated SOC and/or ANTH. 0-9 credits of major courses are required in courses designated other Social Sciences from the approved PSS program list. Methods and Analysis Section: Of your 15 credits of 400 level class, select 6 credits from ANTH 408, ANTH 428, ANTH 458, HDFS 401, HDFS 415, PSYCH 404 (or EDPSY 450), PSYCH 406W, PSYCH 407, PSYCH 408, PSYCH 439, PSYCH 492, SOC 405, SOC 413 (or CRIMJ 413), SOC 423, SOC 470, SOC 471."
+   }
+  }
+ ]
+}

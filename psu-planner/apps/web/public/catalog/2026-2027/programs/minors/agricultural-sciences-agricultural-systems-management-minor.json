@@ -1,0 +1,79 @@
+{
+ "slug": "agricultural-sciences-agricultural-systems-management-minor",
+ "name": "Agricultural Systems Management, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/agricultural-systems-management-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ABSM 310",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ABSM 327",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AGRO 28",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nABSM 310Power Transmission in Agriculture3\nABSM 327Soil and Water Resource Management3\nAGRO 28Principles of Crop Management3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Students must select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ABSM 422",
+       "ABSM 424",
+       "ABSM 426",
+       "ABSM 428",
+       "ABSM 429"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nStudents must select 6 credits from the following:6\nABSM 422Energy Analysis in Agricultural and Biorenewable Systems\nABSM 424Precision Agriculture Technology\nABSM 426Safety and Health in Agriculture and Biorenewable Industries\nABSM 428Electric Power and Instrumentation\nABSM 429Agricultural and Biorenewable Systems Analysis and Management\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in agricultural or environmental sciences in consultation with the minor adviser",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits in agricultural or environmental sciences in consultation with the minor adviser3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

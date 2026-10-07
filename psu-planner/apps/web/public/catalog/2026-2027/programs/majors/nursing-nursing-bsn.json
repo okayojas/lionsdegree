@@ -1,0 +1,1563 @@
+{
+ "slug": "nursing-nursing-bsn",
+ "name": "Nursing, B.S.N.",
+ "type": "major",
+ "degree": null,
+ "college": "nursing",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/nursing/nursing-bsn/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 161",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BIOL 162",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "BIOL 163",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BIOL 164",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "HDFS 129",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MICRB 106",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MICRB 107",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "NUTR 251",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 100",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBIOL 161Human Anatomy and Physiology I - Lecture 3\nBIOL 162Human Anatomy and Physiology I - Laboratory 1\nBIOL 163Human Anatomy and Physiology II - Lecture 3\nBIOL 164Human Anatomy and Physiology II - Laboratory 1\nHDFS 129Introduction to Human Development and Family Studies 3\nMICRB 106Elementary Microbiology 3\nMICRB 107Elementary Microbiology Laboratory 1\nNUTR 251Introductory Principles of Nutrition 3\nPSYCH 100Introductory Psychology 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 130",
+      "CHEM 110",
+      "CHEM 111"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "SOC 1",
+      "SOC 5"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "STAT 200",
+      "STAT 250"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nCHEM 130Introduction to General, Organic, and Biochemistry 3-4\nor CHEM 110& CHEM 111 Chemical Principles I and Experimental Chemistry I\nSOC 1Introductory Sociology 3\nor SOC 5 Society's Problems: Causes, Consequences, and Solutions\nSTAT 200Elementary Statistics 3-4\nor STAT 250 Introduction to Biostatistics\n"
+  },
+  {
+   "heading": "Requirements for the Option",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select an option"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Requirements for the Option: Require a grade of C or better\nSelect an option60-66\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B",
+      "CAS 100C",
+      "CAS 100S"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 15",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 200W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 225",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 230",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 250",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "NURS 251",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 301",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 302",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "NURS 305",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 306",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 310",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 320",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 350",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "NURS 405A",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 405B",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 415",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 420",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 450A",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "NURS 450B",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 480",
+     "credits": 2
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCAS 100Effective Speech3\nENGL 15Rhetoric and Composition 3\nNURS 200WPrinciples of Nursing Research and Evidence-Based Practice3\nNURS 225Pathophysiology3\nNURS 230Introduction to the Fundamentals of Nursing4\nNURS 250Professional Role Dev I: Intro to Professional Issues in Nursing Practice and Nursing Informatics2\nNURS 251Health Assessment3\nNURS 301Nursing Care of the Adult Client Requiring Medical-Surgical Intervention4\nNURS 302Clinical Judgement in Nursing1\nNURS 305Introduction to Pharmacological Concepts3\nNURS 306Nursing Care of Children and Adolescents3\nNURS 310Therapeutic Nursing Care of the Older Adult Client in a Variety of Settings3\nNURS 320Nursing Care of the Childbearing Family and Gynecological Client3\nNURS 350Professional Role Development II: Ethics, Legal and Genomic Issues2\nNURS 405ANursing Care of the Adult Client with Complex Health Problems: Part A4\nNURS 405BNursing Care of the Adult Client with Complex Health Problems: Part B4\nNURS 415Community and Family Health Nursing4\nNURS 420Mental Health Nursing4\nNURS 450AProfessional Role Development III: Leadership and Management2\nNURS 450BProfessional Role Development III: Clinical Capstone3\nNURS 480NCLEX Prep2\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 202A",
+       "ENGL 202B",
+       "ENGL 202C",
+       "ENGL 202D"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nENGL 202AEffective Writing: Writing in the Social Sciences\nENGL 202BEffective Writing: Writing in the Humanities\nENGL 202CEffective Writing: Technical Writing\nENGL 202DEffective Writing: Business Writing\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "NURS 200W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 225",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 230",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 250",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "NURS 301",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 305",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 306",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 310",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 320",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 357",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 390",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 405B",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 417",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 420",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 465",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 475",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nNURS 200WPrinciples of Nursing Research and Evidence-Based Practice3\nNURS 225Pathophysiology3\nNURS 230Introduction to the Fundamentals of Nursing4\nNURS 250Professional Role Dev I: Intro to Professional Issues in Nursing Practice and Nursing Informatics2\nNURS 301Nursing Care of the Adult Client Requiring Medical-Surgical Intervention4\nNURS 305Introduction to Pharmacological Concepts3\nNURS 306Nursing Care of Children and Adolescents3\nNURS 310Therapeutic Nursing Care of the Older Adult Client in a Variety of Settings3\nNURS 320Nursing Care of the Childbearing Family and Gynecological Client3\nNURS 357Introduction to Nursing Informatics3\nNURS 390Transition and the Professional Nursing Role3\nNURS 405BNursing Care of the Adult Client with Complex Health Problems: Part B4\nNURS 417Family and Community Health Concepts4\nNURS 420Mental Health Nursing4\nNURS 465Health Concepts for Adults with Complex Health Care Needs3\nNURS 475Integrated Concepts in Nursing Practice3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "NURS 251",
+      "NURS 352"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nNURS 251Health Assessment3\nor NURS 352 Advanced Health Assessment for the Registered Nurse\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of NURS 400-Level and 3 credits of lower level (NURS XXX) Supporting Courses",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "NURS"
+      ],
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3 credits of NURS 400-Level and 3 credits of lower level (NURS XXX) Supporting Courses6\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "NURS 200W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 225",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 230",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 250",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "NURS 251",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 301",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 305",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 306",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 310",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 320",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NURS 350",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "NURS 405A",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 405B",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 415",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 420",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NURS 450A",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "NURS 450C",
+     "credits": 7
+    },
+    {
+     "type": "course",
+     "code": "NURS 480",
+     "credits": 2
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nNURS 200WPrinciples of Nursing Research and Evidence-Based Practice3\nNURS 225Pathophysiology3\nNURS 230Introduction to the Fundamentals of Nursing4\nNURS 250Professional Role Dev I: Intro to Professional Issues in Nursing Practice and Nursing Informatics2\nNURS 251Health Assessment3\nNURS 301Nursing Care of the Adult Client Requiring Medical-Surgical Intervention4\nNURS 305Introduction to Pharmacological Concepts3\nNURS 306Nursing Care of Children and Adolescents3\nNURS 310Therapeutic Nursing Care of the Older Adult Client in a Variety of Settings3\nNURS 320Nursing Care of the Childbearing Family and Gynecological Client3\nNURS 350Professional Role Development II: Ethics, Legal and Genomic Issues2\nNURS 405ANursing Care of the Adult Client with Complex Health Problems: Part A4\nNURS 405BNursing Care of the Adult Client with Complex Health Problems: Part B4\nNURS 415Community and Family Health Nursing4\nNURS 420Mental Health Nursing4\nNURS 450AProfessional Role Development III: Leadership and Management2\nNURS 450CCapstone Clinical Immersion7\nNURS 480NCLEX Prep2\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "General Nursing Option: Nursing, B.S.N. at University Park, Altoona, Erie, Fayette, Mont Alto, Schuylkill, and Scranton Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 161",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 162",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 100",
+       "credits": 1,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 163",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 164",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "#",
+        "†",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HDFS 129",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUTR 251",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 130",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ],
+       "alternatives": [
+        "CHEM 110",
+        "CHEM 111"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MICRB 106",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 107",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 250",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 251",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SOC 1",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SOC 5"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "NURS 225",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 230",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Integrative Studies Interdomain Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "NURS 305",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 301",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 310",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 350",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Integrative Studies Interdomain Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "NURS 200W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 302",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 306",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 320",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "NURS 405A",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 450A",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 415",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "NURS 450B",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 405B",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 420",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 480",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "RN to BSN Option: Nursing, B.S.N. at University Park, Abington, Shenango, and World Campus Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 161",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 162",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": [
+        "1"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 163",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 164",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "†",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "HDFS 129",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUTR 251",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "1",
+        ",",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 130",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": [
+        "CHEM 110",
+        "CHEM 111"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MICRB 106",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 107",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 390",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 357",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SOC 1",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "SOC 5"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "†",
+        "1"
+       ],
+       "alternatives": [
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "NURS 251",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "NURS 352"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "NURS Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Integrative Studies Interdomain Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 10,
+     "entries": [
+      {
+       "type": "course",
+       "code": "NURS 417",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Integrative Studies Interdomain Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 9,
+     "entries": [
+      {
+       "type": "course",
+       "code": "NURS 200W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 465",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 9,
+     "entries": [
+      {
+       "type": "course",
+       "code": "NURS 475",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "NURS 400-level Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "NURS Supporting Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 90,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Second Degree in Nursing Option: Nursing, B.S.N. at Altoona, Erie, and Harrisburg Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "NURS 250",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 225",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 230",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 305",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 251",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "NURS 350",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 301",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 310",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 415",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 405A",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Summer",
+     "label": "Year 1 Summer",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "NURS 320",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 306",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 420",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 405B",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "NURS 450A",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 450C",
+       "credits": 7,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 480",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NURS 200W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 60,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

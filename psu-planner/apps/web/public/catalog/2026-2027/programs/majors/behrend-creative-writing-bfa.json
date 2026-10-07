@@ -1,0 +1,627 @@
+{
+ "slug": "behrend-creative-writing-bfa",
+ "name": "Creative Writing, B.F.A.",
+ "type": "major",
+ "degree": "BFA",
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/creative-writing-bfa/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ENGL 6",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ENGL 200",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 209",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 212",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 213",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 312",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 494",
+     "credits": 6
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ENGL 6Creative Writing Common Time 4\nPrescribed Courses: Require a grade of C or better\nENGL 200Introduction to Critical Reading3\nENGL 209Journal or Magazine Practicum 3\nENGL 212Introduction to Fiction Writing 3\nENGL 213Introduction to Poetry Writing 3\nENGL 312Globality and Literature3\nENGL 494Senior Thesis in English6\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits of a World Language (0-12 credits are included in ELECTIVES if world language proficiency is demonstrated by examination)",
+     "from": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 401W",
+      "ENGL 482W"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAMS 45",
+       "CMLIT 10",
+       "ENGL 104"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "APLNG 210",
+       "ENGL 100",
+       "LING 100"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 440",
+       "ENGL 443",
+       "ENGL 444"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 412",
+       "ENGL 413",
+       "ENGL 422",
+       "ENGL 424"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 12 credits of a World Language (0-12 credits are included in ELECTIVES if world language proficiency is demonstrated by examination)12\nAdditional Courses: Require a grade of C or better\nENGL 401WCreative Writing Theory3\nor ENGL 482W Contemporary Literary and Cultural Theory\nSelect 3 credits from the following:3\nCAMS 45Classical Mythology\nCMLIT 10Worlds: Literature, Media, and Society\nENGL 104The Bible as Literature\nSelect 3 credits from the following:3\nAPLNG 210Global English\nENGL 100English Language Analysis\nLING 100Foundations of Linguistics\nSelect 3 credits from the following:3\nENGL 440Studies in Shakespeare\nENGL 443The English Renaissance\nENGL 444Shakespeare\nSelect 9 credits from the following:9\nENGL 412Advanced Fiction Writing\nENGL 413Advanced Poetry Writing\nENGL 422Fiction Workshop\nENGL 424Creative Writing and the Natural World\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "SELECT 12",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "LEAST 6",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "THE 400",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from courses in professional writing from a departmental list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 12 credits in literature courses from a departmental list (at least 6 credits must be at the 400 level)12\nSelect 3 credits from courses in professional writing from a departmental list3\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Creative Writing, B.F.A. at Erie Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 6",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 1",
+       "credits": 4,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 6",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ENGL 213"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language (Level 2)",
+       "credits": 4,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 6",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200-400 level course in ENGL or CMLIT",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ENGL 213"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 3",
+       "credits": 4,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 6",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 100",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200-400 Level Course in ENGL or CMLIT",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CMLIT 10",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "†",
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 412",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ENGL 413"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 6",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 312",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 412",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ENGL 413"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 444",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ENGL 443"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 458",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 6",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 422",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 433",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 6",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 401W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 436",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 494",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 6",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 437",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 494",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 420",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 126,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

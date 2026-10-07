@@ -1,0 +1,67 @@
+{
+ "slug": "agricultural-sciences-agricultural-stewardship-conservation-certificate",
+ "name": "Agricultural Stewardship and Conservation, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/agricultural-stewardship-conservation-certificate/",
+ "totalCredits": 11,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ERM 426",
+     "credits": 1,
+     "unverified": true
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ERM 495",
+      "ERM 496"
+     ],
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "SOILS 101",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOILS 418",
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "ASM 327",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "BE 307",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SOILS 422",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "ERM 4261\nERM 495Internship1-3\nor ERM 496 Independent Studies\nSOILS 101Introductory Soil Science 3\nSOILS 418Nutrient Management in Agricultural Systems3\nSelect one of the following:3-4\nASM 327Soil and Water Resource Management\nBE 307Principles of Soil and Water Engineering\nSOILS 422Natural Resources Conservation and Community Sustainability\n"
+  }
+ ],
+ "suggestedPlans": []
+}

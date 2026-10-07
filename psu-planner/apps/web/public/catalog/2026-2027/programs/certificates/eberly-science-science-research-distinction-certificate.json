@@ -1,0 +1,52 @@
+{
+ "slug": "eberly-science-science-research-distinction-certificate",
+ "name": "Science Research Distinction, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/science-research-distinction-certificate/",
+ "totalCredits": 7,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "SC 494",
+     "credits": 1
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits in independent research in Eberly College of Science from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ASTRO 296",
+       "ASTRO 496",
+       "BIOL 296",
+       "BIOL 496",
+       "BMB 488",
+       "BMB 496",
+       "CHEM 294",
+       "CHEM 494",
+       "FRNSC 496",
+       "MATH 296",
+       "MATH 496",
+       "PHYS 296",
+       "PHYS 496",
+       "STAT 496"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "SC 494Research Project Courses (section 002 in semester that thesis is approved)1\nSelect 6 credits in independent research in Eberly College of Science from the following:6\nASTRO 296Independent Studies\nASTRO 496Independent Studies\nBIOL 296Independent Studies\nBIOL 496Independent Studies\nBMB 488Communities of Practice in Biochemistry and Molecular Biology\nBMB 496Independent Studies\nCHEM 294Special Problems and Research\nCHEM 494Chemical Research\nFRNSC 496Independent Studies\nMATH 296Independent Studies\nMATH 496Independent Studies\nPHYS 296Independent Studies\nPHYS 496Independent Studies\nSTAT 496Independent Studies\n"
+  }
+ ],
+ "suggestedPlans": []
+}

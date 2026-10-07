@@ -1,0 +1,83 @@
+{
+ "slug": "engineering-engineering-leadership-development-minor",
+ "name": "Engineering Leadership Development, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/engineering-leadership-development-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ENGR 407",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGR 408",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nENGR 407Product Innovation Entrepreneurship3\nENGR 408Leadership Principles3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select two courses from this group:"
+    },
+    {
+     "type": "course",
+     "code": "ENGR 405",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENGR 409",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENGR 422",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ENGR 496",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect two courses from this group:6\nENGR 405Project Management for Professionals\nENGR 409Leadership in Organizations\nENGR 422Leadership of International Virtual Engineering Teams\nENGR 496Independent Studies\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits in consultation with the coordinator of the Engineering Leadership Development Minor",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits in consultation with the coordinator of the Engineering Leadership Development Minor6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

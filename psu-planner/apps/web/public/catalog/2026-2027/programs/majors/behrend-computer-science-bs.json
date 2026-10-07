@@ -1,0 +1,660 @@
+{
+ "slug": "behrend-computer-science-bs",
+ "name": "Computer Science, B.S. (Behrend)",
+ "type": "major",
+ "degree": "BS",
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/computer-science-bs/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CMPSC 221",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 220",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "CAS 100A",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 121",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 122",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 312",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 335",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 360",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 421",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 431W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 461",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 465",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 474",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 484",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 485W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202C",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CMPSC 221Object Oriented Programming with Web-Based Applications3\nMATH 220Matrices 2\nPrescribed Courses: Require a grade of C or better\nCAS 100AEffective Speech 3\nCMPSC 121Introduction to Programming Techniques3\nCMPSC 122Intermediate Programming3\nCMPSC 312Computer Organization and Architecture3\nCMPSC 335Fundamentals of Communication Networks3\nCMPSC 360Discrete Mathematics for Computer Science3\nCMPSC 421Net-centric Computing3\nCMPSC 431WDatabase Management Systems3\nCMPSC 461Programming Language Concepts3\nCMPSC 465Data Structures and Algorithms3\nCMPSC 474Operating System & Systems Programming3\nCMPSC 484Computer Science Senior Project I2\nCMPSC 485WComputer Science Senior Project II3\nENGL 202CEffective Writing: Technical Writing 3\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\nSTAT/MATH 318Elementary Probability3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following sequences:"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 110",
+      "BIOL 110",
+      "BIOL 220W"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 110",
+      "BIOL 110",
+      "BIOL 230W"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 110",
+      "BIOL 110",
+      "BIOL 230M"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 110",
+      "BIOL 110",
+      "BIOL 240W"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 110",
+      "BIOL 110",
+      "BIOL 240M"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 110",
+      "CHEM 111",
+      "CHEM 112",
+      "CHEM 113",
+      "CHEM 210"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 211",
+      "PHYS 212",
+      "PHYS 213"
+     ],
+     "credits": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 211",
+      "PHYS 212",
+      "PHYS 214"
+     ],
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Select at least 15 additional science credits from department approved list"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Select one of the following sequences:10-11\nCHEM 110& BIOL 110& BIOL 220WChemical Principles I and Biology: Basic Concepts and Biodiversity and Biology: Populations and Communities\nCHEM 110& BIOL 110& BIOL 230WChemical Principles I and Biology: Basic Concepts and Biodiversity and Biology: Molecules and Cells\nCHEM 110& BIOL 110& BIOL 230MChemical Principles I and Biology: Basic Concepts and Biodiversity and Honors Biology: Molecules and Cells\nCHEM 110& BIOL 110& BIOL 240WChemical Principles I and Biology: Basic Concepts and Biodiversity and Biology: Function and Development of Organisms\nCHEM 110& BIOL 110& BIOL 240MChemical Principles I and Biology: Basic Concepts and Biodiversity and Honors Biology: Function and Development of Organisms\nCHEM 110& CHEM 111& CHEM 112& CHEM 113& CHEM 210Chemical Principles I and Experimental Chemistry I and Chemical Principles II and Experimental Chemistry II and Organic Chemistry I\nPHYS 211& PHYS 212& PHYS 213General Physics: Mechanics and General Physics: Electricity and Magnetism and General Physics: Fluids and Thermal Physics\nPHYS 211& PHYS 212& PHYS 214General Physics: Mechanics and General Physics: Electricity and Magnetism and General Physics: Wave Motion and Quantum Physics\nSelect at least 15 additional science credits from department approved list15\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the school approved list",
+     "from": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Select 9 additional credits from department approved courses in CMPSC, CMPEN, or SWENG"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Select 6 credits from the school approved list 6\nSelect 9 additional credits from department approved courses in CMPSC, CMPEN, or SWENG9\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Computer Science, B.S. at Erie Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPSC 121",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "†",
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PSU 7",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "Science Sequence Course (GN)",
+       "domain": "GN",
+       "credits": 4,
+       "footnotes": [
+        "#",
+        "†",
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPSC 122",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Science Sequence Course",
+       "credits": 4,
+       "footnotes": [
+        "†",
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 100S"
+       ],
+       "resolvedFrom": "CAS 100"
+      },
+      {
+       "type": "course",
+       "code": "CMPSC 221",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 220",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Science Sequence Course",
+       "credits": 2,
+       "footnotes": [
+        "†",
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPSC 360",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 318",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Computer Science and Science Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPSC 312",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CMPSC 335",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CMPSC 465",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SWENG 411",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Computer Science and Science Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPSC 421",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CMPSC 431W",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CMPSC 474",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Computer Science and Science Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting and Related Area",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPSC 461",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CMPSC 484",
+       "credits": 2,
+       "footnotes": [
+        "*",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Computing Elective or Computer Science and Science Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Selection (GA/GH/GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Computer Science and Science Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting and Related Area",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPSC 485W",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Computing Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Computer Science and Science Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 122,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

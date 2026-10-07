@@ -1,0 +1,809 @@
+{
+ "slug": "behrend-psychology-bs",
+ "name": "Psychology, B.S. (Behrend)",
+ "type": "major",
+ "degree": "BS",
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/psychology-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "PSYCH 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 301W",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 406W",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 489",
+     "credits": 1
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nPSYCH 100Introductory Psychology 3\nPSYCH 301WBasic Research Methods in Psychology4\nPSYCH 406WAdvanced Research Projects in Psychology4\nPSYCH 489Professional Development in Psychology1\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 15",
+      "ENGL 30H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 200",
+      "STAT 200"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAS 100A",
+       "CAS 100B",
+       "CAS 100C"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 202A",
+       "ENGL 202B",
+       "ENGL 202C",
+       "ENGL 202D"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in four of the following five content categories:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PSYCH 253",
+       "PSYCH 260",
+       "PSYCH 269",
+       "HDFS 129",
+       "HDFS 229",
+       "PSYCH 212",
+       "PSYCH 221",
+       "PSYCH 256",
+       "PSYCH 261",
+       "PSYCH 263N",
+       "PSYCH 268",
+       "EDPSY 14",
+       "PSYCH 217N",
+       "PSYCH 238",
+       "PSYCH 243",
+       "PSYCH 244",
+       "PSYCH 270",
+       "PSYCH 281",
+       "PSYCH 230",
+       "PSYCH 231",
+       "PSYCH 232"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nENGL 15Rhetoric and Composition 3\nor ENGL 30H Honors Rhetoric and Composition\nPSYCH 200Elementary Statistics in Psychology 4\nor STAT 200 Elementary Statistics\nSelect 3 credits from the following:3\nCAS 100AEffective Speech\nCAS 100BEffective Speech\nCAS 100CEffective Speech\nSelect 3 credits from the following:3\nENGL 202AEffective Writing: Writing in the Social Sciences\nENGL 202BEffective Writing: Writing in the Humanities\nENGL 202CEffective Writing: Technical Writing\nENGL 202DEffective Writing: Business Writing\nSelect 3 credits in four of the following five content categories:12\n1. Biological Bases of Behavior\nPSYCH 253Introduction to Psychology of Perception\nPSYCH 260Neurological Bases of Human Behavior\nPSYCH 269Evolutionary Psychology\n2. Social/Developmental\nHDFS 129Introduction to Human Development and Family Studies\nHDFS 229Infant and Child Development\nPSYCH 212Introduction to Developmental Psychology\nPSYCH 221Introduction to Social Psychology\n3. Cognitive/Learning\nPSYCH 256Introduction to Cognitive Psychology\nPSYCH 261Introduction to Psychology of Learning\nPSYCH 263NScience of Learning\nPSYCH 268Animal Minds\n4. Clinical/Applied\nEDPSY 14Learning and Instruction\nPSYCH 217NThe Science of Human Resilience\nPSYCH 238Introduction to Personality Psychology\nPSYCH 243Introduction to Well-being and Positive Psychology\nPSYCH 244Introduction to the Psychology of Human Factors Engineering\nPSYCH 270Introduction to Abnormal Psychology\nPSYCH 281Introduction to Industrial-Organizational Psychology\n5. Diversity\nPSYCH 230Introduction to Psychologies of Religion\nPSYCH 231Introduction to the Psychology of Gender\nPSYCH 232Cross-Cultural Psychology\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of quantification courses from the departmental list - Quantification",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of a structured practicum, internship or an approved research experience (PSYCH 294, PSYCH 296, PSYCH 477, PSYCH 494, PSYCH 495, or PSYCH 496 may be applied to this requirement)",
+     "from": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Select 3 additional credits of psychology courses at the 200, 300, or 400-level in consultation with your adviser"
+    },
+    {
+     "type": "course",
+     "code": "SELECT 9",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "OF 400",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 494",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 495",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 496",
+     "credits": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Select 3 credits of quantification courses from the departmental list - Quantification3\nSelect 3 credits of a structured practicum, internship or an approved research experience (PSYCH 294, PSYCH 296, PSYCH 477, PSYCH 494, PSYCH 495, or PSYCH 496 may be applied to this requirement)3\nSelect 3 additional credits of psychology courses at the 200, 300, or 400-level in consultation with your adviser3\nSupporting Courses and Related Areas: Require a grade of C or better\nSelect 9 credits of 400-level psychology courses from any combination of categories in consultation with adviser (except PSYCH 494, PSYCH 495, PSYCH 496) 9\n"
+  },
+  {
+   "heading": "Requirements for the Option",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select an option"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select an option18\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "DA 101",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "DA 201W",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "STAT 184",
+     "credits": 2
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nDA 101Introduction to Data Analytics 3\nDA 201WDescriptive Analytics4\nSTAT 184Introduction to R 2\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CMPSC 121",
+      "CMPSC 131"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nCMPSC 121Introduction to Programming Techniques3\nor CMPSC 131 Programming and Computation I: Fundamentals\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits in data-analytic related courses from the departmental list – Data Analytics Option and in consultation with adviser.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better:\nSelect 6 credits in data-analytic related courses from the departmental list – Data Analytics Option and in consultation with adviser. 6\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "PSYCH 244",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 444",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nPSYCH 244Introduction to the Psychology of Human Factors Engineering 3\nPSYCH 444Engineering Psychology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PSYCH 253",
+       "PSYCH 256",
+       "PSYCH 260A"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nPSYCH 253Introduction to Psychology of Perception\nPSYCH 256Introduction to Cognitive Psychology\nPSYCH 260ANeurological Bases of Human Behavior\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits in psychology, engineering and business-related courses from the departmental list - Human Factors and Design Option and in consultation with adviser",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better:\nSelect 9 credits in psychology, engineering and business-related courses from the departmental list - Human Factors and Design Option and in consultation with adviser 9\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "PSYCH 281",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nPSYCH 281Introduction to Industrial-Organizational Psychology 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PSYCH 482",
+       "PSYCH 484",
+       "PSYCH 485"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better:\nSelect 3 credits from the following:3\nPSYCH 482Selection and Assessment in Organizations\nPSYCH 484Work Attitudes and Motivation\nPSYCH 485Leadership in Work Settings\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits in business-related courses from the departmental list - Psychology in the Workplace Option and in consultation with adviser. A maximum of 3 credits may be selected from the PSYCH courses listed.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 12 credits in business-related courses from the departmental list - Psychology in the Workplace Option and in consultation with adviser. A maximum of 3 credits may be selected from the PSYCH courses listed. 12\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PSYCH 253",
+       "PSYCH 256",
+       "PSYCH 260A",
+       "PSYCH 261"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following: 3\nPSYCH 253Introduction to Psychology of Perception\nPSYCH 256Introduction to Cognitive Psychology\nPSYCH 260ANeurological Bases of Human Behavior\nPSYCH 261Introduction to Psychology of Learning\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits in science-related courses from the departmental list - Science Option and in consultation with adviser",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 15 credits in science-related courses from the departmental list - Science Option and in consultation with adviser 15\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Psychology, B.S. at Erie Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "First Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Psychology Area Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Psychology Area Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Psychology Area Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "†",
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 100S"
+       ],
+       "resolvedFrom": "CAS 100"
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Psychology Area Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 200",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "STAT 200"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Psychology in the Workplace or Human Factors and Design or Science or Data Analytics Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "†",
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202C"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 301W",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "400-Level Psychology Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Psychology in the Workplace or Human Factors and Design or Science or Data Analytics Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "400- Level Psychology Selection",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 406W",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Psychology Area Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 489",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400-Level Psychology Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Psychology in the Workplace or Human Factors and Design or Science or Data Analytics Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Psychology in the Workplace or Human Factors and Design or Science or Data Analytics Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 494",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Psychology in the Workplace or Human Factors and Design or Science or Data Analytics Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Psychology in the Workplace or Human Factors and Design or Science or Data Analytics Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 122,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

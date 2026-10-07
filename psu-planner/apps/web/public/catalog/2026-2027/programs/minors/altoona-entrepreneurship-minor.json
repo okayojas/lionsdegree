@@ -1,0 +1,66 @@
+{
+ "slug": "altoona-entrepreneurship-minor",
+ "name": "Entrepreneurship, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "altoona",
+ "campuses": [
+  "Altoona, The Altoona College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/altoona/entrepreneurship-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ACCTG 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ECON 102",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENTR 300",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENTR 320",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nACCTG 211Financial and Managerial Accounting for Decision Making4\nECON 102Introductory Microeconomic Analysis and Policy 3\nENTR 300Principles of Entrepreneurship3\nENTR 320Entrepreneurship and New Venture Creation3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits at the 400-level from entrepreneurship",
+     "from": null
+    },
+    {
+     "type": "course",
+     "code": "ENGL 419",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits at the 400-level from entrepreneurship3\nENGL 419Advanced Business Writing (or any 400-level Business or Economics course)3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

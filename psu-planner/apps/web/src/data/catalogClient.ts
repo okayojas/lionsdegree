@@ -2,7 +2,53 @@
  * CDN in prod) and assembles the runtime Catalog for the courses a plan needs. */
 import { astCourses, buildCatalog, type Catalog, type Course, type FlowchartPatterns, type IugSpec } from "@psu-planner/engine";
 
-const BASE = "/catalog";
+const ROOT = "/catalog";
+
+/** Which bulletin edition every fetch below reads from. A student's degree
+ * requirements are governed by the edition in force when they entered their
+ * major, so a Plan pins one and the app must serve that one rather than the
+ * newest (docs/adr/0001-forward-only-catalog-editions.md). */
+let edition: string | null = null;
+let editionsPromise: Promise<EditionsIndex> | null = null;
+
+export interface EditionsIndex {
+  editions: string[];
+  latest: string;
+}
+
+export async function loadEditions(): Promise<EditionsIndex> {
+  if (!editionsPromise) {
+    editionsPromise = fetch(`${ROOT}/editions.json`).then((r) => {
+      if (!r.ok) throw new Error(`editions.json missing (${r.status})`);
+      return r.json() as Promise<EditionsIndex>;
+    });
+  }
+  return editionsPromise;
+}
+
+/** Switch editions. Every cache below is edition-scoped, so all of them are
+ * dropped: serving one edition's course list under another's requirements is
+ * exactly the silent wrongness the multi-edition work exists to prevent. */
+export function setCatalogEdition(next: string): void {
+  if (edition === next) return;
+  edition = next;
+  subjectsIndex = null;
+  loadedSubjects.clear();
+  coverageCache = null;
+  patternsCache = undefined;
+  iugIndexCache = null;
+  programsIndexCache = null;
+  fullCatalogPromise = null;
+}
+
+export function currentEdition(): string | null {
+  return edition;
+}
+
+async function base(): Promise<string> {
+  if (!edition) edition = (await loadEditions()).latest;
+  return `${ROOT}/${edition}`;
+}
 
 export interface ProgramIndexEntry {
   slug: string;
@@ -22,13 +68,15 @@ let subjectsIndex: SubjectsIndex | null = null;
 const loadedSubjects = new Map<string, Course[]>();
 
 async function getJson<T>(path: string): Promise<T> {
-  const res = await fetch(`${BASE}/${path}`);
+  const res = await fetch(`${await base()}/${path}`);
   if (!res.ok) throw new Error(`catalog fetch failed: ${path} (${res.status})`);
   return res.json();
 }
 
+let programsIndexCache: ProgramIndexEntry[] | null = null;
 export async function loadProgramsIndex(): Promise<ProgramIndexEntry[]> {
-  return getJson("programs_index.json");
+  if (!programsIndexCache) programsIndexCache = await getJson<ProgramIndexEntry[]>("programs_index.json");
+  return programsIndexCache;
 }
 
 export async function loadSubjectsIndex(): Promise<SubjectsIndex> {

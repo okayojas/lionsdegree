@@ -1,0 +1,87 @@
+# Planner
+
+Builds a student's Plan from one or more Programs and schedules it so every
+prerequisite is respected. Its governing obligation is that an uncertain answer
+is shown as uncertain, never resolved into a confident wrong one.
+
+## Language
+
+### The plan
+
+**Plan**:
+A student's own semester-by-semester schedule. Pinned to one Edition at
+creation, and governed by that Edition for its life.
+_Avoid_: schedule, degree audit — a schedule is one view of a Plan, and an
+audit is one judgement about it.
+
+**Term**:
+One scheduled period in a Plan: a fall, a spring, or an opted-in summer.
+_Avoid_: semester — a summer is a Term and is not a semester.
+
+**Gap Term**:
+A Term the student intends to leave empty, for a co-op, leave, or gap year. An
+intentional emptiness, distinct from a Term that merely has nothing in it yet.
+
+**Template**:
+The order and pacing a Program's own published plan suggests. A starting shape,
+not an obligation: we keep its ordering and discard its spacing.
+
+**Origin**:
+Which Program's Template an item came from, and where it sat there. What makes
+a double major's shared requirements countable once rather than twice.
+
+**Constraint**:
+A rule the student imposes on their own Plan, such as refusing a Term for a
+Course. Survives rescheduling, which is what separates it from a manual move.
+
+**Capstone**:
+The culminating course or sequence a Program ends with. Identified by what it
+is called, not merely by where it falls.
+
+### What fills a term
+
+**Course**:
+A specific catalog course placed in a Term.
+
+**Slot**:
+A placeholder for a requirement the student has not yet chosen a Course for. It
+has credits and a requirement behind it, but no course yet. Gen eds and
+electives are both Slots.
+_Avoid_: elective, placeholder, open requirement — the first names only one
+kind, the second says nothing about why it exists, and the third is a synonym
+we rejected.
+
+**Pool**:
+The set of Courses that may fill a Slot, together with where that knowledge came
+from and how far it can be trusted. Provenance is part of the Pool, not metadata
+about it, because the five sources differ enormously in reliability and the
+student has to be told which one they are looking at.
+
+A Pool is one of five kinds:
+
+- **Listed**: the bulletin names the courses outright. Authoritative.
+- **Patterned**: derived from the subjects and course levels the requirement
+  describes. Only as good as our reading of that description.
+- **General Education**: any course carrying a given Gen Ed designation.
+- **Registered**: a list from a Registry Entry, carrying its source and date.
+- **Adviser**: no list exists, because the requirement is defined by a
+  conversation. A kind of Pool in its own right, never an empty one — an empty
+  list would tell the student no course qualifies, which is false.
+
+**Suggestion**:
+A Course offered to the student for a particular Slot, ranked by how well it
+fits their Plan. Never a claim that the course runs in that Term: we cannot see
+course offerings and say so.
+_Avoid_: recommendation — we rank options against a Plan, we do not advise.
+
+### Judgements
+
+**Satisfied**:
+A requirement a Plan demonstrably meets.
+
+**Unknown**:
+A requirement we cannot judge either way, usually because the prerequisite text
+defeated reading. Distinct from unmet, and never collapsed into satisfied.
+
+**Violation**:
+A Course scheduled before something it enforces as a prerequisite.

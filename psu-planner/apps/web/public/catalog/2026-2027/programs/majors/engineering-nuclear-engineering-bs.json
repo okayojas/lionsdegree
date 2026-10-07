@@ -1,0 +1,702 @@
+{
+ "slug": "engineering-nuclear-engineering-bs",
+ "name": "Nuclear Engineering, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/nuclear-engineering-bs/",
+ "totalCredits": 129,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "EE 212",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EMCH 211",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EMCH 212",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EMCH 213",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EMCH 315",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "EMCH 316",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "MATH 230",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NUCE 310W",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "NUCE 321",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NUCE 322",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NUCE 403",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NUCE 420",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NUCE 431W",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NUCE 451",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PHYS 214",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202C",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 251",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NUCE 301",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NUCE 302",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "NUCE 309",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NUCE 430",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NUCE 450",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PHYS 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 212",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CHEM 111Experimental Chemistry I 1\nEE 212Introduction to Electronic Measuring Systems3\nEMCH 211Statics3\nEMCH 212Dynamics3\nEMCH 213Strength of Materials3\nEMCH 315Mechanical Response of Engineering Materials2\nEMCH 316Experimental Determination of Mechanical Response of Materials1\nMATH 230Calculus and Vector Analysis4\nNUCE 310WIssues in Nuclear Engineering2\nNUCE 321Introduction to Thermal-Fluid Sciences for Nuclear Engineers - I3\nNUCE 322Introduction to Thermal-Fluid Sciences for Nuclear Engineers - II3\nNUCE 403Advanced Reactor Design3\nNUCE 420Radiological Safety3\nNUCE 431WNuclear Engineering Capstone Design4\nNUCE 451Experiments in Reactor Physics3\nPHYS 214General Physics: Wave Motion and Quantum Physics 2\nPrescribed Courses: Require a grade of C or better\nCHEM 110Chemical Principles I 3\nEDSGN 100Cornerstone Engineering Design3\nENGL 202CEffective Writing: Technical Writing 3\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\nMATH 251Ordinary and Partial Differential Equations4\nNUCE 301Fundamentals of Reactor Physics4\nNUCE 302Introduction to Reactor Design4\nNUCE 309Analytical Techniques for Nuclear Concept3\nNUCE 430Design Principles of Reactor Systems3\nNUCE 450Radiation Detection and Measurement3\nPHYS 211General Physics: Mechanics 4\nPHYS 212General Physics: Electricity and Magnetism 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 1,
+     "commentRaw": "Select 1 credit of First-Year Seminar",
+     "from": null
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CMPSC 200",
+      "CMPSC 201"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EBF 200",
+       "ECON 102",
+       "ECON 104"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits, of which 3 credits must be designated as design, from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BME 406",
+       "NUCE 405",
+       "NUCE 408",
+       "NUCE 409",
+       "NUCE 428",
+       "NUCE 470",
+       "NUCE 490",
+       "NUCE 496",
+       "NUCE 497"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "500-level NUCE courses with approval of adviser"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 15",
+      "ENGL 30H"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Select 1 credit of First-Year Seminar1\nCMPSC 200Programming for Engineers with MATLAB 3\nor CMPSC 201 Programming for Engineers with C++\nSelect 3 credits from the following:3\nEBF 200Introduction to Energy and Earth Sciences Economics\nECON 102Introductory Microeconomic Analysis and Policy\nECON 104Introductory Macroeconomic Analysis and Policy\nSelect 6 credits, of which 3 credits must be designated as design, from the following:6\nBME 406Medical Imaging\nNUCE 405Nuclear and Radiochemistry\nNUCE 408Radiation Shielding\nNUCE 409Nuclear Materials\nNUCE 428Radioactive Waste Control\nNUCE 470\nNUCE 490Introduction to Plasmas\nNUCE 496Independent studies\nNUCE 497Special Topics\n500-level NUCE courses with approval of adviser\nAdditional Courses: Require a grade of C or better\nCAS 100AEffective Speech 3\nor CAS 100B Effective Speech\nENGL 15Rhetoric and Composition 3\nor ENGL 30H Honors Rhetoric and Composition\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in General Technical Elective (GTE) courses from department list",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3 credits in General Technical Elective (GTE) courses from department list 3\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Nuclear Engineering, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "ECON 104"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EDSGN 100",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140E"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 141E"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "NUCE 297",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPSC 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CMPSC 201"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EMCH 211",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 251",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EMCH 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EMCH 213",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 230",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 214",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUCE 301",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUCE 309",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUCE 310W",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUCE 321",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EE 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EMCH 315",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EMCH 316",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUCE 302",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUCE 322",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUCE 450",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "NUCE 403",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUCE 420",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUCE 430",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "NUCE 451",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Nuclear Engineering Elective (NETE)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "NUCE 431W",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Nuclear Engineering Elective (NETE)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "General Technical Elective (GTE)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 129,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "slug": "bellisario-communications-global-media-certificate",
+ "name": "Global Media, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "bellisario-communications",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/bellisario-communications/global-media-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "COMM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 410",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 419",
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select at least 3 credits from an approved list of international/global 400-level courses.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "COMM 110Media and Democracy 3\nCOMM 410Global Media, Culture, and Society3\nCOMM 419Comparative National Media in a Global Context3\nSelect at least 3 credits from an approved list of international/global 400-level courses.3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

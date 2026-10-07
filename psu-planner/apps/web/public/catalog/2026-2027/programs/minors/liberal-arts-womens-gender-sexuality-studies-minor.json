@@ -1,0 +1,76 @@
+{
+ "slug": "liberal-arts-womens-gender-sexuality-studies-minor",
+ "name": "Women's, Gender, and Sexuality Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/womens-gender-sexuality-studies-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "WMNST 227",
+      "WMNST 301N"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "WMNST 83N",
+       "WMNST 100",
+       "WMNST 105N",
+       "WMNST 106N"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nWMNST 227Introduction to Queer Theory 3\nor WMNST 301N Sexualities, Gender and Power: Feminist Thought and Politics\nSelect 3 credits from the following:3\nWMNST 83NFirst-Year Seminar in Women's Studies\nWMNST 100Introduction to Women's and Gender Studies\nWMNST 105NLiving in a Diverse World\nWMNST 106NRepresenting Women and Gender in Literature, Art and Popular Cultures\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits in Women's, Gender, and Sexuality Studies or from the program-approved list; at least 6 credits must be at the 400-level and 3 credits from each of the following categories:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Arts or Humanities"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Natural or Social Sciences"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Focusing on non-Western women or on women of color in the United States"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 12 credits in Women's, Gender, and Sexuality Studies or from the program-approved list; at least 6 credits must be at the 400-level and 3 credits from each of the following categories:12\nArts or Humanities\nNatural or Social Sciences\nFocusing on non-Western women or on women of color in the United States\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,64 @@
+{
+ "slug": "capital-international-business-administration-minor",
+ "name": "International Business Administration, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/international-business-administration-minor/",
+ "totalCredits": 3,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BA 364Y",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBA 364YInternational Business and Society3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-12 credits in a single world language equivalent to the 12th credit level",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9-12 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ACCTG 461",
+       "ECON 333",
+       "FIN 407",
+       "FIN 456",
+       "IB 299",
+       "MGMT 461",
+       "MIS 446",
+       "MKTG 445"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3-12 credits in a single world language equivalent to the 12th credit level3-12\nSelect 9-12 credits from the following:9-12\nACCTG 461International Accounting\nECON 333International Economics\nFIN 407Multinational Financial Management\nFIN 456International Capital Markets\nor IB 299 Foreign Studies\nMGMT 461International Management\nMIS 446Information Technology and Business Strategy\nMKTG 445Global Marketing\n"
+  }
+ ],
+ "suggestedPlans": []
+}

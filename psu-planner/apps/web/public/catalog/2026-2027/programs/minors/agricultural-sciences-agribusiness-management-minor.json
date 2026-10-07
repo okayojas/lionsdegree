@@ -1,0 +1,124 @@
+{
+ "slug": "agricultural-sciences-agribusiness-management-minor",
+ "name": "Agribusiness Management, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/agribusiness-management-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AGBM 102",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AGBM 106",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AGBM 200",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAGBM 102Economics of the Food System3\nAGBM 106Agribusiness Problem Solving 3\nAGBM 200Introduction to Agricultural Business Management3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "AGBM 101",
+      "ECON 102"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select Option A or B:"
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "AG 301",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "AGBM 302",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "AGBM 308W",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "AGBM 320",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "AGBM 338",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SELECT 6",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "ANY 400",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "AGBM 496",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "SELECT 9",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "ANY 400",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "AGBM 496",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nAGBM 101Economic Principles of Agribusiness Decision Making 3\nor ECON 102 Introductory Microeconomic Analysis and Policy\nSelect Option A or B:9\nA.\nSelect one of the following:\nAG 301\nAGBM 302Food Product Marketing\nAGBM 308WStrategic Decision Making in Agribusiness\nAGBM 320Markets and Prices: Analysis and Forecasting\nAGBM 338Agribusiness in the Global Economy\nSelect 6 credits from any 400-level ABGM courses (excluding, unless approved by the AGBM program, AGBM 496)\nB.\nSelect 9 credits from any 400-level AGMB courses (excluding, unless approved by the AGBM program, AGBM 496)\n"
+  }
+ ],
+ "suggestedPlans": []
+}

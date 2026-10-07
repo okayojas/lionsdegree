@@ -1,0 +1,74 @@
+{
+ "slug": "agricultural-sciences-agronomy-minor",
+ "name": "Agronomy, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/agronomy-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AGRO 28",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SOILS 101",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAGRO 28Principles of Crop Management3\nSOILS 101Introductory Soil Science 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGRO 410W",
+       "AGRO 423",
+       "AGRO 425",
+       "AGRO 438",
+       "SOILS 402"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits of the following:6\nAGRO 410WPhysiology of Agricultural Crops\nAGRO 423Forage Crop Management\nAGRO 425Field Crop Management\nAGRO 438Principles of Weed Management\nSOILS 402Soil Nutrient Behavior and Management\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 5,
+     "commentRaw": "Select 5-6 credits in consultation with an adviser",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 5-6 credits in consultation with an adviser5-6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

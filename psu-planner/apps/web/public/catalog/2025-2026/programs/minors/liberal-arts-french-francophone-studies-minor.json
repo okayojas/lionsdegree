@@ -1,0 +1,101 @@
+{
+ "slug": "liberal-arts-french-francophone-studies-minor",
+ "name": "French and Francophone Studies, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/french-francophone-studies-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "FR 201",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FR 202",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nFR 201Oral Communication and Reading Comprehension3\nFR 202Grammar and Composition3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from a and b, or b and c, or a and c:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "a)"
+    },
+    {
+     "type": "course",
+     "code": "FR 316",
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "b)"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "FR 331",
+      "FR 332"
+     ],
+     "credits": null
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "c)"
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "FR 351",
+      "FR 352"
+     ],
+     "credits": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits from a and b, or b and c, or a and c:6\na)\nFR 316French Linguistics\nb)\nFR 331French and Francophone Culture I\nor FR 332 French and Francophone Culture II\nc)\nFR 351French and Francophone Literature: Poetry, Theatre, and Performance\nor FR 352 French and Francophone Literature: Narrative\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level French courses",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits of 400-level French courses6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,74 @@
+{
+ "slug": "arts-architecture-architectural-history-minor",
+ "name": "Architectural History, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "arts-architecture",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/arts-architecture/architectural-history-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ARTH 201",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ARTH 202N",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nARTH 201Ancient to Medieval Architecture 3\nARTH 202NRenaissance to Modern Architecture 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ARCH 100",
+       "ARCH 210",
+       "LARCH 60",
+       "LARCH 60H",
+       "LARCH 65"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nARCH 100Architecture and Ideas\nARCH 210Ideas Across Time in Architecture and Urbanism\nLARCH 60Cultural History of Designed Places\nLARCH 60H\nLARCH 65Built Environment and Culture: Examining the Modern City\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from any courses in architectural history, including at least 6 at the 400 level. No more than 9 credits may be taken from any one department. Courses must be approved by Architectural History minor adviser.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 12 credits from any courses in architectural history, including at least 6 at the 400 level. No more than 9 credits may be taken from any one department. Courses must be approved by Architectural History minor adviser.12\n"
+  }
+ ],
+ "suggestedPlans": []
+}

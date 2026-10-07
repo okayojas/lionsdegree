@@ -1,0 +1,82 @@
+{
+ "slug": "engineering-information-sciences-technology-industrial-engineering-minor",
+ "name": "Information Sciences and Technology for Industrial Engineering, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/information-sciences-technology-industrial-engineering-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "IE 330",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 220",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nIE 330Engineering Analytics3\nIST 110Information, People and Technology 3\nIST 210Organization of Data3\nIST 220Networking and Telecommunications3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "IE 408",
+       "IE 418",
+       "IE 433"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CYBER 454",
+       "IST 402",
+       "IST 431",
+       "IST 442",
+       "MATH 451",
+       "MATH 455"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits from the following:6\nIE 408Cognitive Work Design\nIE 418Human/Computer Interface Design\nIE 433Regression Analysis and Design of Experiments\nSelect 3 credits from the following:3\nCYBER 454Computer and Cyber Forensics\nIST 402Emerging Issues and Technologies\nIST 431The Information Environment\nIST 442Information Technology in an International Context\nMATH 451Numerical Computations\nMATH 455Introduction to Numerical Analysis I\n"
+  }
+ ],
+ "suggestedPlans": []
+}

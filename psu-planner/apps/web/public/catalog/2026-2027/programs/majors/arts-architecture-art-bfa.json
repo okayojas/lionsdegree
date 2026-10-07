@@ -1,0 +1,522 @@
+{
+ "slug": "arts-architecture-art-bfa",
+ "name": "Art, B.F.A.",
+ "type": "major",
+ "degree": "BFA",
+ "college": "arts-architecture",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/arts-architecture/art-bfa/",
+ "totalCredits": 123,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ART 11",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "ART 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ART 111",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ART 122Y",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ARTH 111",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ARTH 112",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nART 11First-Year Seminar- School of Visual Arts1\nART 110Ideas as Visual Images3\nART 111Ideas as Objects3\nART 122YCommentary on Art3\nARTH 111Ancient to Medieval Art 3\nARTH 112Renaissance to Modern Art 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits at the beginning level from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ART 201",
+       "ART 203",
+       "ART 211",
+       "ART 220",
+       "ART 223",
+       "ART 230",
+       "ART 240",
+       "ART 250",
+       "ART 280",
+       "ART 296",
+       "ART 297",
+       "ART 299",
+       "PHOTO 100",
+       "PHOTO 201"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 15 credits at the beginning level from the following:15\nART 201\nART 203\nART 211Introduction to Digital Art and Design Criticism\nART 220Figure Drawing\nART 223Drawing: Techniques, Materials, and Tools\nART 230Beginning Sculpture\nART 240Beginning Printmaking\nART 250Beginning Oil Painting\nART 280Beginning Ceramics\nART 296Independent Studies\nART 297Special Topics\nART 299Foreign Study--Art\nPHOTO 100Introduction to Photography\nPHOTO 201A Chronological Survey of Photography\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits in art history",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 47,
+     "commentRaw": "Select 47 credits in Art at the 300 or 400 level",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 6 credits in art history6\nSupporting Courses and Related Areas: Require a grade of C or better\nSelect 47 credits in Art at the 300 or 400 level 47\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Art, B.F.A. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ART 11",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ART 110",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ARTH 111",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 15A",
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ART 111",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ART 122Y",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ARTH 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course, beginning-level studio (see list)",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Additional Course, beginning-level studio (see list)",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course, beginning-level studio (see list)",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Art History",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Additional Course, beginning-level studio (see list)",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Additional Course, beginning-level studio (see list)",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course from Art History",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Major, 300/400-level Studio",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Major, 300/400-level Studio",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Concentration, 300/400-level Studio",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Concentration, 300/400-level Studio",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Major, 300/400-level Studio",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Major, 300/400-level Studio",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Concentration, 300/400-level Studio",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Concentration, 300/400-level Studio",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Major, 300/400-level Studio",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Concentration, 300/400-level Studio",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Concentration, 300/400-level Studio",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course for Major, 300/400-level Studio",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 123,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

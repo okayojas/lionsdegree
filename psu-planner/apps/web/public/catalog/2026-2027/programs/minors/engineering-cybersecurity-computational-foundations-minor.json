@@ -1,0 +1,80 @@
+{
+ "slug": "engineering-cybersecurity-computational-foundations-minor",
+ "name": "Cybersecurity Computational Foundations, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/cybersecurity-computational-foundations-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CMPSC 443",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 473",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCMPEN/EE 362Communication Networks3\nCMPSC 443Introduction to Computer and Network Security3\nCMPSC 473Operating Systems Design & Construction3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPEN 462",
+       "CMPSC 447"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3-6 credits from the following:3-6\nCMPEN 462Wireless Communications Systems and Security\nCMPSC 447Software Security\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPEN 431",
+       "CMPSC 431W",
+       "CMPSC 461",
+       "CMPSC 464",
+       "CMPSC 475"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3-6 credits from the following:3-6\nCMPEN 431Introduction to Computer Architecture\nCMPSC 431WDatabase Management Systems\nCMPSC 461Programming Language Concepts\nCMPSC 464Introduction to the Theory of Computation\nCMPSC 475Applications Programming\n"
+  }
+ ],
+ "suggestedPlans": []
+}

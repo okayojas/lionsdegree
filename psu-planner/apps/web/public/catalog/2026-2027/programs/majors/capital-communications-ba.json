@@ -1,0 +1,538 @@
+{
+ "slug": "capital-communications-ba",
+ "name": "Communications, B.A. (Capital)",
+ "type": "major",
+ "degree": "BA",
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/communications-ba/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "COMM 251",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 342W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 456",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 458",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCOMM 251The Nature of Media3\nCOMM 342WScreenwriting I3\nCOMM 456Media Criticism and Theory3\nCOMM 458Media Law and Ethics3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "COMM 230W",
+      "COMM 260W"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "chooseN",
+     "n": 2,
+     "options": [
+      "COMM 215",
+      "COMM 241",
+      "COMM 242",
+      "COMM 269",
+      "COMM 270",
+      "COMM 337",
+      "COMM 415",
+      "COMM 437",
+      "COMM 438",
+      "COMM 441"
+     ],
+     "credits": 6,
+     "commentRaw": "Select two courses in visual communication from the following:"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits in Communications from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CC 200",
+       "COMM 110",
+       "COMM 150N",
+       "COMM 160",
+       "COMM 168",
+       "COMM 215",
+       "COMM 234N",
+       "COMM 241",
+       "COMM 242",
+       "COMM 250",
+       "COMM 269",
+       "COMM 270",
+       "COMM 320",
+       "COMM 346",
+       "COMM 360",
+       "COMM 363",
+       "COMM 370",
+       "COMM 372",
+       "COMM 374",
+       "COMM 405",
+       "COMM 414",
+       "COMM 415",
+       "COMM 418",
+       "COMM 420",
+       "COMM 421W",
+       "COMM 424",
+       "COMM 428E",
+       "COMM 430",
+       "COMM 436",
+       "COMM 457",
+       "COMM 459",
+       "COMM 461",
+       "COMM 462",
+       "COMM 471",
+       "COMM 472",
+       "COMM 473",
+       "COMM 474",
+       "COMM 481",
+       "COMM 488",
+       "COMM 495",
+       "COMM 496"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nCOMM 230WWriting for Media3\nor COMM 260W News Writing and Reporting\nSelect two courses in visual communication from the following:6\nCOMM 215Basic Photography for Communications\nCOMM 241Graphic Design for Communications\nCOMM 242Basic Video/Filmmaking\nCOMM 269Photojournalism\nCOMM 270Introduction to Multimedia Production\nCOMM 337Intermediate Documentary Production\nCOMM 415Advanced Photography for Communications\nCOMM 437Advanced Documentary Production\nCOMM 438Advanced Narrative Production\nCOMM 441Advanced Graphic Design for Communications\nSelect 6 credits in Communications from the following:6\nCC 200Introduction to Corporate Communication\nCOMM 110Media and Democracy\nCOMM 150NThe Art of the Cinema\nCOMM 160Basic News Writing Skills\nCOMM 168American Journalism: Values, Traditions, and Practices\nCOMM 215Basic Photography for Communications\nCOMM 234NDigital Cultures\nCOMM 241Graphic Design for Communications\nCOMM 242Basic Video/Filmmaking\nCOMM 250Film History and Theory\nCOMM 269Photojournalism\nCOMM 270Introduction to Multimedia Production\nCOMM 320Introduction to Advertising\nCOMM 346Writing for the Screen I\nCOMM 360Radio Reporting\nCOMM 363\nCOMM 370Public Relations\nCOMM 372Digital Public Relations\nCOMM 374Audio Production\nCOMM 405Political Economy of Communications\nCOMM 414Media Management\nCOMM 415Advanced Photography for Communications\nCOMM 418Media Effects: Theory and Research\nCOMM 420Research Methods in Advertising and Public Relations\nCOMM 421WAdvertising Creative Strategies\nCOMM 424Advertising Campaigns\nCOMM 428ESocial Media Strategies\nCOMM 430Mass Media and Politics\nCOMM 436Advanced Audio Production\nCOMM 457Media Audiences and Contexts\nCOMM 459Cultural Effects of Interactive and Online Media\nCOMM 461Magazine Writing\nCOMM 462Feature Writing\nCOMM 471Public Relations Media and Methods\nCOMM 472Public Relations Event Planning\nCOMM 473Public Relations Campaigns\nCOMM 474Depth Reporting\nCOMM 481Visual Storytelling for Journalists\nCOMM 488Writers' Seminar\nCOMM 495Internship\nCOMM 496Independent Studies\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits in consultation with an academic adviser. These credits, combined with electives, may be applied to a minor in support of the student's interests.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 12 credits in consultation with an academic adviser. These credits, combined with electives, may be applied to a minor in support of the student's interests.12\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Communications, B.A. at Harrisburg Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 15S",
+        "ENGL 30T",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "Quantification (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language, Level 1",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100S"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "COMM 160",
+       "credits": 1,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "Quantification (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language, Level 2",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "COMM 100N",
+       "credits": 3,
+       "footnotes": [
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "COMM 251",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "COMM 260W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language, Level 3",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Elective or Minor Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "COMM 215",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202B",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "COMM 230W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Visual COMM Course from List F",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Requirement: World Cultures",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Requirement: BA Fields",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "COMM 342W",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "COMM Selection from List E",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective or Minor Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "COMM 456",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "COMM Selection from List E",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Requirement: BA Fields",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective or Minor Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "COMM 458",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "5"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "General Studies Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective or Internship",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "BA Requirement: BA Fields",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 121,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

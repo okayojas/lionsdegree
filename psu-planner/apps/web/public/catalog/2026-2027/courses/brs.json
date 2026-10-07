@@ -1,0 +1,118 @@
+[
+ {
+  "code": "BRS 299",
+  "subject": "BRS",
+  "number": "299",
+  "display": "BRS 299",
+  "title": "Foreign Studies",
+  "credits": "1-12 Credits/Maximum of 12",
+  "creditsParsed": {
+   "min": 1,
+   "max": 12,
+   "repeatableMax": 12
+  },
+  "description": "Courses offered in foreign countries by individual or group instruction.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [
+   "International Cultures: (IL)"
+  ],
+  "crossListings": [],
+  "aliases": [
+   "BRS 299"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/brs/",
+  "extraRaw": []
+ },
+ {
+  "code": "BRS 393",
+  "subject": "BRS",
+  "number": "393",
+  "display": "BRS 393",
+  "title": "Industry Tour",
+  "credits": "1-2 Credits/Maximum of 2",
+  "creditsParsed": {
+   "min": 1,
+   "max": 2,
+   "repeatableMax": 2
+  },
+  "description": "A week-long tour of bioproducts and agricultural systems industries. BRS 393 Bioresources Industry Tour (1) This is a week long course, in which students will travel to tour relevant manufacturing facilities. Roughly half of the time (2.5 days) will be dedicated to the bioproducts industry, and the remaining time will be focused on agricultural systems. Bioproducts and agricultural systems are the two key components of the BioRenewable Systems major.",
+  "enforced": "Junior standing in BRS_BS or BE_BS",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "or",
+   "a": {
+    "op": "phrase",
+    "text": "Junior standing in BRS_BS"
+   },
+   "b": {
+    "op": "phrase",
+    "text": "BE_BS"
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": false,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "BRS 393"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/brs/",
+  "extraRaw": []
+ },
+ {
+  "code": "BRS 437",
+  "subject": "BRS",
+  "number": "437",
+  "display": "BRS 437",
+  "title": "Bioproduct Marketing and Sales",
+  "credits": "4 Credits",
+  "creditsParsed": {
+   "min": 4,
+   "max": 4,
+   "repeatableMax": null
+  },
+  "description": "Business-to-business bioproduct sales and marketing fundamentals and market overview of key forest industry sectors including biorefinery value chain outputs. BRS 437 Bioproduct Marketing and Sales (4) This course covers business-to-business (B2B) bioproduct marketing fundamentals and a market overview of key forest industry sectors (solid wood, composite panels, and engineered wood products) including biorefinery value chain outputs (environmental services, energy, fuels, and co-products) and personal selling of bioproducts. Students will apply B2B market principles and concepts toward an understanding of bioproducts industries and markets. Personal selling techniques will be developed and applied to enhance understanding of the industrial sales function within bioproduct firms. Marketing research for decision-makers will be examined.",
+  "enforced": "BRS 300 and (AGBM 101 or ECON 102)",
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": {
+   "op": "and",
+   "a": {
+    "op": "course",
+    "code": "BRS 300"
+   },
+   "b": {
+    "op": "or",
+    "a": {
+     "op": "course",
+     "code": "AGBM 101"
+    },
+    "b": {
+     "op": "course",
+     "code": "ECON 102"
+    }
+   }
+  },
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "BRS 437"
+  ],
+  "level": "undergraduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/undergraduate/brs/",
+  "extraRaw": []
+ }
+]

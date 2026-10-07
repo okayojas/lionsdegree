@@ -1,0 +1,57 @@
+{
+ "slug": "university-college-introduction-corporate-communication-certificate",
+ "name": "Introduction to Corporate Communication, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/introduction-corporate-communication-certificate/",
+ "totalCredits": 15,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B",
+      "CAS 100C",
+      "CAS 100S",
+      "CAS 100A",
+      "CAS 100B",
+      "CAS 100C"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CAS 352",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "COMM 100N",
+     "credits": 3,
+     "resolvedFrom": "COMM 100"
+    },
+    {
+     "type": "course",
+     "code": "ENGL 15",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MIS 204",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CAS 100Effective Speech3\nor CAS 100A Effective Speech\nor CAS 100B Effective Speech\nor CAS 100C Effective Speech\nCAS 352Organizational Communication 3\nCOMM 1003\nENGL 15Rhetoric and Composition 3\nMIS 204Introduction to Management Information Systems 3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

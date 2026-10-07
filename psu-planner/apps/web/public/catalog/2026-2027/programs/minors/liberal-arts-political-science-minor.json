@@ -1,0 +1,32 @@
+{
+ "slug": "liberal-arts-political-science-minor",
+ "name": "Political Science, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/political-science-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18 credits in Political Science, include at least one course in each of the following areas: American, Comparative, International Relations, and Theory",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 18 credits in Political Science, include at least one course in each of the following areas: American, Comparative, International Relations, and Theory 18\n"
+  }
+ ],
+ "suggestedPlans": []
+}

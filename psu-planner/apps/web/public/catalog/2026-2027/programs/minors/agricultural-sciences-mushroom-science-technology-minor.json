@@ -1,0 +1,70 @@
+{
+ "slug": "agricultural-sciences-mushroom-science-technology-minor",
+ "name": "Mushroom Science and Technology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/mushroom-science-technology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 110",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PPEM 405",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PPEM 425",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PPEM 496",
+     "credits": 2
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBIOL 110Biology: Basic Concepts and Biodiversity 4\nPPEM 405Microbe-Plant Interactions: Plant Disease and Biological Control3\nPPEM 425Biology of Fungi4\nPPEM 496Independent Studies2\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGBM 200",
+       "ENT 202",
+       "ENT 313",
+       "FDSC 408",
+       "FDSC 409",
+       "MICRB 201",
+       "MICRB 202"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 9 credits of the following:9\nAGBM 200Introduction to Agricultural Business Management\nENT 202\nENT 313Introduction to Entomology\nFDSC 408Food Microbiology\nFDSC 409Laboratory in Food Microbiology\nMICRB 201Introductory Microbiology\nMICRB 202Introductory Microbiology Laboratory\n"
+  }
+ ],
+ "suggestedPlans": []
+}

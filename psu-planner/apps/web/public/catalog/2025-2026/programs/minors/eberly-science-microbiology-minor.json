@@ -1,0 +1,93 @@
+{
+ "slug": "eberly-science-microbiology-minor",
+ "name": "Microbiology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/microbiology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MICRB 201",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MICRB 202",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MICRB 251",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MICRB 410",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCHEM 110Chemical Principles I 3\nCHEM 112Chemical Principles II 3\nMICRB 201Introductory Microbiology3\nMICRB 202Introductory Microbiology Laboratory2\nMICRB 251Molecular and Cell Biology I3\nMICRB 410Principles of Immunology3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "MICRB 421W",
+      "MICRB 422"
+     ],
+     "credits": 2
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nMICRB 421WLaboratory of General and Applied Microbiology2-3\nor MICRB 422 Medical Microbiology Laboratory\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4-5 credits of 400-level MICRB courses",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "MICRB"
+      ],
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 4-5 credits of 400-level MICRB courses 4-5\n"
+  }
+ ],
+ "suggestedPlans": []
+}

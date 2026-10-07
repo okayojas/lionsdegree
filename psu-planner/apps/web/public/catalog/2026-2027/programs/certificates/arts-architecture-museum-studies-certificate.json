@@ -1,0 +1,87 @@
+{
+ "slug": "arts-architecture-museum-studies-certificate",
+ "name": "Museum Studies, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "arts-architecture",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/arts-architecture/museum-studies-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ARTH 495",
+     "credits": 3
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "AMST 480",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ANTH 380",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "ARTH 409",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AED 101S",
+       "AED 201W",
+       "AED 211",
+       "AED 212",
+       "AED 488",
+       "AMST 480",
+       "AMST 482",
+       "ANTH 220",
+       "ANTH 380",
+       "ANTH 433",
+       "ART 409",
+       "ART 411",
+       "ART 477",
+       "ARTH 100",
+       "ARTH 409",
+       "ARTH 410",
+       "ARTH 495",
+       "ARTSA 301",
+       "ARTSA 402W",
+       "ARTSA 403",
+       "HIST 112",
+       "HIST 404",
+       "HIST 490",
+       "RPTM 300Y",
+       "RPTM 334"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Up to 6 credits of Internship by permission of department"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "ARTH 495Internship3\nSelect one of the following:3\nAMST 480Museum Studies\nANTH 380Anthropology Museum Studies\nARTH 409Museum Studies\nSelect 6 credits from the following:6\nAED 101SIntroduction to Art Education\nAED 201WHistory and Philosophy of Art Education in Schools and Cultural Institutions\nAED 211Interpreting Art Experience: Social-cultural Perspectives\nAED 212Interpreting Art Experience: Educational Implications\nAED 488\nAMST 480Museum Studies\nAMST 482Public Heritage Practices\nANTH 220Anthropology and Art/ifacts\nANTH 380Anthropology Museum Studies\nANTH 433Archaeological Ethics and Law\nART 409Museum Studies\nART 411Seminar in Contemporary Art\nART 477Curator's Workshop\nARTH 100Introduction to Art\nARTH 409Museum Studies\nARTH 410Taste and Criticism in Art\nARTH 495Internship\nARTSA 301Introduction to Arts Administration\nARTSA 402WStrategic Management and Planning for the Arts\nARTSA 403Fundraising and Grant Writing\nHIST 112Introduction to Public History\nHIST 404Advanced Public History\nHIST 490Archival Management\nRPTM 300YTourism and Leisure Behavior\nRPTM 334Non-profit Recreation Agency Operations\nUp to 6 credits of Internship by permission of department\n"
+  }
+ ],
+ "suggestedPlans": []
+}

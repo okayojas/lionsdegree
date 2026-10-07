@@ -1,0 +1,84 @@
+{
+ "slug": "earth-mineral-sciences-meteorology-minor",
+ "name": "Meteorology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/meteorology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 231",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MATH 232",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MATH 251",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "METEO 300",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "METEO 421",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "METEO 431",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PHYS 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 212",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCHEM 110Chemical Principles I 3\nMATH 231Calculus of Several Variables2\nMATH 232Integral Vector Calculus2\nMATH 251Ordinary and Partial Differential Equations4\nMETEO 300Fundamentals of Atmospheric Science4\nMETEO 421Atmospheric Dynamics4\nMETEO 431Atmospheric Thermodynamics3\nPHYS 211General Physics: Mechanics 4\nPHYS 212General Physics: Electricity and Magnetism 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits (at least 3 credits at the 400 level) of 100-, 200-, 300-, or 400-level Meteorology",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 9 credits (at least 3 credits at the 400 level) of 100-, 200-, 300-, or 400-level Meteorology9\n"
+  }
+ ],
+ "suggestedPlans": []
+}

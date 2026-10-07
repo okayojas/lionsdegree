@@ -1,0 +1,99 @@
+{
+ "slug": "liberal-arts-russian-minor",
+ "name": "Russian, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/russian-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "RUS 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "RUS 200",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "RUS 401",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nRUS 100Russian Culture and Civilization 3\nRUS 200Intermediate Russian II4\nRUS 401Advanced Russian I4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "RUS 101N",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "RUS 110",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "RUS 141Y",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "RUS 142Y",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "RUS 144",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "RUS 145",
+     "credits": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect one of the following:3\nRUS 101NRussian Cinema\nRUS 110\nRUS 141Y19th-Century Russian Literature in English Translation\nRUS 142YSoviet and Post-Soviet Russian Literature in English Translation\nRUS/GER 143The Culture of Stalinism and Nazism\nRUS 144Multicultural Russia: Narratives of Race and Ethnicity in Russian Literature and Culture\nRUS 145Putin's Russia and Its Protest Culture\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level Russian courses",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits of 400-level Russian courses6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

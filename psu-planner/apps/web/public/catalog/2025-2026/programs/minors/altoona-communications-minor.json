@@ -1,0 +1,73 @@
+{
+ "slug": "altoona-communications-minor",
+ "name": "Communications, Minor (Altoona)",
+ "type": "minor",
+ "degree": null,
+ "college": "altoona",
+ "campuses": [
+  "Altoona, The Altoona College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/altoona/communications-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "COMM 100N",
+       "COMM 110",
+       "COMM 150N",
+       "COMM 251"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits from the following:6\nCOMM 100N/AMST 106NThe Mass Media and Society\nCOMM 110Media and Democracy\nCOMM 150NThe Art of the Cinema\nCOMM 251The Nature of Media\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from COMM 100-300 level courses",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "COMM"
+      ],
+      "minLevel": 100
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from COMM 400-level courses",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "COMM"
+      ],
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits from COMM 100-300 level courses6\nSelect 6 credits from COMM 400-level courses6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

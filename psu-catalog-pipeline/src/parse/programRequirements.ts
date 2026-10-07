@@ -118,6 +118,72 @@ export function isNoteRow(text: string): boolean {
   return false;
 }
 
+/** Uppercase tokens that show up inside requirement prose but are never course
+ * subjects. Gen-ed domains are listed because they are their own pool kind. */
+const NOT_SUBJECTS = new Set([
+  "I", "II", "III", "IV", "V", "VI", "GPA", "US", "IL", "AND", "OR", "THE", "OF",
+  "AT", "IN", "FROM", "ANY", "ONE", "TWO", "ALL", "NOT", "A", "AN",
+  "GWS", "GQ", "GA", "GH", "GHW", "GN", "GS",
+]);
+
+/** List separator: a comma, a slash, "or"/"and", or any combination of them
+ * ("BIOL, BIOTC, or MICRB" is a comma AND an "or", and treating it as one or
+ * the other truncated the list at the last comma). */
+const SEP = String.raw`(?:\s*,\s*(?:or|and)\s+|\s*,\s*|\s+(?:or|and)\s+|\s*\/\s*)`;
+
+/** The level phrase, capturing EVERY level the prose admits: "300 or 400-level"
+ * and "200 - 400 level" both yield their full range. The old pattern anchored
+ * on a single \d{3} adjacent to "level", so it read both as 400 and silently
+ * deleted every lower-level course from the pool. minLevel is the floor of
+ * what it captures. */
+const LEVEL_SEP = String.raw`(?:\s*(?:,|-|–|\/|\bor\b|\band\b|\bto\b)\s*)`;
+const LEVEL_PHRASE = new RegExp(String.raw`\b(\d{3}(?:${LEVEL_SEP}\d{3})*)\s*-?\s*level\b`, "i");
+
+/** A separated run of subject tokens. UPPERCASE-ONLY, for exactly the reason
+ * CODE_TOKEN is (see its comment): the old regex matched case-insensitively, so
+ * "with at least 3 credits at the 400-level" parsed as a subject named REDITS.
+ * Case-insensitivity on code-shaped regexes has now produced this class of bug
+ * twice; see DECISIONS.md 2.4. */
+const SUBJECT_TOKEN = String.raw`[A-Z]{2,7}(?:-[A-Z])?`;
+const SUBJECT_RUN = new RegExp(String.raw`\b${SUBJECT_TOKEN}(?:${SEP}${SUBJECT_TOKEN})*`, "g");
+const SUBJECT_SPLIT = new RegExp(SEP);
+
+function pickSubjects(segment: string, trailing = false): string[] | null {
+  const runs = segment.match(SUBJECT_RUN) ?? [];
+  for (const run of trailing ? [...runs].reverse() : runs) {
+    const subjects = [
+      ...new Set(
+        run
+          .split(SUBJECT_SPLIT)
+          // "A-I" is stored as "AI" with an "A-I" alias, as everywhere else.
+          .map((s) => s.trim().toUpperCase().replace(/-/g, ""))
+          .filter((s) => s.length >= 2 && !NOT_SUBJECTS.has(s)),
+      ),
+    ];
+    if (subjects.length) return subjects;
+  }
+  return null;
+}
+
+/** "9 credits of 400-level BMB, BIOL, or MICRB courses" and its inversions.
+ * Returns the LOWEST level the prose admits and EVERY subject it names.
+ * Subjects are candidates only: they are intersected with the real subject
+ * index downstream, because prose like "Advanced IT courses" yields plausible
+ * tokens that are not subjects. */
+export function parseLevelSubjects(rest: string): { kind: "pattern"; subjects: string[]; minLevel: number | null } | null {
+  const lv = LEVEL_PHRASE.exec(rest);
+  if (!lv) return null;
+  const levels = (lv[1].match(/\d{3}/g) ?? []).map(Number);
+  const minLevel = levels.length ? Math.min(...levels) : null;
+
+  // Subjects follow the level ("400-level BMB, BIOL") or precede it
+  // ("ENTR courses at the 400 level"); prefer the former.
+  const subjects =
+    pickSubjects(rest.slice(lv.index + lv[0].length)) ?? pickSubjects(rest.slice(0, lv.index), true);
+  if (!subjects?.length) return null;
+  return { kind: "pattern", subjects, minLevel };
+}
+
 /** Classify a courselistcomment row into a structured rule where possible. */
 export function classifyComment(text: string): Rule {
   // "Select one/two of the following (...)" -> chooseN, options collected from
@@ -143,15 +209,8 @@ export function classifyComment(text: string): Rule {
     if (!rest || /the following/i.test(rest) || /:$/.test(text.trim())) {
       return { type: "selectCredits", credits, commentRaw: text, from: { kind: "courses", courses: [] } };
     }
-    const pat =
-      /(\d{3})[\s-]*level\s+(?:courses?\s+(?:in|of)\s+)?([A-Z-]{2,6})\b/i.exec(rest) ??
-      /([A-Z-]{2,6})\s+(?:courses?\s+)?at\s+the\s+(\d{3})[\s-]*level/i.exec(rest);
-    if (pat) {
-      const [a, b] = [pat[1], pat[2]];
-      const subject = /^\d/.test(a) ? b : a;
-      const level = parseInt(/^\d/.test(a) ? a : b, 10);
-      return { type: "selectCredits", credits, commentRaw: text, from: { kind: "pattern", subject: subject.toUpperCase().replace(/-/g, ""), minLevel: level } };
-    }
+    const pat = parseLevelSubjects(rest);
+    if (pat) return { type: "selectCredits", credits, commentRaw: text, from: pat };
     const ged = GENED_DOMAINS.find((d) => new RegExp(`\\b${d}\\b`).test(rest));
     if (ged) return { type: "selectCredits", credits, commentRaw: text, from: { kind: "genEd", domain: ged } };
     const list = parseCodeListText(rest);

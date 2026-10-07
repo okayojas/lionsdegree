@@ -4,7 +4,10 @@ import { splitCode } from "./codes.js";
 
 export type ReqFrom =
   | { kind: "courses"; courses: string[] }
-  | { kind: "pattern"; subject: string; minLevel: number | null }
+  /** Several subjects, because requirements routinely name several ("400-level
+   * BMB, BIOL, BIOTC, or MICRB courses") and holding one silently deleted the
+   * rest. minLevel is the LOWEST level admitted: "300 or 400-level" means 300. */
+  | { kind: "pattern"; subjects: string[]; minLevel: number | null }
   | { kind: "genEd"; domain: string };
 
 export type ReqRule =
@@ -31,7 +34,7 @@ function tokens(s: string): string[] {
 
 export interface SlotPool {
   courses: Set<string>;
-  patterns: { subject: string; minLevel: number | null }[];
+  patterns: { subjects: string[]; minLevel: number | null }[];
   genEdDomains: string[];
   matchedRule: ReqRule | null;
 }
@@ -77,7 +80,7 @@ export function resolveSlotPool(label: string, sections: ReqSection[]): SlotPool
   if (best.rule.type === "selectCredits") {
     const from = best.rule.from;
     if (from?.kind === "courses") from.courses.forEach((c) => pool.courses.add(c));
-    else if (from?.kind === "pattern") pool.patterns.push({ subject: from.subject, minLevel: from.minLevel });
+    else if (from?.kind === "pattern") pool.patterns.push({ subjects: from.subjects, minLevel: from.minLevel });
     else if (from?.kind === "genEd") pool.genEdDomains.push(from.domain);
     // Sibling indented courses in the matched section can also fill it.
     if (!pool.courses.size && !pool.patterns.length && !pool.genEdDomains.length) {
@@ -92,5 +95,5 @@ export function codeMatchesPool(code: string, pool: SlotPool): boolean {
   const split = splitCode(code);
   if (!split) return false;
   const level = parseInt(split.number, 10);
-  return pool.patterns.some((p) => p.subject === split.subject && (p.minLevel === null || level >= p.minLevel));
+  return pool.patterns.some((p) => p.subjects.includes(split.subject) && (p.minLevel === null || level >= p.minLevel));
 }

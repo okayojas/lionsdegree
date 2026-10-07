@@ -1,0 +1,70 @@
+{
+ "slug": "engineering-artificial-intelligence-engineering-minor",
+ "name": "Artificial Intelligence Engineering, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/artificial-intelligence-engineering-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AI 305",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AI 410",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EE 456",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nA-I 305Algorithmic Foundations for Artificial Intelligence3\nA-I 410AI Systems and Tools3\nEE 456Introduction to Neural Networks3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CMPSC 448",
+      "CMPSC 445"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nCMPSC 448Machine Learning and Algorithmic AI3\nor CMPSC 445 Applied Machine Learning in Data Science\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "6 credits of Department List electives not required by the major, at least 3 at the 400-level"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\n6 credits of Department List electives not required by the major, at least 3 at the 400-level6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

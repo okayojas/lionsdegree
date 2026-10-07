@@ -1,0 +1,93 @@
+{
+ "slug": "agricultural-sciences-entomology-minor",
+ "name": "Entomology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/entomology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ENT 496",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nENT 496Independent Studies3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENT 313",
+       "ENT 314",
+       "ENT 313",
+       "ENT 316",
+       "ENT 317"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGECO 201",
+       "ANSC 419W",
+       "BIOL 222",
+       "BIOL 406",
+       "BIOL 412",
+       "BIOL 417",
+       "BIOL 427",
+       "BIOL 429",
+       "BIOL 446",
+       "BIOL 464",
+       "HORT 445",
+       "PPEM 300",
+       "PPEM 405",
+       "SOILS 412W",
+       "WFS 460"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENT 410",
+       "ENT 419W",
+       "ENT 424",
+       "ENT 450",
+       "ENT 484"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nENT 313& ENT 314Introduction to Entomologyand Management of Insect Pests of Ornamentals\nENT 313& ENT 316Introduction to Entomologyand Field Crops Entomology\nENT 317Turfgrass Insect Pest Management\nSelect 3 credits from the following:3\nAGECO 201Introductory Agroecology\nANSC 419WApplied Animal Welfare\nBIOL 222Genetics\nBIOL 406Symbiosis\nBIOL 412Ecology of Infectious Diseases\nBIOL 417Invertebrate Zoology\nBIOL 427Evolution\nBIOL 429Animal Behavior\nBIOL 446Physiological Ecology\nBIOL 464Sociobiology\nHORT 445Plant Ecology\nPPEM 300Horticultural Crop Diseases\nPPEM 405Microbe-Plant Interactions: Plant Disease and Biological Control\nSOILS 412WSoil Ecology\nWFS 460Wildlife Behavior\nSelect 9 credits from the following:9\nENT/VBSC 402WBiology of Animal Parasites\nENT 410Insect Structure and Function\nENT 419WPesticide Science\nENT 424Sensory Biology of Insects\nENT 450\nENT/AGECO 457Principles of Integrated Pest Management\nENT 484Insect Behavior\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,59 @@
+{
+ "slug": "university-college-introduction-business-management-certificate",
+ "name": "Introduction to Business Management, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/introduction-business-management-certificate/",
+ "totalCredits": 15,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ACCTG 211",
+      "FIN 100"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B",
+      "CAS 100C",
+      "CAS 100S"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 15",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MGMT 100",
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MIS 103",
+      "MIS 204"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nACCTG 211Financial and Managerial Accounting for Decision Making3-4\nor FIN 100 Introduction to Finance\nCAS 100Effective Speech3\nENGL 15Rhetoric and Composition 3\nMGMT 100Survey of Management3\nMIS 103Microcomputer Applications in Business3\nor MIS 204 Introduction to Management Information Systems\n"
+  }
+ ],
+ "suggestedPlans": []
+}

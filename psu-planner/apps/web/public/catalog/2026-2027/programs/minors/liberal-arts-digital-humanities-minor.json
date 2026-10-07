@@ -1,0 +1,88 @@
+{
+ "slug": "liberal-arts-digital-humanities-minor",
+ "name": "Digital Humanities, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/digital-humanities-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "DIGIT 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "DIGIT 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "DIGIT 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "DIGIT 400",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nDIGIT 100Introduction to Digital Humanities 3\nDIGIT 110Text Encoding Fundamentals3\nDIGIT 210Large Scale Text Analysis3\nDIGIT 400Digital Project Design3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Project Design Skills: Select 6 credits from the following courses:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ART 168",
+       "ART 201",
+       "ART 203",
+       "ART 302",
+       "COMM 118",
+       "COMM 180",
+       "COMM 234",
+       "ENGL 229",
+       "WMNST 157"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nProject Design Skills: Select 6 credits from the following courses:6\nART 168The Digital Medium\nART 201\nART 203\nART 302\nCOMM 118Introduction to Media Effects\nCOMM 180Survey of Electronic Media and Telecommunications\nCOMM 234\nENGL 229Digital Studies\nWMNST 157\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from a list of courses maintained by the Associate Dean for the College of the Liberal Arts",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits from a list of courses maintained by the Associate Dean for the College of the Liberal Arts3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

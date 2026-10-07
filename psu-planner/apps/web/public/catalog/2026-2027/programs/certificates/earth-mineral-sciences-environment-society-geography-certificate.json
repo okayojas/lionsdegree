@@ -1,0 +1,62 @@
+{
+ "slug": "earth-mineral-sciences-environment-society-geography-certificate",
+ "name": "Environment and Society Geography, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/environment-society-geography-certificate/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "GEOG 230",
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "GEOG 330N",
+       "GEOG 333",
+       "GEOG 430",
+       "GEOG 431",
+       "GEOG 432",
+       "GEOG 433",
+       "GEOG 434",
+       "GEOG 436",
+       "GEOG 438W",
+       "GEOG 439"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "GEOG 230Geographic Perspectives on Environment, Society and Sustainability3\nSelect 9 credits from the following:9\nGEOG 330NPolitical Ecology\nGEOG 333Human Dimensions of Natural Hazards\nGEOG 430Human Use of Environment\nGEOG 431Geography of Water Resources\nGEOG 432Energy Policy\nGEOG 433Geographies of Justice\nGEOG 434Politics of the Environment\nGEOG 436\nGEOG 438WHuman Dimensions of a Changing Climate\nGEOG 439\n"
+  },
+  {
+   "heading": "Non-Course Requirements",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Per University policy, all credit courses for a certificate require a grade of 'C' or higher, and at least two-thirds (2/3) of the credits used to complete a certificate must be earned at Penn State. If student is completing multiple certificates in Geography, no more than one (1) course may double-count for each."
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Per University policy, all credit courses for a certificate require a grade of 'C' or higher, and at least two-thirds (2/3) of the credits used to complete a certificate must be earned at Penn State. If student is completing multiple certificates in Geography, no more than one (1) course may double-count for each.\n"
+  }
+ ],
+ "suggestedPlans": []
+}

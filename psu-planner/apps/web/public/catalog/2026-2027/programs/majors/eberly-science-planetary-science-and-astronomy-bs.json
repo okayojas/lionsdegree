@@ -1,0 +1,683 @@
+{
+ "slug": "eberly-science-planetary-science-and-astronomy-bs",
+ "name": "Planetary Science and Astronomy, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/planetary-science-and-astronomy-bs/",
+ "totalCredits": 122,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 113",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202C",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ASTRO 401",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "ASTRO 402W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "BIOL 110",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "STAT 200",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CHEM 111Experimental Chemistry I 1\nCHEM 113Experimental Chemistry II 1\nENGL 202CEffective Writing: Technical Writing 3\nMATH 141Calculus with Analytic Geometry II 4\nPrescribed Courses: Require a grade of C or better\nASTRO 401Fundamentals of Planetary Science and Astronomy4\nASTRO 402WAstronomical Telescopes, Techniques, and Data Analysis3\nBIOL 110Biology: Basic Concepts and Biodiversity 4\nBIOL/GEOSC 474Astrobiology3\nCHEM 110Chemical Principles I 3\nCHEM 112Chemical Principles II 3\nMATH 140Calculus With Analytic Geometry I 4\nSTAT 200Elementary Statistics 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 211",
+      "PHYS 250"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 212",
+      "PHYS 251"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "ASTRO 1",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ASTRO 5",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ASTRO 6",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ASTRO 291",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 101",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 121",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 201",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 202",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 203",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select three of the following:"
+    },
+    {
+     "type": "course",
+     "code": "ASTRO 120",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ASTRO 130",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ASTRO 140",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "ASTRO 292",
+     "credits": null
+    },
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "EARTH 2",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOSC 1",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "GEOSC 20",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EARTH 100",
+       "EARTH 103N",
+       "EARTH 106",
+       "EARTH 150",
+       "EARTH 402",
+       "GEOG 160",
+       "GEOSC 201",
+       "GEOSC 202",
+       "GEOSC 203",
+       "GEOSC 204",
+       "METEO 101",
+       "METEO 201"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "PHYS 211General Physics: Mechanics 4\nor PHYS 250 Introductory Physics I\nPHYS 212General Physics: Electricity and Magnetism 4\nor PHYS 251 Introductory Physics II\nSelect one of the following:3\nASTRO 1Astronomical Universe\nASTRO 5The Sky and Planets\nASTRO 6Stars, Galaxies, and the Universe\nASTRO 291Astronomical Methods and the Solar System\nSelect one of the following:3-4\nCMPSC 101Introduction to Programming\nCMPSC 121Introduction to Programming Techniques\nCMPSC 201Programming for Engineers with C++\nCMPSC 202\nCMPSC 203Introduction to Spreadsheets and Databases\nSelect three of the following:9\nASTRO 120The Big Bang Universe\nASTRO 130Black Holes in the Universe\nASTRO 140Life in the Universe\nASTRO 292Astronomy of the Distant Universe\nSelect one of the following:3\nEARTH 2The Earth System and Global Change\nGEOSC 1Physical Geology\nGEOSC 20Planet Earth\nSelect 12 credits of the following:12\nEARTH 100Environment Earth\nEARTH 103NEarth in the Future: Predicting Climate Change and Its Impacts Over the Next Century\nEARTH 106\nEARTH 150Dinosaur Extinctions and Other Controversies\nEARTH 402Modeling the Earth System\nGEOG 160Mapping Our Changing World\nGEOSC 201Earth Materials\nGEOSC 202Chemical Processes in Geology\nGEOSC 203Physical Processes in Geology\nGEOSC 204Geobiology\nMETEO 101Understanding Weather Forecasting\nMETEO 201Introduction to Weather Analysis\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 11,
+     "commentRaw": "Select 11 credits in consultation with adviser from department list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9-12 credits from program list of advanced electives",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 11 credits in consultation with adviser from department list11\nSelect 9-12 credits from program list of advanced electives9-12\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Planetary Science and Astronomy, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ASTRO 20",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ASTRO 1",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "ASTRO 5",
+        "ASTRO 6"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "GEOSC 1",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ASTRO 120",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "ASTRO 130"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "PHYS 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ASTRO 140",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CMPSC 201",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EARTH 103N",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ASTRO 401",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "†",
+        "‡"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EARTH 402",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "GEOG 160",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 14.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ASTRO 402W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "PHYS 251"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Advanced Elective (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ASTRO 120",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "ASTRO 130"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "GEOSC 474",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "BIOL 474"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Advanced Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Genearl Education Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "METEO 101",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Advanced Elective (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Course (consult with an academic adviser for options)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 122,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

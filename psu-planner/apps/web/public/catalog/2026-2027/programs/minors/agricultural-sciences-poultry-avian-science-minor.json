@@ -1,0 +1,91 @@
+{
+ "slug": "agricultural-sciences-poultry-avian-science-minor",
+ "name": "Poultry and Avian Science, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/poultry-avian-science-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ANSC 211",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ANSC 311",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nANSC 211Introduction to Avian Biology 3\nANSC 311Poultry Production and Management 3\nANSC/VBSC 425Principles of Avian Diseases 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGBM 302",
+       "AGBM 338",
+       "ANSC 207",
+       "ANSC 208",
+       "ANSC 300",
+       "ANSC 301",
+       "ANSC 322",
+       "ANSC 395",
+       "WFS 300",
+       "WFS 301"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGBM 407",
+       "AGBM 408",
+       "AGBM 420",
+       "AGBM 460",
+       "ANSC 418",
+       "ANSC 420",
+       "ANSC 421",
+       "ANSC 423",
+       "ANSC 496",
+       "ANSC 499",
+       "FDSC 408",
+       "FDSC 409",
+       "FDSC 411",
+       "FDSC 415",
+       "VBSC 420",
+       "WFS 406",
+       "WFS 407",
+       "WFS 447W"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits of the following:3\nAGBM 302Food Product Marketing\nAGBM 338Agribusiness in the Global Economy\nANSC 207Animal Products Technology\nANSC 208Animal Products Technology Laboratory\nANSC 300Anatomy and Physiology of Domestic Animals\nANSC 301Principles of Animal Nutrition\nANSC 322Animal Genetics and Selection\nANSC 395Animal Science Internship\nWFS 300The Vertebrates\nWFS 301Vertebrate Laboratory\nSelect 6 credits of the following:6\nAGBM 407Farm Planning and Financial Management\nAGBM 408Financial Decision Making for Agribusiness\nAGBM 420Agribusiness Markets & Prices\nAGBM 460Managing the Food System\nANSC 418Nutrient Management in Agricultural Systems\nANSC 420Animal Nutrition and Feed Technology\nANSC 421Poultry Evaluation and Selection\nANSC 423Comparative Physiology of Domestic Animals\nANSC 496Independent Studies\nANSC 499Foreign Studies\nFDSC 408Food Microbiology\nFDSC 409Laboratory in Food Microbiology\nFDSC 411Managing Food Quality\nFDSC 415Science and Technology of Muscle Foods\nVBSC 420General Animal Pathology\nWFS 406Ornithology Laboratory\nWFS 407Ornithology\nWFS 447WWildlife Management\n"
+  }
+ ],
+ "suggestedPlans": []
+}

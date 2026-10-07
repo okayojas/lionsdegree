@@ -61,7 +61,11 @@ export const RuleSchema = z.union([
     from: z
       .union([
         z.object({ kind: z.literal("courses"), courses: z.array(z.string()) }),
-        z.object({ kind: z.literal("pattern"), subject: z.string(), minLevel: z.number().nullable() }),
+        /** "9 credits of 400-level BMB, BIOL, BIOTC, or MICRB courses". Several
+         * subjects, because requirements routinely name several and collapsing
+         * them to one silently deleted the rest. minLevel is the LOWEST level
+         * the prose admits: "300 or 400-level" means 300. */
+        z.object({ kind: z.literal("pattern"), subjects: z.array(z.string()).min(1), minLevel: z.number().nullable() }),
         z.object({ kind: z.literal("genEd"), domain: z.string() }),
       ])
       .nullable(),

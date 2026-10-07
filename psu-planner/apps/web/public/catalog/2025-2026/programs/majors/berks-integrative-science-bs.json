@@ -1,0 +1,1639 @@
+{
+ "slug": "berks-integrative-science-bs",
+ "name": "Integrative Science, B.S. (Berks)",
+ "type": "major",
+ "degree": "BS",
+ "college": "berks",
+ "campuses": [
+  "Berks, The Berks College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/berks/integrative-science-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 113",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "BIOL 110",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CHEM 111Experimental Chemistry I 1\nCHEM 112Chemical Principles II 3\nCHEM 113Experimental Chemistry II 1\nPrescribed Courses: Require a grade of C or better\nBIOL 110Biology: Basic Concepts and Biodiversity 4\nCHEM 110Chemical Principles I 3\nMATH 140Calculus With Analytic Geometry I 4\n"
+  },
+  {
+   "heading": "Requirements for the Option",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select an option"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select an option74-94\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "STAT 200",
+      "STAT 250"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 161",
+       "BIOL 162",
+       "BIOL 220W",
+       "BIOL 230W",
+       "BIOL 240W"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 8,
+     "commentRaw": "Select 8-12 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PHYS 211",
+       "PHYS 212",
+       "PHYS 213",
+       "PHYS 214",
+       "PHYS 250",
+       "PHYS 251"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "STAT 200Elementary Statistics 3-4\nor STAT 250 Introduction to Biostatistics\nSelect 4 credits from the following:4\nBIOL 161& BIOL 162Human Anatomy and Physiology I - Lectureand Human Anatomy and Physiology I - Laboratory\nBIOL 220WBiology: Populations and Communities\nBIOL 230WBiology: Molecules and Cells\nBIOL 240WBiology: Function and Development of Organisms\nSelect 8-12 credits from the following:8-12\nPHYS 211& PHYS 212& PHYS 213& PHYS 214General Physics: Mechanicsand General Physics: Electricity and Magnetismand General Physics: Fluids and Thermal Physicsand General Physics: Wave Motion and Quantum Physics\nPHYS 250& PHYS 251Introductory Physics Iand Introductory Physics II\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Global, Social, and Personal Awareness from department approved course list in consultation with adviser",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Teamwork and Interpersonal Communication from department approved course list in consultation with adviser",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Integrative and Applied Sciences from department approved course list in consultation with adviser",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level courses",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 21,
+     "commentRaw": "Select 21-26 credits from program list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18 credits in life, mathematical, or physical sciences, with at least 9 credits at the 400 level",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3 credits in Global, Social, and Personal Awareness from department approved course list in consultation with adviser3\nSelect 3 credits in Teamwork and Interpersonal Communication from department approved course list in consultation with adviser3\nSelect 3 credits in Integrative and Applied Sciences from department approved course list in consultation with adviser3\nSelect 6 credits of 400-level courses6\nSelect 21-26 credits from program list 21-26\nSupporting Courses and Related Areas: Require a grade of C or better\nSelect 18 credits in life, mathematical, or physical sciences, with at least 9 credits at the 400 level 18\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "HPA 101",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "HPA 101Introduction to Health Services Organization3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "STAT 200",
+      "STAT 250"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 161",
+       "BIOL 162",
+       "BIOL 220W",
+       "BIOL 230W",
+       "BIOL 240W"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 222",
+       "BIOL 230W",
+       "BIOL 322",
+       "BMB 211",
+       "MICRB 201"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-8 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CHEM 202",
+       "CHEM 203",
+       "CHEM 210",
+       "CHEM 212",
+       "CHEM 213W"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 8,
+     "commentRaw": "Select 8-12 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PHYS 211",
+       "PHYS 212",
+       "PHYS 213",
+       "PHYS 214",
+       "PHYS 250",
+       "PHYS 251"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "STAT 200Elementary Statistics 3-4\nor STAT 250 Introduction to Biostatistics\nSelect 4 credits from the following:4\nBIOL 161& BIOL 162Human Anatomy and Physiology I - Lectureand Human Anatomy and Physiology I - Laboratory\nBIOL 220WBiology: Populations and Communities\nBIOL 230WBiology: Molecules and Cells\nBIOL 240WBiology: Function and Development of Organisms\nSelect 3-4 credits from the following:3-4\nBIOL 222Genetics\nBIOL 230WBiology: Molecules and Cells\nBIOL 322Genetic Analysis\nBMB 211Elementary Biochemistry\nBMB/MICRB 251Molecular and Cell Biology I\nMICRB 201Introductory Microbiology\nSelect 6-8 credits from the following:6-8\nCHEM 202& CHEM 203Fundamentals of Organic Chemistry Iand Fundamentals of Organic Chemistry II\nCHEM 210& CHEM 212& CHEM 213WOrganic Chemistry Iand Organic Chemistry IIand Laboratory in Organic Chemistry - Writing Intensive\nSelect 8-12 credits from the following:8-12\nPHYS 211& PHYS 212& PHYS 213& PHYS 214General Physics: Mechanicsand General Physics: Electricity and Magnetismand General Physics: Fluids and Thermal Physicsand General Physics: Wave Motion and Quantum Physics\nPHYS 250& PHYS 251Introductory Physics Iand Introductory Physics II\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Global, Social, and Personal Awareness from department approved course list in consultation with adviser",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Teamwork and Interpersonal Communication from department approved course list in consultation with adviser",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits in Healthcare/Medicine/Ethical Competencies from department approved course list in consultation with adviser",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9-17 credits from program list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of 400-level BMB, BIOL, BIOTC, or MICRB courses",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "BMB",
+       "BIOL",
+       "BIOTC",
+       "MICRB"
+      ],
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3 credits in Global, Social, and Personal Awareness from department approved course list in consultation with adviser3\nSelect 3 credits in Teamwork and Interpersonal Communication from department approved course list in consultation with adviser 3\nSelect 15 credits in Healthcare/Medicine/Ethical Competencies from department approved course list in consultation with adviser 15\nSelect 9-17 credits from program list 9-17\nSupporting Courses and Related Areas: Require a grade of C or better\nSelect 9 credits of 400-level BMB, BIOL, BIOTC, or MICRB courses9\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "STAT 200",
+      "STAT 250"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 161",
+       "BIOL 162",
+       "BIOL 220W",
+       "BIOL 230W",
+       "BIOL 240W"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 8,
+     "commentRaw": "Select 8-12 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PHYS 211",
+       "PHYS 212",
+       "PHYS 213",
+       "PHYS 214",
+       "PHYS 250",
+       "PHYS 251"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "STAT 200Elementary Statistics 3-4\nor STAT 250 Introduction to Biostatistics\nSelect 4 credits from the following:4\nBIOL 161& BIOL 162Human Anatomy and Physiology I - Lectureand Human Anatomy and Physiology I - Laboratory\nBIOL 220WBiology: Populations and Communities\nBIOL 230WBiology: Molecules and Cells\nBIOL 240WBiology: Function and Development of Organisms\nSelect 8-12 credits from the following:8-12\nPHYS 211& PHYS 212& PHYS 213& PHYS 214General Physics: Mechanicsand General Physics: Electricity and Magnetismand General Physics: Fluids and Thermal Physicsand General Physics: Wave Motion and Quantum Physics\nPHYS 250& PHYS 251Introductory Physics Iand Introductory Physics II\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Global, Social, and Personal Awareness from department approved course list in consultation with adviser",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Teamwork and Interpersonal Communication from department approved course list in consultation with adviser",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18 credits in Legal Studies, Government Service, Public Policy from department approved course list in consultation with adviser",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12-17 credits from program list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18 credits in life, mathematical, or physical sciences, with at least 9 credits at the 400 level",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3 credits in Global, Social, and Personal Awareness from department approved course list in consultation with adviser3\nSelect 3 credits in Teamwork and Interpersonal Communication from department approved course list in consultation with adviser3\nSelect 18 credits in Legal Studies, Government Service, Public Policy from department approved course list in consultation with adviser 18\nSelect 12-17 credits from program list 12-17\nSupporting Courses and Related Areas: Require a grade of C or better\nSelect 18 credits in life, mathematical, or physical sciences, with at least 9 credits at the 400 level 18\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "STAT 200",
+      "STAT 250"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 220W",
+       "BIOL 230W",
+       "BIOL 240W"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 222",
+       "BIOL 230W",
+       "BIOL 322",
+       "BMB 211",
+       "MICRB 201"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-8 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CHEM 202",
+       "CHEM 203",
+       "CHEM 210",
+       "CHEM 212",
+       "CHEM 213"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 8,
+     "commentRaw": "Select 8-12 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PHYS 211",
+       "PHYS 212",
+       "PHYS 213",
+       "PHYS 214",
+       "PHYS 250",
+       "PHYS 251"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "STAT 200Elementary Statistics 3-4\nor STAT 250 Introduction to Biostatistics\nSelect 4 credits from the following:4\nBIOL 220WBiology: Populations and Communities\nBIOL 230WBiology: Molecules and Cells\nBIOL 240WBiology: Function and Development of Organisms\nSelect 3-4 credits from the following:3-4\nBIOL 222Genetics\nBIOL 230WBiology: Molecules and Cells\nBIOL 322Genetic Analysis\nBMB 211Elementary Biochemistry\nBMB/MICRB 251Molecular and Cell Biology I\nMICRB 201Introductory Microbiology\nSelect 6-8 credits from the following:6-8\nCHEM 202& CHEM 203Fundamentals of Organic Chemistry Iand Fundamentals of Organic Chemistry II\nCHEM 210& CHEM 212& CHEM 213Organic Chemistry Iand Organic Chemistry IIand Laboratory in Organic Chemistry\nSelect 8-12 credits from the following:8-12\nPHYS 211& PHYS 212& PHYS 213& PHYS 214General Physics: Mechanicsand General Physics: Electricity and Magnetismand General Physics: Fluids and Thermal Physicsand General Physics: Wave Motion and Quantum Physics\nPHYS 250& PHYS 251Introductory Physics Iand Introductory Physics II\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Global, Social, and Personal Awareness from department approved course list in consultation with adviser",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Teamwork and Interpersonal Communication from department approved course list in consultation with adviser",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level courses",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 21,
+     "commentRaw": "Select 21-29 credits from program list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of 400-level BMB, BIOL, BIOTC, or MICRB courses",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "BMB",
+       "BIOL",
+       "BIOTC",
+       "MICRB"
+      ],
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3 credits in Global, Social, and Personal Awareness from department approved course list in consultation with adviser3\nSelect 3 credits in Teamwork and Interpersonal Communication from department approved course list in consultation with adviser3\nSelect 6 credits of 400-level courses6\nSelect 21-29 credits from program list 21-29\nSupporting Courses and Related Areas: Require a grade of C or better\nSelect 9 credits of 400-level BMB, BIOL, BIOTC, or MICRB courses9\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MATH 220",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "MATH 220Matrices 2-3\nPrescribed Courses: Require a grade of C or better\nMATH 141Calculus with Analytic Geometry II 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CMPSC 122",
+      "CMPSC 132"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CMPSC 360",
+      "MATH 311W"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 230",
+      "MATH 251"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPSC 121",
+       "CMPSC 131",
+       "CMPSC 201"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "STAT 200",
+       "STAT 250",
+       "STAT 318"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 222",
+       "BIOL 230W",
+       "BIOL 322",
+       "BMB 211",
+       "MICRB 201"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 8,
+     "commentRaw": "Select 8-12 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PHYS 211",
+       "PHYS 212",
+       "PHYS 213",
+       "PHYS 214",
+       "PHYS 250",
+       "PHYS 251"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CMPSC 122Intermediate Programming3\nor CMPSC 132 Programming and Computation II: Data Structures\nCMPSC 360Discrete Mathematics for Computer Science3-4\nor MATH 311W Concepts of Discrete Mathematics\nMATH 230Calculus and Vector Analysis4\nor MATH 251 Ordinary and Partial Differential Equations\nSelect 3 credits from the following:3\nCMPSC 121Introduction to Programming Techniques\nCMPSC 131Programming and Computation I: Fundamentals\nCMPSC 201Programming for Engineers with C++\nSelect 3-4 credits from the following:3-4\nSTAT 200Elementary Statistics\nSTAT 250Introduction to Biostatistics\nSTAT 318Elementary Probability\nSelect 3-4 credits from the following:3-4\nBIOL 222Genetics\nBIOL 230WBiology: Molecules and Cells\nBIOL 322Genetic Analysis\nBMB 211Elementary Biochemistry\nBMB/MICRB 251Molecular and Cell Biology I\nMICRB 201Introductory Microbiology\nSelect 8-12 credits from the following:8-12\nPHYS 211& PHYS 212& PHYS 213& PHYS 214General Physics: Mechanicsand General Physics: Electricity and Magnetismand General Physics: Fluids and Thermal Physicsand General Physics: Wave Motion and Quantum Physics\nPHYS 250& PHYS 251Introductory Physics Iand Introductory Physics II\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Global, Social, and Personal Awareness from department approved course list in consultation with adviser",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Teamwork and Interpersonal Communication from department approved course list in consultation with adviser",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of 400-level courses",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 13,
+     "commentRaw": "Select 13-20 credits from program list",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of 400-level CMPSC, MATH, or STAT courses",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "CMPSC",
+       "MATH",
+       "STAT"
+      ],
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3 credits in Global, Social, and Personal Awareness from department approved course list in consultation with adviser3\nSelect 3 credits in Teamwork and Interpersonal Communication from department approved course list in consultation with adviser3\nSelect 6 credits of 400-level courses6\nSelect 13-20 credits from program list 13-20\nSupporting Courses and Related Areas: Require a grade of C or better\nSelect 9 credits of 400-level CMPSC, MATH, or STAT courses9\n"
+  },
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "STAT 200",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "EDUC 313",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "EDUC 314",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 315Y",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 385",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 400",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 414",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 458",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 459",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 490",
+     "credits": 9
+    },
+    {
+     "type": "course",
+     "code": "EDPSY 14",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDUC 466N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202C",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "HDFS 239",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 250",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 251",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "STAT 200Elementary Statistics 4\nPrescribed Courses: Require a grade of C or better for teacher certification\nEDUC 313Secondary Education Field Experience2\nEDUC 314Learning Theory and Instructional Procedures3\nEDUC 315YSocial and Cultural Factors in Education3\nEDUC 385Professional Development in Teaching3\nEDUC 400Diversity and Cultural Awareness Practices in the K-12 Classroom3\nEDUC 414Teaching Secondary Science3\nEDUC 458Behavior Management Strategies for Inclusive Classrooms3\nEDUC 459Strategies for Effective Teaching in Inclusive Classrooms3\nEDUC 490Student Teaching9\nPrescribed Courses: Require a Grade of C or Better\nEDPSY 14Learning and Instruction 3\nEDUC 466NFoundations of Teaching English as a Second Language 3\nENGL 202CEffective Writing: Technical Writing 3\nHDFS 239Adolescent Development 3\nMATH 141Calculus with Analytic Geometry II 4\nPHYS 250Introductory Physics I 4\nPHYS 251Introductory Physics II 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 220W",
+       "BIOL 230W",
+       "BIOL 240W"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 4 credits from the following:4\nBIOL 220WBiology: Populations and Communities\nBIOL 230WBiology: Molecules and Cells\nBIOL 240WBiology: Function and Development of Organisms\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of GH literature from department list",
+     "from": {
+      "kind": "genEd",
+      "domain": "GH"
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select a 3 credit EARTH course",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select a 3 credit ASTRO course",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of 400-level earth or physical science courses",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits of science or education elective courses",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a Grade of C or Better\nSelect 3 credits of GH literature from department list3\nSelect a 3 credit EARTH course3\nSelect a 3 credit ASTRO course3\nSelect 9 credits of 400-level earth or physical science courses9\nSelect 12 credits of science or education elective courses12\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "General Science Option: Integrative Science, B.S. at Berks Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 230W",
+        "BIOL 240W"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Earth & Mineral Sciences Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Life or Math or Physical Science Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Program List Selection",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 213",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 214",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA or GH or GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA or GH or GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Global, Social & Personal Awareness Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Life or Math or Physical Science Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Program List Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Program List Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA or GH or GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Teamwork & Interpersonal Communication Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Life or Math or Physical Science Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Program List Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Program List Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Integrative Studies)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400 Level General Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "400 Level Life or Math or Physical Science Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400 Level Life or Math or Physical Science Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Integrative Studies)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400 Level General Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "400 Level Life or Math or Physical Science Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Program List Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Exploration)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Life Science Option: Integrative Science, B.S. at Berks Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 113",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "BIOL 220W",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 230W",
+        "BIOL 240W"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "STAT 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "STAT 250"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 210",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 250",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MICRB 201",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA or GH or GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 212",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 213",
+       "credits": 2,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 251",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA or GH or GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA or GH or GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Global, Social & Personal Awareness Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "400 Level Life Science Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Program List Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Program List Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Integrative Studies)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Teamwork & Interpersonal Communication Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "400 Level Life Science Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Program List Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Program List Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Integrative Studies)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400 Level General Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "400 Level Life Science Selection",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Program List Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Exploration)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400 Level General Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Program List Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Program List Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Program List Selection",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 121,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

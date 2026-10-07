@@ -1,0 +1,92 @@
+{
+  "source": "28 engineering advising flowcharts (parsed.json) + 1081 bulletin suggested plans, edition 2026-2027",
+  "numChartsUsed": 28,
+  "targetCreditsPerSem": 12.2,
+  "capCreditsPerSem": 19,
+  "geCurve": [
+    3,
+    3.79,
+    1.79,
+    1.18,
+    0.25,
+    0.89,
+    0.07,
+    0
+  ],
+  "advancedCurve": [
+    0,
+    0,
+    0.02,
+    0.01,
+    0.1,
+    0.37,
+    0.87,
+    0.75
+  ],
+  "electiveOnsetFrac": 0.71,
+  "electiveCurve": [
+    0.032,
+    0.049,
+    0.082,
+    0.083,
+    0.136,
+    0.173,
+    0.209,
+    0.237
+  ],
+  "prescribedCurve": [
+    0.174,
+    0.133,
+    0.138,
+    0.132,
+    0.141,
+    0.122,
+    0.089,
+    0.072
+  ],
+  "geSlotCurve": [
+    0.166,
+    0.166,
+    0.166,
+    0.14,
+    0.103,
+    0.086,
+    0.088,
+    0.084
+  ],
+  "numTemplatesUsed": 1081,
+  "capstone": {
+    "meanStartFrac": 0.84,
+    "maxSeqLen": 2
+  },
+  "generatedFrom": [
+    "AERSP",
+    "AIE",
+    "BE-ag-option",
+    "BE-food-bio-option",
+    "BE-natural-resource-option",
+    "BME---Biomaterials-Option",
+    "BME---Biomechanics-Option",
+    "BME---Med-Dev-Design-Option-2025-Vizio",
+    "BME---Med-Imag-and-Dev-Option",
+    "BME---Med-Imaging-Option-2025-Vizio",
+    "BME-Biochemical-Option1",
+    "BME-Biopharm-Option",
+    "BME-biomechanics-option",
+    "CE",
+    "CHE",
+    "CMPEN",
+    "CMPSC---Computer-Science-1",
+    "CMPSC-2026",
+    "EE",
+    "EMET",
+    "ESC",
+    "GE-alt-ener-pwr-option",
+    "GE-app-mat-option",
+    "GE-multi-engr-option-abington",
+    "GE-multi-engr-option-brandywine",
+    "IE-SSE-Option",
+    "IE",
+    "SURE"
+  ]
+}

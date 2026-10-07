@@ -1,0 +1,96 @@
+{
+ "slug": "capital-mechatronics-minor",
+ "name": "Mechatronics, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/mechatronics-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EE 210",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nEE 210Circuits and Devices4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select one of the following:"
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 121",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 200",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 201",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-8 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPEN 270",
+       "CMPEN 271",
+       "CMPEN 275",
+       "CMPEN 331",
+       "EE 310",
+       "EE 387",
+       "ME 345",
+       "ME 345W",
+       "ME 357"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-7 credits of the following (one course each from Category I and II):",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPEH 472",
+       "CMPEN 472",
+       "EE 485",
+       "EE 487",
+       "ME 445",
+       "EE 483",
+       "ME 455",
+       "ME 456"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect one of the following:3\nCMPSC 121Introduction to Programming Techniques\nCMPSC 200Programming for Engineers with MATLAB\nCMPSC 201Programming for Engineers with C++\nSelect 6-8 credits of the following: 6-8\nGroup A\nCMPEN 270Digital Design: Theory and Practice\nor CMPEN 271& CMPEN 275 Introduction to Digital Systemsand Digital Design Laboratory\nCMPEN 331Computer Organization And Design\nor EE 310 Electronic Circuit Design I\nor EE 387 Energy Conversion\nGroup B\nME 345Instrumentation, Measurements, and Statistics\nor ME 345W Instrumentation, Measurements, and Statistics\nME 357System Dynamics\nSelect 6-7 credits of the following (one course each from Category I and II):6-7\nCategory I\nCMPEH 472Microcontrollers\nCMPEN 472Microprocessors and Embedded Systems\nEE 485Energy Systems and Conversion\nEE 487\nME 445Microcomputer Interfacing for Mechanical Engineers\nCategory II\nEE 483Introduction to Automation and Robotics Systems\nME 455Automatic Control Systems\nME 456Introduction to Robotics\n"
+  }
+ ],
+ "suggestedPlans": []
+}

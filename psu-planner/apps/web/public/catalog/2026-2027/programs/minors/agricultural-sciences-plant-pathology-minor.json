@@ -1,0 +1,78 @@
+{
+ "slug": "agricultural-sciences-plant-pathology-minor",
+ "name": "Plant Pathology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/plant-pathology-minor/",
+ "totalCredits": 12,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BIOL 110",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PPEM 496",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nBIOL 110Biology: Basic Concepts and Biodiversity 4\nPPEM 496Independent Studies 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "PPEM 300",
+      "PPEM 405"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select a minimum of 12 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGECO 121",
+       "PPEM 120",
+       "PPEM 300",
+       "PPEM 318",
+       "PPEM 405",
+       "PPEM 412",
+       "PPEM 416",
+       "PPEM 417W",
+       "PPEM 425",
+       "PPEM 430",
+       "PPEM 454",
+       "PPEM 496",
+       "PPEM 497"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Course(s) from the departmental list for the Plant Pathology Minor with the approval of the minor adviser"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nPPEM 300Horticultural Crop Diseases 3\nor PPEM 405 Microbe-Plant Interactions: Plant Disease and Biological Control\nSelect a minimum of 12 credits of the following:12\nAGECO 121Plant Stress: It's Not Easy Being Green\nAGECO/ENT 457Principles of Integrated Pest Management\nPPEM 120The Fungal Jungle: A Mycological Safari From Truffles to Slime Molds\nPPEM 300Horticultural Crop Diseases\nPPEM 318Diseases of Forest and Shade Trees\nPPEM 405Microbe-Plant Interactions: Plant Disease and Biological Control\nPPEM 412Turfgrass Disease Management\nPPEM 416Plant Virology: Molecules to Populations\nPPEM 417WMechanisms of Bacterial Pathogenesis in Plants\nPPEM 425Biology of Fungi\nPPEM 430Air Pollution Impacts to Terrestrial Ecosystems\nPPEM 454Virus Ecology\nPPEM 496Independent Studies\nPPEM 497Special Topics\nCourse(s) from the departmental list for the Plant Pathology Minor with the approval of the minor adviser\n"
+  }
+ ],
+ "suggestedPlans": []
+}

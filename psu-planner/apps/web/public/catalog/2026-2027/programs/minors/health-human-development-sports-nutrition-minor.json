@@ -1,0 +1,66 @@
+{
+ "slug": "health-human-development-sports-nutrition-minor",
+ "name": "Sports Nutrition, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "health-human-development",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/health-human-development/sports-nutrition-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "HM 230",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NUTR 251",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NUTR 358",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NUTR 407",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "NUTR 487",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nHM 230Principles of Food Production Management3\nNUTR 251Introductory Principles of Nutrition 3\nNUTR 358Assessment of Nutritional Status3\nNUTR 407Nutrition for Exercise and Sports3\nNUTR 487Advanced Performance Nutrition3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "KINES 160N",
+      "KINES 350"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nKINES 160NFitness with Exercise Physiology 3\nor KINES 350 Exercise Physiology\n"
+  }
+ ],
+ "suggestedPlans": []
+}

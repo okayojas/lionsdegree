@@ -1,0 +1,90 @@
+{
+ "slug": "eberly-science-biology-minor",
+ "name": "Biology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/biology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4-5 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 110",
+       "BIOL 110H",
+       "BIOL 114",
+       "BIOL 115",
+       "BIOL 114",
+       "BIOL 116"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 8,
+     "commentRaw": "Select 8 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 129",
+       "BIOL 141",
+       "BIOL 142",
+       "BIOL 161",
+       "BIOL 162",
+       "BIOL 163",
+       "BIOL 164",
+       "BIOL 220W",
+       "BIOL 220M",
+       "BIOL 224",
+       "BIOL 225W",
+       "BIOL 224",
+       "BIOL 226W",
+       "BIOL 222",
+       "BIOL 230W",
+       "BIOL 230M",
+       "BIOL 234",
+       "BIOL 235W",
+       "BIOL 234",
+       "BIOL 236W",
+       "BIOL 240W",
+       "BIOL 240M",
+       "BIOL 244",
+       "BIOL 245W",
+       "BIOL 322"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 4-5 credits from the following:4-5\nBIOL 110Biology: Basic Concepts and Biodiversity\nBIOL 110HHonors Biology: Basic Concepts and Biodiversity\nBIOL 114& BIOL 115Biology: Basic Concepts and Biodiversity - Lectureand Biology: Basic Concepts and Biodiversity - Lab\nBIOL 114& BIOL 116Biology: Basic Concepts and Biodiversity - Lectureand Biology: Basic Concepts and Biodiversity - FRI Lab\nSelect 8 credits from the following:8\nBIOL 129Mammalian Anatomy\nBIOL 141Introduction to Human Physiology\nBIOL 142Physiology Laboratory\nBIOL 161Human Anatomy and Physiology I - Lecture\nBIOL 162Human Anatomy and Physiology I - Laboratory\nBIOL 163Human Anatomy and Physiology II - Lecture\nBIOL 164Human Anatomy and Physiology II - Laboratory\nBIOL 220WBiology: Populations and Communities\nor BIOL 220M Honors Biology: Populations and Communities\nor BIOL 224& BIOL 225W Biology: Populations and Communities - Lectureand Biology: Populations and Communities - Lab\nor BIOL 224& BIOL 226W Biology: Populations and Communities - Lectureand Biology: Populations and Communities - FRI Lab\nBIOL 222Genetics\nBIOL 230WBiology: Molecules and Cells\nor BIOL 230M Honors Biology: Molecules and Cells\nor BIOL 234& BIOL 235W Biology: Molecules and Cells - Lectureand Biology: Molecules and Cells - Lab\nor BIOL 234& BIOL 236W Biology: Molecules and Cells - Lectureand Biology: Molecules and Cells - FRI Lab\nBIOL 240WBiology: Function and Development of Organisms\nor BIOL 240M Honors Biology: Function and Development of Organisms\nor BIOL 244& BIOL 245W Biology: Function and Development of Organisms - Lectureand Biology: Function and Development of Organisms - Lab\nBIOL 322Genetic Analysis\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-9 credits from 400-level Biology courses",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6-9 credits from 400-level Biology courses 6-9\n"
+  }
+ ],
+ "suggestedPlans": []
+}

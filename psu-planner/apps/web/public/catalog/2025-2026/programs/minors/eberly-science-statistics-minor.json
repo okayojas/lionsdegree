@@ -1,0 +1,90 @@
+{
+ "slug": "eberly-science-statistics-minor",
+ "name": "Statistics, Minor (Science)",
+ "type": "minor",
+ "degree": null,
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/statistics-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Select two of the following:"
+    },
+    {
+     "type": "course",
+     "code": "STAT 301",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "STAT 318",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "STAT 319",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "STAT 401",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "STAT 414",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "STAT 415",
+     "credits": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 10,
+     "commentRaw": "Select 10-12 credits from 400-level STAT courses",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "STAT"
+      ],
+      "minLevel": 400
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect two of the following:6\nSTAT 301\nSTAT 318Elementary Probability\nSTAT 319Elementary Mathematical Statistics\nSTAT 401Experimental Methods\nSTAT 414Introduction to Probability Theory\nSTAT 415Introduction to Mathematical Statistics\nSelect 10-12 credits from 400-level STAT courses 10-12\n"
+  }
+ ],
+ "suggestedPlans": []
+}

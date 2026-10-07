@@ -1,0 +1,66 @@
+{
+ "slug": "smeal-business-supply-chain-information-sciences-technology-minor",
+ "name": "Supply Chain and Information Sciences and Technology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "smeal-business",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/smeal-business/supply-chain-information-sciences-technology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "IST 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 220",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCM 301",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nIST 110Information, People and Technology 3\nIST 210Organization of Data3\nIST 220Networking and Telecommunications3\nSCM 301Supply Chain Management3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "SCM 404",
+       "SCM 405",
+       "SCM 406"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits of the following:6\nSCM 404Demand Fulfillment\nSCM 405Manufacturing and Services Strategies\nSCM 406Strategic Procurement\n"
+  }
+ ],
+ "suggestedPlans": []
+}

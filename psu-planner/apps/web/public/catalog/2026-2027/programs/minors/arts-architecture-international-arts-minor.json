@@ -1,0 +1,53 @@
+{
+ "slug": "arts-architecture-international-arts-minor",
+ "name": "International Arts, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "arts-architecture",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/arts-architecture/international-arts-minor/",
+ "totalCredits": 9,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AA 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AA 401",
+     "credits": 1
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nAA 100Introduction to International Arts 3\nAA 401International Arts Minor Final Project1-3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "12th-credit-level proficiency in one world language demonstrated by course work or examination"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits of international arts courses",
+     "from": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\n12th-credit-level proficiency in one world language demonstrated by course work or examination0-12\nSelect 15 credits of international arts courses 15\n"
+  }
+ ],
+ "suggestedPlans": []
+}

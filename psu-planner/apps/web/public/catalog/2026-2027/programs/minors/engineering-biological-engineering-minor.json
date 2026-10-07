@@ -1,0 +1,96 @@
+{
+ "slug": "engineering-biological-engineering-minor",
+ "name": "Biological Engineering, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/biological-engineering-minor/",
+ "totalCredits": 18,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following related science electives:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGRO 28",
+       "ANSC 201",
+       "BIOL 110",
+       "BIOL 127",
+       "BMB 211",
+       "CHEM 202",
+       "CHEM 210",
+       "FDSC 200",
+       "HORT 101",
+       "MICRB 201",
+       "SOILS 101"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-7 credits from the following 300-level BE courses:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BE 301",
+       "BE 302",
+       "BE 303",
+       "BE 305",
+       "BE 306",
+       "BE 307",
+       "BE 308"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following 400-level BE courses:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BE 404",
+       "BE 461",
+       "BE 462",
+       "BE 464",
+       "BE 465",
+       "BE 467",
+       "BE 468",
+       "BE 477",
+       "BE 487"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3-4 credits from the following related science electives:3-4\nABSM/ERM 309Measurement & Monitoring of Hydrologic Systems\nAGRO 28Principles of Crop Management\nANSC 201Animal Science\nBIOL 110Biology: Basic Concepts and Biodiversity\nBIOL 127Introduction to Plant Biology\nBMB 211Elementary Biochemistry\nBMB/MICRB 251Molecular and Cell Biology I\nCHEM 202Fundamentals of Organic Chemistry I\nCHEM 210Organic Chemistry I\nFDSC 200Introductory Food Science\nHORT 101Horticultural Science\nMICRB 201Introductory Microbiology\nSOILS 101Introductory Soil Science\nSelect 6-7 credits from the following 300-level BE courses:6-7\nBE 301Mathematical Modeling of Biological and Physical Systems\nBE 302Heat and Mass Transfer in Biological Systems\nBE 303Structural Systems in Agriculture\nBE 305Agricultural Measurements and Control Systems\nBE 306Machine Design for Agricultural and Biological Engineering\nBE 307Principles of Soil and Water Engineering\nBE 308Engineering Elements of Biochemistry and Microbiology\nSelect 6 credits from the following 400-level BE courses:6\nBE 404Engineering Properties of Food and Biological Materials\nBE 461Design of Fluid Power Systems\nBE 462Design of Wood Structures\nBE 464Bioenergy Systems Engineering\nBE 465Food and Biological Process Engineering\nBE 467Design of Stormwater and Erosion Control Facilities\nBE 468Microbiological Engineering\nBE 477Land-Based Waste Disposal\nBE 487Simulation Modeling for Water Resources Management\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of 400-level coursework or independent study in a related science or engineering field in consultation with the minor adviser",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits of 400-level coursework or independent study in a related science or engineering field in consultation with the minor adviser3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

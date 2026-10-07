@@ -1,0 +1,1128 @@
+{
+ "slug": "agricultural-sciences-agricultural-science-bs",
+ "name": "Agricultural Science, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/agricultural-science-bs/",
+ "totalCredits": 123,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "AEE 360",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "AEE 460",
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B",
+      "CAS 100C",
+      "CAS 100S"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 15",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "AEE 360Leadership Development for Small Groups3\nAEE 460Foundations in Leadership Development3\nPrescribed Courses: Require a grade of C or better\nCAS 100Effective Speech3\nENGL 15Rhetoric and Composition 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "AEE 311",
+      "AEE 465"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "AEE 330W",
+      "AEE 440"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CHEM 101",
+       "CHEM 110",
+       "CHEM 130"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 11",
+       "BIOL 12",
+       "BIOL 110",
+       "BISC 3"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits in Crop Managment",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in any HORT except X95, X96",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Agricultural Economics and Rural Sociology",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in International Agriculture from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AEE 400",
+       "CED 450",
+       "INTAG 100N"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Any College of Agricultural Sciences international course"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 1,
+     "commentRaw": "Select 1-3 credits in Careers in Agriculture from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AEE 100",
+       "AG 100",
+       "AG 113",
+       "ANSC 290",
+       "ERM 151"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits in any ANSC except 291, X95, X96",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Technology in Agriculture from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGECO 144",
+       "AGECO 457",
+       "ANSC 207",
+       "ANSC 208",
+       "ERM 210",
+       "FDSC 200",
+       "PLANT 217"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits in Natural Resources/Ecology from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AGECO 122",
+       "AGECO 201",
+       "EGEE 101",
+       "FOR 470",
+       "SOILS 71",
+       "SOILS 101",
+       "SOILS 412W",
+       "WFS 209N"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Agricultural and Environmental Policy from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AG 160",
+       "AGECO 134N",
+       "CED 201",
+       "FDSC 105"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 202C",
+      "ENGL 202D"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "AEE 311Developing Youth Leadership through Organization and Program Structure3\nor AEE 465 Leadership Practices: Power, Influences, and Impact\nAEE 330WCommunication in Agricultural and Natural Resource Careers3\nor AEE 440 Communication Methods and Media\nSelect 3 credits from the following:3\nCHEM 101Introductory Chemistry\nCHEM 110Chemical Principles I\nCHEM 130Introduction to General, Organic, and Biochemistry\nSelect 3-4 credits from the following:3-4\nBIOL 11& BIOL 12Introductory Biology I and Introductory Biology II\nBIOL 110Biology: Basic Concepts and Biodiversity\nBISC 3Environmental Science\nSelect 3-4 credits in Crop Managment 3-4\nSelect 3 credits in any HORT except X95, X963\nSelect 3 credits in Agricultural Economics and Rural Sociology 3\nSelect 3 credits in International Agriculture from the following:3\nAEE 400Global Agriculture Education\nCED 450International Development, Renewable Resources, and the Environment\nINTAG 100NEveryone Eats: Hunger, Food Security & Global Agriculture\nAny College of Agricultural Sciences international course\nSelect 1-3 credits in Careers in Agriculture from the following:1-3\nAEE 100Agricultural Education Orientation\nAG 100\nAG 113Exploring Careers in Agriculture\nANSC 290Careers in Animal Agriculture\nERM 151Careers and Issues in Environmental Resource Management\nSelect 3-4 credits in any ANSC except 291, X95, X963-4\nSelect 3 credits in Technology in Agriculture from the following:3\nAGECO 144Principles and Practices of Organic Agriculture\nAGECO 457Principles of Integrated Pest Management\nANSC 207& ANSC 208Animal Products Technologyand Animal Products Technology Laboratory\nERM 210Environmental Factors and Their Effect on Your Food Supply\nFDSC 200Introductory Food Science\nPLANT 217Landscape Soil and Water Management\nSelect 6 credits in Natural Resources/Ecology from the following:6\nAGECO 122Atmospheric Environment: Growing in the Wind\nAGECO 201Introductory Agroecology\nEGEE 101Energy and the Environment\nFOR 470Watershed Management\nSOILS 71Environmental Sustainability\nSOILS 101Introductory Soil Science\nSOILS 412WSoil Ecology\nWFS 209NWildlife and Fisheries Conservation\nSelect 3 credits in Agricultural and Environmental Policy from the following:3\nAG 160Introduction into Ethics and Issues in Agriculture\nAGECO 134NSustainable Agriculture Science and Policy\nCED 201Introductory Environmental and Resource Economics\nFDSC 105Food Facts and Fads\nAdditional Courses: Require a grade of C or better\nENGL 202CEffective Writing: Technical Writing 3\nor ENGL 202D Effective Writing: Business Writing\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits in Agriculture",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18-21 credits for College of Agricultural Sciences Minor",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 9 credits in Agriculture9\nSupporting Courses and Related Areas Courses: Require a grade of C or better\nSelect 18-21 credits for College of Agricultural Sciences Minor18-21\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Agricultural Science, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 11",
+        "BIOL 12",
+        "BISC 3"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGSC 100",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Agriculture Course (any College of Agricultural Sciences course)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Integrative Studies Course",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 101",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 110",
+        "CHEM 130"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Exploration)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Agriculture Course (any College of Agricultural Sciences course)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ANSC 290",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": [
+        "AEE 100",
+        "ERM 151"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Animal Science Course (any ANSC course)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Integrative Studies Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "AG 160",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGECO 134N",
+        "CED 201",
+        "FDSC 105",
+        "STS 105"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AGECO 144",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGECO 457",
+        "PLANT 217",
+        "ENT 457",
+        "ERM 210",
+        "FDSC 200",
+        "ANSC 207",
+        "ANSC 208"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SOILS 412W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGECO 122",
+        "EGEE 101",
+        "FOR 470",
+        "METEO 122",
+        "CED 327",
+        "SOILS 71",
+        "SOILS 101",
+        "WFS 209N"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "College of Agricultural Sciences Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GS)",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AEE 311",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AEE 465"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SOILS 412W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGECO 122",
+        "EGEE 101",
+        "FOR 470",
+        "METEO 122",
+        "CED 327",
+        "SOILS 71",
+        "SOILS 101",
+        "WFS 209N"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AEE 330W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AEE 440"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "College of Agricultural Sciences Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AEE 400",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGBM 338",
+        "CED 420W",
+        "CED 450",
+        "FOR 418",
+        "INTAG 100N"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AEE 360",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Horticulture Course (any HORT course)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN)",
+       "domain": "GN",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AEE 460",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "College of Agricultural Sciences Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "College of Agricultural Sciences Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Ag Economics & Rural Sociology Course (any AGBM, CED, or RSOC course)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Crop Managment Course (any AGECO, AGRO, or ENT course)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "College of Agricultural Sciences Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "College of Agricultural Sciences Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Agriculture Course (any College of Agricultural Sciences course)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 123,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Agricultural Science, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "BIOL 110",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "BIOL 11",
+        "BIOL 12",
+        "BISC 3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 101",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 110",
+        "CHEM 130"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Agriculture Course (any College of Agricultural Sciences course)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "SOILS 412W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGECO 122",
+        "EGEE 101",
+        "FOR 470",
+        "METEO 122",
+        "CED 327",
+        "SOILS 71",
+        "SOILS 101",
+        "WFS 209N"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Agriculture Course (any College of Agricultural Sciences course)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SOILS 412W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGECO 122",
+        "EGEE 101",
+        "FOR 470",
+        "METEO 122",
+        "CED 327",
+        "SOILS 71",
+        "SOILS 101",
+        "WFS 209N"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Agriculture Course (any College of Agricultural Sciences course)",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AEE 311",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AEE 465"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AGECO 144",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGECO 457",
+        "PLANT 217",
+        "ENT 457",
+        "ERM 210",
+        "FDSC 200",
+        "ANSC 207",
+        "ANSC 208"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AEE 330W",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AEE 440"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ANSC 290",
+       "credits": 1,
+       "footnotes": [],
+       "alternatives": [
+        "AEE 100",
+        "ERM 151"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "College of Agricultural Sciences Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 2,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AEE 400",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGBM 338",
+        "CED 420W",
+        "CED 450",
+        "FOR 418",
+        "INTAG 100N"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "AEE 360",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Horticulture Course (any HORT course)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Animal Science Course (any ANSC course)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "College of Agricultural Sciences Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AEE 460",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "College of Agricultural Sciences Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "College of Agricultural Sciences Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Ag Economics & Rural Sociology Course (any AGBM, CED, or RSOC course)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "AG 160",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "AGECO 134N",
+        "CED 201",
+        "FDSC 105",
+        "STS 105"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Crop Managment Course (any AGECO, AGRO, or ENT course)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "College of Agricultural Sciences Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "College of Agricultural Sciences Minor Course",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 123,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

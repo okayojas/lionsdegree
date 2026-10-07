@@ -1,0 +1,113 @@
+{
+ "slug": "earth-mineral-sciences-environmental-health-safety-minor",
+ "name": "Environmental Health and Safety, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/environmental-health-safety-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ENVSE 400",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENVSE 450",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENVSE 470",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nENVSE 400Safety Engineering3\nENVSE 450Environmental Health and Safety3\nENVSE 470Engineering Risk Analysis3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "chooseN",
+     "n": 1,
+     "options": [
+      "EE 465",
+      "EME 210",
+      "ENVSE 406",
+      "IE 323",
+      "IE 424",
+      "STAT 200",
+      "STAT 240",
+      "STAT 250",
+      "STAT 300",
+      "STAT 318",
+      "STAT 401",
+      "STAT 418"
+     ],
+     "credits": 3,
+     "commentRaw": "Select one course in statistics, probability, or data analytics from the following:"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect one course in statistics, probability, or data analytics from the following:3-4\nEE 465Probability for Electrical and Computer Engineers\nEME 210Data Analytics for Energy Systems\nENVSE 406Sampling and Monitoring of the Geo-Environment\nIE 323Statistical Methods in Industrial Engineering\nIE 424Process Quality Engineering\nSTAT 200Elementary Statistics\nSTAT 240Introduction to Biometry\nSTAT 250Introduction to Biostatistics\nSTAT 300Statistical Modeling I\nSTAT 318Elementary Probability\nSTAT 401Experimental Methods\nSTAT 418Introduction to Probability and Stochastic Processes for Engineering\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "chooseN",
+     "n": 2,
+     "options": [
+      "ABSM 426",
+      "AERSP 301",
+      "BBH 370",
+      "BBH 440",
+      "BIOL 141",
+      "BME 301",
+      "CE 352",
+      "CHE 452",
+      "CHEM 358",
+      "EME 450",
+      "ENVSE 427",
+      "ENVSE 440",
+      "ENVSE 457",
+      "ERM 431",
+      "GEOSC 450",
+      "IE 419",
+      "KINES 453",
+      "ME 405",
+      "MNG 331",
+      "MNG 422",
+      "MNPR 301",
+      "NUCE 420",
+      "PHP 410",
+      "PNG 301",
+      "PNG 480",
+      "PUBPL 475",
+      "RTE 303"
+     ],
+     "credits": 6,
+     "commentRaw": "Select two courses from the following list of safety-related or environmental-health-related electives:"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect two courses from the following list of safety-related or environmental-health-related electives:6-7\nABSM 426Safety and Health in Agriculture and Biorenewable Industries\nAERSP 301Aerospace Structures\nBBH 370Environmental Health and Sustainability\nBBH 440Principles of Epidemiology\nBIOL 141Introduction to Human Physiology\nBME 301Analysis of Physiological Systems\nCE 352Construction Safety and Risk Management\nCHE 452Chemical Process Safety\nCHEM 358Literature, Conduct and Safety in the Chemical Sciences\nEME 450Energy Crisis Leadership\nENVSE 427Pollution Control in the Process Industries\nENVSE 440Industrial Ventilation for Contaminant Control\nENVSE 457Industrial Hygiene Measurements\nERM 431Environmental Toxicology\nGEOSC 450Risk Analysis in the Earth Sciences\nIE 419Work Design - Productivity and Safety\nKINES 453Environmental Physiology\nME 405Indoor Air Quality Engineering\nMNG 331Rock Mechanics\nMNG 422Mine Ventilation and Air Conditioning\nMNPR 301Elements of Mineral Processing\nNUCE 420Radiological Safety\nPHP 410Public Health Preparedness for Disaster and Terrorist Emergencies I\nPNG 301Introduction to Petroleum and Natural Gas Engineering\nPNG 480Surface Production Engineering\nPUBPL 475Critical Infrastructure Protection\nRTE 303Railroad Operation and Safety\n"
+  }
+ ],
+ "suggestedPlans": []
+}

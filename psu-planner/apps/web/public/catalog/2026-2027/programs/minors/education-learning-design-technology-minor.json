@@ -1,0 +1,95 @@
+{
+ "slug": "education-learning-design-technology-minor",
+ "name": "Learning, Design, and Technology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "education",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/education/learning-design-technology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "LDT 101",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LDT 110N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LDT 215",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LDT 410",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nLDT 101Effective Communication and Teaching Strategies for Corporate and Community Educators3\nLDT 110NMaking with Art and Learning Technologies 3\nLDT 215Creating Designs for Learning 3\nLDT 410Advanced Learning Experience Design Lab3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CI 185",
+       "EDPSY 11",
+       "EDPSY 14",
+       "EDPSY 14H",
+       "EDTHP 416",
+       "LDT 100"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits from the following:3\nCI 185Principles of Social Justice in Education\nEDPSY 11Educational Implications of Individual Differences in Childhood\nEDPSY 14Learning and Instruction\nEDPSY 14HLearning and Instruction\nEDTHP 416Sociology of Education\nLDT 100World Technologies and Learning\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following 400-level courses:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EDPSY 421",
+       "LDT 401",
+       "LDT 440",
+       "LDT 467",
+       "LDT 495",
+       "LDT 497"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits from the following 400-level courses:3\nEDPSY 421Learning Processes in Relation to Educational Practices\nLDT 401Gaming to Learn\nLDT 440Educational Technology Integration\nLDT 467Emerging Web Technologies and Learning\nLDT 495Internship in Learning, Design, and Technology\nLDT 497Special Topics\n"
+  }
+ ],
+ "suggestedPlans": []
+}

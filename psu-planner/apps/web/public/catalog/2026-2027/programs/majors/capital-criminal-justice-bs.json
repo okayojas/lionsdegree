@@ -1,0 +1,882 @@
+{
+ "slug": "capital-criminal-justice-bs",
+ "name": "Criminal Justice, B.S. (Capital)",
+ "type": "major",
+ "degree": "BS",
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/criminal-justice-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CRIMJ 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CRIMJ 220",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CRIMJ 230",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CRIMJ 250W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CRIMJ 450W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CRIMJ 465",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCRIMJ/SOC 12Criminology 3\nCRIMJ/CRIM 100Introduction to Criminal Justice 3\nCRIMJ 210Policing in America3\nCRIMJ 220Courts and the Prosecution Process3\nCRIMJ 230Corrections in America3\nCRIMJ 250WResearch Methods in Criminal Justice3\nCRIMJ 450WSenior Seminar3\nCRIMJ 465Ethics in Criminal Justice3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits each from sequence A and B or 12 credits from sequence C:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CRIMJ 221",
+       "CRIMJ 234",
+       "CRIMJ 241",
+       "CRIMJ 389",
+       "CRIMJ 407",
+       "CRIMJ 408",
+       "CRIMJ 409",
+       "CRIMJ 410",
+       "CRIMJ 415",
+       "CRIMJ 416",
+       "CRIMJ 426",
+       "CRIMJ 430",
+       "CRIMJ 431",
+       "CRIMJ 460",
+       "CRIMJ 462",
+       "CRIMJ 489W",
+       "CRIMJ 495",
+       "CRIMJ 496",
+       "CRIMJ 497",
+       "CRIMJ 304",
+       "CRIMJ 389",
+       "CRIMJ 407",
+       "CRIMJ 408",
+       "CRIMJ 409",
+       "CRIMJ 410",
+       "CRIMJ 415",
+       "CRIMJ 416",
+       "CRIMJ 426",
+       "CRIMJ 430",
+       "CRIMJ 431",
+       "CRIMJ 460",
+       "CRIMJ 462",
+       "CRIMJ 489W",
+       "CRIMJ 495",
+       "CRIMJ 496",
+       "CRIMJ 497"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CRIMJ 260",
+      "STAT 200"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 6 credits each from sequence A and B or 12 credits from sequence C:12\nSequence A\nCRIMJ 221Issues in the American Criminal Justice System\nCRIMJ 234Fundamental Techniques of Scientific Criminal Investigation\nCRIMJ 241\nSequence B\nCRIMJ 389Gangs and Gang Behavior\nCRIMJ/SOC/CRIM 406Sociology of Deviance\nCRIMJ 407Victimology\nCRIMJ 408Police Administration\nCRIMJ 409White Collar Crime\nCRIMJ 410The Pennsylvania Court System\nCRIMJ/SOC/CRIM 413Advanced Criminological Theory\nCRIMJ/SOC 414Criminal Careers and the Organization of Crime\nCRIMJ 415Drug Control Policy in Comparative Perspective\nCRIMJ 416The Death Penalty\nCRIMJ/CRIM 421Violent Crime in the United States\nCRIMJ/WMNST/CRIM 423Sexual and Domestic Violence\nCRIMJ/CRIM 425Organized Crime\nCRIMJ 426Special Offender Types\nCRIMJ 430Alternatives to Incarceration\nCRIMJ 431Offender and Prisoner Rights\nCRIMJ/CRIM 441The Juvenile Justice System\nCRIMJ/WMNST/CRIM 453Women and the Criminal Justice System\nCRIMJ 460\nCRIMJ 462Comparative Criminal Justice Systems\nCRIMJ/HIST 469Drugs and Drug Policy in the United States\nCRIMJ 489W\nCRIMJ 495Internship in Criminal Justice\nCRIMJ 496Independent Studies\nCRIMJ 497Special Topics\nSequence C\nCRIMJ 304Security Administration\nCRIMJ 389Gangs and Gang Behavior\nCRIMJ/SOC/CRIM 406Sociology of Deviance\nCRIMJ 407Victimology\nCRIMJ 408Police Administration\nCRIMJ 409White Collar Crime\nCRIMJ 410The Pennsylvania Court System\nCRIMJ/SOC/CRIM 413Advanced Criminological Theory\nCRIMJ/SOC 414Criminal Careers and the Organization of Crime\nCRIMJ 415Drug Control Policy in Comparative Perspective\nCRIMJ 416The Death Penalty\nCRIMJ/CRIM 421Violent Crime in the United States\nCRIMJ/WMNST/CRIM 423Sexual and Domestic Violence\nCRIMJ/CRIM 425Organized Crime\nCRIMJ 426Special Offender Types\nCRIMJ 430Alternatives to Incarceration\nCRIMJ 431Offender and Prisoner Rights\nCRIMJ/CRIM 441The Juvenile Justice System\nCRIMJ/WMNST/CRIM 453Women and the Criminal Justice System\nCRIMJ 460\nCRIMJ 462Comparative Criminal Justice Systems\nCRIMJ/HIST 469Drugs and Drug Policy in the United States\nCRIMJ 489W\nCRIMJ 495Internship in Criminal Justice\nCRIMJ 496Independent Studies\nCRIMJ 497Special Topics\nAdditional Courses: Require a grade of C or better\nCRIMJ 260Statistical Analysis for the Social Sciences 3-4\nor STAT 200 Elementary Statistics\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits: 3 credits at the 200 level and 3 credits at the 300 and 400 level or 6 credits at the 300 and 400 level from the following: AFRAS, BESC, PLSC, PUBPL, PSYCH, SOC",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 15,
+     "commentRaw": "Select 15 credits in consultation with an academic adviser and in support of the student's interests. For information about specific courses in this area, contact the School of Public Affairs.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 6 credits: 3 credits at the 200 level and 3 credits at the 300 and 400 level or 6 credits at the 300 and 400 level from the following: AFRAS, BESC, PLSC, PUBPL, PSYCH, SOC6\nSelect 15 credits in consultation with an academic adviser and in support of the student's interests. For information about specific courses in this area, contact the School of Public Affairs.15\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Criminal Justice, B.S. at Harrisburg Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 15S",
+        "ENGL 30T",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "Quantification (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CRIMJ 12",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100S"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CRIMJ 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CRIMJ 220",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CRIMJ 250W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CRIMJ 210",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CRIMJ 230",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200-300-400 level from the following: AFRAS, BESC, PLSC, PUBPL, PSYCH, SOC",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select credits in consultation with adviser",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CRIMJ 260",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 200"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Select 3 credits of CRIMJ additional courses from list",
+       "credits": 6,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select 3 credits in consultation with adviser",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Select CRIMJ additional courses from list",
+       "credits": 6,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "300-400 level from the following: AFRAS, BESC, PLSC, PUBPL, PSYCH, SOC",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select credits in consultation with adviser",
+       "credits": 6,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CRIMJ 450W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CRIMJ 465",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select credits in consultation with adviser",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 7,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 118,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Criminal Justice, B.S. (3-Year Fast-Track with Dual Enrollment) at Harrisburg Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 6,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 15S",
+        "ENGL 30T",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 9,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100S"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Can be completed in one of the summer terms)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Can be completed in one of the summer terms)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CRIMJ 12",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "Quantification (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CRIMJ 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select credits in consultation with adviser",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Summer",
+     "label": "Year 3 Summer",
+     "credits": 6,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CRIMJ 220",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CRIMJ 250W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200-300-400 level from the following: AFRAS, BESC, PLSC, PUBPL, PSYCH, SOC",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CRIMJ 210",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CRIMJ 230",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select 3 credits of CRIMJ additional courses from list",
+       "credits": 6,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select credits in consultation with adviser",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Summer",
+     "label": "Year 4 Summer",
+     "credits": 6,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CRIMJ 260",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 200"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 5,
+     "term": "Fall",
+     "label": "Year 5 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Select CRIMJ additional courses from list",
+       "credits": 6,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "300-400 level from the following: AFRAS, BESC, PLSC, PUBPL, PSYCH, SOC",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select credits in consultation with adviser",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 5,
+     "term": "Spring",
+     "label": "Year 5 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CRIMJ 450W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CRIMJ 465",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select credits in consultation with adviser",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select 3 credits in consultation with adviser",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 120,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

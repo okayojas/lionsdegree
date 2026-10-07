@@ -1,0 +1,1197 @@
+{
+ "slug": "earth-mineral-sciences-energy-engineering-bs",
+ "name": "Energy Engineering, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/energy-engineering-bs/",
+ "totalCredits": 131,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "EE 211",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 251",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHIL 103",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CHEM 111",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EGEE 302",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EGEE 304",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EGEE 411W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EGEE 430",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EGEE 437",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EGEE 441",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EGEE 451",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EGEE 464W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EME 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EME 303",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EMSC 100S",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202C",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 141",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATH 231",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "PHYS 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "PHYS 212",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "EE 211Electrical Circuits and Power Distribution3\nMATH 251Ordinary and Partial Differential Equations4\nPHIL 103Ethics 3\nPrescribed Courses: Require a grade of C or better\nCHEM 110Chemical Principles I 3\nCHEM 111Experimental Chemistry I 1\nCHEM 112Chemical Principles II 3\nEGEE 302Principles of Energy Engineering3\nEGEE 304Heat and Mass Transfer3\nEGEE 411WEnergy Science and Engineering Lab3\nEGEE 430Introduction to Combustion3\nEGEE 437Design of Solar Energy Conversion Systems3\nEGEE 441Electrochemical Engineering Fundamentals3\nEGEE 451Energy Conversion Processes3\nEGEE 464WEnergy Design Project3\nEME 301Thermodynamics in Energy and Mineral Engineering3\nEME 303Fluid Mechanics in Energy and Mineral Engineering3\nEMSC 100SEarth and Mineral Sciences First-Year Seminar 3\nENGL 202CEffective Writing: Technical Writing 3\nMATH 140Calculus With Analytic Geometry I 4\nMATH 141Calculus with Analytic Geometry II 4\nMATH 231Calculus of Several Variables2\nPHYS 211General Physics: Mechanics 4\nPHYS 212General Physics: Electricity and Magnetism 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CHEM 202",
+      "CHEM 210"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "EME 460",
+      "IE 302"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EBF 200",
+       "ECON 14",
+       "ECON 102"
+      ]
+     }
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CMPSC 200",
+      "CMPSC 201"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 15",
+       "ENGL 30H",
+       "ESL 15",
+       "ENGL 137H"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CHEM 202Fundamentals of Organic Chemistry I3\nor CHEM 210 Organic Chemistry I\nEME 460Geo-resource Evaluation and Investment Analysis3\nor IE 302 Engineering Economy\nSelect 3 credits from the following:3\nEBF 200Introduction to Energy and Earth Sciences Economics\nECON 14Principles of Economics\nECON 102Introductory Microeconomic Analysis and Policy\nAdditional Courses: Require a grade of C or better\nCMPSC 200Programming for Engineers with MATLAB 3\nor CMPSC 201 Programming for Engineers with C++\nSelect 3 credits from the following:3\nENGL 15Rhetoric and Composition\nENGL 30HHonors Rhetoric and Composition\nESL 15ESL Composition for American Academic Communication II\nENGL 137HRhetoric and Civic Life I\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of Material Science electives from an approved list in consultation with an adviser.",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of professional courses from an approved list in consultation with an adviser. Other substitutions outside the approved list must be approved by petition.",
+     "from": null
+    },
+    {
+     "type": "course",
+     "code": "SELECT 9",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "APPLY 6",
+     "credits": null,
+     "unverified": true
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of Energy Systems electives from an approved list in consultation with an adviser.",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of Fuel Science electives from an approved list in consultation with an adviser.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 3 credits of Material Science electives from an approved list in consultation with an adviser.3\nSelect 6 credits of professional courses from an approved list in consultation with an adviser. Other substitutions outside the approved list must be approved by petition.6\nSelect 9 credits of technical electives from a broad list of energy related courses across colleges at Penn State. A list of suggested courses from energy-related departments at Penn State is provided. (Students may apply 6 credits of ROTC to some of the elective choices.)9\nSelect 6 credits of Energy Systems electives from an approved list in consultation with an adviser. 6\nSelect 6 credits of Fuel Science electives from an approved list in consultation with an adviser.6\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Energy Engineering, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140G"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EMSC 100S",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†",
+        "1"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "EBF 200",
+        "ECON 14"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Knowledge Domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 202",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 210"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 251",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Knowledge Domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Knowledge Domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EE 211",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 231",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CMPSC 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CMPSC 201"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Knowledge Domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHIL 103",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Health and Wellness (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EME 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EME 303",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EGEE 302",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Material Science Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EGEE 304",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EGEE 437",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EGEE 430",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EGEE 451",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ENVSE 470"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Fuel Science Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Health and Wellness (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Professional Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Fuel Science Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EGEE 441",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EME 460",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "IE 302"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EGEE 411W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EGEE 464W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Energy Systems Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Professional Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Energy Systems Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 131,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  },
+  {
+   "campusLabel": "Energy Engineering, B.S. at Commonwealth Campuses",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 14,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 111",
+       "credits": 1,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Knowledge Domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "EBF 200",
+        "ECON 14"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CHEM 112",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Knowledge Domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CHEM 202",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CHEM 210"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 251",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†",
+        "1"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Knowledge Domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 231",
+       "credits": 2,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CMPSC 200",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "CMPSC 201"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Knowledge Domain",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHIL 103",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Health and Wellness (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Material Science Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EME 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EME 303",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EGEE 302",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EE 211",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EGEE 304",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EGEE 437",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EGEE 430",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EGEE 451",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "ENVSE 470"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Fuel Science Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Health and Wellness (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Professional Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Fuel Science Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EGEE 441",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EME 460",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "IE 302"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "EGEE 411W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EGEE 464W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Energy Systems Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Energy Systems Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Technical Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2",
+        ",",
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Professional Elective from Approved Department List",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 131,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

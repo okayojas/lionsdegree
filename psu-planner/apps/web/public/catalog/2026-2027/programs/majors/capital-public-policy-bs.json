@@ -1,0 +1,588 @@
+{
+ "slug": "capital-public-policy-bs",
+ "name": "Public Policy, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "capital",
+ "campuses": [
+  "Harrisburg, The Capital College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/capital/public-policy-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ECON 102",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 104",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PLSC 1",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PLSC 309",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PUBPL 304W",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nECON 102Introductory Microeconomic Analysis and Policy 3\nECON 104Introductory Macroeconomic Analysis and Policy 3\nPLSC 1American Politics: Principles, Processes and Powers 3\nPLSC 309Quantitative Political Analysis3\nPUBPL 304WPublic Policy Analysis3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "PLSC 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "PUBPL 200-499"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PLSC 419",
+       "PLSC 425",
+       "PLSC 444",
+       "PLSC 488",
+       "PLSC 489"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "PUBPL 300-499"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PUBPL 481",
+       "PUBPL 482",
+       "PUBPL 483",
+       "PUBPL 490"
+      ]
+     }
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Select 9 credits from the following:9\nPLSC 300-499\nPUBPL 200-499\nSelect 6 credits from the following:6\nPLSC 419The Bureaucratic State\nPLSC 425Government and Politics of the American States\nPLSC 444Government and the Economy\nPLSC 488Comparative Public Policy\nPLSC 489Public Administration\nPUBPL 300-499\nSelect 3 credits from the following:3\nPUBPL 481Seminar in Environmental Policy\nPUBPL 482Seminar in Health Policy\nPUBPL 483Seminar in National Security Policy\nPUBPL 490Seminar in Public Policy\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "ACCTG 200-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "AFRAS 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "AMST 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "BESC 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "COMM 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "CRIMJ 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "CMPSC 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "ECON 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "ENGL 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "FIN 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "HDFS 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "HIST 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "HLS 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "HPA 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "IST 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "MGMT 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "MIS 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "MKTG 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "PADM 500-899"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "PSYCH 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "SOC 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "SRA 300-499"
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "WMNST 300-499"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 21,
+     "commentRaw": "Select 21 credits in consultation with an academic adviser and in support of the student's interests",
+     "from": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Select 12 credits from the following:12\nACCTG 200-499\nAFRAS 300-499\nAMST 300-499\nBESC 300-499\nCOMM 300-499\nCRIMJ 300-499\nCMPSC 300-499\nECON 300-499\nENGL 300-499\nFIN 300-499\nHDFS 300-499\nHIST 300-499\nHLS 300-499\nHPA 300-499\nIST 300-499\nMGMT 300-499\nMIS 300-499\nMKTG 300-499\nPADM 500-899\nPSYCH 300-499\nSOC 300-499\nSRA 300-499\nWMNST 300-499\nSelect 21 credits in consultation with an academic adviser and in support of the student's interests21\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Public Policy, B.S. at Harrisburg Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 15S",
+        "ENGL 30T",
+        "ESL 15"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Quantification",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PLSC 1",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100S"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Quantification",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D",
+        "ENGL 202H"
+       ],
+       "resolvedFrom": "ENGL 202"
+      },
+      {
+       "type": "placeholder",
+       "label": "PLSC 300-499 or PUBPL 241 or PUBPL 300-499",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 104",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PUBPL 304W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PLSC 309",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PLSC 419",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "PLSC 425",
+        "PLSC 444",
+        "PLSC 488",
+        "PLSC 489",
+        "PUBPL 305"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PLSC 419",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "PLSC 425",
+        "PLSC 444",
+        "PLSC 488",
+        "PLSC 489",
+        "PUBPL 305"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Select from Supporting courses and Related Areas",
+       "credits": 6,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PUBPL 481",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "PUBPL 482",
+        "PUBPL 483",
+        "PUBPL 490"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PLSC 300-499 or PUBPL 241 or PUBPL 300-499",
+       "credits": 6,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select Suppotting Courses in consultation with adviser",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PUBPL 481",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "PUBPL 482",
+        "PUBPL 483",
+        "PUBPL 490"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "PLSC 300-499 or PUBPL 241 or PUBPL 300-499",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Select Supporting Courses in consultation with adviser",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Electives",
+       "credits": 6,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Select Supporting Courses in consultation with adviser",
+       "credits": 10,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PUBPL 481",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "PUBPL 482",
+        "PUBPL 483",
+        "PUBPL 490"
+       ]
+      }
+     ]
+    }
+   ],
+   "totalCredits": 119,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

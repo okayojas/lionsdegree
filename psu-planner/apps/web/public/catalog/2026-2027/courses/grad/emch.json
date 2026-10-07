@@ -1,0 +1,1005 @@
+[
+ {
+  "code": "EMCH 500",
+  "subject": "EMCH",
+  "number": "500",
+  "display": "EMCH 500",
+  "title": "Solid Mechanics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Introduction to continuum mechanics, variational methods, and finite element formulations; application to bars, beams, cylinders, disks, and plates. E MCH (M E 560) 500 Solid Mechanics (3) This course introduces students to the fundamental principles and basic methods used in solid mechanics. Using indicial notation and integral formulations provides a foundation for more advanced study in continuum mechanics (E MCH 540) and finite element analysis (E MCH 560) specifically and in mechanics in general. The materials behavior is restricted to linear elastic and the emphasis is on stress analysis. Students are expected to have an understanding of elementary mechanics of materials (such as E MCH 013).The course objectives are to: 1) provide students with a firm foundation in solid mechanics. 2) introduce continuum mechanics concepts, variational methods, and the formulation used in finite element analysis. 3) enable students to formulate and solve the boundary value problems commonly encountered in the analysis of structures.The study of solid mechanics starts with the definition of stress and strain and how the two are related by material law. Field equations that relate strain to displacement, ensure a single valued displacement field, and the balance momentum are formulated. These are partial differential equations that can only be solved subject to known boundary and initial conditions. The field equations and boundary conditions comprise a boundary value problem that is usually difficult to solve exactly. Variational methods are used to bound or approximate the solution. The finite element method employs variational methods to formulate generic elements and is a computational tool for solving boundary value problems for complex geometries.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "ME 560"
+  ],
+  "aliases": [
+   "EMCH 500"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 505",
+  "subject": "EMCH",
+  "number": "505",
+  "display": "EMCH 505",
+  "title": "Wearable Electronics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Recent advances in wearable electronics have led to the development of powerful biomedical devices that monitor vital physiological signals and provide means of treatment, Conventional electronics today are formed on the planar surfaces of brittle wafer substrates and are not compatible with the textured skin or tissue surfaces. Therefore, stretchable and resorbable electronics are the two missing links in the design process of implantable monitors and in-vivo therapeutics. Novel design strategies present unique opportunities to address the challenges in such a potential medical device that (a) integrates with human physiology, and (b) dissolves completely after its effective operation. In this course, we will apply novel strategies to address challenging issues in these emerging electronics, with examples ranging from sensors for thermal, mechanical, electrical, and electrochemical monitoring to integrated systems that can serve as human-machine interfaces and biomedical devices. This course covers a broad range of topics related to the novel strategies for the emerging electronics, including design and analysis of stretchable and dissolvable electronics, manufacturing techniques for biomedical devices, characterization techniques of soft sensors and actuators, applications, and opportunities for these emerging electronics, among others.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "ESC 505"
+  ],
+  "aliases": [
+   "EMCH 505"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 507",
+  "subject": "EMCH",
+  "number": "507",
+  "display": "EMCH 507",
+  "title": "Theory of Elasticity and Applications",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Equations of equilibrium and compatibility; stresses and strains in beams, curved members, rotating discs, thick cylinders, torsion and structural members.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E MCH213",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 507"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 514",
+  "subject": "EMCH",
+  "number": "514",
+  "display": "EMCH 514",
+  "title": "Engineering Science and Mechanics Seminar",
+  "credits": "1 Credits/Maximum of 99",
+  "creditsParsed": {
+   "min": 1,
+   "max": 1,
+   "repeatableMax": 99
+  },
+  "description": "Current literature and special problems in engineering mechanics.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "ESC 514"
+  ],
+  "aliases": [
+   "EMCH 514"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 516",
+  "subject": "EMCH",
+  "number": "516",
+  "display": "EMCH 516",
+  "title": "Mathematical Theory of Elasticity",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Fundamental equations and problems of elasticity theory; uniqueness theorems and variational principles; methods of stress functions and displacement potential; applications.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E MCH540",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 516"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 520",
+  "subject": "EMCH",
+  "number": "520",
+  "display": "EMCH 520",
+  "title": "Advanced Dynamics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Dynamics of a particle and of rigid bodies; Newtonian equations in moving coordinate systems; Lagrange's and Hamilton's equations of motion; special problems in vibrations and dynamics.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E MCH212 , MATH 250",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 520"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 521",
+  "subject": "EMCH",
+  "number": "521",
+  "display": "EMCH 521",
+  "title": "Stress Waves in Solids",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Recent advances in Ultrasonic Nondestructive Evaluation: waves; reflection and refraction; horizontal shear; multi-layer structures; stress; viscoelastic media; testing principles.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E MCH524A , E MCH524B",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "ACS 521"
+  ],
+  "aliases": [
+   "EMCH 521"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 523",
+  "subject": "EMCH",
+  "number": "523",
+  "display": "EMCH 523",
+  "title": "Ultrasonic Nondestructive Evaluation",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Methods, techniques, applications of Ultrasonic Nondestructive Evlauation wave propagation; signal processing and pattern recognition applied to UNDE; practical laboratory demonstrations.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 523"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 524A",
+  "subject": "EMCH",
+  "number": "524A",
+  "display": "EMCH 524A",
+  "title": "Mathematical Methods in Engineering",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Special functions, boundary value problems, eigenfunctions and eigenvalue problems; applications to engineering systems in mechanics, vibrations, and other fields.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "MATH 250 or MATH 251",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 524A"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 524B",
+  "subject": "EMCH",
+  "number": "524B",
+  "display": "EMCH 524B",
+  "title": "Mathematical Methods in Engineering",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Boundary-value problems in curvilinear coordinates, integral transforms; application to diffusion, vibration, Laplace and Helmholtz equations in engineering systems.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E MCH524A , E SC 404 , or MATH 411",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 524B"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 524C",
+  "subject": "EMCH",
+  "number": "524C",
+  "display": "EMCH 524C",
+  "title": "Mathematical Methods in Engineering",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Green's functions applied to problems in potentials, vibration, wave propagation and diffusion with special emphasis on asymptotic methods.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E MCH524B , E SC 406H , or MATH 412",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 524C"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 527",
+  "subject": "EMCH",
+  "number": "527",
+  "display": "EMCH 527",
+  "title": "Structural Dynamics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Dynamic behavior of structural systems; normal modes; input spectra; finite element representation of frameworks, plates, and shells; impedance; elastic- plastic response.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E MCH470 or E MCH571",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 527"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 528",
+  "subject": "EMCH",
+  "number": "528",
+  "display": "EMCH 528",
+  "title": "Experimental Methods in Vibrations",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Investigation of one or more degrees of freedom, free and forced mechanical vibrations, vibration properties of materials, nondestructive testing.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E MCH470 or E MCH571",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 528"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 530",
+  "subject": "EMCH",
+  "number": "530",
+  "display": "EMCH 530",
+  "title": "Mechanical Behavior of Materials",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Engineering materials mechanical responses; stress/strain in service context of temperature, time, chemical environment; mechanical testing characterization; design applications.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 530"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 532",
+  "subject": "EMCH",
+  "number": "532",
+  "display": "EMCH 532",
+  "title": "Fracture Mechanics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Stress analysis of cracks; stable and unstable crack growth in structures and materials; materials fracture resistance.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E MCH500",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 532"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 533",
+  "subject": "EMCH",
+  "number": "533",
+  "display": "EMCH 533",
+  "title": "Scanned Image Microscopy",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Imaging principles, quantitative data acquisition techniques, and applications for scanned image microscopy are discussed. E MCH 533 Scanned Image Microscopy (3) Scanned Image Microscopy comprises advanced techniques yielding new information in the form of highly resolved micro- and nano-scale images of surfaces and sub-surfaces of materials. The objectives of the course are (1) to endow students with a basic understanding of the principles behind scanned image microscopy, (2) to impart them skills to operate the high-resolution equipment, and (3) to train them to interpret the images obtained. Thus the course includes presentation of imaging principles (i.e. basic physics and design of instruments including the sensors), quantitative data acquisition techniques (including error analysis) and applications of scanned image microscopy. The course not only emphasizes scanning acoustic microscopy and ultrasonic atomic force microscopy, but it also includes environmental scanning electron microscopy and scanning laser confocal microscopy. These four microscopy techniques are too advanced to be routine and are intended for advanced characterization on the nano- andmicrometer scales.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E MCH440",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 533"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 535",
+  "subject": "EMCH",
+  "number": "535",
+  "display": "EMCH 535",
+  "title": "Deformation Mechanisms in Materials",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Deformation of crystalline/amorphous solids and relationship to structure; elastic, viscoelastic and plastic response over a range of temeratures and strain rates. EMCH 535 / MATSE 564 Deformation Mechanisms in Materials (3) The course will study the relationship between the deformation mechanisms in materials and their structure. The types of deformation behavior considered in the course are linear elasticity (isotropic or anisotropic), viscoelasticity and plastic deformation. For the elastic behavior, the emphasis will be on the way elastic behavior is controlled by atomic structure and microstructure. The constitutive laws that describe this behavior and the assumptions on which they are based will be introduced. The next phase of the course considers the range of deformation behavior from purely viscous (linear or non-linear) to viscoelastic. Initially, the emphasis will be on the effects of temperature and strain history and the way this behavior is described by mechanical analogs. The effect of structure on creep and stress relaxation will be described. The use of linear viscoelasticity in describing the sintering process will also be included. In ductile crystalline materials, deformation is associated with the movement of dislocations. The types of dislocations, their stress fields and energies will be described. These aspects will then be combined with structural features by including considerations of slip geometry and obstacles to dislocation motion. This approach will allow strengthening methods to be identified and quantified. Finally, creep mechanisms in crystalline materials at high temperature will be discussed and quantified.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E SC 414M or MATSE436",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "MATSE 564"
+  ],
+  "aliases": [
+   "EMCH 535"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 536",
+  "subject": "EMCH",
+  "number": "536",
+  "display": "EMCH 536",
+  "title": "Thermal Stress Analysis",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Thermoelasticity, thermal shock, and design.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E MCH400 or E MCH500",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 536"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 540",
+  "subject": "EMCH",
+  "number": "540",
+  "display": "EMCH 540",
+  "title": "Introduction to Continuum Mechanics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Algebra and analysis of tensors; balance equations of classical physics; the linear theories of continuum mechanics.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 540"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 541",
+  "subject": "EMCH",
+  "number": "541",
+  "display": "EMCH 541",
+  "title": "Structural Health Monitoring",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Technology development to address maintenance and safey concerns related to the aging aerospace/mechanical/civil infrastructure. E MCH 541 Structural Health Monitoring (3) Structural Health Monitoring (SHM) is the monitoring of the condition of a structure or system using autonomous sensory systems and any intervention to preserve structural integrity. It is nondestructive evaluation with a sensory system that stays in place and enables condition-based maintenance. SHM is a broad multidisciplinary field both in terms of the diverse science and technology involved as well as in its varied applications. However, at its essence are three fundamental elements: sensing, data analysis, and decision making. The technological developments necessary to enable practical structural health monitoring are originating from scientists and engineers in many fields including physics, chemistry, materials science, biology, and mechanical, aerospace, civil, and electrical engineering. SHM is being implemented on diverse systems and structures such as aircraft, spacecraft, ships, helicopters, automobiles, bridges, buildings, civil infrastructure, power generating plants, pipelines, electronic systems, manufacturing and processing facilities, biological systems, and employed for the protection of the environment and for defense. The objectives of SHM are to: improve public safety, reduce maintenance costs, improve readiness, and foster a paradigm shift in design.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 541"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 542",
+  "subject": "EMCH",
+  "number": "542",
+  "display": "EMCH 542",
+  "title": "Physical Principles in Biomedical Ultrasonics",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Physical principles of advanced ultrasonic imaging and quantitative data acquisition techniques in fields of biology and medicine. E MCH (ACS) 542 Physical Principles in Biomedical Ultrasonics (3) This course focuses on the phenomenon of ultrasound in the context of medical and biological applications, systematically discussing physical principles and concepts. Concepts of wave acoustics are examined and practical implications are explored - first, the generation and nature of acoustic fields and then their formal descriptions and measurement. Real tissues attenuate and scatter ultrasound in ways that have interesting relationships to their physical chemistry, and the course includes coverage of these topics. This course also includes critical accounts and discussions of the wide variety of diagnostic and investigative applications of ultrasound that are available in medicine and biology. The course encompasses the biophysics of ultrasound and its practical applications to therapeutic and surgical objectives. The course utilizes finite element methods for simulation.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "ACS 542"
+  ],
+  "aliases": [
+   "EMCH 542"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 544",
+  "subject": "EMCH",
+  "number": "544",
+  "display": "EMCH 544",
+  "title": "Multiscale Modeling of Materials",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "This course discusses the key issues of the conventional simulation methods at single length and time scales. The course starts with a revisit of mechanics of materials, statistical mechanics, and thermodynamics and kinetics of materials, which form the fundamental basis for the development of physical-based simulation models. Conventional simulation methods at single length scale will then follow, including the quantum mechanical simulations, molecular dynamics, finite element simulations, and phase field modeling. Emphasis will be placed on the coupling strategies bridging different length and time scales. The multiscale methods will be delivered in combination with interesting materials phenomena spanning nanostructured and biological materials.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "EMCH 461",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 544"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 550",
+  "subject": "EMCH",
+  "number": "550",
+  "display": "EMCH 550",
+  "title": "Variational and Energy Methods in Engineering",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Application of variational calculus and Hamilton's principle to various conservative and nonconservative systems; closed form and approximate technique.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 550"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 560",
+  "subject": "EMCH",
+  "number": "560",
+  "display": "EMCH 560",
+  "title": "Finite Element Analysis",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "General theory; application to statics and dynamics of solids, structures, fluids, and heat flow; use of existing computer codes.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "E MCH213",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 560"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 571",
+  "subject": "EMCH",
+  "number": "571",
+  "display": "EMCH 571",
+  "title": "Foundations of Structural Dynamics and Vibration",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "Modeling approaches and analysis methods of structural dynamics and vibration.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "AERSP304 , E MCH470 , M E 450 , or M E 570",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "AERSP 571",
+   "ME 571"
+  ],
+  "aliases": [
+   "EMCH 571"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 581",
+  "subject": "EMCH",
+  "number": "581",
+  "display": "EMCH 581",
+  "title": "Micromechanics of Composites",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "A rigorous application of mechanics to the understanding of relationships between microstructure and thermomechanical properties of composites.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": "CERSC414 or CERSC502 or E MCH471 or E MCH507",
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 581"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 596",
+  "subject": "EMCH",
+  "number": "596",
+  "display": "EMCH 596",
+  "title": "Individual Studies",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Creative projects, including nonthesis research, which are supervised on an individual basis and which fall outside the scope of formal courses.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 596"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 597",
+  "subject": "EMCH",
+  "number": "597",
+  "display": "EMCH 597",
+  "title": "Special Topics",
+  "credits": "1-9 Credits/Maximum of 9",
+  "creditsParsed": {
+   "min": 1,
+   "max": 9,
+   "repeatableMax": 9
+  },
+  "description": "Formal courses given on a topical or special interest subject which may be offered infrequently; several different topics may be taught in one year or term.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 597"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 597A",
+  "subject": "EMCH",
+  "number": "597A",
+  "display": "EMCH 597A",
+  "title": "**SPECIAL TOPICS**",
+  "credits": "3 Credits",
+  "creditsParsed": {
+   "min": 3,
+   "max": 3,
+   "repeatableMax": null
+  },
+  "description": "",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 597A"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 600",
+  "subject": "EMCH",
+  "number": "600",
+  "display": "EMCH 600",
+  "title": "Thesis Research",
+  "credits": "1-15 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 1,
+   "max": 15,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 600"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 601",
+  "subject": "EMCH",
+  "number": "601",
+  "display": "EMCH 601",
+  "title": "Ph.D. Dissertation Full-Time",
+  "credits": "0 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 0,
+   "max": 0,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 601"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 602",
+  "subject": "EMCH",
+  "number": "602",
+  "display": "EMCH 602",
+  "title": "Supervised Experience in College Teaching",
+  "credits": "1-3 Credits/Maximum of 6",
+  "creditsParsed": {
+   "min": 1,
+   "max": 3,
+   "repeatableMax": 6
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [
+   "ESC 602"
+  ],
+  "aliases": [
+   "EMCH 602"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 610",
+  "subject": "EMCH",
+  "number": "610",
+  "display": "EMCH 610",
+  "title": "Thesis Research Off Campus",
+  "credits": "1-15 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 1,
+   "max": 15,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 610"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ },
+ {
+  "code": "EMCH 611",
+  "subject": "EMCH",
+  "number": "611",
+  "display": "EMCH 611",
+  "title": "Ph.D. Dissertation Part-Time",
+  "credits": "0 Credits/Maximum of 999",
+  "creditsParsed": {
+   "min": 0,
+   "max": 0,
+   "repeatableMax": 999
+  },
+  "description": "No description.",
+  "enforced": null,
+  "concurrent": null,
+  "prereqAdvisory": null,
+  "prereqAst": null,
+  "concurrentAst": null,
+  "astComplete": true,
+  "genEd": [],
+  "attributes": [],
+  "crossListings": [],
+  "aliases": [
+   "EMCH 611"
+  ],
+  "level": "graduate",
+  "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/emch/",
+  "extraRaw": []
+ }
+]

@@ -1,0 +1,128 @@
+{
+ "slug": "liberal-arts-integrated-social-sciences-bs",
+ "name": "Integrated Social Sciences, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/integrated-social-sciences-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "LA 201W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "LA 496",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nLA 201WExperiential Learning Portfolio3\nLA 496Independent Studies3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "In consultation with your adviser, select 6-8 credits in quantification from MATH, CMPSC, IST, PHIL, ACCT, or STAT",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits in statistics of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PLSC 309",
+       "PSYCH 200",
+       "STAT 200"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in ethics of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "LER 460",
+       "PHIL 103",
+       "PHIL 103W",
+       "PHIL 119"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits in research methods of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CAS 390",
+       "LER 312",
+       "PSYCH 301W",
+       "SOC 207"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nIn consultation with your adviser, select 6-8 credits in quantification from MATH, CMPSC, IST, PHIL, ACCT, or STAT6-8\nSelect 3-4 credits in statistics of the following:3-4\nPLSC 309Quantitative Political Analysis\nPSYCH 200Elementary Statistics in Psychology\nSTAT 200Elementary Statistics\nSelect 3 credits in ethics of the following:3\nLER 460\nPHIL 103Ethics\nPHIL 103WEthics\nPHIL 119Ethical Leadership\nSelect 3-4 credits in research methods of the following:3-4\nCAS 390Qualitative Research Methods\nLER 312\nPSYCH 301WBasic Research Methods in Psychology\nSOC 207Research Methods in Sociology\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 30,
+     "commentRaw": "In consultation with your adviser, select 30 credits from social science courses in the following areas:",
+     "from": {
+      "kind": "courses",
+      "courses": []
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "ANTH, CAS, ECON, PLSC, PSYCH, or SOC"
+    },
+    {
+     "type": "course",
+     "code": "LA 295",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "LA 395",
+     "credits": null
+    },
+    {
+     "type": "course",
+     "code": "LA 495",
+     "credits": null
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nIn consultation with your adviser, select 30 credits from social science courses in the following areas: 30\nANTH, CAS, ECON, PLSC, PSYCH, or SOC\nLA 295Undergraduate Field Experience or Practicum\nLA 395Internship\nLA 495Undergraduate Field Experience or Practicum\n"
+  }
+ ],
+ "suggestedPlans": []
+}

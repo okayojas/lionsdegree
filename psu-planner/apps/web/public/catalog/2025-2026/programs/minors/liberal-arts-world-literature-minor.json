@@ -1,0 +1,62 @@
+{
+ "slug": "liberal-arts-world-literature-minor",
+ "name": "World Literature, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/world-literature-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CMLIT 400Y",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCMLIT 400YSenior Seminar in Literary Criticism and Theory3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CMLIT 10",
+      "CMLIT 100"
+     ],
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nCMLIT 10World Literatures 3\nor CMLIT 100 Reading Across Cultures\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits (at least 3 credits at the 400 level) in Comparative Literature, unified by topic, theme, period, or a similar principle, subject to approval of a faculty adviser.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 12 credits (at least 3 credits at the 400 level) in Comparative Literature, unified by topic, theme, period, or a similar principle, subject to approval of a faculty adviser.12\n"
+  }
+ ],
+ "suggestedPlans": []
+}

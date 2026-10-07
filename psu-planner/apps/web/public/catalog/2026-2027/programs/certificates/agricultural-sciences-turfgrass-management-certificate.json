@@ -1,0 +1,51 @@
+{
+ "slug": "agricultural-sciences-turfgrass-management-certificate",
+ "name": "Turfgrass Management, Basic, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/turfgrass-management-certificate/",
+ "totalCredits": 15,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "TURF 230",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "TURF 235",
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 11,
+     "commentRaw": "Select 11-13 credits from the following courses:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENT 317",
+       "PPEM 412",
+       "TURF 238",
+       "TURF 307",
+       "TURF 425",
+       "TURF 434",
+       "TURF 435",
+       "TURF 436W"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "TURF 230Turfgrass Pesticides1\nTURF 235The Turfgrass3\nSelect 11-13 credits from the following courses:11-13\nENT 317Turfgrass Insect Pest Management\nPPEM 412Turfgrass Disease Management\nTURF 238Turf and Ornamental Weed Control\nTURF 307Golf Course Irrigation and Drainage\nTURF 425Turfgrass Cultural Systems\nTURF 434Turfgrass Edaphology\nTURF 435Turfgrass Nutrition\nTURF 436WCase Studies in Turfgrass Management\n"
+  }
+ ],
+ "suggestedPlans": []
+}

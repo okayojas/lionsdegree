@@ -10,7 +10,8 @@ import {
   type Course, type ProgramTemplate,
 } from "../src/index.js";
 
-const outDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../../apps/web/public/catalog");
+import { CATALOG_DIR } from "./edition.js";
+const outDir = CATALOG_DIR;
 const csBs = JSON.parse(fs.readFileSync(path.join(outDir, "programs/majors/engineering-computer-science-bs.json"), "utf-8"));
 
 function loadSubjects(prefixes: Set<string>): Course[] {

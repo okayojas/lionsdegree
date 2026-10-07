@@ -1,0 +1,60 @@
+{
+ "slug": "liberal-arts-anthropology-minor",
+ "name": "Anthropology, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/anthropology-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ANTH 2N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ANTH 21",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ANTH 45N",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nANTH 2NWorld Archaeology 3\nANTH 21Introductory Biological Anthropology 3\nANTH 45NCultural Diversity: A Global Perspective 3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from any ANTH course except ANTH 1",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the ANTH 400-489 range",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits from any ANTH course except ANTH 13\nSelect 6 credits from the ANTH 400-489 range6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,61 @@
+{
+ "slug": "eberly-science-information-sciences-technology-mathematics-minor",
+ "name": "Information Sciences and Technology for Mathematics, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "eberly-science",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/eberly-science/information-sciences-technology-mathematics-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "IST 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "IST 220",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nIST 110Information, People and Technology 3\nIST 210Organization of Data3\nIST 220Networking and Telecommunications3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "chooseN",
+     "n": 3,
+     "options": [
+      "MATH 451",
+      "MATH 457",
+      "MATH 465",
+      "MATH 467",
+      "MATH 468"
+     ],
+     "credits": 9,
+     "commentRaw": "Select three of the following 400-level mathematics courses:"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect three of the following 400-level mathematics courses:9\nMATH 451Numerical Computations\nMATH 457Introduction to Mathematical Logic\nMATH 465Number Theory\nMATH 467Factorization and Primality Testing\nMATH 468Mathematical Coding Theory\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,77 @@
+{
+ "slug": "engineering-biomedical-engineering-minor",
+ "name": "Biomedical Engineering, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/biomedical-engineering-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 141",
+       "BIOL 240W",
+       "BIOL 472"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BIOL 230W",
+       "BMB 251",
+       "BME 201"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nPhysiology\nSelect 3-4 credits of the following:3-4\nBIOL 141Introduction to Human Physiology\nBIOL 240WBiology: Function and Development of Organisms\nBIOL 472Human Physiology\nMolecular/Cell Biology\nSelect 3-4 credits of the following:3-4\nBIOL 230WBiology: Molecules and Cells\nBMB 251Molecular and Cell Biology I\nBME 201Fundamentals of Cells and Molecules\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9-12 credits of Biomedical Engineering (BME) coursework from 3-credit courses at the 400, or 500 level",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "BME"
+      ],
+      "minLevel": 500
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 0,
+     "commentRaw": "Select 0-3 credits of electives from Biomedical Engineering-related courses (department list)",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 9-12 credits of Biomedical Engineering (BME) coursework from 3-credit courses at the 400, or 500 level 9-12\nSelect 0-3 credits of electives from Biomedical Engineering-related courses (department list)0-3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

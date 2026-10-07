@@ -1,0 +1,96 @@
+{
+ "slug": "earth-mineral-sciences-electrochemical-engineering-minor",
+ "name": "Electrochemical Engineering, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "earth-mineral-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/earth-mineral-sciences/electrochemical-engineering-minor/",
+ "totalCredits": 35,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CHEM 112",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EGEE 441",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ESC 455",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 251",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MATSE 421",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PHYS 212",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCHEM 112Chemical Principles II 3\nEGEE 441Electrochemical Engineering Fundamentals3\nESC 455Electrochemical Methods Engineering and Corrosion Science3\nMATH 251Ordinary and Partial Differential Equations4\nMATSE 421Corrosion Engineering3\nPHYS 212General Physics: Electricity and Magnetism 4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CHE 330",
+       "ME 300",
+       "EME 301",
+       "EME 303",
+       "CHE 220",
+       "MATSE 402",
+       "ME 320",
+       "MATSE 401"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EGEE 420",
+       "EGEE 436",
+       "EGEE 437",
+       "EME 407",
+       "ME 403"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6 credits of the following:6\nCHE 330Process Fluid Mechanics\nor ME 300 Engineering Thermodynamics I\nEME 301Thermodynamics in Energy and Mineral Engineering\nEME 303Fluid Mechanics in Energy and Mineral Engineering\nor CHE 220 Introduction to Chemical Engineering Thermodynamics\nMATSE 402Materials Process Kinetics\nME 320Fluid Flow\nor MATSE 401 Thermodynamics of Materials\nSelect 9 credits of the following:9\nEGEE 420Hydrogen and Fuel Cells\nEGEE 436Modern Thermodynamics for Energy Systems\nEGEE 437Design of Solar Energy Conversion Systems\nEME 407Electrochemical Energy Storage\nME 403Polymer Electrolyte Fuel Cell Engines\n"
+  }
+ ],
+ "suggestedPlans": []
+}

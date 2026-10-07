@@ -1,0 +1,110 @@
+{
+ "slug": "behrend-media-production-minor",
+ "name": "Media Production, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/media-production-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "note",
+     "commentRaw": "Background and Foundations:"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "COMM 100",
+       "COMM 118",
+       "COMM 150N",
+       "COMM 180"
+      ]
+     }
+    },
+    {
+     "type": "note",
+     "commentRaw": "Writing Skills:"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "COMM 230W",
+       "COMM 260W",
+       "COMM 315"
+      ]
+     }
+    },
+    {
+     "type": "note",
+     "commentRaw": "Basic Media Production Skills:"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following 100-300 level courses:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "COMM 215",
+       "COMM 241",
+       "COMM 242",
+       "COMM 270",
+       "COMM 282",
+       "COMM 283",
+       "COMM 337",
+       "COMM 374",
+       "COMM 383",
+       "GD 100",
+       "PHOTO 100"
+      ]
+     }
+    },
+    {
+     "type": "note",
+     "commentRaw": "Advanced Production Skills:"
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following 400 level courses:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "COMM 406",
+       "COMM 415",
+       "COMM 436",
+       "COMM 437",
+       "COMM 441",
+       "COMM 468",
+       "COMM 470A",
+       "COMM 470B",
+       "COMM 470C",
+       "COMM 481",
+       "ENGL 420"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nBackground and Foundations:\nSelect 3 credits from the following:3\nCOMM 100\nCOMM 118Introduction to Media Effects\nCOMM 150NThe Art of the Cinema\nCOMM 180Survey of Electronic Media and Telecommunications\nWriting Skills:\nSelect 3 credits from the following:3\nCOMM 230WWriting for Media\nCOMM 260WNews Writing and Reporting\nCOMM 315Applications for Media Writing\nBasic Media Production Skills:\nSelect 6 credits from the following 100-300 level courses:6\nCOMM 215Basic Photography for Communications\nCOMM 241Graphic Design for Communications\nCOMM 242Basic Video/Filmmaking\nCOMM 270Introduction to Multimedia Production\nCOMM 282Television Field Production\nCOMM 283Television Studio Production\nCOMM 337Intermediate Documentary Production\nCOMM 374Audio Production\nCOMM 383Advanced Video Production\nGD 100Introduction to Graphic Design\nPHOTO 100Introduction to Photography\nAdvanced Production Skills:\nSelect 6 credits from the following 400 level courses:6\nCOMM 406Electronic News Gathering and Editing\nCOMM 415Advanced Photography for Communications\nCOMM 436Advanced Audio Production\nCOMM 437Advanced Documentary Production\nCOMM 441Advanced Graphic Design for Communications\nCOMM 468Graphic Applications in Print Communications\nCOMM 470AConvergent Media News Service: Newspaper Production\nCOMM 470BConvergent Media News Service: TV\nCOMM 470CConvergent Media News Service: Radio and Online Publications\nCOMM 481Visual Storytelling for Journalists\nENGL 420Writing for the Web\n"
+  }
+ ],
+ "suggestedPlans": []
+}

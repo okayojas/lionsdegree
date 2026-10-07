@@ -1,0 +1,58 @@
+{
+ "slug": "behrend-medical-plastics-certificate",
+ "name": "Medical Plastics, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/medical-plastics-certificate/",
+ "totalCredits": 14,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BISC 4",
+      "MICRB 106"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PLET 380",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "PLET 481",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PLET 482",
+     "credits": 1
+    },
+    {
+     "type": "course",
+     "code": "PLET 483",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PLET 484",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BISC 4Human Body: Form and Function 3\nor MICRB 106 Elementary Microbiology\nPLET 380Introduction to Plastic Medical Devices1\nPLET 481Plastic Product Development3\nPLET 482Medical Product Development1\nPLET 483Plastics in Medical Applications3\nPLET 484Medical Manufacturing Methods3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

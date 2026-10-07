@@ -1,0 +1,740 @@
+{
+ "slug": "behrend-interdisciplinary-business-engineering-studies-bs",
+ "name": "Interdisciplinary Business with Engineering Studies, B.S. (Behrend)",
+ "type": "major",
+ "degree": "BS",
+ "college": "behrend",
+ "campuses": [
+  "Erie, The Behrend College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/behrend/interdisciplinary-business-engineering-studies-bs/",
+ "totalCredits": 127,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BA 241",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "BA 242",
+     "credits": 2
+    },
+    {
+     "type": "course",
+     "code": "CHEM 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 100S",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ACCTG 211",
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B",
+      "CAS 100C",
+      "CAS 100S"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 121",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 102",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 104",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EGT 120",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 202C",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 140",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "MGMT 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MGMT 410",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MGMT 475W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MGMT 476",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MIS 204",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MKTG 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCM 301",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BA 241Legal Environment of Business2\nBA 242Social and Ethical Environment of Business2\nCHEM 110Chemical Principles I 3\nEDSGN 100SIntroduction to Engineering Design3\nPrescribed Courses: Require a grade of C or better\nACCTG 211Financial and Managerial Accounting for Decision Making4\nCAS 100Effective Speech3\nCMPSC 121Introduction to Programming Techniques3\nECON 102Introductory Microeconomic Analysis and Policy 3\nECON 104Introductory Macroeconomic Analysis and Policy 3\nEGT 120Introduction to Graphics and Solid Modeling3\nENGL 202CEffective Writing: Technical Writing 3\nFIN 301Corporation Finance3\nMATH 140Calculus With Analytic Geometry I 4\nMGMT 301Basic Management Concepts3\nMGMT 410Project Management3\nMGMT 475WStrategic Product Development3\nMGMT 476Product Realization Capstone3\nMIS 204Introduction to Management Information Systems 3\nMKTG 301Principles of Marketing3\nSCM 301Supply Chain Management3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 211",
+      "PHYS 250"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "PHYS 212",
+      "PHYS 251"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "EE 211",
+      "EET 101"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "EMCH 211",
+      "MET 111"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "EMCH 213",
+      "MET 213"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 15",
+      "ENGL 30H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 141",
+      "MATH 210"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "SCM 200",
+      "STAT 200"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPEN 271",
+       "CMPET 117",
+       "IE 302",
+       "IE 327",
+       "QC 450"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "IE 330",
+       "IE 497",
+       "ME 300",
+       "MET 330"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ECON 470",
+       "FIN 471",
+       "IB 303",
+       "MGMT 461",
+       "MKTG 445"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Other 300-400-level international business course"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "PHYS 211General Physics: Mechanics 4\nor PHYS 250 Introductory Physics I\nPHYS 212General Physics: Electricity and Magnetism 4\nor PHYS 251 Introductory Physics II\nAdditional Courses: Require a grade of C or better\nEE 211Electrical Circuits and Power Distribution3\nor EET 101 Electrical Circuits I\nEMCH 211Statics3\nor MET 111 Mechanics for Technology: Statics\nEMCH 213Strength of Materials3\nor MET 213 Strength and Properties of Materials\nENGL 15Rhetoric and Composition 3\nor ENGL 30H Honors Rhetoric and Composition\nMATH 141Calculus with Analytic Geometry II 3-4\nor MATH 210 Calculus with Engineering Technology Applications\nSCM 200Introduction to Statistics for Business 4\nor STAT 200 Elementary Statistics\nSelect 3 credits from the following:3\nCMPEN 271Introduction to Digital Systems\nCMPET 117Digital Electronics\nIE 302Engineering Economy\nIE 327Introduction to Work Design\nQC 450Quality Control and Quality Improvement\nSelect 3 credits from the following:3\nIE 330Engineering Analytics\nIE 497Special Topics\nME 300Engineering Thermodynamics I\nMET 330Thermodynamics\nSelect 3 credits from the following:3\nECON 470International Trade and Finance\nFIN 471International Finance\nIB 303International Business Operations\nMGMT 461International Management\nMKTG 445Global Marketing\nOther 300-400-level international business course\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "unstructured",
+     "commentRaw": "Select one module from School Approved List of Modules 1-5. Except where noted, courses taken to satisfy General Education requirements may not be used to satisfy module requirements."
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "Select one module from School Approved List of Modules 1-5. Except where noted, courses taken to satisfy General Education requirements may not be used to satisfy module requirements.15-16\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Interdisciplinary Business with Engineering Studies, B.S. at Erie Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CHEM 110",
+       "credits": 3,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EDSGN 100S",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 140",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GA)",
+       "domain": "GA",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CMPSC 121",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 102",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "EGT 120",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MATH 141",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 210"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GH)",
+       "domain": "GH",
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BA 241",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": [
+        "BA 242"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "CAS 100B",
+        "CAS 100C",
+        "CAS 100S"
+       ],
+       "resolvedFrom": "CAS 100"
+      },
+      {
+       "type": "course",
+       "code": "ECON 104",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MIS 204",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "PHYS 211",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 250"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 18,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ACCTG 211",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202C",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MET 111",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "EMCH 211"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PHYS 212",
+       "credits": 4,
+       "footnotes": [
+        "†"
+       ],
+       "alternatives": [
+        "PHYS 251"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SCM 200",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "†",
+        "#"
+       ],
+       "alternatives": [
+        "STAT 200"
+       ]
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "EET 101",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "EE 211"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MET 213",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "EMCH 213"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MGMT 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MKTG 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SCM 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FIN 301",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CMPET 117",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "CMPEN 271"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ME 300",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": [
+        "MET 330"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Module Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "IB 303",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 13.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MGMT 410",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MGMT 475W",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Module Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Module Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 0,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "MGMT 476",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Inter-Domain)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": [
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Module Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Module Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 127,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

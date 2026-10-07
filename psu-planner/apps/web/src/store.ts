@@ -4,7 +4,7 @@ import {
   optimizeSchedule, parseTermLabel, refineGenEdSlots, repairPrereqOrdering, termSequence,
   type Catalog, type CourseSpec, type PlanDoc, type PlanItem, type Schedule,
 } from "@psu-planner/engine";
-import { loadCatalogFor, loadCoverage, loadFlowchartPatterns, loadIug } from "./data/catalogClient";
+import { loadCatalogFor, loadCoverage, loadEditions, loadFlowchartPatterns, loadIug, setCatalogEdition } from "./data/catalogClient";
 import { schedulePush } from "./data/sync";
 
 const LS_KEY = "psu-planner-plan-v1";
@@ -169,6 +169,13 @@ export const usePlanner = create<PlannerState>((set, get) => ({
       return;
     }
     set({ plan, loading: true });
+    // Point the catalog at THIS plan's edition before anything reads a course.
+    // A plan generated against 2025-2026 must keep being audited against
+    // 2025-2026; serving it the newest edition would silently re-plan it
+    // against requirements that do not govern this student.
+    const editions = await loadEditions();
+    const pinned = plan.edition ?? editions.editions[0];
+    setCatalogEdition(editions.editions.includes(pinned) ? pinned : editions.latest);
     const catalog = await loadCatalogFor(planCodes(plan));
     const coverage = await loadCoverage();
     set({ coverage });

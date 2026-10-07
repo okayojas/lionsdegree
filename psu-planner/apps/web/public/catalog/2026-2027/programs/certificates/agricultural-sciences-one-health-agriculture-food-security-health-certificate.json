@@ -1,0 +1,87 @@
+{
+ "slug": "agricultural-sciences-one-health-agriculture-food-security-health-certificate",
+ "name": "One Health: Agriculture, Food Security, and Health, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/one-health-agriculture-food-security-health-certificate/",
+ "totalCredits": 13,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "VBSC 340N",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "VBSC 341",
+     "credits": 1
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nVBSC 340NIntroduction to One Health 3\nVBSC 341Wicked Problems in One Health 1\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Agriculture, Sociology, and Food from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "AG 180N",
+       "AGBM 170N",
+       "AGECO 134N",
+       "INTAG 100N"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits in Food Security, Inequality, and Health from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "BBH 305",
+       "SOC 210N",
+       "SOC 211",
+       "SOC 451"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits in Agriculture, Sociology, and Food from the following:3\nAG 180NContemporary Issues in Food, Ag, Natural Resources, and Human Sciences\nAGBM 170NInvestigating the U.S. Food System: How food moves from field to table\nAGECO 134NSustainable Agriculture Science and Policy\nINTAG 100NEveryone Eats: Hunger, Food Security & Global Agriculture\nSelect 3 credits in Food Security, Inequality, and Health from the following:3\nBBH 305Introduction to Global Health Issues\nSOC 210NSocial Determinants of Health\nSOC 211Health Inequality: Understanding the Geographies of Life and Death\nSOC 451Health, Disease & Society\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of Global Business, Global Economics, International Agriculture, International Studies, Ecotoxicology, Sociology, or Animal Health Elective. Supporting course selection requires coordinator preapproval.",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits of Global Business, Global Economics, International Agriculture, International Studies, Ecotoxicology, Sociology, or Animal Health Elective. Supporting course selection requires coordinator preapproval.3\n"
+  }
+ ],
+ "suggestedPlans": []
+}

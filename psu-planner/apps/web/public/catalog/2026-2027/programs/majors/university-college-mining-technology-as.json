@@ -1,0 +1,155 @@
+{
+ "slug": "university-college-mining-technology-as",
+ "name": "Mining Technology, A.S.",
+ "type": "major",
+ "degree": null,
+ "college": "university-college",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/university-college/mining-technology-as/",
+ "totalCredits": 67,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CAS 100A",
+      "CAS 100B",
+      "CAS 100C",
+      "CAS 100S"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "CMPSC 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "EDSGN 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ENGL 15",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "GEOSC 20",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 81",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MATH 82",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MNG 223",
+     "credits": 2,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "MNGT 30",
+     "credits": 2,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "MNGT 110",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MNGT 205W",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MNGT 210",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MNGT 211",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MNGT 214",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PHYS 150",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MNGT 100",
+     "credits": 1,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "MNGT 204",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MNGT 216",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "CAS 100Effective Speech3\nCMPSC 100Computer Fundamentals and Applications3\nEDSGN 100Cornerstone Engineering Design3\nENGL 15Rhetoric and Composition 3\nGEOSC 20Planet Earth 3\nMATH 81Technical Mathematics I 3\nMATH 82Technical Mathematics II 3\nMNG 2232\nMNGT 302\nMNGT 110Mining Administration and Law3\nMNGT 205WMining Systems Technology3\nMNGT 210Mine Machine Dynamics3\nMNGT 211Practicum in Mining Technology3\nMNGT 214Mining Management I3\nPHYS 150Technical Physics I 3\nPrescribed Courses: Require a grade of C or better\nMNGT 1001\nMNGT 204Mine Plant Technology3\nMNGT 216Mine Regulations and Laws3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 8,
+     "commentRaw": "Select 8-9 credits from one of the following emphases:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MNGT 207",
+       "MNGT 208",
+       "MNGT 209",
+       "MNGT 202",
+       "MNGT 213",
+       "MNGT 215"
+      ]
+     }
+    },
+    {
+     "type": "note",
+     "commentRaw": "Maintenance Emphasis:"
+    },
+    {
+     "type": "note",
+     "commentRaw": "Production Emphasis:"
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 8-9 credits from one of the following emphases:8-9\nMaintenance Emphasis:\nMNGT 207Electric Mine Machine Circuits\nMNGT 208Mine Power Distribution\nMNGT 209Mine Machinery Control Methods\nProduction Emphasis:\nMNGT 202\nMNGT 213\nMNGT 215\n"
+  }
+ ],
+ "suggestedPlans": []
+}

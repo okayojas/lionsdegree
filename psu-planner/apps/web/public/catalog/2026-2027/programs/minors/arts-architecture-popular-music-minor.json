@@ -1,0 +1,76 @@
+{
+ "slug": "arts-architecture-popular-music-minor",
+ "name": "Popular Music, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "arts-architecture",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/arts-architecture/popular-music-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "INART 258A",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nINART 258AFundamentals of Digital Audio 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6-12 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "MUSIC 409",
+       "MUSIC 420",
+       "MUSIC 423",
+       "MUSIC 469"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 6-12 credits from the following:6-12\nMUSIC 409Popular Music Analysis\nMUSIC 420Song Writing and Recording\nMUSIC 423Music Entrepreneurship\nMUSIC 469Perspectives in Popular Music\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "INART 116",
+       "INART 125",
+       "MUSIC 207N",
+       "MUSIC 209N"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3-9 credits from the following:3-9\nINART 116The Popular Arts in America: The History of Rock and Roll-The 1950s\nINART 125The Popular Arts in America: The History of Rock and Roll - Punk Rock\nMUSIC 207NJazz and the African American Experience\nMUSIC 209NThe Music of the Beatles and American Popular Culture\n"
+  }
+ ],
+ "suggestedPlans": []
+}

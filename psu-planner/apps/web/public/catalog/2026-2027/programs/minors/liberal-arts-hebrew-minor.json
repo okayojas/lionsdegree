@@ -1,0 +1,82 @@
+{
+ "slug": "liberal-arts-hebrew-minor",
+ "name": "Hebrew, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/hebrew-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "HEBR 1",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "HEBR 2",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "HEBR 3",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nHEBR 1Basic Modern Hebrew I4\nHEBR 2Basic Modern Hebrew II4\nHEBR 3Intermediate Modern Hebrew4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "HEBR 151",
+       "HEBR 152",
+       "HEBR 199",
+       "HEBR 296",
+       "HEBR 297",
+       "HEBR 399",
+       "JST 12"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "HEBR 401",
+       "HEBR 402",
+       "HEBR 451",
+       "HEBR 452",
+       "HEBR 496",
+       "HEBR 497",
+       "HEBR 499"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 3 credits of the following:3\nHEBR 151Introductory Biblical Hebrew\nHEBR 152Intermediate Biblical Hebrew\nHEBR 199Foreign Study--Basic Hebrew\nHEBR 296Independent Studies\nHEBR 297Special Topics\nHEBR 399Foreign Study--Intermediate Hebrew\nJST/HEBR 10Jewish Civilization\nJST 12\nSelect 6 credits of the following:6\nHEBR 401Advanced Hebrew--Conversation Emphasis\nHEBR 402Advanced Hebrew--Reading Emphasis\nHEBR 451Biblical Hebrew Prose\nHEBR 452Biblical Hebrew Poetry\nHEBR 496Independent Studies\nHEBR 497Special Topics\nHEBR 499Foreign Study--Advanced Hebrew\n"
+  }
+ ],
+ "suggestedPlans": []
+}

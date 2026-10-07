@@ -1,0 +1,658 @@
+{
+ "slug": "abington-finance-bs",
+ "name": "Finance, B.S. (Abington)",
+ "type": "major",
+ "degree": "BS",
+ "college": "abington",
+ "campuses": [
+  "Abington, The Abington College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/abington/finance-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "BA 364Y",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MGMT 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MIS 390",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "MKTG 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SCM 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ACCTG 211",
+     "credits": 4
+    },
+    {
+     "type": "course",
+     "code": "BA 462",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 102",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 104",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECON 351",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 301",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 302",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 420",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "FIN 475",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BA 364YInternational Business and Society3\nMGMT 301Basic Management Concepts3\nMIS 390Information Systems Management and Applications3\nMKTG 301Principles of Marketing3\nSCM 301Supply Chain Management3\nPrescribed Courses: Require a grade of C or better\nACCTG 211Financial and Managerial Accounting for Decision Making4\nBA 462Business Strategy3\nECON 102Introductory Microeconomic Analysis and Policy 3\nECON 104Introductory Macroeconomic Analysis and Policy 3\nECON 351Money and Banking3\nFIN 301Corporation Finance3\nFIN 302Introductory Financial Modeling3\nFIN 420Investment and Portfolio Analysis3\nFIN 475Financial Decision Making3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BA 241",
+      "BA 242",
+      "BA 243"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MIS 204",
+      "MIS 250"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "ENGL 15",
+      "ENGL 30H"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "MATH 110",
+      "MATH 140"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "SCM 200",
+      "STAT 200"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGL 202A",
+       "ENGL 202B",
+       "ENGL 202C",
+       "ENGL 202D"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ECON 470",
+       "FIN 407",
+       "FIN 471",
+       "FIN 305",
+       "FIN 306W",
+       "FIN 405",
+       "FIN 408",
+       "FIN 409",
+       "FIN 413",
+       "FIN 418",
+       "FIN 427",
+       "FIN 428",
+       "FIN 455",
+       "FIN 456",
+       "FIN 461",
+       "FIN 406",
+       "FIN 470",
+       "FIN 477",
+       "FIN 496"
+      ]
+     }
+    },
+    {
+     "type": "unstructured",
+     "commentRaw": "Other finance courses approved by the Program"
+    }
+   ],
+   "structured": false,
+   "llmNormalized": false,
+   "rawText": "BA 241& BA 242Legal Environment of Businessand Social and Ethical Environment of Business4\nor BA 243 Social, Legal, and Ethical Environment of Business\nMIS 204Introduction to Management Information Systems 3\nor MIS 250 Introduction to Problem Solving with Spreadsheet Analysis and Information Systems Management\nAdditional Courses: Require a grade of C or better\nENGL 15Rhetoric and Composition 3\nor ENGL 30H Honors Rhetoric and Composition\nMATH 110Techniques of Calculus I 4\nor MATH 140 Calculus With Analytic Geometry I\nSCM 200Introduction to Statistics for Business 4\nor STAT 200 Elementary Statistics\nSelect 3 credits from the following:3\nENGL 202AEffective Writing: Writing in the Social Sciences\nENGL 202BEffective Writing: Writing in the Humanities\nENGL 202CEffective Writing: Technical Writing\nENGL 202DEffective Writing: Business Writing (Preferred)\nSelect 9 credits from the following:9\nECON 470International Trade and Finance\nor FIN 407 Multinational Financial Management\nor FIN 471 International Finance\nFIN 305Financial Management of the Business Enterprise\nFIN 306WInvestment Valuation\nFIN 405Advanced Financial Management\nFIN 408Financial Markets and Institutions\nFIN 409Real Estate Finance and Investment\nFIN 413Risk Management of Financial Institutions\nFIN 418Energy Finance\nFIN 427Derivative Securities\nFIN 428Fixed Income Securities\nFIN 455Quantitative Analysis for Business\nFIN 456International Capital Markets\nFIN 461Portfolio Management and Analysis\nor FIN 406 Security Analysis and Portfolio Management\nFIN 470Real Estate and Capital Markets\nFIN 477Behavioral Finance\nFIN 496Independent Studies\nOther finance courses approved by the Program\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of 200-400 level business courses from: ACCTG, BA, ECON, FIN, HRM, MGMT, MIS, MKTG, or SCM in consultation with an academic adviser and in support of the student's interests",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "ACCTG",
+       "BA",
+       "ECON",
+       "FIN",
+       "HRM",
+       "MGMT",
+       "MIS",
+       "MKTG",
+       "SCM"
+      ],
+      "minLevel": 200
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Select 9 credits of 200-400 level business courses from: ACCTG, BA, ECON, FIN, HRM, MGMT, MIS, MKTG, or SCM in consultation with an academic adviser and in support of the student's interests9\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Finance, B.S. at Abington Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "ECON 102 (GS) or ECON 104",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MATH 110",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "MATH 140"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ACCTG 201",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "ECON 102 (GS) or ECON 104",
+       "domain": "GS",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#",
+        "†"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "SCM 200",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "‡",
+        "#",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 200"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ACCTG 202",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MGMT 301",
+       "credits": 3,
+       "footnotes": [
+        "#"
+       ],
+       "alternatives": [
+        "MKTG 301"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "MIS 204",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": [
+        "MIS 250"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BA 243",
+       "credits": 4,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "ENGL 202B",
+        "ENGL 202C",
+        "ENGL 202D"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "FIN 301",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "#"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MGMT 301",
+       "credits": 3,
+       "footnotes": [
+        "#"
+       ],
+       "alternatives": [
+        "MKTG 301"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BA 364Y",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "ECON 351",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FIN 302",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "SCM 301",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "course",
+       "code": "FIN 420",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "MIS 390",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "(ECON 470 or FIN 407 or FIN 471), FIN 305, FIN 306W, FIN 405, FIN 408, FIN 409, FIN 413, FIN 418, FIN 427, FIN 428, FIN 455, FIN 456, (FIN 461 or FIN 406), FIN 470, FIN 477, or FIN 496",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "200-400 Level Business Course",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "(ECON 470 or FIN 407 or FIN 471), FIN 305, FIN 306W, FIN 405, FIN 408, FIN 409, FIN 413, FIN 418, FIN 427, FIN 428, FIN 455, FIN 456, (FIN 461 or FIN 406), FIN 470, FIN 477, or FIN 496",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "(ECON 470 or FIN 407 or FIN 471), FIN 305, FIN 306W, FIN 405, FIN 408, FIN 409, FIN 413, FIN 418, FIN 427, FIN 428, FIN 455, FIN 456, (FIN 461 or FIN 406), FIN 470, FIN 477, or FIN 496",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "1"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "200-400 Level Business Course",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Non-Business Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 13,
+     "entries": [
+      {
+       "type": "course",
+       "code": "BA 462",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "course",
+       "code": "FIN 475",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200-400 Level Business Course",
+       "credits": 3,
+       "footnotes": [
+        "2"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Non-Business Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Non-Business Elective",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 122,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

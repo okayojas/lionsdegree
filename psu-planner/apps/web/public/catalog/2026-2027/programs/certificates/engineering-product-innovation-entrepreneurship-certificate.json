@@ -1,0 +1,48 @@
+{
+ "slug": "engineering-product-innovation-entrepreneurship-certificate",
+ "name": "Product Innovation Entrepreneurship, Certificate",
+ "type": "certificate",
+ "degree": null,
+ "college": "engineering",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/engineering/product-innovation-entrepreneurship-certificate/",
+ "totalCredits": 9,
+ "requirementSections": [
+  {
+   "heading": "Required Courses",
+   "kind": "other",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "BA 250",
+      "ENGR 411"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ENGR 310",
+       "ENGR 407",
+       "ENGR 415",
+       "ENTR 300",
+       "ENTR 430",
+       "MGMT 427",
+       "MGMT 431"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "BA 250Small Business Management3\nor ENGR 411 Entrepreneurship Business Fundamentals\nSelect 6 credits from the following:6\nENGR 310Entrepreneurial Leadership\nENGR 407Product Innovation Entrepreneurship\nENGR 415Launching Innovation: Ideas to Opportunities\nENTR 300Principles of Entrepreneurship\nENTR 430Entrepreneurship and New Product Development\nMGMT 427Managing an Entrepreneurial Start-Up Company\nMGMT 431Entrepreneurship and Small Business Management\n"
+  }
+ ],
+ "suggestedPlans": []
+}

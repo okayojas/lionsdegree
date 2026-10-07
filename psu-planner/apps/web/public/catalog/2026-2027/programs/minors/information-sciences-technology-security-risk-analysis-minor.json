@@ -1,0 +1,84 @@
+{
+ "slug": "information-sciences-technology-security-risk-analysis-minor",
+ "name": "Security and Risk Analysis, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "information-sciences-technology",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/information-sciences-technology/security-risk-analysis-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "CYBER 221",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SRA 111",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "SRA 211",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nCYBER 221Overview of Information Security3\nSRA 111Introduction to Security and Risk Analysis 3\nSRA 211Threat of Terrorism and Crime3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "IST 140",
+      "CMPSC 101"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "IST 220",
+      "SRA 231"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CYBER 451",
+       "CYBER 454",
+       "CYBER 456",
+       "IST 432",
+       "IST 452",
+       "IST 453",
+       "SRA 421",
+       "SRA 468",
+       "SRA 471",
+       "SRA 480"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nIST 140Introduction to Application Development3\nor CMPSC 101 Introduction to Programming\nIST 220Networking and Telecommunications3\nor SRA 231 Decision Theory and Analysis\nSelect 6 credits from the following:6\nCYBER 451Network Security\nCYBER 454Computer and Cyber Forensics\nCYBER 456Information Security Management\nIST 432Legal and Regulatory Environment of Information Science and Technology\nIST 452Legal and Regulatory Environment of Privacy and Security\nIST 453Legal, Regulatory, Policy Environment of Cyber Forensics\nSRA 421The Intelligence Environment\nSRA 468Spatial Analysis of Risks\nSRA 471Informatics, Risk, and the Post-Modern World\nSRA 480Crisis Informatics\n"
+  }
+ ],
+ "suggestedPlans": []
+}

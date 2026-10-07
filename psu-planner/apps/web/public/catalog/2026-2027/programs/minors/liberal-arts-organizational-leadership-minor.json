@@ -1,0 +1,54 @@
+{
+ "slug": "liberal-arts-organizational-leadership-minor",
+ "name": "Organizational Leadership, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/organizational-leadership-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "OLEAD 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "OLEAD 201",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "OLEAD 210",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nOLEAD 100Introduction to Leadership 3\nOLEAD 201Organizational Theory and Functions for Leaders 3\nOLEAD 210Evidence-Based Leadership 3\nOLEAD/LER 464Communication Skills for Leaders in Groups and Organizations3\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits in the approved list of courses in the OLEAD Curriculum",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 6 credits in the approved list of courses in the OLEAD Curriculum6\n"
+  }
+ ],
+ "suggestedPlans": []
+}

@@ -1,0 +1,489 @@
+{
+ "slug": "liberal-arts-philosophy-bs",
+ "name": "Philosophy, B.S.",
+ "type": "major",
+ "degree": "BS",
+ "college": "liberal-arts",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/philosophy-bs/",
+ "totalCredits": 120,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "PHIL 12",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nPHIL 12Symbolic Logic 3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits in Philosophical Foundations of Science:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PHIL 11",
+       "PHIL 13",
+       "PHIL 110",
+       "PHIL 125",
+       "PHIL 125W",
+       "PHIL 126",
+       "PHIL 126W",
+       "PHIL 127",
+       "PHIL 129"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits in Ethics and Science:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PHIL 107",
+       "PHIL 118",
+       "PHIL 132",
+       "PHIL 133N",
+       "PHIL 134"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits in Advanced Topics:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PHIL 403",
+       "PHIL 407",
+       "PHIL 410",
+       "PHIL 425W",
+       "PHIL 426W",
+       "PHIL 427",
+       "PHIL 432"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits in Formal Reasoning:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CMPSC 111",
+       "CMPSC 121",
+       "CMPSC 131",
+       "CMPSC 360",
+       "CMPSC 441",
+       "CMPSC 442",
+       "ECON 306",
+       "ECON 402",
+       "ECON 411",
+       "ECON 414",
+       "ECON 474",
+       "IST 230",
+       "IST 240",
+       "MATH 315",
+       "MATH 427",
+       "MATH 457",
+       "MATH 465",
+       "MATH 475Y",
+       "MATH 486",
+       "RM 301",
+       "SC 205N",
+       "SRA 231",
+       "STAT 318"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nSelect 9 credits in Philosophical Foundations of Science:9\nPHIL 11Science and Truth\nPHIL 13Nature and Environment\nPHIL 110Philosophy of Science\nPHIL 125Theories of Knowledge\nor PHIL 125W\nPHIL 126Metaphysics\nor PHIL 126W Metaphysics\nPHIL 127Philosophy of Mind\nPHIL 129Philosophy of Language\nSelect 6 credits in Ethics and Science:6\nPHIL 107Philosophy of Technology\nPHIL 118Environmental Philosophy\nPHIL 132Bioethics\nPHIL 133NEthics of Climate Change\nPHIL 134Food, Values, and Health\nSelect 6 credits in Advanced Topics:6\nPHIL 403Seminar in Environmental Ethics\nPHIL 407Seminar in Philosophy of Technology\nPHIL 410Seminar in Philosophy of Science\nPHIL 425WSeminar in Epistemology\nPHIL 426WSeminar in Metaphysics\nPHIL 427Seminar in Philosophy of Mind\nPHIL 432Medical and Health Care Ethics\nSelect 6 credits in Formal Reasoning:6\nCMPSC 111Logic for Computer Science\nCMPSC 121Introduction to Programming Techniques\nCMPSC 131Programming and Computation I: Fundamentals\nCMPSC 360Discrete Mathematics for Computer Science\nCMPSC 441Artificial Intelligence\nCMPSC 442Artificial Intelligence\nECON 306Introduction to Econometrics\nECON 402Decision Making and Strategy in Economics\nECON 411Behavioral Economics\nECON 414\nECON 474Experimental and Behavioral Economics\nIST 230Language, Logic, and Discrete Mathematics\nIST 240Introduction to Computer Languages\nMATH 315\nMATH 427Foundations of Geometry\nMATH 457Introduction to Mathematical Logic\nMATH 465Number Theory\nMATH 475YHistory of Mathematics\nMATH 486Mathematical Theory of Games\nRM 301Risk and Decisions\nSC 205NBS: Identifying Bias and Falsehood\nSRA 231Decision Theory and Analysis\nSTAT 318Elementary Probability\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits PHIL elective, unrestricted topic",
+     "from": null
+    },
+    {
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits Advanced Topics supporting program, choose from: Advanced Topics, Formal Reasoning, or by approval",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits PHIL elective, unrestricted topic3\nSelect 6 credits Advanced Topics supporting program, choose from: Advanced Topics, Formal Reasoning, or by approval6\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Philosophy, B.S. at University Park Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LA 83",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "GWS",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Philosophy (Any Course)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "General Quantification",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "First Year Seminar",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "GWS",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Philosophy (Foundation Course)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "General Quantification",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Philosophy (Foundation Course)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Philosophy Ethics and Science Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "LA 283",
+       "credits": 1.5,
+       "footnotes": [],
+       "alternatives": [],
+       "unverified": true
+      },
+      {
+       "type": "placeholder",
+       "label": "Philosophy (Foundation Course)",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Formal Reasoning Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Formal Reasoning Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Philosophy Ethics and Science Course",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "genEd",
+       "label": "GWS",
+       "domain": "GWS",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "course",
+       "code": "PHIL 12",
+       "credits": 3,
+       "footnotes": [],
+       "alternatives": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Advanced PHIL Topics",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Advanced PHIL",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 4.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "General Health and Wellness",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "Advanced PHIL Topics",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Supporting Advanced PHIL",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 4.5,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "General Health and Wellness",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 123,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

@@ -1,0 +1,95 @@
+{
+ "slug": "agricultural-sciences-off-road-equipment-minor",
+ "name": "Off-Road Equipment, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "agricultural-sciences",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/agricultural-sciences/off-road-equipment-minor/",
+ "totalCredits": null,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ABSM 420",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nABSM 420Principles of Off-Road Machines3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "ABSM 320",
+      "ME 431"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "oneOf",
+     "options": [
+      "BE 461",
+      "ABSM 426"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ABSM 310",
+       "BE 306",
+       "ME 360"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ABSM 428",
+       "BE 305",
+       "ME 345"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3-4 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "ABSM 424",
+       "AGRO 423",
+       "AGRO 425",
+       "HORT 408",
+       "TURF 425"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nABSM 320Combustion Engines for Mobile Equipment3\nor ME 431 Internal Combustion Engines\nBE 461Design of Fluid Power Systems3\nor ABSM 426 Safety and Health in Agriculture and Biorenewable Industries\nSelect 3 credits of the following:3\nABSM 310Power Transmission in Agriculture\nBE 306Machine Design for Agricultural and Biological Engineering\nME 360Mechanical Design\nSelect 3-4 credits of the following:3-4\nABSM 428Electric Power and Instrumentation\nBE 305Agricultural Measurements and Control Systems\nME 345Instrumentation, Measurements, and Statistics\nSelect 3-4 credits of the following:3-4\nABSM 424Precision Agriculture Technology\nAGRO 423Forage Crop Management\nAGRO 425Field Crop Management\nHORT 408Landscape Plant Establishment and Maintenance\nTURF 425Turfgrass Cultural Systems\n"
+  }
+ ],
+ "suggestedPlans": []
+}

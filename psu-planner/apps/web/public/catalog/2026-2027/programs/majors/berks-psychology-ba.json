@@ -1,0 +1,534 @@
+{
+ "slug": "berks-psychology-ba",
+ "name": "Psychology, B.A. (Berks)",
+ "type": "major",
+ "degree": "BA",
+ "college": "berks",
+ "campuses": [
+  "Berks, The Berks College"
+ ],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/berks/psychology-ba/",
+ "totalCredits": 124,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "PSYCH 100",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "PSYCH 301W",
+     "credits": 4
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nPSYCH 100Introductory Psychology 3\nPSYCH 301WBasic Research Methods in Psychology4\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "PSYCH 200",
+      "STAT 200"
+     ],
+     "credits": 4
+    },
+    {
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18 credits of the following, with a minimum of 3 credits from each of the following six categories:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PSYCH 256",
+       "PSYCH 261",
+       "PSYCH 268",
+       "PSYCH 426",
+       "PSYCH 427",
+       "PSYCH 452",
+       "PSYCH 456",
+       "PSYCH 457",
+       "PSYCH 458",
+       "PSYCH 459",
+       "PSYCH 461",
+       "PSYCH 221",
+       "PSYCH 231",
+       "PSYCH 232",
+       "PSYCH 238",
+       "PSYCH 419",
+       "PSYCH 420",
+       "PSYCH 421",
+       "PSYCH 423",
+       "PSYCH 424",
+       "PSYCH 432",
+       "PSYCH 438",
+       "PSYCH 479",
+       "PSYCH 253",
+       "PSYCH 260",
+       "PSYCH 269",
+       "PSYCH 441",
+       "PSYCH 460",
+       "PSYCH 462",
+       "PSYCH 464",
+       "PSYCH 475",
+       "PSYCH 478",
+       "PSYCH 212",
+       "PSYCH 410",
+       "PSYCH 412",
+       "PSYCH 413",
+       "PSYCH 414",
+       "PSYCH 415",
+       "PSYCH 416",
+       "PSYCH 474",
+       "PSYCH 243",
+       "PSYCH 244",
+       "PSYCH 270",
+       "PSYCH 281",
+       "PSYCH 370",
+       "PSYCH 404",
+       "PSYCH 408",
+       "PSYCH 443",
+       "PSYCH 444",
+       "PSYCH 445",
+       "PSYCH 470",
+       "PSYCH 471",
+       "PSYCH 473",
+       "PSYCH 476",
+       "PSYCH 477",
+       "PSYCH 481",
+       "PSYCH 482",
+       "PSYCH 484",
+       "PSYCH 485",
+       "PSYCH 439",
+       "PSYCH 490",
+       "PSYCH 493",
+       "PSYCH 494",
+       "PSYCH 495",
+       "PSYCH 496"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits of additional Psychology courses from any offered for a total of 30 credits of Psychology courses beyond PSYCH 100 and PSYCH 301W",
+     "from": null
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nPSYCH 200Elementary Statistics in Psychology 4\nor STAT 200 Elementary Statistics\nSelect 18 credits of the following, with a minimum of 3 credits from each of the following six categories: 18\nLearning and Cognition\nPSYCH 256Introduction to Cognitive Psychology\nPSYCH 261Introduction to Psychology of Learning\nPSYCH 268Animal Minds\nPSYCH 426Language and Thought\nPSYCH 427Language Acquisition\nPSYCH 452Learning and Memory\nPSYCH 456Advanced Cognitive Psychology\nPSYCH 457Psychology of Language\nPSYCH 458Visual Cognition\nPSYCH 459\nPSYCH 461Advanced Conditioning and Learning\nSocial and Personality Psychology\nPSYCH 221Introduction to Social Psychology\nPSYCH 231Introduction to the Psychology of Gender\nPSYCH 232Cross-Cultural Psychology\nPSYCH 238Introduction to Personality Psychology\nPSYCH 419Psychology and a Sustainable World\nPSYCH 420Advanced Social Psychology\nPSYCH 421Self and Social Judgment\nPSYCH 423Social Psychology of Interpersonal/Intergroup Relationships\nPSYCH 424Applied Social Psychology\nPSYCH 432Multicultural Psychology in America\nPSYCH 438Personality Theory\nPSYCH 479The Psychology of Gender\nBiological Bases of Behavior\nPSYCH 253Introduction to Psychology of Perception\nPSYCH 260Neurological Bases of Human Behavior\nPSYCH 269Evolutionary Psychology\nPSYCH 441Health Psychology\nPSYCH 460Comparative Psychology\nPSYCH 462Physiological Psychology\nPSYCH 464Behavior Genetics\nPSYCH 475Psychology of Fear and Stress\nPSYCH 478Clinical Neuropsychology\nDevelopmental Psychology\nPSYCH 212Introduction to Developmental Psychology\nPSYCH 410Child Development\nPSYCH 412Adolescence\nPSYCH 413Cognitive Development\nPSYCH 414Social and Personality Development\nPSYCH 415Topics in Developmental Psychology\nPSYCH 416/HDFS 445Development Throughout Adulthood\nPSYCH 474Psychological Intervention in Childhood\nApplied and Clinical Psychology\nPSYCH 243Introduction to Well-being and Positive Psychology\nPSYCH 244Introduction to the Psychology of Human Factors Engineering\nPSYCH 270Introduction to Abnormal Psychology\nPSYCH 281Introduction to Industrial-Organizational Psychology\nPSYCH 370Psychology of the Differently-Abled\nPSYCH 404Principles of Measurement\nPSYCH 408Program Evaluation\nPSYCH 443Treatment and Education in Developmental Disabilities\nPSYCH 444Engineering Psychology\nPSYCH 445Forensic Psychology\nPSYCH 470Abnormal Psychology\nPSYCH 471Psychology of Adjustment and Social Relationships\nPSYCH 473Behavior Modification\nPSYCH 476Child Psychopathology\nPSYCH 477Mental Health Practicum with Children\nPSYCH 481Introduction to Clinical Psychology\nPSYCH 482Selection and Assessment in Organizations\nPSYCH 484Work Attitudes and Motivation\nPSYCH 485Leadership in Work Settings\nCapstone Experience\nPSYCH 439History and Systems of Psychology\nPSYCH 490Senior Seminar in Psychology\nPSYCH 493Senior Thesis\nPSYCH 494Research Projects\nPSYCH 495Internship\nPSYCH 496Independent Studies\nSelect 12 credits of additional Psychology courses from any offered for a total of 30 credits of Psychology courses beyond PSYCH 100 and PSYCH 301W 12\n"
+  }
+ ],
+ "suggestedPlans": [
+  {
+   "campusLabel": "Psychology, B.A. at Berks Campus",
+   "semesters": [
+    {
+     "year": 1,
+     "term": "Fall",
+     "label": "Year 1 Fall",
+     "credits": 17,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 15",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "ENGL 30H"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GQ)",
+       "domain": "GQ",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ]
+      },
+      {
+       "type": "course",
+       "code": "PSYCH 100",
+       "credits": 3,
+       "footnotes": [
+        "*"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 1",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN or GA or GH or GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "First-Year Seminar",
+       "credits": 1,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 1,
+     "term": "Spring",
+     "label": "Year 1 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "CAS 100A",
+       "credits": 3,
+       "footnotes": [
+        "‡"
+       ],
+       "alternatives": [
+        "CAS 100B"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "200 Level PSYCH Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 2",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN or GA or GH or GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN or GA or GH or GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Fall",
+     "label": "Year 2 Fall",
+     "credits": 17.5,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "200 Level PSYCH Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "World Language Level 3",
+       "credits": 4,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN or GA or GH or GS)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GN)",
+       "domain": "GN",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Integrative Studies)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 2,
+     "term": "Spring",
+     "label": "Year 2 Spring",
+     "credits": 16.5,
+     "entries": [
+      {
+       "type": "course",
+       "code": "ENGL 202A",
+       "credits": 3,
+       "footnotes": [
+        "‡",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "200 Level PSYCH Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "200 Level PSYCH Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Integrative Studies)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Exploration)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (GHW)",
+       "domain": "GHW",
+       "credits": 1.5,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Fall",
+     "label": "Year 3 Fall",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 200",
+       "credits": 4,
+       "footnotes": [
+        "‡",
+        "†"
+       ],
+       "alternatives": [
+        "STAT 200"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "200 Level PSYCH Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400 Level PSYCH Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      },
+      {
+       "type": "genEd",
+       "label": "General Education Course (Exploration)",
+       "domain": null,
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Bachelor of Arts Degree Requirement: Knowledge Domain",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 3,
+     "term": "Spring",
+     "label": "Year 3 Spring",
+     "credits": 16,
+     "entries": [
+      {
+       "type": "course",
+       "code": "PSYCH 301W",
+       "credits": 4,
+       "footnotes": [
+        "*",
+        "2"
+       ],
+       "alternatives": []
+      },
+      {
+       "type": "placeholder",
+       "label": "400 Level PSYCH Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Bachelor of Arts Degree Requirement: World Cultures",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Fall",
+     "label": "Year 4 Fall",
+     "credits": 15,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400 Level PSYCH Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "400 Level PSYCH Selection",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "3"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Bachelor of Arts Degree Requirement: Knowledge Domain",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    },
+    {
+     "year": 4,
+     "term": "Spring",
+     "label": "Year 4 Spring",
+     "credits": 12,
+     "entries": [
+      {
+       "type": "placeholder",
+       "label": "400 Level PSYCH Selection (Capstone Experience)",
+       "credits": 3,
+       "footnotes": [
+        "*",
+        "4"
+       ]
+      },
+      {
+       "type": "placeholder",
+       "label": "Bachelor of Arts Degree Requirement: Knowledge Domain",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      },
+      {
+       "type": "placeholder",
+       "label": "Elective",
+       "credits": 3,
+       "footnotes": []
+      }
+     ]
+    }
+   ],
+   "totalCredits": 126,
+   "footnotes": {
+    "*": "Course requires a grade of C or better for the major",
+    "‡": "Course requires a grade of C or better for General Education",
+    "#": "Course is an Entrance to Major requirement",
+    "†": "Course satisfies General Education and degree requirement"
+   }
+  }
+ ]
+}

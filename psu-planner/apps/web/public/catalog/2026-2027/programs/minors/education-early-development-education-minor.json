@@ -1,0 +1,111 @@
+{
+ "slug": "education-early-development-education-minor",
+ "name": "Early Development and Education, Minor",
+ "type": "minor",
+ "degree": null,
+ "college": "education",
+ "campuses": [],
+ "url": "https://bulletins.psu.edu/undergraduate/colleges/education/early-development-education-minor/",
+ "totalCredits": 20,
+ "requirementSections": [
+  {
+   "heading": "Prescribed Courses",
+   "kind": "prescribed",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "course",
+     "code": "ECE 451",
+     "credits": 3
+    },
+    {
+     "type": "course",
+     "code": "ECE 453",
+     "credits": 2,
+     "unverified": true
+    },
+    {
+     "type": "course",
+     "code": "ECE 479",
+     "credits": 3
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Prescribed Courses: Require a grade of C or better\nECE 451Instruction in Early Childhood Education Derived from Development Theories3\nECE 453Parent Involvement in Home, Center, and Classroom Instruction2-3\nECE 479The Young Child's Play as Educative Processes3\n"
+  },
+  {
+   "heading": "Additional Courses",
+   "kind": "additional",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "oneOf",
+     "options": [
+      "CI 295",
+      "HDFS 330"
+     ],
+     "credits": 3
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "EDPSY 10",
+       "EDPSY 11",
+       "HDFS 229"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Additional Courses: Require a grade of C or better\nCI 295Introductory Field Experience for Teacher Preparation3\nor HDFS 330 Observation or Experience with Children, Youth, and Families\nSelect 3 credits of the following:3\nEDPSY 10Individual Differences and Education\nEDPSY 11Educational Implications of Individual Differences in Childhood\nHDFS 229Infant and Child Development\n"
+  },
+  {
+   "heading": "Supporting Courses and Related Areas",
+   "kind": "supporting",
+   "creditsRequired": null,
+   "rules": [
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CI 495",
+       "CSD 146",
+       "CSD 300",
+       "ECE 453",
+       "ECE 454",
+       "HDFS 454",
+       "HDFS 428",
+       "HDFS 430"
+      ]
+     }
+    },
+    {
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from Treatment of Language Disorders:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "PSYCH 410",
+       "PSYCH 474",
+       "SPLED 415"
+      ]
+     }
+    }
+   ],
+   "structured": true,
+   "llmNormalized": false,
+   "rawText": "Supporting Courses and Related Areas: Require a grade of C or better\nSelect 3 credits of the following:3\nCI 495Internship\nCSD 146Introduction to Communication Sciences and Disorders\nCSD 300Child Language Development\nECE 453Parent Involvement in Home, Center, and Classroom Instruction\nECE/HDFS 454\nHDFS 428Infant Development\nHDFS 430Experience in Preschool Groups\nSelect 3 credits from Treatment of Language Disorders:3\nPSYCH 410Child Development\nPSYCH 474Psychological Intervention in Childhood\nSPLED 415Early Special Education\n"
+  }
+ ],
+ "suggestedPlans": []
+}
