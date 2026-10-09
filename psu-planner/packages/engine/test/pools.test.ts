@@ -303,3 +303,49 @@ describe("fingerprintRequirement", () => {
     expect(fingerprintRequirement("Select 6 credits")).not.toBe(fingerprintRequirement("Select 9 credits"));
   });
 });
+
+describe("an empty course list stays unreadable", () => {
+  /** It is tempting to fall back to the section's other courses when a
+   * "Select N credits of the following:" header comes back with an empty
+   * list. All ten such rules in the shipped catalog were checked by hand and
+   * none of them recovers correctly: the siblings are separately-required
+   * courses, a different concentration's branch, or prose the parser mistook
+   * for a course code. The honest answer is "we could not read this". */
+  const prog = (rel: string) => JSON.parse(fs.readFileSync(path.join(CATALOG_DIR, rel), "utf-8"));
+
+  it("does not offer separately-required courses as if they were the elective list", () => {
+    // The certificate requires SPAN 310 and SPAN 420 outright. Offering them
+    // as the "Culture Course Lists" elective would let one course satisfy two
+    // requirements and graduate a student three credits short.
+    const cert = prog("programs/certificates/liberal-arts-global-spanish-business-certificate.json");
+    const section = (cert.requirementSections as ReqSection[])[0];
+    const rule = section.rules.find(
+      (r) => r.type === "selectCredits" && r.commentRaw.includes("Culture Course Lists"),
+    ) as { commentRaw: string; from: { courses: string[] } };
+    expect(rule, "the Spanish culture-list case is missing from the catalog").toBeDefined();
+    expect(rule.from.courses, "fixture assumes this list is empty").toEqual([]);
+
+    const pool = resolveSlotPool(rule.commentRaw, [section]);
+    expect(pool?.kind).toBe("unreadable");
+    const offered = (pool as { courses?: string[] }).courses ?? [];
+    expect(offered).not.toContain("SPAN 310");
+    expect(offered).not.toContain("SPAN 420");
+  });
+
+  it("never offers prose that was mistaken for a course code", () => {
+    // earth-sciences section 2 carries sibling rows whose "codes" are
+    // "SELECT 8" and "APPLY 6". Whatever a slot offers, it must not be those.
+    const es = prog("programs/majors/earth-mineral-sciences-earth-sciences-bs.json");
+    const section = (es.requirementSections as ReqSection[])[2];
+    const rule = section.rules.find(
+      (r) => r.type === "selectCredits" && r.from?.kind === "courses" && !r.from.courses.length,
+    ) as { commentRaw: string } | undefined;
+    expect(rule, "the earth-sciences case is missing from the catalog").toBeDefined();
+
+    const pool = resolveSlotPool(rule!.commentRaw, [section]);
+    for (const junk of (pool as { courses?: string[] }).courses ?? []) {
+      expect(junk, "prose leaked into a pool as a course code").toMatch(/^[A-Z]{2,8}(-[A-Z])? ?\d/);
+      expect(junk.split(" ")[0]).not.toMatch(/^(SELECT|APPLY|LEAST|THE|OF)$/);
+    }
+  });
+});

@@ -60,7 +60,17 @@ export const RuleSchema = z.union([
     commentRaw: z.string(),
     from: z
       .union([
-        z.object({ kind: z.literal("courses"), courses: z.array(z.string()) }),
+        /** `discarded` separates the two ways this list comes back empty.
+         * Without it the reader cannot tell "the courses are the indented
+         * rows below" (safe to read them) from "every subject was a phantom
+         * and we threw the list away" (reading the section's other courses
+         * would present a parse failure as an approved list). Zod strips
+         * unknown keys, so an unlisted flag is silently lost on emit. */
+        z.object({
+          kind: z.literal("courses"),
+          courses: z.array(z.string()),
+          discarded: z.boolean().optional(),
+        }),
         /** "9 credits of 400-level BMB, BIOL, BIOTC, or MICRB courses". Several
          * subjects, because requirements routinely name several and collapsing
          * them to one silently deleted the rest. minLevel is the LOWEST level

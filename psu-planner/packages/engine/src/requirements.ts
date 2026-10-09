@@ -11,7 +11,13 @@
 import { splitCode } from "./codes.js";
 
 export type ReqFrom =
-  | { kind: "courses"; courses: string[] }
+  // `discarded` means the pipeline HAD a list and threw it away because
+  // every subject in it was a phantom. An empty list WITHOUT it means the
+  // bulletin put the courses in the indented rows below the header. Both
+  // resolve to `unreadable` (see resolveSlotPool for why neither borrows the
+  // section's other courses); the flag exists so the two can be told apart
+  // when deciding what to fix.
+  | { kind: "courses"; courses: string[]; discarded?: boolean }
   /** Several subjects, because requirements routinely name several ("400-level
    * BMB, BIOL, BIOTC, or MICRB courses") and holding one silently deleted the
    * rest. minLevel is the LOWEST level admitted: "300 or 400-level" means 300. */
@@ -242,10 +248,25 @@ export function resolveSlotPool(label: string, sections: ReqSection[], ctx?: Poo
 
   const pool = poolFromRule(best.rule, ctx);
   // Nothing concrete on the rule itself: sibling indented courses in the
-  // matched section can also fill it. Gated to selectCredits, as it always
-  // was -- a chooseN whose options we failed to read is an unreadable rule,
-  // and handing it the whole section's courses would dress a parse failure up
-  // as an approved list (iron rule 2).
+  // matched section can also fill it. Gated to selectCredits rules that
+  // resolved to `adviser`, which is narrower than it looks and deliberately
+  // so.
+  //
+  // Widening it to `unreadable` (an EMPTY course list) was tried and
+  // reverted. 91 rules in the shipped catalog have one; 10 of those sit in a
+  // section that has sibling courses, and all 10 were measured by hand. Not
+  // one was a correct recovery:
+  //
+  //   - 4 would offer courses the student is separately REQUIRED to take
+  //     (the Spanish certificate's SPAN 310/420), i.e. a double-count.
+  //   - 4 would merge mutually exclusive concentration branches into one
+  //     pool -- the same defect as the SPAN merge bug.
+  //   - 2 would offer "SELECT 8", "APPLY 6", "LEAST 6", "THE 400", prose the
+  //     parser mistook for course codes.
+  //
+  // So an empty list stays unreadable and says so. The reviewer who flagged
+  // this as an unintended narrowing was reading the gate rather than the ten
+  // rules it governs.
   if (best.rule.type === "selectCredits" && pool?.kind === "adviser") {
     const siblings = sectionCourses(best.section);
     if (siblings.length) return { kind: "listed", courses: siblings };

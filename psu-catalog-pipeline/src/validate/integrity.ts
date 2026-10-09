@@ -206,7 +206,15 @@ export function validateProgram(program: Program, index: CourseIndex, report: In
         // is a parse failure, and laundering it into "adviser-defined" would
         // quietly inflate the coverage figure and tell the student their
         // adviser decides something the bulletin actually spells out.
-        if (!kept.length) rule.from = { kind: "courses", courses: [] };
+        // `discarded` records WHY this list is empty. Two unrelated things
+        // produce the same `{kind:"courses", courses:[]}` shape: a header
+        // like "Select 3 credits of the following:" whose courses are the
+        // indented rows beneath it, and this -- a pattern whose every subject
+        // turned out not to exist. The engine renders both as unreadable
+        // today, so nothing branches on the flag; it is here because the two
+        // cases need different fixes and the shape alone cannot tell a
+        // maintainer (or a coverage report) which one they are looking at.
+        if (!kept.length) rule.from = { kind: "courses", courses: [], discarded: true };
         else rule.from = { ...rule.from, subjects: kept };
       } else if (rule.type === "oneOf" || rule.type === "chooseN") {
         rule.options = rule.options.flatMap((o) => {

@@ -153,7 +153,7 @@ const LEVEL_PHRASE = new RegExp(String.raw`\b(\d{3}(?:${LEVEL_SEP}\d{3})*)\s*-?\
  * Business courses" read as "IT B" -> ITB and destroyed the valid IT, and
  * "NURS 400-Level ... (NURS XXX)" became NURSXXX. Both are real rows that
  * regressed before the guards went in. */
-const SUBJECT_TOKEN = String.raw`[A-Z]{2,7}(?:[ -](?!X{2,})[A-Z]{2,5}(?![a-z]))?`;
+const SUBJECT_TOKEN = String.raw`[A-Z]{2,7}(?:[ -](?!X{2,}\b)[A-Z]{2,5}\b(?![a-z]))?`;
 const SUBJECT_RUN = new RegExp(String.raw`\b${SUBJECT_TOKEN}(?:${SEP}${SUBJECT_TOKEN})*`, "g");
 const SUBJECT_SPLIT = new RegExp(SEP);
 
