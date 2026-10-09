@@ -9,6 +9,7 @@ import {
 } from "../data/importSchedule";
 import { ApCreditPicker, CourseSearchPicker } from "./CreditPickers";
 import { usePlanner } from "../store";
+import { useDialog } from "../hooks/useDialog";
 
 type Disposition = "completed" | "schedule" | "skip";
 
@@ -37,11 +38,9 @@ function targetSemFor(term: TermRef | null, labels: string[]): number {
 export function ImportModal({ onClose, onDone }: { onClose: () => void; onDone: (msg: string) => void }) {
   const { plan, items, applyImport } = usePlanner();
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [onClose]);
+  // Escape, focus-in, focus-trap and focus-restore all come from one place
+  // so every dialog behaves the same (see hooks/useDialog).
+  const dialogRef = useDialog<HTMLDivElement>(onClose);
   const [rows, setRows] = useState<Row[]>([]);
   const [pasteText, setPasteText] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -101,7 +100,7 @@ export function ImportModal({ onClose, onDone }: { onClose: () => void; onDone: 
 
   return (
     <div className="overlay" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="modal" role="dialog" aria-modal="true" aria-label="Import your schedule" style={{ maxWidth: 720 }}>
+      <div ref={dialogRef} className="modal" role="dialog" aria-modal="true" aria-label="Import your schedule" style={{ maxWidth: 720 }}>
         <h2>Import your schedule</h2>
         <p className="desc">
           Upload a spreadsheet or paste text. Semester labels (e.g. "Fall 2025") decide what happens:

@@ -35,7 +35,10 @@ export default defineConfig({
     // --host 127.0.0.1 is load-bearing: vite preview otherwise binds [::1]
     // only, and Playwright's readiness probe against 127.0.0.1 never answers,
     // so the suite dies on a 120s webServer timeout with no hint why.
-    command: "npm run preview -- --port 4318 --strictPort --host 127.0.0.1",
+    // Build first. `preview` serves whatever is in dist/, so without this the
+    // suite happily tests the previous build -- source changes appear to have
+    // no effect, and a green run proves nothing about the code in the tree.
+    command: "npm run build && npm run preview -- --port 4318 --strictPort --host 127.0.0.1",
     url: "http://127.0.0.1:4318/plan/",
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

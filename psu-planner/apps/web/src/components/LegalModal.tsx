@@ -2,6 +2,7 @@
  * architecture (local-first, no tracking, AI disclosure). Drafts for a lawyer
  * review before any paid launch. */
 import { useEffect, useState } from "react";
+import { useDialog } from "../hooks/useDialog";
 
 const UPDATED = "July 14, 2026";
 
@@ -76,21 +77,19 @@ function Accessibility() {
 
 export function LegalModal({ initial, onClose }: { initial?: "privacy" | "terms" | "accessibility"; onClose: () => void }) {
   const [tab, setTab] = useState<"privacy" | "terms" | "accessibility">(initial ?? "privacy");
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [onClose]);
+  // Escape, focus-in, focus-trap and focus-restore all come from one place
+  // so every dialog behaves the same (see hooks/useDialog).
+  const dialogRef = useDialog<HTMLDivElement>(onClose);
   return (
     <div className="overlay" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="modal" role="dialog" aria-modal="true" aria-label="Legal information">
+      <div ref={dialogRef} className="modal" role="dialog" aria-modal="true" aria-label="Legal information">
         <div className="row" style={{ marginTop: 0 }}>
           <button className={tab === "privacy" ? "primary" : ""} onClick={() => setTab("privacy")}>Privacy</button>
           <button className={tab === "terms" ? "primary" : ""} onClick={() => setTab("terms")}>Terms</button>
           <button className={tab === "accessibility" ? "primary" : ""} onClick={() => setTab("accessibility")}>Accessibility</button>
         </div>
         {tab === "privacy" ? <Privacy /> : tab === "terms" ? <Terms /> : <Accessibility />}
-        <div className="row"><button onClick={onClose} autoFocus>Close</button></div>
+        <div className="row"><button onClick={onClose} data-autofocus>Close</button></div>
       </div>
     </div>
   );

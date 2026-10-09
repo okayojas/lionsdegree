@@ -51,11 +51,11 @@ export function ApCreditPicker({ onAdd }: { onAdd: (codes: string[], label: stri
   return (
     <div>
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-        <select value={examIx} onChange={(e) => { setExamIx(Number(e.target.value)); setNote(null); }}>
+        <select aria-label="AP exam" value={examIx} onChange={(e) => { setExamIx(Number(e.target.value)); setNote(null); }}>
           <option value={-1}>AP exam…</option>
           {exams.map((x, i) => <option key={x.exam} value={i}>{x.exam}</option>)}
         </select>
-        <select value={score} onChange={(e) => setScore(Number(e.target.value))}>
+        <select aria-label="AP exam score" value={score} onChange={(e) => setScore(Number(e.target.value))}>
           {[5, 4, 3, 2, 1].map((s) => <option key={s} value={s}>score {s}</option>)}
         </select>
         <button disabled={examIx < 0} onClick={add}>Add AP credit</button>

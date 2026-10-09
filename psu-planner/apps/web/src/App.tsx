@@ -5,6 +5,7 @@ import { loadCourse, loadIugIndex, type IugIndexEntry } from "./data/catalogClie
 import { downloadPlan, openPlanFile } from "./data/planFileIO";
 import { Onboarding } from "./components/Onboarding";
 import { PlanCanvas } from "./components/PlanCanvas";
+import { Dialog } from "./components/Dialog";
 import { CourseModal } from "./components/CourseModal";
 import { SlotFillPicker } from "./components/SlotFillPicker";
 import { SearchBox } from "./components/SearchBox";
@@ -236,8 +237,7 @@ export default function App() {
       </footer>
       {openItem && <CourseModal item={openItem} onClose={() => setOpenItem(null)} />}
       {pickedCourse && (
-        <div className="overlay" onMouseDown={(e) => e.target === e.currentTarget && setPickedCourse(null)}>
-          <div className="modal">
+        <Dialog label="Course details" onClose={() => setPickedCourse(null)}>
             <h2>{pickedCourse.display}</h2>
             <div className="sub">{pickedCourse.title} · {pickedCourse.credits}</div>
             <p className="desc">{pickedCourse.description.slice(0, 400)}{pickedCourse.description.length > 400 ? "…" : ""}</p>
@@ -264,12 +264,10 @@ export default function App() {
                 <div className="row"><button onClick={() => setPickedCourse(null)}>Cancel</button></div>
               </>
             )}
-          </div>
-        </div>
+        </Dialog>
       )}
       {showRemoved && (
-        <div className="overlay" onMouseDown={(e) => e.target === e.currentTarget && setShowRemoved(false)}>
-          <div className="modal">
+        <Dialog label="Removed from your plan" onClose={() => setShowRemoved(false)}>
             <h2>Removed from your plan</h2>
             <p className="desc">These don't count toward your credits. Restore anything you removed by mistake.</p>
             {Object.keys(plan.removed ?? {}).map((id) => {
@@ -286,12 +284,10 @@ export default function App() {
               );
             })}
             <div className="row"><button onClick={() => setShowRemoved(false)}>Close</button></div>
-          </div>
-        </div>
+        </Dialog>
       )}
       {iugOpen && (
-        <div className="overlay" onMouseDown={(e) => e.target === e.currentTarget && setIugOpen(null)}>
-          <div className="modal" role="dialog" aria-modal="true" aria-label="Integrated master's degree">
+        <Dialog label="Integrated master's degree" onClose={() => setIugOpen(null)}>
             <h2>Integrated Undergraduate-Graduate (IUG)</h2>
             <p className="desc">
               Earn a master's alongside your bachelor's in ~5 years, double-counting up to 15 credits
@@ -330,12 +326,10 @@ export default function App() {
               ))}
             </div>
             <div className="row"><button onClick={() => setIugOpen(null)}>Close</button></div>
-          </div>
-        </div>
+        </Dialog>
       )}
       {historyOpen && (
-        <div className="overlay" onMouseDown={(e) => e.target === e.currentTarget && setHistoryOpen(null)}>
-          <div className="modal" role="dialog" aria-modal="true" aria-label="Plan history">
+        <Dialog label="Plan history" onClose={() => setHistoryOpen(null)}>
             <h2>Plan history</h2>
             <p className="desc">
               The last {historyOpen.length} saved versions of your plan (newest first) — restore any of them,
@@ -366,8 +360,7 @@ export default function App() {
               ))}
             </div>
             <div className="row"><button onClick={() => setHistoryOpen(null)}>Close</button></div>
-          </div>
-        </div>
+        </Dialog>
       )}
       {showImport && (
         <ImportModal

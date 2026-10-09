@@ -220,6 +220,7 @@ export function Onboarding() {
             <div key={p.slug} style={{ marginBottom: 8 }}>
               <div style={{ fontSize: 12.5, marginBottom: 4 }}>{p.name}</div>
               <select
+                aria-label={`Campus plan for ${p.name}`}
                 value={campusChoice[p.slug] ?? 0}
                 onChange={(e) => setCampusChoice({ ...campusChoice, [p.slug]: Number(e.target.value) })}
               >
@@ -243,6 +244,7 @@ export function Onboarding() {
           </label>
           <input
             type="number"
+            aria-label="Starting year"
             value={startYear}
             onChange={(e) => setStartYear(Number(e.target.value))}
             style={{ width: 90 }}

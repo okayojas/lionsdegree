@@ -387,6 +387,13 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 .listview .lv-main { flex: 1; min-width: 240px; }
 .listview .lv-status { color: var(--text-muted); font-size: var(--fs-xs); }
 .listview .lv-status.bad { color: var(--danger); font-weight: 700; }
+/* Completed reads quieter than everything else: it is settled, not a thing
+   needing attention. The word carries the meaning -- the colour only
+   reinforces it, so this stays legible with no colour vision at all. */
+.listview .lv-status.done { color: var(--text-muted); font-style: italic; }
+/* Monospace is for course codes and nothing else (see the type note at the
+   top of this file), which is why the code is its own element. */
+.listview .lv-code { font-family: var(--font-mono); letter-spacing: -0.01em; }
 .listview .lv-actions { display: flex; gap: 6px; }
 .listview .lv-actions button { font-size: var(--fs-xs); padding: 4px 9px; }
 .listview .lv-empty { color: var(--text-muted); border-style: dashed; }
