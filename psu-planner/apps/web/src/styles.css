@@ -27,10 +27,21 @@
   --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-6: 24px; --sp-8: 32px;
   --r-sm: 6px; --r: 10px; --r-lg: 14px; --r-full: 9999px;
   /* The smallest a control can be and still be reliably hit with a thumb.
-     Apple's HIG minimum and roughly where WCAG 2.5.5 settles. A platform
-     constant rather than a taste decision, which is why it is not on the
-     4px grid above. */
+     Apple's HIG minimum and roughly where WCAG 2.5.5 settles -- a platform
+     constant rather than a taste decision, which is why it is named here
+     instead of being chosen per component. (It is 4 x 11, so it does sit on
+     the grid above; an earlier comment claimed otherwise.) */
   --tap-min: 44px;
+
+  /* ---- breakpoints ----
+     760px is the LAYOUT breakpoint: below it there is no room for the plan
+     and the advisor panel side by side. Phone-shaped, whatever the device
+     calls itself, which is why the rules below key off width.
+     560px is a narrower, COMPONENT-level breakpoint that predates it (the
+     slot-pick row). Both are kept: they answer different questions, and
+     collapsing the pick row at 760 would waste space on a tablet.
+     `PHONE_QUERY` in hooks/useMediaQuery.ts names 760 too -- the components
+     that must agree with this file read it from there. */
 
   /* ---- motion (Emil Kowalski curves) ---- */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -39,7 +50,9 @@
   /* ---- semantic color: LIGHT = muted warm cream ---- */
   --bg: #f1ebdf;             /* cream map paper */
   --surface: #faf5ea;         /* card / station tile (warm off-white) */
-  --surface-2: #e9e1d1;       /* inputs, raised */
+  --surface-2: #e9e1d1;       /* raised chrome: side-panel tabs, chat bubbles,
+                                 onboarding checks. NOT inputs -- those sit on
+                                 --surface; the old label said otherwise. */
   --surface-hover: #e4dbc9;
   --surface-active: #d9cfb9;
   --border: #ddd3c0;          /* warm hairline */
@@ -150,6 +163,19 @@ button {
   button:hover:not(:disabled) { background: var(--surface-hover); border-color: var(--border-strong); }
 }
 button:active:not(:disabled) { background: var(--surface-active); transform: scale(0.97); }
+/* TOUCH, not width. 44px is about what a thumb can hit, which is a property
+   of the input device: a narrow window on a laptop still has a mouse, and a
+   tablet at 1024px still has a thumb. Keyed off `pointer: coarse` for the
+   same reason the hover rules are keyed off `hover: hover`. */
+@media (pointer: coarse) {
+  button,
+  select,
+  textarea,
+  input:not([type="checkbox"]):not([type="radio"]),
+  .skip-link {
+    min-height: var(--tap-min);
+  }
+}
 button:disabled { opacity: .55; cursor: default; }
 button.primary { background: var(--primary); border-color: var(--primary); color: var(--primary-fg); }
 button.primary:hover:not(:disabled) { background: var(--primary-hover); border-color: var(--primary-hover); }
@@ -184,6 +210,14 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   background: var(--surface); border: 3.5px solid var(--primary); flex: none;
 }
 .toolbar .spacer { flex: 1; }
+@media (max-width: 760px) {
+  .toolbar { padding: var(--sp-2) var(--sp-3); gap: var(--sp-2); }
+  /* `.spacer` and `.progress` both take flex: 1, so a search field that also
+     flexes gets squeezed to nothing between them -- it measured 18px. The
+     spacer is a desktop layout device; give the field a row of its own. */
+  .toolbar .spacer { display: none; }
+  .progress { min-width: 0; flex: 1; }
+}
 .progress { display: flex; flex-direction: column; gap: 4px; min-width: 190px; }
 .progress .lbl { font-size: var(--fs-xs); color: var(--text-muted); }
 .progress .bar { height: 6px; background: var(--surface-2); border-radius: var(--r-full); position: relative; }
@@ -198,6 +232,9 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 .legend .line { width: 22px; height: 0; border-top: 2.5px solid var(--border-strong); }
 .legend .line.dash { border-top-style: dashed; }
 .legend .line.red { border-top-color: var(--danger); }
+/* Decorative, aria-hidden, and three lines tall on a phone. The edges it
+   describes are not legible at that width anyway. */
+@media (max-width: 760px) { .legend { display: none; } }
 
 /* ---------- flowchart (the route map) ---------- */
 .viewport {
@@ -224,6 +261,14 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 .col-header:hover .col-act { opacity: 1; }
 .col-header .col-act:hover { border-color: var(--danger); color: var(--danger); }
 .col-header.gap .col-act { opacity: 1; border-color: var(--primary); color: var(--primary); }
+/* Revealed by :hover, which does not exist on a touch screen, so this was
+   invisible as well as untappable. Showing it is only half a fix: these sit
+   inside the zoomable `.world`, so their RENDERED size follows the zoom
+   level -- about 7px at the default -- and no rule here can change that. The
+   full-size route is the list view, which offers the same operation as an
+   ordinary button (#16). This at least means a student can see the control
+   exists and zoom to it. */
+@media (pointer: coarse) { .col-header .col-act { opacity: 1; } }
 .add-zone {
   position: absolute; border: 2px dashed var(--border-strong); border-radius: var(--r-lg);
   display: flex; align-items: flex-start; justify-content: center; padding-top: 40px;
@@ -267,6 +312,14 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 /* ---------- search ---------- */
 .searchbox { position: relative; }
 .searchbox input { width: 330px; }
+@media (max-width: 760px) {
+  /* AFTER the rule above, not up with the other toolbar rules: these have
+     equal specificity, so source order decides, and the toolbar section sits
+     earlier in this file. Moving this block up there silently lost the
+     override and put the field back to 330px on a 320px screen. */
+  .searchbox { flex: 1 1 100%; min-width: 0; order: 1; }
+  .searchbox input { width: 100%; }
+}
 .search-results {
   position: absolute; top: 42px; left: 0; width: 430px; max-width: 90vw; max-height: 55vh; overflow: auto;
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); box-shadow: var(--shadow-lg); z-index: 50;
@@ -306,6 +359,12 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 .modal .desc { font-size: var(--fs-sm); color: var(--text); }
 .modal .row { display: flex; gap: var(--sp-2); margin-top: 14px; flex-wrap: wrap; }
 .modal .verbatim { font-size: var(--fs-xs); color: var(--text-muted); border-left: 3px solid var(--primary); padding-left: 10px; margin: 8px 0; }
+@media (max-width: 760px) {
+  /* Give the dialog the screen. A 20px ring of overlay on each side is a
+     reasonable desktop frame and a waste of a phone. */
+  .overlay { padding: var(--sp-2); align-items: flex-end; }
+  .modal { max-height: 88vh; }
+}
 
 /* ---------- onboarding ---------- */
 .onboard { max-width: 720px; margin: 32px auto; padding: 0 20px 60px; }
@@ -338,6 +397,38 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 .main-row .viewport { flex: 1; }
 .panel-resizer { flex: 0 0 6px; cursor: col-resize; background: var(--border); opacity: .5; transition: opacity .15s, background .15s; touch-action: none; }
 .panel-resizer:hover, .panel-resizer:active { opacity: 1; background: var(--primary); }
+@media (max-width: 760px) {
+  /* One column. The advisor panel sits UNDER the plan rather than beside it:
+     there is no width for two columns, and the plan is what the student came
+     for. No !important needed -- SidePanel.tsx declines to emit its
+     drag-resized inline width at this breakpoint, so ordinary rules win. */
+  .main-row { flex-direction: column; }
+  .sidepanel {
+    width: auto;
+    max-width: none;
+    flex: 0 1 auto;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    max-height: 50vh;
+  }
+  /* A pointer affordance with no job on a phone. */
+  .panel-resizer { display: none; }
+  /* The plan keeps the larger share. A cap on the panel alone is not enough:
+     the panel's content wanted 357px of a 760px screen and the plan was left
+     163px, which is the opposite of what the rule above says it is for.
+     min-height on the plan is what actually holds the floor; the panel takes
+     what is left and scrolls its own content. */
+  .main-row > .viewport,
+  .main-row > .listview { min-height: 45vh; }
+  .sidepanel { max-height: 35vh; }
+}
+/* Landscape on a phone has very little height to divide, so the panel gives
+   up more of it. */
+@media (max-width: 760px) and (orientation: landscape) {
+  .main-row > .viewport,
+  .main-row > .listview { min-height: 55vh; }
+  .sidepanel { max-height: 30vh; }
+}
 .sidepanel { width: 360px; max-width: 42vw; display: flex; flex-direction: column; background: var(--surface); border-left: 1px solid var(--border); }
 .sidepanel-tabs { display: flex; border-bottom: 1px solid var(--border); }
 .sidepanel-tabs button { flex: 1; border: none; border-radius: 0; padding: 10px; background: var(--surface-2); color: var(--text-muted); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: var(--track-label); font-weight: 700; }
@@ -407,6 +498,15 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
    top of this file), which is why the code is its own element. */
 .listview .lv-code { font-family: var(--font-mono); letter-spacing: var(--track-code); }
 .listview .lv-term-actions { max-width: 860px; margin: 0 auto 18px; display: flex; gap: 6px; }
+@media (max-width: 760px) {
+  .listview { padding: var(--sp-3) var(--sp-4); }
+  .listview .lv-main { min-width: 0; }
+  /* The row's controls wrap UNDER its text rather than squeezing the title to
+     nothing -- the title is the part that says what the course is. */
+  .listview li { align-items: flex-start; }
+  .listview .lv-actions { width: 100%; }
+  .listview .lv-actions button { flex: 1; }
+}
 .listview .lv-actions { display: flex; gap: 6px; }
 .listview .lv-actions button { font-size: var(--fs-xs); padding: 4px 9px; }
 .listview .lv-empty { color: var(--text-muted); border-style: dashed; }
@@ -496,85 +596,4 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   border-radius: var(--r-sm);
   padding: var(--sp-2) var(--sp-3);
   margin-top: var(--sp-2);
-}
-
-
-/* =====================================================================
-   PHONE
-   Most first visits are mobile, so this is not a degraded case of the
-   desktop layout -- it is the common one.
-   ===================================================================== */
-
-/* TOUCH, not width. A 44px target is about what a thumb can hit, which is a
-   property of the input device: a narrow window on a laptop still has a
-   mouse, and a tablet at 1024px still has a thumb. Keyed off `pointer:
-   coarse` for the same reason the hover rules above are keyed off `hover:
-   hover`. */
-@media (pointer: coarse) {
-  button,
-  select,
-  input:not([type="checkbox"]):not([type="radio"]),
-  .skip-link {
-    min-height: var(--tap-min);
-  }
-  /* The per-term controls on the canvas are revealed by :hover, which does
-     not exist on a touch screen -- "Skip semester" was simply unreachable
-     there. The list view offers the same operation, but the canvas is the
-     default view, so a student would have had to find that out first. */
-  .col-header .col-act { opacity: 1; }
-}
-
-@media (max-width: 760px) {
-  /* One column. The advisor panel sits UNDER the plan rather than beside it:
-     there is no width for two columns, and the plan is what the student came
-     for. */
-  .main-row { flex-direction: column; }
-  .sidepanel {
-    /* !important is load-bearing here, not laziness. SidePanel.tsx applies
-       the drag-resized width as an INLINE style with `maxWidth: "none"`, and
-       an inline style beats a stylesheet rule. Without this a 360px panel on
-       a 320px screen pushes 90px of the plan off the side of the page --
-       which is exactly what it did. The drag handle is a pointer affordance
-       and has no job on a phone. */
-    width: auto !important;
-    max-width: none !important;
-    flex: 0 1 auto !important;
-    border-left: none;
-    border-top: 1px solid var(--border);
-    max-height: 50vh;
-  }
-  .panel-resizer { display: none; }
-
-  .toolbar { padding: var(--sp-2) var(--sp-3); gap: var(--sp-2); }
-  /* The search field is a fixed 330px on desktop, which is wider than a
-     320px phone on its own. */
-  /* The toolbar's `.spacer` and `.progress` both take `flex: 1`, so a
-     search field that also flexes gets squeezed to nothing between them --
-     it measured 18px. Give it a whole row of its own instead. */
-  .toolbar .spacer { display: none; }
-  .searchbox { flex: 1 1 100%; min-width: 0; order: 1; }
-  .searchbox input { width: 100%; }
-  /* Decorative, aria-hidden, and three lines tall on a phone. The edges it
-     describes are not visible at this width anyway. */
-  .legend { display: none; }
-  .progress { min-width: 0; flex: 1; }
-
-  .listview { padding: var(--sp-3) var(--sp-4); }
-  .listview .lv-main { min-width: 0; }
-  /* The row's controls wrap under its text rather than squeezing the title
-     to nothing -- the title is the part that says what the course is. */
-  .listview li { align-items: flex-start; }
-  .listview .lv-actions { width: 100%; }
-  .listview .lv-actions button { flex: 1; }
-
-  /* Give the dialog the screen. A 20px ring of overlay on each side is a
-     reasonable desktop frame and a waste of a phone. */
-  .overlay { padding: var(--sp-2); align-items: flex-end; }
-  .modal { max-height: 88vh; border-radius: var(--r-lg); }
-}
-
-/* A phone in landscape has very little height; the panel's 50vh cap would
-   leave the plan a sliver. */
-@media (max-width: 760px) and (orientation: landscape) {
-  .sidepanel { max-height: 40vh; }
 }

@@ -35,6 +35,11 @@ export default defineConfig({
     // the theme to light so contrast assertions measure a known target, which
     // left every dark rule unexercised by the browser suite.
     { name: "desktop-dark", use: { ...devices["Desktop Chrome"], colorScheme: "dark" } },
+    // Dark AND touch. Without it the `pointer: coarse` rules were only ever
+    // rendered in light and the phone layer only ever in dark on a project
+    // with a mouse -- so the combination a student actually has, a dark phone,
+    // was the one combination nothing exercised.
+    { name: "mobile-dark", use: { ...devices["Pixel 7"], colorScheme: "dark" } },
   ],
   webServer: {
     // --host 127.0.0.1 is load-bearing: vite preview otherwise binds [::1]

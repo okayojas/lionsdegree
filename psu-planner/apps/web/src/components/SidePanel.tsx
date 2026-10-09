@@ -7,6 +7,7 @@ import { ChatMarkdown } from "../chat/ChatMarkdown";
 import { loadCoverage, loadFullCatalog, loadProgramBySlug } from "../data/catalogClient";
 import { currentUser, onAuthChange, signIn, syncConfigured } from "../data/sync";
 import { usePlanner } from "../store";
+import { useMediaQuery, PHONE_QUERY } from "../hooks/useMediaQuery";
 
 function ChatTab({ chat }: { chat: ReturnType<typeof useChat> }) {
   const { messages, busy, send, undo, canUndo } = chat;
@@ -36,7 +37,7 @@ function ChatTab({ chat }: { chat: ReturnType<typeof useChat> }) {
 
   return (
     <>
-      <div className="chat-messages" aria-live="polite" aria-label="Advisor conversation">
+      <div className="chat-messages" aria-live="polite" aria-label="Advisor conversation" tabIndex={0}>
         {messages.length === 0 && (
           <div className="chat-empty">
             Ask me anything about your plan — try:
@@ -135,7 +136,11 @@ function AuditTab() {
 
   if (!audits) return <div className="chat-empty">Running the degree audit…</div>;
   return (
-    <div className="chat-messages">
+    // tabIndex makes the scroll region reachable: axe flags a scrollable
+    // area with no focusable content because a keyboard user cannot reach
+    // the part of it that is below the fold. Stacking the panel on a phone
+    // is what made this one scroll.
+    <div className="chat-messages" tabIndex={0} role="group" aria-label="Requirements">
       <p style={{ fontSize: 11.5, color: "var(--muted)", margin: "4px 0 10px" }}>
         Computed from your plan + completed courses against the bulletin's requirement tables.
         "Manual" items can't be checked automatically — verify with your adviser.
@@ -185,8 +190,14 @@ export function SidePanel({ width }: { width?: number }) {
   // server's REQUIRE_AUTH at the same time; this only hides the input, the
   // server is what actually enforces it.
   const chatLocked = syncConfigured && !user;
+  const phone = useMediaQuery(PHONE_QUERY);
   return (
-    <div className="sidepanel" style={width ? { width, maxWidth: "none", flex: "0 0 auto" } : undefined}>
+    // The dragged width is a DESKTOP affordance and is not emitted on a
+    // phone. An inline style beats every stylesheet rule, so emitting it
+    // always would leave the phone layer no way to take the width back short
+    // of !important -- and a 360px panel on a 320px screen pushes the plan
+    // off the side of the page. Same fix as SearchBox's hard-coded width.
+    <div className="sidepanel" style={width && !phone ? { width, maxWidth: "none", flex: "0 0 auto" } : undefined}>
       <div className="sidepanel-tabs">
         <button className={tab === "chat" ? "active" : ""} onClick={() => setTab("chat")}>
           ✦ Advisor{chat.busy && tab !== "chat" ? " …" : ""}

@@ -14,7 +14,14 @@ import type { Page } from "@playwright/test";
 /** Phones in the wild go narrower than the 412px Pixel 7 profile. 320px is
  * the floor the industry settled on (iPhone SE, and the narrowest Android
  * still in use); if it survives that it survives the rest. */
-const WIDTHS = [320, 375, 412];
+// 560 covers the band between a phone and the 760px breakpoint -- small
+// tablets and half-screen windows, where the phone rules still apply but the
+// layout is much wider than anything else here was checked at.
+const WIDTHS = [320, 375, 412, 560];
+
+/** The width single-viewport assertions use. Named so the assertions and the
+ * setViewportSize call cannot drift: `375` was typed nine times. */
+const PHONE = WIDTHS[1];
 
 /** How far the document can be scrolled sideways. Anything above a rounding
  * wobble means something is forcing the page wider than the screen. */
@@ -102,7 +109,7 @@ test.describe("wide content scrolls inside its own container", () => {
     // transform inside `.viewport`, so the right assertion is that the
     // viewport CLIPS rather than that it scrolls. Either way the document
     // must not inherit the width.
-    await planner.setViewportSize({ width: 375, height: 760 });
+    await planner.setViewportSize({ width: PHONE, height: 760 });
     const state = await planner.evaluate(() => {
       const el = document.querySelector<HTMLElement>(".viewport");
       if (!el) return null;
@@ -111,15 +118,20 @@ test.describe("wide content scrolls inside its own container", () => {
     });
     expect(state, "no .viewport found to check").not.toBeNull();
     expect(["hidden", "clip", "auto", "scroll"]).toContain(state!.overflowX);
-    expect(state!.width, "the canvas viewport is wider than the screen").toBeLessThanOrEqual(375 + 1);
+    expect(state!.width, "the canvas viewport is wider than the screen").toBeLessThanOrEqual(PHONE + 1);
     expect(await horizontalOverflow(planner)).toBeLessThanOrEqual(1);
   });
 });
 
 test.describe("controls are comfortably tappable", () => {
-  /** 44px is Apple's HIG minimum and the number WCAG 2.5.5 settles near.
-   * Below it, a control is hit-or-miss with a thumb. */
-  const MIN = 44;
+  /** Read from `--tap-min` rather than re-typed. keyboard.spec.ts set the
+   * precedent by importing FOCUSABLE from the hook it tests: a constant
+   * copied into the spec means the test agrees with a COPY of the
+   * implementation, so moving the real one does not fail anything. */
+  const tapMin = (page: Page) =>
+    page.evaluate(() =>
+      parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--tap-min")) || 44,
+    );
 
   /** Skip where there is no thumb. 44px is about what a finger can hit; a
    * mouse is precise and a 39px control is perfectly usable with one. The
@@ -130,10 +142,17 @@ test.describe("controls are comfortably tappable", () => {
     return page.evaluate(() => window.matchMedia("(pointer: coarse)").matches);
   }
 
-  async function tooSmall(page: Page): Promise<string[]> {
-    return page.evaluate((min) => {
+  /** EXACTLY the selector the stylesheet sizes, so the test asserts the rule
+   * that exists rather than one it wishes existed. Inline links in prose and
+   * checkboxes/radios are deliberately outside it: giving a link inside a
+   * sentence a 44px height would wreck the paragraph around it. */
+  const TAPPABLE =
+    'button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]), .skip-link';
+
+  async function tooSmall(page: Page, min: number): Promise<string[]> {
+    return page.evaluate(({ min, sel }) => {
       const bad: string[] = [];
-      for (const el of document.querySelectorAll<HTMLElement>("button, a[href], select, input:not([type=hidden])")) {
+      for (const el of document.querySelectorAll<HTMLElement>(sel)) {
         // Inside the pan/zoom canvas, rendered size is a function of the zoom
         // level rather than of CSS -- a control measures 7px at low zoom and
         // no stylesheet rule can change that. The canvas is a map; the list
@@ -149,36 +168,59 @@ test.describe("controls are comfortably tappable", () => {
         }
       }
       return bad;
-    }, MIN);
+    }, { min, sel: TAPPABLE });
   }
 
   test("in the toolbar and the plan", async ({ planner }) => {
-    await planner.setViewportSize({ width: 375, height: 760 });
+    await planner.setViewportSize({ width: PHONE, height: 760 });
     test.skip(!(await isTouch(planner)), "no touch pointer in this project");
-    const bad = await tooSmall(planner);
-    expect(bad, `controls under ${MIN}px tall:\n  ${bad.join("\n  ")}`).toEqual([]);
+    const min = await tapMin(planner);
+    const bad = await tooSmall(planner, min);
+    expect(bad, `controls under ${min}px tall:\n  ${bad.join("\n  ")}`).toEqual([]);
   });
 
   test("in the list view, where every row carries three", async ({ planner }) => {
-    await planner.setViewportSize({ width: 375, height: 760 });
+    await planner.setViewportSize({ width: PHONE, height: 760 });
     test.skip(!(await isTouch(planner)), "no touch pointer in this project");
     await planner.getByRole("button", { name: /List view/i }).click();
     await expect(planner.getByRole("region", { name: /list view/i })).toBeVisible();
-    const bad = await tooSmall(planner);
-    expect(bad, `controls under ${MIN}px tall:\n  ${bad.join("\n  ")}`).toEqual([]);
+    const min = await tapMin(planner);
+    const bad = await tooSmall(planner, min);
+    expect(bad, `controls under ${min}px tall:\n  ${bad.join("\n  ")}`).toEqual([]);
+  });
+
+  test("in a modal, where the chat composer lives", async ({ planner }) => {
+    // The composer is a <textarea>, which neither the stylesheet rule nor an
+    // earlier version of this test covered -- it measured 34px. Nothing had
+    // ever run a tap check with a dialog open either.
+    await planner.setViewportSize({ width: PHONE, height: 760 });
+    test.skip(!(await isTouch(planner)), "no touch pointer in this project");
+    await planner.getByRole("button", { name: /List view/i }).click();
+    await planner.getByRole("button", { name: /^Details for/i }).first().click();
+    await expect(planner.getByRole("dialog")).toBeVisible();
+    // Wait for the entrance transition to settle. The modal scales in from
+    // 0.95, and measuring mid-animation reported every 44px control as 42px
+    // (44 x 0.95) -- a failure that looks exactly like a real sizing bug.
+    await planner.waitForFunction(() => {
+      const m = getComputedStyle(document.querySelector('[role="dialog"]')!).transform;
+      return m === "none" || /^matrix\(1,\s*0,\s*0,\s*1,/.test(m);
+    });
+    const min = await tapMin(planner);
+    const bad = await tooSmall(planner, min);
+    expect(bad, `controls under ${min}px tall with a dialog open:\n  ${bad.join("\n  ")}`).toEqual([]);
   });
 });
 
 test.describe("modals are usable on a phone", () => {
   test("a modal fits the screen and scrolls its own content", async ({ planner }) => {
-    await planner.setViewportSize({ width: 375, height: 760 });
+    await planner.setViewportSize({ width: PHONE, height: 760 });
     await planner.getByRole("button", { name: /List view/i }).click();
     await planner.getByRole("button", { name: /^Details for/i }).first().click();
     const dlg = planner.getByRole("dialog");
     await expect(dlg).toBeVisible();
 
     const box = (await dlg.boundingBox())!;
-    expect(box.width, "the modal is wider than the screen").toBeLessThanOrEqual(375 + 1);
+    expect(box.width, "the modal is wider than the screen").toBeLessThanOrEqual(PHONE + 1);
     expect(box.x, "the modal starts off the left edge").toBeGreaterThanOrEqual(-1);
     // A modal taller than the viewport must scroll inside itself; a student
     // cannot reach a Close button that sits below the fold of a fixed overlay.
@@ -192,13 +234,14 @@ test.describe("modals are usable on a phone", () => {
   });
 
   test("its close control is reachable without scrolling the page", async ({ planner }) => {
-    await planner.setViewportSize({ width: 375, height: 760 });
+    await planner.setViewportSize({ width: PHONE, height: 760 });
     await planner.getByRole("button", { name: /List view/i }).click();
     await planner.getByRole("button", { name: /^Details for/i }).first().click();
     await expect(planner.getByRole("dialog")).toBeVisible();
     // Escape is the keyboard route and is covered elsewhere; this is about a
     // thumb. The control has to be ON SCREEN.
-    // The modal is capped at 82vh and scrolls its own content, so Close
+    // The modal is capped at 88vh on a phone (82vh elsewhere) and scrolls its
+    // own content, so Close
     // legitimately starts below the fold. What must be true is that reaching
     // it scrolls the MODAL and not the page -- a fixed overlay whose content
     // is only reachable by scrolling the document behind it is the broken
@@ -217,20 +260,40 @@ test.describe("the advisor panel on a phone", () => {
     // On desktop the panel is a resizable column beside the plan. At phone
     // width there is no room for two columns, so a fixed 360px panel leaves
     // the plan a sliver -- or pushes it off-screen entirely.
-    await planner.setViewportSize({ width: 375, height: 760 });
+    await planner.setViewportSize({ width: PHONE, height: 760 });
     const panel = planner.locator(".sidepanel, .chat-panel").first();
     if (!(await panel.count())) return; // panel is config-gated (#7)
     if (!(await panel.isVisible())) return;
     const box = await panel.boundingBox();
     if (!box) return;
-    expect(box.width, "the advisor panel is wider than the screen").toBeLessThanOrEqual(375 + 1);
+    expect(box.width, "the advisor panel is wider than the screen").toBeLessThanOrEqual(PHONE + 1);
     expect(await horizontalOverflow(planner)).toBeLessThanOrEqual(1);
+  });
+
+  test("gets no more of the screen than the plan does", async ({ planner }) => {
+    // Width alone was not the whole story. The panel stacked correctly and
+    // still took 357px of a 760px screen while the plan got 163px -- it
+    // passed every width assertion while being, in practice, a chat app with
+    // a plan attached.
+    await planner.setViewportSize({ width: PHONE, height: 760 });
+    const share = await planner.evaluate(() => {
+      const panel = document.querySelector<HTMLElement>(".sidepanel");
+      const plan = document.querySelector<HTMLElement>(".main-row > .viewport, .main-row > .listview");
+      if (!panel || !plan) return null;
+      return {
+        panel: Math.round(panel.getBoundingClientRect().height),
+        plan: Math.round(plan.getBoundingClientRect().height),
+      };
+    });
+    if (!share) return; // panel is config-gated (#7)
+    expect(share.plan, `plan ${share.plan}px vs advisor panel ${share.panel}px`)
+      .toBeGreaterThanOrEqual(share.panel);
   });
 });
 
 test.describe("the plan is readable at phone width", () => {
   test("no text is rendered below the minimum legible size", async ({ planner }) => {
-    await planner.setViewportSize({ width: 375, height: 760 });
+    await planner.setViewportSize({ width: PHONE, height: 760 });
     await planner.getByRole("button", { name: /List view/i }).click();
     await expect(planner.getByRole("region", { name: /list view/i })).toBeVisible();
     const tiny = await planner.evaluate(() => {
@@ -247,10 +310,10 @@ test.describe("the plan is readable at phone width", () => {
   });
 
   test("has no accessibility violations at phone width", async ({ planner }) => {
-    await planner.setViewportSize({ width: 375, height: 760 });
+    await planner.setViewportSize({ width: PHONE, height: 760 });
     await planner.getByRole("button", { name: /List view/i }).click();
     await expect(planner.getByRole("region", { name: /list view/i })).toBeVisible();
-    await expectNoA11yViolations(planner, "the list view at 375px");
+    await expectNoA11yViolations(planner, `the list view at ${PHONE}px`);
   });
 });
 
