@@ -3,7 +3,7 @@
  * major-switchers) -> AP / transfer / other credit -> generate. */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { generatePlan, type ProgramTemplate, type ReqSection } from "@psu-planner/engine";
-import { currentEdition, loadCoverage, loadEditions, loadProgram, loadProgramsIndex, loadSubject } from "../data/catalogClient";
+import { currentEdition, loadCoverage, loadEditions, loadProgram, loadProgramsIndex, loadSubject, setCatalogEdition } from "../data/catalogClient";
 import type { ProgramIndexEntry } from "../data/catalogClient";
 import { extractCodesFromFile, extractCodesFromText } from "../data/importSchedule";
 import { ApCreditPicker, CourseSearchPicker } from "./CreditPickers";
@@ -31,6 +31,11 @@ interface PipelineProgram {
 export function Onboarding() {
   const setPlan = usePlanner((s) => s.setPlan);
   const [index, setIndex] = useState<ProgramIndexEntry[] | null>(null);
+  /** The bulletin editions this build ships, newest last. */
+  const [editions, setEditions] = useState<{ editions: string[]; latest: string } | null>(null);
+  /** Which one governs this student. "older" means they started before the
+   * oldest bulletin we have, which we cannot serve and must say so. */
+  const [edition, setEdition] = useState<string>("");
   const [query, setQuery] = useState("");
   const [picked, setPicked] = useState<ProgramIndexEntry[]>([]);
   const [loaded, setLoaded] = useState<PipelineProgram[]>([]);
@@ -50,8 +55,37 @@ export function Onboarding() {
   const [honors, setHonors] = useState<1 | 2 | 3 | null>(null);
 
   useEffect(() => {
-    loadProgramsIndex().then(setIndex).catch(() => setError("Could not load the program index — is the catalog data deployed?"));
+    loadEditions()
+      .then((e) => {
+        setEditions(e);
+        // Newest by default: it is right for most students and makes the
+        // common path a question nobody has to answer.
+        setEdition((cur) => cur || e.latest);
+      })
+      .catch(() => setError("Could not load the bulletin editions — is the catalog data deployed?"));
   }, []);
+
+  /** The edition actually served. A student who started before our oldest
+   * bulletin gets the closest one we have, and is told so. */
+  const servedEdition = edition === "older" ? (editions?.editions[0] ?? "") : edition;
+
+  useEffect(() => {
+    if (!servedEdition) return;
+    // Point the catalog at the chosen edition BEFORE anything reads a program.
+    // The index, the templates and the course files are all edition-scoped, so
+    // loading them first and pinning afterwards is what produces a plan built
+    // from one bulletin and labelled with another.
+    setCatalogEdition(servedEdition);
+    setIndex(null);
+    // Programs do not carry stable slugs across editions, so a selection made
+    // against one bulletin cannot be carried into another.
+    setPicked([]);
+    setLoaded([]);
+    setCampusChoice({});
+    loadProgramsIndex()
+      .then(setIndex)
+      .catch(() => setError("Could not load the program index — is the catalog data deployed?"));
+  }, [servedEdition]);
 
   const matches = useMemo(() => {
     if (!index) return [];
@@ -151,7 +185,7 @@ export function Onboarding() {
       // are governed by the edition in force when the student entered their
       // major, so the plan carries it rather than tracking whatever is newest
       // (docs/adr/0001-forward-only-catalog-editions.md).
-      plan.edition = currentEdition() ?? (await loadEditions()).latest;
+      plan.edition = servedEdition || currentEdition() || (await loadEditions()).latest;
       // Schreyer scholars get honors-section upgrades + per-year credit audit
       // (applied by the store's plan pipeline).
       if (honors) plan.honors = { admit: honors };
@@ -186,7 +220,39 @@ export function Onboarding() {
       </header>
 
       <div className="step">
-        <h3>1 · Your major(s) and minor(s)</h3>
+        <h3>1 · Which bulletin governs you?</h3>
+        <p className="step-help">
+          Penn State fixes your requirements to the bulletin in force when you
+          entered your major, not to the current one. If you started this year,
+          the default is right.
+        </p>
+        <label className="ed-pick">
+          <span>Bulletin edition</span>
+          <select
+            value={edition}
+            onChange={(e) => setEdition(e.target.value)}
+            disabled={!editions}
+          >
+            {(editions?.editions ?? []).map((e) => (
+              <option key={e} value={e}>
+                {e}{e === editions?.latest ? " (current)" : ""}
+              </option>
+            ))}
+            <option value="older">Earlier than {editions?.editions[0] ?? ""}</option>
+          </select>
+        </label>
+        {edition === "older" && (
+          <p className="ed-warn" role="status">
+            We do not have bulletins that far back, so this plan is built from{" "}
+            <strong>{editions?.editions[0] ?? ""}</strong>, the oldest we
+            publish. Some of your requirements will differ. Check the ones that
+            matter with your adviser.
+          </p>
+        )}
+      </div>
+
+      <div className="step">
+        <h3>2 · Your major(s) and minor(s)</h3>
         <input
           placeholder="Search majors and minors — e.g. Computer Science"
           value={query}
@@ -215,7 +281,7 @@ export function Onboarding() {
 
       {loaded.some((p) => (p.suggestedPlans ?? []).length > 1) && (
         <div className="step">
-          <h3>2 · Campus plan</h3>
+          <h3>3 · Campus plan</h3>
           {loaded.filter((p) => (p.suggestedPlans ?? []).length > 1).map((p) => (
             <div key={p.slug} style={{ marginBottom: 8 }}>
               <div style={{ fontSize: 12.5, marginBottom: 4 }}>{p.name}</div>
@@ -234,7 +300,7 @@ export function Onboarding() {
       )}
 
       <div className="step">
-        <h3>3 · Which of these have you already taken?</h3>
+        <h3>4 · Which of these have you already taken?</h3>
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center", marginBottom: 8 }}>
           <label>Your next semester{" "}
             <select value={startTerm} onChange={(e) => setStartTerm(e.target.value as "Fall" | "Spring")}>
@@ -317,7 +383,7 @@ export function Onboarding() {
       </div>
 
       <div className="step">
-        <h3>4 · AP credit & other courses you've taken</h3>
+        <h3>5 · AP credit & other courses you've taken</h3>
         <p style={{ fontSize: 12.5, color: "var(--muted)", margin: "0 0 8px" }}>
           These count toward prerequisites, gen eds, and electives automatically.
         </p>
@@ -341,7 +407,7 @@ export function Onboarding() {
       </div>
 
       <div className="step">
-        <h3>5 · Already have a schedule? (optional)</h3>
+        <h3>6 · Already have a schedule? (optional)</h3>
         <div className="import-zone">
           Upload your existing plan or transcript export — Excel, CSV, or plain text. Every PSU course
           code found in it is marked as completed.
@@ -405,7 +471,7 @@ export function Onboarding() {
       </div>
 
       <div className="step">
-        <h3>6 · Schreyer Honors College (optional)</h3>
+        <h3>7 · Schreyer Honors College (optional)</h3>
         <p style={{ fontSize: 12.5, color: "var(--muted)", margin: "0 0 8px" }}>
           Scholars get honors sections scheduled automatically (MATH 140H, ENGL/CAS 137H–138T, …) so the
           per-year honors-credit requirement is met. Pick when you were admitted:

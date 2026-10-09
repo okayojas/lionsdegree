@@ -232,6 +232,16 @@ export default function App() {
         <SidePanel width={chatWidth} />
       </div>
       <footer className="app-disclaimer" role="contentinfo">
+        {/* The edition is the first thing an adviser needs to know, because it
+            decides which requirements apply at all. It lives beside the
+            disclaimer rather than in the toolbar: a student looks here when
+            they are checking what the plan is based on, and the toolbar is
+            already two rows at desktop width. */}
+        {plan.edition && (
+          <>
+            Requirements from the <strong>{plan.edition}</strong> bulletin.{" "}
+          </>
+        )}
         Unofficial planning tool — <strong>not affiliated with or endorsed by Penn State</strong>. Course data
         from the public bulletin; always verify your plan with your academic adviser.
       </footer>

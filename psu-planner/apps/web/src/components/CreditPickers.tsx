@@ -2,22 +2,9 @@
  * search. Both emit course codes that join the "completed" set. */
 import { useEffect, useRef, useState } from "react";
 import { searchCatalog, type Catalog } from "@psu-planner/engine";
-import { loadFullCatalog } from "../data/catalogClient";
+import { loadApCredits, loadFullCatalog, type ApExam } from "../data/catalogClient";
 
-export interface ApExam {
-  exam: string;
-  awards: { minScore: number; courses: string[]; credits: number | null; raw: string }[];
-  notes: string[];
-}
 
-let apCache: ApExam[] | null = null;
-export async function loadApCredits(): Promise<ApExam[]> {
-  if (apCache) return apCache;
-  const res = await fetch("/catalog/ap_credits.json");
-  if (!res.ok) return [];
-  apCache = ((await res.json()) as { exams: ApExam[] }).exams;
-  return apCache;
-}
 
 /** Best award for a score: the highest minScore row not exceeding the score. */
 export function apAwardFor(exam: ApExam, score: number) {

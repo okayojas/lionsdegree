@@ -194,7 +194,14 @@ export const usePlanner = create<PlannerState>((set, get) => ({
     // newest (ADR-0001). The student is told which one they are seeing; that
     // notice is part of the onboarding edition work.
     const pinned = plan.edition ?? editions.editions[0];
-    setCatalogEdition(editions.editions.includes(pinned) ? pinned : editions.editions[0]);
+    const effective = editions.editions.includes(pinned) ? pinned : editions.editions[0];
+    setCatalogEdition(effective);
+    // Record it ON the plan. Pinning only the catalog left a plan saved before
+    // this field existed with no edition at all, so the planner could not tell
+    // the student which bulletin their requirements came from -- which is the
+    // one thing an adviser needs to know. It is not a guess: this is the
+    // edition the plan is now being read against.
+    plan.edition = effective;
     const catalog = await loadCatalogFor(planCodes(plan));
     const coverage = await loadCoverage();
     set({ coverage });

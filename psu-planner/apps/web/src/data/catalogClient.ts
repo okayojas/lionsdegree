@@ -47,6 +47,7 @@ export function setCatalogEdition(next: string): void {
   patternsCache = undefined;
   iugIndexCache = null;
   programsIndexCache = null;
+  apCache = null;
   fullCatalogPromise = null;
 }
 
@@ -80,6 +81,32 @@ async function getJson<T>(path: string): Promise<T> {
   const res = await fetch(`${await base()}/${path}`);
   if (!res.ok) throw new Error(`catalog fetch failed: ${path} (${res.status})`);
   return res.json();
+}
+
+/** AP exam credit, per Edition.
+ *
+ * Previously fetched straight from `/catalog/ap_credits.json` in the picker
+ * component, which was wrong three ways: the path has no edition segment, so
+ * it 404ed; the dev/preview server answers a miss with the SPA shell at status
+ * 200, so the `res.ok` guard passed and `res.json()` threw "Unexpected token
+ * '<'" as an unhandled rejection; and the module-level cache was never cleared
+ * when the student changed edition, so one bulletin's awards could outlive it.
+ * Awards do change between bulletins. */
+export interface ApExam {
+  exam: string;
+  awards: { minScore: number; credits: number; courses: string[]; raw: string }[];
+  notes: string[];
+}
+let apCache: ApExam[] | null = null;
+export async function loadApCredits(): Promise<ApExam[]> {
+  if (apCache) return apCache;
+  try {
+    apCache = (await getJson<{ exams: ApExam[] }>("ap_credits.json")).exams ?? [];
+  } catch {
+    // AP credit is an optional convenience; onboarding still works without it.
+    apCache = [];
+  }
+  return apCache;
 }
 
 let programsIndexCache: ProgramIndexEntry[] | null = null;
