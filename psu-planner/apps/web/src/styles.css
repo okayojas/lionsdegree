@@ -395,16 +395,32 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 .onboard .step-help { margin: -4px 0 12px; font-size: var(--fs-sm); color: var(--text-muted); max-width: 62ch; line-height: 1.55; }
 /* The label sits above its control rather than beside it, so the control can
    take the full width on a phone without the label squeezing it. */
-.onboard .ed-pick { display: flex; flex-direction: column; gap: var(--sp-1); max-width: 320px; }
+/* max-width 320px overflowed a 320px PHONE: the card it sits in has padding,
+   so the cap has to be relative to the space available, not to the device. */
+.onboard .ed-pick { display: flex; flex-direction: column; gap: var(--sp-1); max-width: min(320px, 100%); }
+/* A <select> sizes itself to its WIDEST OPTION and ignores max-width for that
+   purpose, so "Earlier than 2025-2026" pushed it 28px past a 320px screen.
+   width:100% is what actually constrains it; applied to every select in
+   onboarding, since the campus-plan and AP ones have the same shape. */
+.onboard select { width: 100%; max-width: 100%; min-width: 0; }
+.onboard .ed-pick select { width: 100%; }
 .onboard .ed-pick > span { font-size: var(--fs-xs); color: var(--text-muted); font-weight: 600; }
 /* Not an error: the plan is still useful, it is just not built from their
    bulletin. Warning weight, said plainly, using the existing status tokens. */
 .onboard .ed-warn {
   margin: var(--sp-3) 0 0; padding: var(--sp-2) var(--sp-3);
+  /* Appears with intent rather than snapping in, the same way the toast and
+     the chat bubbles do. @starting-style + allow-discrete so it animates from
+     `hidden`; the reduced-motion block above turns all of it off. */
+  transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out),
+    overlay 180ms allow-discrete, display 180ms allow-discrete;
+  opacity: 1; transform: translateY(0);
   font-size: var(--fs-sm); line-height: 1.55; max-width: 62ch;
   color: var(--warning); background: var(--warning-bg);
   border: 1px solid var(--warning-border); border-radius: var(--r-sm);
 }
+.onboard .ed-warn[hidden] { display: none; }
+@starting-style { .onboard .ed-warn { opacity: 0; transform: translateY(-4px); } }
 .onboard .ed-warn strong { color: var(--warning); font-weight: 700; }
 .onboard .grid { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
 .onboard label.check { display: flex; gap: var(--sp-2); align-items: center; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 6px 10px; cursor: pointer; font-size: var(--fs-sm); }

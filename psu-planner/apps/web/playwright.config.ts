@@ -50,7 +50,13 @@ export default defineConfig({
     // no effect, and a green run proves nothing about the code in the tree.
     command: "npm run build && npm run preview -- --port 4318 --strictPort --host 127.0.0.1",
     url: "http://127.0.0.1:4318/plan/",
-    reuseExistingServer: !process.env.CI,
+    // NEVER reuse. The command above builds first precisely so a run tests
+    // the code in the tree -- and reusing a server started by an earlier run
+    // skips that build, serving stale dist. That cost real debugging time
+    // twice: a CSS fix that was present in the source and in a fresh build
+    // was measured as "not applying", and a suite was diagnosed as flaky when
+    // it was testing old bytes. A few seconds per run is the right trade.
+    reuseExistingServer: false,
     timeout: 120_000,
   },
 });

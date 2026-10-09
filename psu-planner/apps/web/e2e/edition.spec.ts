@@ -65,6 +65,9 @@ test.describe("an edition older than everything published", () => {
     const { editions } = await published(page);
     const oldest = editions[0];
 
+    // The picker is disabled until editions.json lands, and reports no
+    // options at all until then -- reading it immediately measured nothing.
+    await expect(editionPicker(page)).toBeEnabled({ timeout: 30_000 });
     const options = await editionPicker(page).locator("option").all();
     const earlier = [];
     for (const o of options) {
@@ -87,11 +90,18 @@ test.describe("an edition older than everything published", () => {
   });
 });
 
+// SERIAL. Each of these generates a whole plan -- fetching templates, loading
+// every course they name, then optimising. Run concurrently they starve each
+// other and time out; run one at a time each takes about thirteen seconds.
+test.describe.configure({ mode: "serial" });
+
 test.describe("the chosen edition governs the plan", () => {
-  // These run onboarding end to end: pick a program, fetch its templates,
-  // load the courses they name, generate and optimise. Genuinely slower than
-  // the 30s default.
-  test.setTimeout(120_000);
+  // This runs onboarding end to end: pick a program, fetch its templates, load
+  // every course they name, generate and optimise. It takes ~15s alone and
+  // several times that when the rest of the suite is competing for the
+  // machine, so the budget is generous on purpose -- a timeout here would be
+  // a statement about the hardware, not about the code.
+  test.setTimeout(240_000);
 
   // ONE project. Which bulletin a plan is pinned to has nothing to do with
   // theme or viewport, and running four concurrent plan generations starves
@@ -105,19 +115,27 @@ test.describe("the chosen edition governs the plan", () => {
     );
   });
 
-  /** Run onboarding to completion with a given edition. */
-  async function generateWith(page: Page, edition: string) {
+  /** Run onboarding to completion with a given edition.
+   *
+   * Returns the moment of choice, so the caller can judge requests by when
+   * they STARTED. Clearing the buffer is not enough on its own: a request
+   * issued under the default edition is recorded when it COMPLETES, which can
+   * be after the clear, and it then looks like a post-choice read of the
+   * wrong bulletin. (Its response is discarded by the generation guard in
+   * catalogClient, so the plan is unaffected -- this is about measuring the
+   * right thing.) */
+  async function generateWith(page: Page, edition: string): Promise<number> {
     await onboarding(page);
     await editionPicker(page).selectOption(edition);
-    // Forget everything fetched before the choice. The picker defaults to the
-    // newest edition, so the default view legitimately reads that catalog;
-    // what matters is that nothing read from it AFTER the student chose.
-    await page.evaluate(() => performance.clearResourceTimings());
+    const chosenAt = await page.evaluate(() => {
+      performance.clearResourceTimings();
+      return performance.now();
+    });
     await page.getByPlaceholder(/Search majors and minors/i).fill("Computer Science");
     // Wait for the filtered list rather than racing it: the index reloads
     // whenever the edition changes, so the row can be mid-render here.
     const row = page.locator(".prog-item", { hasText: /Computer Science/i }).first();
-    await expect(row).toBeVisible();
+    await expect(row).toBeVisible({ timeout: 60_000 });
     await row.click();
     // The program has to actually BE picked. Without this the next step waits
     // on a button that is disabled precisely because nothing is selected, and
@@ -126,48 +144,112 @@ test.describe("the chosen edition governs the plan", () => {
 
     // Its template has to finish loading too -- Build stays disabled until it
     // does, and on a phone profile that is well past the default timeout.
+    // Generous INNER budgets. The describe-level timeout covers the test as a
+    // whole, but each of these waits has its own, and under full-suite load
+    // they were the ones expiring -- which reads as a product failure rather
+    // than as a saturated machine.
     const build = page.getByRole("button", { name: /Build my flowchart/i });
-    await expect(build).toBeEnabled({ timeout: 60_000 });
+    await expect(build).toBeEnabled({ timeout: 120_000 });
     await build.click();
-    await expect(page.getByRole("banner")).toBeVisible({ timeout: 90_000 });
+    await expect(page.getByRole("banner")).toBeVisible({ timeout: 180_000 });
+    return chosenAt;
   }
 
-  test("is written onto the plan and survives a reload", async ({ page }) => {
-    const { editions } = await published(page);
-    const older = editions[0];
-    await generateWith(page, older);
-
-    const stored = await page.evaluate(() =>
-      JSON.parse(window.localStorage.getItem("psu-planner-plan-v1")!).edition,
-    );
-    expect(stored, "the plan did not record the chosen edition").toBe(older);
-  });
-
-  test("is visible on the plan, where a student can quote it to an adviser", async ({ page }) => {
-    const { editions } = await published(page);
-    const older = editions[0];
-    await generateWith(page, older);
-    await expect(page.getByText(new RegExp(older)).first()).toBeVisible();
-  });
-
-  test("never mixes one edition's courses with another's requirements", async ({ page }) => {
-    // The failure this guards: the program templates are fetched BEFORE the
-    // edition is pinned, so picking an older bulletin produced a plan built
-    // from the newest catalog and then labelled with the older year.
+  // ONE generation, three claims. Each of these used to build a whole plan of
+  // its own -- three full catalog loads and optimiser runs for three
+  // assertions about the same artifact, which was slow enough to make the
+  // whole suite flaky under load.
+  test("records it, shows it, and reads nothing from another bulletin", async ({ page }) => {
     const { editions, latest } = await published(page);
     const older = editions[0];
     test.skip(editions.length < 2, "only one edition is published in this build");
 
-    await generateWith(page, older);
-    const fetched = await page.evaluate(() =>
-      performance
-        .getEntriesByType("resource")
-        .map((r) => r.name)
-        .filter((n) => n.includes("/catalog/") && /\d{4}-\d{4}/.test(n)),
+    const chosenAt = await generateWith(page, older);
+
+    // Recorded. Waited for rather than assumed: the banner appears when the
+    // store finishes, and reading storage in the same tick found it empty.
+    await page.waitForFunction(
+      () => !!window.localStorage.getItem("psu-planner-plan-v1"),
+      undefined,
+      { timeout: 60_000 },
     );
+    const stored = await page.evaluate(() =>
+      JSON.parse(window.localStorage.getItem("psu-planner-plan-v1")!).edition,
+    );
+    expect(stored, "the plan did not record the chosen edition").toBe(older);
+
+    // Shown, where a student can quote it to an adviser.
+    await expect(
+      page.getByText(new RegExp(older)).first(),
+      "the chosen edition is nowhere on the plan",
+    ).toBeVisible();
+
+    // And nothing was read from a different bulletin after the choice.
+    const fetched = await page.evaluate(
+      (since) =>
+        performance
+          .getEntriesByType("resource")
+          .filter((r) => r.startTime >= since)
+          .map((r) => r.name)
+          .filter((n) => n.includes("/catalog/") && /\d{4}-\d{4}/.test(n)),
+      chosenAt,
+    );
+    expect(fetched.length, "no edition-scoped catalog files were read at all").toBeGreaterThan(0);
     const wrong = fetched.filter((u) => u.includes(latest) && !u.includes(older));
-    expect(wrong, `catalog files read from ${latest} while the plan is pinned to ${older}:\n  ${wrong.slice(0, 5).join("\n  ")}`)
-      .toEqual([]);
+    expect(
+      wrong,
+      `read from ${latest} after the student chose ${older}: ${wrong.slice(0, 5).join(", ")}`,
+    ).toEqual([]);
+  });
+});
+
+test.describe("switching edition after choosing programs", () => {
+  test.setTimeout(120_000);
+  test.beforeEach(({}, testInfo) => {
+    test.skip(testInfo.project.name !== "desktop", "catalog loading is not theme-dependent");
+  });
+
+  test("drops everything derived from the edition that was left behind", async ({ page }) => {
+    // The scenario criterion 8 actually names. Every other test here picks the
+    // edition FIRST, so none of them exercised a switch with state already on
+    // screen -- which is where the mixing happens.
+    const { editions, latest } = await published(page);
+    test.skip(editions.length < 2, "only one edition is published in this build");
+
+    await onboarding(page);
+    await page.getByPlaceholder(/Search majors and minors/i).fill("Computer Science");
+    const row = page.locator(".prog-item", { hasText: /Computer Science/i }).first();
+    await expect(row).toBeVisible();
+    await row.click();
+    await expect(row).toHaveClass(/picked/);
+
+    // Tick a course off the template, so there is derived state to lose.
+    const box = page.locator(".onboard input[type=checkbox]").first();
+    const hadTrack = await box.count();
+    if (hadTrack) await box.check();
+
+    await editionPicker(page).selectOption(editions[0]);
+
+    // WAIT for the new edition's list to render before asserting. Switching
+    // blanks the index while it reloads, so "no picked item" is trivially
+    // true for a moment -- this assertion passed with the clearing code
+    // deleted until it waited for the list to come back.
+    await expect(page.locator(".prog-item").first()).toBeVisible({ timeout: 30_000 });
+
+    // The selection cannot carry: program slugs are not stable across
+    // bulletins, and a course ticked off one template is not evidence about
+    // another's requirements.
+    await expect(
+      page.locator(".prog-item.picked"),
+      "a program picked under one bulletin survived the switch",
+    ).toHaveCount(0);
+    if (hadTrack) {
+      await expect(
+        page.locator(".onboard input[type=checkbox]:checked"),
+        "a course ticked under one bulletin stayed ticked under another",
+      ).toHaveCount(0);
+    }
+    expect(latest).not.toBe(editions[0]); // the switch was real
   });
 });
 

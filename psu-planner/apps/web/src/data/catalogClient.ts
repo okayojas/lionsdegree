@@ -11,6 +11,15 @@ const ROOT = "/catalog";
 let edition: string | null = null;
 let editionsPromise: Promise<EditionsIndex> | null = null;
 
+/** Bumped on every edition switch.
+ *
+ * Clearing the caches is not enough on its own: a request issued under the
+ * previous edition can still be in flight, and its `await` resumes AFTER the
+ * switch has emptied them -- writing the old bulletin's data back into a
+ * cache that was just cleared. Every loader below captures this before it
+ * fetches and declines to store a result that arrived too late. */
+let generation = 0;
+
 export interface EditionsIndex {
   editions: string[];
   latest: string;
@@ -41,6 +50,7 @@ export async function loadEditions(): Promise<EditionsIndex> {
 export function setCatalogEdition(next: string): void {
   if (edition === next) return;
   edition = next;
+  generation++;
   subjectsIndex = null;
   loadedSubjects.clear();
   coverageCache = null;
@@ -83,6 +93,15 @@ async function getJson<T>(path: string): Promise<T> {
   return res.json();
 }
 
+/** Fetch, but only let the result be cached if the edition has not changed
+ * underneath us. `store` runs solely for a response that is still current. */
+async function getFresh<T>(path: string, store: (v: T) => void): Promise<T> {
+  const at = generation;
+  const value = await getJson<T>(path);
+  if (at === generation) store(value);
+  return value;
+}
+
 /** AP exam credit, per Edition.
  *
  * Previously fetched straight from `/catalog/ap_credits.json` in the picker
@@ -94,14 +113,21 @@ async function getJson<T>(path: string): Promise<T> {
  * Awards do change between bulletins. */
 export interface ApExam {
   exam: string;
-  awards: { minScore: number; credits: number; courses: string[]; raw: string }[];
+  // `credits` is NULLABLE: 24 award rows in the shipped 2026-2027 table carry
+  // no credit figure (the award is a placement, not credit). Moving this type
+  // out of the picker narrowed it to `number`, which made a guard for exactly
+  // that case read as unreachable.
+  awards: { minScore: number; credits: number | null; courses: string[]; raw: string }[];
   notes: string[];
 }
 let apCache: ApExam[] | null = null;
 export async function loadApCredits(): Promise<ApExam[]> {
   if (apCache) return apCache;
   try {
-    apCache = (await getJson<{ exams: ApExam[] }>("ap_credits.json")).exams ?? [];
+    const at = generation;
+    const exams = (await getJson<{ exams: ApExam[] }>("ap_credits.json")).exams ?? [];
+    if (at !== generation) return exams; // a later edition is current now
+    apCache = exams;
   } catch {
     // AP credit is an optional convenience; onboarding still works without it.
     apCache = [];
@@ -111,12 +137,16 @@ export async function loadApCredits(): Promise<ApExam[]> {
 
 let programsIndexCache: ProgramIndexEntry[] | null = null;
 export async function loadProgramsIndex(): Promise<ProgramIndexEntry[]> {
-  if (!programsIndexCache) programsIndexCache = await getJson<ProgramIndexEntry[]>("programs_index.json");
+  if (!programsIndexCache) {
+    return getFresh<ProgramIndexEntry[]>("programs_index.json", (v) => { programsIndexCache = v; });
+  }
   return programsIndexCache;
 }
 
 export async function loadSubjectsIndex(): Promise<SubjectsIndex> {
-  if (!subjectsIndex) subjectsIndex = await getJson<SubjectsIndex>("subjects_index.json");
+  if (!subjectsIndex) {
+    return getFresh<SubjectsIndex>("subjects_index.json", (v) => { subjectsIndex = v; });
+  }
   return subjectsIndex;
 }
 

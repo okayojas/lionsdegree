@@ -16,7 +16,7 @@ import { LegalModal } from "./components/LegalModal";
 import { AccountMenu } from "./components/AccountMenu";
 
 export default function App() {
-  const { plan, catalog, items, setPlan, mutatePlan, markCompleted, restoreItem, refreshCatalog, loading, loadError, repairNote, clearRepairNote } = usePlanner();
+  const { plan, catalog, items, setPlan, mutatePlan, markCompleted, restoreItem, refreshCatalog, loading, loadError, servedEdition, repairNote, clearRepairNote } = usePlanner();
   const [showRemoved, setShowRemoved] = useState(false);
   const [showImport, setShowImport] = useState(false);
   const [showLegal, setShowLegal] = useState(false);
@@ -239,7 +239,22 @@ export default function App() {
             already two rows at desktop width. */}
         {plan.edition && (
           <>
-            Requirements from the <strong>{plan.edition}</strong> bulletin.{" "}
+            {servedEdition && servedEdition !== plan.edition ? (
+              // The caveat has to live HERE, not only in onboarding. A student
+              // who was told at setup that we lack their bulletin reloads the
+              // page and the notice is gone, leaving a plan that silently
+              // reads against a different one.
+              <>
+                Your plan is pinned to <strong>{plan.edition}</strong>, which we do not
+                publish. Requirements shown are from{" "}
+                <strong>{servedEdition}</strong>, the closest we have, so some will
+                differ.{" "}
+              </>
+            ) : (
+              <>
+                Requirements from the <strong>{plan.edition}</strong> bulletin.{" "}
+              </>
+            )}
           </>
         )}
         Unofficial planning tool — <strong>not affiliated with or endorsed by Penn State</strong>. Course data

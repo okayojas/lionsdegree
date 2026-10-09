@@ -62,6 +62,12 @@ const PAIRS: [string, string, string][] = [
   // checked against two of the three surfaces it actually sits on is a
   // partial check that reads like a complete one.
   ["--text-muted", "--surface-2", "secondary text on an input or a raised tab"],
+  // Status text sits on its OWN tinted background, not on --bg. The block
+  // below checks each status colour against --bg and stopped there, so the
+  // pairing actually rendered -- amber on amber-tint -- went unchecked.
+  ["--warning", "--warning-bg", "a warning message on its tint"],
+  ["--danger", "--danger-bg", "an error message on its tint"],
+  ["--success", "--success-bg", "a success message on its tint"],
   ["--primary", "--bg", "accent on the page"],
   ["--primary", "--surface", "accent on a card"],
   ["--primary-fg", "--primary", "label on an accent fill"],

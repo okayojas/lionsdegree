@@ -82,6 +82,17 @@ export function Onboarding() {
     setPicked([]);
     setLoaded([]);
     setCampusChoice({});
+    // And neither can anything DERIVED from the previous edition's data.
+    // `completed` holds courses ticked off the old edition's template: the
+    // checkboxes disappear with the template, so those codes become invisible
+    // and un-untickable while still being fed to generatePlan as satisfying
+    // the NEW edition's requirements. `extraCredits` comes from that
+    // edition's AP table, and awards change between bulletins.
+    //
+    // `imported` is deliberately kept: those codes came from the student's own
+    // uploaded schedule, not from our catalog, and are re-matched at generate.
+    setCompleted(new Set());
+    setExtraCredits([]);
     loadProgramsIndex()
       .then(setIndex)
       .catch(() => setError("Could not load the program index — is the catalog data deployed?"));
@@ -241,14 +252,19 @@ export function Onboarding() {
             <option value="older">Earlier than {editions?.editions[0] ?? ""}</option>
           </select>
         </label>
-        {edition === "older" && (
-          <p className="ed-warn" role="status">
+        {/* The region is always present so the content changing inside it is
+            what gets announced; inserting the element and its text at the same
+            moment often announces nothing. */}
+        <p className="ed-warn" role="status" hidden={edition !== "older"}>
+          {edition === "older" && (
+            <>
             We do not have bulletins that far back, so this plan is built from{" "}
-            <strong>{editions?.editions[0] ?? ""}</strong>, the oldest we
-            publish. Some of your requirements will differ. Check the ones that
-            matter with your adviser.
-          </p>
-        )}
+              <strong>{editions?.editions[0] ?? ""}</strong>, the oldest we
+              publish. Some of your requirements will differ. Check the ones
+              that matter with your adviser.
+            </>
+          )}
+        </p>
       </div>
 
       <div className="step">
@@ -387,11 +403,11 @@ export function Onboarding() {
         <p style={{ fontSize: 12.5, color: "var(--muted)", margin: "0 0 8px" }}>
           These count toward prerequisites, gen eds, and electives automatically.
         </p>
-        <ApCreditPicker onAdd={(codes, label) => {
+        <ApCreditPicker key={servedEdition} onAdd={(codes, label) => {
           setExtraCredits((cur) => [...cur, ...codes.filter((c) => !cur.some((x) => x.code === c)).map((code) => ({ code, source: label }))]);
         }} />
         <div style={{ marginTop: 10 }}>
-          <CourseSearchPicker onAdd={(code) => {
+          <CourseSearchPicker key={servedEdition} onAdd={(code) => {
             setExtraCredits((cur) => (cur.some((x) => x.code === code) ? cur : [...cur, { code, source: "search" }]));
           }} />
         </div>

@@ -32,6 +32,11 @@ interface PlannerState {
    * left the app on "Loading your plan…" forever with the student's work
    * still on disk and no way to reach it. */
   loadError: string | null;
+  /** The edition actually being READ, which is the plan's pin unless we do not
+   * publish it. Separate from `plan.edition` on purpose: the pin is the
+   * student's fact and we must not overwrite it, but the UI has to be able to
+   * say which bulletin the requirements on screen actually came from. */
+  servedEdition: string | null;
   /** One-shot note about generation-time prereq repairs, shown as a toast. */
   repairNote: string | null;
   clearRepairNote: () => void;
@@ -166,6 +171,7 @@ export const usePlanner = create<PlannerState>((set, get) => ({
   coverage: {},
   loading: false,
   loadError: null,
+  servedEdition: null,
   repairNote: null,
   clearRepairNote: () => set({ repairNote: null }),
 
@@ -196,12 +202,24 @@ export const usePlanner = create<PlannerState>((set, get) => ({
     const pinned = plan.edition ?? editions.editions[0];
     const effective = editions.editions.includes(pinned) ? pinned : editions.editions[0];
     setCatalogEdition(effective);
-    // Record it ON the plan. Pinning only the catalog left a plan saved before
-    // this field existed with no edition at all, so the planner could not tell
-    // the student which bulletin their requirements came from -- which is the
-    // one thing an adviser needs to know. It is not a guess: this is the
-    // edition the plan is now being read against.
-    plan.edition = effective;
+    // BACKFILL ONLY. PlanDoc.edition is "pinned at creation and never silently
+    // upgraded", and a plan created before the field existed has none -- that
+    // absence is what this fills, and the oldest published edition is what
+    // such a plan was generated against.
+    //
+    // It must NOT be written when a pin is already there. An earlier version
+    // assigned `effective` unconditionally, so a plan pinned to an edition we
+    // do not publish yet had its real pin destroyed and replaced with our
+    // fallback: shipping that bulletin later could never restore it, and the
+    // plan would claim to BE the fallback. Where the two differ, the
+    // difference is state (`servedEdition`), not an edit to the student's plan.
+    if (plan.edition === undefined) {
+      plan.edition = effective;
+      // Persist ran at the top of setPlan, before this. Without re-saving, the
+      // backfill lived only in memory and the next load repeated the work.
+      persist(plan, "edition backfilled");
+    }
+    set({ servedEdition: effective });
     const catalog = await loadCatalogFor(planCodes(plan));
     const coverage = await loadCoverage();
     set({ coverage });
