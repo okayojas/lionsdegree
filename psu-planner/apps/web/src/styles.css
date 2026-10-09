@@ -456,3 +456,24 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   .slot-pick { grid-template-columns: 1fr; gap: 2px; }
   .slot-pick-title { white-space: normal; }
 }
+
+/* Provenance sits UNDER the list, not above it: it qualifies what was just
+   shown rather than gatekeeping it, and a student scanning for a course
+   should reach the courses first. */
+.slot-provenance {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  margin-top: var(--sp-2);
+}
+.slot-provenance a { color: var(--accent-text); }
+/* The campus caveat is the one thing here that can make a list WRONG for the
+   student reading it, so it is the one thing that is not quiet. */
+.slot-caveat {
+  font-size: var(--fs-sm);
+  color: var(--warning);
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
+  border-radius: var(--r-sm);
+  padding: var(--sp-2) var(--sp-3);
+  margin-top: var(--sp-2);
+}

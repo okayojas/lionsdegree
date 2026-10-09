@@ -13,6 +13,19 @@ import { usePlanner } from "../store";
 
 const GENED_KEYS = new Set(GENED_BUCKETS.map((b) => b.key));
 
+const BRANCH_CAMPUSES = new Set([
+  "abington", "altoona", "behrend", "berks", "brandywine", "capital", "dubois", "fayette",
+  "greater-allegheny", "harrisburg", "hazleton", "lehigh-valley", "mont-alto", "new-kensington",
+  "schuylkill", "scranton", "shenango", "wilkes-barre", "york", "beaver", "great-valley",
+]);
+function campusOf(slug?: string): string {
+  const first = slug?.split("-")[0];
+  const two = slug?.split("-").slice(0, 2).join("-");
+  if (two && BRANCH_CAMPUSES.has(two)) return two;
+  if (first && BRANCH_CAMPUSES.has(first)) return first;
+  return "university-park";
+}
+
 /** ONE path for every Slot.
  *
  * Gen-ed Slots and elective Slots used to branch here into separate rankings,
@@ -55,6 +68,10 @@ function SlotSuggestions({ item, onFill }: { item: PlanItem; onFill: (code: stri
         sched: usePlanner.getState().sched,
         termIndex: item.sem,
         limit: 60,
+        // Program slugs are campus-prefixed at the branches ("abington-…")
+        // and college-prefixed at University Park, so the first segment
+        // identifies the campus well enough to notice a mismatch.
+        campus: campusOf(item.slotProgram),
       });
       if (alive) setResult(ranked);
     })();
@@ -99,9 +116,31 @@ function SlotSuggestions({ item, onFill }: { item: PlanItem; onFill: (code: stri
           </div>
         </>
       )}
+      {result.provenance.readFrom && (
+        <p className="desc slot-provenance">
+          Read from{" "}
+          <a href={result.provenance.readFrom.url} target="_blank" rel="noreferrer noopener">
+            the department's list
+          </a>{" "}
+          on {result.provenance.readFrom.fetchedAt}.{" "}
+          {result.provenance.humanChecked
+            ? "Checked by a person against that page."
+            : "Parsed automatically — confirm anything surprising."}
+        </p>
+      )}
+      {result.provenance.campusCaveat && (
+        <p className="desc slot-caveat" role="note">{result.provenance.campusCaveat}</p>
+      )}
       {result.picks.length === 0 && (
         <p className="desc">
-          Use the toolbar search to add a course once you've confirmed it counts.
+          {result.searchHint ? (
+            <>
+              Nothing to list here, but the requirement names a topic. Search the catalog for{" "}
+              <b>{result.searchHint}</b>, then add a course once your adviser confirms it counts.
+            </>
+          ) : (
+            <>Use the toolbar search to add a course once you've confirmed it counts.</>
+          )}
         </p>
       )}
     </>

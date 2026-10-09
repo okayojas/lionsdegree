@@ -27,9 +27,30 @@ export interface SlotPick {
   score: number;
 }
 
+/** Where this Slot's answer came from, and how far to trust it.
+ *
+ * Separate fields rather than one prose blob: the view renders a department
+ * list differently from a bulletin table, and parsing a sentence to decide
+ * which is how the two end up looking the same. */
+export interface SlotProvenance {
+  source: "bulletin" | "pattern" | "genEd" | "department-list" | "adviser" | "unreadable";
+  /** A department list read off the bulletin: the page, and when we read it. */
+  readFrom?: { url: string; fetchedAt: string };
+  /** A person checked this list against its source, rather than only a parser. */
+  humanChecked?: boolean;
+  /** Set when the list speaks for a campus other than the student's. */
+  campusCaveat?: string;
+}
+
 export interface SlotSuggestions {
   pool: Pool | null;
   picks: SlotPick[];
+  provenance: SlotProvenance;
+  /** Where no list can be derived, the topic the requirement DOES constrain,
+   * as a catalog query. "6 credits in art history" names no courses but it
+   * does name a subject, and handing the student that search beats leaving
+   * them with nothing to click. Absent when the prose constrains nothing. */
+  searchHint?: string;
   /** What this Slot is, in the student's terms. For a Pool with no list, this
    * is the requirement's own wording: the absence IS the answer. */
   poolNote: string;
@@ -54,6 +75,41 @@ export interface SlotPickOptions {
   termIndex?: number;
   /** How many suggestions to return. */
   limit?: number;
+  /** The student's campus, so a list belonging to a different one is flagged
+   * rather than presented as theirs. */
+  campus?: string;
+}
+
+const CAMPUS_LABEL: Record<string, string> = {
+  "university-park": "University Park",
+};
+const campusName = (slug: string) =>
+  CAMPUS_LABEL[slug] ?? slug.replace(/-/g, " ").replace(/\w/g, (c) => c.toUpperCase());
+
+/** Words that are requirement boilerplate, not topic. A word SET rather than
+ * one large regex: a regex that silently matches nothing looks identical to
+ * one that works, which is exactly what happened the first time. */
+const HINT_NOISE = new Set(
+  ("in consultation with an a the adviser advisor select choose take complete credit credits from " +
+    "following departmental department college list lists approved course courses minimum at least of " +
+    "and or any one two three level other each two-of to be must student students").split(" "),
+);
+
+/** The topic a requirement constrains, if any.
+ *
+ * "In consultation with adviser, select 6 credits in art history" constrains
+ * no course list but it does name a subject, and handing a student that
+ * search beats leaving them with nothing to click. */
+export function searchHintFrom(prose: string): string | undefined {
+  const words = prose
+    .toLowerCase()
+    .replace(/[^a-z\s-]/g, " ")
+    .split(/\s+/)
+    .filter((w) => w.length > 1 && !HINT_NOISE.has(w));
+  if (!words.length) return undefined;
+  const hint = words.join(" ").trim();
+  // A single short fragment is noise, not a topic worth offering.
+  return hint.length >= 4 ? hint : undefined;
 }
 
 const OFFERINGS_NOTE =
@@ -62,6 +118,36 @@ const OFFERINGS_NOTE =
 /** Any gen-ed course at all. Used by plans generated before gen-ed slots were
  * refined into framework categories. */
 const ANY_GENED = "GE";
+
+function provenanceOf(pool: Pool | null, opts?: SlotPickOptions): SlotProvenance {
+  if (!pool) return { source: "unreadable" };
+  switch (pool.kind) {
+    case "listed":
+      return { source: "bulletin" };
+    case "patterned":
+      return { source: "pattern" };
+    case "genEd":
+      return { source: "genEd" };
+    case "adviser":
+      return { source: "adviser" };
+    case "unreadable":
+      return { source: "unreadable" };
+    case "registry": {
+      const p: SlotProvenance = {
+        source: "department-list",
+        readFrom: { url: pool.sourceUrl, fetchedAt: pool.fetchedAt },
+        humanChecked: pool.confirmedBy === "human",
+      };
+      // A University Park list does not silently speak for a branch campus.
+      if (opts?.campus && opts.campus !== pool.campusScope) {
+        p.campusCaveat =
+          `This is the ${campusName(pool.campusScope)} list. Your campus may approve a different set — ` +
+          `check with your campus adviser before you rely on it.`;
+      }
+      return p;
+    }
+  }
+}
 
 function describePool(pool: Pool | null, opts?: SlotPickOptions): string {
   if (!pool) return "We couldn't match this requirement to a course list.";
@@ -103,9 +189,13 @@ export function rankSlotPicks(catalog: Catalog, pool: Pool | null, opts: SlotPic
   const result: SlotSuggestions = {
     pool,
     picks: [],
+    provenance: provenanceOf(pool, opts),
     poolNote: describePool(pool, opts),
     offeringsNote: OFFERINGS_NOTE,
   };
+  if (pool && (pool.kind === "adviser" || pool.kind === "unreadable")) {
+    result.searchHint = searchHintFrom(pool.prose);
+  }
   // An adviser or unreadable Pool has nothing to enumerate. Returning an empty
   // list here is correct BECAUSE the note carries the explanation; an empty
   // list on its own would read as "no course qualifies", which is false.
