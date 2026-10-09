@@ -63,7 +63,7 @@ export default defineConfig({
       workbox: {
         // The landing page is outside this worker's scope, so precaching it
         // would store bytes the worker can never serve.
-        globIgnores: ["index.html", "assets/landing-*.js"],
+        globIgnores: ["index.html", "assets/landing-*.js", "assets/landing-*.css", "og.png"],
         // Deep links inside the planner resolve to its shell. The denylist
         // keeps the worker's hands off the catalog and off anything outside
         // /plan/, which it could not reach anyway from this scope.

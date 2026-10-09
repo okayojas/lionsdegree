@@ -26,7 +26,14 @@ beforeAll(() => {
 describe("the landing document", () => {
   it("is a real document, readable with no JavaScript", () => {
     const html = read("index.html");
-    expect(html).toMatch(/<h1[^>]*>\s*LionsDegree/);
+    // An h1 with real text in the markup -- not produced by a script, which
+    // is the entire reason this page is a document rather than an app shell.
+    const h1 = /<h1[^>]*>([\s\S]*?)<\/h1>/.exec(html);
+    expect(h1, "no h1 in the built landing document").toBeTruthy();
+    expect(h1![1].replace(/<[^>]*>/g, "").trim().length).toBeGreaterThan(8);
+    // And the product has to be named somewhere a visitor can see it. The h1
+    // is the page's thesis, not the wordmark, so this looks at the body.
+    expect(html.slice(html.indexOf("<body"))).toMatch(/LionsDegree/);
     // Its description has to be in the markup for a preview card to show it.
     expect(html).toMatch(/<meta\s+name="description"/);
   });
@@ -123,5 +130,114 @@ describe("the service worker", () => {
     expect(m.id).toBe("/");
     // The near-black from two palettes ago framed an installed app wrongly.
     expect(m.theme_color).toBe("#f1ebdf");
+  });
+});
+
+describe("the link preview card", () => {
+  /** A student sends the link to a group chat. The previewer fetches the HTML,
+   * does NOT run scripts, and renders whatever it finds in the head. Every
+   * property below has to be in the static markup. */
+  const html = () => read("index.html");
+
+  it("carries a title, a description and an image", () => {
+    for (const prop of ["og:title", "og:description", "og:image"]) {
+      expect(html(), `${prop} is missing from the built document`).toContain(`property="${prop}"`);
+    }
+    expect(html()).toContain('name="twitter:card"');
+  });
+
+  it("points the image at an absolute URL", () => {
+    // A previewer resolves og:image against its OWN host unless the URL is
+    // absolute, so a relative path silently yields a card with no image.
+    const src = /property="og:image" content="([^"]+)"/.exec(html())?.[1];
+    expect(src, "no og:image content").toBeTruthy();
+    expect(src).toMatch(/^https:\/\//);
+  });
+
+  it("ships the image it promises, at the size it declares", () => {
+    const src = /property="og:image" content="([^"]+)"/.exec(html())![1];
+    const rel = new URL(src).pathname.replace(/^\//, "");
+    expect(exists(rel), `${rel} is referenced but not in dist`).toBe(true);
+
+    // PNG header: width and height are big-endian 32-bit at bytes 16..24.
+    const buf = fs.readFileSync(path.join(dist, rel));
+    const width = buf.readUInt32BE(16);
+    const height = buf.readUInt32BE(20);
+    expect(`${width}x${height}`).toBe("1200x630");
+    const declared = {
+      w: /property="og:image:width" content="(\d+)"/.exec(html())?.[1],
+      h: /property="og:image:height" content="(\d+)"/.exec(html())?.[1],
+    };
+    expect(`${declared.w}x${declared.h}`, "declared size disagrees with the file").toBe(`${width}x${height}`);
+  });
+
+  it("describes the image for people who cannot see it", () => {
+    expect(html()).toContain('property="og:image:alt"');
+  });
+});
+
+describe("the landing page's content", () => {
+  const html = () => read("index.html");
+
+  it("says what this is as static text, before asking for anything", () => {
+    // The headline has to be in the markup, not produced by a script: that is
+    // the entire reason this page is a document.
+    expect(html()).toMatch(/Your degree is a route/i);
+    expect(html()).toMatch(/prerequisite/i);
+  });
+
+  it("carries an install snippet that matches what the server accepts", () => {
+    // The snippet is the one piece of copy on this page that is executable. If
+    // it drifts from the server's actual flag, a student pastes it, it fails,
+    // and they have no way to tell whose fault that is.
+    const snippet = /<pre[^>]*class="lp-snippet"[^>]*><code>([\s\S]*?)<\/code><\/pre>/.exec(html())?.[1];
+    expect(snippet, "no install snippet in the built page").toBeTruthy();
+    const json = JSON.parse(snippet!.replace(/&quot;/g, '"').replace(/&amp;/g, "&"));
+    const server = json.mcpServers.lionsdegree;
+    expect(server.command).toBe("npx");
+    expect(server.args).toContain("lionsdegree-mcp");
+    expect(server.args, "the server reads --plan (or LIONSDEGREE_PLAN)").toContain("--plan");
+
+    // And the flag really is the one the server parses.
+    const serverSrc = fs.readFileSync(
+      path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "packages", "mcp", "src", "server.ts"),
+      "utf-8",
+    );
+    expect(serverSrc, "the landing page advertises a flag the server does not parse").toContain('"--plan"');
+  });
+
+  it("states the limits and keeps the disclaimer prominent", () => {
+    expect(html()).toMatch(/not affiliated with/i);
+    expect(html()).toMatch(/LionPATH/);
+    expect(html()).toMatch(/adviser/i);
+  });
+});
+
+describe("the monospace face", () => {
+  /** Course codes are the one thing set in mono, and they have to look the
+   * same everywhere. Naming a family that is not shipped means the code falls
+   * back to whatever the operating system calls "monospace" -- Consolas on
+   * Windows, SF Mono on a Mac -- so the same plan sets differently per
+   * student. */
+  it("is self-hosted rather than left to the operating system", () => {
+    const cssFile = fs
+      .readdirSync(path.join(dist, "assets"))
+      .find((f) => f.startsWith("landing-") && f.endsWith(".css"));
+    expect(cssFile, "no landing stylesheet in dist/assets").toBeTruthy();
+    const css = read(path.join("assets", cssFile!));
+
+    const faces = [...css.matchAll(/@font-face\{([^}]*)\}/g)].map((m) => m[1]);
+    const mono = faces.filter((f) => /JetBrains Mono/i.test(f));
+    expect(mono.length, "no @font-face for the mono family").toBeGreaterThan(0);
+    // Each has to come from us. Vite inlines small faces as a data: URI and
+    // emits larger ones as files; both are self-hosted. What must never
+    // appear is a remote host, which would make the page depend on someone
+    // else's uptime and leak a request per visitor.
+    for (const f of mono) {
+      const url = (/url\(([^)]+)\)/.exec(f)?.[1] ?? "").replace(/^["']|["']$/g, "");
+      expect(url, `mono face loaded from a remote host: ${url}`).not.toMatch(/^https?:/);
+      if (url.startsWith("data:")) continue;
+      expect(exists(url.replace(/^\//, "")), `${url} is referenced by @font-face but not in dist`).toBe(true);
+    }
   });
 });

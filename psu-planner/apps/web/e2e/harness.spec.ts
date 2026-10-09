@@ -7,8 +7,13 @@ import { test, expect, expectNoA11yViolations, SEEDED_PLAN } from "./fixtures.js
 test.describe("the landing page", () => {
   test("renders its content as a document", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("heading", { level: 1, name: /LionsDegree/ })).toBeVisible();
-    await expect(page.getByRole("link", { name: /Open the planner/i })).toBeVisible();
+    // The h1 is the page's thesis, not the wordmark -- this asserted
+    // /LionsDegree/ back when the root was a placeholder whose only heading
+    // was the product name. The product is still named on the page; it is
+    // just not what the heading says.
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    await expect(page.getByText("LionsDegree").first()).toBeVisible();
+    await expect(page.getByRole("link", { name: /Open the planner/i }).first()).toBeVisible();
   });
 
   test("states that it is unaffiliated with Penn State", async ({ page }) => {

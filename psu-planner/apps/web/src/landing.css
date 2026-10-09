@@ -1,0 +1,223 @@
+/* =====================================================================
+   The landing page.
+
+   It imports the product's own stylesheet rather than restating any of it.
+   That is the point: a visitor moving from here into the planner should feel
+   no seam, and the surest way to get that is for both to be the SAME tokens,
+   the same eyebrow, the same hollow station dot, the same route lines, the
+   same press-scale on a button, and the same reduced-motion block. Nothing
+   below introduces a colour, a size or a spacing value.
+
+   What this file adds is one idea: the page IS a route. A line runs down the
+   column and every section is a station on it. That is the product's own
+   metaphor carried into the page structure rather than a decoration borrowed
+   for the front door.
+   ===================================================================== */
+@import "./styles.css";
+
+/* Self-hosted, so a course code sets identically on every machine. The mono
+   face was previously named in --font-mono but never shipped, which meant
+   codes fell back to whatever the operating system called "monospace" --
+   Consolas on Windows, SF Mono on a Mac, something else again on Linux. */
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/600.css";
+@import "@fontsource-variable/space-grotesk";
+
+body.landing {
+  /* The planner fills the viewport and manages its own scrolling; a document
+     scrolls normally. */
+  height: auto;
+  background: var(--bg);
+  /* The dotted map grid, the same one the canvas lays under the flowchart. */
+  background-image: radial-gradient(color-mix(in srgb, var(--text) 7%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.lp-wrap { max-width: 760px; margin: 0 auto; padding: 0 var(--sp-6); }
+
+/* ---------- hero ---------- */
+
+.lp-hero { padding: clamp(var(--sp-8), 10vw, 96px) 0 var(--sp-8); }
+.lp-mark {
+  display: flex; align-items: center; gap: var(--sp-2);
+  font-size: var(--fs-md); font-weight: 800; color: var(--navy);
+  letter-spacing: var(--track-tight); margin: 0 0 var(--sp-6);
+}
+/* The same construction as .toolbar h1::before -- a ring, not a disc. */
+.lp-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--bg); border: 3.5px solid var(--primary);
+  box-sizing: content-box; flex: none;
+}
+
+.lp-hero h1 {
+  font-size: clamp(var(--fs-2xl), 7vw, 56px);
+  line-height: 1.05;
+  letter-spacing: var(--track-tight);
+  color: var(--navy);
+  margin: var(--sp-2) 0 var(--sp-4);
+  font-weight: 800;
+  max-width: 14ch;
+}
+.lp-lede {
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  color: var(--text);
+  max-width: 58ch;
+  margin: 0 0 var(--sp-6);
+}
+
+/* The hero thesis: a real prerequisite chain, drawn with the planner's own
+   route primitives. It scrolls inside its own box rather than widening the
+   page -- a 680px diagram on a 320px screen is the classic way a landing page
+   ends up scrolling sideways. */
+.lp-route {
+  margin: 0 0 var(--sp-6);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+.lp-route svg { display: block; width: 700px; max-width: none; height: 170px; }
+/* Station names. The one place monospace appears on this page besides the
+   install snippet, and it appears because these are course codes. */
+.lp-stn {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-code);
+  fill: var(--text-muted);
+}
+
+/* Monospace is for course codes and nothing else. This is the landing page's
+   only use of it, and it is the same rule the planner follows. */
+.landing .code {
+  font-family: var(--font-mono);
+  font-size: 0.94em;
+  letter-spacing: var(--track-code);
+  color: var(--text);
+}
+
+.lp-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin: 0 0 var(--sp-3); }
+.lp-cta {
+  display: inline-flex; align-items: center; min-height: var(--tap-min);
+  padding: var(--sp-2) var(--sp-6);
+  background: var(--primary); color: var(--primary-fg);
+  border: 1px solid var(--primary); border-radius: var(--r-full);
+  font-weight: 700; text-decoration: none;
+  /* The same transition and press-scale every button in the product has. */
+  transition: background .12s var(--ease-out), border-color .12s var(--ease-out),
+    box-shadow .12s var(--ease-out), transform .14s var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .lp-cta:hover { background: var(--primary-hover); border-color: var(--primary-hover); box-shadow: var(--shadow); }
+}
+.lp-cta:active { transform: scale(0.97); }
+.lp-cta-quiet {
+  background: transparent; color: var(--accent-text); border-color: var(--border-strong);
+}
+@media (hover: hover) and (pointer: fine) {
+  .lp-cta-quiet:hover { background: var(--surface); border-color: var(--primary); box-shadow: none; }
+}
+.lp-note { font-size: var(--fs-xs); color: var(--text-muted); margin: 0; }
+
+/* ---------- the line, and the stations on it ---------- */
+
+.lp-line {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: var(--sp-8) var(--sp-6) var(--sp-8) calc(var(--sp-6) + var(--sp-6));
+  position: relative;
+}
+/* The route itself: one continuous line behind every station. */
+.lp-line::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--sp-6) + 5px);
+  top: var(--sp-8);
+  bottom: var(--sp-8);
+  width: 3.5px;
+  border-radius: var(--r-full);
+  background: var(--primary);
+}
+.lp-stop { position: relative; padding: 0 0 var(--sp-8) var(--sp-6); }
+.lp-stop:last-child { padding-bottom: 0; }
+/* The hollow station-dot ring, the same construction as the wordmark's. */
+.lp-stop::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--sp-6) * -1 - 1px);
+  top: 7px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 3.5px solid var(--primary);
+  box-sizing: content-box;
+}
+.lp-stop h2 {
+  font-size: var(--fs-lg);
+  letter-spacing: var(--track-tight);
+  color: var(--navy);
+  margin: 0 0 var(--sp-2);
+  font-weight: 800;
+}
+.lp-stop p { margin: 0 0 var(--sp-3); max-width: 58ch; line-height: 1.65; }
+.lp-small { font-size: var(--fs-sm); color: var(--text-muted); }
+.lp-small a { color: var(--accent-text); }
+
+.lp-limits { margin: 0; padding-left: var(--sp-4); max-width: 58ch; }
+.lp-limits li { margin-bottom: var(--sp-2); line-height: 1.6; }
+
+/* The install snippet. A card, like every other container in the product. */
+.lp-snippet {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: var(--sp-3) var(--sp-4);
+  overflow-x: auto;
+  margin: 0 0 var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+.lp-snippet code { font: inherit; }
+
+/* ---------- footer ---------- */
+
+.lp-foot {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding: var(--sp-6) 0;
+  margin-top: var(--sp-8);
+}
+/* The disclaimer is the one thing on this page that may not be quiet. Adopting
+   Penn State's own colours strengthens the association, so the statement that
+   we are not Penn State has to carry more weight than it otherwise would. */
+.lp-disclaim {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text);
+  max-width: 70ch;
+  margin: 0 0 var(--sp-3);
+}
+.lp-disclaim strong { color: var(--danger); }
+
+/* ---------- phone ---------- */
+
+@media (max-width: 760px) {
+  .lp-wrap { padding: 0 var(--sp-4); }
+
+  /* The hero diagram SCALES to fit rather than scrolling. A cut-off route is
+     the first thing a student sees, and it reads as broken rather than as
+     scrollable. Everything inside the svg is in viewBox units, so the stroke
+     and the station names are enlarged here to survive the ~0.5 scale factor
+     and land back at the sizes they have on a desktop. */
+  .lp-route { overflow-x: visible; }
+  .lp-route svg { width: 100%; height: auto; }
+  .lp-route .route-line { stroke-width: 7; }
+  .lp-route .route-stop { stroke-width: 6; }
+  .lp-route .lp-stn { font-size: 23px; }
+  .lp-line { padding-left: calc(var(--sp-4) + var(--sp-6)); padding-right: var(--sp-4); }
+  .lp-line::before { left: calc(var(--sp-4) + 5px); }
+  .lp-hero { padding-top: var(--sp-6); }
+  .lp-actions .lp-cta { flex: 1 1 auto; justify-content: center; }
+}

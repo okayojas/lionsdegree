@@ -13,28 +13,165 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f1ebdf" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2b2a27" />
     <link rel="canonical" href="https://lionsdegree.com/" />
-    <!-- This page is deliberately plain. The real landing page is a separate
-         piece of work; what matters here is that it is a STATIC DOCUMENT with
-         no planner JavaScript, because link previewers do not run scripts. -->
+
+    <!-- A student shares this in a group chat, and the previewer does not run
+         JavaScript. Everything a preview card needs is static markup, which is
+         the whole reason the planner moved to /plan/. Absolute URLs: a
+         previewer resolves these from its own host, not from ours. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="LionsDegree" />
+    <meta property="og:url" content="https://lionsdegree.com/" />
+    <meta property="og:title" content="LionsDegree — your degree as a route map" />
+    <meta
+      property="og:description"
+      content="Pick your majors, minors and certificates. Get a semester-by-semester plan that holds every prerequisite, and see what breaks when you move a course."
+    />
+    <meta property="og:image" content="https://lionsdegree.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="A prerequisite chain drawn as a transit route: MATH 140 to MATH 141 to MATH 230." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="LionsDegree — your degree as a route map" />
+    <meta
+      name="twitter:description"
+      content="Pick your majors, minors and certificates. Get a semester-by-semester plan that holds every prerequisite, and see what breaks when you move a course."
+    />
+    <meta name="twitter:image" content="https://lionsdegree.com/og.png" />
+
+    <link rel="stylesheet" href="/src/landing.css" />
   </head>
-  <body>
-    <main>
-      <h1>LionsDegree</h1>
-      <p>
-        Prerequisite-aware degree planning for Penn State. Pick your majors,
-        minors and certificates; the planner builds a semester-by-semester
-        schedule that respects every prerequisite, stays under the credit cap,
-        and tells you what breaks when you move things around.
-      </p>
-      <p><a href="/plan/">Open the planner</a></p>
-      <p>
-        <small>
-          Unofficial. Not affiliated with, endorsed by, or an official product
-          of The Pennsylvania State University. Course data may be out of date
-          or wrong — verify everything with your academic adviser and LionPATH.
-        </small>
-      </p>
+  <body class="landing">
+    <a href="#start" class="skip-link">Skip to what this is</a>
+
+    <!-- The page is a route. The line runs down the column and every section
+         is a station on it; that is the product's own metaphor rather than a
+         decoration borrowed for the front door. -->
+    <header class="lp-hero">
+      <div class="lp-wrap">
+        <!-- The wordmark, constructed the same way the planner's toolbar
+             builds it: a hollow station dot beside the name. Without it a
+             visitor never saw what the thing is called outside the tab title. -->
+        <p class="lp-mark"><i class="lp-dot" aria-hidden="true"></i>LionsDegree</p>
+        <p class="eyebrow">Unofficial · Penn State</p>
+        <h1>Your degree is a route.</h1>
+        <p class="lp-lede">
+          Stations are courses. Lines are prerequisites. Pick your majors, minors
+          and certificates, and LionsDegree lays out every semester between here
+          and graduation — holding every prerequisite, staying under the credit
+          cap, and telling you what breaks when you move something.
+        </p>
+
+        <!-- Inline SVG, no script: the page has to read correctly with
+             JavaScript off. The route-line and route-stop classes are the
+             planner's own, so this draws with the same curves the app uses and
+             the existing reduced-motion block switches it off. -->
+        <figure class="lp-route" role="img"
+                aria-label="A prerequisite route: MATH 140 leads to MATH 141, which leads on to MATH 230 and branches to PHYS 211.">
+          <svg viewBox="0 0 700 170" preserveAspectRatio="xMinYMid meet" focusable="false">
+            <path class="route-line" style="stroke: var(--primary)" d="M60 56 H250 H620" />
+            <path class="route-line" style="stroke: var(--route-b); animation-delay: 380ms" d="M250 56 Q430 56 430 128 H620" />
+            <circle class="route-stop" cx="60"  cy="56"  r="9" />
+            <circle class="route-stop" cx="250" cy="56"  r="9" style="animation-delay: 480ms" />
+            <circle class="route-stop" cx="620" cy="56"  r="9" style="animation-delay: 660ms" />
+            <circle class="route-stop" cx="620" cy="128" r="9" style="animation-delay: 840ms" />
+            <!-- Labels live INSIDE the svg, anchored to the station they name.
+                 A separate row of labels beneath could not stay aligned with
+                 the stops, and drifted the moment the viewBox changed. -->
+            <text class="lp-stn" x="60"  y="32"  text-anchor="middle">MATH 140</text>
+            <text class="lp-stn" x="250" y="32"  text-anchor="middle">MATH 141</text>
+            <text class="lp-stn" x="620" y="32"  text-anchor="middle">MATH 230</text>
+            <text class="lp-stn" x="620" y="156" text-anchor="middle">PHYS 211</text>
+          </svg>
+        </figure>
+
+        <p class="lp-actions">
+          <a class="lp-cta" href="/plan/">Open the planner</a>
+          <a class="lp-cta lp-cta-quiet" href="#ai">Use it with your own AI</a>
+        </p>
+        <p class="lp-note">Free. No account. Your plan stays in your browser.</p>
+      </div>
+    </header>
+
+    <main id="start" class="lp-line">
+      <section class="lp-stop" id="programs">
+        <h2>Pick your programs</h2>
+        <p>
+          Majors, minors and certificates, read from the Penn State bulletin
+          itself — 759 programs across every campus. Add a second major and the
+          plan folds it in, double-counting what genuinely double-counts.
+        </p>
+      </section>
+
+      <section class="lp-stop" id="breaks">
+        <h2>Move a course, see what breaks</h2>
+        <p>
+          Drag <span class="code">CMPSC 465</span> a semester earlier and the
+          line to <span class="code">CMPSC 360</span> turns red, because you
+          cannot take it yet. Prerequisites are read from the catalog text and
+          evaluated against your plan, not assumed from the suggested sequence —
+          which is itself sometimes wrong.
+        </p>
+      </section>
+
+      <section class="lp-stop" id="ai">
+        <h2>Bring your own AI</h2>
+        <p>
+          There is no chatbot to pay for here. Export your plan, point your own
+          assistant at it, and ask it anything — it reads the plan and the
+          catalog locally, on your machine.
+        </p>
+        <pre class="lp-snippet" tabindex="0" role="region" aria-label="MCP configuration snippet"><code>{
+  "mcpServers": {
+    "lionsdegree": {
+      "command": "npx",
+      "args": ["-y", "lionsdegree-mcp", "--plan", "/path/to/your-plan.json"]
+    }
+  }
+}</code></pre>
+        <p class="lp-small">
+          Claude Desktop reads <span class="code">claude_desktop_config.json</span>;
+          Claude Code reads <span class="code">.mcp.json</span>. Export your plan
+          first with <strong>Menu → Save plan to a file</strong>. It needs no
+          account, no key and no network.
+        </p>
+      </section>
+
+      <section class="lp-stop" id="limits">
+        <h2>What it can't do</h2>
+        <ul class="lp-limits">
+          <li>
+            It does not know which semesters a course actually runs. Check
+            LionPATH before you rely on a plan.
+          </li>
+          <li>
+            Some requirements name no course list at all — the bulletin says to
+            ask your adviser. Those say so rather than guessing.
+          </li>
+          <li>
+            Where the catalog could not be read cleanly, it says it could not be
+            read. It will not invent a course list to fill a gap.
+          </li>
+          <li>It is not an audit. LionPATH and your adviser decide what counts.</li>
+        </ul>
+      </section>
     </main>
+
+    <footer class="lp-foot">
+      <div class="lp-wrap">
+        <p class="lp-disclaim">
+          <strong>Unofficial.</strong> LionsDegree is not affiliated with,
+          endorsed by, or an official product of The Pennsylvania State
+          University. Course data is scraped from the public bulletin and may be
+          out of date or wrong. Verify everything with your academic adviser and
+          LionPATH before you register.
+        </p>
+        <p class="lp-small">
+          <a href="/plan/">Open the planner</a> ·
+          <a href="https://github.com/okayojas/lionsdegree">Source</a>
+        </p>
+      </div>
+    </footer>
+
     <script type="module" src="/src/landing.ts"></script>
   </body>
 </html>
