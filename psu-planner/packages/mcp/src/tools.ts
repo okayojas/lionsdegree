@@ -17,6 +17,9 @@ import {
   credOf,
   parsePlanFile,
   progress,
+  majorDeptPrefixes,
+  rankSlotPicks,
+  resolveSlotPool,
   searchCatalog,
   type Catalog,
   type PlanDoc,
@@ -24,8 +27,10 @@ import {
   type Schedule,
 } from "@psu-planner/engine";
 import { loadEdition, publishedEditions, type EditionCatalog } from "./catalog.js";
+import { executeMutation } from "./mutations.js";
 
 export interface ToolContext {
+  /** Mutable: a write refreshes these so the next call sees the new plan. */
   plan: PlanDoc;
   planPath: string;
   data: EditionCatalog;
@@ -89,6 +94,68 @@ export function listTools(): ToolDefinition[] {
       inputSchema: obj({ query: str("Program name or part of one"), limit: num("Max results") }, ["query"]),
     },
     {
+      name: "suggest_slot_courses",
+      description:
+        "Ranked courses that can fill one open requirement slot, in the same order the planner shows. Courses whose prerequisites the plan already satisfies come first.",
+      inputSchema: obj({ slot_id: str("A slot_id from get_plan") }, ["slot_id"]),
+    },
+    {
+      name: "add_course",
+      description: "Add a course to a term in the plan.",
+      inputSchema: obj({ code: str("Course code"), term_index: num("0-based term") }, ["code", "term_index"]),
+    },
+    {
+      name: "remove_course",
+      description:
+        "Remove a course from the plan. A course the student's degree REQUIRES is refused unless they have asked for it in their own words — never solve a scheduling conflict this way, use set_schedule_constraint instead.",
+      inputSchema: obj(
+        {
+          code: str("Course code"),
+          user_explicitly_asked: {
+            type: "boolean",
+            description:
+              "Only true when the student has said, in their own words, that they want this course out of their degree. Never infer it.",
+          },
+        },
+        ["code"],
+      ),
+    },
+    {
+      name: "set_schedule_constraint",
+      description:
+        "How to answer \"I can't take X next spring\". Keeps the course in the degree and re-flows the schedule around the constraint, which survives every future optimize.",
+      inputSchema: obj(
+        {
+          code: str("Course code"),
+          rule: str('"not-in" (not that term), "not-before" (no earlier than), or "pin" (exactly there)'),
+          term_index: num("0-based term"),
+        },
+        ["code", "rule", "term_index"],
+      ),
+    },
+    {
+      name: "optimize_schedule",
+      description:
+        "Repack the whole plan into the fewest full-time terms in ONE call, honouring prerequisites, the credit cap and every constraint. Use this for any 'graduate sooner / consolidate' request rather than moving courses one at a time.",
+      inputSchema: obj({ target_terms: num("Optional: aim for exactly this many terms") }),
+    },
+    {
+      name: "fill_slot",
+      description: "Choose a course for an open requirement slot. Refused if the course is not on that requirement's approved list.",
+      inputSchema: obj({ slot_id: str("A slot_id from get_plan"), code: str("Course code") }, ["slot_id", "code"]),
+    },
+    {
+      name: "add_term",
+      description: "Append an empty term to the end of the plan.",
+      inputSchema: obj({}),
+    },
+    {
+      name: "skip_term",
+      description:
+        "Mark a term as intentionally empty — a gap year, co-op or leave. Coursework re-flows around it and graduation moves back; nothing is removed.",
+      inputSchema: obj({ term_index: num("0-based term") }, ["term_index"]),
+    },
+    {
       name: "audit_requirements",
       description:
         "What each of the student's programs still requires, against what their plan already contains.",
@@ -121,11 +188,45 @@ export async function executeTool(
   args: Record<string, unknown>,
   ctx: ToolContext,
 ): Promise<unknown> {
+  // Mutations live in their own module: their rules are about not losing a
+  // student's work, which is a different concern from answering well.
+  const mutated = await executeMutation(name, args, ctx);
+  if (mutated) return mutated;
+
   const { plan, data, items, sched } = ctx;
   const cat: Catalog = data.catalog;
   const code = typeof args.code === "string" ? args.code.trim().toUpperCase() : "";
 
   switch (name) {
+    case "suggest_slot_courses": {
+      const slot = items.find((i) => i.kind === "slot" && i.id === String(args.slot_id ?? ""));
+      if (!slot) return { error: `no open slot with id ${args.slot_id} — call get_plan for current slot ids` };
+      const prog = slot.slotProgram ? data.programs[slot.slotProgram] : undefined;
+      const pool = prog && slot.slotLabel ? resolveSlotPool(slot.slotLabel, prog.requirementSections) : null;
+      const ranked = rankSlotPicks(cat, pool, {
+        exclude: new Set(items.filter((i) => i.kind === "course").map((i) => i.code!)),
+        majorPrefixes: majorDeptPrefixes(plan),
+        needUS: false,
+        needIL: false,
+        sched,
+        termIndex: slot.sem,
+        limit: 15,
+      });
+      return {
+        requirement: slot.slotLabel ?? slot.slot,
+        what_counts: ranked.poolNote,
+        availability: ranked.offeringsNote,
+        picks: ranked.picks.map((p) => ({
+          code: p.course.code,
+          title: p.course.title,
+          credits: p.course.credits,
+          prerequisites_met: p.ready,
+          also: p.bonuses,
+        })),
+        ...(ranked.searchHint ? { search_instead_for: ranked.searchHint } : {}),
+      };
+    }
+
     case "get_plan": {
       const prog = progress(plan, items, cat);
       return {

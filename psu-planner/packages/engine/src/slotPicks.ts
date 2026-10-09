@@ -84,7 +84,7 @@ const CAMPUS_LABEL: Record<string, string> = {
   "university-park": "University Park",
 };
 const campusName = (slug: string) =>
-  CAMPUS_LABEL[slug] ?? slug.replace(/-/g, " ").replace(/\w/g, (c) => c.toUpperCase());
+  CAMPUS_LABEL[slug] ?? slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
 /** Words that are requirement boilerplate, not topic. A word SET rather than
  * one large regex: a regex that silently matches nothing looks identical to

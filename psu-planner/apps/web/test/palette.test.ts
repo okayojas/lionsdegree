@@ -136,7 +136,7 @@ describe("the outgoing accent is gone", () => {
     const violetHues: string[] = [];
     for (const f of files) {
       const text = fs.readFileSync(f, "utf-8");
-      for (const m of text.matchAll(/(2[5-9]\d|3[0-1]\d)(?=[,\s\]])/g)) {
+      for (const m of text.matchAll(/\b(2[5-9]\d|3[0-1]\d)\b(?=[,\s\]])/g)) {
         // Only inside an array of hues or an hsl() call.
         const around = text.slice(Math.max(0, m.index! - 80), m.index! + 20);
         if (/HUES|hsl\(/.test(around)) violetHues.push(`${path.basename(f)}: ${m[0]}`);

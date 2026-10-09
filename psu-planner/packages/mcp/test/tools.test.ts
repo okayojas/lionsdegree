@@ -21,16 +21,21 @@ beforeAll(async () => {
 const call = (name: string, args: Record<string, unknown> = {}) => executeTool(name, args, ctx);
 
 describe("the tool surface", () => {
-  it("offers only read-only tools in this version", () => {
+  it("offers the read tools", () => {
     const names = listTools().map((t) => t.name);
-    expect(names).toContain("get_plan");
-    expect(names).toContain("search_catalog");
-    expect(names).toContain("audit_requirements");
-    // Mutating tools are a separate ticket; shipping one early would let an
-    // assistant change a plan the student never agreed to expose to writes.
-    for (const mutating of ["add_course", "remove_course", "optimize_schedule", "fill_slot"]) {
-      expect(names).not.toContain(mutating);
-    }
+    for (const n of ["get_plan", "search_catalog", "audit_requirements"]) expect(names).toContain(n);
+  });
+
+  it("gates the one tool that can destroy work behind explicit consent", () => {
+    // Until #13 this test asserted that NO mutating tool existed. That was
+    // true then and is false now, so it asserts the thing that outlived the
+    // ticket instead: a model must not be able to drop a required course by
+    // reading a description and deciding the student meant it.
+    const remove = listTools().find((t) => t.name === "remove_course");
+    expect(remove, "remove_course is not declared").toBeDefined();
+    const schema = JSON.stringify(remove!.inputSchema);
+    expect(schema).toContain("user_explicitly_asked");
+    expect(remove!.description).toMatch(/explicit|confirm|ask/i);
   });
 
   it("describes every tool it offers", () => {
