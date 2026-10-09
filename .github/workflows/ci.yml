@@ -34,6 +34,57 @@ jobs:
       - run: pnpm -r test
         working-directory: psu-planner
 
+  # SEPARATE JOB. It starts a browser and is measured in minutes, where the
+  # suite above is seconds. Keeping them apart means a failure here does not
+  # delay the fast feedback, and the fast feedback does not wait on a browser
+  # download.
+  browser:
+    name: accessibility + layout (browser)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: psu-planner/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+        working-directory: psu-planner
+
+      # The browser is ~120 MB. Cached on the resolved Playwright version, so
+      # the download happens once per version bump rather than once per run.
+      - name: Resolve the Playwright version
+        id: pw
+        run: echo "version=$(node -p "require('./apps/web/node_modules/@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+        working-directory: psu-planner
+      - uses: actions/cache@v4
+        id: pw-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.pw.outputs.version }}
+      - run: pnpm --filter web exec playwright install --with-deps chromium
+        working-directory: psu-planner
+        if: steps.pw-cache.outputs.cache-hit != 'true'
+      # System deps are not in the cached path, so they are installed either way.
+      - run: pnpm --filter web exec playwright install-deps chromium
+        working-directory: psu-planner
+        if: steps.pw-cache.outputs.cache-hit == 'true'
+
+      # Runs against the BUILT app: the launch gate is about what ships.
+      - run: pnpm --filter web build
+        working-directory: psu-planner
+      - run: pnpm test:e2e
+        working-directory: psu-planner
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: psu-planner/apps/web/playwright-report
+          retention-days: 7
+
   pipeline:
     name: scraper parser regression
     runs-on: ubuntu-latest
