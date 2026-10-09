@@ -23,15 +23,17 @@ const PLAN_KEY = "psu-planner-plan-v1";
 
 export const test = base.extend<{ planner: Page }>({
   /** A page at /plan/ with a plan already loaded and the catalog settled. */
-  planner: async ({ page }, use) => {
+  planner: async ({ page, colorScheme }, use) => {
     await page.addInitScript(
-      ([key, plan]) => {
+      ([key, plan, theme]) => {
         window.localStorage.setItem(key as string, plan as string);
         // Pin the theme so a runner's system preference cannot change what
-        // the contrast checks are measuring.
-        window.localStorage.setItem("lionsdegree-theme", "light");
+        // the contrast checks are measuring. The `desktop-dark` project sets
+        // `theme` to "dark" instead, so the dark rules are exercised against
+        // a known target rather than whatever the machine happens to prefer.
+        window.localStorage.setItem("lionsdegree-theme", theme as string);
       },
-      [PLAN_KEY, JSON.stringify(SEEDED_PLAN)] as const,
+      [PLAN_KEY, JSON.stringify(SEEDED_PLAN), colorScheme === "dark" ? "dark" : "light"] as const,
     );
     await page.goto("/plan/");
     // The store loads the catalog before the plan renders.

@@ -10,7 +10,7 @@ import {
 } from "@psu-planner/engine";
 import { loadFullCatalog, loadProgramBySlug } from "../data/catalogClient";
 import { usePlanner } from "../store";
-import { useDialog } from "../hooks/useDialog";
+import { Dialog } from "./Dialog";
 
 const GENED_KEYS = new Set(GENED_BUCKETS.map((b) => b.key));
 
@@ -151,9 +151,6 @@ function SlotSuggestions({ item, onFill }: { item: PlanItem; onFill: (code: stri
 export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => void }) {
   const { plan, catalog, sched, mutatePlan, markCompleted, refreshCatalog, swapAlternative, removeItem } = usePlanner();
 
-  // Escape, focus-in, focus-trap and focus-restore all come from one place
-  // so every dialog behaves the same (see hooks/useDialog).
-  const dialogRef = useDialog<HTMLDivElement>(onClose);
 
   const c = item.code ? catalog[item.code] : undefined;
   const chk = useMemo(
@@ -165,8 +162,7 @@ export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => 
 
   if (item.kind === "slot") {
     return (
-      <div className="overlay" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-        <div ref={dialogRef} className="modal" role="dialog" aria-modal="true" aria-label="Open slot details">
+      <Dialog label="Open slot details" onClose={onClose}>
           <h2>{item.slot} — open slot</h2>
           <div className="sub">{item.slotLabel ?? "Requirement"} · {item.credits ?? "?"} credits</div>
           <SlotSuggestions
@@ -190,8 +186,7 @@ export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => 
             </button>
             <button onClick={onClose}>Close</button>
           </div>
-        </div>
-      </div>
+      </Dialog>
     );
   }
 
@@ -214,8 +209,7 @@ export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => 
   const seen = new Set<string>();
 
   return (
-    <div className="overlay" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-      <div ref={dialogRef} className="modal" role="dialog" aria-modal="true" aria-label={`Course details ${item.code ?? ""}`}>
+    <Dialog label={`Course details ${item.code ?? ""}`} onClose={onClose}>
         <h2>{c?.display ?? item.code}</h2>
         <div className="sub">{c?.title} · {c?.credits}</div>
         <div className={`status ${stCls}`}>{stTxt}</div>
@@ -392,7 +386,6 @@ export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => 
           )}
           <button onClick={onClose}>Close</button>
         </div>
-      </div>
-    </div>
+    </Dialog>
   );
 }

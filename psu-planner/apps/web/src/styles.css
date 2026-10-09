@@ -18,6 +18,10 @@
   --fs-xs: 11.5px; --fs-sm: 13px; --fs-base: 14px; --fs-md: 16px;
   --fs-lg: 20px; --fs-xl: 26px; --fs-2xl: 34px;
   --track-tight: -0.02em; --track-label: 0.08em;
+  /* Course codes only. The mono face sets slightly wide for its size next to
+     the sans, and this pulls it back; it was repeated as a raw -0.01em at
+     each of the three places a code is rendered. */
+  --track-code: -0.01em;
 
   /* ---- spacing (4px grid) & shape ---- */
   --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-6: 24px; --sp-8: 32px;
@@ -229,7 +233,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   cursor: pointer; user-select: none; overflow: hidden;
   transition: box-shadow .15s var(--ease-out), transform .15s var(--ease-out), border-color .15s var(--ease-out);
 }
-.card .code { font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-sm); color: var(--text); display: flex; align-items: center; gap: 7px; letter-spacing: -0.01em; }
+.card .code { font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-sm); color: var(--text); display: flex; align-items: center; gap: 7px; letter-spacing: var(--track-code); }
 .card .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--surface); border: 3px solid var(--text-muted); flex: none; box-sizing: border-box; }
 .card .title { font-size: var(--fs-xs); color: var(--text); font-weight: 600; margin-top: 4px; max-height: 32px; overflow: hidden; line-height: 1.35; }
 .card .cr { font-size: var(--fs-xs); color: var(--text-muted); margin-top: 4px; }
@@ -387,13 +391,17 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 .listview .lv-main { flex: 1; min-width: 240px; }
 .listview .lv-status { color: var(--text-muted); font-size: var(--fs-xs); }
 .listview .lv-status.bad { color: var(--danger); font-weight: 700; }
-/* Completed reads quieter than everything else: it is settled, not a thing
-   needing attention. The word carries the meaning -- the colour only
-   reinforces it, so this stays legible with no colour vision at all. */
-.listview .lv-status.done { color: var(--text-muted); font-style: italic; }
+/* Completed is SETTLED, not muted. The first version set --text-muted, which
+   is what .lv-status already uses, so the class distinguished nothing; and it
+   set font-style: italic, which this family has no italic cut for, so the
+   browser synthesised an oblique of the one face the type rules allow. Full
+   --text against --surface is the strongest pair in the palette and reads as
+   resolved rather than pending. The WORD carries the meaning regardless. */
+.listview .lv-status.done { color: var(--text); font-weight: 600; }
 /* Monospace is for course codes and nothing else (see the type note at the
    top of this file), which is why the code is its own element. */
-.listview .lv-code { font-family: var(--font-mono); letter-spacing: -0.01em; }
+.listview .lv-code { font-family: var(--font-mono); letter-spacing: var(--track-code); }
+.listview .lv-term-actions { max-width: 860px; margin: 0 auto 18px; display: flex; gap: 6px; }
 .listview .lv-actions { display: flex; gap: 6px; }
 .listview .lv-actions button { font-size: var(--fs-xs); padding: 4px 9px; }
 .listview .lv-empty { color: var(--text-muted); border-style: dashed; }

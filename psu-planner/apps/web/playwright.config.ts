@@ -30,6 +30,11 @@ export default defineConfig({
     // A real phone profile, because "most first visits are mobile" is the
     // reason the launch gate exists.
     { name: "mobile", use: { ...devices["Pixel 7"] } },
+    // Dark is not a variant, it is half the product: this palette was retuned
+    // for it (navy is unusable in dark at 1.42:1). The other two projects pin
+    // the theme to light so contrast assertions measure a known target, which
+    // left every dark rule unexercised by the browser suite.
+    { name: "desktop-dark", use: { ...devices["Desktop Chrome"], colorScheme: "dark" } },
   ],
   webServer: {
     // --host 127.0.0.1 is load-bearing: vite preview otherwise binds [::1]

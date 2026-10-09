@@ -22,7 +22,7 @@ import { useEffect, useRef } from "react";
  * removed from the tab ring. `:not([tabindex="-1"])` matters: a scroll
  * container given tabindex="-1" is focusable by script but is not a tab stop,
  * and treating it as one puts an invisible stop at the top of the dialog. */
-const FOCUSABLE = [
+export const FOCUSABLE = [
   "a[href]",
   "button:not([disabled])",
   "input:not([disabled])",
@@ -64,6 +64,16 @@ export function useDialog<T extends HTMLElement = HTMLDivElement>(onClose: () =>
 
     // Prefer an element that asks for focus; otherwise the first tab stop;
     // otherwise the dialog itself, so focus is at least inside it.
+    // Hide the rest of the page from assistive technology while the dialog is
+    // up. The focus trap stops TAB from leaving, but a screen reader's virtual
+    // cursor is not a tab ring and would happily read the plan behind an open
+    // dialog as though it were still the subject.
+    const siblings = [...document.body.children].filter(
+      (el) => el !== node.parentElement && !el.contains(node),
+    ) as HTMLElement[];
+    const hidden = siblings.filter((el) => el.getAttribute("aria-hidden") !== "true");
+    for (const el of hidden) el.setAttribute("aria-hidden", "true");
+
     const initial =
       node.querySelector<HTMLElement>("[data-autofocus]") ?? focusable(node)[0] ?? node;
     if (initial === node && !node.hasAttribute("tabindex")) node.setAttribute("tabindex", "-1");
@@ -71,7 +81,12 @@ export function useDialog<T extends HTMLElement = HTMLDivElement>(onClose: () =>
 
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        e.stopPropagation();
+        // stopIMMEDIATEPropagation, not stopPropagation. Every dialog listens
+        // on `document` itself, and stopPropagation only blocks nodes DEEPER
+        // in the tree -- sibling listeners already attached to document still
+        // fire, so one Escape would close a stacked dialog and the one behind
+        // it in the same keystroke.
+        e.stopImmediatePropagation();
         close.current();
         return;
       }
@@ -107,6 +122,7 @@ export function useDialog<T extends HTMLElement = HTMLDivElement>(onClose: () =>
     document.addEventListener("keydown", onKey, true);
     return () => {
       document.removeEventListener("keydown", onKey, true);
+      for (const el of hidden) el.removeAttribute("aria-hidden");
       // Only restore if the opener is still on the page and focus has not
       // already been deliberately placed somewhere else. Forcing it would
       // yank focus back from whatever the closing action opened next.
