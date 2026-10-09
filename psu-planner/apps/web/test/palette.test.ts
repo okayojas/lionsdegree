@@ -56,6 +56,12 @@ const PAIRS: [string, string, string][] = [
   ["--text", "--surface", "body text on a card"],
   ["--text-muted", "--bg", "secondary text on the page"],
   ["--text-muted", "--surface", "secondary text on a card"],
+  // --surface-2 is inputs and raised chrome: the side-panel tabs, the search
+  // field. It was missing from this list, and the dark pair measured 4.12:1 --
+  // below AA, and only caught later by axe in the browser suite. A token
+  // checked against two of the three surfaces it actually sits on is a
+  // partial check that reads like a complete one.
+  ["--text-muted", "--surface-2", "secondary text on an input or a raised tab"],
   ["--primary", "--bg", "accent on the page"],
   ["--primary", "--surface", "accent on a card"],
   ["--primary-fg", "--primary", "label on an accent fill"],

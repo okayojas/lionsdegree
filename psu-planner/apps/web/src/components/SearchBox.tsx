@@ -57,7 +57,10 @@ export function SearchBox({ onPick }: { onPick: (course: Course) => void }) {
         value={q}
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => { void ensureFull(); if (q.trim()) setShow(true); }}
-        style={{ width: 330 }}
+        // Width lives in the stylesheet (`.searchbox input`), not here. As an
+        // inline style it beat every rule including the phone one, so the
+        // field stayed 330px wide inside an 18px box and pushed the document
+        // 100px sideways.
       />
       <div className={`search-results${show ? " show" : ""}`}>
         {q.trim() && hits.length === 0 && (
