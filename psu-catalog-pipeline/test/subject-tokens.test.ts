@@ -7,7 +7,7 @@
  * English is the hard part, and every case below is a row that actually
  * regressed while this was being got right. */
 import { describe, it, expect } from "vitest";
-import { parseLevelSubjects } from "../src/parse/programRequirements.js";
+import { classifyComment, parseLevelSubjects } from "../src/parse/programRequirements.js";
 
 const subjectsOf = (prose: string) => parseLevelSubjects(prose)?.subjects ?? null;
 
@@ -53,5 +53,30 @@ describe("the token is a live regex", () => {
    * trusting that the source reads correctly. */
   it("matches the two-word form at all", () => {
     expect(subjectsOf("400 level PL SC courses")).not.toEqual(["PL"]);
+  });
+});
+
+describe("a list header without a count", () => {
+  /** The count used to be optional and default to 1. That turns "Students
+   * must take the following:" -- an all-required list -- into "choose one",
+   * under-requiring the student by every other course in it, and it lands in
+   * the structured output rather than needsReview, so nothing flags it. */
+  it("is sent for review rather than guessed at", () => {
+    expect(classifyComment("Students must take the following:").type).toBe("unstructured");
+    expect(classifyComment("Choose from the following:").type).toBe("unstructured");
+  });
+
+  it("still reads a header that does state a count", () => {
+    expect(classifyComment("Select one of the following:")).toMatchObject({ type: "chooseN", n: 1 });
+    expect(classifyComment("Select 3 of the following:")).toMatchObject({ type: "chooseN", n: 3 });
+  });
+
+  it("takes the count from the LAST verb, not the first", () => {
+    // "If you take SPAN 253W, select two of the following" anchored on the
+    // "take" and captured no count, so a two-course choice recorded as one.
+    expect(classifyComment("If you take SPAN 253W, select two of the following:")).toMatchObject({
+      type: "chooseN",
+      n: 2,
+    });
   });
 });

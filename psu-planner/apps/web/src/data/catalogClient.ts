@@ -18,10 +18,19 @@ export interface EditionsIndex {
 
 export async function loadEditions(): Promise<EditionsIndex> {
   if (!editionsPromise) {
-    editionsPromise = fetch(`${ROOT}/editions.json`).then((r) => {
-      if (!r.ok) throw new Error(`editions.json missing (${r.status})`);
-      return r.json() as Promise<EditionsIndex>;
-    });
+    editionsPromise = fetch(`${ROOT}/editions.json`)
+      .then((r) => {
+        if (!r.ok) throw new Error(`editions.json missing (${r.status})`);
+        return r.json() as Promise<EditionsIndex>;
+      })
+      // Drop the memo on failure, as loadFullCatalog does. Keeping a rejected
+      // promise cached makes one flaky fetch permanent for the session: every
+      // later call to base() rejects too, so every catalog read fails and
+      // even "Start over" cannot recover.
+      .catch((e) => {
+        editionsPromise = null;
+        throw e;
+      });
   }
   return editionsPromise;
 }

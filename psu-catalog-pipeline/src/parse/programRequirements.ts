@@ -246,11 +246,20 @@ export function classifyComment(text: string): Rule {
   // course. Today's catalog says "select one" throughout, so nothing was
   // wrong yet -- a row saying "select two" would have under-credited a
   // student by a whole course.
-  const conditional = /^.*\b(?:select|choose|take)\s+(one|two|three|four|five|six|\d+)?[^.]*?\bfollowing(?:\s+courses?)?\s*:$/i.exec(text);
+  // The count is REQUIRED. It used to be optional and default to 1, which
+  // reads "Students must take the following:" -- an all-required list -- as
+  // "choose one" and under-requires the student by every other course in it.
+  // Worse, the guess landed in the structured output rather than needsReview,
+  // so the misread was silent. An uncounted row falls through to
+  // `unstructured` and gets looked at by a human (iron rule 2). No row in
+  // either shipped edition relies on the old default.
+  const conditional = /^.*\b(?:select|choose|take)\s+(one|two|three|four|five|six|\d+)\b[^.]*?\bfollowing(?:\s+courses?)?\s*:$/i.exec(text);
   if (conditional) {
-    const word = conditional[1]?.toLowerCase();
-    const n = word ? (WORD_NUMS[word] ?? parseInt(word, 10)) : 1;
-    return { type: "chooseN", n: Number.isFinite(n) && n > 0 ? n : 1, options: [], credits: null, commentRaw: text };
+    const word = conditional[1].toLowerCase();
+    const n = WORD_NUMS[word] ?? parseInt(word, 10);
+    if (Number.isFinite(n) && n > 0) {
+      return { type: "chooseN", n, options: [], credits: null, commentRaw: text };
+    }
   }
 
   return { type: "unstructured", commentRaw: text };

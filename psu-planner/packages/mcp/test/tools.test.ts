@@ -5,6 +5,7 @@
  * behaviour. Everything here is about what a student's assistant is told. */
 import { describe, it, expect, beforeAll } from "vitest";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { executeTool, listTools, loadContext, type ToolContext } from "../src/tools.js";
@@ -144,5 +145,42 @@ describe("it needs nothing from the network", () => {
     expect(fs.existsSync(path.join(CATALOG, "editions.json"))).toBe(true);
     const src = fs.readFileSync(path.resolve(here, "..", "src", "tools.ts"), "utf-8");
     expect(src).not.toMatch(/\bfetch\s*\(|https?:\/\/(?!bulletins)/);
+  });
+});
+
+describe("a catalog it cannot read", () => {
+  /** The old reader swallowed every error and returned an empty catalog, so
+   * the server started cleanly and then answered "MATH 141 is not in the
+   * 2025-2026 catalog" for every course. A confident wrong answer is the one
+   * outcome this package is built to avoid (iron rule 2). */
+  /** A catalog root holding only the edition the fixture plan pins, so the
+   * server gets past the "this build has no such bulletin" check and reaches
+   * the reader -- which is what these tests are about. */
+  const ED = (JSON.parse(fs.readFileSync(planPath, "utf-8")).plan.edition ?? "2026-2027") as string;
+  const scratch = () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), "lionsdegree-cat-"));
+    fs.mkdirSync(path.join(root, ED));
+    fs.writeFileSync(path.join(root, "editions.json"), JSON.stringify({ editions: [ED], latest: ED }));
+    return root;
+  };
+
+  it("refuses to start when the course index is missing", async () => {
+    const root = scratch();
+    fs.writeFileSync(path.join(root, ED, "program-requirements.json"), JSON.stringify({ a: {} }));
+    await expect(loadContext({ planPath, catalogRoot: root })).rejects.toThrow(/course index/i);
+  });
+
+  it("refuses to start when the course index is present but empty", async () => {
+    const root = scratch();
+    fs.writeFileSync(path.join(root, ED, "search-index.json"), "[]");
+    fs.writeFileSync(path.join(root, ED, "program-requirements.json"), JSON.stringify({ a: {} }));
+    // Parsed-but-empty is the same failure wearing a different hat.
+    await expect(loadContext({ planPath, catalogRoot: root })).rejects.toThrow(/empty/i);
+  });
+
+  it("says how to fix it", async () => {
+    const root = scratch();
+    fs.writeFileSync(path.join(root, ED, "search-index.json"), "{ not json");
+    await expect(loadContext({ planPath, catalogRoot: root })).rejects.toThrow(/sync-catalog/);
   });
 });

@@ -35,6 +35,8 @@ export interface EditionCatalog {
   coveredBy: Record<string, string[]>;
 }
 
+/** For files the server can do without: coverage (no substitute matching) and
+ * the programs index (no program listing). Courses still answer. */
 const read = <T,>(file: string, fallback: T): T => {
   try {
     return JSON.parse(fs.readFileSync(file, "utf-8")) as T;
@@ -42,6 +44,34 @@ const read = <T,>(file: string, fallback: T): T => {
     return fallback;
   }
 };
+
+/** For files the server CANNOT do without.
+ *
+ * Falling back to `[]` here produced the worst available outcome: the server
+ * started cleanly and then answered "MATH 141 is not in the 2025-2026
+ * catalog" for every course an assistant asked about. That is a confident
+ * wrong answer, which this package exists to refuse (iron rule 2) -- and it
+ * is reachable, because sync-catalog skips an edition whose source files are
+ * missing while still listing it in editions.json. Refusing to start names
+ * the real problem instead. */
+function readRequired<T>(file: string, label: string, isUsable: (v: T) => boolean): T {
+  let parsed: T;
+  try {
+    parsed = JSON.parse(fs.readFileSync(file, "utf-8")) as T;
+  } catch (e) {
+    throw new Error(
+      `${label} could not be read from ${file} (${e instanceof Error ? e.message : String(e)}). ` +
+        `Re-run \`node scripts/sync-catalog.mjs\` to rebuild this server's catalog.`,
+    );
+  }
+  if (!isUsable(parsed)) {
+    // Parsed but empty is the same failure wearing a different hat.
+    throw new Error(
+      `${label} at ${file} is empty. Re-run \`node scripts/sync-catalog.mjs\` to rebuild this server's catalog.`,
+    );
+  }
+  return parsed;
+}
 
 export function publishedEditions(catalogRoot: string): string[] {
   const index = path.join(catalogRoot, "editions.json");
@@ -66,12 +96,18 @@ export function loadEdition(catalogRoot: string, edition: string): EditionCatalo
         `It has: ${publishedEditions(catalogRoot).join(", ") || "none"}.`,
     );
   }
-  const courses = hydrateSearchIndex(read<unknown[]>(path.join(dir, "search-index.json"), []));
+  const courses = hydrateSearchIndex(
+    readRequired<unknown[]>(path.join(dir, "search-index.json"), `The ${edition} course index`, (v) => Array.isArray(v) && v.length > 0),
+  );
   const coverage = read<{ coveredBy?: Record<string, { by: string }[]> }>(path.join(dir, "coverage.json"), {});
   return {
     edition,
     catalog: buildCatalog(courses),
-    programs: read(path.join(dir, "program-requirements.json"), {} as Record<string, ProgramRequirements>),
+    programs: readRequired<Record<string, ProgramRequirements>>(
+      path.join(dir, "program-requirements.json"),
+      `The ${edition} program requirements`,
+      (v) => !!v && typeof v === "object" && Object.keys(v).length > 0,
+    ),
     programsIndex: read<ProgramIndexEntry[]>(path.join(dir, "programs_index.json"), []),
     coveredBy: Object.fromEntries(
       Object.entries(coverage.coveredBy ?? {}).map(([k, v]) => [k, v.map((x) => x.by)]),

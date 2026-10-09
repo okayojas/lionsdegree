@@ -190,24 +190,28 @@ async function main() {
   // waited a flat 1200ms per card and wrote whatever it happened to have --
   // 37 of 45 on one run, silently dropping Spanish, French, German, Chinese
   // and Physics 2. Fail rather than write a partial table.
-  if (payloads.size < seen.size) {
-    const unmatched = [...seen].filter((t) => !payloads.has(t));
+  const cardOnly = [...seen].filter((t) => !payloads.has(t));
+  const payloadOnly = [...payloads.keys()].filter((n) => !seen.has(n));
+
+  // MEMBERSHIP, not counts. Comparing payloads.size < seen.size let the exact
+  // failure this guard exists for slip through: one card goes unmatched while
+  // an extra payload arrives under a different name, the sizes tie, and a
+  // partial table is written with nothing but a console NOTE. A card that
+  // produced no payload is lost data however the totals happen to land.
+  if (cardOnly.length) {
     throw new Error(
       `AP capture incomplete: ${payloads.size} payloads for ${seen.size} cards after 3 attempts ` +
-        `(no payload for: ${unmatched.join(", ")}). Refusing to write a partial ap_credits.json.`,
+        `(no payload for: ${cardOnly.join(", ")}). Refusing to write a partial ap_credits.json.`,
     );
   }
 
-  // Equal counts but differing names: the card's heading and the payload's
-  // examName disagree for some exam. Every card produced a payload, so no data
-  // was lost -- but say so, because it means one exam is filed under a name the
-  // listing does not use.
-  const cardOnly = [...seen].filter((t) => !payloads.has(t));
-  const payloadOnly = [...payloads.keys()].filter((n) => !seen.has(n));
-  if (cardOnly.length || payloadOnly.length) {
+  // Every card produced a payload, so nothing was lost -- but a payload whose
+  // examName is not a card heading means that exam is filed under a name the
+  // listing does not use, which is worth saying out loud.
+  if (payloadOnly.length) {
     console.log(
-      `[ap] NOTE: card/payload name mismatch -- card heading(s) [${cardOnly.join(", ")}] ` +
-        `vs payload examName(s) [${payloadOnly.join(", ")}]. Payload names are authoritative.`,
+      `[ap] NOTE: payload examName(s) [${payloadOnly.join(", ")}] are not card headings. ` +
+        `Payload names are authoritative.`,
     );
   }
 

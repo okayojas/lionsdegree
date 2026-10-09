@@ -124,7 +124,13 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
       // The search index holds a shortened description; a request for the
       // DETAILS of one course is exactly the on-demand case that should read
       // the full text from its subject file.
-      const c = (await loadCourse(code)) ?? cat[code];
+      // loadCourse THROWS on a non-OK response (it only returns null when the
+      // subject is absent from the index), so `??` alone does not cover a 404
+      // or a dropped connection. The already-loaded catalog answers the
+      // question less fully but correctly; failing the whole tool call because
+      // one subject file was unreachable is the worse trade.
+      const fetched = await loadCourse(code).catch(() => null);
+      const c = fetched ?? cat[code];
       if (!c) return { error: `${args.code} is not in the PSU catalog` };
       return {
         code: c.code, display: c.display, title: c.title, credits: c.credits,

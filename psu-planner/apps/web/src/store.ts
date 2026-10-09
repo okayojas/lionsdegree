@@ -26,6 +26,12 @@ interface PlannerState {
   /** Directional coverage map (MATH 250 -> [MATH 251]) for substitute-aware completion. */
   coverage: Record<string, string[]>;
   loading: boolean;
+  /** Why loading a plan failed, if it did. `loading` alone cannot express
+   * this: setPlan used to set it true and clear it only on the happy path, so
+   * any throw in between (a failed editions.json, a dropped catalog fetch)
+   * left the app on "Loading your plan…" forever with the student's work
+   * still on disk and no way to reach it. */
+  loadError: string | null;
   /** One-shot note about generation-time prereq repairs, shown as a toast. */
   repairNote: string | null;
   clearRepairNote: () => void;
@@ -159,6 +165,7 @@ export const usePlanner = create<PlannerState>((set, get) => ({
   sched: {},
   coverage: {},
   loading: false,
+  loadError: null,
   repairNote: null,
   clearRepairNote: () => set({ repairNote: null }),
 
@@ -173,7 +180,8 @@ export const usePlanner = create<PlannerState>((set, get) => ({
       set({ plan: null, items: [], sched: {}, loading: false });
       return;
     }
-    set({ plan, loading: true });
+    set({ plan, loading: true, loadError: null });
+    try {
     // Point the catalog at THIS plan's edition before anything reads a course.
     // A plan generated against 2025-2026 must keep being audited against
     // 2025-2026; serving it the newest edition would silently re-plan it
@@ -237,6 +245,15 @@ export const usePlanner = create<PlannerState>((set, get) => ({
       plan, catalog, ...recompute(plan, catalog), loading: false,
       repairNote: notes.length ? `Optimized your schedule: ${notes.join("; ")}.` : null,
     });
+    } catch (e) {
+      // The plan itself is untouched on disk. Clearing `loading` and saying
+      // what happened lets the student retry; leaving it set stranded them on
+      // a spinner with their work inaccessible.
+      set({
+        loading: false,
+        loadError: e instanceof Error ? e.message : "Could not load the catalog for this plan.",
+      });
+    }
   },
 
   optimizeNow: async (targetSemesters?: number) => {

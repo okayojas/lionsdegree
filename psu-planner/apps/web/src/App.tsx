@@ -15,7 +15,7 @@ import { LegalModal } from "./components/LegalModal";
 import { AccountMenu } from "./components/AccountMenu";
 
 export default function App() {
-  const { plan, catalog, items, setPlan, mutatePlan, markCompleted, restoreItem, refreshCatalog, loading, repairNote, clearRepairNote } = usePlanner();
+  const { plan, catalog, items, setPlan, mutatePlan, markCompleted, restoreItem, refreshCatalog, loading, loadError, repairNote, clearRepairNote } = usePlanner();
   const [showRemoved, setShowRemoved] = useState(false);
   const [showImport, setShowImport] = useState(false);
   const [showLegal, setShowLegal] = useState(false);
@@ -88,6 +88,20 @@ export default function App() {
   }, [toast]);
 
   if (!booted || loading) return <div className="loading">Loading your plan…</div>;
+  // A failed catalog fetch used to leave the spinner up forever. The plan is
+  // still safe in local storage, so offer the retry rather than implying the
+  // work is gone.
+  if (loadError) {
+    const saved = loadSavedPlan();
+    return (
+      <div className="loading" role="alert">
+        <p>Couldn't load the course catalog for your plan.</p>
+        <p className="muted">{loadError}</p>
+        <p className="muted">Your plan is saved — this is a problem reaching the catalog, not with your plan.</p>
+        <button type="button" onClick={() => { void setPlan(saved); }}>Try again</button>
+      </div>
+    );
+  }
   if (!plan) return <Onboarding />;
 
   const { done, total } = progress(plan, items, catalog);
@@ -101,9 +115,14 @@ export default function App() {
     // shortened to what matching needs. This card shows a student prose about
     // one course, so read the full text from its subject file first.
     setPickedCourse(c);
-    void loadCourse(c.code).then((fullCourse) => {
-      if (fullCourse) setPickedCourse((cur) => (cur?.code === c.code ? fullCourse : cur));
-    });
+    // Upgrading to the full description is a nicety; the card already shows
+    // the search-index version. A failed subject fetch must not become an
+    // unhandled rejection, so it just leaves the shorter text in place.
+    void loadCourse(c.code)
+      .then((fullCourse) => {
+        if (fullCourse) setPickedCourse((cur) => (cur?.code === c.code ? fullCourse : cur));
+      })
+      .catch(() => {});
   };
 
   const addPicked = async (sem: number) => {

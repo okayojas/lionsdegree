@@ -26,8 +26,19 @@ const editions = fs
   .map((e) => e.name)
   .sort();
 
+// An edition is unusable without these two. Listing it in editions.json
+// anyway shipped a server that started fine and then told every student
+// their courses do not exist.
+const REQUIRED = ["search-index.json", "program-requirements.json"];
+
 let total = 0;
+const usable = [];
 for (const ed of editions) {
+  const missing = REQUIRED.filter((f) => !fs.existsSync(path.join(SRC, ed, f)));
+  if (missing.length) {
+    console.warn(`skipping ${ed}: missing ${missing.join(", ")} — run the pipeline for this edition first`);
+    continue;
+  }
   fs.mkdirSync(path.join(DST, ed), { recursive: true });
   for (const f of FILES) {
     const from = path.join(SRC, ed, f);
@@ -35,10 +46,15 @@ for (const ed of editions) {
     fs.copyFileSync(from, path.join(DST, ed, f));
     total += fs.statSync(from).size;
   }
+  usable.push(ed);
+}
+if (!usable.length) {
+  console.error("no usable edition found — refusing to write an editions.json that promises catalogs this server does not have");
+  process.exit(1);
 }
 fs.writeFileSync(
   path.join(DST, "editions.json"),
-  JSON.stringify({ editions, latest: editions[editions.length - 1] }),
+  JSON.stringify({ editions: usable, latest: usable[usable.length - 1] }),
   "utf-8",
 );
-console.log(`bundled ${editions.length} edition(s): ${editions.join(", ")} — ${(total / 1048576).toFixed(1)} MB`);
+console.log(`bundled ${usable.length} edition(s): ${usable.join(", ")} — ${(total / 1048576).toFixed(1)} MB`);
