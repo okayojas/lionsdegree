@@ -49,6 +49,18 @@ test.describe("with JavaScript turned off", () => {
     const size = await disclaim.evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
     expect(size, `the disclaimer renders at ${size}px`).toBeGreaterThanOrEqual(13);
   });
+
+  test("the disclaimer is readable on a phone without scrolling", async ({ page }) => {
+    // Adopting Penn State's own colours strengthens the association, so a
+    // student has to meet the statement that this is not Penn State before
+    // they meet anything else. In the footer it is true but unread.
+    await page.setViewportSize({ width: 375, height: 760 });
+    await page.goto("/");
+    const box = await page.getByText(/Not affiliated with or endorsed by/i).first().boundingBox();
+    expect(box, "no above-the-fold disclaimer found").not.toBeNull();
+    expect(box!.y + box!.height, `the disclaimer starts ${Math.round(box!.y)}px down a 760px screen`)
+      .toBeLessThanOrEqual(760);
+  });
 });
 
 test.describe("the hero route", () => {
@@ -123,10 +135,15 @@ test.describe("the landing page is usable", () => {
 
   test("reaches the planner by keyboard", async ({ page }) => {
     await page.goto("/");
-    await page.keyboard.press("Tab"); // skip link
     await page.keyboard.press("Tab");
+    // First stop is the skip link, and it has to say so.
+    const skip = await page.evaluate(() => (document.activeElement as HTMLElement)?.textContent?.trim());
+    expect(skip).toMatch(/skip/i);
+
+    await page.keyboard.press("Tab");
+    // Second stop is the primary action. An earlier version accepted any of
+    // three hrefs including the skip link's own target, so it could not fail.
     const href = await page.evaluate(() => (document.activeElement as HTMLAnchorElement)?.getAttribute("href"));
-    // The first real stop after the skip link is the primary action.
-    expect(["/plan/", "#ai", "#start"]).toContain(href);
+    expect(href, "the planner is not the first action a keyboard user reaches").toBe("/plan/");
   });
 });

@@ -3,16 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LionsDegree — prerequisite-aware degree planning for Penn State</title>
+    <title>LionsDegree: prerequisite-aware degree planning for Penn State</title>
     <meta
       name="description"
-      content="Pick your majors, minors and certificates; LionsDegree builds a semester-by-semester plan that respects every prerequisite. Unofficial, not affiliated with Penn State."
+      content="Pick your majors, minors and certificates; LionsDegree builds a term-by-term plan that respects every prerequisite. Unofficial, not affiliated with Penn State."
     />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f1ebdf" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2b2a27" />
-    <link rel="canonical" href="https://lionsdegree.com/" />
+    <link rel="canonical" href="%SITE_URL%/" />
 
     <!-- A student shares this in a group chat, and the previewer does not run
          JavaScript. Everything a preview card needs is static markup, which is
@@ -20,23 +20,23 @@
          previewer resolves these from its own host, not from ours. -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="LionsDegree" />
-    <meta property="og:url" content="https://lionsdegree.com/" />
-    <meta property="og:title" content="LionsDegree — your degree as a route map" />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <meta property="og:title" content="LionsDegree: your degree as a route map" />
     <meta
       property="og:description"
-      content="Pick your majors, minors and certificates. Get a semester-by-semester plan that holds every prerequisite, and see what breaks when you move a course."
+      content="Pick your majors, minors and certificates. Get a term-by-term plan that holds every prerequisite, and see what breaks when you move a course."
     />
-    <meta property="og:image" content="https://lionsdegree.com/og.png" />
+    <meta property="og:image" content="%SITE_URL%/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="A prerequisite chain drawn as a transit route: MATH 140 to MATH 141 to MATH 230." />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="LionsDegree — your degree as a route map" />
+    <meta name="twitter:title" content="LionsDegree: your degree as a route map" />
     <meta
       name="twitter:description"
-      content="Pick your majors, minors and certificates. Get a semester-by-semester plan that holds every prerequisite, and see what breaks when you move a course."
+      content="Pick your majors, minors and certificates. Get a term-by-term plan that holds every prerequisite, and see what breaks when you move a course."
     />
-    <meta name="twitter:image" content="https://lionsdegree.com/og.png" />
+    <meta name="twitter:image" content="%SITE_URL%/og.png" />
 
     <link rel="stylesheet" href="/src/landing.css" />
   </head>
@@ -52,13 +52,17 @@
              builds it: a hollow station dot beside the name. Without it a
              visitor never saw what the thing is called outside the tab title. -->
         <p class="lp-mark"><i class="lp-dot" aria-hidden="true"></i>LionsDegree</p>
-        <p class="eyebrow">Unofficial · Penn State</p>
-        <h1>Your degree is a route.</h1>
+        <p class="eyebrow">Penn State degree planning</p>
+        <h1>Your degree is a route map. Now you can see it.</h1>
+        <!-- Above the fold on a phone, at body size. The footer carries the
+             full statement; this is the one a student cannot scroll past. -->
+        <p class="lp-unofficial">
+          <strong>Unofficial.</strong> Not affiliated with or endorsed by Penn State.
+        </p>
         <p class="lp-lede">
-          Stations are courses. Lines are prerequisites. Pick your majors, minors
-          and certificates, and LionsDegree lays out every semester between here
-          and graduation — holding every prerequisite, staying under the credit
-          cap, and telling you what breaks when you move something.
+          LionsDegree reads Penn State's Bulletin, works out what unlocks what,
+          and builds a four-year plan that actually holds. Drag a course and it
+          tells you what breaks.
         </p>
 
         <!-- Inline SVG, no script: the page has to read correctly with
@@ -68,15 +72,14 @@
         <figure class="lp-route" role="img"
                 aria-label="A prerequisite route: MATH 140 leads to MATH 141, which leads on to MATH 230 and branches to PHYS 211.">
           <svg viewBox="0 0 700 170" preserveAspectRatio="xMinYMid meet" focusable="false">
-            <path class="route-line" style="stroke: var(--primary)" d="M60 56 H250 H620" />
-            <path class="route-line" style="stroke: var(--route-b); animation-delay: 380ms" d="M250 56 Q430 56 430 128 H620" />
-            <circle class="route-stop" cx="60"  cy="56"  r="9" />
-            <circle class="route-stop" cx="250" cy="56"  r="9" style="animation-delay: 480ms" />
-            <circle class="route-stop" cx="620" cy="56"  r="9" style="animation-delay: 660ms" />
-            <circle class="route-stop" cx="620" cy="128" r="9" style="animation-delay: 840ms" />
+            <path class="route-line rl-a" d="M60 56 H250 H620" />
+            <path class="route-line rl-b" d="M250 56 Q430 56 430 128 H620" />
+            <circle class="route-stop s1" cx="60"  cy="56"  r="9" />
+            <circle class="route-stop s2" cx="250" cy="56"  r="9" />
+            <circle class="route-stop s3" cx="620" cy="56"  r="9" />
+            <circle class="route-stop s4" cx="620" cy="128" r="9" />
             <!-- Labels live INSIDE the svg, anchored to the station they name.
-                 A separate row of labels beneath could not stay aligned with
-                 the stops, and drifted the moment the viewBox changed. -->
+                 A separate row beneath could not stay aligned with the stops. -->
             <text class="lp-stn" x="60"  y="32"  text-anchor="middle">MATH 140</text>
             <text class="lp-stn" x="250" y="32"  text-anchor="middle">MATH 141</text>
             <text class="lp-stn" x="620" y="32"  text-anchor="middle">MATH 230</text>
@@ -97,7 +100,7 @@
         <h2>Pick your programs</h2>
         <p>
           Majors, minors and certificates, read from the Penn State bulletin
-          itself — 759 programs across every campus. Add a second major and the
+          itself: 759 programs across every campus. Add a second major and the
           plan folds it in, double-counting what genuinely double-counts.
         </p>
       </section>
@@ -105,10 +108,10 @@
       <section class="lp-stop" id="breaks">
         <h2>Move a course, see what breaks</h2>
         <p>
-          Drag <span class="code">CMPSC 465</span> a semester earlier and the
-          line to <span class="code">CMPSC 360</span> turns red, because you
-          cannot take it yet. Prerequisites are read from the catalog text and
-          evaluated against your plan, not assumed from the suggested sequence —
+          Drag <span class="code">CMPSC 465</span> a term earlier and the line
+          to <span class="code">CMPSC 360</span> turns red, because you cannot
+          take it yet. Prerequisites are read from the catalog text and
+          evaluated against your plan, not assumed from the suggested sequence,
           which is itself sometimes wrong.
         </p>
       </section>
@@ -117,7 +120,7 @@
         <h2>Bring your own AI</h2>
         <p>
           There is no chatbot to pay for here. Export your plan, point your own
-          assistant at it, and ask it anything — it reads the plan and the
+          assistant at it, and ask it anything. It reads the plan and the
           catalog locally, on your machine.
         </p>
         <pre class="lp-snippet" tabindex="0" role="region" aria-label="MCP configuration snippet"><code>{
@@ -129,8 +132,8 @@
   }
 }</code></pre>
         <p class="lp-small">
-          Claude Desktop reads <span class="code">claude_desktop_config.json</span>;
-          Claude Code reads <span class="code">.mcp.json</span>. Export your plan
+          Claude Desktop reads <span class="path">claude_desktop_config.json</span>;
+          Claude Code reads <span class="path">.mcp.json</span>. Export your plan
           first with <strong>Menu → Save plan to a file</strong>. It needs no
           account, no key and no network.
         </p>
@@ -140,12 +143,12 @@
         <h2>What it can't do</h2>
         <ul class="lp-limits">
           <li>
-            It does not know which semesters a course actually runs. Check
+            It does not know which terms a course actually runs. Check
             LionPATH before you rely on a plan.
           </li>
           <li>
-            Some requirements name no course list at all — the bulletin says to
-            ask your adviser. Those say so rather than guessing.
+            Some requirements name no course list at all, because the bulletin
+            says to ask your adviser. Those say so rather than guessing.
           </li>
           <li>
             Where the catalog could not be read cleanly, it says it could not be

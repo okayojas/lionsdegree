@@ -1,3 +1,11 @@
+/* The two faces this product sets, loaded HERE rather than per entry point.
+   --font-mono named JetBrains Mono while nothing shipped it, so the planner
+   -- where course codes overwhelmingly appear -- fell back to whatever the
+   operating system calls "monospace": Consolas on Windows, SF Mono on a Mac.
+   Every entry that uses the tokens below now gets the faces that back them. */
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/jetbrains-mono";
+
 /* =====================================================================
    LionsDegree — "Transit map" identity, muted edition.
    A degree as a subway map: station-dot stops, route-line connectors.

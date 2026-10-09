@@ -515,16 +515,34 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
 — "all over the place"). Kept the subway/route-map CONCEPT the user liked. Decisions:
 - **Muted palette.** LIGHT = warm cream (`--bg #f1ebdf`, cards `#faf5ea`) with warm soft-black ink —
   never stark white. DARK = muted slate-gray (`--bg #262a30`) with warm off-white text — never
-  near-black; the warm off-white ties the two themes together. ONE violet accent — **deep violet
-  `#6b3fa0` in light, soft lavender `#bfa9ea` in dark** (user pref, 2026-07-27; was transit-blue
-  `#37568c`); the green route (`--route-b`) stays as the complementary second line; status desaturated.
-- **Font:** self-hosted **Space Grotesk Variable** (`@fontsource-variable/space-grotesk`, imported in
-  main.tsx, bundled same-origin under CSP `font-src 'self'`) as the one UI face; mono still codes-only.
+  near-black; the warm off-white ties the two themes together. ONE accent taken from the LionsDegree logo — **Beaver Blue
+  `#1d417f` in light, a softened Pugh Blue `#8db6d8` in dark**, with the logo's navy `#041f46` as the
+  structural tone (#18, 2026-10; superseded the violet `#6b3fa0` / lavender `#bfa9ea`, which in turn
+  superseded transit-blue `#37568c`). The green route (`--route-b`) stays as the complementary second
+  line; status desaturated. Adopting Penn State's own colours is why the unaffiliated disclaimer
+  carries more weight than it otherwise would.
+- **Font:** self-hosted **Space Grotesk Variable** and **JetBrains Mono Variable**
+  (`@fontsource-variable/*`, imported in `styles.css` beside the tokens that name them, bundled
+  same-origin under CSP `font-src 'self'`). Space Grotesk is the one UI face; mono is codes and
+  literal machine text (see the amendment below).
 - **One unifying font.** Single sans (`--font-sans`) for ALL UI text and wayfinding labels (labels are
   uppercase + letter-spaced in that same sans, not a second face). Monospace reserved STRICTLY for
   course codes (`.card .code`, `.sr-code`) — the one deliberate, consistent exception. This is the fix
   for the incoherence complaint. (Distinctive display type still wants a self-hosted face later; CSP
   blocks web-font fetch, so treatment carries it for now.)
+  - **Amended 2026-10-09 (#14).** The rule above is about DECORATION: it exists so a second face
+    cannot be used for emphasis or flavour. It does not reach literal machine text. The landing page
+    carries an MCP config block and the filenames `claude_desktop_config.json` and `.mcp.json`, and
+    setting those in a proportional face would be worse, not more coherent — a reader has to be able
+    to tell a literal from prose around it. So: monospace is for **course codes and literal machine
+    text** (code blocks, config keys, filenames, CLI flags), and for nothing else. Still no second
+    face for emphasis, headings or labels.
+  - **Both faces load from `styles.css`, not from an entry point.** `--font-mono` named JetBrains Mono
+    for months while nothing shipped it, so the planner — where course codes overwhelmingly appear —
+    fell back to Consolas on Windows and SF Mono on a Mac. The faces now sit beside the tokens that
+    name them, so any entry that uses a token gets the face backing it. Both bundles are asserted in
+    `apps/web/test/build-output.test.ts`; the first version of that test read only the landing
+    stylesheet and passed green while the planner shipped no mono at all.
 - **Signature.** Station-dot nodes (hollow rings), route-line connectors (canvas edge hues), station-
   sign column headers, route progress with a "you are here" marker, and the animated route-drawing
   onboarding hero (major+minor lines converging — `Onboarding.tsx`).

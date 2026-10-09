@@ -218,26 +218,44 @@ describe("the monospace face", () => {
    * same everywhere. Naming a family that is not shipped means the code falls
    * back to whatever the operating system calls "monospace" -- Consolas on
    * Windows, SF Mono on a Mac -- so the same plan sets differently per
-   * student. */
-  it("is self-hosted rather than left to the operating system", () => {
-    const cssFile = fs
-      .readdirSync(path.join(dist, "assets"))
-      .find((f) => f.startsWith("landing-") && f.endsWith(".css"));
-    expect(cssFile, "no landing stylesheet in dist/assets").toBeTruthy();
-    const css = read(path.join("assets", cssFile!));
+   * student.
+   *
+   * BOTH bundles. The first version of this test read only the landing
+   * stylesheet and passed green while the PLANNER -- where course codes
+   * overwhelmingly appear -- shipped no mono face at all. A font check that
+   * covers one of the two places the font is used is a partial check that
+   * reads like a complete one. */
+  const bundles = () => {
+    const dir = path.join(dist, "assets");
+    const all = fs.readdirSync(dir).filter((f) => f.endsWith(".css"));
+    const landing = all.find((f) => f.startsWith("landing-"));
+    const planner = all.find((f) => f.startsWith("plan-"));
+    expect(landing, "no landing stylesheet in dist/assets").toBeTruthy();
+    expect(planner, "no planner stylesheet in dist/assets").toBeTruthy();
+    return { landing: landing!, planner: planner! };
+  };
 
-    const faces = [...css.matchAll(/@font-face\{([^}]*)\}/g)].map((m) => m[1]);
-    const mono = faces.filter((f) => /JetBrains Mono/i.test(f));
-    expect(mono.length, "no @font-face for the mono family").toBeGreaterThan(0);
-    // Each has to come from us. Vite inlines small faces as a data: URI and
-    // emits larger ones as files; both are self-hosted. What must never
-    // appear is a remote host, which would make the page depend on someone
-    // else's uptime and leak a request per visitor.
-    for (const f of mono) {
-      const url = (/url\(([^)]+)\)/.exec(f)?.[1] ?? "").replace(/^["']|["']$/g, "");
-      expect(url, `mono face loaded from a remote host: ${url}`).not.toMatch(/^https?:/);
-      if (url.startsWith("data:")) continue;
-      expect(exists(url.replace(/^\//, "")), `${url} is referenced by @font-face but not in dist`).toBe(true);
-    }
-  });
+  for (const which of ["landing", "planner"] as const) {
+    it(`is shipped with the ${which}, not left to the operating system`, () => {
+      const css = read(path.join("assets", bundles()[which]));
+
+      // It is named by the token...
+      expect(css, "--font-mono is not declared in this bundle").toMatch(/--font-mono:/);
+      // ...so the face it names has to be here too.
+      const faces = [...css.matchAll(/@font-face\{([^}]*)\}/g)].map((m) => m[1]);
+      const mono = faces.filter((f) => /JetBrains Mono/i.test(f));
+      expect(mono.length, `${which} names JetBrains Mono but ships no @font-face for it`).toBeGreaterThan(0);
+
+      // Each has to come from us. Vite inlines small faces as a data: URI and
+      // emits larger ones as files; both are self-hosted. What must never
+      // appear is a remote host, which would make the page depend on someone
+      // else's uptime and leak a request per visitor.
+      for (const f of mono) {
+        const url = (/url\(([^)]+)\)/.exec(f)?.[1] ?? "").replace(/^["']|["']$/g, "");
+        expect(url, `mono face loaded from a remote host: ${url}`).not.toMatch(/^https?:/);
+        if (url.startsWith("data:")) continue;
+        expect(exists(url.replace(/^\//, "")), `${url} is referenced by @font-face but not in dist`).toBe(true);
+      }
+    });
+  }
 });

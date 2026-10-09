@@ -4,28 +4,11 @@
  * they attach to. */
 import { test, expect, expectNoA11yViolations, SEEDED_PLAN } from "./fixtures.js";
 
-test.describe("the landing page", () => {
-  test("renders its content as a document", async ({ page }) => {
-    await page.goto("/");
-    // The h1 is the page's thesis, not the wordmark -- this asserted
-    // /LionsDegree/ back when the root was a placeholder whose only heading
-    // was the product name. The product is still named on the page; it is
-    // just not what the heading says.
-    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByText("LionsDegree").first()).toBeVisible();
-    await expect(page.getByRole("link", { name: /Open the planner/i }).first()).toBeVisible();
-  });
-
-  test("states that it is unaffiliated with Penn State", async ({ page }) => {
-    await page.goto("/");
-    await expect(page.getByText(/not affiliated with/i)).toBeVisible();
-  });
-
-  test("has no mechanically detectable accessibility violations", async ({ page }) => {
-    await page.goto("/");
-    await expectNoA11yViolations(page, "the landing page");
-  });
-});
+// The landing page's own tests live in landing.spec.ts, which covers all of
+// this and more (JavaScript off, reduced motion, the preview card). Keeping a
+// second copy here meant one a11y assertion ran twice per project and the two
+// files drifted: this one still asserted the placeholder's headline after the
+// real page shipped.
 
 test.describe("the planner, with a plan already loaded", () => {
   test("shows the seeded plan rather than onboarding", async ({ planner }) => {

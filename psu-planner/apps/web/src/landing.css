@@ -5,8 +5,12 @@
    That is the point: a visitor moving from here into the planner should feel
    no seam, and the surest way to get that is for both to be the SAME tokens,
    the same eyebrow, the same hollow station dot, the same route lines, the
-   same press-scale on a button, and the same reduced-motion block. Nothing
-   below introduces a colour, a size or a spacing value.
+   same press-scale on a button, and the same reduced-motion block. No COLOUR
+   and no spacing value is introduced here; every one resolves to a token.
+   Sizes are not all tokenised: the hero's type scale and the route diagram's
+   geometry are page-specific one-offs (a 700-unit viewBox, a 56px headline
+   ceiling) that no other surface shares, and minting tokens for values with a
+   single call site would be worse than the literals.
 
    What this file adds is one idea: the page IS a route. A line runs down the
    column and every section is a station on it. That is the product's own
@@ -14,14 +18,6 @@
    for the front door.
    ===================================================================== */
 @import "./styles.css";
-
-/* Self-hosted, so a course code sets identically on every machine. The mono
-   face was previously named in --font-mono but never shipped, which meant
-   codes fell back to whatever the operating system called "monospace" --
-   Consolas on Windows, SF Mono on a Mac, something else again on Linux. */
-@import "@fontsource/jetbrains-mono/400.css";
-@import "@fontsource/jetbrains-mono/600.css";
-@import "@fontsource-variable/space-grotesk";
 
 body.landing {
   /* The planner fills the viewport and manages its own scrolling; a document
@@ -43,10 +39,12 @@ body.landing {
   font-size: var(--fs-md); font-weight: 800; color: var(--navy);
   letter-spacing: var(--track-tight); margin: 0 0 var(--sp-6);
 }
-/* The same construction as .toolbar h1::before -- a ring, not a disc. */
+/* The same construction as .toolbar h1::before: a ring, not a disc, filled
+   with --surface. It said --bg here, which is a different colour and made the
+   claim in this comment false the moment it was written. */
 .lp-dot {
   width: 12px; height: 12px; border-radius: 50%;
-  background: var(--bg); border: 3.5px solid var(--primary);
+  background: var(--surface); border: 3.5px solid var(--primary);
   box-sizing: content-box; flex: none;
 }
 
@@ -59,6 +57,13 @@ body.landing {
   font-weight: 800;
   max-width: 14ch;
 }
+.lp-unofficial {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin: 0 0 var(--sp-4);
+}
+.lp-unofficial strong { color: var(--danger); font-weight: 700; }
+
 .lp-lede {
   font-size: var(--fs-md);
   line-height: 1.6;
@@ -86,9 +91,12 @@ body.landing {
   fill: var(--text-muted);
 }
 
-/* Monospace is for course codes and nothing else. This is the landing page's
-   only use of it, and it is the same rule the planner follows. */
-.landing .code {
+/* Course codes, and the literal machine text in the install section. Both are
+   monospace under the rule as amended for this page (DECISIONS 5.2): the ban
+   is on a second DECORATIVE face, and a config filename set in the body face
+   reads as prose rather than as something to be typed. */
+.landing .code,
+.landing .path {
   font-family: var(--font-mono);
   font-size: 0.94em;
   letter-spacing: var(--track-code);

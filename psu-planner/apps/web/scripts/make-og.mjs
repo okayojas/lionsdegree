@@ -97,8 +97,12 @@ try {
   await page.evaluate(() => document.fonts.ready);
   const out = path.join(web, "public", "og.png");
   await page.screenshot({ path: out, type: "png" });
+  // Also straight into dist/, so a deploy ships the card this run produced
+  // rather than whatever a previous build happened to copy across. public/ is
+  // the committed copy; dist/ is what goes out.
+  fs.copyFileSync(out, path.join(dist, "og.png"));
   const kb = (fs.statSync(out).size / 1024).toFixed(0);
-  console.log(`og.png written to public/ (1200x630, ${kb} KB)`);
+  console.log(`og.png written to public/ and dist/ (1200x630, ${kb} KB)`);
 } finally {
   await browser.close();
   fs.rmSync(tmp, { force: true });

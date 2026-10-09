@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 // Self-hosted display/UI face — bundled by Vite and served same-origin, so it
 // works under the strict CSP (font-src 'self') with no external fetch.
-import "@fontsource-variable/space-grotesk";
 import "./styles.css";
 
 // Apply the saved theme before first paint (no inline <script> — the CSP
