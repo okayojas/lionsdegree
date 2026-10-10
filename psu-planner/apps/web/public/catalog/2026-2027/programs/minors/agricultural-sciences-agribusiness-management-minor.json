@@ -81,38 +81,24 @@
      "credits": null
     },
     {
-     "type": "course",
-     "code": "SELECT 6",
-     "credits": null,
-     "unverified": true
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from any 400-level ABGM courses (excluding, unless approved by the AGBM program, AGBM 496)",
+     "from": {
+      "kind": "courses",
+      "courses": [],
+      "discarded": true
+     }
     },
     {
-     "type": "course",
-     "code": "ANY 400",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "AGBM 496",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "SELECT 9",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "ANY 400",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "AGBM 496",
-     "credits": null
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from any 400-level AGMB courses (excluding, unless approved by the AGBM program, AGBM 496)",
+     "from": {
+      "kind": "courses",
+      "courses": [],
+      "discarded": true
+     }
     }
    ],
    "structured": true,

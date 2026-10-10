@@ -138,22 +138,10 @@
    "creditsRequired": null,
    "rules": [
     {
-     "type": "course",
-     "code": "SELECT 12",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "LEAST 6",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "THE 400",
-     "credits": null,
-     "unverified": true
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits in literature courses from a departmental list (at least 6 credits must be at the 400 level)",
+     "from": null
     },
     {
      "type": "selectCredits",

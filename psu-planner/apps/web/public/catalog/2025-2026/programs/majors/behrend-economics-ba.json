@@ -79,18 +79,16 @@
      "credits": 3
     },
     {
-     "type": "oneOf",
-     "options": [
-      "SELECT 18",
-      "THE 300"
-     ],
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "OF 6",
-     "credits": null,
-     "unverified": true
+     "type": "selectCredits",
+     "credits": 18,
+     "commentRaw": "Select 18 credits in BECON, ECNS, or ECON above the 300 level, in consultation with an adviser. (Where appropriate toward a specialized undergraduate field of study, the student may petition the director of the School of Business to take up to a maximum of 6 credits in closely related fields toward a major.)",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "ECON"
+      ],
+      "minLevel": 300
+     }
     }
    ],
    "structured": true,

@@ -210,16 +210,10 @@
      "from": null
     },
     {
-     "type": "course",
-     "code": "SELECT 3",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "A 400",
-     "credits": null,
-     "unverified": true
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of sociology (must be a 400-level course)",
+     "from": null
     }
    ],
    "structured": true,

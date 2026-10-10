@@ -886,20 +886,10 @@
      "commentRaw": "Select two courses (6-8 credits) in environmental law, economics, management and policy (e.g., ECON 428, ERM 411, ERM 412, ERM 413W, WFS 410, WFS 447W, WFS 463W)"
     },
     {
-     "type": "course",
-     "code": "SELECT 4",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "STS 100",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "STS 460",
-     "credits": null
+     "type": "selectCredits",
+     "credits": 4,
+     "commentRaw": "Select 4 credits of an environmentally related course in Science Technology and Society (e.g., STS 100, STS 460)",
+     "from": null
     },
     {
      "type": "selectCredits",

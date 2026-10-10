@@ -147,16 +147,10 @@
    "creditsRequired": null,
    "rules": [
     {
-     "type": "course",
-     "code": "SELECT 11",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "APPLY 6",
-     "credits": null,
-     "unverified": true
+     "type": "selectCredits",
+     "credits": 11,
+     "commentRaw": "Select 11-14 credits in consultation with adviser (students may apply 6 credits of ROTC)",
+     "from": null
     }
    ],
    "structured": true,

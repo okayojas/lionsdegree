@@ -33,19 +33,11 @@
      "credits": null
     },
     {
-     "type": "course",
-     "code": "LEAST 6",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "THE 400",
-     "credits": null,
-     "unverified": true
+     "type": "unstructured",
+     "commentRaw": "Any ERM course (at least 6 credits must be at the 400-level)"
     }
    ],
-   "structured": true,
+   "structured": false,
    "llmNormalized": false,
    "rawText": "Additional Courses: Require a grade of C or better\nSelect 18 credits of the following:18\nABSM 327Soil and Water Resource Management3\nSOILS 101Introductory Soil Science\nAny ERM course (at least 6 credits must be at the 400-level)\n"
   }

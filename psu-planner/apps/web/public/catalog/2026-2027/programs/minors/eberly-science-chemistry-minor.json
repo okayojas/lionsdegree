@@ -84,36 +84,16 @@
      "credits": null
     },
     {
-     "type": "course",
-     "code": "SELECT 6",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "FROM 400",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "CHEM 494",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "CHEM 494H",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "CHEM 495",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "CHEM 496",
-     "credits": null
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from 400-level CHEM not used above (excluding CHEM 494, CHEM 494H, CHEM 495, and CHEM 496)",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "CHEM"
+      ],
+      "minLevel": 400
+     }
     }
    ],
    "structured": true,

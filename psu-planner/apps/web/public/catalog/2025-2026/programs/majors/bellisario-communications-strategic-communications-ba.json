@@ -108,18 +108,10 @@
    "creditsRequired": null,
    "rules": [
     {
-     "type": "course",
-     "code": "SELECT 3",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "oneOf",
-     "options": [
-      "COMM 100N",
-      "COMM 120"
-     ],
-     "credits": null
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits of COMM courses (other than COMM 100 or COMM 120)",
+     "from": null
     }
    ],
    "structured": true,

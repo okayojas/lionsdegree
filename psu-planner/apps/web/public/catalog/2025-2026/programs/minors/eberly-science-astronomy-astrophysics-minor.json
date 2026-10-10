@@ -69,21 +69,16 @@
    "creditsRequired": null,
    "rules": [
     {
-     "type": "course",
-     "code": "SELECT 6",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "FROM 400",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "ASTRO 496",
-     "credits": null
+     "type": "selectCredits",
+     "credits": 6,
+     "commentRaw": "Select 6 credits from 400-level ASTRO courses (except ASTRO 496)",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "ASTRO"
+      ],
+      "minLevel": 400
+     }
     }
    ],
    "structured": true,

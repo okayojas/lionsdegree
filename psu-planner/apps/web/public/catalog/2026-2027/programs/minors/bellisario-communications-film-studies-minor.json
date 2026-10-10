@@ -34,16 +34,10 @@
    "creditsRequired": null,
    "rules": [
     {
-     "type": "course",
-     "code": "SELECT 12",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "THE 400",
-     "credits": null,
-     "unverified": true
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from an approved department list in consultation with an adviser (6 credits must be at the 400 level)",
+     "from": null
     }
    ],
    "structured": true,

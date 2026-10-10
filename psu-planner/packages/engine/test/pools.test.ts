@@ -228,15 +228,17 @@ describe("requirements whose options are indented under them", () => {
     const pools = allSelectPools();
     expect(pools.length).toBeGreaterThan(2000);
     const unreadable = pools.filter((p) => p.pool?.kind === "unreadable");
-    // 90 in both published editions: the 86 whose option tables genuinely
-    // cannot be read, plus the 4 whose every named subject turned out not to
-    // exist. Those 4 used to be filed as adviser-defined, which exempted a
-    // parse failure from the coverage denominator. It was 5 until the
-    // two-word subject token started working and PL SC became readable.
+    // 92. The bound is a RATCHET: it should fall as more are recovered, and a
+    // rise normally means something regressed.
     //
-    // The bound is a RATCHET -- it may fall when more are recovered, and a
-    // rise means something regressed.
-    expect(unreadable.length).toBeLessThanOrEqual(90);
+    // It ROSE from 90 once, deliberately (#19). Two sentences used to be
+    // harvested for course codes by the boolean-row parser -- "Select 15
+    // credits ... (at least 3 credits must be at the 400-level)" became
+    // SELECT 15, LEAST 3 and THE 400 -- so those sections looked readable
+    // while containing nonsense. They now report as unreadable, which is
+    // what they always were. A metric getting worse because the data got
+    // more honest is the one case where raising this is right.
+    expect(unreadable.length).toBeLessThanOrEqual(92);
   });
 
   it("hold each course once, because a Pool is a set", () => {

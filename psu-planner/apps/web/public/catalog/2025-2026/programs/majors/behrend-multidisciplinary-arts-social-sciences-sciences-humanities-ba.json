@@ -46,28 +46,10 @@
    "creditsRequired": null,
    "rules": [
     {
-     "type": "course",
-     "code": "SELECT 24",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "LEAST 15",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "THE 400",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "LEAST 3",
-     "credits": null,
-     "unverified": true
+     "type": "selectCredits",
+     "credits": 24,
+     "commentRaw": "Select 24 credits (at least 15 credits at the 400 level) in arts from those listed under arts in the Bachelor of Arts Degree Requirement list, with at least 3 credits in each of three areas",
+     "from": null
     }
    ],
    "structured": true,
@@ -80,28 +62,10 @@
    "creditsRequired": null,
    "rules": [
     {
-     "type": "course",
-     "code": "SELECT 24",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "LEAST 15",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "THE 400",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "LEAST 3",
-     "credits": null,
-     "unverified": true
+     "type": "selectCredits",
+     "credits": 24,
+     "commentRaw": "Select 24 credits (at least 15 credits at the 400 level) in humanities from those listed under humanities in the Bachelor of Arts Degree Requirement list, with at least 3 credits in each of three areas.",
+     "from": null
     }
    ],
    "structured": true,
@@ -128,28 +92,10 @@
    "creditsRequired": null,
    "rules": [
     {
-     "type": "course",
-     "code": "SELECT 24",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "LEAST 15",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "THE 400",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "LEAST 3",
-     "credits": null,
-     "unverified": true
+     "type": "selectCredits",
+     "credits": 24,
+     "commentRaw": "Select 24 credits (at least 15 credits at the 400 level) in science/mathematics from those listed under science/mathematics in the Bachelor of Arts Degree Requirements list, with at least 3 credtis in each of three areas.",
+     "from": null
     }
    ],
    "structured": true,

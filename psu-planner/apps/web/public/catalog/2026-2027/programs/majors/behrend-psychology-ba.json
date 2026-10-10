@@ -140,31 +140,16 @@
      "commentRaw": "Select 3 additional credits of psychology courses at the 200, 300, or 400-level in consultation with your adviser"
     },
     {
-     "type": "course",
-     "code": "SELECT 9",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "OF 400",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "PSYCH 494",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "PSYCH 495",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "PSYCH 496",
-     "credits": null
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of 400-level psychology courses from any combination of categories in consultation with adviser (except PSYCH 494, PSYCH 495, PSYCH 496)",
+     "from": {
+      "kind": "pattern",
+      "subjects": [
+       "PSYCH"
+      ],
+      "minLevel": 400
+     }
     }
    ],
    "structured": false,

@@ -224,22 +224,10 @@
    "creditsRequired": null,
    "rules": [
     {
-     "type": "course",
-     "code": "SELECT 9",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "LEAST 3",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "THE 400",
-     "credits": null,
-     "unverified": true
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits from College-approved list (at least 3 credits must be at the 400-level)",
+     "from": null
     }
    ],
    "structured": true,
@@ -295,34 +283,10 @@
    "creditsRequired": null,
    "rules": [
     {
-     "type": "course",
-     "code": "SELECT 12",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "LEAST 3",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "THE 400",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "THAN 6",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "THE 200",
-     "credits": null,
-     "unverified": true
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits from College-approved list (at least 3 credits at the 400-level and no more than 6 credits below the 200-level)",
+     "from": null
     }
    ],
    "structured": true,

@@ -29,127 +29,34 @@
    "creditsRequired": null,
    "rules": [
     {
-     "type": "course",
-     "code": "LEAST 12",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "LEAST 6",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "THE 400",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "OF 3",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "CHNS 416",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ENGL 225N",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ENGL 227",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "PHIL 14",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "WMNST 106N",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "WMNST 301N",
-     "credits": null,
-     "resolvedFrom": "WMNST 301"
-    },
-    {
-     "type": "course",
-     "code": "WMNST 400N",
-     "credits": null
-    },
-    {
-     "type": "oneOf",
-     "options": [
-      "AFAM 364N",
-      "WMNST 364N"
-     ],
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ANTH 216N",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ANTH 416",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "BBH 146",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "BBH 251",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "BBH 315",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "BBH 446",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "BIOL 177",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "HDFS 405",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "PSYCH 231",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "PSYCH 422",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "PSYCH 479",
-     "credits": null
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select at least 12 credits (at least 6 credits at the 400 level) from the two categories below, with a minimum of 3 credits from each category, of the following:",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "CHNS 416",
+       "ENGL 225N",
+       "ENGL 227",
+       "PHIL 14",
+       "WMNST 106N",
+       "WMNST 301",
+       "WMNST 400N",
+       "AFAM 364",
+       "WMNST 364",
+       "ANTH 216N",
+       "ANTH 416",
+       "BBH 146",
+       "BBH 251",
+       "BBH 315",
+       "BBH 446",
+       "BIOL 177",
+       "HDFS 405",
+       "PSYCH 231",
+       "PSYCH 422",
+       "PSYCH 479"
+      ]
+     }
     }
    ],
    "structured": true,

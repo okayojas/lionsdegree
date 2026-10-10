@@ -188,13 +188,11 @@
    "creditsRequired": null,
    "rules": [
     {
-     "type": "course",
-     "code": "OF 12",
-     "credits": 12,
-     "unverified": true
+     "type": "unstructured",
+     "commentRaw": "Complete the first semester of course work in the Smeal College of Business M.B.A. program (i.e., a minimum of 12 graduate credits)"
     }
    ],
-   "structured": true,
+   "structured": false,
    "llmNormalized": false,
    "rawText": "Complete the first semester of course work in the Smeal College of Business M.B.A. program (i.e., a minimum of 12 graduate credits)12\n"
   }

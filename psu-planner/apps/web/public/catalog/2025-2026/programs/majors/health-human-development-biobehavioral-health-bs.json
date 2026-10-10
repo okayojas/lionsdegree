@@ -282,16 +282,10 @@
      "from": null
     },
     {
-     "type": "course",
-     "code": "SELECT 12",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "APPLY 6",
-     "credits": null,
-     "unverified": true
+     "type": "selectCredits",
+     "credits": 12,
+     "commentRaw": "Select 12 credits in University-wide offerings from approved list, in consultation with adviser (Students may apply 6 credits of ROTC.)",
+     "from": null
     }
    ],
    "structured": true,

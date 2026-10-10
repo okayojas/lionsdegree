@@ -3,7 +3,7 @@
  * row the deterministic parser can't classify becomes an `unstructured` rule
  * plus an entry in the needs-review queue. */
 import * as cheerio from "cheerio";
-import { normDisplayCode } from "../lib/codes.js";
+import { normBulletinCode, normDisplayCode } from "../lib/codes.js";
 import { astComplete, parseExpr, tokenize, type AstNode } from "../lib/prereq.js";
 import type { RequirementSection, Rule } from "../validate/schemas.js";
 
@@ -101,6 +101,33 @@ export function parseBooleanRow(text: string, credits: number | null): Rule[] | 
     return false;
   };
   if (!walkAnd(ast) || !rules.length) return null;
+
+  // Every code must appear in the SOURCE in capitals.
+  //
+  // tokenize() belongs to the prerequisite parser and matches codes
+  // case-insensitively, which is right for "Enforced Prerequisite: MATH 140"
+  // but harvests words from an ordinary sentence. "Select 15 credits from
+  // College-approved list (at least 3 credits must be at the 400-level)" has
+  // brackets, so it reached here, and yielded SELECT 15, LEAST 3 and THE 400
+  // -- three phantom courses from one line. That is where all 120 of them in
+  // the shipped catalog came from.
+  //
+  // The bulletin writes codes in capitals, which is the same discriminator
+  // CODE_TOKEN above relies on, and it needs no list of English words -- a
+  // list would be wrong the first time a subject looked like one, and ART,
+  // BA and LER are all real subjects.
+  const everyCodeIsCapitalised = (r: Rule): boolean => {
+    const codes = r.type === "course" ? [r.code] : r.type === "oneOf" ? r.options : [];
+    return codes.every((c) => {
+      const parts = /^([A-Z]+)\s+(\d{1,3}[A-Z]{0,2})$/.exec(c);
+      if (!parts) return false;
+      // Allow the spacing and the "A-I" hyphen the normaliser removes.
+      const subj = parts[1].split("").join("-?");
+      return new RegExp(String.raw`\b${subj}\s*${parts[2]}\b`).test(text);
+    });
+  };
+  if (!rules.every(everyCodeIsCapitalised)) return null;
+
   if (rules.length === 1) {
     const only = rules[0];
     if (only.type === "course" || only.type === "oneOf") only.credits = credits;
@@ -379,7 +406,7 @@ export function parseRequirementTables(html: string): RequirementsParseResult {
         if (codeLink.length) {
           const codesInCell = $tr
             .find("td.codecol a")
-            .map((_, a) => normDisplayCode(clean($(a).attr("title") ?? $(a).text())))
+            .map((_, a) => normBulletinCode(clean($(a).attr("title") ?? $(a).text())))
             .get()
             .filter((c): c is string => !!c);
           if (!codesInCell.length) {

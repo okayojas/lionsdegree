@@ -36,128 +36,34 @@
    "creditsRequired": null,
    "rules": [
     {
-     "type": "course",
-     "code": "SELECT 3",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "THESE 12",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "THE 400",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "A 400",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "HIST 10",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "HIST 11",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "HIST 20",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "HIST 21",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "HIST 161",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "HIST 495",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "CC 402",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ENGL 420",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "IST 250",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "MGMT 215",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "MKTG 301",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "MKTG 310",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "ACCTG 211",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "BA 322",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "BA 421",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "CIVCM 211N",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "MIS 204",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "MGMT 301",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "EDPSY 14",
-     "credits": null
-    },
-    {
-     "type": "course",
-     "code": "EDTHP 115",
-     "credits": null
+     "type": "selectCredits",
+     "credits": 3,
+     "commentRaw": "Select 3 credits from each of the following four groups listed below. (At least three of these 12 units must be at the 400 level. Non-history majors may have prerequisites to support a 400-level course in their major that they can count for the Public History minor.)",
+     "from": {
+      "kind": "courses",
+      "courses": [
+       "HIST 10",
+       "HIST 11",
+       "HIST 20",
+       "HIST 21",
+       "HIST 161",
+       "HIST 495",
+       "CC 402",
+       "ENGL 420",
+       "IST 250",
+       "MGMT 215",
+       "MKTG 301",
+       "MKTG 310",
+       "ACCTG 211",
+       "BA 322",
+       "BA 421",
+       "CIVCM 211N",
+       "MIS 204",
+       "MGMT 301",
+       "EDPSY 14",
+       "EDTHP 115"
+      ]
+     }
     }
    ],
    "structured": true,

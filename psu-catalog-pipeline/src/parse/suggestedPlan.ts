@@ -4,7 +4,7 @@
  * ("year0 year0_Term0_codecol" / "year0 year0_Term1_codecol"). Course codes are
  * taken from each cell link's `title` attribute (contains nbsp). */
 import * as cheerio from "cheerio";
-import { normDisplayCode } from "../lib/codes.js";
+import { normBulletinCode, normDisplayCode } from "../lib/codes.js";
 import { parseCodeListText } from "./programRequirements.js";
 import type { PlanEntry, SuggestedPlan } from "../validate/schemas.js";
 
@@ -118,7 +118,7 @@ export function parsePlanGrids(html: string): SuggestedPlan[] {
           .filter((c) => c.trim());
         const links = $td.find("a.code");
         const codes = links
-          .map((_, a) => normDisplayCode(clean($(a).attr("title") ?? $(a).text())))
+          .map((_, a) => normBulletinCode(clean($(a).attr("title") ?? $(a).text())))
           .get()
           .filter((c): c is string => !!c);
         const cellTextNoSup = clean($td.clone().find("sup").remove().end().text());

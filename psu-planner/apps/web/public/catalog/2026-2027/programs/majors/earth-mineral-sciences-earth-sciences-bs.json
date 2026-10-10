@@ -162,16 +162,10 @@
      "from": null
     },
     {
-     "type": "course",
-     "code": "SELECT 8",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "APPLY 6",
-     "credits": null,
-     "unverified": true
+     "type": "selectCredits",
+     "credits": 8,
+     "commentRaw": "Select 8-9 credits in other approved courses (students may apply 6 credits of ROTC)",
+     "from": null
     },
     {
      "type": "selectCredits",

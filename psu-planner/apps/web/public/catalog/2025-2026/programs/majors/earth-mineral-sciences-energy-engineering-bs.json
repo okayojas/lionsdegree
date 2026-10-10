@@ -212,16 +212,10 @@
      "from": null
     },
     {
-     "type": "course",
-     "code": "SELECT 9",
-     "credits": null,
-     "unverified": true
-    },
-    {
-     "type": "course",
-     "code": "APPLY 6",
-     "credits": null,
-     "unverified": true
+     "type": "selectCredits",
+     "credits": 9,
+     "commentRaw": "Select 9 credits of technical electives from a broad list of energy related courses across colleges at Penn State. A list of suggested courses from energy-related departments at Penn State is provided. (Students may apply 6 credits of ROTC to some of the elective choices.)",
+     "from": null
     },
     {
      "type": "selectCredits",
