@@ -1,10 +1,25 @@
 /** Tool definitions the model receives (OpenAI function-calling format).
  * All of these EXECUTE IN THE BROWSER against the student's local plan — the
- * server only injects the definitions so clients can't override them. */
+ * server only injects the definitions so clients can't override them.
+ *
+ * Vocabulary: a scheduled period is a TERM, matching CONTEXT.md, LionPATH and
+ * the MCP server's tool names, which these deliberately mirror. A model echoes
+ * back whatever word its tools are written in, so this file decides what the
+ * student reads.
+ *
+ * Two uses of "semester" survive on purpose, both QUOTING THE STUDENT: "I'm
+ * taking a semester/year off" is how the request actually arrives, and the
+ * model needs the phrasing to recognise it. Those are inputs to match, not
+ * output to copy.
+ *
+ * `skip_term` was `delete_semester`. The rename is not cosmetic: the operation
+ * removes nothing, and a model reading "delete" had to be talked out of it by
+ * three sentences of description — exactly the failure the description warns
+ * against ("NEVER remove courses to model time off"). */
 export const TOOL_DEFS = [
   {
     name: "get_plan",
-    description: "Read the student's current plan: semesters, courses (with prereq status ok/warn/bad), open slots, completed courses, credit totals. Call this FIRST whenever you need to know what the student is taking or when.",
+    description: "Read the student's current plan: terms, courses (with prereq status ok/warn/bad), open slots, completed courses, credit totals. Call this FIRST whenever you need to know what the student is taking or when.",
     parameters: { type: "object", properties: {}, additionalProperties: false },
   },
   {
@@ -43,31 +58,31 @@ export const TOOL_DEFS = [
   },
   {
     name: "check_prerequisites",
-    description: "Check whether a course's enforced prerequisites would be satisfied if placed in a given semester of the student's plan.",
+    description: "Check whether a course's enforced prerequisites would be satisfied if placed in a given term of the student's plan.",
     parameters: {
       type: "object",
-      properties: { code: { type: "string" }, semester_index: { type: "number", description: "0-based term index" } },
-      required: ["code", "semester_index"],
+      properties: { code: { type: "string" }, term_index: { type: "number", description: "0-based term index" } },
+      required: ["code", "term_index"],
       additionalProperties: false,
     },
   },
   {
     name: "add_course",
-    description: "Add a course to a semester of the student's plan. Check prerequisites first when placement matters.",
+    description: "Add a course to a term of the student's plan. Check prerequisites first when placement matters.",
     parameters: {
       type: "object",
-      properties: { code: { type: "string" }, semester_index: { type: "number" } },
-      required: ["code", "semester_index"],
+      properties: { code: { type: "string" }, term_index: { type: "number" } },
+      required: ["code", "term_index"],
       additionalProperties: false,
     },
   },
   {
     name: "move_course",
-    description: "Move an existing plan course to a different semester.",
+    description: "Move an existing plan course to a different term.",
     parameters: {
       type: "object",
-      properties: { code: { type: "string" }, semester_index: { type: "number" } },
-      required: ["code", "semester_index"],
+      properties: { code: { type: "string" }, term_index: { type: "number" } },
+      required: ["code", "term_index"],
       additionalProperties: false,
     },
   },
@@ -86,7 +101,7 @@ export const TOOL_DEFS = [
   },
   {
     name: "set_schedule_constraint",
-    description: "Declare a scheduling constraint for a course, e.g. the student can't take it in a given semester. ALWAYS use this (then optimize_schedule) for 'I can't take X in <term>', 'X conflicts with my job', 'I want X later/earlier' — the optimizer moves the course to its best legal semester, shifts prerequisite dependents, and backfills the gap; NOTHING is removed. Constraints persist across every future optimization. Rules: 'not-in' (never that term), 'not-before' (that term or later), 'pin' (exactly that term). Use get_plan to map term labels like 'Fall 2026' to term_index.",
+    description: "Declare a scheduling constraint for a course, e.g. the student can't take it in a given term. ALWAYS use this (then optimize_schedule) for 'I can't take X in <term>', 'X conflicts with my job', 'I want X later/earlier' — the optimizer moves the course to its best legal term, shifts prerequisite dependents, and backfills the gap; NOTHING is removed. Constraints persist across every future optimization. Rules: 'not-in' (never that term), 'not-before' (that term or later), 'pin' (exactly that term). Use get_plan to map term labels like 'Fall 2026' to term_index.",
     parameters: {
       type: "object",
       properties: {
@@ -110,7 +125,7 @@ export const TOOL_DEFS = [
   },
   {
     name: "add_summer_session",
-    description: "Add a summer session between Spring and Fall of the given calendar year (e.g. year 2027 -> Summer 2027 between Spring 2027 and Fall 2027). Use when the student wants to take summer classes, lighten their regular semesters, or graduate sooner. Summer sessions hold at most 9 credits and are exempt from the 14-credit full-time floor. After adding, call optimize_schedule so the plan uses the new capacity, or pin/move specific courses into it.",
+    description: "Add a summer session between Spring and Fall of the given calendar year (e.g. year 2027 -> Summer 2027 between Spring 2027 and Fall 2027). Use when the student wants to take summer classes, lighten their regular terms, or graduate sooner. Summer sessions hold at most 9 credits and are exempt from the 14-credit full-time floor. After adding, call optimize_schedule so the plan uses the new capacity, or pin/move specific courses into it.",
     parameters: {
       type: "object",
       properties: { year: { type: "number", description: "calendar year of the summer, e.g. 2027" } },
@@ -119,26 +134,26 @@ export const TOOL_DEFS = [
     },
   },
   {
-    name: "add_semester",
-    description: "Append a new empty semester to the end of the plan (e.g. the student needs more time or wants to spread courses out). Returns its term_index. If left empty it's removed on the next optimize_schedule. To place courses in it, use move_course or optimize_schedule.",
+    name: "add_term",
+    description: "Append a new empty term to the end of the plan (e.g. the student needs more time or wants to spread courses out). Returns its term_index. If left empty it's removed on the next optimize_schedule. To place courses in it, use move_course or optimize_schedule.",
     parameters: { type: "object", properties: {}, additionalProperties: false },
   },
   {
-    name: "delete_semester",
-    description: "Skip a semester the student won't be enrolled in — a GAP YEAR, co-op, medical leave, study abroad, etc. Get the term_index from get_plan. The semester is kept EMPTY as a gap: any courses in it (and everything after) shift to later terms, graduation moves back, and NOTHING is removed from the degree. This is the correct tool for 'I'm taking a semester/year off', 'skip fall 2028', 'gap year'. Do NOT remove courses for this.",
+    name: "skip_term",
+    description: "Skip a term the student won't be enrolled in — a GAP YEAR, co-op, medical leave, study abroad, etc. Get the term_index from get_plan. The term is kept EMPTY as a gap: any courses in it (and everything after) shift to later terms, graduation moves back, and NOTHING is removed from the degree. This is the correct tool for 'I'm taking a semester/year off', 'skip fall 2028', 'gap year'. Do NOT remove courses for this.",
     parameters: {
       type: "object",
-      properties: { term_index: { type: "number", description: "semester index from get_plan" } },
+      properties: { term_index: { type: "number", description: "0-based term index from get_plan" } },
       required: ["term_index"],
       additionalProperties: false,
     },
   },
   {
-    name: "restore_semester",
-    description: "Un-skip a semester previously skipped with delete_semester (the student will enroll again): clears the gap and re-optimizes coursework back into it. Get the term_index from get_plan.",
+    name: "restore_term",
+    description: "Un-skip a term previously skipped with skip_term (the student will enroll again): clears the gap and re-optimizes coursework back into it. Get the term_index from get_plan.",
     parameters: {
       type: "object",
-      properties: { term_index: { type: "number", description: "semester index from get_plan" } },
+      properties: { term_index: { type: "number", description: "0-based term index from get_plan" } },
       required: ["term_index"],
       additionalProperties: false,
     },
@@ -184,7 +199,7 @@ export const TOOL_DEFS = [
   },
   {
     name: "mark_complete",
-    description: "Mark a course as completed (removes it from future semesters) or not completed.",
+    description: "Mark a course as completed (removes it from future terms) or not completed.",
     parameters: {
       type: "object",
       properties: { code: { type: "string" }, done: { type: "boolean" } },
@@ -207,11 +222,11 @@ export const TOOL_DEFS = [
   },
   {
     name: "optimize_schedule",
-    description: "Reorganize the WHOLE plan in ONE call: pack it into the fewest full-time semesters (<=19 credits each) while keeping the flowchart's difficulty order (intro courses early, advanced late), mixing gen eds and electives into every term, and anchoring capstone/senior-design sequences to the final semesters. ALWAYS use this for any 'consolidate', 'condense', 'graduate faster/sooner', 'fit into N semesters', 'rebalance', or 'optimize my schedule' request — never hand-move courses one at a time with move_course for these. Pass `semesters` to target a specific number of terms (best effort; it reports back if that's infeasible).",
+    description: "Reorganize the WHOLE plan in ONE call: pack it into the fewest full-time terms (<=19 credits each) while keeping the flowchart's difficulty order (intro courses early, advanced late), mixing gen eds and electives into every term, and anchoring capstone/senior-design sequences to the final terms. ALWAYS use this for any 'consolidate', 'condense', 'graduate faster/sooner', 'fit into N terms', 'rebalance', or 'optimize my schedule' request — never hand-move courses one at a time with move_course for these. Pass `target_terms` to target a specific number of terms (best effort; it reports back if that's infeasible).",
     parameters: {
       type: "object",
       properties: {
-        semesters: { type: "number", description: "optional target number of semesters to graduate in, e.g. 6" },
+        target_terms: { type: "number", description: "optional target number of terms to graduate in, e.g. 6" },
       },
       additionalProperties: false,
     },
@@ -234,12 +249,12 @@ Hard rules:
 - When you modify the plan (add/move/remove/fill/mark), state plainly what you changed afterward. The student sees changes live on the flowchart and can undo them.
 - Prerequisite statuses come from enforced-prerequisite checking: ok = satisfied by the plan, warn = depends on something outside the plan (transfer/placement — tell them to verify), bad = ordering violation in the plan.
 - You are NOT official Penn State advising. For anything binding (entrance-to-major requirements, petitions, graduation checks), tell the student to confirm with their academic adviser and link the bulletin when relevant.
-- ALWAYS personalize: after stating objective facts (a course's prerequisites, a requirement, credits), follow with what it means for THIS student — check their plan/completed courses first, then say things like "you've already completed X and have Y planned for Spring 2027, so you'd only need Z" or "this would fit your open TE slot in semester 5". Objective answer first, their situation second, suggested next step last.
+- ALWAYS personalize: after stating objective facts (a course's prerequisites, a requirement, credits), follow with what it means for THIS student — check their plan/completed courses first, then say things like "you've already completed X and have Y planned for Spring 2027, so you'd only need Z" or "this would fit your open TE slot in term 5". Objective answer first, their situation second, suggested next step last.
 - For "what would it take to reach course X" questions, use get_prereq_chain (one call), not repeated lookups.
-- For any request to consolidate, condense, rebalance, optimize, or graduate in a certain number of semesters, call optimize_schedule (one call) — do NOT reorder the plan with many move_course calls.
+- For any request to consolidate, condense, rebalance, optimize, or graduate in a certain number of terms, call optimize_schedule (one call) — do NOT reorder the plan with many move_course calls.
 - SCHEDULING CONFLICTS ARE NEVER SOLVED BY REMOVING COURSES. "I can't take X in <term>" means: set_schedule_constraint (not-in that term), then optimize_schedule. The optimizer relocates the course legally, shifts its dependents, and backfills the gap. Only remove a course when the student explicitly asked for that removal.
 - Summer classes: add_summer_session(year) inserts a Summer term between that year's Spring and Fall (max 9 credits). Use it when the student mentions summer courses or wants to finish sooner; then optimize_schedule, or pin a specific course to the summer's term_index with set_schedule_constraint.
-- Gap year / leave / co-op / study abroad ("I'm taking a semester off", "skip Fall 2028", "gap year"): use delete_semester(term_index) — it keeps that semester EMPTY and flows coursework to later terms, moving graduation back. NEVER remove courses to model time off. Use restore_semester(term_index) to undo. add_semester appends an empty term when the student just wants more room.
+- Gap year / leave / co-op / study abroad ("I'm taking a semester off", "skip Fall 2028", "gap year"): use skip_term(term_index) — it keeps that term EMPTY and flows coursework to later terms, moving graduation back. NEVER remove courses to model time off. Use restore_term(term_index) to undo. add_term appends an empty term when the student just wants more room.
 - Integrated master's (IUG): for "can I get a master's too", "5-year BS/MS", "integrated MBA/MAcc", "combined bachelor's and master's" — call list_iug_programs, then attach_iug with a slug. The graduate courses appear as graduate-phase terms after the bachelor's; some credits double-count. Only a few IUGs are structured so far; if none pair with the student's major, say so and note that Schreyer Scholars can pursue an individual IUG with any master's (they'd arrange it with the Fox Graduate School). Always add that this is not official advising — confirm the plan of study with the graduate program adviser.
 - Your action history is recorded in a persistent ledger. Before answering ANY question about past changes ("what did you change", "did you remove X", "what happened to my plan"), call get_action_history and answer from it. Never deny an action it records; if you made a mistake, say so plainly and offer to fix it.
 - Gen-ed slots are named by General Education category (GA arts, GH humanities, GS social sciences, GHW health/wellness, GN natural sciences, GWS writing/speaking, GQ quantification, INTER inter-domain, EXP exploration). fill_slot enforces the category. When a slot's label says "pick a course that also carries IL" (International Cultures) or US (United States Cultures), prefer a course with that attribute — one course then satisfies two requirements (PSU allows US/IL to double-count with gen ed, major, or electives, but one course can never cover both US and IL).

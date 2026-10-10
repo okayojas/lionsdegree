@@ -88,7 +88,7 @@ test.describe("a course can be moved between terms with the keyboard alone", () 
   test("focus stays on the control that was activated", async ({ planner }) => {
     // Re-rendering the list after a move used to drop focus to <body>, which
     // means a keyboard user has to tab from the top of the page again for
-    // every single semester they want to shift a course. That makes the
+    // every single term they want to shift a course. That makes the
     // feature technically present and practically unusable.
     await openListView(planner);
     const firstTerm = planner.getByRole("region", { name: /list view/i }).locator("section").first();
@@ -139,6 +139,31 @@ test.describe("everything in the plan is reachable in the list view", () => {
     // "intentionally" is the load-bearing word: without it a Gap Term reads
     // identically to a term nothing has been put in yet.
     await expect(region.getByText(/intentionally/i).first()).toBeVisible();
+  });
+
+  test("a summer in the plan is described as a term, because it is one", async ({ planner }) => {
+    // The reason CONTEXT.md rejects "semester": a summer is a Term and is not
+    // a semester, and this planner lets a student opt into one. Copy like
+    // "Skip semester" is not merely informal once Summer 2027 is on screen --
+    // it is wrong. The seeded plan has only falls and springs, so nothing else
+    // in this suite would notice.
+    await planner.addInitScript(() => {
+      const key = "psu-planner-plan-v1";
+      const plan = JSON.parse(window.localStorage.getItem(key)!);
+      plan.terms.splice(2, 0, { label: "Summer 2027", items: [] });
+      window.localStorage.setItem(key, JSON.stringify(plan));
+    });
+    await planner.reload();
+    await expect(planner.getByRole("banner")).toBeVisible({ timeout: 30_000 });
+    await openListView(planner);
+    const region = planner.getByRole("region", { name: /list view/i });
+    await expect(region.getByText("Summer 2027").first()).toBeVisible();
+    // Not a substring check against the whole page: "semester" must be absent
+    // from the controls that act on this summer specifically.
+    const skip = region.getByRole("button", { name: /Skip Summer 2027/i });
+    await expect(skip).toBeVisible();
+    await expect(region.getByRole("button", { name: /semester/i })).toHaveCount(0);
+    await expect(region.getByText(/semester/i)).toHaveCount(0);
   });
 
   test("a completed course is marked completed in text", async ({ planner }) => {

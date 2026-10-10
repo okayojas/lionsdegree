@@ -15,7 +15,7 @@
  *     undecided elective placeholders on a share that rises with the mined
  *     advanced-work curve (chosen elective COURSES ride the spine like any
  *     course; only generic placeholder slots follow the gradient).
- *   - `targetSemesters` (e.g. "graduate in 6"): spread the same work across
+ *   - `targetTerms` (e.g. "graduate in 6"): spread the same work across
  *     exactly that many terms at an even load instead of packing maximally.
  *   - A detected capstone sequence is anchored to the FINAL semesters, one
  *     course per semester, in prereq order (senior-standing prereqs are UNK
@@ -39,19 +39,19 @@ export interface OptimizeOptions {
   patterns?: FlowchartPatterns;
   /** Graduate in EXACTLY this many semesters (best effort): spread the work at
    * an even load rather than packing maximally. Omit to minimize time. */
-  targetSemesters?: number;
+  targetTerms?: number;
 }
 export interface OptimizeResult {
   changed: boolean;
-  semestersBefore: number;
-  semestersAfter: number;
+  termsBefore: number;
+  termsAfter: number;
   maxCredits: number;
   /** Adviser-verification note when a dual-major capstone was set aside. */
   capstoneNote: string | null;
   /** Course codes moved to `removed` (a losing program's capstone). */
   droppedCapstone: string[];
-  /** Set when a requested `targetSemesters` couldn't be met (too much work for
-   * the cap, or prereq chains too long) — the actual count is semestersAfter. */
+  /** Set when a requested `targetTerms` couldn't be met (too much work for
+   * the cap, or prereq chains too long) — the actual count is termsAfter. */
   targetMissed: boolean;
 }
 
@@ -120,7 +120,7 @@ export function optimizeSchedule(plan: PlanDoc, catalog: Catalog, opts: Optimize
   const patterns = opts.patterns ?? DEFAULT_FLOWCHART_PATTERNS;
   const maxCredits = opts.maxCredits ?? patterns.capCreditsPerSem ?? 19;
   const removed = { ...(plan.removed ?? {}) };
-  const semestersBefore = plan.terms.length;
+  const termsBefore = plan.terms.length;
 
   // ---- Term sequence, with the student's opt-in summer sessions ------------
   // Summers are year-keyed on the plan (durable across re-packs); each index of
@@ -199,7 +199,7 @@ export function optimizeSchedule(plan: PlanDoc, catalog: Catalog, opts: Optimize
 
   // ---- Target load & plan length -------------------------------------------
   // Pack toward the FEWEST semesters at a realistic full-time load (high end of
-  // 14-19). With an explicit targetSemesters, spread the same work evenly across
+  // 14-19). With an explicit targetTerms, spread the same work evenly across
   // exactly that many terms instead. perSemTarget is the per-semester credit
   // aim; maxCredits stays the hard ceiling.
   const totalCredits =
@@ -222,10 +222,10 @@ export function optimizeSchedule(plan: PlanDoc, catalog: Catalog, opts: Optimize
       acc += capAt(n);
       n++;
     }
-    // A requested targetSemesters may stretch the calendar, never compress it
+    // A requested targetTerms may stretch the calendar, never compress it
     // below feasibility (asking for 6 when the work needs 9 gives a clean
     // 9-term plan, flagged targetMissed — not a ragged 6+tail).
-    nEst = Math.max(1, n, opts.targetSemesters ?? 0);
+    nEst = Math.max(1, n, opts.targetTerms ?? 0);
     // EVEN load: solve for the regular-term target that spreads the total
     // across the estimate (summers fixed at their ceiling). Uniform density is
     // what keeps every term in the 14-19 band instead of packed-19s followed
@@ -474,7 +474,7 @@ export function optimizeSchedule(plan: PlanDoc, catalog: Catalog, opts: Optimize
   if (capstoneWork.length) {
     capstoneWork.sort((a, b) => (capstoneOrder.get(a.canonical) ?? 0) - (capstoneOrder.get(b.canonical) ?? 0));
     const K = capstoneWork.length;
-    while (newTerms.length < Math.max(K, opts.targetSemesters ?? 0)) newTerms.push([]);
+    while (newTerms.length < Math.max(K, opts.targetTerms ?? 0)) newTerms.push([]);
     // Senior design runs in REGULAR semesters — the block occupies consecutive
     // NON-summer terms (a summer between two capstone semesters is skipped, the
     // sequence stays contiguous in the fall/spring calendar).
@@ -646,7 +646,7 @@ export function optimizeSchedule(plan: PlanDoc, catalog: Catalog, opts: Optimize
       }
       return terms;
     };
-    const floorTarget = Math.max(1, Math.ceil(totalCredits / maxCredits), opts.targetSemesters ?? 0);
+    const floorTarget = Math.max(1, Math.ceil(totalCredits / maxCredits), opts.targetTerms ?? 0);
     for (let target = floorTarget; target < newTerms.length; target++) {
       const packed = attempt(target);
       if (!packed) continue;
@@ -739,12 +739,12 @@ export function optimizeSchedule(plan: PlanDoc, catalog: Catalog, opts: Optimize
   plan.removed = removed;
   return {
     changed: true,
-    semestersBefore,
-    semestersAfter: plan.terms.length,
+    termsBefore,
+    termsAfter: plan.terms.length,
     maxCredits,
     capstoneNote: resolution.note,
     droppedCapstone: resolution.drop,
-    targetMissed: opts.targetSemesters ? plan.terms.length > opts.targetSemesters : false,
+    targetMissed: opts.targetTerms ? plan.terms.length > opts.targetTerms : false,
   };
 }
 

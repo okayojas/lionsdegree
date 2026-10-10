@@ -195,6 +195,9 @@ export function auditIug(plan: PlanDoc, spec: IugSpec | null, gradCatalog: Catal
   if (plan.iug.doubleCounted.length && at500 < half) {
     notes.push("At least half of double-counted courses must be 500/800-level (GCAC-210) — verify with your adviser.");
   }
+  // "semester" stands here because GCAC-210 says semester. Policy text is
+  // quoted, not paraphrased into house vocabulary -- a student checking this
+  // against the Graduate Bulletin has to find the same words.
   notes.push("IUG admission: apply after entrance to major + 60 credits, no later than the second week of the semester before your bachelor's is conferred (GCAC-210).");
   return {
     attached: true,

@@ -18,7 +18,7 @@ interface DragState {
 }
 
 export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void }) {
-  const { plan, catalog, items, sched, mutatePlan, addSemester, deleteSemester, restoreSemester } = usePlanner();
+  const { plan, catalog, items, sched, mutatePlan, addTerm, deleteTerm, restoreTerm } = usePlanner();
   const vpRef = useRef<HTMLDivElement>(null);
   const [view, setView] = useState(plan?.view ?? { x: 0, y: 0, k: 0.86 });
   const [drag, setDrag] = useState<DragState | null>(null);
@@ -97,11 +97,11 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
     }
     if (it && cardOffset) {
       const worldX = d.ox + cardOffset.dx;
-      // Dropped in the space past the last semester → make a new semester and
+      // Dropped in the space past the last term → make a new term and
       // place the card there.
       const rawCol = Math.round((worldX - LAYOUT.LEFT) / (LAYOUT.COLW + LAYOUT.GAP));
       if (rawCol >= numTerms) {
-        const newIdx = addSemester();
+        const newIdx = addTerm();
         if (newIdx >= 0) mutatePlan((p) => { p.moves[it.id] = newIdx; });
       } else {
         const ci = columnFromX(worldX, numTerms);
@@ -113,8 +113,8 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
   if (!plan) return null;
   const { COLW, GAP, CARDH, TOP, LEFT } = LAYOUT;
 
-  // While a card is dragged, reveal a "+ semester" dropzone just past the last
-  // term; dropping there creates a new semester (see onPointerUp).
+  // While a card is dragged, reveal a "+ term" dropzone just past the last
+  // term; dropping there creates a new term (see onPointerUp).
   const draggingCard = !!cardOffset;
   const addZoneX = LEFT + numTerms * (COLW + GAP);
   const draggedX = cardOffset ? (positions[cardOffset.id]?.x ?? 0) + cardOffset.dx : 0;
@@ -178,14 +178,17 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
               {term.label}
               {term.gap ? (
                 <>
-                  <span className="cr">Skipped semester (gap)</span>
+                  {/* A Gap Term is INTENTIONALLY empty -- that is what makes it
+                      a Gap Term rather than a term you have not filled in yet,
+                      and the copy has to carry the difference. */}
+                  <span className="cr">Gap term — intentionally left empty</span>
                   <button
                     className="col-act"
                     onPointerDown={stop}
-                    onClick={() => void restoreSemester(ci)}
-                    title="Take classes this semester again"
+                    onClick={() => void restoreTerm(ci)}
+                    title={`Use ${term.label} instead of leaving it empty`}
                   >
-                    Use this semester
+                    Use this term
                   </button>
                 </>
               ) : (
@@ -195,13 +198,13 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
                     className="col-act"
                     onPointerDown={stop}
                     onClick={() => {
-                      if (confirm(`Skip ${term.label}? Your courses move to later semesters and this term stays empty (e.g. a gap year). Graduation moves back one term.`)) {
-                        void deleteSemester(ci);
+                      if (confirm(`Skip ${term.label}? Your courses move to later terms and this one stays intentionally empty (e.g. a gap year). Graduation moves back one term.`)) {
+                        void deleteTerm(ci);
                       }
                     }}
-                    title="Skip this semester — e.g. a gap year"
+                    title={`Skip ${term.label} — a co-op, leave or gap year`}
                   >
-                    ✕ Skip semester
+                    ✕ Skip term
                   </button>
                 </>
               )}
@@ -213,7 +216,7 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
             className={`add-zone${addZoneActive ? " active" : ""}`}
             style={{ left: addZoneX, top: TOP + 6, width: COLW, height: worldH - TOP - 40 }}
           >
-            <span>+ New semester</span>
+            <span>+ New term</span>
           </div>
         )}
         {items.map((it) => {

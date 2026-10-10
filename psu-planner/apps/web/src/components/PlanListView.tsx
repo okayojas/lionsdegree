@@ -25,7 +25,7 @@ const STATUS_TEXT: Record<string, string> = {
 };
 
 export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => void }) {
-  const { plan, catalog, items, sched, mutatePlan, addSemester, deleteSemester, restoreSemester } = usePlanner();
+  const { plan, catalog, items, sched, mutatePlan, addTerm, deleteTerm, restoreTerm } = usePlanner();
 
   /** Which move control was last activated, so focus can be put back on it.
    *
@@ -160,11 +160,11 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
                 is only true of what the Plan SAYS, not of what can be done. */}
             <div className="lv-term-actions">
               {term.gap ? (
-                <button onClick={() => void restoreSemester(ti)} aria-label={`Use ${term.label} instead of leaving it empty`}>
+                <button onClick={() => void restoreTerm(ti)} aria-label={`Use ${term.label} instead of leaving it empty`}>
                   Use this term
                 </button>
               ) : (
-                <button onClick={() => void deleteSemester(ti)} aria-label={`Skip ${term.label} — a co-op, leave or gap year`}>
+                <button onClick={() => void deleteTerm(ti)} aria-label={`Skip ${term.label} — a co-op, leave or gap year`}>
                   Skip this term
                 </button>
               )}
@@ -173,7 +173,7 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
         );
       })}
       <div className="lv-term-actions">
-        <button onClick={() => addSemester()} aria-label="Add another term to the end of the plan">
+        <button onClick={() => addTerm()} aria-label="Add another term to the end of the plan">
           Add a term
         </button>
       </div>

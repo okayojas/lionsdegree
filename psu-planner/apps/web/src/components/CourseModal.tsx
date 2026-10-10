@@ -224,7 +224,7 @@ export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => 
               if (l.sem < 0) return <li key={i}>{l.code} — already completed ✓</li>;
               return (
                 <li key={i}>
-                  {l.code} — in your plan, semester {l.sem + 1} {l.v === SAT ? "✓" : l.v === UNK ? "⚠" : "✗ too late"}
+                  {l.code} — in your plan, term {l.sem + 1} {l.v === SAT ? "✓" : l.v === UNK ? "⚠" : "✗ too late"}
                   {l.concurrent ? " (may be concurrent)" : ""}
                 </li>
               );
@@ -302,7 +302,7 @@ export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => 
           <button
             className="primary"
             onClick={() => { markCompleted(item.code!, !done); onClose(); }}
-            title={done ? "Puts the course back on your chart" : "Removes the course from your future semesters"}
+            title={done ? "Puts the course back on your chart" : "Removes the course from your future terms"}
           >
             {done ? "Mark as not completed" : "Completed it ✓ (remove from schedule)"}
           </button>
@@ -320,7 +320,7 @@ export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => 
                 await usePlanner.getState().optimizeNow();
               }}
             >
-              Can't take it this semester
+              Can't take it this term
             </button>
           )}
           {!done && (() => {
@@ -363,13 +363,13 @@ export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => 
               } else {
                 // A course carried from a program template (has `origin`) is
                 // required for the degree — warn plainly and point at the
-                // "can't take it this semester" constraint, which keeps the
+                // "can't take it this term" constraint, which keeps the
                 // course and just reschedules it. Non-required courses get the
                 // light confirm.
                 const isRequired = plan.terms.some((t) =>
                   t.items.some((it2) => "code" in it2 && it2.code === item.code && it2.origin));
                 const msg = isRequired
-                  ? `⚠️ ${item.code} is part of your required degree curriculum. Removing it will leave your plan short of a graduation requirement — it stops counting toward your degree.\n\nIf this is only a timing conflict, cancel and use “Can't take it this semester” instead: that keeps the course and reschedules it.\n\nRemove ${item.code} anyway?`
+                  ? `⚠️ ${item.code} is part of your required degree curriculum. Removing it will leave your plan short of a graduation requirement — it stops counting toward your degree.\n\nIf this is only a timing conflict, cancel and use “Can't take it this term” instead: that keeps the course and reschedules it.\n\nRemove ${item.code} anyway?`
                   : "Remove this course from your plan? It stops counting toward credits (restorable from the toolbar).";
                 if (confirm(msg)) removeItem(item.id);
                 else return;

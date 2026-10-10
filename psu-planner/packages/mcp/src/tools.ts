@@ -63,7 +63,7 @@ export function listTools(): ToolDefinition[] {
     {
       name: "search_catalog",
       description:
-        "Search Penn State courses by topic or by course code. Returns code, title, credits and General Education designations. Does NOT say whether a course runs in a given semester.",
+        "Search Penn State courses by topic or by course code. Returns code, title, credits and General Education designations. Does NOT say whether a course runs in a given term.",
       inputSchema: obj({ query: str("A topic or a course code"), limit: num("Max results, up to 25") }, ["query"]),
     },
     {
@@ -277,7 +277,7 @@ export async function executeTool(
         enforced_concurrent: c.concurrent,
         genEd: c.genEd,
         bulletin_url: c.url,
-        availability: "Unknown — we cannot see which semesters a course runs. Check LionPATH.",
+        availability: "Unknown — we cannot see which terms a course runs. Check LionPATH.",
       };
     }
 

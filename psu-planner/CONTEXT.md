@@ -18,6 +18,23 @@ audit is one judgement about it.
 One scheduled period in a Plan: a fall, a spring, or an opted-in summer.
 _Avoid_: semester — a summer is a Term and is not a semester.
 
+This is not a house word the interface has to teach. LionPATH's own glossary
+defines Term as "a period of study in an academic year (e.g., spring, summer,
+fall)" — summer included, by Penn State's registrar — so it is the word the
+student already enrolled through.
+
+Two places legitimately keep "semester", and both are **quotation**, not copy:
+- the advisor's tool descriptions, which quote how the request arrives ("I'm
+  taking a semester off") so the model can recognise it — an input to match,
+  never output to echo;
+- policy text rendered verbatim, e.g. GCAC-210 on IUG admission. A student
+  checking a citation against the Graduate Bulletin must find the same words.
+
+`apps/web/test/vocabulary.test.ts` enforces this, including the exceptions.
+The one thing it does NOT rename is `plan.semesters` in saved plan files and
+in the catalog's suggested plans: that is a serialized shape, no student ever
+sees it, and renaming it would break every plan already saved.
+
 **Gap Term**:
 A Term the student intends to leave empty, for a co-op, leave, or gap year. An
 intentional emptiness, distinct from a Term that merely has nothing in it yet.

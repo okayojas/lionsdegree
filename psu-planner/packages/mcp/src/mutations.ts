@@ -103,7 +103,7 @@ export async function executeMutation(
           error: `${code} is required by the student's degree, so it cannot be removed on your say-so.`,
           needs_confirmation: true,
           suggestion:
-            "If they want it out of a particular semester rather than out of the degree, use " +
+            "If they want it out of a particular term rather than out of the degree, use " +
             "set_schedule_constraint with rule \"not-in\". If they genuinely want it dropped, ask them " +
             "to confirm in their own words, then call again with user_explicitly_asked: true.",
         };
@@ -158,7 +158,7 @@ export async function executeMutation(
       const r = commit(ctx, (p) => {
         const res = optimizeSchedule(p, cat, {
           maxCredits: 19,
-          ...(Number.isInteger(target) && target > 0 ? { targetSemesters: target } : {}),
+          ...(Number.isInteger(target) && target > 0 ? { targetTerms: target } : {}),
         });
         note = res.capstoneNote ?? "";
       });
@@ -217,7 +217,7 @@ export async function executeMutation(
       const r = commit(ctx, (p) => {
         p.terms[termIndex].gap = true;
         // Coursework flows AROUND the gap rather than being dropped: the
-        // student is taking a semester off, not abandoning those courses.
+        // student is taking a term off, not abandoning those courses.
         reoptimize(ctx, p);
       });
       return {

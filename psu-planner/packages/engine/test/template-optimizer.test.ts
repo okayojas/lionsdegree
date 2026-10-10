@@ -185,13 +185,13 @@ describe("elective / gen-ed gradient", () => {
     const creds = semCredits(plan, catalog);
     const total = creds.reduce((a, b) => a + b, 0);
     // Near the theoretical minimum number of terms for the credit total at 19/term.
-    expect(res.semestersAfter).toBeLessThanOrEqual(Math.ceil(total / 19) + 2);
+    expect(res.termsAfter).toBeLessThanOrEqual(Math.ceil(total / 19) + 2);
     // Most terms sit at a real full-time load (>=14 credits) — the high end.
     const fullish = creds.filter((cr) => cr >= 14).length;
-    expect(fullish).toBeGreaterThanOrEqual(Math.floor(res.semestersAfter / 2));
+    expect(fullish).toBeGreaterThanOrEqual(Math.floor(res.termsAfter / 2));
   });
 
-  it("targetSemesters compresses to the requested count when feasible", () => {
+  it("targetTerms compresses to the requested count when feasible", () => {
     // A student with the first two years done — little enough left that a tight
     // target is achievable.
     const esc = load(`programs/majors/${ESC}.json`);
@@ -200,8 +200,8 @@ describe("elective / gen-ed gradient", () => {
       s.entries.filter((e) => e.type === "course" && e.code).map((e) => e.code!));
     const plan = generatePlan([templateFor(ESC)], { startTerm: { term: "Fall", year: 2026 }, completedCourses: done }, "esc-target");
     const catalog = catalogFor(plan);
-    const res = optimizeSchedule(plan, catalog, { maxCredits: 19, patterns, targetSemesters: 4 });
-    expect(res.semestersAfter).toBeLessThanOrEqual(Math.max(4, res.semestersAfter)); // sanity
+    const res = optimizeSchedule(plan, catalog, { maxCredits: 19, patterns, targetTerms: 4 });
+    expect(res.termsAfter).toBeLessThanOrEqual(Math.max(4, res.termsAfter)); // sanity
     for (const cr of semCredits(plan, catalog)) expect(cr).toBeLessThanOrEqual(19);
     expect(violations(plan, catalog)).toEqual([]);
   });

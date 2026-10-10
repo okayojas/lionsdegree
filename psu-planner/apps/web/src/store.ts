@@ -41,10 +41,10 @@ interface PlannerState {
   repairNote: string | null;
   clearRepairNote: () => void;
   setPlan: (plan: PlanDoc | null, opts?: { repairOrdering?: boolean; optimize?: boolean }) => Promise<void>;
-  /** Repack the current plan into the fewest <=19-credit semesters, keeping the
-   * flowchart's difficulty order and capstone at the end. Pass a semester
+  /** Repack the current plan into the fewest <=19-credit terms, keeping the
+   * flowchart's difficulty order and capstone at the end. Pass a term
    * target to spread the work across exactly that many terms (best effort). */
-  optimizeNow: (targetSemesters?: number) => Promise<string>;
+  optimizeNow: (targetTerms?: number) => Promise<string>;
   autoReoptimize: () => void;
   mutatePlan: (fn: (plan: PlanDoc) => void) => void;
   /** Marking complete removes the course from future terms (it already
@@ -57,7 +57,7 @@ interface PlannerState {
    * (mapping onto matching template/alternative cards), fold `scheduled`
    * courses into the plan, then RE-OPTIMIZE unconditionally so the flowchart
    * adapts — imported courses flow to prerequisite-valid positions instead of
-   * piling into the last semester, and duplicates of template courses dedupe. */
+   * piling into the last term, and duplicates of template courses dedupe. */
   applyImport: (completed: string[], scheduled: { code: string; sem: number }[]) => Promise<void>;
   /** Swap a plan course for one of its listed alternatives (CMPSC 121 <-> 131). */
   swapAlternative: (oldCode: string, newCode: string) => Promise<void>;
@@ -68,15 +68,15 @@ interface PlannerState {
    * and Fall of that year). Returns the summer's term index, remapping any
    * index-keyed state (constraints, moves, added) that sits after it. Idempotent. */
   addSummerSession: (year: number) => number;
-  /** Append an empty semester to the end of the plan and return its index (for
+  /** Append an empty term to the end of the plan and return its index (for
    * dragging a course past the last term). Transient like any manual move —
    * re-optimizing repacks and trims it if left empty. */
-  addSemester: () => number;
-  /** Skip a semester (gap year / co-op / leave): mark it an empty gap and
+  addTerm: () => number;
+  /** Skip a term (gap year / co-op / leave): mark it an empty gap and
    * re-optimize so coursework flows around it and graduation moves back. */
-  deleteSemester: (index: number) => Promise<string>;
-  /** Un-skip a previously gapped semester and re-optimize back into it. */
-  restoreSemester: (index: number) => Promise<string>;
+  deleteTerm: (index: number) => Promise<string>;
+  /** Un-skip a previously gapped term and re-optimize back into it. */
+  restoreTerm: (index: number) => Promise<string>;
   /** Attach an IUG master's (by slug) to the current plan: loads the grad
    * program + grad courses, folds them on as graduate terms with double-count,
    * re-optimizes the undergrad half. Returns a human summary. */
@@ -245,7 +245,7 @@ export const usePlanner = create<PlannerState>((set, get) => ({
       // cap-blind repair pass after it (that was the 25-credit dual-major bug).
       const patterns = await loadFlowchartPatterns();
       const res = optimizeSchedule(plan, catalog, { maxCredits: 19, patterns });
-      notes.push(`kept your ${res.semestersAfter}-semester flowchart order, ≤19 credits each, gen eds and electives spread throughout`);
+      notes.push(`kept your ${res.termsAfter}-term flowchart order, ≤19 credits each, gen eds and electives spread throughout`);
       if (res.capstoneNote) notes.push(res.capstoneNote);
     } else if (opts?.repairOrdering) {
       // Non-optimized path: bulletin suggested plans sometimes violate their
@@ -281,14 +281,14 @@ export const usePlanner = create<PlannerState>((set, get) => ({
     }
   },
 
-  optimizeNow: async (targetSemesters?: number) => {
+  optimizeNow: async (targetTerms?: number) => {
     const plan = get().plan;
     if (!plan) return "No plan yet.";
     const catalog = get().catalog;
     const patterns = await loadFlowchartPatterns();
     if (plan.honors) applyHonorsUpgrades(plan, catalog); // RCL pin + pre-pack upgrades (idempotent)
     const genEd = refineGenEdSlots(plan, catalog); // idempotent; keeps categories fresh
-    const res = optimizeSchedule(plan, catalog, { maxCredits: 19, patterns, targetSemesters });
+    const res = optimizeSchedule(plan, catalog, { maxCredits: 19, patterns, targetTerms });
     // Post-pack honors pass: packing shifts academic years, so top up windows
     // on the final layout (in-place swaps, no re-pack needed).
     const honors = plan.honors ? applyHonorsUpgrades(plan, catalog) : null;
@@ -296,14 +296,14 @@ export const usePlanner = create<PlannerState>((set, get) => ({
     persist(next, "optimize");
     set({ plan: next, ...recompute(next, catalog) });
     let base: string;
-    if (targetSemesters && res.targetMissed) {
-      base = `The remaining work won't fit in ${targetSemesters} semesters at 19 credits each — the tightest I can do is ${res.semestersAfter}. Courses still rise in difficulty, max 19 credits each.`;
-    } else if (targetSemesters) {
-      base = `Consolidated into ${res.semestersAfter} semesters as requested, max 19 credits each, difficulty rising and capstone last.`;
+    if (targetTerms && res.targetMissed) {
+      base = `The remaining work won't fit in ${targetTerms} terms at 19 credits each — the tightest I can do is ${res.termsAfter}. Courses still rise in difficulty, max 19 credits each.`;
+    } else if (targetTerms) {
+      base = `Consolidated into ${res.termsAfter} terms as requested, max 19 credits each, difficulty rising and capstone last.`;
     } else {
-      base = res.semestersAfter < res.semestersBefore
-        ? `Packed your plan into ${res.semestersAfter} semesters (was ${res.semestersBefore}), max 19 credits each, following the flowchart's difficulty order.`
-        : `Rebalanced into ${res.semestersAfter} semesters, max 19 credits each, following the flowchart's difficulty order.`;
+      base = res.termsAfter < res.termsBefore
+        ? `Packed your plan into ${res.termsAfter} terms (was ${res.termsBefore}), max 19 credits each, following the flowchart's difficulty order.`
+        : `Rebalanced into ${res.termsAfter} terms, max 19 credits each, following the flowchart's difficulty order.`;
     }
     const extras = [res.capstoneNote, honors?.note, genEd.note].filter(Boolean).join(" ");
     return extras ? `${base} ${extras}` : base;
@@ -382,7 +382,7 @@ export const usePlanner = create<PlannerState>((set, get) => ({
     // Load any newly referenced subjects, then re-optimize UNCONDITIONALLY (an
     // import is a deliberate bulk change): the engine folds `added` courses into
     // prerequisite-valid positions and re-flows the whole plan around the
-    // completed courses — no more "everything dumped in the last semester".
+    // completed courses — no more "everything dumped in the last term".
     await get().refreshCatalog();
     await get().optimizeNow();
   },
@@ -414,7 +414,7 @@ export const usePlanner = create<PlannerState>((set, get) => ({
       if (p.removed) delete p.removed[id];
       // If a re-optimize already dropped the course from the term list, put its
       // preserved spec back so it's scheduled again (auto-restore). Its origin
-      // rides along, so re-optimizing flows it to the right semester.
+      // rides along, so re-optimizing flows it to the right term.
       const present = p.terms.some((t) => t.items.some((it) => ("code" in it ? it.code : it.id) === id));
       const spec = p.removedSpecs?.[id];
       if (!present && spec) {
@@ -452,7 +452,7 @@ export const usePlanner = create<PlannerState>((set, get) => ({
     return insertAt;
   },
 
-  addSemester: () => {
+  addTerm: () => {
     const plan = get().plan;
     if (!plan) return -1;
     let idx = -1;
@@ -466,9 +466,9 @@ export const usePlanner = create<PlannerState>((set, get) => ({
     return idx;
   },
 
-  deleteSemester: async (index) => {
+  deleteTerm: async (index) => {
     const plan = get().plan;
-    if (!plan || !plan.terms[index]) return "No such semester.";
+    if (!plan || !plan.terms[index]) return "No such term.";
     const label = plan.terms[index].label;
     // Marking the term a gap makes the optimizer keep it empty and flow the
     // coursework (including whatever was in it) around it. Reoptimize is the
@@ -480,9 +480,9 @@ export const usePlanner = create<PlannerState>((set, get) => ({
     return full;
   },
 
-  restoreSemester: async (index) => {
+  restoreTerm: async (index) => {
     const plan = get().plan;
-    if (!plan || !plan.terms[index]) return "No such semester.";
+    if (!plan || !plan.terms[index]) return "No such term.";
     const label = plan.terms[index].label;
     get().mutatePlan((p) => { if (p.terms[index]) delete p.terms[index].gap; });
     const msg = await get().optimizeNow();

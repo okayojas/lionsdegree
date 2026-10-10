@@ -76,8 +76,9 @@ export interface PlanTerm {
    * these terms (it re-flows only the undergraduate half) and relabels them to
    * continue the term sequence. Absent = undergraduate. */
   phase?: "grad";
-  /** An intentional empty term — a gap semester (e.g. a gap year, co-op, or
-   * leave). The optimizer keeps it EMPTY and re-flows coursework around it
+  /** A Gap Term: a term the student INTENDS to leave empty (a gap year,
+   * co-op, or leave) — not one they have simply not filled in yet, which is
+   * why the copy for it has to say so. The optimizer keeps it EMPTY and re-flows coursework around it
    * (everything from this calendar position shifts one term later), and the
    * auto-prune of 0-credit terms leaves it alone. Cleared to un-skip the term. */
   gap?: boolean;

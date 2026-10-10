@@ -10,7 +10,7 @@ import { ApCreditPicker, CourseSearchPicker } from "./CreditPickers";
 import { LegalModal } from "./LegalModal";
 import { usePlanner } from "../store";
 
-/** Next semester by calendar: Jan–Jul -> Fall same year; Aug–Dec -> Spring next year. */
+/** Next term by calendar: Jan–Jul -> Fall same year; Aug–Dec -> Spring next year. */
 function defaultStartTerm(): { term: "Fall" | "Spring"; year: number } {
   const now = new Date();
   const m = now.getMonth(); // 0-based
@@ -130,7 +130,7 @@ export function Onboarding() {
   };
 
   /** The full track: every course in the selected majors' suggested plans,
-   * grouped by template semester — the student checks off what they've taken,
+   * grouped by template term — the student checks off what they've taken,
    * which works even if those courses came from a different major. */
   const track = useMemo(() => {
     const groups: { label: string; entries: { code: string; alternatives: string[] }[] }[] = [];
@@ -148,7 +148,7 @@ export function Onboarding() {
         }
         if (!entries.length) return;
         const label = loaded.length > 1 ? `${prog.name.split(",")[0]} · ${sem.label}` : sem.label;
-        groups.push({ label: label || `Semester ${si + 1}`, entries });
+        groups.push({ label: label || `Term ${si + 1}`, entries });
       });
     }
     return groups;
@@ -158,7 +158,7 @@ export function Onboarding() {
     setBusy(true);
     setError(null);
     try {
-      // Programs with a plan grid contribute semesters; minors/certificates
+      // Programs with a plan grid contribute terms; minors/certificates
       // without one still contribute their requirements (overlap-checked
       // against the majors, shortfall becomes labeled slots).
       const templates: ProgramTemplate[] = loaded.map((p) => {
@@ -213,7 +213,7 @@ export function Onboarding() {
         <div className="eyebrow">Unofficial · Penn State degree planner</div>
         <h1>Chart your degree<br />like a route map.</h1>
         <p className="lede">
-          Every prerequisite is a connection, every semester a stop. Pick your major, minor, or certificate and
+          Every prerequisite is a connection, every term a stop. Pick your major, minor, or certificate and
           LionsDegree plots a valid, optimized path to graduation. Always confirm with your adviser and the{" "}
           <a href="https://bulletins.psu.edu" target="_blank" rel="noreferrer">University Bulletin</a> — this tool
           is <strong>not affiliated with or endorsed by Penn State</strong>.
@@ -318,7 +318,7 @@ export function Onboarding() {
       <div className="step">
         <h3>4 · Which of these have you already taken?</h3>
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center", marginBottom: 8 }}>
-          <label>Your next semester{" "}
+          <label>Your next term{" "}
             <select value={startTerm} onChange={(e) => setStartTerm(e.target.value as "Fall" | "Spring")}>
               <option>Fall</option>
               <option>Spring</option>
@@ -336,7 +336,7 @@ export function Onboarding() {
         {track.length > 0 && (
           <p style={{ fontSize: 12.5, color: "var(--muted)", margin: "0 0 8px" }}>
             Check every course you've completed — no matter which major you took it under.
-            Anything unchecked stays on your schedule; fully-completed semesters disappear automatically.
+            Anything unchecked stays on your schedule; fully-completed terms disappear automatically.
           </p>
         )}
         {track.map((group) => {

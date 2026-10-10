@@ -44,7 +44,7 @@ function ChatTab({ chat }: { chat: ReturnType<typeof useChat> }) {
             Ask me anything about your plan — try:
             <ul>
               <li>"What should I still take for my gen eds?"</li>
-              <li>"Move PHYS 212 one semester later"</li>
+              <li>"Move PHYS 212 one term later"</li>
               <li>"Suggest a technical elective about machine learning"</li>
               <li>"What am I still missing to graduate?"</li>
             </ul>

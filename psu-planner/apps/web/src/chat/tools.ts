@@ -144,12 +144,12 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
 
     case "check_prerequisites": {
       const code = requireCode(args.code);
-      const sem = Number(args.semester_index ?? 0);
+      const sem = Number(args.term_index ?? 0);
       const cat = await fullCatalog();
       if (!cat[code]) return { error: `${code} is not in the catalog` };
       const chk = checkCourse({ ...s.catalog, [code]: cat[code] }, code, sem, s.sched);
       return {
-        code, semester_index: sem,
+        code, term_index: sem,
         result: chk.value === 2 ? "satisfied" : chk.value === 1 ? "depends-on-external (verify)" : "VIOLATED",
         details: chk.leaves.map((l) =>
           l.kind === "phrase"
@@ -161,8 +161,8 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
 
     case "add_course": {
       const code = requireCode(args.code);
-      const sem = Number(args.semester_index ?? 0);
-      if (sem < 0 || sem >= plan.terms.length) return { error: `semester_index must be 0..${plan.terms.length - 1}` };
+      const sem = Number(args.term_index ?? 0);
+      if (sem < 0 || sem >= plan.terms.length) return { error: `term_index must be 0..${plan.terms.length - 1}` };
       const cat = await fullCatalog();
       if (!cat[code]) return { error: `${code} is not in the catalog — search first` };
       if (s.items.some((it) => it.kind === "course" && it.code === code)) return { error: `${code} is already in the plan` };
@@ -175,10 +175,10 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
 
     case "move_course": {
       const code = requireCode(args.code);
-      const sem = Number(args.semester_index ?? 0);
+      const sem = Number(args.term_index ?? 0);
       const item = s.items.find((it) => it.kind === "course" && it.code === code);
       if (!item) return { error: `${code} is not in the plan` };
-      if (sem < 0 || sem >= plan.terms.length) return { error: `semester_index must be 0..${plan.terms.length - 1}` };
+      if (sem < 0 || sem >= plan.terms.length) return { error: `term_index must be 0..${plan.terms.length - 1}` };
       const rev = plan.rev;
       s.mutatePlan((p) => { p.moves[item.id] = sem; });
       record("move_course", `moved ${code} to ${plan.terms[sem].label}`, rev);
@@ -234,7 +234,7 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
       record("set_schedule_constraint", `constraint: ${code} ${type} ${label}`, rev);
       return {
         ok: true, constraint: { course: code, rule: type, term: label },
-        next_step: "call optimize_schedule to rebuild the plan around this constraint — the course moves to its best legal semester and nothing gets removed",
+        next_step: "call optimize_schedule to rebuild the plan around this constraint — the course moves to its best legal term and nothing gets removed",
       };
     }
 
@@ -262,35 +262,35 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
       };
     }
 
-    case "add_semester": {
+    case "add_term": {
       const rev = plan.rev;
-      const idx = s.addSemester();
-      if (idx < 0) return { error: "no plan to add a semester to" };
-      record("add_semester", `added an empty semester at index ${idx}`, rev);
+      const idx = s.addTerm();
+      if (idx < 0) return { error: "no plan to add a term to" };
+      record("add_term", `added an empty term at index ${idx}`, rev);
       return {
         ok: true, term_index: idx,
-        note: "empty semester appended; move or add courses into it. If left empty it's trimmed on the next optimize_schedule.",
+        note: "empty term appended; move or add courses into it. If left empty it's trimmed on the next optimize_schedule.",
       };
     }
 
-    case "delete_semester": {
+    case "skip_term": {
       const idx = Math.round(Number(args.term_index));
-      if (!Number.isFinite(idx) || !plan.terms[idx]) return { error: "term_index must be a valid semester index from get_plan" };
+      if (!Number.isFinite(idx) || !plan.terms[idx]) return { error: "term_index must be a valid term index from get_plan" };
       if (plan.terms[idx].phase === "grad") return { error: "graduate (IUG) terms can't be skipped" };
       const label = plan.terms[idx].label;
       const rev = plan.rev;
-      const summary = await s.deleteSemester(idx); // marks it a gap + re-optimizes around it
-      record("delete_semester", `skipped ${label} as a gap semester — ${summary.slice(0, 120)}`, rev);
-      return { ok: true, skipped: label, summary, note: "the semester is kept EMPTY (a gap year/leave); courses moved to later terms and nothing was removed" };
+      const summary = await s.deleteTerm(idx); // marks it a gap + re-optimizes around it
+      record("skip_term", `skipped ${label} as a gap term — ${summary.slice(0, 120)}`, rev);
+      return { ok: true, skipped: label, summary, note: "the term is kept EMPTY (a gap year/leave); courses moved to later terms and nothing was removed" };
     }
 
-    case "restore_semester": {
+    case "restore_term": {
       const idx = Math.round(Number(args.term_index));
-      if (!Number.isFinite(idx) || !plan.terms[idx]) return { error: "term_index must be a valid semester index from get_plan" };
+      if (!Number.isFinite(idx) || !plan.terms[idx]) return { error: "term_index must be a valid term index from get_plan" };
       const label = plan.terms[idx].label;
       const rev = plan.rev;
-      const summary = await s.restoreSemester(idx);
-      record("restore_semester", `un-skipped ${label}`, rev);
+      const summary = await s.restoreTerm(idx);
+      record("restore_term", `un-skipped ${label}`, rev);
       return { ok: true, restored: label, summary };
     }
 
@@ -402,7 +402,7 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
       let nodes = 0;
 
       const statusOf = (c: string) =>
-        completed.has(c) ? "completed" : planned.has(c) ? `in-plan (semester ${planned.get(c)! + 1})` : "MISSING";
+        completed.has(c) ? "completed" : planned.has(c) ? `in-plan (term ${planned.get(c)! + 1})` : "MISSING";
 
       interface ChainNode {
         code: string; title?: string; status: string;
@@ -440,11 +440,11 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
     case "optimize_schedule": {
       // ONE deterministic engine call — the model must never hand-reorder a plan
       // with dozens of move_course calls (that loops until it times out).
-      const target = args.semesters == null ? undefined : Math.max(1, Math.round(Number(args.semesters)));
-      if (args.semesters != null && !Number.isFinite(Number(args.semesters))) return { error: "semesters must be a number" };
+      const target = args.target_terms == null ? undefined : Math.max(1, Math.round(Number(args.target_terms)));
+      if (args.target_terms != null && !Number.isFinite(Number(args.target_terms))) return { error: "target_terms must be a number" };
       const revOpt = plan.rev;
       const summary = await s.optimizeNow(target);
-      record("optimize_schedule", `re-optimized the plan${target ? ` targeting ${target} semesters` : ""} (${(plan.constraints ?? []).length} constraint(s) honored) — ${summary.slice(0, 140)}`, revOpt);
+      record("optimize_schedule", `re-optimized the plan${target ? ` targeting ${target} terms` : ""} (${(plan.constraints ?? []).length} constraint(s) honored) — ${summary.slice(0, 140)}`, revOpt);
       const { items, catalog } = state();
       const terms = (state().plan?.terms ?? []).map((t, i) => ({
         index: i,
@@ -453,7 +453,7 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
         courses: items.filter((it) => it.sem === i && it.kind === "course").map((it) => it.code),
         open_slots: items.filter((it) => it.sem === i && it.kind === "slot").length,
       }));
-      return { ok: true, summary, semesters: terms.length, terms };
+      return { ok: true, summary, terms_count: terms.length, terms };
     }
 
     case "audit_requirements": {

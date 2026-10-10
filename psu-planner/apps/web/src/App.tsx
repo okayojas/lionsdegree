@@ -182,7 +182,7 @@ export default function App() {
               <button
                 role="menuitem"
                 onClick={async () => {
-                  if (confirm("Repack your schedule into the fewest semesters (max 19 credits each)? Manual card positions reset.")) {
+                  if (confirm("Repack your schedule into the fewest terms (max 19 credits each)? Manual card positions reset.")) {
                     setToast(await usePlanner.getState().optimizeNow());
                   }
                 }}
@@ -281,7 +281,7 @@ export default function App() {
             ) : (
               <>
                 <SlotFillPicker course={pickedCourse} onFill={(slotId, label) => void fillPickedSlot(slotId, label)} />
-                <p className="desc" style={{ marginTop: 12 }}><b>Or add as an extra course — which semester?</b></p>
+                <p className="desc" style={{ marginTop: 12 }}><b>Or add as an extra course — which term?</b></p>
                 <div className="row">
                   {plan.terms.map((t, i) => (
                     <button key={i} onClick={() => void addPicked(i)}>{t.label}</button>
@@ -368,7 +368,7 @@ export default function App() {
                   <span style={{ flex: 1 }}>
                     <b>{new Date(h.ts).toLocaleString()}</b>
                     <span style={{ color: "var(--muted)", marginLeft: 8 }}>
-                      {h.cause} · rev {h.rev} · {h.plan.terms.length} semesters
+                      {h.cause} · rev {h.rev} · {h.plan.terms.length} terms
                     </span>
                   </span>
                   <button

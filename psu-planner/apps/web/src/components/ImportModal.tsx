@@ -1,6 +1,6 @@
-/** Post-onboarding schedule import, term-aware: semester labels in the
+/** Post-onboarding schedule import, term-aware: term labels in the
  * spreadsheet decide what happens — terms before today are marked completed,
- * current/future terms are scheduled into the matching plan semesters, and
+ * current/future terms are scheduled into the matching plan terms, and
  * undated courses are shown for the student to decide. */
 import { useRef, useState } from "react";
 import {
@@ -72,7 +72,7 @@ export function ImportModal({ onClose, onDone }: { onClose: () => void; onDone: 
       .map((r) => ({ code: r.code, sem: r.targetSem }));
     // One store call: mark completed (mapping onto existing cards), fold in the
     // scheduled courses, and re-optimize so the flowchart adapts instead of
-    // stacking everything in the last semester.
+    // stacking everything in the last term.
     await applyImport(completed, scheduled);
     onDone(
       [
@@ -87,8 +87,8 @@ export function ImportModal({ onClose, onDone }: { onClose: () => void; onDone: 
     setRows(rows.map((r) => (r.code === code ? { ...r, disposition: d } : r)));
 
   const groups: { title: string; note: string; filter: (r: Row) => boolean }[] = [
-    { title: "Past semesters → completed", note: "From term labels before today.", filter: (r) => r.disposition === "completed" && r.term !== null },
-    { title: "Current & future semesters → scheduled", note: "Placed into the matching semester on your flowchart.", filter: (r) => r.disposition === "schedule" },
+    { title: "Past terms → completed", note: "From term labels before today.", filter: (r) => r.disposition === "completed" && r.term !== null },
+    { title: "Current & future terms → scheduled", note: "Placed into the matching term on your flowchart.", filter: (r) => r.disposition === "schedule" },
     { title: "No date found — choose", note: "Defaulting to completed; click to change.", filter: (r) => r.term === null && r.disposition !== "schedule" },
     { title: "Skipped", note: "Already on your flowchart or excluded by you.", filter: (r) => r.disposition === "skip" },
   ];
@@ -99,7 +99,7 @@ export function ImportModal({ onClose, onDone }: { onClose: () => void; onDone: 
     <Dialog label="Import your schedule" onClose={onClose} style={{ maxWidth: 720 }}>
         <h2>Import your schedule</h2>
         <p className="desc">
-          Upload a spreadsheet or paste text. Semester labels (e.g. "Fall 2025") decide what happens:
+          Upload a spreadsheet or paste text. Term labels (e.g. "Fall 2025") decide what happens:
           past terms are marked completed, upcoming terms are scheduled onto your flowchart.
         </p>
         <input

@@ -113,7 +113,7 @@ export function searchHintFrom(prose: string): string | undefined {
 }
 
 const OFFERINGS_NOTE =
-  "We can't see which semesters a course actually runs — check LionPATH before you commit to one.";
+  "We can't see which terms a course actually runs — check LionPATH before you commit to one.";
 
 /** Any gen-ed course at all. Used by plans generated before gen-ed slots were
  * refined into framework categories. */

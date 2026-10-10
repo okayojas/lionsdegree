@@ -258,7 +258,7 @@ describe("coverage substitution + schedule optimizer (real data)", () => {
     repairPrereqOrdering(plan, catalog);
     const before = plan.terms.length;
     const res = optimizeSchedule(plan, catalog, { maxCredits: 19 });
-    expect(res.semestersAfter).toBeLessThanOrEqual(before);
+    expect(res.termsAfter).toBeLessThanOrEqual(before);
 
     const items = buildItems(plan, catalog);
     const sched = buildSchedule(plan, items, catalog);
@@ -273,7 +273,7 @@ describe("coverage substitution + schedule optimizer (real data)", () => {
       .filter((it) => checkCourse(catalog, it.code!, it.sem, sched).value === 0)
       .map((it) => it.code);
     expect(bad).toEqual([]);
-    console.log(`[optimizer] AIE with year 1 done: ${before} -> ${res.semestersAfter} semesters`);
+    console.log(`[optimizer] AIE with year 1 done: ${before} -> ${res.termsAfter} semesters`);
   });
 });
 
