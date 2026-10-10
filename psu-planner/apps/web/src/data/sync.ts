@@ -54,12 +54,26 @@ export async function currentUser(): Promise<User | null> {
   return data.user ?? null;
 }
 
+/** Where OAuth should drop the student back.
+ *
+ * The PAGE they signed in from, not the origin. `window.location.origin` was
+ * correct until #6 split the build: the origin root is now the landing page,
+ * so signing in from the planner bounced the student out to the marketing
+ * page and they had to find their way back in.
+ *
+ * Pathname only -- no query or hash. Supabase appends its own parameters to
+ * this URL, and carrying a stale `?` or `#` into that is how redirect URLs
+ * stop matching an allow-list entry. */
+export function signInRedirectTo(loc: { origin: string; pathname: string }): string {
+  return `${loc.origin}${loc.pathname}`;
+}
+
 export async function signIn(provider: "google" | "azure"): Promise<void> {
   const sb = supabase();
   if (!sb) return;
   await sb.auth.signInWithOAuth({
     provider,
-    options: { redirectTo: window.location.origin },
+    options: { redirectTo: signInRedirectTo(window.location) },
   });
 }
 
