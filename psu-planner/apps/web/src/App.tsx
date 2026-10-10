@@ -271,7 +271,11 @@ export default function App() {
                 {pickedCourse.keywords.map((k) => <li key={k}>{k}</li>)}
               </ul>
             ) : null}
-            <p className="desc">{pickedCourse.description.slice(0, 280)}{pickedCourse.description.length > 280 ? "…" : ""}</p>
+            {pickedCourse.url && (
+              <p className="desc">
+                <a href={pickedCourse.url} target="_blank" rel="noopener noreferrer">Full description in the Bulletin</a>
+              </p>
+            )}
             {pickedCourse.enforced && <div className="verbatim"><b>Enforced prerequisite:</b> {pickedCourse.enforced}</div>}
             {plan.completed[pickedCourse.code] ? (
               <>

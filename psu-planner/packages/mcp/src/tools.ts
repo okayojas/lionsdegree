@@ -177,17 +177,12 @@ export async function loadContext(opts: { planPath: string; catalogRoot: string 
   return { plan: parsed.plan, planPath: opts.planPath, data, items, sched: buildSchedule(parsed.plan, items, data.catalog) };
 }
 
-/** Catalog prose is text the university wrote and we retrieved. Fenced so the
- * assistant treats it as reference material: an unfenced description is a
- * prompt-injection surface (DECISIONS.md 5.0, S4).
- *
- * The fence must survive its own contents. Interpolating raw text means a
- * description containing the closing tag ends the fence early, and everything
- * after it reads as instructions from us rather than data from the bulletin --
- * a fence that any fenced text can step out of is not a fence. Reaching this
- * needs the string inside a PSU bulletin page, which is a tall order and
- * exactly the kind of assumption iron rule 1 exists to not make. */
-const fence = fenceCatalogText;
+/** Catalog prose reaching a model is fenced so it reads as reference data and
+ * never as instruction (DECISIONS.md 5.0, S4). Descriptions are no longer
+ * published at all, so the remaining prose is an adviser-defined or unreadable
+ * requirement's own words -- see suggest_slot_courses. Implementation is shared
+ * with the web chat in the engine; a second copy of a security boundary drifts
+ * from the first. */
 
 const MAX_RESULTS = 25;
 
@@ -222,7 +217,17 @@ export async function executeTool(
       });
       return {
         requirement: slot.slotLabel ?? slot.slot,
-        what_counts: ranked.poolNote,
+        // An adviser-defined or unreadable pool has no list, so its note
+        // QUOTES the bulletin -- the requirement's own words are the answer.
+        // That makes this the catalog prose that still reaches a model now
+        // that descriptions are not published, so it is the thing that now
+        // needs fencing. Our own phrasings ("From this requirement's
+        // published list") are not fenced: marking our words untrusted
+        // teaches the model to discount them.
+        what_counts:
+          pool?.kind === "adviser" || pool?.kind === "unreadable"
+            ? fenceCatalogText(ranked.poolNote)
+            : ranked.poolNote,
         availability: ranked.offeringsNote,
         picks: ranked.picks.map((p) => ({
           code: p.course.code,
@@ -283,8 +288,10 @@ export async function executeTool(
         // Keywords first: extracted topic terms are facts about the course
         // and need no fencing. The description is the University's prose and
         // does, and is excerpted rather than reproduced whole.
+        // Keywords, not prose. Extracted terms are facts about the course and
+        // need no fencing; the Bulletin's description is not published here at
+        // all (DECISIONS.md 5.1), so bulletin_url is where the text lives.
         keywords: c.keywords ?? [],
-        description: fence(c.description.slice(0, 280)),
         enforced_prerequisites: c.enforced,
         enforced_concurrent: c.concurrent,
         genEd: c.genEd,

@@ -77,6 +77,46 @@ for (const edition of editions) {
   }
 }
 
+/** Remove course descriptions from the PUBLISHED copy.
+ *
+ * This is the line between the two trees, and it is the reason the strip lives
+ * here rather than in the pipeline. `data/out` is everything we parsed: the
+ * descriptions stay there, because keyword extraction and the search index are
+ * both built from them. `public/catalog` is what we PUBLISH, and the
+ * descriptions are Penn State's prose (DECISIONS.md 5.1).
+ *
+ * Not displaying them was never enough. These are static files served to
+ * anyone who asks; shipping the bytes and declining to render them is still
+ * distribution, with devtools one keystroke away. The only version of "we keep
+ * it internally" that means anything is the version where it does not leave
+ * the build.
+ *
+ * What replaces it for a student: `keywords` says what the course covers and
+ * `url` links to the Bulletin page the prose lives on.
+ */
+function stripDescriptions(editionDir) {
+  let bytes = 0;
+  for (const sub of [["courses"], ["courses", "grad"]]) {
+    const dir = path.join(editionDir, ...sub);
+    if (!fs.existsSync(dir)) continue;
+    for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".json"))) {
+      const file = path.join(dir, f);
+      const courses = JSON.parse(fs.readFileSync(file, "utf-8"));
+      if (!Array.isArray(courses)) continue;
+      let touched = false;
+      for (const c of courses) {
+        if (typeof c?.description === "string" && c.description) {
+          bytes += c.description.length;
+          delete c.description;
+          touched = true;
+        }
+      }
+      if (touched) fs.writeFileSync(file, JSON.stringify(courses, null, 1), "utf-8");
+    }
+  }
+  return bytes / 1048576;
+}
+
 fs.mkdirSync(DST, { recursive: true });
 clearLegacyFlatLayout();
 
@@ -85,7 +125,8 @@ for (const edition of editions) {
   const dst = path.join(DST, edition);
   fs.rmSync(dst, { recursive: true, force: true }); // this edition only
   fs.cpSync(src, dst, { recursive: true });
-  console.log(`synced ${edition} (${countFiles(dst)} files)`);
+  const stripped = stripDescriptions(dst);
+  console.log(`synced ${edition} (${countFiles(dst)} files, ${stripped.toFixed(1)} MB of description prose withheld)`);
 }
 
 // Every edition now published, newest last. The app reads this to populate the

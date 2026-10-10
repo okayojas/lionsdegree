@@ -11,7 +11,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Concepts, tools and techniques, and essential background in stellar, Galactic, extragalactic astronomy and cosmology.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -50,7 +49,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Fundamental tools and results of modern astrophysical theory. Gravitation; gas dynamics; radiation processes; radiative transfer; atomic structure and transitions.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -89,7 +87,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Properties and evolution of galaxies including their stellar, interstellar, black hole and Dark Matter components.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "ASTRO501 , ASTRO502",
@@ -128,7 +125,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Theoretical and practical aspects of modern multiwavelength observational astrophysics including detector physics, imaging techniques, spectroscopic techniques, and data analysis principles.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "ASTRO501 , ASTRO502",
@@ -166,7 +162,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Modern astronomical research -- the study of planets, stars, galaxies and the Universe -- and the linking of observational data to astrophysical theory encounter a wide array of challenges falling under the rubric of statistical inference. Cosmology, for example, addresses spatial clustering of galaxies, nonlinear regression of Big Bang astrophysical models, supervised regression of galaxy photometric redshifts, multiple hypothesis tests for faint source detection in images, multivariate classification, and time series analysis of billion-object multi-epoch surveys. Big Data arising from large-scale astronomical surveys and Bayesian modeling of astrophysical models are propelling astrostatistics into greater importance than in the past. Yet the curriculum for young astronomers typically includes no courses in statistical methodology. This course is designed to fill this gap. The course progresses through three stages. First, basic principles in statistical inference are presented and discussed including elements of probability theory, point and interval estimation, and probability distributions. The techniques of least squares, maximum likelihood, and Bayesian inference are outlined here and exercised later in the course. Second, central fields of applied statistics are investigated including nonparametric statistics and density estimation, regression (including nonlinear models from astrophysical theory), and multivariate analysis (including unsupervised clustering and supervised classification). Specific statistical methods are linked to specific astronomical problems at each step. Third, the instructor and students choose topics for study, such as time series analysis, spatial point processes, censoring and truncation, Bayesian computation, and scientific visualization. Common characteristics of astronomical data that are not treated in standard statistical presentations are discussed in detail, including heteroscedastic measurement errors, irregularly-spaced time series, and nonlinear astrophysical models. A crucial element of the course is practical training in the implementation of these statistical methods using sophisticated public-domain software environments. Software tutorials in class and text help educate the student to a level where data and science analysis can proceed at a mature level.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -205,7 +200,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "This course provides an advanced overview of applications of numerical methods and computer programming to physics and astrophysics. Numerical calculations provide a powerful tool for understanding physical phenomena, complementing laboratory experiment and analytical mathematics. The main objectives of the course are: to survey the computational methods used for modeling physical and astrophysical systems; to apply the computational methods to solve real world problems in physics and astrophysics; to assess the reliability of numerical results using convergence tests and error estimates; and to use scientific visualization as a tool for computer programming development and for physical understanding of numerical results. Strong programming skill in any of the common programming languages such as C, C++, or Python, is highly recommended.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -248,7 +242,6 @@
    "max": 3,
    "repeatableMax": 999
   },
-  "description": "Training in software development for performing astrophysical simulations and analyzing astronomical data, including attention to reproducibility, parallelization, and computing architectures.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -289,7 +282,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "The structure, physics and observational manifestations of atmospheres of stars.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "ASTRO501 , ASTRO502",
@@ -325,7 +317,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Physics of stellar interiors, stellar structure, and evolutionary changes of stars from pre-main sequence through final states.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "ASTRO501 , ASTRO502",
@@ -364,7 +355,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Theory and observation of the interstellar medium of our Galaxy and the process of star and planet formation.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -399,7 +389,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Modern cosmology of the early universe, including inflation, the cosmic microwave background, nucleosynthesis, dark matter and energy. ASTRO (PHYS) 545 Cosmology (3)Cosmology is the scientific study of the universe as a whole: its physical contents, principal physical processes, and evolution through time. Modern cosmology, which began in the early 20th century, is undergoing a renaissance as a precision science as powerful ground- and space-based telescopes allow us to observe the formation of the first starts, galaxies and galaxy clusters; the echoes of the inflationary epoch as they are impressed upon the cosmic microwave background; and evidence for and clues to the nature of the mysterious dark energy, which is driving the accelerating expansion of the universe. This course will introduce students to the key observations and the theoretical framework through which we understand the physical cosmology of the early universe.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -440,7 +429,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Theory and observations of X-rays, gamma-rays and other high energy radiation from Galactic and extragalactic sources.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -478,7 +466,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Particle astrophysics is a discipline at the interface between physics and astronomy, which has undergone tremendous growth in the 21st century, with the commissioning and exciting results from very large facilities detecting the highest energy cosmic rays, neutrinos, gravitational waves, and gamma-rays. There is a rapid and ongoing expansion of the understanding of these radiations, their physics and their sources, which include supernovae, gamma-ray bursts, and active galactic nuclei, and there are major new facilities aimed at characterizing particle properties of dark matter and its cosmological effects. Students will be given an overview of the basics of particle astrophysics and to the latest data and its interpretation, stressing issues currently discussed by the community, with particular attention on major projects in which Penn State faculty are involved. The course is designed for graduate students in physics and astronomy and astrophysics, being also appropriate for students in nuclear engineering or related disciplines.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "ASTRO 502; PHYS 400; PHYS 406 PHYS 557",
@@ -519,7 +506,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "This course offers a broad exploration of the Search for Extraterrestrial Intelligence (SETI) as a subfield of astrobiology. It includes a survey of background astronomy and radio engineering concepts necessary to read and analyze the professional literature on the topic, including foundational works and the state-of-the-art. It takes a broad view of SETI, including communication SETI (i.e. radio and optical searches), artifact SETI (search for non-communicative evidence of engineering), and a critical analysis of the assumptions and potential biases inherent in past and current SETI efforts. It also includes discussion of SETI's place in the popular, political, and scientific landscapes.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -562,7 +548,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Recommended Preparations: Some assignments will require programming in the student's programming language of choice. Since the early 1990s, thousands of exoplanets have been discovered orbiting other stars beyond our solar system. The properties of these planets have challenged our understanding of how planetary systems form and evolve. This course will cover theories of exoplanets' formation and evolution, the discovery and characterization of exoplanets via exoplanet signals, and the physical properties of exoplanets, including prospects for habitability.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -601,7 +586,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Advanced study of issues in planetary, stellar, galactic, extragalactic and theoretical astronomy and astrophysics. ASTRO 585 Topics in Astronomy and Astrophysics (3)This 3-credit topics course will be offered as part of the regular sequence of graduate offerings, and can be used to fulfill the graduate degree course requirements on an equal basis with ASTRO 501-580 3 credit courses. The purpose here is to provide a flexible environment for full courses on subjects that are not covered in the courses with fixed curricular content and are important to Penn State faculty, research Centers, and students.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "ASTRO501 , ASTRO502",
@@ -640,7 +624,6 @@
    "max": 1,
    "repeatableMax": null
   },
-  "description": "The course includes a variety of topics related to ethics and professional development in Astronomy and Astrophysics. The course builds from the mandatory training students receive from Scholarship and Research Integrity. The content is geared toward providing students with \"survival skills\" that are not encountered in the typical course curriculum. Topics include research paper writing, proposal writing, postdoctoral job applications, career options in research/education and outreach/observatory support/data science/policy, professional networking, effective dissemination of research, funding landscape in the profession, etc.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -679,7 +662,6 @@
    "max": 1,
    "repeatableMax": null
   },
-  "description": "Contemporary issues in instrumental, observational and theoretical astronomy and astrophysics. ASTRO 589 Seminar in Current Astronomical Research (1)This seminar will be offered as part of the regular sequence of graduate offerings, and is also used to fulfill the graduate degree course requirements for 1-credit seminars. Their purpose is to treat focused issues of current research interest. Examples are: Physics of Gamma-ray Bursts, Design of Precision Spectrographs, Quasar Surveys, Protoplanetary Disks. This course is taught by Department faculty, researchers and visitors.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "ASTRO501 , ASTRO502",
@@ -718,7 +700,6 @@
    "max": 3,
    "repeatableMax": 3
   },
-  "description": "Continuing seminars which consist of a series of individual lectures by faculty, students, or outside speakers.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -753,7 +734,6 @@
    "max": 9,
    "repeatableMax": 9
   },
-  "description": "Creative projects, including nonthesis research, which are supervised on an individual basis and which fall outside the scope of formal courses.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -789,7 +769,6 @@
    "max": 9,
    "repeatableMax": 9
   },
-  "description": "Formal courses given infrequently to explore, in depth, a comparatively narrow subject which may be topical or of special interest.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -825,7 +804,6 @@
    "max": 15,
    "repeatableMax": 999
   },
-  "description": "No description.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -857,7 +835,6 @@
    "max": 0,
    "repeatableMax": 999
   },
-  "description": "No description.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -889,7 +866,6 @@
    "max": 3,
    "repeatableMax": 6
   },
-  "description": "No description.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -921,7 +897,6 @@
    "max": 15,
    "repeatableMax": 999
   },
-  "description": "No description.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -953,7 +928,6 @@
    "max": 0,
    "repeatableMax": 999
   },
-  "description": "No description.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -985,7 +959,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Overview of the structure, formation, and evolution of planets, stars, galaxies, and the universe. Topic: Observations by modem ground-based and space-based observatories have fueled significant changes in our understanding of the Universe. The Solar System contains only 8 planets but has many thousands of Kuiper Belt Objects, including Pluto. Large area sky surveys have taken inventory of the stars in the Milky Way Galaxy and galaxies in the Universe and determined that only 4% of the mass of the universe is found in luminous objects. Besides the mysterious \"dark matter,\" we now know that the energy budget of the universe is dominated by \"dark energy,\" which is causing the expansion of the Universe to accelerate. ASTRO 80 I: Planets, Stars, Galaxies, and the Universe will provide science educators with a strong foundation in astronomy, allowing them to critically evaluate the evidence for the most recent advances in our understanding of the Solar System, our Galaxy, and the Universe. Astronomers use observations of the light from distant sources to discover the nature of these objects and their environment. ASTRO 801 will lead students to an understanding of light and the instruments for its detection. They will see how careful analysis of these observational data and theoretical models are used to solve the mysteries of the Universe. ASTRO 801 will combine digital video, audio, simulation models, and the wealth of astronomical imagery from NASA's Hubble, Chandra, and Spitzer Great Observatories. Students will use highly detailed planetarium software and simulated observing experiences to directly explore the night sky to make the same observations that research astronomers perform in their work. ASTRO 801 students will be granted licenses to use the courseware developed for this course in their own secondary classrooms.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,

@@ -148,11 +148,6 @@ function SlotSuggestions({ item, onFill }: { item: PlanItem; onFill: (code: stri
   );
 }
 
-/** How much of the bulletin's description to show before linking out. The
- * catalog is Penn State's prose; an excerpt plus a link to the source is a
- * reference, where the whole thing is a republication (DECISIONS.md 5.1). */
-const DESC_CHARS = 280;
-
 export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => void }) {
   const { plan, catalog, sched, mutatePlan, markCompleted, refreshCatalog, swapAlternative, removeItem } = usePlanner();
 
@@ -314,15 +309,14 @@ export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => 
             ))}
           </ul>
         ) : null}
-        {c?.description && (
+        {/* The Bulletin's own prose is not published here (DECISIONS.md
+            5.1); the keywords above say what the course covers and this is
+            the link to the text itself. */}
+        {c?.url && (
           <p className="desc">
-            {c.description.slice(0, DESC_CHARS)}
-            {c.description.length > DESC_CHARS ? "… " : " "}
-            {c.url && (
-              <a href={c.url} target="_blank" rel="noopener noreferrer">
-                Full description in the Bulletin
-              </a>
-            )}
+            <a href={c.url} target="_blank" rel="noopener noreferrer">
+              Read the full description in the Penn State Bulletin
+            </a>
           </p>
         )}
         <div className="row">

@@ -682,11 +682,29 @@ history starts at a fresh root commit rather than a rewritten one. No `filter-re
   repeat-or-rare rule (CMPSC 465 got ZERO, because its description is one dense sentence where
   nothing repeats — the signal fails precisely on the shortest, most keyword-dense entries).
   Accepted limit: a gerund in a bare list tags as a verb, so "...graphs, sorting." loses "sorting".
-- **Still to do:** stop shipping descriptions altogether, replacing search's use of them with a
-  build-time inverted index. Measured at 88.9% top-25 agreement with today's ranking against 49.5%
-  for keywords alone, at 2.13 MB. Keeping the prose build-side only is *Authors Guild v. HathiTrust*
-  — full-text indexing with no display at all. The condition is that it must never ship: shipping
-  it and not rendering it is still distribution.
+- **Done: the prose no longer ships.** Search scored against the description, but it only ever
+  asked one question of it — how often does this term occur, capped at 5. That is a count, and a
+  table of counts is a fact about the text rather than the text. The pipeline reads the full
+  descriptions at build time and emits postings; `public/catalog` carries none. This is the
+  *Authors Guild v. HathiTrust* shape — index the full text, display none of it — and the condition
+  is that it genuinely never leaves the build, because shipping bytes and declining to render them
+  is still distribution.
+- **Measured against the FULL prose**, not the old index: 91.7% overlap@25, 94.4% top-5, 93.0%
+  rank-1, zero queries made unfindable. Against the *old shipped index* the numbers look far worse
+  (62% top-5) — because that index was itself lossy, a 200-character head plus a DEDUPLICATED word
+  bag whose counts were mostly 1 however often a word really appeared. The postings index tracks
+  the real text more closely than what it replaced.
+- **The strip lives in `sync-catalog.mjs`**, which is the line between the two trees: `data/out` is
+  everything parsed (keyword extraction and the index are both built from it), `public/catalog` is
+  what we publish. 9.9 MB of prose withheld per edition.
+- **What cannot be recovered from the index:** word order, sentences, punctuation, and any count
+  above 5. Dropping the description phrase-match bonus (+7) is what buys that last guarantee —
+  word order is the one part of an index that edges toward reconstructable — and it cost 2 points
+  of agreement.
+- **Consequence worth noting:** removing descriptions removed the only *fenced* catalog prose, and
+  revealed an unfenced one. An adviser-defined or unreadable requirement's note quotes the
+  bulletin's own words, and MCP returned it raw. Now fenced; our own phrasings deliberately are
+  not, since marking our words untrusted teaches the model to discount them.
 
 
 - **Security headers** per OWASP Secure Headers baseline: `_headers` (Cloudflare Pages) sets HSTS

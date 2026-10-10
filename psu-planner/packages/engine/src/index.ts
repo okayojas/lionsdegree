@@ -20,3 +20,4 @@ export * from "./honors.js";
 export * from "./iug.js";
 export * from "./optimize.js";
 export { fenceCatalogText, FENCE_TAG } from "./fence.js";
+export { encodePostings, decodePostings, prefixRange, MAX_COUNT, type SearchIndexFile } from "./postings.js";

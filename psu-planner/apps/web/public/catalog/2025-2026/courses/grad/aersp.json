@@ -11,7 +11,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Jet wings, high lift devices, propellers and ducted propellers, circulation and boundary layer control, unsteady airfoil theory.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "AERSP407",
@@ -50,7 +49,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Interaction of elastic systems having several degrees of freedom with fluid flows in various configurations.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -89,7 +87,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Modeling and analysis techniques for dynamic response, vibration, aeroelastic stability, and aeromechanical stability of rotary-wing vehicles.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "AERSP504 , E MCH571",
@@ -128,7 +125,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Theory and principles of machinery design: compressors, turbines, pumps, and rotating propulsors; opportunity to work out design examples.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -165,7 +161,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Mathematical review, fluid properties, kinematics, conservation laws, constitutive relations, similarity principles, the boundary layer, inviscid flow, vorticity dynamics, wave motion.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -204,7 +199,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Irrotational flow theory, two-dimensional and axisymmetric flows, airfoil theory, complex variables, unsteady phenomena; flow with vorticity, finite wing theory.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "AERSP508",
@@ -243,7 +237,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Review of fluid mechanics. General theory of aerodynamic sound. Noise radiation from jets, boundary layers, rotors and fans. Structural response.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -282,7 +275,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "The stability of laminar motions in various geometries as influenced by boundary conditions and body forces of various kinds.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -320,7 +312,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Dynamical problems of aircraft and missiles, including launch, trajectory, optimization, orbiting, reentry, stability and control, and automatic control.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "AERSP413 or AERSP450",
@@ -358,7 +349,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "First of two courses: Scalings, decompositions, turbulence equations; scale representations, Direct and Large-Eddy Simulation modeling; pseudo-spectral methods; 3 computer projects.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "AERSP508 or M E 521",
@@ -399,7 +389,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Second in two courses: Scalings, decomposition, turbulence equations; Reynolds Averaged Navier Stokes (RANS) modeling; phenomenological models; 3 computer projects.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "AERSP508 or M E 521",
@@ -440,7 +429,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Physics and chemistry needed to analyze high performance rocket propulsion systems including reacting high temperature radiating gas and plasma flows.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "AERSP312 or M E 420",
@@ -479,7 +467,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "An introduction to kinetic theory, statistical mechanics, quantum mechanics, atomic and molecular structure, chemical thermodynamics, and chemical kinetics of gases.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -520,7 +507,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Solutions of the Boltzmann equation; waves in bounded and unbounded plasmas; radiation and scattering from plasmas.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "E E 471",
@@ -558,7 +544,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Applications of classical celestial mechanics to space flight planning. Determination and construction of orbital parameters by approximation methods. Perturbation techniques. AERSP 550 Astrodynamics (3) This course covers the mathematics and practices in orbital mechanics as applied to space mission analysis, design and operation. The major topics are: the n-body problem, the two-body problem, Keplerian orbits, the Kepler problem (position as a function of time), three-dimensional specifications of Keplerian orbits (orbital elements), Lambert's problem (determining the trajectory between two specified points with a given time of flight), impulsive transfers, the Hohmann transfer and its extension to other problems, the sphere of influence, the patched-conic approximation, the restricted three-body problem, linear orbit theory (relative motion between vehicles in neighboring orbits), gravitational modeling, perturbation methods (Encke's method and variation of elements), orbit determination, tracking kinematics, and time systems.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "AERSP450 or E MCH409 or PHYS 419",
@@ -597,7 +582,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "This course focuses on mathematics and practices in interplanetary astrodynamics. Major topics include: astrodynamics applied to interplanetary space missions, the N-body problem, orbit transfers, Lambert's problem, gravity assists, planetary entry, descent and landing, planetary ephemerides, tracking sources and measurements, and spacecraft navigation. Other topics may be covered as time permits.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -638,7 +622,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "When tracking satellites in orbit, large amounts of tracking data (range, range-rate, azimuth, elevation) is collected. To convert this data to physical orbital elements of the satellite's orbit, this data must be filtered, and this filtering is done using methods of statistical orbit determination. This course focuses on the mathematics and practices in statistical orbit determination for analyzing large amounts of satellite tracking data. Major topics include: classical orbit determination techniques, probability and statistics, least-squares solution, weighted least squares, statistical interpretation of the least-squares problem, Cholesky decomposition, Gauss-Markoff theorem, sequential estimation algorithms, extended sequential estimation algorithms, square root filters, state noise compensation algorithm, state noise compensation algorithms, smoothing algorithms, minimum variance, maximum likelihood, Bayesian estimation. Other topics may be covered as time permits.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -677,7 +660,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Application of finite element techniques to viscous/unsteady fluid flow/heat transfer problems.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "AERSP312 , AERSP313",
@@ -713,7 +695,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Aerospace autonomy is the blending of aerospace engineering and computer science - an interdisciplinary topic that will boost the students' skills in both domains. From advanced decision-making algorithms to sensing and state estimation to advances in machine learning applications, aerospace autonomy covers a lot of territory. This course will discuss some of the techniques and challenges so that the vehicle can fly itself while maintaining awareness of sensors, safety, and software. Students will learn and apply the key principles and theories in sensing, dynamic modeling, state estimation, path planning, control, and machine learning through homework and coding assignments.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -754,7 +735,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "This course will cover topics related to identifying frequency response function as well as linear state space models from input-output data. Topics include continuous and discrete time models, frequency response functions, model structure & parameterization, non-parametric models, subspace methods, observability & identifiability, model order estimation, sparse approximation and relationship to maximum likelihood estimation & Kalman filtering.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -793,7 +773,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "This course will cover topics from basic linear and nonlinear stochastic processes to well-known Kalman filtering methods to recently developed nonlinear estimation methods at a level of detail compatible with the design and implementation of modern control and estimation of dynamical systems. These diverse topics will be covered in an integrated fashion, using a framework derived from stochastic processes, estimation, control, and approximation theory.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -834,7 +813,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Modeling approaches and analysis methods of structural dynamics and vibration.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "AERSP304 , E MCH470 , M E 450 , or M E 570",
@@ -870,7 +848,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Advanced materials are critical to improve performance, safety, and sustainability of air flight and space exploration in extreme environments. This course provides a survey of engineering knowledge on existing and future advanced materials for aerospace applications, and provides multiple opportunities for students to apply this knowledge and to analyze existing tailored aerospace materials of high performance. First, class participants will review the origins of the material properties: atomic bonding and packing, grains and boundaries, interfaces/interphases, and micro-structuring. Second, the participants will learn about common aerospace materials (metal alloys, ceramics, and polymer composites); how these materials satisfy the tight performance requirements and withstand extreme environments. Third, novel material design (nanocomposites and metamaterials), mostly in the nano and micro scales, and how their micro-structures drive their advanced properties will be discussed, together with their current challenges in applications (material design, scalable fabrication, and certification).",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "AERSP 470 or ME 560 Recommended Preparations: Students should have knowledge on solid works (stress-strain constitutive relations, coordinate transfer, etc.), basic undergraduate-level math for engineering majors (ODE, matrix calculation,",
@@ -911,7 +888,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Analysis of wind turbine performance, aeroacoustics, and loads; turbine selection for site-specific application.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -946,7 +922,6 @@
    "max": 3,
    "repeatableMax": 3
   },
-  "description": "Continuing seminars which consist of a series of individual lectures by faculty, students, or outside speakers.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -981,7 +956,6 @@
    "max": 9,
    "repeatableMax": 9
   },
-  "description": "Creative projects, including nonthesis research, which are supervised on an individual basis and which fall outside the scope of formal courses.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1017,7 +991,6 @@
    "max": 9,
    "repeatableMax": 9
   },
-  "description": "Formal courses given on a topical or special interest subject which may be offered infrequently; several different topics may be taught in one year or term.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1082,7 +1055,6 @@
    "max": 15,
    "repeatableMax": 999
   },
-  "description": "No description.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1114,7 +1086,6 @@
    "max": 0,
    "repeatableMax": 999
   },
-  "description": "No description.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1146,7 +1117,6 @@
    "max": 3,
    "repeatableMax": 6
   },
-  "description": "Provides an opportunity for supervised and graded teaching experience in aerospace engineering courses.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1180,7 +1150,6 @@
    "max": 15,
    "repeatableMax": 999
   },
-  "description": "No description.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1212,7 +1181,6 @@
    "max": 0,
    "repeatableMax": 999
   },
-  "description": "No description.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1244,7 +1212,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Wind turbine technology and the critical elements of turbine systems design.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1278,7 +1245,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "An overview of the wind project development process and technical considerations for onshore and offshore applications.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,

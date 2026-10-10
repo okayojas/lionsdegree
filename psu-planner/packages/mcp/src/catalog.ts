@@ -96,8 +96,18 @@ export function loadEdition(catalogRoot: string, edition: string): EditionCatalo
         `It has: ${publishedEditions(catalogRoot).join(", ") || "none"}.`,
     );
   }
+  // Accepts both index shapes. The current one is `{terms, courses}` --
+  // a shared term dictionary plus per-course postings, carrying no description
+  // prose (DECISIONS.md 5.1). A bare array is the pre-postings format, still
+  // valid and still searchable on code and title.
   const courses = hydrateSearchIndex(
-    readRequired<unknown[]>(path.join(dir, "search-index.json"), `The ${edition} course index`, (v) => Array.isArray(v) && v.length > 0),
+    readRequired<unknown[] | { terms: string[]; courses: unknown[] }>(
+      path.join(dir, "search-index.json"),
+      `The ${edition} course index`,
+      (v) =>
+        (Array.isArray(v) && v.length > 0) ||
+        (!!v && typeof v === "object" && Array.isArray((v as { courses?: unknown }).courses) && (v as { courses: unknown[] }).courses.length > 0),
+    ),
   );
   const coverage = read<{ coveredBy?: Record<string, { by: string }[]> }>(path.join(dir, "coverage.json"), {});
   return {

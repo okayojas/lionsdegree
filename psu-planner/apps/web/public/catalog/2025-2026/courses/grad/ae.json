@@ -11,7 +11,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Theory and application of structural analysis using the direct stiffness method. Modeling assumptions, validation, interpretation of computer output. A E 530 Computer Modeling of Building Structures (3) This course addresses the theory and application of structural analysis using the direct stiffness method with matrix formulation, applying computer programs to the analysis of two- and three-dimensional structures. Topics include validation and interpretation of results from computer analyses, as well as practical analysis techniques and the design of building structures to satisfy building code requirements.The course is designed to provide students with the ability to create computer models representative of actual building response and in line with prevalent modeling techniques implemented using commercial structural analysis software. Primary objectives include developing an understanding of the process used by computers to solve structural systems, with emphasis on the use of computer models in the analysis and design process to satisfy building code requirements.This is a mandatory course for students in the structural option within the integrated undergraduate-graduate degree program in architectural engineering (B AE/M AE), and it is a valuable course for all structural engineering graduate students.Students must have completed an undergraduate course in structural analysis of determinate and indeterminate systems. Since some homework problems require proportioning structural members to resist combined loading conditions, the course prerequisites include introductory courses on the design of steel and concrete members. Also required is the knowledge of elementary matrix algebra and exposure to advanced programming of electronic spreadsheets.This course involves significant instruction in the AE Department computer laboratory, which is equipped with several commercial structural analysis software programs capable of handling large structural models.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 401 , A E 402 and A E 430",
@@ -50,7 +49,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Basic legal doctrines, contractual relationships between parties, analysis of construction contract clauses, contract performance, and professional practice problems.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "C E 431W",
@@ -91,7 +89,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "This class will explore a set of structural solutions that are often selected when buildings need long spans and/or thinner structural solutions, including efficient transfer members. Students will develop an ability to analyze and design pre-stressed concrete with a specific focus on Post-Tensioned (PT) applications to buildings. PT Design will specifically be applied to building solutions as applicable to ACI 318 and PTI Standards. Content will interweave a focus on the analysis and design of one- and two-way PT slabs systems, beams and girder systems, while also covering lateral systems and the repair and rehabilitation of aging PT projects. Discussions on new innovative PT research ventures will be included. The goal of this class is threefold: 1) take on the role of a designer and create structural solutions in PT, 2) apply fundamental knowledge of pre-stressed concrete to evaluate serviceability and strength to see if members that were designed have sufficient capacity, and 3) learn commercially available software to design gravity systems at a larger content than isolated slabs.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "AE 430; Concurrent: AE 431",
@@ -130,7 +127,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Connection analysis and design for steel buildings with an emphasis on the AISC Specification. A E 534 A E 534 Analysis and Design of Steel Connections (3) This course covers the theory of steel connection analysis and design including member, bolt and weld limit states as described in the AISC Specification and theManual of Steel Construction . With sound knowledge in the basics of steel connection limit states, specific shear, moment and bracing connections are studied in detail. Along with the fundamental theory applied to each connection type, use of the applicable design aids contained in theManual of Steel Constructionis covered. This course is expected to be particularly useful for students entering the structural design profession upon graduation or those engaging in steel connection research. This course is required of students enrolled in the MAE Structural Option in the Architectural Engineering Department. Additionally, this course is commonly taken by structural engineering graduate students in both the Architectural Engineering and Civil and Environmental Engineering Departments. Student evaluations are based on their performance on a mid-semester exam, a final exam, out of class assignments, projects, and presentations. This course will generally be offered each fall, with an anticipated enrollment of 25-35 students.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 401 and A E 430",
@@ -169,7 +165,6 @@
    "max": 3,
    "repeatableMax": 999
   },
-  "description": "Qualitative, graphical, and quantitative methods of structural design as practiced from ancient Rome through the nineteenth century. This course will explore, qualitatively and quantitatively, methods of structural analysis and design used from 100 BC through the end of the nineteenth century, with an emphasis on nineteenth century design methods. The course will increase students' appreciation for the effectiveness of obsolete structural analysis and design methods. Participation in the course will prepare students for successful preservation of historic structures by introducing the process by which these structures were conceived and designed.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -208,7 +203,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "This course provides a background in identification, evaluation, and analysis of a broad set of architectural and structural performance failures.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 401 , A E 402 , A E 430",
@@ -245,7 +239,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Introductory engineering seismology, basic principles of structural dynamics, application of earthquake design provisions of model building codes to design of buildings. A E (C E) 538 Earthquake Resistant Design of Buildings (3) The main objective of this course is to familiarize students with basic principles of design of buildings to resist earthquake effects. Since building design is governed by the Building Code, currently, International Building Code that adopts American Society of Civil Engineers (ASCE) document ASCE-7 for load determination, the seismic provisions of ASCE-7 will be used as the basis for design. The course starts by introducing earthquake phenomenon and engineering seismology concepts. The basic principles of structural dynamics are then covered for single degree of freedom systems starting from free vibration to random loading so that students learn how a ground acceleration time-history subjected to the base of a building can be converted to a time varying effective seismic load on the mass. After introduction of response spectrum, introductory material on multi-degree of freedom systems is introduced so that students can determine natural frequencies and mode shapes for multi-story buildings and perform modal superposition analysis to determine displacement and force responses. Next, the principles of earthquake resisting design related to energy dissipation, ductility, over-strength, and redundancy followed by seismic provision of the building code are discussed. The main design principles related to the two main materials for building construction consisting of reinforced concrete and structural steel are next discussed. The focus will be to illustrate how lateral load resisting systems such as shear walls, moment resisting frames, or braced frames made with such materials as appropriate are designed to resist earthquake effects based on respective material code provisions, that is, American Concrete Institute (ACI) for concrete and American Institute of Steel Construction (AISC) for steel. The last part of the course will introduce seismic retrofit, base isolation systems and the concept of performance based design.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 401 , A E 402 , A E 430",
@@ -286,7 +279,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "This course focuses on emerging computational approaches for creative multi-factor parametric research, early-stage design and optimization of buildings. It begins with an overview of the principles of parametric design and visual programming before covering strategies for design space exploration and optimization in depth. Topics include computational design fundamentals such as problem parameterization and formulation; heuristic, gradient-based, and interactive optimization; multi-objective optimization; surrogate modeling; and data visualization for decision-making. Beyond traditional optimization, it highlights ways in which elements of a building design optimization problem (variables, the geometric definition, constraints, objectives) can be interactively interpreted, manipulated, and connected, often using data science techniques, to provide effective feedback and guidance during building-related research and design, which can include both qualitative and quantitative goals. Although the theory of these subjects is described, the emphasis is on how they can be used in research to improve the design and construction process.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -327,7 +319,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "The building enclosure: nature, importance, loadings; building science: control of heat, moisture, air, hygrothermal analysis; design: walls, windows, roofs, joints. A E 542 A E (C E ) 542 Building Enclosure Science and Design (3) The building enclosure, or envelope, is the environmental separator in any building and is, like the superstructure and the service systems, one of the major physical components of the building. The primary objective of this course is to develop an understanding of the nature, importance, functions, and performance of the building envelope in general. The necessary building science--concerning primarily heat, moisture, and air--is covered, and hygrothermal analysis procedures are developed. A generalized categorization system for enclosure elements, i.e., walls (both above- and below-grade), roofs, and other enclosure sub-assemblies is proposed. General design strategies are developed. The design of specific wall systems (both above- and below-grade), roof systems, base floors, windows, and their joints is then addressed in some detail. The integration of structures (composite action, restraints, etc.), service systems (especially energy consumption), and finish (exterior and interior) is considered in sonic detail. Evaluation is based on an equal combination of assignments (6) and examinations (2). This course complements courses in architecture, civil engineering, architectural engineering, and mechanical engineering.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -368,7 +359,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Research skills, critical thinking, academic writing, presentations, use of electronic media, and experimental design applied to AE resarch topics. A E 543 Research Methods in Architectural Engineering (3) This is a course intended primarily for graduate students in Architectural Engineering. Other students interested in Architectural Engineering research may also take the course. The main objective of the course is to build research skills for students pursuing an M.S. or Ph.D. degree in Architectural Engineering. The research skills to be targeted are critical thinking, academic writing, presentation, oral communication, and use of electronic media, based on materials from architectural engineering projects and literature. These skills will be developed through a series of lectures and exercises to include architectural engineering research topics, such as novel building physical characteristics and occupant performance/environmental perceptions.Lectures in academic writing will cover proposal, report, paper, and thesis writing requirements for Architectural Engineering students. Students will write several assigned essays and term project to gain experience in different academic writing forms as well as architectural engineering research topics. Students are encouraged to use their actual research for the semester project. Based on the project content, each student will then be required to develop an in-class presentation. This part of the course will cover presentation preparation and the critical thinking that is embedded into oral communication skills. The electronic media portion of the course will cover topics such as electronic databases relevant to architectural engineering research topics, search engines, publishing, use of web materials, ethics, and legal considerations. All of the assignments are designed to develop critical thinking through instructor and peer feedback.In addition to the three major targeted areas of research skills development, this course will begin and end with a focus on architectural engineering research topics. The introductory part of the course covers the topics and methods for the four focus areas within the Architectural Engineering program, while the closing portion emphasizes interdisciplinary research efforts and encourages students to thinking in that direction. For example, while experimental design is directly applicable to each individual focus area, the specific instrumentation is area (focus) dependent. Nevertheless, knowledge of different specific data collection methodologies from multiple Architectural Engineering options can enhance the understanding of integrated architectural engineering research topics. Overall, the communication established in all of the course assignments can be used to help develop new architectural engineering research ideas and polish existing ones, which will be helpful to students who are taking the course during their first or second semester in residence.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -407,7 +397,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "A building is an interdependent system of systems, which consists of tens of thousands of building components that spatially or functionally depend on each other. These interdependencies increase the complexity of analysis, research, design, and construction of buildings, and require a high level of multi-disciplinary coordination. This course utilizes Building Information Modeling (BIM) as an integration platform and central database to coordinate the interdependencies between various building functionalities and support multi-disciplinary coordination. The course begins with an overview of BIM in the construction project lifecycle and addresses operational details of BIM tools for modeling, scheduling, and 4D simulation. Lecture content covers graph theory as a data analytics tool, and the use of graph databases to analyze the information embedded in BIM models for the analysis of system interdependencies. Graph algorithms will be applied to support system optimization. The latest research on BIM and graph analysis will be reviewed and discussed with a focus on the interdependency of building systems. Based on the latest research studies, students complete a semester-long group project that focuses on analyzing building information from a graph perspective for holistically improving building systems or construction activities.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -448,7 +437,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "This course aims to equip building science researchers and engineers with the tools for efficiently and effectively transforming data into knowledge, decision, and action. In particular, the course explores parametric and non-parametric regression methods, unsupervised clustering, classification, decision trees, random forests, and support vector machines. Additional advanced statistical learning methods are incorporated as they emerge and become relevant to the field. The course considers the multiple phases of statistical analysis, including data cleaning and pre-processing, exploratory analysis, model building and testing, data visualization, and reporting. Statistical learning topics are motivated through application and case studies involving thermal/building/renewable energy systems, energy efficiency, indoor air quality, and environmental engineering. This course provides a foundation for graduate researchers to engage in follow-on study of more advanced statistical learning methods, while also providing fundamental and beneficial data analysis skills to industry-bound students.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "STAT 401",
@@ -487,7 +475,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Thermodynamic and thermo-economic analyses methods for determination of optimal, on-site, total energy systems for commercial buildings. AE 551 Combined Heat and Power System Design for Buildings (3) Building systems consume about 40% of the primary energy resources utilized in the United States each year and are responsible for a proportional fraction of air contaminants (NO, SO, fine particulates, CO) and greenhouse gas, CO,. A conventional energy supply mix for building (grid electricity, site fossil fuel heating) results in approximately 50% primary fuel energy utilization. Advances in scalable, low emissions, electric power generating devices are leading to incorporating on-site power production into the building design. The \"waste heat\" general is of such a quality that it can be utilized at the site in heating, hot water, absorption cooling, and dehumidification applications. The simultaneous utilization of a primary fuel to generate both the electrical and thermal components in Building Combined Heat and Power (BCHP) can result in total primary fuel utilization values of 85% or greater, electric power reliability increases and significantly reduced emissions, particularly greenhouse gases. This course examines the underlying thermodynamic principles involved in BCHP, pollutant and greenhouse emission mechanisms and levels associated with both Separate Heat and Power (SHP) and BCHP designs for a given building site. Economic and regulatory principles that govern the application feasibility of a BCHP design for a given building configuration are examined. At the end of the course, students will have the skills and tools necessary to perform an assessment of the feasibility of a BCHP application to a given building site. Specific combinations of distributed, electric power generation equipment (micro-turbines, fuel cells, diesel engines, wind-power) and thermal \"waste\" utilization from these generating systems will be discussed and analyzed. Case studies are utilized to illustrate the evaluation processes. Using the SHP design methods and principles (ducted air supply systems, hydronic heating and cooling systems, etc.) covered in AE 454 (Advanced HVAC) and central system methods covered in AE 557 (Centralized Cooling Production and Distribution Systems) or AE 558 (Centralized Heating Production and Distribution Systems) for commercial buildings, students will learn how to achieve and establish the same building performance objectives using Combined Heat and Power (CHP) technologies. Since the use of CHP for various building types requires reducing transients in thermal and electric load profiles, the relationship of the structural characteristics of the building (thermal mass) and the use of combinations of artificial lighting vs. day-lighting to the utilization of CHP is investigated.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 454 ; A E 557 or A E 558",
@@ -526,7 +513,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Indoor air pollutants, their sources and health effects; transport of pollutants; modelling of pollutant concentration in buildings.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 454 , A E 455 , M E 410",
@@ -565,7 +551,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Fundamentals of building energy dynamics and the simulation of energy flows in a building; validation of programs; practical applications.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 454 , A E 455 and M E 410",
@@ -602,7 +587,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Advanced techniques in the theoretical analysis and practical design of the automatic comfort controls used in building thermal systems. A E 555 Building Automation and Control Systems (3) A E 555 complements and expands upon the material covered in the undergraduate HVAC control systems course. The objectives of this course are to provide students with an enhanced capability to design advanced building control systems and to ensure proper operation through the use of comprehensive design and analysis tools and evaluation methods. Particular emphasis will be placed on systems integration, fault detection, diagnosis and correction, optimization and performance monitoring. Reference materials will be drawn from recent technical papers and conference proceedings and cover both model-based predictive control and data-driven modeling and control. Students will develop skills to stimulate building control system performance for a wide range of system designs and to implement advanced control strategies and sequences relevant to modern integrated building systems.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 457",
@@ -641,7 +625,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Advanced quantitative methods of predicting transient active and passive solar process performance with an emphasis on building solar applications.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "M E 410",
@@ -679,7 +662,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Central cooling plant and distribution components and systems; thermal, hydraulic, and economic modeling for planning and design.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 454 ; or M E 411 , M E 410",
@@ -717,7 +699,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Description and analysis of central heating plant and distribution components and systems; thermal and economic modeling for planning and design.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 454 ; or M E 411 and M E 410",
@@ -755,7 +736,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Theory and applications of building environmental modeling with Computational Fluid Dynamics (CFD). A E 559 A E 559 Computational Fluid Dynamics in Building Design (3) This course will be a primary interest to Architectural Engineering graduate students in the Mechanical Systems emphasis. Other students interested in the application of Computational Fluid Dynamics (CFD) to Architectural Engineering may schedule the course if they have satisfied the prerequisites. The main objective of this course is to build the knowledge necessary for successful simulations of building indoor and outdoor environments using CFD. The skills developed in the course build on the knowledge of fluid mechanics and building mechanical systems. The course will also add to the available pool of electives for students in the integrated BAE/MAE program.The first part of the course covers general CFD topics on the solution of Navier-Stokes partial differential equations. Different concepts necessary for the solution of the partial differential equations expressing the conservation laws will be introduced along with a CFD software package. In this phase, the course focus will be on the derivation of different equations and their solutions. Analytical solutions will be derived when possible, while most of the problems will require use of numerical solutions. Several homework assignments will require development of small computer programs. The introduced CFD software package will prepare students for the second part of the course that is more applied.The use of CFD in building design is different from its use for other engineering applications because of the domain size and specific boundary conditions such as diffuser airflow, wind, or solar radiation. Most of the time, appropriate boundary conditions distinguish successful from unsuccessful applications of CFD. To address the issues of quality control in CFD simulations, the American Society of Heating, Refrigerating, and Air Conditioning Engineers (ASHRAE) recently developed CFD guidelines that the course will follow from the beginning. The actual guidelines will be introduced to fortify everything learned during the course.Evaluation will be based primarily on analytical homework assignments (30%), two projects (30%), a mid-semester quiz (20%), and a final examination (20%). This course will be offered each Spring, with an anticipated enrollment of 10 students.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 454 , M E 410",
@@ -794,7 +774,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "In-depth scientific principles of light generation in modem electric light sources, and the resultant characteristics that influence their use for buildings.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 461",
@@ -833,7 +812,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Radiative transfer applied to lighting analysis; methods for computing direct and interreflected illumination; nearfield photometry.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 461 , CMPSC201 or CMPSC202",
@@ -869,7 +847,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Optical design of reflectors and refractors for lighting systems; manufacturing methods.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 464",
@@ -904,7 +881,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "This course provides students with an understanding of the research that led to the development and application of various metrics for the assessment of color appearance, the performance of light sources and the specification of object colors. Students will learn the scientific theory and practical application of color measurement, including the fundamental theories and computational modeling of human color vision. The goal of this course is for the students to apply knowledge of colorimetry and photometry to evaluate light sources and quantify the color appearance and properties of objects. Students will gain a detailed understanding of the fundamental quantities commonly used in illumination engineering (e.g., color temperature, color rendition metrics, etc.), their use, and limitations. The course is grounded in past and current research literature. Students will build on existing theoretical frameworks and methodologies, allowing students to synthesize new knowledge and produce scholarly work in this field.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -945,7 +921,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Design concepts, solar position, sky luminance distribution models, integration of daylighting and electric lighting controls, physical modeling, computer analysis techniques.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 461",
@@ -984,7 +959,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "This course consists of three major sections. It begins with the basics of solar and sky radiation and the theoretical knowledge in the intersectional area between radiometry and photometry related to building windows and glazing materials. Subsequently, based on the necessary understandings of the above fundamentals, students will learn the multipane window analytical method to characterize and design window and glazing optical and thermal behaviors in terms of both radiometric and photometric aspects. In the meanwhile, the effects on building energy, visual, and thermal performance by such characteristics will be analytically explained to students. The last section in this class focuses on the synthesis of theoretical knowledge and analytical methods by discussing and exploring certain emerging research questions in the area, such as optimization, dynamic functions for solar radiation modulation, integration of nano-structured glazing materials, laminates, and films. In this process, certain data modeling techniques and flexible computational tools will be incorporated with the analytical methods learned above to propose, explore, and express solutions and ideas for the emerging research problems in the building window area.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1025,7 +999,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Seminar on prior and current research in illumination engineering which define current recommendations and design practice.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "or concurrent: A E 461",
@@ -1059,7 +1032,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Applications of production management tools to capital facility projects; theory of production systems in construction; development of production control manual. A E 570 A E 570 Production Management in Construction (3) A E 570 explores the use of production management to efficiently manage the delivery processes of capital facility projects. Students will learn about fundamental models of managing project processes and about tools to manage projects as production systems. The procurement, design, and construction processes that are used in capital facility projects are not usually through of in production process terms. Yet, doing so can develop a deeper understanding of the complexities of capital facility projects and enable project production to be efficiently managed. Production management emphasizes managing projects as complex wholes focusing on the relationships between the parties and tasks to optimize total process performance.A E 570 analyzes the latest production thinking and management tools to manage capital facility projects. The learning objectives of this course are for students to:a) recognize that capital facility projects are complex production systems and understand how principles of production relate to construction projects; b) understand the principles and methods of new production management methods like lean construction; c) be able to apply specific production management tools to specific problems identified on projects, especially those encountered on high performance sustainable building projects; and, d) understand how to use the latest production management planning and control tools to improve the management of capital facilities projects.A E 570 will be offered each spring with an anticipated enrollment of 25 students. This course uses classroom demonstration, case-based materials, in-class game simulation, and computer software to demonstrate key concepts and production tool applications. Assessment is conducted through out-of-class assignments, homework exercises, and a major project requiring appropriate tool to remedy the problem. The final grade for this course will be based on:Construction process analysis assignment - 15% Experiment design assignment - 25% Homework exercises and classroom participation - 25% Major project, including class presentation - 35%Students entering this course are expected to have knowledge of the construction industry, project delivery processes, and construction means and methods.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 475 , A E 476 or C E 432",
@@ -1098,7 +1070,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Evaluation of international project environments and participants, modeling and planning international projects.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 570",
@@ -1135,7 +1106,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Methods employed by owners and developers to initiate capital facility projects; defining project objectives, constraints, participants, financing, and delivery methods. A E 572 A E 572 Project Development and Delivery Planning (3) The course explores the methods used by capital facility owners and developers to initiate a project. Many vital decisions are made and critical activities performed early in a project that have major bearing on how the project is completed. These include defining the project objectives, identifying constraints, recognizing stakeholders, and selecting financing and delivery methods. The course explores the latest project development and delivery techniques used to support these decisions. Students will learn how early development activities shape a project, and how building industry professionals are helping to support these activities. Students will develop knowledge and perspective to help their decision-making skills. As the course title implies, special focus will be on high performance delivery planning.The learning objectives of the course are for students to: 1) Understand what occurs in the early stages of project formation as capital facility owners and developers initiate a project; 2) Understand the methods owners and developers use to progress through the capital facility process; 3) Understand the different types of acquisition strategies, project delivery methods, and contractual systems to achieving capital facility owner objectives; and, 4) Understand the decision-making needs of high performance sustainable building projects.Offered in the Fall semester, the course uses case-based materials, hands-on computer simulation, and other classroom demonstration. Case study projects assigned by the instructor, individual homework exercises, and a group project requiring students to apply development techniques to a current downtown State College capital facility development site from the assessment for the course.Students entering this course are expected to know how the construction industry operates, including project delivery methods, engineering economics, preconstruction, and construction means and methods.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "A E 475 , A E 476 or C E 432",
@@ -1174,7 +1144,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "The goal of this course is to provide an understanding of the challenges confronting automation and robotics in the construction domain, and the current state of such technologies; an advanced understanding of automation and robotics, and the fundamentals needed to begin computer programming for construction automation and robotics. The student will gain hands-on experience in several aspects of construction automation and robotics, including but not limited to: application of wearable sensors for construction safety and health monitoring, use of immersive technology for training, and application of mobile robots for mapping and hazard detection at construction sites. This course is of value to both future construction industry professionals and researchers in the areas of construction safety, robotics, and training.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1215,7 +1184,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "AE 575 is designed for students who wish to gain a more thorough understanding of the application of virtual facility prototypes in the construction industry. This course examines how building information modeling, advanced visualization, and virtual and augmented reality technology can be used to improve decision-making on construction projects. It builds upon a fundamental understanding of physical design and construction planning information in virtual models of building projects. Topics include virtual prototyping research and applications, design methodologies for interactive virtual prototypes, building design, construction, and operation visualization techniques, and virtual and augmented reality applications for the built environment.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1254,7 +1222,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "AE 576 is designed for students who wish to gain a thorough understanding of research and application of Building Information Modeling (BIM) on Architecture/Engineering/Construction (AEC) projects and within AEC organizations. This course explores advanced topics related to the BIM Project Execution Planning Procedure, including research into advanced BIM and information management approaches. Students will learn how to design a BIM approach to maximize value to a project. Additionally, AE 576 examines the organizational strategy, execution and project procurement to leverage BIM implementation. Students will research planning approaches for organizations to develop their BIM strategy through assessing organizational maturity, aligning BIM vision and objectives to organization¿s mission and goals, and develop organizational roadmaps to integrate BIM within an organization. The course delves into planning detailed BIM implementation within the operations of an organization through establishing organizational goals and BIM objectives; identifying BIM uses; designing processes; and determining information, infrastructure, and personnel needs. Students should have a general understanding of the AEC industry as a prerequisite to taking this course.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1295,7 +1262,6 @@
    "max": 3,
    "repeatableMax": 999
   },
-  "description": "Examines leadership skill sets, team competencies, and strategic methods for leading sustainable building construction projects and retrofits. AE 579 is focused on the cultivation of leadership competencies that enable the evolution of sustainable methods for design, construction, and operation of buildings. It is intended for students with backgrounds in design, construction, engineering, building operations, and facilities management. AE 579 focuses on the processes and analysis techniques required to lead sustainable projects. The course is intended to support the career advancement of building design and construction professionals, developers, operators, and energy managers. An emphasis is placed on the integrative processes required to design healthy and productive buildings and that promote regenerative effects on site, energy, materials, water, occupant health, and society. The goal of the course is to cultivate leadership and integration skills needed to spearhead the design, construction, commissioning, and operation of sustainable buildings. Course topics include the business case for high performance buildings; guiding metrics and frameworks, analysis tools; integrative team competency requirements, design and delivery methods, and recent research topics that have advanced the practices of high performance building delivery. The course is intended to build upon specialized programs of study in architectural engineering, architecture, and facilities management, and to provide students with an interdisciplinary and integrative perspective of building delivery.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1334,7 +1300,6 @@
    "max": 9,
    "repeatableMax": 9
   },
-  "description": "CREATIVE PROJECTS, INCLUDING NONTHESIS RESEARCH, WHICH ARE SUPERVISED ON AN INDIVIDUAL BASIS AND WHICH FALL OUTSIDE THE SCOPE OF FORMAL COURSES.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1370,7 +1335,6 @@
    "max": 9,
    "repeatableMax": 9
   },
-  "description": "FORMAL COURSES GIVEN ON A TOPICAL OR SPECIAL INTEREST SUBJECT WHICH MAY BE OFFERED INFREQUENTLY; SEVERAL DIFFERENT TOPICS MAY BE TAUGHT IN ONE YEAR OR SEMESTER.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1406,7 +1370,6 @@
    "max": 9,
    "repeatableMax": 9
   },
-  "description": "Formal courses given on a topical or special interest subject which may be offered infrequently.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1440,7 +1403,6 @@
    "max": 15,
    "repeatableMax": 999
   },
-  "description": "No description.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1472,7 +1434,6 @@
    "max": 0,
    "repeatableMax": 999
   },
-  "description": "No description.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1504,7 +1465,6 @@
    "max": 3,
    "repeatableMax": 6
   },
-  "description": "Supervised experience in teaching and orientation to other selected aspects of the professional at the Pennsylvania State University.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1540,7 +1500,6 @@
    "max": 12,
    "repeatableMax": 999
   },
-  "description": "Foreign study and/or research constituting progress toward the degree at a foreign university.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1573,7 +1532,6 @@
    "max": 15,
    "repeatableMax": 999
   },
-  "description": "No description.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1605,7 +1563,6 @@
    "max": 0,
    "repeatableMax": 999
   },
-  "description": "No description.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1637,7 +1594,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Theories and practices of distributed energy production and management in the context of regional and integrated energy grid structures.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1675,7 +1631,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Theories and practices of solar electric systems including component selection, performance simulation, grid interconnection, codes, and design documentation.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1714,7 +1669,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "Economic analysis of solar energy projects, project development process, energy policies, finance methods, and economic analysis tools.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,
@@ -1751,7 +1705,6 @@
    "max": 3,
    "repeatableMax": null
   },
-  "description": "This course serves as the capstone project course for the Integrated (IUG) Master of Architectural Engineering degree. Students conduct independent investigations into the design and analysis of building systems and/or construction processes for an actual building project, with an emphasis on systems integration, sustainability, and performance. Each student proposes the scope of work they will address on their building project, which must include topics from one or more of a student's MAE graduate-level courses and be approved by the course instructor. Students may also investigate topic areas that lie beyond those covered in formal coursework. Students perform research into engineered building system options and construction processes that meet established project criteria, conduct technical analyses, finalize their recommendations, prepare a written report on their work, and deliver a final project presentation. Meetings with the instructor/project adviser(s) are scheduled throughout the semester to review progress and provide feedback on the student's work. While most student projects are conducted independently, students may also work as part of a multi-disciplinary team (consisting of students from different undergraduate option areas) where integration across subject areas is a major design consideration in addition to the focused work in the student's AE option area.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": "AE 481W Corequisite: AE 483",
@@ -1790,7 +1743,6 @@
    "max": 9,
    "repeatableMax": 9
   },
-  "description": "Formal courses given on a topical or special interest subject which may be offered infrequently; several different topics may be taught in one year or semester.",
   "enforced": null,
   "concurrent": null,
   "prereqAdvisory": null,

@@ -2,6 +2,7 @@
  *   programs_index.json — slug/name/type/campuses/college/hasPlans
  *   subjects_index.json — course prefix -> courses file path
  * Run after a scrape:  npx tsx scripts/buildIndex.ts [--edition X] */
+import { encodePostings } from "@psu-planner/engine";
 import fs from "node:fs";
 import path from "node:path";
 import { config } from "../src/config.js";
@@ -68,34 +69,45 @@ const STOP = new Set(
     "been students student course courses credit credits prerequisite concurrent").split(" "),
 );
 
-/** The readable opening, plus every remaining distinct word.
+/** Build the shared term dictionary and per-course postings.
  *
- * Search scores against the description and DROPS a course whose terms score
- * nowhere, so a plain truncation silently shrinks the result set. Measured on
- * the real catalog, cutting at 200 characters kept only 14% of the top 25 for
- * "public speaking" -- it lost CAS 100A -- and 32% for "data structures".
- * Keeping the opening preserves phrase matching where it matters most, and
- * the tail of distinct words restores the rest: both of those return to 100%.
+ * The scorer asked the description exactly one question -- how often does this
+ * term occur, capped at 5 -- so that is all the index carries. The prose stops
+ * here, at the build (DECISIONS.md 5.1).
  *
- * Ranking among matches still shifts slightly, because repeated words are
- * counted once in the tail. That changes the order of courses that all
- * genuinely match, which is a far smaller harm than losing them. */
-function searchText(text: string): string {
-  if (text.length <= BLURB) return text;
-  const cut = text.slice(0, BLURB);
-  const lastSpace = cut.lastIndexOf(" ");
-  const head = (lastSpace > BLURB * 0.6 ? cut.slice(0, lastSpace) : cut).trimEnd();
-  const seen = new Set(head.toLowerCase().split(/[^a-z0-9]+/));
-  const tail = [
-    ...new Set(
-      text
-        .slice(head.length)
-        .toLowerCase()
-        .split(/[^a-z0-9]+/)
-        .filter((w) => w.length > 3 && !STOP.has(w) && !seen.has(w)),
-    ),
-  ];
-  return tail.length ? `${head}… ${tail.join(" ")}` : head;
+ * Words are stored AS WRITTEN, not stemmed. The engine stems the query
+ * ("statistics" -> "statistic") and then prefix-matches, and every inflection
+ * in the text already starts with its own stem -- "statistics" and
+ * "statistical" both begin "statistic" -- so storing stems too was 437,000
+ * redundant postings for matches the prefix walk already makes.
+ *
+ * Previously this emitted a 200-character blurb plus a bag of distinct words,
+ * which was still Penn State's prose and still shipped. Counts are facts about
+ * the text; the blurb was the text. */
+function buildPostings(descriptions: Map<string, string>): {
+  terms: string[];
+  byCode: Map<string, number[]>;
+} {
+  const counts = new Map<string, Map<string, number>>();
+  const vocab = new Set<string>();
+  for (const [code, text] of descriptions) {
+    const per = new Map<string, number>();
+    for (const w of text.toLowerCase().split(/[^a-z0-9]+/)) {
+      if (!w || w.length < 2 || STOP.has(w)) continue;
+      per.set(w, (per.get(w) ?? 0) + 1);
+      vocab.add(w);
+    }
+    if (per.size) counts.set(code, per);
+  }
+  const terms = [...vocab].sort();
+  const id = new Map(terms.map((t, i) => [t, i] as const));
+  const byCode = new Map<string, number[]>();
+  for (const [code, per] of counts) {
+    const ids = new Map<number, number>();
+    for (const [t, n] of per) ids.set(id.get(t)!, n);
+    byCode.set(code, encodePostings(ids));
+  }
+  return { terms, byCode };
 }
 
 /** Empty fields cost more than they look: `"crossListings":[]` on 12,727
@@ -113,6 +125,7 @@ function withoutEmpties(c: Record<string, unknown>): Record<string, unknown> {
 }
 
 const slim: unknown[] = [];
+const descriptions = new Map<string, string>();
 for (const dir of [path.join(outDir, "courses"), path.join(outDir, "courses", "grad")]) {
   if (!fs.existsSync(dir)) continue;
   for (const f of fs.readdirSync(dir).filter((f) => f.endsWith(".json"))) {
@@ -120,7 +133,11 @@ for (const dir of [path.join(outDir, "courses"), path.join(outDir, "courses", "g
       // `url` is kept. Dropping it saved 0.01 MB compressed and made the chat
       // tool hand out an empty bulletin link for every course -- a false
       // economy that cost correctness for nothing.
-      slim.push(withoutEmpties({ ...c, description: searchText(c.description ?? "") }));
+      descriptions.set(c.code, c.description ?? "");
+      // `description` is DROPPED, not shortened. Keywords say what the course
+      // covers; `url` points at the Bulletin for the prose itself.
+      const { description: _drop, ...rest } = c;
+      slim.push(withoutEmpties(rest));
     }
   }
 }
@@ -149,8 +166,14 @@ for (const sub of ["majors", "minors", "certificates"]) {
 const reqPath = path.join(outDir, "program-requirements.json");
 fs.writeFileSync(reqPath, JSON.stringify(programRequirements), "utf-8");
 
+const { terms, byCode } = buildPostings(descriptions);
+for (const entry of slim) {
+  const e = entry as { code?: string; t?: number[] };
+  const packed = e.code ? byCode.get(e.code) : undefined;
+  if (packed?.length) e.t = packed;
+}
 const searchIndexPath = path.join(outDir, "search-index.json");
-fs.writeFileSync(searchIndexPath, JSON.stringify(slim), "utf-8");
+fs.writeFileSync(searchIndexPath, JSON.stringify({ terms, courses: slim }), "utf-8");
 const slimMb = fs.statSync(searchIndexPath).size / 1048576;
 
 console.log(

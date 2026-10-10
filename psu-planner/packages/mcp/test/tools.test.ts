@@ -94,13 +94,16 @@ describe("get_course_details", () => {
     expect(r.credits).toBeTruthy();
   });
 
-  it("fences catalog prose as untrusted, never as instruction", async () => {
-    // A course description is text the university wrote and we retrieved. If
-    // an assistant treats it as instruction, a crafted description becomes a
-    // prompt injection (DECISIONS.md 5.0, S4).
-    const r = (await call("get_course_details", { code: "MATH 141" })) as { description: string };
-    expect(r.description).toMatch(/^<untrusted_catalog_text>/);
-    expect(r.description).toMatch(/<\/untrusted_catalog_text>$/);
+  it("publishes no description prose, and says what the course covers instead", async () => {
+    // The Bulletin's description is Penn State's writing and is not shipped
+    // (DECISIONS.md 5.1). A student's assistant gets extracted topic terms --
+    // facts about the course -- plus the link to the text itself.
+    const r = (await call("get_course_details", { code: "MATH 141" })) as {
+      description?: string; keywords?: string[]; bulletin_url?: string;
+    };
+    expect(r.description ?? "").toBe("");
+    expect(r.keywords?.length, "no keywords to describe the course").toBeGreaterThan(0);
+    expect(r.bulletin_url).toMatch(/^https?:\/\//);
   });
 
   it("says plainly when a code is not in the catalog", async () => {
