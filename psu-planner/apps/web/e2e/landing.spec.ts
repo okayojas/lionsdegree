@@ -138,18 +138,26 @@ test.describe("the landing page is usable", () => {
     await expect(fig).toBeVisible();
   });
 
-  test("reaches the planner by keyboard", async ({ page }) => {
+  test("reaches the planner by keyboard, without hunting", async ({ page }) => {
     await page.goto("/");
     await page.keyboard.press("Tab");
     // First stop is the skip link, and it has to say so.
     const skip = await page.evaluate(() => (document.activeElement as HTMLElement)?.textContent?.trim());
     expect(skip).toMatch(/skip/i);
 
-    await page.keyboard.press("Tab");
-    // Second stop is the primary action. An earlier version accepted any of
-    // three hrefs including the skip link's own target, so it could not fail.
-    const href = await page.evaluate(() => (document.activeElement as HTMLAnchorElement)?.getAttribute("href"));
-    expect(href, "the planner is not the first action a keyboard user reaches").toBe("/plan/");
+    // Then the planner, within a couple of stops. It used to be asserted as
+    // the literal second stop, which stopped being true the moment the page
+    // grew a header -- a brand link before the nav is ordinary, and reordering
+    // the header to satisfy a test would be the tail wagging the dog. What
+    // matters is that it is right there, not that it is at index 2.
+    const seen: string[] = [];
+    for (let i = 0; i < 3; i++) {
+      await page.keyboard.press("Tab");
+      const href = await page.evaluate(() => (document.activeElement as HTMLAnchorElement)?.getAttribute("href"));
+      if (href) seen.push(href);
+      if (href === "/plan/") return;
+    }
+    throw new Error(`the planner is not among the first stops: ${JSON.stringify(seen)}`);
   });
 });
 
@@ -307,5 +315,42 @@ test.describe("connecting an assistant, with scripting on", () => {
     await page.getByRole("button", { name: /^copy$/i }).click();
     const clip = await page.evaluate(() => navigator.clipboard.readText());
     expect(clip).toBe(await page.locator("#connector-url").innerText());
+  });
+});
+
+test.describe("the page's own controls", () => {
+  test("every button is readable against its own fill", async ({ page }) => {
+    // A bare `.band-deep a` is two classes and beat `.btn-go`, so the hero's
+    // primary button rendered in link blue on its own cream fill. axe did not
+    // flag it -- it reads the computed pair and both were "light" rather than
+    // identical -- and it is the one control the page most needs read.
+    await page.goto("/");
+    const bad = await page.evaluate(() => {
+      const lum = (c: number) => {
+        const s = c / 255;
+        return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+      };
+      const L = (css: string) => {
+        const [r, g, b] = css.match(/[\d.]+/g)!.map(Number);
+        return 0.2126 * lum(r) + 0.7152 * lum(g) + 0.0722 * lum(b);
+      };
+      /** Walk up for the first ancestor that actually paints a background. */
+      const behind = (el: Element): string => {
+        for (let n: Element | null = el; n; n = n.parentElement) {
+          const bg = getComputedStyle(n).backgroundColor;
+          if (bg && !/rgba?\([^)]*,\s*0\s*\)/.test(bg) && bg !== "transparent") return bg;
+        }
+        return "rgb(255,255,255)";
+      };
+      const out: string[] = [];
+      for (const el of document.querySelectorAll(".btn")) {
+        const fg = L(getComputedStyle(el).color);
+        const bg = L(behind(el));
+        const ratio = (Math.max(fg, bg) + 0.05) / (Math.min(fg, bg) + 0.05);
+        if (ratio < 4.5) out.push(`${el.textContent?.trim()}: ${ratio.toFixed(2)}:1`);
+      }
+      return out;
+    });
+    expect(bad, "a button's label does not meet AA against its own fill").toEqual([]);
   });
 });

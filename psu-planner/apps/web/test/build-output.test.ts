@@ -54,16 +54,18 @@ describe("the landing document", () => {
     expect(bytes).toBeLessThan(20 * 1024);
   });
 
-  it("keeps the hero mark light enough to be a hero", () => {
-    // It is the largest contentful paint on the page, so its weight is what a
-    // student waits for on a phone. The source artwork was 192 KB of
-    // full-depth PNG for four flat colours.
+  it("keeps its imagery light enough to be worth loading", () => {
+    // Images are the largest contentful paint here, so their weight is what a
+    // student on a phone actually waits for. The brand mark alone was 192 KB
+    // of full-depth PNG for four flat colours before it was quantised.
     const srcs = [...read("index.html").matchAll(/<img\b[^>]*\bsrc="(\/[^"]+)"/g)].map((m) => m[1]);
-    expect(srcs, "no hero image in the built page").toContain("/logo-dark.png");
-    for (const s of srcs) {
-      const kb = fs.statSync(path.join(dist, s.slice(1))).size / 1024;
-      expect(kb, `${s} is ${kb.toFixed(0)} KB`).toBeLessThan(60);
-    }
+    expect(srcs, "no brand mark in the built page").toContain("/mark.png");
+    expect(srcs.some((s) => s.startsWith("/shots/")), "no product screenshot on the page").toBe(true);
+
+    const kb = (s: string) => fs.statSync(path.join(dist, s.slice(1))).size / 1024;
+    for (const s of srcs) expect(kb(s), `${s} is ${kb(s).toFixed(0)} KB on its own`).toBeLessThan(140);
+    const total = srcs.reduce((n, s) => n + kb(s), 0);
+    expect(total, `${total.toFixed(0)} KB of images on the landing page`).toBeLessThan(260);
   });
 
   it("carries the unaffiliated disclaimer", () => {

@@ -1,432 +1,381 @@
 /* =====================================================================
-   The landing page — "night map".
-
-   The planner is a cream map on paper. This is the same map at night: the
-   cream stops being the ground and becomes the LIGHT. Deep petrol fields,
-   cream as ink, the lion reversed out of the mark. That inverts the identity
-   rather than replacing it, which is how "more blue, less cream" and "keep
-   the design system" both hold at once.
+   The landing page.
 
    It imports the product's stylesheet rather than restating it, so the type
-   scale, the station dot, the route curves, the press-scale on a button and
-   the reduced-motion block are literally the same tokens the app uses. The
-   palette below is the one place that diverges, and it diverges on purpose:
-   these are the app's own blues driven darker, not a second identity.
+   scale, the station dot, the route curves and the reduced-motion block are
+   literally the app's own tokens.
 
-   SIGNATURE: one route line runs the entire document (.spine), entering at
-   the mark and passing a station at every section. How far down the line you
-   are is how far down the page you are. It is drawn by a scroll-linked
-   animation, so it needs no JavaScript and simply renders complete where
-   scroll-timeline is unsupported.
+   STRUCTURE: alternating BANDS, not one field. Reading-heavy sections sit on
+   the planner's cream map paper, where long text is easiest; the sections
+   carrying a claim or an image sit on deep petrol. The contrast between them
+   is what gives the page rhythm -- one colour top to bottom reads as
+   monotonous however good the colour is.
+
+      band-deep   #06283a   hero, limits          rich
+      band-paper  #f1ebdf   what it is, your AI   cream, text-heavy
+      band-ink    #0a3447   the audit, footer     rich
+
+   The mark lives in the CORNER and stays there. Its wordmark beside it is
+   live type, not pixels: raster letterforms cannot be kerned, blur when
+   scaled, and cannot be selected or read aloud.
    ===================================================================== */
 @import "./styles.css";
 
-.landing.night {
-  /* The night field. Derived from the recoloured mark: its deep navy and its
-     petrol, pushed down until cream reads as light against them. */
-  --abyss: #06283a;   /* the hero field, and the lion's negative space */
-  --deep: #0a3447;    /* alternating section ground */
-  --shelf: #0f4259;   /* cards and raised surfaces */
-  --petrol: #1d627f;  /* the app's own --primary, unchanged */
-  --signal: #74b8ce;  /* a lit route line; the brightest structural blue */
-  --lamp: #f0edc2;    /* the mark's cream, now as ink */
-  --haze: #9fb6c0;    /* secondary text on the field */
-  --hair: #1a4d66;    /* hairlines */
+.landing {
+  --abyss: #06283a;   /* deepest petrol */
+  --ink: #0a3447;     /* the second rich band */
+  --shelf: #0f4259;   /* cards on a rich band */
+  --signal: #74b8ce;  /* lit route line, eyebrows on dark */
+  --lamp: #f0edc2;    /* the mark's cream, as ink on dark */
+  --haze: #9fb6c0;    /* secondary text on dark */
+  --hair: #1a4d66;    /* hairlines on dark */
+  --paper: #f1ebdf;   /* the planner's own map paper */
 
   background: var(--abyss);
-  color: var(--lamp);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Full-bleed sections. min-height rather than height: a phone in landscape,
-   or a section whose copy wraps to six lines, must grow instead of clipping. */
-.night .scr {
-  min-height: 100svh;
+/* ── Bands ──────────────────────────────────────────────────────────── */
+.band { padding: clamp(4rem, 11vh, 8rem) 0; position: relative; }
+.band-deep { background: var(--abyss); color: var(--lamp); }
+.band-ink { background: var(--ink); color: var(--lamp); }
+/* A fixed light surface, so its ink is fixed too. The dark-scheme projects
+   flip the app's --text to a light value; with only the BACKGROUND pinned,
+   that light ink landed on cream at 1.04:1. The band was drawn on paper the
+   same way the mark was -- it does not follow the viewer's scheme. */
+.band-paper {
+  --bg: #f1ebdf;
+  --surface: #faf5ea;
+  --surface-2: #e9e1d1;
+  --border: #ddd3c0;
+  --text: #2b2822;
+  --text-muted: #6b6353;
+  --primary: #1d627f;
+  --primary-hover: #16495f;
+  --primary-fg: #f7f3ea;
+  --success: #3d6848;
+  --warning: #8a5f28;
+  background: var(--paper);
+  color: var(--text);
+}
+.wrap { width: min(1240px, 100% - clamp(2rem, 8vw, 6rem)); margin-inline: auto; }
+
+/* ── The corner bar ─────────────────────────────────────────────────── */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: flex;
   align-items: center;
-  padding: var(--sp-8) 0;
-  position: relative;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-3) clamp(1rem, 4vw, 3rem);
+  background: color-mix(in srgb, var(--abyss) 88%, transparent);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--hair);
 }
-.night .scr-in {
-  width: min(1320px, 100% - clamp(2rem, 8vw, 6rem));
-  margin-inline: auto;
+.brand { display: inline-flex; align-items: center; gap: var(--sp-3); text-decoration: none; }
+/* The mark is drawn on cream and stays that way. On the dark bar it sits on a
+   small cream chip rather than being recoloured: inverting its lightness is
+   what made it read as a photographic negative. */
+.brand img {
+  width: auto;
+  height: 38px;
+  display: block;
+  background: var(--paper);
+  border-radius: var(--r-sm);
+  padding: 3px 5px;
 }
-
-/* Copy beside the thing it describes. Below the breakpoint they stack, with
-   the diagram second -- it illustrates the sentence, so it follows it. */
-.night .split {
-  display: grid;
-  gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: center;
+.brand span { font-size: 1.12rem; font-weight: 700; letter-spacing: -0.025em; color: var(--lamp); }
+.bar-nav { display: flex; align-items: center; gap: clamp(0.75rem, 2vw, 1.5rem); }
+.bar-nav > a:not(.btn) { font-size: var(--fs-sm); font-weight: 500; color: var(--haze); text-decoration: none; }
+.bar-nav > a:not(.btn):hover { color: var(--lamp); }
+@media (max-width: 34rem) {
+  .bar-nav > a:not(.btn) { display: none; }
+  .brand span { font-size: 1rem; }
 }
-@media (min-width: 60rem) {
-  .night .split { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
-  .night .split .lede { margin-bottom: 0; }
-}
-.night .scr-what,
-.night .scr-does { background: var(--deep); }
 
 /* ── Type ───────────────────────────────────────────────────────────────
-   Space Grotesk is already self-hosted for the planner. Its engineered,
-   slightly odd letterforms are a wayfinding face, which is the right voice
-   for a route map; JetBrains Mono carries anything that is DATA — course
-   codes, the catalog year, the coverage figure — so the two voices are
-   "what we say" and "what the catalog says". */
-.night h1,
-.night h2 {
+   Space Grotesk is already self-hosted for the planner; its engineered
+   letterforms are a wayfinding face, which is the voice a route map wants.
+   JetBrains Mono carries anything that is DATA -- course codes, the catalog
+   year, the coverage figure -- so the two voices are "what we say" and "what
+   the catalog says". */
+.landing h1,
+.landing h2 {
   font-weight: 700;
   letter-spacing: -0.035em;
-  line-height: 1.02;
+  line-height: 1.04;
   margin: 0 0 var(--sp-6);
   text-wrap: balance;
 }
-.night h1 { font-size: clamp(2.6rem, 7.4vw, 6rem); }
-.night h2 { font-size: clamp(2.1rem, 5.4vw, 4rem); }
-.night h3 {
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-  font-weight: 700;
-  letter-spacing: -0.012em;
-  margin: 0 0 var(--sp-3);
-  color: var(--lamp);
-}
-.night .eyebrow,
-.night .scroll-cue span,
-.night .lp-stn {
+.landing h1 { font-size: clamp(2.5rem, 6.4vw, 5rem); }
+.landing h2 { font-size: clamp(2rem, 4.6vw, 3.4rem); }
+.landing h3 { font-size: clamp(1.02rem, 1.5vw, 1.2rem); font-weight: 700; letter-spacing: -0.012em; margin: 0 0 var(--sp-3); }
+.eyebrow {
   font-family: var(--font-mono);
   font-size: 0.74rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-}
-.night .eyebrow {
-  color: var(--signal);
   margin: 0 0 var(--sp-4);
   display: flex;
   align-items: center;
   gap: var(--sp-3);
 }
 /* The eyebrow carries a station dot: it marks where this section joins the
-   line, so the device encodes position rather than ornamenting a label. */
-.night .eyebrow::before {
-  content: "";
-  width: 9px; height: 9px;
-  border-radius: 50%;
-  border: 2px solid var(--signal);
-  background: var(--abyss);
-  flex: none;
-}
-.night .lede {
-  font-size: clamp(1.05rem, 1.9vw, 1.4rem);
-  line-height: 1.5;
-  color: var(--haze);
-  max-width: 46ch;
-  margin: 0 0 var(--sp-6);
-}
-.night .note {
-  font-size: var(--fs-sm);
-  color: var(--haze);
-  line-height: 1.65;
-  margin: var(--sp-6) 0 0;
-  max-width: 58ch;
-}
-/* The coverage figure. Display-size and in the data voice, because it IS a
-   measurement -- recomputed from the shipped catalog at every build, never
-   typed in by hand. */
-.night .lp-figure strong {
-  display: block;
-  font-family: var(--font-mono);
-  color: var(--signal);
-  font-size: clamp(2.6rem, 5vw, 3.6rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  margin-bottom: var(--sp-3);
-}
-.night .note strong { color: var(--lamp); font-weight: 700; }
+   line, so the device encodes position rather than decorating a label. */
+.eyebrow::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 2px solid currentColor; flex: none; }
+.band-deep .eyebrow, .band-ink .eyebrow { color: var(--signal); }
+.band-paper .eyebrow { color: var(--primary); }
+/* Links in body copy, explicitly. Left unstyled they take the USER AGENT's
+   link colour, which under a dark system preference is a light periwinkle --
+   on a band that is always cream, that is 2:1. */
+/* `:where()` so this stays at one class + one element. Written as
+   `:not(.btn):not(.brand)` it outranked `.band-ink a:not(.btn)` and repainted
+   the DARK footer -- which is nested inside a cream body on these pages -- in
+   petrol on petrol. */
+.band-paper a:not(:where(.btn, .brand)) { color: var(--primary); }
 
-/* ── 1. The mark ────────────────────────────────────────────────────── */
-.night .scr-mark { border-bottom: 0; }
-.night .scr-mark .scr-in { text-align: center; }
-.night .mark {
-  width: min(560px, 74vw);
-  height: auto;
-  margin: 0 auto var(--sp-6);
-  display: block;
+.lede { font-size: clamp(1.05rem, 1.75vw, 1.35rem); line-height: 1.5; max-width: 46ch; margin: 0 0 var(--sp-6); }
+.band-deep .lede, .band-ink .lede { color: var(--haze); }
+.band-paper .lede, .band-paper p { color: var(--text-muted); }
+.band-paper p { line-height: 1.65; margin: 0 0 var(--sp-4); max-width: 54ch; }
+.note { font-size: var(--fs-sm); line-height: 1.65; margin: var(--sp-6) 0 0; max-width: 62ch; }
+.band-deep .note, .band-ink .note { color: var(--haze); }
+.band-deep .note strong, .band-ink .note strong { color: var(--lamp); }
+.band-paper .note { color: var(--text-muted); }
+.unofficial { font-size: var(--fs-base); line-height: 1.55; color: var(--haze); max-width: 46ch; margin: var(--sp-6) 0 0; }
+.unofficial strong { color: var(--lamp); }
+
+/* ── Layout helpers ─────────────────────────────────────────────────── */
+.cols { display: grid; gap: clamp(1.5rem, 4vw, 3.5rem); }
+.split { display: grid; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+@media (min-width: 58rem) {
+  .cols { grid-template-columns: 1fr 1fr; }
+  .split { grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr); }
 }
-.night .tagline {
-  font-family: var(--font-mono);
-  font-size: clamp(0.8rem, 1.5vw, 1rem);
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: var(--signal);
-  margin: 0 0 var(--sp-6);
-}
-.night .unofficial {
-  font-size: var(--fs-base);
-  line-height: 1.55;
-  color: var(--haze);
-  max-width: 34ch;
-  margin: 0 auto;
-}
-.night .unofficial strong { color: var(--lamp); }
-.night .scroll-cue {
-  margin: var(--sp-8) 0 0;
-  color: var(--haze);
-  opacity: 0.75;
-}
-.night .scroll-cue span { position: relative; }
-.night .scroll-cue span::after {
-  content: "";
-  position: absolute;
-  left: 50%; top: calc(100% + 10px);
-  width: 1px; height: 26px;
-  background: linear-gradient(var(--signal), transparent);
-  animation: cue 2.4s var(--ease-out) infinite;
-}
-@keyframes cue { 0%,100% { opacity: .25; } 50% { opacity: 1; } }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: clamp(1.25rem, 2.4vw, 2rem); margin-top: var(--sp-6); }
+.grid article { background: var(--shelf); border: 1px solid var(--hair); border-radius: var(--r-lg); padding: clamp(1.4rem, 2.4vw, 1.9rem); }
+.grid p { color: var(--haze); line-height: 1.6; margin: 0; font-size: var(--fs-base); }
 
 /* ── Buttons ────────────────────────────────────────────────────────── */
-.night .actions { display: flex; flex-wrap: wrap; gap: var(--sp-4); margin: 0; }
-.night .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-3);
-  padding: 0.95rem 1.7rem;
-  border-radius: var(--r-full);
-  font-size: var(--fs-base);
-  font-weight: 700;
-  text-decoration: none;
+.actions { display: flex; flex-wrap: wrap; gap: var(--sp-4); margin: 0; }
+.btn {
+  display: inline-flex; align-items: center; gap: var(--sp-3);
+  padding: 0.9rem 1.6rem; border-radius: var(--r-full);
+  font-size: var(--fs-base); font-weight: 700; text-decoration: none;
   border: 1px solid transparent;
   transition: background .2s var(--ease-out), color .2s var(--ease-out),
               border-color .2s var(--ease-out), transform .12s var(--ease-out);
 }
-.night .btn-go { background: var(--lamp); color: var(--abyss); }
-.night .btn-go:hover { background: #fffce0; }
-.night .btn-quiet { border-color: var(--hair); color: var(--lamp); }
-.night .btn-quiet:hover { border-color: var(--signal); color: var(--signal); }
-.night .btn:active { transform: scale(0.98); }
+.btn-sm { padding: 0.55rem 1.1rem; font-size: var(--fs-sm); }
+.btn-go { background: var(--lamp); color: var(--abyss); }
+.btn-go:hover { background: #fffce0; }
+.band-paper .btn-go { background: var(--primary); color: var(--primary-fg); }
+.band-paper .btn-go:hover { background: var(--primary-hover); }
+.btn-quiet { border-color: var(--hair); color: var(--lamp); }
+.btn-quiet:hover { border-color: var(--signal); color: var(--signal); }
+.btn:active { transform: scale(0.98); }
 
-/* ── 3. The map ─────────────────────────────────────────────────────── */
-.night .lp-route { margin: 0; }
-.night .lp-route svg { width: 100%; height: auto; overflow: visible; }
-.night .lp-route .route-line {
-  fill: none;
-  stroke: var(--signal);
-  stroke-width: 3.5;
-  stroke-linecap: round;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 0;
+/* ── Product imagery ────────────────────────────────────────────────────
+   The images are the PRODUCT, not illustrations of it. For software that is
+   both the most characteristic visual available and the only honest one: a
+   stylised mock would be a picture of a plan no student can actually get. */
+.shot { margin: clamp(2.5rem, 6vw, 4.5rem) 0 0; }
+.shot img {
+  display: block; width: 100%; height: auto;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--hair);
+  box-shadow: 0 24px 60px rgb(0 0 0 / 0.35);
+}
+/* The hero shot runs wider than the text column: the chart is the thing being
+   claimed, so it gets more room than the claim. */
+.shot-bleed { width: min(1500px, 100% - clamp(1rem, 4vw, 3rem)); margin-inline: auto; }
+.band-paper .shot img { border-color: var(--border); box-shadow: 0 18px 44px rgb(43 40 34 / 0.14); }
+
+/* ── The route diagram ──────────────────────────────────────────────── */
+.lp-route { margin: clamp(2.5rem, 6vw, 4rem) 0 0; }
+.lp-route svg { width: 100%; height: auto; overflow: visible; }
+.lp-route .route-line {
+  fill: none; stroke: var(--primary); stroke-width: 3.5; stroke-linecap: round;
+  stroke-dasharray: 1000; stroke-dashoffset: 0;
   animation: draw 2.2s var(--ease-out) both;
 }
 @keyframes draw { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
-.night .lp-route .route-stop {
-  opacity: 1;
-  animation: pop 0.5s var(--ease-out) both;
-  animation-delay: calc(0.45s + var(--i) * 0.42s);
-}
+.lp-route .route-stop { opacity: 1; animation: pop .5s var(--ease-out) both; animation-delay: calc(.45s + var(--i) * .42s); }
 @keyframes pop { from { opacity: 0; } to { opacity: 1; } }
-.night .lp-route circle { fill: var(--abyss); stroke: var(--lamp); stroke-width: 3.5; }
-.night .lp-route .lp-stn {
-  fill: var(--haze);
-  /* SVG `stroke` INHERITS. The app's `.route-stop` puts `stroke: var(--text);
-     stroke-width: 3` on the group for the station rings, and the label inside
-     it inherits both -- at 15px a 3px stroke swallows the letterform whole and
-     the code renders as dark blobs. Invisible on the light theme, where the
-     stroke matched the text; fatal on the night field. */
+.lp-route circle { fill: var(--surface); stroke: var(--primary); stroke-width: 3.5; }
+.lp-route .lp-stn {
+  fill: var(--text-muted);
+  /* SVG `stroke` INHERITS: the app's `.route-stop` puts a 3px dark stroke on
+     the group for the station rings, and at 15px that swallows the glyph. */
   stroke: none;
-  font-size: 15px;
-  letter-spacing: 0.08em;
-  text-anchor: middle;
+  font-family: var(--font-mono);
+  /* The viewBox is 700 units wide and renders near 1240px, so everything in
+     here is scaled ~1.8x: 15px set here arrives as 27px on screen. */
+  font-size: 11px; letter-spacing: 0.08em; text-anchor: middle;
 }
-.night .lp-route figcaption {
-  color: var(--haze);
-  font-size: var(--fs-sm);
-  margin-top: var(--sp-6);
+.lp-route figcaption { color: var(--text-muted); font-size: var(--fs-sm); margin-top: var(--sp-4); }
+
+.asks { list-style: none; padding: 0; margin: 0; }
+.asks li {
+  border-left: 2px solid var(--border);
+  padding: var(--sp-2) 0 var(--sp-2) var(--sp-4);
+  margin-bottom: var(--sp-3);
+  color: var(--text);
+  line-height: 1.5;
 }
 
-/* ── Card grids ─────────────────────────────────────────────────────── */
-.night .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: clamp(1.25rem, 2.4vw, 2.25rem);
-  margin-top: var(--sp-6);
+/* ── The coverage figure ────────────────────────────────────────────── */
+.lp-figure strong {
+  display: block;
+  font-family: var(--font-mono);
+  color: var(--signal);
+  font-size: clamp(2.4rem, 4.4vw, 3.2rem);
+  font-weight: 700; line-height: 1; letter-spacing: -0.03em;
+  margin-bottom: var(--sp-3);
 }
-.night .grid article {
-  background: var(--shelf);
-  border: 1px solid var(--hair);
-  border-radius: var(--r-lg);
-  padding: clamp(1.4rem, 2.4vw, 2rem);
-}
-.night .grid p { color: var(--haze); line-height: 1.6; margin: 0; font-size: var(--fs-base); }
 
 /* ── Footer ─────────────────────────────────────────────────────────── */
-.night .foot { background: var(--abyss); padding: var(--sp-8) 0; }
-.night .disclaim {
-  font-size: var(--fs-base);
-  line-height: 1.6;
-  color: var(--haze);
-  max-width: 62ch;
-  margin: 0 0 var(--sp-6);
-}
-.night .disclaim strong { color: var(--lamp); }
-.night .small { font-size: var(--fs-sm); color: var(--haze); margin: 0; }
-.night a { color: var(--signal); }
-.night .small a { color: var(--haze); }
-.night .small a:hover { color: var(--lamp); }
+.foot { padding: clamp(3rem, 7vh, 5rem) 0; }
+/* Band-scoped, not bare. A page whose BODY is `.band-paper` applies
+   `.band-paper p` (one class + one element) to everything inside it,
+   including the dark footer -- so a bare `.disclaim` loses and the footer
+   renders cream-page ink on a petrol ground. */
+.disclaim { font-size: var(--fs-base); line-height: 1.6; max-width: 64ch; margin: 0 0 var(--sp-6); }
+.band-ink .disclaim, .band-deep .disclaim { color: var(--haze); }
+.band-ink .disclaim strong, .band-deep .disclaim strong { color: var(--lamp); }
+.small { font-size: var(--fs-sm); margin: 0; }
+.band-ink .small, .band-deep .small { color: var(--haze); }
+/* `:not(.btn)` matters: a bare `.band-deep a` is two classes and beats
+   `.btn-go`, which repainted the hero's primary button in link blue on its
+   own cream fill — pale on pale, and the one control the page most needs
+   read. */
+.band-deep a:not(.btn), .band-ink a:not(.btn) { color: var(--signal); }
+.band-ink .small a, .band-deep .small a { color: var(--haze); text-decoration: none; }
+.band-ink .small a:hover, .band-deep .small a:hover { color: var(--lamp); }
 
-/* ── The spine ──────────────────────────────────────────────────────────
-   A fixed rail at the left edge whose lit portion tracks scroll progress.
-   `animation-timeline: scroll()` does this on the compositor with no script;
-   where it is unsupported the run simply sits at full height, which reads as
-   a complete route rather than a broken one. */
-.spine {
-  position: fixed;
-  left: clamp(0.85rem, 3.2vw, 2.4rem);
-  top: 0; bottom: 0;
-  width: 2px;
-  z-index: 2;
-  pointer-events: none;
+/* ── Scroll reveals ─────────────────────────────────────────────────────
+   `reveals-armed` is set by the script, so the hiding styles only ever apply
+   once something is able to un-hide them. With JavaScript off nothing here
+   matches and the page renders fully visible -- the only acceptable failure
+   mode for a page whose premise is that it reads without scripting. */
+.reveals-armed .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s var(--ease-out), transform .6s var(--ease-out);
 }
-.spine-track { position: absolute; inset: 0; background: var(--hair); }
-.spine-run {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 100%;
-  transform-origin: top;
-  background: linear-gradient(var(--signal), var(--lamp));
-}
-@supports (animation-timeline: scroll()) {
-  .spine-run {
-    animation: spine linear both;
-    animation-timeline: scroll(root block);
-  }
-  @keyframes spine { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-}
-@media (max-width: 40rem) { .spine { display: none; } }
+.reveals-armed .reveal.is-in { opacity: 1; transform: none; }
+/* Children of a revealed block stagger, so a card grid arrives as a sequence
+   rather than as one block appearing at once. */
+.reveals-armed .grid > .reveal:nth-child(2) { transition-delay: .09s; }
+.reveals-armed .grid > .reveal:nth-child(3) { transition-delay: .18s; }
+.reveals-armed .cols > .reveal:nth-child(2) { transition-delay: .09s; }
 
 /* ── Quality floor ──────────────────────────────────────────────────── */
-.night :is(a, .btn):focus-visible {
-  outline: 2px solid var(--signal);
-  outline-offset: 3px;
-  border-radius: var(--r-sm);
-}
-.night .skip-link:focus { background: var(--lamp); color: var(--abyss); }
+.landing :is(a, .btn):focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; border-radius: var(--r-sm); }
+.band-paper :is(a, .btn):focus-visible { outline-color: var(--primary); }
 
 @media (prefers-reduced-motion: reduce) {
-  /* Complete and still. A student who asked for less motion gets the whole
-     diagram, not a line frozen at the first frame of its draw. */
-  .night .lp-route .route-line { animation: none; stroke-dashoffset: 0; }
-  .night .lp-route .route-stop { animation: none; opacity: 1; }
-  .night .scroll-cue span::after { animation: none; }
-  .spine-run { animation: none; transform: none; }
-  .night * { transition: none !important; }
+  /* Complete and still. The diagram arrives whole rather than frozen at the
+     first frame of its draw, and nothing reveals on scroll. */
+  .lp-route .route-line { animation: none; stroke-dashoffset: 0; }
+  .lp-route .route-stop { animation: none; opacity: 1; }
+  .reveals-armed .reveal { opacity: 1; transform: none; transition: none; }
+  .landing * { transition: none !important; }
 }
 
 /* =====================================================================
-   /connect/ — the walkthrough.
+   /connect/ and the legal documents.
 
-   Deliberately NOT generated from src/legal/content.ts: that module renders
-   prose blocks, and this page is a numbered procedure with a copyable field.
-   Forcing it through would mean inventing a "step" and a "copy field" node
-   type for exactly one consumer.
+   The most reading-heavy surfaces on the site, so they sit on cream: long
+   text is easier on paper than on a field, and that is the same rule the
+   landing page's bands follow. Their footer stays rich, which keeps the
+   site's rhythm intact even on a single-band page.
    ===================================================================== */
-.connect-page { padding-bottom: 0; }
-.conn-head { padding: clamp(2.5rem, 7vw, 5rem) 0 clamp(1.5rem, 4vw, 3rem); }
-.conn-head .home { margin: 0 0 var(--sp-8); }
-.conn-head .home img { width: 170px; height: auto; display: block; }
-.conn-head h1 { font-size: clamp(2.2rem, 5.6vw, 4.2rem); }
-.conn-main { padding-bottom: clamp(3rem, 8vw, 6rem); }
+.connect-page, .legal-page { padding-bottom: 0; }
+.conn-head { padding: clamp(2rem, 6vw, 4rem) 0 clamp(1.25rem, 3vw, 2.25rem); }
+.conn-head .home { margin: 0 0 var(--sp-6); }
+/* On cream the mark needs no chip behind it: it was drawn on this colour. */
+.band-paper .brand img { background: none; padding: 0; height: 42px; }
+.band-paper .brand span { color: var(--text); }
+.conn-head h1 { font-size: clamp(2rem, 5vw, 3.6rem); }
+.conn-main { padding-bottom: clamp(3rem, 7vw, 5rem); }
 
-/* The numbering is information: each step depends on the one before it, so
-   the sequence is real rather than decorative. */
+.legal-body { padding-top: var(--sp-6); padding-bottom: var(--sp-8); }
+.legal-body p, .legal-body li { line-height: 1.65; margin: 0 0 var(--sp-4); color: var(--text-muted); }
+.legal-body ul { padding-left: var(--sp-6); margin: 0 0 var(--sp-6); }
+.legal-body li { margin-bottom: var(--sp-4); }
+.legal-body strong { color: var(--text); }
+
+/* The numbering is information: each step depends on the one before it. */
 .steps { list-style: none; counter-reset: step; padding: 0; margin: 0; }
 .steps > li {
   counter-increment: step;
   position: relative;
-  padding: 0 0 clamp(2.5rem, 5vw, 3.5rem) clamp(3.4rem, 6vw, 4.6rem);
-  border-left: 2px solid var(--hair);
+  padding: 0 0 clamp(2rem, 4vw, 3rem) clamp(3.2rem, 6vw, 4.4rem);
+  border-left: 2px solid var(--border);
 }
 .steps > li:last-child { border-left-color: transparent; padding-bottom: var(--sp-8); }
 /* Each step is a station on the same line the rest of the site runs on. */
 .steps > li::before {
   content: counter(step);
   position: absolute;
-  left: 0;
+  left: 0; top: 0;
   transform: translateX(-50%);
-  top: 0;
-  width: clamp(2rem, 3.4vw, 2.5rem);
-  height: clamp(2rem, 3.4vw, 2.5rem);
-  display: grid;
-  place-items: center;
+  width: clamp(2rem, 3.2vw, 2.4rem); height: clamp(2rem, 3.2vw, 2.4rem);
+  display: grid; place-items: center;
   border-radius: 50%;
-  background: var(--abyss);
-  border: 2px solid var(--signal);
-  color: var(--signal);
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 700;
+  background: var(--bg);
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700;
 }
-.steps h2 { font-size: clamp(1.3rem, 2.6vw, 1.85rem); margin: 0 0 var(--sp-3); }
-.steps p { color: var(--haze); line-height: 1.6; margin: 0 0 var(--sp-4); max-width: 54ch; }
+.steps h2 { font-size: clamp(1.25rem, 2.4vw, 1.8rem); margin: 0 0 var(--sp-3); }
+.steps p { color: var(--text-muted); line-height: 1.6; margin: 0 0 var(--sp-4); max-width: 54ch; }
 .steps .step-do { margin-top: var(--sp-6); }
 
-/* The connection link. A field, not a code block: it is an address someone
-   copies, and dressing it as source would say "this page is for programmers"
+/* The connection link is a FIELD, not a code block: it is an address someone
+   copies, and dressing it as source would say "this page is for programmers",
    which is the one thing it must not say. */
 .copyfield {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--sp-3);
-  background: var(--shelf);
-  border: 1px solid var(--hair);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: var(--r-lg);
-  padding: var(--sp-3) var(--sp-3) var(--sp-3) clamp(0.9rem, 2vw, 1.4rem);
+  padding: var(--sp-3) var(--sp-3) var(--sp-3) clamp(0.9rem, 2vw, 1.3rem);
   margin: 0 0 var(--sp-4);
   max-width: 34rem;
 }
 .copyfield-url {
   font-family: var(--font-mono);
-  font-size: clamp(0.82rem, 1.6vw, 1rem);
-  color: var(--lamp);
+  font-size: clamp(0.82rem, 1.5vw, 0.98rem);
+  color: var(--text);
   word-break: break-all;
   flex: 1 1 14rem;
   user-select: all;
 }
 .copyfield-btn {
   flex: none;
-  background: var(--lamp);
-  color: var(--abyss);
-  border: 0;
-  border-radius: var(--r-full);
-  padding: 0.6rem 1.3rem;
-  font-family: var(--font-sans);
-  font-size: var(--fs-sm);
-  font-weight: 700;
+  background: var(--primary); color: var(--primary-fg);
+  border: 0; border-radius: var(--r-full);
+  padding: 0.6rem 1.25rem;
+  font-family: var(--font-sans); font-size: var(--fs-sm); font-weight: 700;
   cursor: pointer;
 }
-.copyfield-btn.is-done { background: var(--signal); }
+.copyfield-btn.is-done { background: var(--success); }
 
 .pending {
-  font-size: var(--fs-sm);
-  line-height: 1.6;
-  color: var(--haze);
+  font-size: var(--fs-sm); line-height: 1.6; color: var(--text-muted);
   border-left: 3px solid var(--warning);
   padding-left: var(--sp-4);
   max-width: 48ch;
 }
-.pending strong { color: var(--lamp); }
+.pending strong { color: var(--text); }
 
-.where, .asks { margin: 0; padding-left: 1.15rem; color: var(--haze); line-height: 1.75; max-width: 56ch; }
-.where strong { color: var(--lamp); }
-.asks { list-style: none; padding-left: 0; }
-.asks li {
-  border-left: 2px solid var(--hair);
-  padding: var(--sp-2) 0 var(--sp-2) var(--sp-4);
-  margin-bottom: var(--sp-3);
-  color: var(--lamp);
-}
-.try { margin-top: clamp(2rem, 5vw, 3.5rem); }
-.try h2 { font-size: clamp(1.6rem, 3.4vw, 2.4rem); }
+.where { margin: 0; padding-left: 1.1rem; color: var(--text-muted); line-height: 1.75; max-width: 56ch; }
+.where strong { color: var(--text); }
+.try { margin-top: clamp(2rem, 4vw, 3rem); }
+.try h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); }

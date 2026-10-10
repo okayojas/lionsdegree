@@ -54,25 +54,25 @@ export function pageHtml(section: Section, siteUrl = "%SITE_URL%"): string {
     <meta property="og:description" content="${escapeHtml(section.description)}" />
     <link rel="stylesheet" href="/src/landing.css" />
   </head>
-  <body class="landing legal-page">
+  <body class="landing band-paper legal-page">
     <a href="#doc" class="skip-link">Skip to the document</a>
-    <header class="lp-hero lp-hero-slim">
-      <div class="lp-wrap">
-        <p class="lp-mark"><a href="/"><i class="lp-dot" aria-hidden="true"></i>LionsDegree</a></p>
+    <header class="conn-head">
+      <div class="wrap">
+        <p class="home"><a class="brand" href="/"><img src="/mark.png" width="420" height="327" alt="" /><span>LionsDegree</span></a></p>
         <h1>${escapeHtml(section.heading)}</h1>
       </div>
     </header>
-    <main id="doc" class="lp-wrap legal-body">
+    <main id="doc" class="wrap legal-body">
         ${section.body.map(blockHtml).join("\n        ")}
     </main>
-    <footer class="lp-foot">
-      <div class="lp-wrap">
-        <p class="lp-disclaim">
+    <footer class="band band-ink foot">
+      <div class="wrap">
+        <p class="disclaim">
           <strong>Unofficial.</strong> LionsDegree is not affiliated with,
           endorsed by, or an official product of The Pennsylvania State
           University.
         </p>
-        <p class="lp-small">
+        <p class="small">
           <a href="/">Home</a> ·
           <a href="/plan/">Open the planner</a> ·
           <a href="/privacy/">Privacy</a> ·

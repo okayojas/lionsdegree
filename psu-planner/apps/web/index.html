@@ -39,73 +39,84 @@
 
     <link rel="stylesheet" href="/src/landing.css" />
   </head>
-  <body class="landing night">
+  <body class="landing">
     <a href="#what" class="skip-link">Skip to what this is</a>
 
-    <!-- The spine. One route line runs the whole document, entering at the
-         mark and passing a station at every section. It is the product's own
-         metaphor doing the page's navigation rather than decorating it: how
-         far down the line you are is how far down the page you are. Drawn
-         with CSS from a scroll-linked animation, so it costs no JavaScript
-         and simply sits complete when scroll-timeline is unsupported. -->
-    <div class="spine" aria-hidden="true">
-      <div class="spine-track"></div>
-      <div class="spine-run"></div>
-    </div>
-
-    <!-- ══ 1. THE MARK ════════════════════════════════════════════════ -->
-    <header class="scr scr-mark">
-      <div class="scr-in">
-        <img class="mark" src="/logo-dark.png" width="1074" height="904"
-             alt="LionsDegree: a lion reversed out of a D, with a prerequisite route climbing across it" />
-        <p class="tagline">Penn State degree planning</p>
-        <!-- Above the fold on a phone, at body size. A student meets the
-             statement that this is not Penn State before anything else:
-             the mark is a lion in blue, and that association has to be
-             answered immediately rather than in a footer. -->
-        <p class="unofficial">
-          <strong>Unofficial.</strong> Not affiliated with or endorsed by Penn State.
-        </p>
-        <p class="scroll-cue"><span>Scroll</span></p>
-      </div>
+    <!-- The mark sits in the corner and stays there. The wordmark beside it is
+         LIVE TYPE, not part of the image: raster letterforms cannot be kerned,
+         scale badly, and cannot be selected or read aloud. -->
+    <header class="bar">
+      <a class="brand" href="/">
+        <img src="/mark.png" width="420" height="327" alt="" />
+        <span>LionsDegree</span>
+      </a>
+      <nav class="bar-nav">
+        <a href="/connect/">Connect your AI</a>
+        <a class="btn btn-go btn-sm" href="/plan/">Open the planner</a>
+      </nav>
     </header>
 
-    <!-- ══ 2. WHAT IT IS ══════════════════════════════════════════════ -->
-    <section class="scr scr-what" id="what">
-      <div class="scr-in">
-        <p class="eyebrow">What this is</p>
-        <h1>Your degree is a route map.<br />Now you can see it.</h1>
-        <p class="lede">
+    <!-- ══ 1. HERO — rich ═══════════════════════════════════════════════
+         Deep petrol. The claim, and the product immediately under it. -->
+    <section class="band band-deep hero">
+      <div class="wrap">
+        <p class="eyebrow reveal">Penn State degree planning</p>
+        <h1 class="reveal">Your degree is a route map.<br />Now you can see it.</h1>
+        <p class="lede reveal">
           Every course you need, laid out term by term, in an order that actually
           works. LionsDegree reads Penn State's Bulletin, works out which classes
           unlock which, and draws the whole thing as a map you can move around.
         </p>
-        <p class="actions">
+        <p class="actions reveal">
           <a class="btn btn-go" href="/plan/">Open the planner</a>
-          <a class="btn btn-quiet" href="#connect">Connect your AI</a>
+          <a class="btn btn-quiet" href="/connect/">Connect your AI</a>
         </p>
-        <p class="note">Free. Sign in with your Penn State account to save your plan and reach it anywhere.</p>
+        <p class="unofficial reveal">
+          <strong>Unofficial.</strong> Not affiliated with or endorsed by Penn State.
+        </p>
       </div>
+      <!-- The product, not an illustration of it. A stylised mock-up would be
+           a picture of a plan no student can actually get. -->
+      <figure class="shot shot-bleed reveal">
+        <img src="/shots/flowchart.png" width="1100" height="440" loading="lazy"
+             alt="A term-by-term plan: course cards for MATH 220, PHYS 212 and EMCH 302H joined by prerequisite lines, with open elective slots waiting to be filled." />
+      </figure>
     </section>
 
-    <!-- ══ 3. THE MAP ═════════════════════════════════════════════════ -->
-    <section class="scr scr-map">
-      <div class="scr-in split">
-        <div>
-        <p class="eyebrow">Prerequisites, drawn</p>
-        <h2>Pick your programs. Get a plan that holds.</h2>
-        <p class="lede">
-          Majors, minors and certificates together. One course can count for two
-          of them, and the map shows you where that happens.
-        </p>
+    <!-- ══ 2. WHAT IT IS — cream, text-heavy ════════════════════════════ -->
+    <section class="band band-paper" id="what">
+      <div class="wrap">
+        <p class="eyebrow reveal">What this is</p>
+        <h2 class="reveal">Pick your programs. Get a plan that holds.</h2>
+        <div class="cols">
+          <div class="reveal">
+            <p>
+              Majors, minors and certificates together. One course can count for
+              two of them, and the map shows you where that happens.
+            </p>
+            <p>
+              Prerequisites are enforced, not suggested. Move a course earlier
+              than something it depends on and the line between them turns red
+              before you commit to it &mdash; not in week three of the semester
+              you find out.
+            </p>
+          </div>
+          <div class="reveal">
+            <p>
+              Click an empty slot and see real courses you qualify for, with the
+              ones that also close a General Education requirement marked. The
+              planner knows which you've already satisfied.
+            </p>
+            <p>
+              Both current catalog years ship. Pick the one you entered your
+              major under and your plan is held to those rules, not next year's.
+            </p>
+          </div>
         </div>
 
-        <!-- Inline SVG, no script: the page has to read correctly with
-             JavaScript off. The route-line and route-stop classes are the
-             planner's own, so this draws with the same curves the app uses. -->
-        <figure class="lp-route">
+        <figure class="lp-route reveal">
           <svg viewBox="0 0 700 190" role="img"
-               aria-label="MATH 140 leads to MATH 141, which leads to MATH 230 and to PHYS 211.">
+               aria-label="A prerequisite route: MATH 140 leads to MATH 141, which leads to MATH 230 and to PHYS 211.">
             <path class="route-line" d="M60 150 H210 Q250 150 250 110 H400 Q440 110 440 70 H640" />
             <g class="route-stop" style="--i:0"><circle cx="60"  cy="150" r="9" /><text class="lp-stn" x="60"  y="178">MATH 140</text></g>
             <g class="route-stop" style="--i:1"><circle cx="250" cy="110" r="9" /><text class="lp-stn" x="250" y="138">MATH 141</text></g>
@@ -117,90 +128,88 @@
       </div>
     </section>
 
-    <!-- ══ 4. WHAT IT DOES ════════════════════════════════════════════ -->
-    <section class="scr scr-does">
-      <div class="scr-in">
-        <p class="eyebrow">How it works</p>
-        <h2>Drag a course and see what breaks.</h2>
-        <div class="grid">
-          <article>
-            <h3>It reads the Bulletin so you don't</h3>
-            <p>
-              Every published program, every requirement, both current catalog
-              years. Pick the one you entered under and your plan is held to
-              those rules, not next year's.
-            </p>
-          </article>
-          <article>
-            <h3>It knows what unlocks what</h3>
-            <p>
-              Prerequisites are enforced, not suggested. Move a course earlier
-              than something it depends on and the line between them turns red
-              before you commit to it.
-            </p>
-          </article>
-          <article>
-            <h3>It finds the courses you're allowed to take</h3>
-            <p>
-              Click an empty slot and see real options you qualify for, with the
-              ones that also close a General Education requirement marked.
-            </p>
-          </article>
+    <!-- ══ 3. THE AUDIT — rich, image-led ═══════════════════════════════ -->
+    <section class="band band-ink">
+      <div class="wrap split">
+        <div class="reveal">
+          <p class="eyebrow">Checked, not guessed</p>
+          <h2>Drag a course and see what breaks.</h2>
+          <p class="lede">
+            Every requirement your programs publish, checked against what you've
+            actually planned. Where the Bulletin is unreadable or defers to your
+            adviser, it says so instead of inventing an answer.
+          </p>
+          <p class="actions">
+            <a class="btn btn-go" href="/plan/">Build your plan</a>
+          </p>
         </div>
+        <figure class="shot reveal">
+          <img src="/shots/audit.png" width="620" height="700" loading="lazy"
+               alt="The requirements panel: Engineering Science B.S. with 29 requirements on track, 3 to do and 1 to check manually, each listed with its courses." />
+        </figure>
       </div>
     </section>
 
-    <!-- ══ 5. BRING YOUR OWN AI ═══════════════════════════════════════ -->
-    <section class="scr scr-ai" id="connect">
-      <div class="scr-in">
-        <p class="eyebrow">Works with your assistant</p>
-        <h2>Bring your own AI.</h2>
-        <p class="lede">
-          Connect LionsDegree to Claude, ChatGPT or whatever you already use.
-          Your assistant can then read your actual plan and answer questions
-          about your degree instead of guessing.
-        </p>
-        <p class="actions">
-          <a class="btn btn-go" href="/connect/">How to connect it</a>
-        </p>
-        <p class="note">
+    <!-- ══ 4. BRING YOUR OWN AI — cream, text-heavy ═════════════════════ -->
+    <section class="band band-paper" id="connect">
+      <div class="wrap">
+        <p class="eyebrow reveal">Works with your assistant</p>
+        <h2 class="reveal">Bring your own AI.</h2>
+        <div class="cols">
+          <div class="reveal">
+            <p>
+              Connect LionsDegree to Claude, ChatGPT or whatever you already
+              use. Your assistant can then read your actual plan and answer
+              questions about your degree instead of guessing at it.
+            </p>
+            <p class="actions">
+              <a class="btn btn-go" href="/connect/">How to connect it</a>
+            </p>
+          </div>
+          <ul class="asks reveal">
+            <li>"What do I still need for my major?"</li>
+            <li>"Can I take CMPSC 465 next spring?"</li>
+            <li>"I want to study abroad in fall 2027 &mdash; rearrange my plan."</li>
+          </ul>
+        </div>
+        <p class="note reveal">
           One link, pasted into your assistant's settings. Nothing to install and
           nothing to configure.
         </p>
       </div>
     </section>
 
-    <!-- ══ 6. LIMITS ══════════════════════════════════════════════════ -->
-    <section class="scr scr-limits" id="coverage">
-      <div class="scr-in">
-        <p class="eyebrow">Being straight with you</p>
-        <h2>What it can't do.</h2>
+    <!-- ══ 5. LIMITS — rich ═════════════════════════════════════════════ -->
+    <section class="band band-deep" id="coverage">
+      <div class="wrap">
+        <p class="eyebrow reveal">Being straight with you</p>
+        <h2 class="reveal">What it can't do.</h2>
         <div class="grid">
-          <article>
+          <article class="reveal">
             <h3>It can't see when a class is offered</h3>
             <p>
               Penn State doesn't publish that in a form anyone can read
               automatically. Check LionPATH before you register.
             </p>
           </article>
-          <article>
+          <article class="reveal">
             <h3>It isn't your adviser</h3>
             <p>
               Some requirements are decided by a person, not a list. Where that's
               true, the planner says so instead of inventing an answer.
             </p>
           </article>
-          <article class="lp-figure">
+          <article class="reveal lp-figure">
             <h3>Some requirements it can't read</h3>
             <p>
               <strong>%COVERAGE_PERCENT%%</strong>
-              of requirements across %COVERAGE_PROGRAMS% programs resolve to real,
-              named courses. The rest are flagged for you to check rather than
-              quietly filled in with a guess.
+              of requirements across %COVERAGE_PROGRAMS% programs resolve to
+              real, named courses. The rest are flagged for you to check rather
+              than quietly filled in with a guess.
             </p>
           </article>
         </div>
-        <p class="note">
+        <p class="note reveal">
           Measured against the %COVERAGE_EDITION% bulletin, not estimated.
           <strong>%COVERAGE_NAMED%</strong> requirements name their courses
           outright, and <strong>%COVERAGE_PATTERNED%</strong> give you
@@ -209,7 +218,7 @@
           guessed at. <strong>%COVERAGE_GENED%</strong> are General Education
           buckets, filled from the designations a course carries.
         </p>
-        <p class="note">
+        <p class="note reveal">
           Left out of that percentage altogether: the
           <strong>%COVERAGE_ADVISER%</strong> requirements where the Bulletin
           publishes <strong>no list</strong> and tells you to ask your adviser.
@@ -222,8 +231,8 @@
       </div>
     </section>
 
-    <footer class="foot">
-      <div class="scr-in">
+    <footer class="band band-ink foot">
+      <div class="wrap">
         <p class="disclaim">
           <strong>Unofficial.</strong> LionsDegree is not affiliated with,
           endorsed by, or an official product of The Pennsylvania State
@@ -240,5 +249,7 @@
         </p>
       </div>
     </footer>
+
+    <script type="module" src="/src/reveal.ts"></script>
   </body>
 </html>
