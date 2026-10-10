@@ -71,11 +71,17 @@
   /* Sampled from the LionsDegree lion/data logo, not transcribed from a brand
      book: its mid blue is softer than Penn State's published Beaver Blue, and
      matching our own asset is what keeps the product and its logo coherent. */
-  --primary: #1d417f;         /* the one accent — the logo's mid blue */
-  --primary-hover: #16335f;
+  --primary: #1d627f;         /* petrol blue. Deliberately NOT Penn State's
+                                 Beaver Blue (#1E407C): this is an unofficial
+                                 tool, and wearing the University's trademark
+                                 colour alongside "Lions" is trade dress that
+                                 implies an endorsement we do not have. Rotated
+                                 20deg off it, same lightness and saturation, so
+                                 every contrast pairing is unchanged. */
+  --primary-hover: #16495f;
   --primary-fg: #f7f3ea;
-  --primary-tint: #e4eaf3;    /* selected / on-route bg */
-  --accent-text: #1d417f;
+  --primary-tint: #e4eef3;    /* selected / on-route bg */
+  --accent-text: #1d627f;
   --navy: #041f46;            /* the logo's deep blue: wordmark, headings */
   --route-b: #4a7c59;         /* muted green second line (hero) */
   /* --success is DARKER than --route-b although both are the muted green.
@@ -88,7 +94,7 @@
   --success: #3d6848; --success-solid: #5a8c69; --success-bg: #e9efe4; --success-border: #c3d4bf;
   --warning: #8a5f28; --warning-solid: #a2722f; --warning-bg: #f4ecdb; --warning-border: #e2cfa8;
   --danger: #9c4a46;  --danger-solid: #bf6360;  --danger-bg: #f3e5e2;  --danger-border: #e0bcb7;
-  --focus-ring: #1d417f;
+  --focus-ring: #1d627f;
   --shadow-color: 35 25% 30%;
   --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / .08);
   --shadow: 0 2px 12px hsl(var(--shadow-color) / .10);
@@ -96,7 +102,7 @@
 
   /* ---- legacy aliases (old names -> new roles) ---- */
   --card: var(--surface); --ink: var(--text); --muted: var(--text-muted);
-  --blue: var(--primary); --lblue: #9fb4d4; --line: var(--border);
+  --blue: var(--primary); --lblue: #9fc4d4; --line: var(--border);
   --green: var(--success); --amber: var(--warning); --red: var(--danger);
   --green-bg: var(--success-bg); --amber-bg: var(--warning-bg); --red-bg: var(--danger-bg);
 
@@ -112,12 +118,12 @@
     /* Pugh Blue is Penn State's own light blue; softened here because this
        identity is muted and the published value is not. Navy is unusable in
        dark at 1.42:1, so the structural tone lightens too. */
-    --primary: #8db6d8; --primary-hover: #a6c4dc; --primary-fg: #2b2a27; --primary-tint: #2f3742;
-    --accent-text: #9bbdd6; --navy: #b8cbe4; --route-b: #7fae8b;
+    --primary: #8dc1d8; --primary-hover: #a6ccdc; --primary-fg: #2b2a27; --primary-tint: #2f3c42;
+    --accent-text: #9bc4d6; --navy: #b8d7e4; --route-b: #7fae8b;
     --success: #86b394; --success-solid: #6fa07e; --success-bg: #232f28; --success-border: #3a4d40;
     --warning: #d3ab6b; --warning-solid: #c39a58; --warning-bg: #342f1f; --warning-border: #4e4530;
     --danger: #cd908b; --danger-solid: #bd7a75; --danger-bg: #352625; --danger-border: #533b39;
-    --focus-ring: #8db6d8; --lblue: #a6c4dc;
+    --focus-ring: #8dc1d8; --lblue: #a6ccdc;
     --shadow-color: 220 30% 3%;
     --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / .4);
     --shadow: 0 2px 12px hsl(var(--shadow-color) / .45);
@@ -132,12 +138,12 @@
   /* Pugh Blue is Penn State's own light blue; softened here because this
      identity is muted and the published value is not. Navy is unusable in
      dark at 1.42:1, so the structural tone lightens too. */
-  --primary: #8db6d8; --primary-hover: #a6c4dc; --primary-fg: #2b2a27; --primary-tint: #2f3742;
-  --accent-text: #9bbdd6; --navy: #b8cbe4; --route-b: #7fae8b;
+  --primary: #8dc1d8; --primary-hover: #a6ccdc; --primary-fg: #2b2a27; --primary-tint: #2f3c42;
+  --accent-text: #9bc4d6; --navy: #b8d7e4; --route-b: #7fae8b;
   --success: #86b394; --success-solid: #6fa07e; --success-bg: #232f28; --success-border: #3a4d40;
   --warning: #d3ab6b; --warning-solid: #c39a58; --warning-bg: #342f1f; --warning-border: #4e4530;
   --danger: #cd908b; --danger-solid: #bd7a75; --danger-bg: #352625; --danger-border: #533b39;
-  --focus-ring: #8db6d8; --lblue: #a6c4dc;
+  --focus-ring: #8dc1d8; --lblue: #a6ccdc;
   --shadow-color: 220 30% 3%;
   --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / .4);
   --shadow: 0 2px 12px hsl(var(--shadow-color) / .45);

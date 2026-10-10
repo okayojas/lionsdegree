@@ -7,7 +7,7 @@ import {
   progress, rankGenEdPicks, rankSlotPicks, resolveSlotPool, searchCatalog,
   type Catalog, type ReqSection, type ScheduleConstraint,
 } from "@psu-planner/engine";
-import { auditIug } from "@psu-planner/engine";
+import { auditIug, fenceCatalogText } from "@psu-planner/engine";
 import { loadCourse, loadCoverage, loadFullCatalog, loadIug, loadIugIndex, loadProgramBySlug, loadProgramsIndex } from "../data/catalogClient";
 import { usePlanner } from "../store";
 import { appendAction, getActions } from "./ledger";
@@ -136,7 +136,7 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
         code: c.code, display: c.display, title: c.title, credits: c.credits,
         // Catalog prose is untrusted retrieved data — fence it so the model
         // treats it as reference text, never as instructions (S4 prompt-injection).
-        description: `<untrusted_catalog_text>${c.description.slice(0, 900)}</untrusted_catalog_text>`,
+        description: fenceCatalogText(c.description.slice(0, 900)),
         enforced_prerequisites: c.enforced, enforced_concurrent: c.concurrent,
         genEd: c.genEd, bulletin_url: c.url,
       };

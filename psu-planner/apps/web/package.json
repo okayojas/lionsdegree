@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run coverage && vite",
-    "build": "npm run coverage && tsc --noEmit && vite build",
+    "dev": "npm run prepage && vite",
+    "build": "npm run prepage && tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "sync-catalog": "node scripts/sync-catalog.mjs",
@@ -16,7 +16,10 @@
     "test:e2e:install": "playwright install --with-deps chromium",
     "og": "node scripts/make-og.mjs",
     "deploy:self-host": "node -e \"if(!process.env.VITE_CHAT_ENDPOINT){console.error('set VITE_CHAT_ENDPOINT=/v1/chat first');process.exit(1)}\" && npm run sync-catalog && npm run build && npm run og && node scripts/deploy-self-host.mjs",
-    "coverage": "tsx scripts/coverage-facts.mts"
+    "prepage": "npm run coverage && npm run legal && npm run site-index",
+    "coverage": "tsx scripts/coverage-facts.mts",
+    "legal": "tsx scripts/legal-pages.mts",
+    "site-index": "tsx scripts/site-index.mts"
   },
   "dependencies": {
     "@fontsource-variable/space-grotesk": "^5.3.0",

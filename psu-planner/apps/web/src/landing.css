@@ -245,3 +245,23 @@ body.landing {
   .lp-hero { padding-top: var(--sp-6); }
   .lp-actions .lp-cta { flex: 1 1 auto; justify-content: center; }
 }
+
+/* =====================================================================
+   The static legal documents (/privacy, /terms).
+
+   Generated from src/legal/content.ts, which also feeds the in-app modal.
+   They reuse the landing page's shell so a visitor crossing from the front
+   door into a policy feels no seam, with a shortened hero: a policy has no
+   lede and no route diagram, only a title.
+   ===================================================================== */
+.lp-hero-slim { padding: var(--sp-7) 0 var(--sp-5); border-bottom: 1px solid var(--border); }
+.lp-hero-slim h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); margin: var(--sp-3) 0 0; }
+.lp-mark a { color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: var(--sp-2); }
+.lp-mark a:hover { text-decoration: underline; }
+
+.legal-page main.legal-body { padding-top: var(--sp-7); padding-bottom: var(--sp-8); }
+.legal-page .legal-body p,
+.legal-page .legal-body li { line-height: 1.65; margin: 0 0 var(--sp-4); }
+.legal-page .legal-body ul { padding-left: var(--sp-5); margin: 0 0 var(--sp-5); }
+.legal-page .legal-body li { margin-bottom: var(--sp-4); }
+.legal-page .legal-body strong { color: var(--text); }

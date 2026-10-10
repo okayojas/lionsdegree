@@ -19,3 +19,4 @@ export * from "./genEd.js";
 export * from "./honors.js";
 export * from "./iug.js";
 export * from "./optimize.js";
+export { fenceCatalogText, FENCE_TAG } from "./fence.js";

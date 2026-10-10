@@ -14,6 +14,7 @@ import {
   buildPool,
   buildSchedule,
   checkCourse,
+  fenceCatalogText,
   credOf,
   parsePlanFile,
   progress,
@@ -178,8 +179,15 @@ export async function loadContext(opts: { planPath: string; catalogRoot: string 
 
 /** Catalog prose is text the university wrote and we retrieved. Fenced so the
  * assistant treats it as reference material: an unfenced description is a
- * prompt-injection surface (DECISIONS.md 5.0, S4). */
-const fence = (text: string) => `<untrusted_catalog_text>${text}</untrusted_catalog_text>`;
+ * prompt-injection surface (DECISIONS.md 5.0, S4).
+ *
+ * The fence must survive its own contents. Interpolating raw text means a
+ * description containing the closing tag ends the fence early, and everything
+ * after it reads as instructions from us rather than data from the bulletin --
+ * a fence that any fenced text can step out of is not a fence. Reaching this
+ * needs the string inside a PSU bulletin page, which is a tall order and
+ * exactly the kind of assumption iron rule 1 exists to not make. */
+const fence = fenceCatalogText;
 
 const MAX_RESULTS = 25;
 

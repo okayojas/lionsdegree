@@ -1,0 +1,11 @@
+# LionsDegree — an unofficial Penn State degree planner.
+# Source: https://github.com/okayojas/lionsdegree
+
+User-agent: *
+Allow: /
+
+# Derived catalog data. Large, machine-oriented, and the underlying course
+# information is Penn State's — crawl their bulletin, not our copy of it.
+Disallow: /catalog/
+
+Sitemap: https://lionsdegree.com/sitemap.xml

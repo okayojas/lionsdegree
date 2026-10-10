@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy — LionsDegree</title>
+    <meta name="description" content="LionsDegree stores your degree plan in your own browser. No tracking, no analytics, no advertising, no sale of data." />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f1ebdf" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2b2a27" />
+    <link rel="canonical" href="%SITE_URL%/privacy/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="LionsDegree" />
+    <meta property="og:url" content="%SITE_URL%/privacy/" />
+    <meta property="og:title" content="Privacy Policy — LionsDegree" />
+    <meta property="og:description" content="LionsDegree stores your degree plan in your own browser. No tracking, no analytics, no advertising, no sale of data." />
+    <link rel="stylesheet" href="/src/landing.css" />
+  </head>
+  <body class="landing legal-page">
+    <a href="#doc" class="skip-link">Skip to the document</a>
+    <header class="lp-hero lp-hero-slim">
+      <div class="lp-wrap">
+        <p class="lp-mark"><a href="/"><i class="lp-dot" aria-hidden="true"></i>LionsDegree</a></p>
+        <h1>Privacy Policy</h1>
+      </div>
+    </header>
+    <main id="doc" class="lp-wrap legal-body">
+        <p><strong>The short version:</strong> your degree plan lives in your browser, not on our servers. We set no cookies and run no analytics.</p>
+        <ul>
+          <li><strong>Plan data</strong> (majors, courses, progress) is stored on your device. If you choose to sign in, your plan syncs to your own private row in our database (Supabase, US region), which only your account can read. You can remove it with “Start over”, and deleting your account deletes every plan attached to it.</li>
+          <li><strong>Stored on your device</strong>, all of it in local storage rather than cookies: your plan and its recent history, a backup taken when two devices disagree, your light/dark choice, whether you last used the canvas or the list, and — if you sign in — your session token. Nothing here is sent anywhere unless you turn on sync.</li>
+          <li><strong>Sign-in is optional</strong> and uses Google or Microsoft. We receive your email address, to tell your account apart from anyone else's, and nothing else. Without it the app is entirely local.</li>
+          <li><strong>Your own AI assistant.</strong> LionsDegree publishes an MCP server that runs on your machine and reads a plan file you own. We operate no AI service and receive nothing from it. If you connect your own assistant, your plan is handled by whichever AI provider you chose, under their terms — that is a path between you and them, and we are not in it.</li>
+          <li><strong>No tracking:</strong> no advertising, no analytics, no third-party scripts of any kind, no sale of data. The page loads nothing from any other host, which is enforced by our Content Security Policy rather than only promised here.</li>
+          <li><strong>Access or deletion:</strong> email <a href="mailto:ovk5113@psu.edu">ovk5113@psu.edu</a>. Sync is off unless you turned it on, in which case your data lives in the database of whoever runs the instance you signed in to.</li>
+        </ul>
+        <p>This service is intended for people 13 and older.</p>
+        <p><em>Last updated October 10, 2026.</em> Source code: <a href="https://github.com/okayojas/lionsdegree" target="_blank" rel="noopener noreferrer">github.com/okayojas/lionsdegree</a>.</p>
+    </main>
+    <footer class="lp-foot">
+      <div class="lp-wrap">
+        <p class="lp-disclaim">
+          <strong>Unofficial.</strong> LionsDegree is not affiliated with,
+          endorsed by, or an official product of The Pennsylvania State
+          University.
+        </p>
+        <p class="lp-small">
+          <a href="/">Home</a> ·
+          <a href="/plan/">Open the planner</a> ·
+          <a href="/privacy/">Privacy</a> ·
+          <a href="/terms/">Terms</a> ·
+          <a href="https://github.com/okayojas/lionsdegree">Source</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
