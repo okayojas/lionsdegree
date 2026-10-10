@@ -8,6 +8,7 @@ import { loadCoverage, loadFullCatalog, loadProgramBySlug } from "../data/catalo
 import { currentUser, onAuthChange, signIn, syncConfigured } from "../data/sync";
 import { usePlanner } from "../store";
 import { useMediaQuery, PHONE_QUERY } from "../hooks/useMediaQuery";
+import { chatConfigured } from "../chat/config";
 
 function ChatTab({ chat }: { chat: ReturnType<typeof useChat> }) {
   const { messages, busy, send, undo, canUndo } = chat;
@@ -176,7 +177,10 @@ function AuditTab() {
 }
 
 export function SidePanel({ width }: { width?: number }) {
-  const [tab, setTab] = useState<"chat" | "audit">("chat");
+  // Opens on the advisor when there IS one; otherwise on the requirements
+  // audit, which is the panel's whole content in that configuration. Leaving
+  // the default at "chat" showed an empty panel with a single tab beside it.
+  const [tab, setTab] = useState<"chat" | "audit">(chatConfigured ? "chat" : "audit");
   // Chat state lives HERE (not in the tab) and the chat tab is hidden, never
   // unmounted — so switching to Requirements doesn't kill an in-flight reply.
   const chat = useChat();
@@ -199,14 +203,22 @@ export function SidePanel({ width }: { width?: number }) {
     // off the side of the page. Same fix as SearchBox's hard-coded width.
     <div className="sidepanel" style={width && !phone ? { width, maxWidth: "none", flex: "0 0 auto" } : undefined}>
       <div className="sidepanel-tabs">
-        <button className={tab === "chat" ? "active" : ""} onClick={() => setTab("chat")}>
-          ✦ Advisor{chat.busy && tab !== "chat" ? " …" : ""}
-        </button>
+        {/* No Advisor tab when no advisor is configured. A student who
+            configured nothing is never shown a control that cannot work, and
+            with it hidden the panel is the requirements audit -- which needs
+            no network, no account and no key. */}
+        {chatConfigured && (
+          <button className={tab === "chat" ? "active" : ""} onClick={() => setTab("chat")}>
+            ✦ Advisor{chat.busy && tab !== "chat" ? " …" : ""}
+          </button>
+        )}
         <button className={tab === "audit" ? "active" : ""} onClick={() => setTab("audit")}>Requirements</button>
       </div>
-      <div style={{ display: tab === "chat" ? "contents" : "none" }}>
-        {chatLocked ? <ChatLocked /> : <ChatTab chat={chat} />}
-      </div>
+      {chatConfigured && (
+        <div style={{ display: tab === "chat" ? "contents" : "none" }}>
+          {chatLocked ? <ChatLocked /> : <ChatTab chat={chat} />}
+        </div>
+      )}
       {tab === "audit" && <AuditTab />}
     </div>
   );

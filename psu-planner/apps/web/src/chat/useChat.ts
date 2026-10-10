@@ -12,6 +12,7 @@ import type { PlanDoc } from "@psu-planner/engine";
 import { usePlanner } from "../store";
 import { accessToken } from "../data/sync";
 import { executeTool, resetTurnGuards } from "./tools";
+import { chatEndpoint } from "./config";
 
 export interface DisplayMessage {
   role: "user" | "assistant";
@@ -51,6 +52,11 @@ async function streamCompletion(
   messages: WireMessage[],
   onDelta: (text: string) => void,
 ): Promise<{ content: string; toolCalls: WireToolCall[]; error?: string }> {
+  // Belt and braces: the UI does not render a way to reach this when the
+  // advisor is unconfigured, but a direct caller must not fetch `null`.
+  if (!chatEndpoint) {
+    return { content: "", toolCalls: [], error: "The advisor is not configured in this build." };
+  }
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
   // S1 identity gate: the server rate-limits on the JWT's `sub` when present and
@@ -59,7 +65,7 @@ async function streamCompletion(
   const token = await accessToken();
   let res: Response;
   try {
-    res = await fetch("/v1/chat", {
+    res = await fetch(chatEndpoint!, {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -58,3 +58,29 @@ test.describe("the harness itself", () => {
     expect(message).toContain("img");
   });
 });
+
+test.describe("with no advisor configured", () => {
+  /** The default build. The project's model is bring-your-own-AI, so a
+   * student who configured nothing must never meet a control that cannot
+   * work — and the panel still has to be useful without one. */
+  test("offers no Advisor tab", async ({ planner }) => {
+    await expect(planner.getByRole("button", { name: /Advisor/i })).toHaveCount(0);
+  });
+
+  test("still offers the requirements audit, which needs nothing", async ({ planner }) => {
+    // No network, no account, no key. If hiding the advisor had emptied the
+    // panel, hiding it would be a regression rather than a default.
+    await expect(planner.getByRole("button", { name: /Requirements/i })).toBeVisible();
+  });
+
+  test("opens on the audit rather than on an empty panel", async ({ planner }) => {
+    const panel = planner.locator(".sidepanel");
+    await expect(panel).toBeVisible();
+    const text = (await panel.innerText()).trim();
+    expect(text.length, "the advisor panel rendered empty").toBeGreaterThan(20);
+  });
+
+  test("shows no chat composer anywhere", async ({ planner }) => {
+    await expect(planner.locator(".chat-input, .chat-composer textarea")).toHaveCount(0);
+  });
+});

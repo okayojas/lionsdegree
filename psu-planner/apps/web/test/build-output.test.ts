@@ -259,3 +259,43 @@ describe("the monospace face", () => {
     });
   }
 });
+
+describe("the default deployment", () => {
+  /** `wrangler pages deploy` compiles a `functions/` directory sitting in the
+   * working directory, with no flag to point it elsewhere. So the presence of
+   * that directory IS the difference between a free deploy and a billable
+   * one, and it is the kind of thing a future change re-adds without anyone
+   * noticing until a bill arrives. */
+  const web = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+
+  it("ships no proxy: wrangler finds no functions directory to compile", () => {
+    expect(
+      fs.existsSync(path.join(web, "functions")),
+      "apps/web/functions exists, so `npm run deploy` would deploy a billable proxy. " +
+        "The proxy belongs at self-host/functions and is put in place only by deploy:self-host.",
+    ).toBe(false);
+  });
+
+  it("keeps the proxy in the repository for self-hosters", () => {
+    // Off by default is not the same as deleted: the ticket requires it stay
+    // available, with its hardening intact.
+    expect(fs.existsSync(path.join(web, "self-host", "functions", "v1", "[[route]].ts"))).toBe(true);
+  });
+
+  it("bakes no chat endpoint into the shipped bundle", () => {
+    // "No endpoint is hardcoded into the client". A build with nothing
+    // configured must contain no route to a proxy at all.
+    // Name the FILES that contain it, never the bundle itself. Asserting
+    // `expect(wholeBundle).not.toContain(...)` prints a megabyte of minified
+    // JavaScript on failure, which is unreadable and buries the answer.
+    const offenders = fs
+      .readdirSync(path.join(dist, "assets"))
+      .filter((f) => f.endsWith(".js"))
+      .filter((f) => read(path.join("assets", f)).includes("/v1/chat"));
+    expect(
+      offenders,
+      `a chat endpoint is compiled into: ${offenders.join(", ")}. ` +
+        `If this build was made with VITE_CHAT_ENDPOINT set, rebuild without it.`,
+    ).toEqual([]);
+  });
+});

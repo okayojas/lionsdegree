@@ -14,7 +14,8 @@
     "test:build": "npm run build && vitest run",
     "test:e2e": "playwright test",
     "test:e2e:install": "playwright install --with-deps chromium",
-    "og": "node scripts/make-og.mjs"
+    "og": "node scripts/make-og.mjs",
+    "deploy:self-host": "npm run sync-catalog && npm run build && npm run og && node scripts/deploy-self-host.mjs"
   },
   "dependencies": {
     "@fontsource-variable/space-grotesk": "^5.3.0",

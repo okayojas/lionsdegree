@@ -73,7 +73,14 @@ prerequisite solving, credit packing, requirement auditing — is deterministic
 TypeScript in `packages/engine`, not a model. The advisor is a conversational
 front end to that engine: it calls the same functions the buttons call.
 
-Today it needs a proxy holding an OpenAI-compatible key:
+**It is off unless you configure it, and there is no advisor tab until you
+do.** The default build has no endpoint compiled into it and the default
+deploy ships nothing billable: a fork cannot spend anyone else's money, and an
+install that configures nothing costs nothing to run. The project's model is
+bring-your-own-AI — point your own assistant at `lionsdegree-mcp` and pay
+nobody.
+
+To run it yourself you need a proxy holding an OpenAI-compatible key:
 
 ```bash
 cd psu-planner/apps/api
@@ -81,9 +88,33 @@ cp .env.example .env                   # then put your key in OPENAI_API_KEY
 npm run dev                            # :8788
 ```
 
-Then `pnpm --filter web dev` in another shell — Vite proxies `/v1` to the API,
-so the advisor tab starts answering. Everything else in the planner is
-deterministic TypeScript and needs none of this.
+Then, in `apps/web/.env.local`:
+
+```
+VITE_CHAT_ENDPOINT=/v1/chat
+```
+
+and `pnpm --filter web dev` in another shell — Vite proxies `/v1` to the API,
+so the advisor tab appears and starts answering. Without that variable the tab
+is hidden entirely, which is deliberate: a student who configured nothing is
+never shown a control that cannot work.
+
+**Deploying with the advisor.** The Cloudflare Pages Function lives at
+`apps/web/self-host/functions/`, not at `apps/web/functions/`, because
+`wrangler pages deploy` compiles any `functions/` directory it finds in the
+working directory and there is no flag to point it elsewhere. Its location is
+what keeps the default deploy free:
+
+```bash
+npm run deploy             # static only, nothing billable
+npm run deploy:self-host   # puts the proxy in place for one deploy, then removes it
+```
+
+The self-host deploy needs `OPENAI_API_KEY` (secret) and a `RATE_LIMIT` KV
+binding on the Pages project, and `VITE_CHAT_ENDPOINT` set at build time or
+the advisor stays hidden and the function you just deployed is never called.
+Its hardening — rate limiting, the identity gate, prompt-injection fencing —
+is unchanged.
 
 `apps/api/.env.example` documents every variable the proxy reads: model,
 completion budget, reasoning effort, CORS origins, rate limit, and the optional
@@ -120,7 +151,7 @@ psu-catalog-pipeline/   Scraper: bulletins.psu.edu -> structured JSON
 psu-planner/
   packages/engine/      Pure TS core: prereq parser, optimizer, audits (112 tests)
   apps/web/             React + Vite PWA
-  apps/api/             Hono AI proxy (optional)
+  apps/api/             Hono AI proxy (optional, off by default)
 catalogs/               Original demo data, kept as the parser regression corpus
 ```
 
@@ -190,7 +221,7 @@ _Nothing yet._
 - Integrated undergrad/grad (IUG) support for 3 programs.
 - Pan/zoom prerequisite canvas plus an equivalent keyboard and screen-reader
   list view.
-- Optional AI advisor over a proxy you run, and optional account sync.
+- Optional AI advisor over a proxy you run (off unless configured), and optional account sync.
 - Catalog edition `2025-2026`.
 
 ## Documentation
