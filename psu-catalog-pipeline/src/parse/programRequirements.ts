@@ -3,7 +3,7 @@
  * row the deterministic parser can't classify becomes an `unstructured` rule
  * plus an entry in the needs-review queue. */
 import * as cheerio from "cheerio";
-import { normBulletinCode, normDisplayCode } from "../lib/codes.js";
+import { normDisplayCode, splitCode } from "../lib/codes.js";
 import { astComplete, parseExpr, tokenize, type AstNode } from "../lib/prereq.js";
 import type { RequirementSection, Rule } from "../validate/schemas.js";
 
@@ -113,17 +113,25 @@ export function parseBooleanRow(text: string, credits: number | null): Rule[] | 
   // the shipped catalog came from.
   //
   // The bulletin writes codes in capitals, which is the same discriminator
-  // CODE_TOKEN above relies on, and it needs no list of English words -- a
-  // list would be wrong the first time a subject looked like one, and ART,
-  // BA and LER are all real subjects.
+  // CODE_TOKEN above relies on. Why case rather than a word list, and the two
+  // earlier incidents of this same bug: DECISIONS.md 2.4.
   const everyCodeIsCapitalised = (r: Rule): boolean => {
     const codes = r.type === "course" ? [r.code] : r.type === "oneOf" ? r.options : [];
+    // A rule carrying no codes cannot be vouched for, and `[].every` is true.
+    // Saying so explicitly: this parser only ever builds `course` and `oneOf`,
+    // and anything else reaching here is a rule we have not checked.
+    if (!codes.length) return false;
     return codes.every((c) => {
-      const parts = /^([A-Z]+)\s+(\d{1,3}[A-Z]{0,2})$/.exec(c);
+      const parts = splitCode(c);
       if (!parts) return false;
-      // Allow the spacing and the "A-I" hyphen the normaliser removes.
-      const subj = parts[1].split("").join("-?");
-      return new RegExp(String.raw`\b${subj}\s*${parts[2]}\b`).test(text);
+      // The ONE hyphen `CODE_RE` admits, before a final single letter ("A-I"),
+      // which normCode strips. Joining every letter with `-?` would also
+      // accept "C-H-E-M", which is not a shape the bulletin writes.
+      const subject =
+        parts.subject.length > 1
+          ? `${parts.subject.slice(0, -1)}-?${parts.subject.slice(-1)}`
+          : parts.subject;
+      return new RegExp(String.raw`\b${subject}\s*${parts.number}\b`).test(text);
     });
   };
   if (!rules.every(everyCodeIsCapitalised)) return null;
@@ -406,7 +414,7 @@ export function parseRequirementTables(html: string): RequirementsParseResult {
         if (codeLink.length) {
           const codesInCell = $tr
             .find("td.codecol a")
-            .map((_, a) => normBulletinCode(clean($(a).attr("title") ?? $(a).text())))
+            .map((_, a) => normDisplayCode(clean($(a).attr("title") ?? $(a).text())))
             .get()
             .filter((c): c is string => !!c);
           if (!codesInCell.length) {

@@ -227,6 +227,35 @@ export function validateProgram(program: Program, index: CourseIndex, report: In
           }
           return [o];
         });
+      } else if (rule.type === "selectCredits" && rule.from?.kind === "courses") {
+        // The SAME resolution every other code-bearing shape gets. This list
+        // was the one place it did not run, so a bulletin writing "WMNST 301"
+        // where the catalog has "WMNST 301N" left a pool entry that matches
+        // no course a student can take — 563 entries across the catalog.
+        //
+        // It is a pool, so an expansion contributes every variant: a student
+        // holding any of them satisfies the requirement.
+        // Deduped: a Pool is a SET. Expansion turns one code into every
+        // variant of its family, so two codes in the same list can expand
+        // onto each other and the pool ends up offering a course twice.
+        rule.from = {
+          ...rule.from,
+          courses: [...new Set(rule.from.courses.flatMap((c) => {
+            const r = resolveCode(c, index);
+            if (r.kind === "resolve") {
+              report.resolved.push({ program: program.slug, from: c, to: r.to });
+              return [r.to];
+            }
+            if (r.kind === "expand") {
+              report.expanded.push({ program: program.slug, code: c, variants: r.variants });
+              return r.variants;
+            }
+            if (r.kind === "unverified") {
+              report.unverified.push({ program: program.slug, code: c, where: `req-pool:${section.heading}` });
+            }
+            return [c]; // keep — never invent an absence
+          }))],
+        };
       }
     }
   }

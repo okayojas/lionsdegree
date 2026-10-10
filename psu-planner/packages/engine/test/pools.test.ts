@@ -228,17 +228,26 @@ describe("requirements whose options are indented under them", () => {
     const pools = allSelectPools();
     expect(pools.length).toBeGreaterThan(2000);
     const unreadable = pools.filter((p) => p.pool?.kind === "unreadable");
-    // 92. The bound is a RATCHET: it should fall as more are recovered, and a
-    // rise normally means something regressed.
+
+    // The bound is a RATCHET: it should fall as more are recovered, and a rise
+    // normally means something regressed. It rose once, deliberately, so the
+    // allowance is SPLIT rather than merged into one scalar -- a single
+    // relaxed number would let an unrelated regression hide inside the slack.
     //
-    // It ROSE from 90 once, deliberately (#19). Two sentences used to be
-    // harvested for course codes by the boolean-row parser -- "Select 15
-    // credits ... (at least 3 credits must be at the 400-level)" became
-    // SELECT 15, LEAST 3 and THE 400 -- so those sections looked readable
-    // while containing nonsense. They now report as unreadable, which is
-    // what they always were. A metric getting worse because the data got
-    // more honest is the one case where raising this is right.
-    expect(unreadable.length).toBeLessThanOrEqual(92);
+    // 90: requirements that genuinely publish no list. They name topic areas
+    //     ("American literature") and must stay unreadable rather than be
+    //     invented.
+    const AGBM = "agricultural-sciences-agribusiness-management-minor";
+    expect(unreadable.filter((p) => p.slug !== AGBM).length).toBeLessThanOrEqual(90);
+
+    // +2 (#19): both in one minor, both from the boolean-row parser running
+    //     its prereq tokenizer over a sentence. "Select 6 credits from any
+    //     400-level ABGM courses (excluding, unless approved by the AGBM
+    //     program, AGBM 496)" yielded a pool whose course was AGBM 496 -- the
+    //     one course that sentence EXCLUDES. Unreadable is not a worse answer
+    //     than that; it is the only honest one. A metric getting worse because
+    //     the data got more honest is the one case where raising this is right.
+    expect(unreadable.filter((p) => p.slug === AGBM)).toHaveLength(2);
   });
 
   it("hold each course once, because a Pool is a set", () => {

@@ -6,40 +6,36 @@
  *
  * They arrive in pairs, because one sentence yields two: "Select 15 credits
  * ... with at least 3 credits at the 400 level" produced `SELECT 15` and
- * `LEAST 3`. In several programs that sentence is the section's ONLY trace of
- * the requirement, so the fix cannot be to delete the rows -- that would
- * delete the requirement. Rejecting the token here makes the row fall through
- * to the comment classifier, which keeps the prose and surfaces it for review
- * (iron rule 2: unparseable must never present as satisfied, and must never
- * silently vanish either).
+ * `LEAST 3`.
+ *
+ * Rejecting a token must make the row FALL THROUGH to the comment classifier,
+ * never delete it: in several programs that sentence is its section's only
+ * trace of the requirement. Full account in DECISIONS.md 2.4.
  */
 import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { classifyComment, parseBooleanRow, parseCodeListText } from "../src/parse/programRequirements.js";
-import { normBulletinCode, normDisplayCode } from "../src/lib/codes.js";
 
 const codesOf = (text: string) => parseCodeListText(text)?.codes ?? null;
+
+/** The two real sentences every test below is about, written once. Both are
+ * verbatim catalog rows; editing one to make a test pass would stop it being
+ * evidence about the catalog. */
+const BRACKETED = "Select 15 credits from College-approved list (at least 3 credits must be at the 400-level)";
+const PLAIN = "Select 15 credits, with at least 3 credits at the 400 level";
 
 describe("a requirement row containing parentheses", () => {
   /** THE actual source of all 120 phantom rows.
    *
    * A row with brackets is tried as a boolean expression ("CHEM 210 & (CHEM
    * 213 or CHEM 213W)") using the PREREQUISITE tokenizer, which matches codes
-   * case-insensitively. Run over an ordinary sentence it harvests words:
-   *
-   *   "Select 15 credits from College-approved list (at least 3 credits
-   *    must be at the 400-level)"
-   *
-   * yielded SELECT 15, LEAST 3 and THE 400 -- three phantom courses from one
-   * line, which is why they appear in the catalog in groups. */
+   * case-insensitively. Run over BRACKETED it harvested SELECT 15, LEAST 3 and
+   * THE 400 -- three phantom courses from one line, which is why they appear
+   * in the catalog in groups. See DECISIONS.md 2.4. */
   it("is not mined for courses when its 'codes' are English words", () => {
-    const row = parseBooleanRow(
-      "Select 15 credits from College-approved list (at least 3 credits must be at the 400-level)",
-      null,
-    );
-    expect(row, "a sentence was read as a boolean course expression").toBeNull();
+    expect(parseBooleanRow(BRACKETED, null), "a sentence was read as a boolean course expression").toBeNull();
   });
 
   it("still reads a genuine boolean expression", () => {
@@ -52,43 +48,9 @@ describe("a requirement row containing parentheses", () => {
   });
 
   it("leaves the sentence to the comment classifier, which keeps its words", () => {
-    // The requirement must survive. In several programs this sentence is the
-    // section's only trace of it, so dropping the row would drop the rule.
-    const rule = classifyComment(
-      "Select 15 credits from College-approved list (at least 3 credits must be at the 400-level)",
-    );
+    const rule = classifyComment(BRACKETED);
     expect(rule.type).not.toBe("course");
     expect(JSON.stringify(rule)).toMatch(/College-approved list/);
-  });
-});
-
-describe("a link in a requirement table", () => {
-  /** The real mechanism. CODE_RE is case-INSENSITIVE, so normDisplayCode
-   * happily turns "Select 12 credits" into `SELECT 12`. Case is what tells a
-   * code from a sentence: the bulletin writes codes in capitals, which is the
-   * rule CODE_TOKEN already applies elsewhere in the parser.
-   *
-   * This is the third time a case-insensitive code regex has read prose as a
-   * code in this project (DECISIONS 2.4): "credits" once parsed as a subject
-   * named REDITS. */
-  it("rejects a sentence that happens to fit the shape", () => {
-    for (const prose of ["Select 12 credits", "Select 6", "Apply 6 credits", "least 3 credits", "of 400-level courses", "the 400 level"]) {
-      expect(normBulletinCode(prose), `"${prose}" read as a course code`).toBeNull();
-    }
-  });
-
-  it("still reads a code the bulletin wrote in capitals", () => {
-    expect(normBulletinCode("MATH 140")).toBe("MATH 140");
-    expect(normBulletinCode("ENGL 202C")).toBe("ENGL 202C");
-    expect(normBulletinCode("A-I 100")).toBe("AI 100");
-  });
-
-  it("is stricter than the shared normaliser, which stays as it was", () => {
-    // normDisplayCode is ported verbatim from the demo and the engine must
-    // normalise identically, so the strictness is added alongside it rather
-    // than inside it.
-    expect(normDisplayCode("Select 12 credits")).toBe("SELECT 12");
-    expect(normBulletinCode("Select 12 credits")).toBeNull();
   });
 });
 
@@ -108,14 +70,11 @@ describe("prose shaped like a course code", () => {
 
   it("does not yield a pair of phantoms from one sentence", () => {
     // The shape that produced SELECT 15 + LEAST 3.
-    expect(codesOf("Select 15 credits, with at least 3 credits at the 400 level")).toBeNull();
+    expect(codesOf(PLAIN)).toBeNull();
   });
 
   it("leaves the requirement visible rather than dropping it", () => {
-    // The row still says something. It must survive as prose for review, not
-    // disappear -- in several programs this sentence is the only trace of the
-    // requirement in its section.
-    const rule = classifyComment("Select 15 credits, with at least 3 credits at the 400 level");
+    const rule = classifyComment(PLAIN);
     expect(rule.type).not.toBe("course");
     expect(JSON.stringify(rule)).toMatch(/Select 15 credits/);
   });
@@ -153,32 +112,44 @@ describe("real course codes still parse", () => {
 });
 
 describe("the shipped catalog", () => {
-  /** The ratchet. 120 rows across 90 programs were sentences presented as
-   * courses; a student opening those programs saw `THE 400` and `SELECT 12`
-   * listed as things to take. They carried `unverified: true`, so iron rule 2
-   * held and nothing was falsely satisfied — but it was visible nonsense, and
-   * it polluted every piece of logic that reads a section's sibling courses.
+  /** The ratchet. 120 rows across 90 programs listed sentences as courses --
+   * a student opening those programs saw `THE 400` and `SELECT 12` among the
+   * things to take. They carried `unverified: true`, so iron rule 2 held and
+   * nothing was falsely satisfied, but it was visible nonsense and it
+   * polluted everything that reads a section's sibling courses.
+   *
+   * Checked against the edition's own SUBJECT REGISTRY rather than a list of
+   * English words. A word list is what the fix itself argues against: it is
+   * wrong the first time a subject looks like a word, and the first version
+   * of this test missed four of the twenty-eight codes it was written for
+   * (`A 400`, `ANY 400`, `THAN 6`, `THESE 12`). A subject that does not
+   * exist is the real property.
    */
-  const PROSE = new Set(["SELECT", "APPLY", "LEAST", "THE", "OF", "AND", "WITH", "TAKE", "FROM", "AT"]);
-
   const catalogDir = path.resolve(
     path.dirname(fileURLToPath(import.meta.url)),
     "..", "..", "psu-planner", "apps", "web", "public", "catalog",
   );
 
-  function editions(): string[] {
+  const editionList: string[] = (() => {
     const index = path.join(catalogDir, "editions.json");
     if (!fs.existsSync(index)) return [];
     return (JSON.parse(fs.readFileSync(index, "utf-8")) as { editions: string[] }).editions;
-  }
+  })();
 
   it("has catalog data to check", () => {
-    expect(editions().length, "no shipped catalog — this suite would pass having checked nothing").toBeGreaterThan(0);
+    expect(editionList.length, "no shipped catalog — this suite would pass having checked nothing").toBeGreaterThan(0);
   });
 
-  for (const edition of editions()) {
-    it(`contains no prose presented as a course in ${edition}`, () => {
-      const offenders: string[] = [];
+  for (const edition of editionList) {
+    it(`names no course whose subject does not exist in ${edition}`, () => {
+      const subjects = new Set(
+        Object.keys(
+          JSON.parse(fs.readFileSync(path.join(catalogDir, edition, "subjects_index.json"), "utf-8")) as Record<string, string>,
+        ).map((k) => k.replace(/:grad$/, "")),
+      );
+      expect(subjects.size, "the subject registry is empty").toBeGreaterThan(100);
+
+      const offenders: { file: string; code: string }[] = [];
       let courseRules = 0;
       for (const kind of ["majors", "minors", "certificates"]) {
         const dir = path.join(catalogDir, edition, "programs", kind);
@@ -190,13 +161,21 @@ describe("the shipped catalog", () => {
               if (rule.type !== "course" || typeof rule.code !== "string") continue;
               courseRules++;
               const subject = rule.code.split(" ")[0];
-              if (PROSE.has(subject)) offenders.push(`${f}: ${rule.code}`);
+              if (!subjects.has(subject)) offenders.push({ file: f, code: rule.code });
             }
           }
         }
       }
       expect(courseRules, "no course rules were examined").toBeGreaterThan(1000);
-      expect(offenders, `prose presented as courses:\n  ${offenders.slice(0, 8).join("\n  ")}`).toEqual([]);
+      // Three real codes carry subjects the registry does not list. They ARE
+      // written in capitals in the bulletin, so they are the "unknown subject"
+      // case -- a subject with no courses published this edition -- and not
+      // prose. Listed exactly rather than bounded by a count: a count with
+      // slack in it would let a genuinely new phantom take a free slot.
+      expect(
+        [...new Set(offenders.map((o) => o.code))].sort(),
+        `course rules naming a subject that does not exist: ${offenders.map((o) => `${o.file}: ${o.code}`).join(", ")}`,
+      ).toEqual(["AAAS 400", "ASM 327", "YFE 211"]);
     });
   }
 });

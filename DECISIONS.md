@@ -62,6 +62,31 @@ Companion to `README.md`; project memory lives with the AI assistant's notes.
 - **Follow-up (stale client flags):** `unverified` was baked into saved plans; once the catalog
   gained the course, old plans still showed amber. Rule: **the live catalog is the render-time
   authority**; pipeline flags feed the review queue only.
+- **Follow-up (#19): "uppercase-only" was applied to one of two code paths.** 120 rows across 90
+  programs still listed sentences as courses. A requirement row containing brackets is tried as a
+  boolean expression (`CHEM 210 & (CHEM 213 or CHEM 213W)`) by the **prerequisite** tokenizer,
+  which is case-insensitive by design — prereq prose really does write "chem 210". Run over an
+  ordinary sentence it harvests words: `Select 15 credits from College-approved list (at least 3
+  credits must be at the 400-level)` yielded `SELECT 15`, `LEAST 3`, `THE 400`, which is why the
+  phantoms appear in groups. Fixed by requiring every code a boolean row produces to appear
+  **capitalised in the source text**, rather than by adding a stopword list — a word list is wrong
+  the first time a subject looks like a word (`ART`, `BA`, `LER` are all real), and the first
+  attempt at one missed four of the twenty-eight codes it was written for.
+- **Two rules this incident is the evidence for.** (1) *A rejected row must fall through, never be
+  deleted.* In several programs the harvested sentence is its section's only trace of the
+  requirement, so dropping the row would drop the rule; rejection sends it to the comment
+  classifier, which keeps the prose for review (iron rule 2). (2) *Unreadable beats confidently
+  wrong.* Two sections in `agricultural-sciences-agribusiness-management-minor` went from readable
+  to unreadable here — `Select 6 credits from any 400-level ABGM courses (excluding, unless
+  approved by the AGBM program, AGBM 496)` had produced a pool whose only course was AGBM 496, the
+  one course that sentence **excludes**. A coverage metric getting worse because the data got more
+  honest is the one case where raising a ratchet is right.
+- **Follow-up (#19 review): the integrity pass skipped course *pools*.** `selectCredits.from.kind
+  === "courses"` was the one code-bearing shape that never ran `resolveCode`, so a bulletin writing
+  `WMNST 301` where the catalog has `WMNST 301N` left a pool entry matching no takeable course —
+  563 of them. Pools get the same resolution as everything else, with one difference: an expansion
+  contributes **every** variant (holding any of them satisfies the requirement), and the result is
+  deduped, because a Pool is a set. Unresolvable entries fell 563 → 415.
 
 ### 2.5 LLM transcription fabricated elective-list data (the most important lesson)
 - **Symptom:** ESM Foundational/Technical Elective lists in the app contained ~48 courses not on
