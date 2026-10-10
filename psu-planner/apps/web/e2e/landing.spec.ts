@@ -147,3 +147,48 @@ test.describe("the landing page is usable", () => {
     expect(href, "the planner is not the first action a keyboard user reaches").toBe("/plan/");
   });
 });
+
+test.describe("the coverage figure", () => {
+  test("is readable with JavaScript off, like everything else here", async ({ page }) => {
+    await page.goto("/");
+    const section = page.locator("#coverage");
+    await expect(section).toBeVisible();
+    await expect(section.locator(".lp-figure strong")).toHaveText(/^\d{1,3}%$/);
+  });
+
+  test("explains the exclusion rather than burying it", async ({ page }) => {
+    await page.goto("/");
+    const section = page.locator("#coverage");
+    // The exclusion is what makes the rest of the number credible.
+    await expect(section).toContainText(/no list/i);
+    await expect(section).toContainText(/not failures/i);
+    await expect(section).toContainText(/adviser/i);
+  });
+
+  test("the figure meets AA against what is behind it", async ({ page }) => {
+    // --primary at display size on the page background. The only new coloured
+    // element this section introduces, and the one most likely to slip.
+    await page.goto("/");
+    const ratio = await page.locator(".lp-figure strong").evaluate((el) => {
+      const lum = (c: number) => {
+        const s = c / 255;
+        return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+      };
+      const L = (css: string) => {
+        const [r, g, b] = css.match(/\d+/g)!.map(Number);
+        return 0.2126 * lum(r) + 0.7152 * lum(g) + 0.0722 * lum(b);
+      };
+      let bg: Element | null = el;
+      let bgColor = "";
+      while (bg) {
+        const c = getComputedStyle(bg).backgroundColor;
+        if (c && !/rgba?\([^)]*,\s*0\)/.test(c) && c !== "transparent") { bgColor = c; break; }
+        bg = bg.parentElement;
+      }
+      const a = L(getComputedStyle(el).color);
+      const b = L(bgColor || getComputedStyle(document.body).backgroundColor);
+      return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+    });
+    expect(ratio, `the coverage figure measures ${ratio.toFixed(2)}:1`).toBeGreaterThanOrEqual(4.5);
+  });
+});

@@ -170,6 +170,22 @@ body.landing {
 .lp-small { font-size: var(--fs-sm); color: var(--text-muted); }
 .lp-small a { color: var(--accent-text); }
 
+/* The one number on the page, given the weight of a statement. Same type
+   scale as the hero, no new sizes: the figure borrows --fs-2xl and the label
+   sits beside it rather than under, so it reads as one sentence. */
+.lp-figure {
+  display: flex; align-items: baseline; gap: var(--sp-3); flex-wrap: wrap;
+  margin: 0 0 var(--sp-3);
+}
+.lp-figure strong {
+  font-size: var(--fs-2xl);
+  line-height: 1;
+  letter-spacing: var(--track-tight);
+  color: var(--primary);
+  font-weight: 800;
+}
+.lp-figure span { font-size: var(--fs-sm); color: var(--text-muted); }
+
 .lp-limits { margin: 0; padding-left: var(--sp-4); max-width: 58ch; }
 .lp-limits li { margin-bottom: var(--sp-2); line-height: 1.6; }
 

@@ -139,6 +139,31 @@
         </p>
       </section>
 
+      <section class="lp-stop" id="coverage">
+        <h2>How much of the bulletin it can actually read</h2>
+        <!-- Every number here is substituted at build time from the catalog
+             this build ships (vite.config.ts). None of it is typed by hand,
+             so it cannot drift away from the data it describes. -->
+        <p class="lp-figure">
+          <strong>%COVERAGE_PERCENT%%</strong>
+          <span>of requirements resolve to named courses</span>
+        </p>
+        <p>
+          %COVERAGE_RESOLVED% of %COVERAGE_TOTAL% requirements across
+          %COVERAGE_PROGRAMS% programs in the %COVERAGE_EDITION% bulletin. The
+          rest are rows the parser could not read, and they are counted as
+          failures here rather than quietly dropped.
+        </p>
+        <p>
+          A further <strong>%COVERAGE_ADVISER%</strong> requirements are left out of that
+          fraction entirely, because the bulletin publishes no list for them:
+          it says to decide with your adviser. They are not failures and they
+          are not successes, so counting them either way would make this
+          number mean less. The planner shows them with the bulletin's own
+          wording rather than an empty list.
+        </p>
+      </section>
+
       <section class="lp-stop" id="limits">
         <h2>What it can't do</h2>
         <ul class="lp-limits">

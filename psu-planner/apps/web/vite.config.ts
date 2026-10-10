@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
@@ -31,11 +32,48 @@ const SITE_URL = (
   "https://lionsdegree.com"
 ).replace(/\/$/, "");
 
-/** Substitutes %SITE_URL% in index.html. Vite only expands %VAR% from loaded
- * .env files, and the origin is not a secret, so it is declared above. */
+/** The coverage figure, computed before the build by scripts/coverage-facts.mts
+ * and read here.
+ *
+ * Not computed inline: the engine's modules import each other with `.js`
+ * specifiers that Node cannot resolve when it loads this config as ESM, and
+ * reimplementing the counting here would put a second copy of the rule
+ * somewhere it could drift from the tested one.
+ *
+ * Throws rather than falling back. A landing page that shipped `%COVERAGE_
+ * PERCENT%` as literal text, or a stale figure from a previous catalog, is
+ * worse than a build that stops and says why. */
+function coverageFacts(): Record<string, string> {
+  const file = resolve(__dirname, "coverage.generated.json");
+  if (!existsSync(file)) {
+    throw new Error(
+      `${file} is missing. The landing page states a coverage figure computed from the ` +
+        `catalog; run \`npm run coverage\` (the build does this for you) before building.`,
+    );
+  }
+  const f = JSON.parse(readFileSync(file, "utf-8")) as Record<string, string | number>;
+  return {
+    "%COVERAGE_PERCENT%": String(f.percent),
+    "%COVERAGE_RESOLVED%": String(f.resolved),
+    "%COVERAGE_TOTAL%": String(f.total),
+    "%COVERAGE_ADVISER%": String(f.adviser),
+    "%COVERAGE_PROGRAMS%": String(f.programs),
+    "%COVERAGE_EDITION%": String(f.edition),
+  };
+}
+
+/** Substitutes %SITE_URL% and the coverage facts in index.html. Vite only
+ * expands %VAR% from loaded .env files, and none of these are secrets. */
 const siteUrl = () => ({
   name: "site-url",
-  transformIndexHtml: (html: string) => html.replaceAll("%SITE_URL%", SITE_URL),
+  transformIndexHtml: (html: string) => {
+    let out = html.replaceAll("%SITE_URL%", SITE_URL);
+    // Computed once per build, and only when the page actually asks for it.
+    if (out.includes("%COVERAGE_")) {
+      for (const [k, v] of Object.entries(coverageFacts())) out = out.replaceAll(k, v);
+    }
+    return out;
+  },
 });
 
 export default defineConfig({

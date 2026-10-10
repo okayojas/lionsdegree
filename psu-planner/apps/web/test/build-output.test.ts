@@ -12,6 +12,7 @@ import { describe, it, expect, beforeAll } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { requirementCoverage, type ReqSection } from "@psu-planner/engine";
 
 const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "dist");
 const read = (rel: string) => fs.readFileSync(path.join(dist, rel), "utf-8");
@@ -297,5 +298,60 @@ describe("the default deployment", () => {
       `a chat endpoint is compiled into: ${offenders.join(", ")}. ` +
         `If this build was made with VITE_CHAT_ENDPOINT set, rebuild without it.`,
     ).toEqual([]);
+  });
+});
+
+describe("the coverage figure", () => {
+  /** The claim on the public site. The ticket's whole point is that it is
+   * computed rather than written, so the test recomputes it from the shipped
+   * catalog and compares — a hand-edited number, or one left over from a
+   * previous catalog, fails here. */
+  const html = () => read("index.html");
+
+  it("states a percentage, not a placeholder", () => {
+    expect(html(), "a %COVERAGE_% placeholder shipped as literal text").not.toContain("%COVERAGE");
+    expect(html()).toMatch(/<strong>\d{1,3}%<\/strong>/);
+  });
+
+  it("matches what the shipped catalog actually computes to", () => {
+    const web = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+    const root = path.join(web, "public", "catalog");
+    const { latest } = JSON.parse(fs.readFileSync(path.join(root, "editions.json"), "utf-8"));
+
+    const programs: { requirementSections?: ReqSection[] }[] = [];
+    for (const kind of ["majors", "minors", "certificates"]) {
+      const dir = path.join(root, latest, "programs", kind);
+      if (!fs.existsSync(dir)) continue;
+      for (const f of fs.readdirSync(dir)) {
+        programs.push(JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8")));
+      }
+    }
+    const stat = requirementCoverage(programs);
+
+    const shown = Number(/<strong>(\d{1,3})%<\/strong>/.exec(html())?.[1]);
+    expect(shown, `the page says ${shown}% but the catalog computes to ${stat.percent}%`).toBe(stat.percent);
+
+    const fmt = (v: number) => v.toLocaleString("en-US");
+    expect(html(), "the resolved/total counts disagree with the catalog")
+      .toContain(`${fmt(stat.resolved)} of ${fmt(stat.total)} requirements`);
+    expect(html(), "the adviser-defined count disagrees with the catalog")
+      .toContain(`<strong>${fmt(stat.adviserDefined)}</strong>`);
+  });
+
+  it("names the edition it describes", () => {
+    // "stated per Edition, or clearly scoped if it is not".
+    expect(html()).toMatch(/\d{4}-\d{4} bulletin/);
+  });
+
+  it("says plainly why the adviser-defined ones are excluded", () => {
+    // The exclusion is what makes the rest of the number credible, so it has
+    // to be explained rather than buried in a footnote.
+    expect(html()).toMatch(/no list/i);
+    expect(html()).toMatch(/adviser/i);
+    expect(html()).toMatch(/not failures/i);
+  });
+
+  it("counts unreadable rows as failures, in the open", () => {
+    expect(html()).toMatch(/could not read/i);
   });
 });

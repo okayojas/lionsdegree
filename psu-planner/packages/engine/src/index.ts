@@ -8,6 +8,7 @@ export * from "./layout.js";
 export * from "./search.js";
 export * from "./planGen.js";
 export * from "./requirements.js";
+export * from "./coverageStat.js";
 export * from "./slotPicks.js";
 export * from "./planFile.js";
 export * from "./repair.js";

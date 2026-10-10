@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "npm run coverage && tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "sync-catalog": "node scripts/sync-catalog.mjs",
@@ -15,7 +15,8 @@
     "test:e2e": "playwright test",
     "test:e2e:install": "playwright install --with-deps chromium",
     "og": "node scripts/make-og.mjs",
-    "deploy:self-host": "node -e \"if(!process.env.VITE_CHAT_ENDPOINT){console.error('set VITE_CHAT_ENDPOINT=/v1/chat first');process.exit(1)}\" && npm run sync-catalog && npm run build && npm run og && node scripts/deploy-self-host.mjs"
+    "deploy:self-host": "node -e \"if(!process.env.VITE_CHAT_ENDPOINT){console.error('set VITE_CHAT_ENDPOINT=/v1/chat first');process.exit(1)}\" && npm run sync-catalog && npm run build && npm run og && node scripts/deploy-self-host.mjs",
+    "coverage": "tsx scripts/coverage-facts.mts"
   },
   "dependencies": {
     "@fontsource-variable/space-grotesk": "^5.3.0",
@@ -35,6 +36,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.0",
     "hono": "^4.6.0",
+    "tsx": "^4.19.0",
     "typescript": "^5.6.0",
     "vite": "^6.0.0",
     "vite-plugin-pwa": "^0.21.0",
