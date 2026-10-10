@@ -1,267 +1,432 @@
 /* =====================================================================
-   The landing page.
+   The landing page — "night map".
 
-   It imports the product's own stylesheet rather than restating any of it.
-   That is the point: a visitor moving from here into the planner should feel
-   no seam, and the surest way to get that is for both to be the SAME tokens,
-   the same eyebrow, the same hollow station dot, the same route lines, the
-   same press-scale on a button, and the same reduced-motion block. No COLOUR
-   and no spacing value is introduced here; every one resolves to a token.
-   Sizes are not all tokenised: the hero's type scale and the route diagram's
-   geometry are page-specific one-offs (a 700-unit viewBox, a 56px headline
-   ceiling) that no other surface shares, and minting tokens for values with a
-   single call site would be worse than the literals.
+   The planner is a cream map on paper. This is the same map at night: the
+   cream stops being the ground and becomes the LIGHT. Deep petrol fields,
+   cream as ink, the lion reversed out of the mark. That inverts the identity
+   rather than replacing it, which is how "more blue, less cream" and "keep
+   the design system" both hold at once.
 
-   What this file adds is one idea: the page IS a route. A line runs down the
-   column and every section is a station on it. That is the product's own
-   metaphor carried into the page structure rather than a decoration borrowed
-   for the front door.
+   It imports the product's stylesheet rather than restating it, so the type
+   scale, the station dot, the route curves, the press-scale on a button and
+   the reduced-motion block are literally the same tokens the app uses. The
+   palette below is the one place that diverges, and it diverges on purpose:
+   these are the app's own blues driven darker, not a second identity.
+
+   SIGNATURE: one route line runs the entire document (.spine), entering at
+   the mark and passing a station at every section. How far down the line you
+   are is how far down the page you are. It is drawn by a scroll-linked
+   animation, so it needs no JavaScript and simply renders complete where
+   scroll-timeline is unsupported.
    ===================================================================== */
 @import "./styles.css";
 
-body.landing {
-  /* The planner fills the viewport and manages its own scrolling; a document
-     scrolls normally. */
-  height: auto;
-  background: var(--bg);
-  /* The dotted map grid, the same one the canvas lays under the flowchart. */
-  background-image: radial-gradient(color-mix(in srgb, var(--text) 7%, transparent) 1px, transparent 1px);
-  background-size: 24px 24px;
+.landing.night {
+  /* The night field. Derived from the recoloured mark: its deep navy and its
+     petrol, pushed down until cream reads as light against them. */
+  --abyss: #06283a;   /* the hero field, and the lion's negative space */
+  --deep: #0a3447;    /* alternating section ground */
+  --shelf: #0f4259;   /* cards and raised surfaces */
+  --petrol: #1d627f;  /* the app's own --primary, unchanged */
+  --signal: #74b8ce;  /* a lit route line; the brightest structural blue */
+  --lamp: #f0edc2;    /* the mark's cream, now as ink */
+  --haze: #9fb6c0;    /* secondary text on the field */
+  --hair: #1a4d66;    /* hairlines */
+
+  background: var(--abyss);
+  color: var(--lamp);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
-.lp-wrap { max-width: 760px; margin: 0 auto; padding: 0 var(--sp-6); }
-
-/* ---------- hero ---------- */
-
-.lp-hero { padding: clamp(var(--sp-8), 10vw, 96px) 0 var(--sp-8); }
-.lp-mark {
-  display: flex; align-items: center; gap: var(--sp-2);
-  font-size: var(--fs-md); font-weight: 800; color: var(--navy);
-  letter-spacing: var(--track-tight); margin: 0 0 var(--sp-6);
-}
-/* The same construction as .toolbar h1::before: a ring, not a disc, filled
-   with --surface. It said --bg here, which is a different colour and made the
-   claim in this comment false the moment it was written. */
-.lp-dot {
-  width: 12px; height: 12px; border-radius: 50%;
-  background: var(--surface); border: 3.5px solid var(--primary);
-  box-sizing: content-box; flex: none;
-}
-
-.lp-hero h1 {
-  font-size: clamp(var(--fs-2xl), 7vw, 56px);
-  line-height: 1.05;
-  letter-spacing: var(--track-tight);
-  color: var(--navy);
-  margin: var(--sp-2) 0 var(--sp-4);
-  font-weight: 800;
-  max-width: 14ch;
-}
-.lp-unofficial {
-  font-size: var(--fs-sm);
-  color: var(--text-muted);
-  margin: 0 0 var(--sp-4);
-}
-.lp-unofficial strong { color: var(--danger); font-weight: 700; }
-
-.lp-lede {
-  font-size: var(--fs-md);
-  line-height: 1.6;
-  color: var(--text);
-  max-width: 58ch;
-  margin: 0 0 var(--sp-6);
-}
-
-/* The hero thesis: a real prerequisite chain, drawn with the planner's own
-   route primitives. It scrolls inside its own box rather than widening the
-   page -- a 680px diagram on a 320px screen is the classic way a landing page
-   ends up scrolling sideways. */
-.lp-route {
-  margin: 0 0 var(--sp-6);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-}
-.lp-route svg { display: block; width: 700px; max-width: none; height: 170px; }
-/* Station names. The one place monospace appears on this page besides the
-   install snippet, and it appears because these are course codes. */
-.lp-stn {
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  letter-spacing: var(--track-code);
-  fill: var(--text-muted);
-}
-
-/* Course codes, and the literal machine text in the install section. Both are
-   monospace under the rule as amended for this page (DECISIONS 5.2): the ban
-   is on a second DECORATIVE face, and a config filename set in the body face
-   reads as prose rather than as something to be typed. */
-.landing .code,
-.landing .path {
-  font-family: var(--font-mono);
-  font-size: 0.94em;
-  letter-spacing: var(--track-code);
-  color: var(--text);
-}
-
-.lp-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin: 0 0 var(--sp-3); }
-.lp-cta {
-  display: inline-flex; align-items: center; min-height: var(--tap-min);
-  padding: var(--sp-2) var(--sp-6);
-  background: var(--primary); color: var(--primary-fg);
-  border: 1px solid var(--primary); border-radius: var(--r-full);
-  font-weight: 700; text-decoration: none;
-  /* The same transition and press-scale every button in the product has. */
-  transition: background .12s var(--ease-out), border-color .12s var(--ease-out),
-    box-shadow .12s var(--ease-out), transform .14s var(--ease-out);
-}
-@media (hover: hover) and (pointer: fine) {
-  .lp-cta:hover { background: var(--primary-hover); border-color: var(--primary-hover); box-shadow: var(--shadow); }
-}
-.lp-cta:active { transform: scale(0.97); }
-.lp-cta-quiet {
-  background: transparent; color: var(--accent-text); border-color: var(--border-strong);
-}
-@media (hover: hover) and (pointer: fine) {
-  .lp-cta-quiet:hover { background: var(--surface); border-color: var(--primary); box-shadow: none; }
-}
-.lp-note { font-size: var(--fs-xs); color: var(--text-muted); margin: 0; }
-
-/* ---------- the line, and the stations on it ---------- */
-
-.lp-line {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: var(--sp-8) var(--sp-6) var(--sp-8) calc(var(--sp-6) + var(--sp-6));
+/* Full-bleed sections. min-height rather than height: a phone in landscape,
+   or a section whose copy wraps to six lines, must grow instead of clipping. */
+.night .scr {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: var(--sp-8) 0;
   position: relative;
+  border-bottom: 1px solid var(--hair);
 }
-/* The route itself: one continuous line behind every station. */
-.lp-line::before {
-  content: "";
-  position: absolute;
-  left: calc(var(--sp-6) + 5px);
-  top: var(--sp-8);
-  bottom: var(--sp-8);
-  width: 3.5px;
-  border-radius: var(--r-full);
-  background: var(--primary);
+.night .scr-in {
+  width: min(1320px, 100% - clamp(2rem, 8vw, 6rem));
+  margin-inline: auto;
 }
-.lp-stop { position: relative; padding: 0 0 var(--sp-8) var(--sp-6); }
-.lp-stop:last-child { padding-bottom: 0; }
-/* The hollow station-dot ring, the same construction as the wordmark's. */
-.lp-stop::before {
-  content: "";
-  position: absolute;
-  left: calc(var(--sp-6) * -1 - 1px);
-  top: 7px;
-  width: 12px; height: 12px;
-  border-radius: 50%;
-  background: var(--surface);
-  border: 3.5px solid var(--primary);
-  box-sizing: content-box;
-}
-.lp-stop h2 {
-  font-size: var(--fs-lg);
-  letter-spacing: var(--track-tight);
-  color: var(--navy);
-  margin: 0 0 var(--sp-2);
-  font-weight: 800;
-}
-.lp-stop p { margin: 0 0 var(--sp-3); max-width: 58ch; line-height: 1.65; }
-.lp-small { font-size: var(--fs-sm); color: var(--text-muted); }
-.lp-small a { color: var(--accent-text); }
 
-/* The one number on the page, given the weight of a statement. Same type
-   scale as the hero, no new sizes: the figure borrows --fs-2xl and the label
-   sits beside it rather than under, so it reads as one sentence. */
-.lp-figure {
-  display: flex; align-items: baseline; gap: var(--sp-3); flex-wrap: wrap;
+/* Copy beside the thing it describes. Below the breakpoint they stack, with
+   the diagram second -- it illustrates the sentence, so it follows it. */
+.night .split {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+@media (min-width: 60rem) {
+  .night .split { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
+  .night .split .lede { margin-bottom: 0; }
+}
+.night .scr-what,
+.night .scr-does { background: var(--deep); }
+
+/* ── Type ───────────────────────────────────────────────────────────────
+   Space Grotesk is already self-hosted for the planner. Its engineered,
+   slightly odd letterforms are a wayfinding face, which is the right voice
+   for a route map; JetBrains Mono carries anything that is DATA — course
+   codes, the catalog year, the coverage figure — so the two voices are
+   "what we say" and "what the catalog says". */
+.night h1,
+.night h2 {
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  margin: 0 0 var(--sp-6);
+  text-wrap: balance;
+}
+.night h1 { font-size: clamp(2.6rem, 7.4vw, 6rem); }
+.night h2 { font-size: clamp(2.1rem, 5.4vw, 4rem); }
+.night h3 {
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: -0.012em;
   margin: 0 0 var(--sp-3);
+  color: var(--lamp);
 }
-.lp-figure strong {
-  font-size: var(--fs-2xl);
-  line-height: 1;
-  letter-spacing: var(--track-tight);
-  color: var(--primary);
-  font-weight: 800;
-}
-.lp-figure span { font-size: var(--fs-sm); color: var(--text-muted); }
-
-.lp-limits { margin: 0; padding-left: var(--sp-4); max-width: 58ch; }
-.lp-limits li { margin-bottom: var(--sp-2); line-height: 1.6; }
-
-/* The install snippet. A card, like every other container in the product. */
-.lp-snippet {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: var(--sp-3) var(--sp-4);
-  overflow-x: auto;
-  margin: 0 0 var(--sp-3);
+.night .eyebrow,
+.night .scroll-cue span,
+.night .lp-stn {
   font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.night .eyebrow {
+  color: var(--signal);
+  margin: 0 0 var(--sp-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+/* The eyebrow carries a station dot: it marks where this section joins the
+   line, so the device encodes position rather than ornamenting a label. */
+.night .eyebrow::before {
+  content: "";
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  border: 2px solid var(--signal);
+  background: var(--abyss);
+  flex: none;
+}
+.night .lede {
+  font-size: clamp(1.05rem, 1.9vw, 1.4rem);
+  line-height: 1.5;
+  color: var(--haze);
+  max-width: 46ch;
+  margin: 0 0 var(--sp-6);
+}
+.night .note {
   font-size: var(--fs-sm);
-  line-height: 1.6;
-  color: var(--text);
-  box-shadow: var(--shadow-sm);
+  color: var(--haze);
+  line-height: 1.65;
+  margin: var(--sp-6) 0 0;
+  max-width: 58ch;
 }
-.lp-snippet code { font: inherit; }
-
-/* ---------- footer ---------- */
-
-.lp-foot {
-  border-top: 1px solid var(--border);
-  background: var(--surface);
-  padding: var(--sp-6) 0;
-  margin-top: var(--sp-8);
+/* The coverage figure. Display-size and in the data voice, because it IS a
+   measurement -- recomputed from the shipped catalog at every build, never
+   typed in by hand. */
+.night .lp-figure strong {
+  display: block;
+  font-family: var(--font-mono);
+  color: var(--signal);
+  font-size: clamp(2.6rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--sp-3);
 }
-/* The disclaimer is the one thing on this page that may not be quiet. Adopting
-   Penn State's own colours strengthens the association, so the statement that
-   we are not Penn State has to carry more weight than it otherwise would. */
-.lp-disclaim {
+.night .note strong { color: var(--lamp); font-weight: 700; }
+
+/* ── 1. The mark ────────────────────────────────────────────────────── */
+.night .scr-mark { border-bottom: 0; }
+.night .scr-mark .scr-in { text-align: center; }
+.night .mark {
+  width: min(560px, 74vw);
+  height: auto;
+  margin: 0 auto var(--sp-6);
+  display: block;
+}
+.night .tagline {
+  font-family: var(--font-mono);
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin: 0 0 var(--sp-6);
+}
+.night .unofficial {
+  font-size: var(--fs-base);
+  line-height: 1.55;
+  color: var(--haze);
+  max-width: 34ch;
+  margin: 0 auto;
+}
+.night .unofficial strong { color: var(--lamp); }
+.night .scroll-cue {
+  margin: var(--sp-8) 0 0;
+  color: var(--haze);
+  opacity: 0.75;
+}
+.night .scroll-cue span { position: relative; }
+.night .scroll-cue span::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: calc(100% + 10px);
+  width: 1px; height: 26px;
+  background: linear-gradient(var(--signal), transparent);
+  animation: cue 2.4s var(--ease-out) infinite;
+}
+@keyframes cue { 0%,100% { opacity: .25; } 50% { opacity: 1; } }
+
+/* ── Buttons ────────────────────────────────────────────────────────── */
+.night .actions { display: flex; flex-wrap: wrap; gap: var(--sp-4); margin: 0; }
+.night .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 0.95rem 1.7rem;
+  border-radius: var(--r-full);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background .2s var(--ease-out), color .2s var(--ease-out),
+              border-color .2s var(--ease-out), transform .12s var(--ease-out);
+}
+.night .btn-go { background: var(--lamp); color: var(--abyss); }
+.night .btn-go:hover { background: #fffce0; }
+.night .btn-quiet { border-color: var(--hair); color: var(--lamp); }
+.night .btn-quiet:hover { border-color: var(--signal); color: var(--signal); }
+.night .btn:active { transform: scale(0.98); }
+
+/* ── 3. The map ─────────────────────────────────────────────────────── */
+.night .lp-route { margin: 0; }
+.night .lp-route svg { width: 100%; height: auto; overflow: visible; }
+.night .lp-route .route-line {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+  animation: draw 2.2s var(--ease-out) both;
+}
+@keyframes draw { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
+.night .lp-route .route-stop {
+  opacity: 1;
+  animation: pop 0.5s var(--ease-out) both;
+  animation-delay: calc(0.45s + var(--i) * 0.42s);
+}
+@keyframes pop { from { opacity: 0; } to { opacity: 1; } }
+.night .lp-route circle { fill: var(--abyss); stroke: var(--lamp); stroke-width: 3.5; }
+.night .lp-route .lp-stn {
+  fill: var(--haze);
+  /* SVG `stroke` INHERITS. The app's `.route-stop` puts `stroke: var(--text);
+     stroke-width: 3` on the group for the station rings, and the label inside
+     it inherits both -- at 15px a 3px stroke swallows the letterform whole and
+     the code renders as dark blobs. Invisible on the light theme, where the
+     stroke matched the text; fatal on the night field. */
+  stroke: none;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-anchor: middle;
+}
+.night .lp-route figcaption {
+  color: var(--haze);
   font-size: var(--fs-sm);
-  line-height: 1.6;
-  color: var(--text);
-  max-width: 70ch;
-  margin: 0 0 var(--sp-3);
+  margin-top: var(--sp-6);
 }
-.lp-disclaim strong { color: var(--danger); }
 
-/* ---------- phone ---------- */
+/* ── Card grids ─────────────────────────────────────────────────────── */
+.night .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: clamp(1.25rem, 2.4vw, 2.25rem);
+  margin-top: var(--sp-6);
+}
+.night .grid article {
+  background: var(--shelf);
+  border: 1px solid var(--hair);
+  border-radius: var(--r-lg);
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+}
+.night .grid p { color: var(--haze); line-height: 1.6; margin: 0; font-size: var(--fs-base); }
 
-@media (max-width: 760px) {
-  .lp-wrap { padding: 0 var(--sp-4); }
+/* ── Footer ─────────────────────────────────────────────────────────── */
+.night .foot { background: var(--abyss); padding: var(--sp-8) 0; }
+.night .disclaim {
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  color: var(--haze);
+  max-width: 62ch;
+  margin: 0 0 var(--sp-6);
+}
+.night .disclaim strong { color: var(--lamp); }
+.night .small { font-size: var(--fs-sm); color: var(--haze); margin: 0; }
+.night a { color: var(--signal); }
+.night .small a { color: var(--haze); }
+.night .small a:hover { color: var(--lamp); }
 
-  /* The hero diagram SCALES to fit rather than scrolling. A cut-off route is
-     the first thing a student sees, and it reads as broken rather than as
-     scrollable. Everything inside the svg is in viewBox units, so the stroke
-     and the station names are enlarged here to survive the ~0.5 scale factor
-     and land back at the sizes they have on a desktop. */
-  .lp-route { overflow-x: visible; }
-  .lp-route svg { width: 100%; height: auto; }
-  .lp-route .route-line { stroke-width: 7; }
-  .lp-route .route-stop { stroke-width: 6; }
-  .lp-route .lp-stn { font-size: 23px; }
-  .lp-line { padding-left: calc(var(--sp-4) + var(--sp-6)); padding-right: var(--sp-4); }
-  .lp-line::before { left: calc(var(--sp-4) + 5px); }
-  .lp-hero { padding-top: var(--sp-6); }
-  .lp-actions .lp-cta { flex: 1 1 auto; justify-content: center; }
+/* ── The spine ──────────────────────────────────────────────────────────
+   A fixed rail at the left edge whose lit portion tracks scroll progress.
+   `animation-timeline: scroll()` does this on the compositor with no script;
+   where it is unsupported the run simply sits at full height, which reads as
+   a complete route rather than a broken one. */
+.spine {
+  position: fixed;
+  left: clamp(0.85rem, 3.2vw, 2.4rem);
+  top: 0; bottom: 0;
+  width: 2px;
+  z-index: 2;
+  pointer-events: none;
+}
+.spine-track { position: absolute; inset: 0; background: var(--hair); }
+.spine-run {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 100%;
+  transform-origin: top;
+  background: linear-gradient(var(--signal), var(--lamp));
+}
+@supports (animation-timeline: scroll()) {
+  .spine-run {
+    animation: spine linear both;
+    animation-timeline: scroll(root block);
+  }
+  @keyframes spine { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+}
+@media (max-width: 40rem) { .spine { display: none; } }
+
+/* ── Quality floor ──────────────────────────────────────────────────── */
+.night :is(a, .btn):focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+.night .skip-link:focus { background: var(--lamp); color: var(--abyss); }
+
+@media (prefers-reduced-motion: reduce) {
+  /* Complete and still. A student who asked for less motion gets the whole
+     diagram, not a line frozen at the first frame of its draw. */
+  .night .lp-route .route-line { animation: none; stroke-dashoffset: 0; }
+  .night .lp-route .route-stop { animation: none; opacity: 1; }
+  .night .scroll-cue span::after { animation: none; }
+  .spine-run { animation: none; transform: none; }
+  .night * { transition: none !important; }
 }
 
 /* =====================================================================
-   The static legal documents (/privacy, /terms).
+   /connect/ — the walkthrough.
 
-   Generated from src/legal/content.ts, which also feeds the in-app modal.
-   They reuse the landing page's shell so a visitor crossing from the front
-   door into a policy feels no seam, with a shortened hero: a policy has no
-   lede and no route diagram, only a title.
+   Deliberately NOT generated from src/legal/content.ts: that module renders
+   prose blocks, and this page is a numbered procedure with a copyable field.
+   Forcing it through would mean inventing a "step" and a "copy field" node
+   type for exactly one consumer.
    ===================================================================== */
-.lp-hero-slim { padding: var(--sp-7) 0 var(--sp-5); border-bottom: 1px solid var(--border); }
-.lp-hero-slim h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); margin: var(--sp-3) 0 0; }
-.lp-mark a { color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: var(--sp-2); }
-.lp-mark a:hover { text-decoration: underline; }
+.connect-page { padding-bottom: 0; }
+.conn-head { padding: clamp(2.5rem, 7vw, 5rem) 0 clamp(1.5rem, 4vw, 3rem); }
+.conn-head .home { margin: 0 0 var(--sp-8); }
+.conn-head .home img { width: 170px; height: auto; display: block; }
+.conn-head h1 { font-size: clamp(2.2rem, 5.6vw, 4.2rem); }
+.conn-main { padding-bottom: clamp(3rem, 8vw, 6rem); }
 
-.legal-page main.legal-body { padding-top: var(--sp-7); padding-bottom: var(--sp-8); }
-.legal-page .legal-body p,
-.legal-page .legal-body li { line-height: 1.65; margin: 0 0 var(--sp-4); }
-.legal-page .legal-body ul { padding-left: var(--sp-5); margin: 0 0 var(--sp-5); }
-.legal-page .legal-body li { margin-bottom: var(--sp-4); }
-.legal-page .legal-body strong { color: var(--text); }
+/* The numbering is information: each step depends on the one before it, so
+   the sequence is real rather than decorative. */
+.steps { list-style: none; counter-reset: step; padding: 0; margin: 0; }
+.steps > li {
+  counter-increment: step;
+  position: relative;
+  padding: 0 0 clamp(2.5rem, 5vw, 3.5rem) clamp(3.4rem, 6vw, 4.6rem);
+  border-left: 2px solid var(--hair);
+}
+.steps > li:last-child { border-left-color: transparent; padding-bottom: var(--sp-8); }
+/* Each step is a station on the same line the rest of the site runs on. */
+.steps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  transform: translateX(-50%);
+  top: 0;
+  width: clamp(2rem, 3.4vw, 2.5rem);
+  height: clamp(2rem, 3.4vw, 2.5rem);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--abyss);
+  border: 2px solid var(--signal);
+  color: var(--signal);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.steps h2 { font-size: clamp(1.3rem, 2.6vw, 1.85rem); margin: 0 0 var(--sp-3); }
+.steps p { color: var(--haze); line-height: 1.6; margin: 0 0 var(--sp-4); max-width: 54ch; }
+.steps .step-do { margin-top: var(--sp-6); }
+
+/* The connection link. A field, not a code block: it is an address someone
+   copies, and dressing it as source would say "this page is for programmers"
+   which is the one thing it must not say. */
+.copyfield {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+  background: var(--shelf);
+  border: 1px solid var(--hair);
+  border-radius: var(--r-lg);
+  padding: var(--sp-3) var(--sp-3) var(--sp-3) clamp(0.9rem, 2vw, 1.4rem);
+  margin: 0 0 var(--sp-4);
+  max-width: 34rem;
+}
+.copyfield-url {
+  font-family: var(--font-mono);
+  font-size: clamp(0.82rem, 1.6vw, 1rem);
+  color: var(--lamp);
+  word-break: break-all;
+  flex: 1 1 14rem;
+  user-select: all;
+}
+.copyfield-btn {
+  flex: none;
+  background: var(--lamp);
+  color: var(--abyss);
+  border: 0;
+  border-radius: var(--r-full);
+  padding: 0.6rem 1.3rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  cursor: pointer;
+}
+.copyfield-btn.is-done { background: var(--signal); }
+
+.pending {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--haze);
+  border-left: 3px solid var(--warning);
+  padding-left: var(--sp-4);
+  max-width: 48ch;
+}
+.pending strong { color: var(--lamp); }
+
+.where, .asks { margin: 0; padding-left: 1.15rem; color: var(--haze); line-height: 1.75; max-width: 56ch; }
+.where strong { color: var(--lamp); }
+.asks { list-style: none; padding-left: 0; }
+.asks li {
+  border-left: 2px solid var(--hair);
+  padding: var(--sp-2) 0 var(--sp-2) var(--sp-4);
+  margin-bottom: var(--sp-3);
+  color: var(--lamp);
+}
+.try { margin-top: clamp(2rem, 5vw, 3.5rem); }
+.try h2 { font-size: clamp(1.6rem, 3.4vw, 2.4rem); }

@@ -41,13 +41,29 @@ describe("the landing document", () => {
   });
 
   it("ships none of the planner's JavaScript", () => {
-    const scripts = [...read("index.html").matchAll(/src="([^"]+)"/g)].map((m) => m[1]);
+    // SCRIPT sources only. This matched every `src=` attribute, which meant
+    // the hero mark -- an <img> -- was being weighed as JavaScript the moment
+    // one was added. It measured scripts by accident, because the old hero
+    // was inline SVG and the page happened to contain no images.
+    const scripts = [...read("index.html").matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map((m) => m[1]);
     expect(scripts.some((s) => /\/assets\/plan-.*\.js$/.test(s))).toBe(false);
     // Whatever it does load stays tiny; the planner bundle is ~500 KB.
     const bytes = scripts
       .filter((s) => s.startsWith("/"))
       .reduce((sum, s) => sum + fs.statSync(path.join(dist, s.slice(1))).size, 0);
     expect(bytes).toBeLessThan(20 * 1024);
+  });
+
+  it("keeps the hero mark light enough to be a hero", () => {
+    // It is the largest contentful paint on the page, so its weight is what a
+    // student waits for on a phone. The source artwork was 192 KB of
+    // full-depth PNG for four flat colours.
+    const srcs = [...read("index.html").matchAll(/<img\b[^>]*\bsrc="(\/[^"]+)"/g)].map((m) => m[1]);
+    expect(srcs, "no hero image in the built page").toContain("/logo-dark.png");
+    for (const s of srcs) {
+      const kb = fs.statSync(path.join(dist, s.slice(1))).size / 1024;
+      expect(kb, `${s} is ${kb.toFixed(0)} KB`).toBeLessThan(60);
+    }
   });
 
   it("carries the unaffiliated disclaimer", () => {
@@ -85,10 +101,19 @@ describe("the icons", () => {
     }
   });
 
-  it("set a theme colour for each scheme, matching the palette", () => {
+  it("set a theme colour that matches the page behind it", () => {
+    // One value, not a light/dark pair: the landing page is a single dark
+    // field in both schemes now. The browser chrome still has to agree with
+    // it, or the top of the screen is a different colour from the page.
     const html = read("index.html");
-    expect(html).toMatch(/theme-color[^>]*prefers-color-scheme: light[^>]*#f1ebdf|#f1ebdf[^>]*light/);
-    expect(html).toContain("#2b2a27");
+    const m = /<meta\s+name="theme-color"\s+content="([^"]+)"/.exec(html);
+    expect(m, "no theme-color on the landing document").toBeTruthy();
+    // `bundles()` belongs to the font describe; resolve the sheet here rather
+    // than reaching across scopes for it.
+    const sheet = fs.readdirSync(path.join(dist, "assets")).find((f) => f.startsWith("landing-") && f.endsWith(".css"));
+    expect(sheet, "no landing stylesheet in dist/assets").toBeTruthy();
+    const css = read(path.join("assets", sheet!));
+    expect(css, `theme-color is ${m![1]}, which the stylesheet never uses`).toContain(m![1]);
   });
 });
 
@@ -188,24 +213,12 @@ describe("the landing page's content", () => {
     expect(html()).toMatch(/prerequisite/i);
   });
 
-  it("carries an install snippet that matches what the server accepts", () => {
-    // The snippet is the one piece of copy on this page that is executable. If
-    // it drifts from the server's actual flag, a student pastes it, it fails,
-    // and they have no way to tell whose fault that is.
-    const snippet = /<pre[^>]*class="lp-snippet"[^>]*><code>([\s\S]*?)<\/code><\/pre>/.exec(html())?.[1];
-    expect(snippet, "no install snippet in the built page").toBeTruthy();
-    const json = JSON.parse(snippet!.replace(/&quot;/g, '"').replace(/&amp;/g, "&"));
-    const server = json.mcpServers.lionsdegree;
-    expect(server.command).toBe("npx");
-    expect(server.args).toContain("lionsdegree-mcp");
-    expect(server.args, "the server reads --plan (or LIONSDEGREE_PLAN)").toContain("--plan");
-
-    // And the flag really is the one the server parses.
-    const serverSrc = fs.readFileSync(
-      path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "packages", "mcp", "src", "server.ts"),
-      "utf-8",
-    );
-    expect(serverSrc, "the landing page advertises a flag the server does not parse").toContain('"--plan"');
+  it("sends people to a walkthrough instead of showing them code", () => {
+    // There was an npx command and a JSON config block here. A student who
+    // has never opened a terminal cannot act on either, and being shown them
+    // says "this is not for you" -- which is the opposite of the page's job.
+    expect(html(), "the landing page is showing code").not.toMatch(/<(pre|code)\b/);
+    expect(html()).toMatch(/href="\/connect\/"/);
   });
 
   it("states the limits and keeps the disclaimer prominent", () => {
@@ -312,7 +325,7 @@ describe("the coverage figure", () => {
    * the document passed with this section deleted entirely -- the word
    * already appears four times in the disclaimer and the limits list. */
   const section = () => {
-    const m = /<section class="lp-stop" id="coverage">([\s\S]*?)<\/section>/.exec(html());
+    const m = /<section\b[^>]*\bid="coverage"[^>]*>([\s\S]*?)<\/section>/.exec(html());
     expect(m, "no #coverage section in the built page").toBeTruthy();
     return m![1];
   };

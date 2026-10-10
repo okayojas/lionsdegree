@@ -34,10 +34,15 @@ test.describe("with JavaScript turned off", () => {
     await expect(cta).toHaveAttribute("href", "/plan/");
   });
 
-  test("the install snippet is readable, not a placeholder", async ({ page }) => {
+  test("connecting an assistant is a link, not a code block", async ({ page }) => {
+    // The page is for students, not developers. There was an npx command and a
+    // JSON config block here; a student who has never opened a terminal has no
+    // way to act on either, and seeing them says "this is not for you".
     await page.goto("/");
-    await expect(page.locator(".lp-snippet")).toContainText("lionsdegree-mcp");
-    await expect(page.locator(".lp-snippet")).toContainText("--plan");
+    await expect(page.locator("pre, code"), "the landing page is showing code").toHaveCount(0);
+    const cta = page.getByRole("link", { name: /how to connect it/i });
+    await expect(cta).toBeVisible();
+    await expect(cta).toHaveAttribute("href", "/connect/");
   });
 
   test("the disclaimer is there and is not hidden in small print", async ({ page }) => {
@@ -153,7 +158,7 @@ test.describe("the coverage figure", () => {
     await page.goto("/");
     const section = page.locator("#coverage");
     await expect(section).toBeVisible();
-    await expect(section.locator(".lp-figure strong")).toHaveText(/^\d{1,3}%$/);
+    await expect(section.locator(".lp-figure strong").first()).toHaveText(/^\d{1,3}%$/);
   });
 
   test("explains the exclusion rather than burying it", async ({ page }) => {
@@ -169,7 +174,7 @@ test.describe("the coverage figure", () => {
     // --primary at display size on the page background. The only new coloured
     // element this section introduces, and the one most likely to slip.
     await page.goto("/");
-    const ratio = await page.locator(".lp-figure strong").evaluate((el) => {
+    const ratio = await page.locator(".lp-figure strong").first().evaluate((el) => {
       const lum = (c: number) => {
         const s = c / 255;
         return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
@@ -241,4 +246,66 @@ test.describe("the legal documents, with scripting on", () => {
       await expectNoA11yViolations(page);
     });
   }
+});
+
+test.describe("connecting an assistant", () => {
+  // The page exists because "paste a link into your settings" has to be
+  // followable by a student who has never opened a terminal. Everything here
+  // is a property of THAT, not of styling.
+  test.use({ javaScriptEnabled: false });
+
+  test("reads with JavaScript off", async ({ page }) => {
+    const res = await page.goto("/connect/");
+    expect(res?.status()).toBe(200);
+    await expect(page.getByRole("heading", { level: 1 })).toContainText(/connect your ai/i);
+    // The link itself must be plain selectable text, not injected by script:
+    // someone setting up a connector is often on a locked-down machine.
+    await expect(page.locator("#connector-url")).toContainText(/^https:\/\//);
+  });
+
+  test("shows no code anywhere", async ({ page }) => {
+    await page.goto("/connect/");
+    await expect(page.locator("pre, code"), "the connect page is showing code").toHaveCount(0);
+    const body = (await page.locator("body").innerText()).toLowerCase();
+    for (const jargon of ["npx", "npm install", "json", "terminal", "command line", "stdio"]) {
+      expect(body, `"${jargon}" appears on a page written for non-programmers`).not.toContain(jargon);
+    }
+  });
+
+  test("is an ordered procedure, because the steps depend on each other", async ({ page }) => {
+    await page.goto("/connect/");
+    // Sign in BEFORE copying the link: the link is only meaningful once the
+    // account exists. An unordered list would lose that.
+    const steps = page.locator(".steps > li");
+    await expect(steps).toHaveCount(4);
+    await expect(steps.first()).toContainText(/sign in/i);
+    await expect(steps.nth(1)).toContainText(/copy/i);
+  });
+
+  test("says plainly that the connector is not live yet", async ({ page }) => {
+    // Shipping a dead link with no warning sends students to paste something
+    // that silently fails, and they blame their assistant.
+    await page.goto("/connect/");
+    await expect(page.getByText(/not live yet/i)).toBeVisible();
+  });
+
+  test("is reachable from the landing page and the footer", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByRole("link", { name: /connect your ai/i }).first()).toBeVisible();
+  });
+});
+
+test.describe("connecting an assistant, with scripting on", () => {
+  test("has no accessibility violations", async ({ page }) => {
+    await page.goto("/connect/");
+    await expectNoA11yViolations(page);
+  });
+
+  test("the copy button copies the link", async ({ page, context }) => {
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+    await page.goto("/connect/");
+    await page.getByRole("button", { name: /^copy$/i }).click();
+    const clip = await page.evaluate(() => navigator.clipboard.readText());
+    expect(clip).toBe(await page.locator("#connector-url").innerText());
+  });
 });

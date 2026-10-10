@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connect your AI — LionsDegree</title>
+    <meta
+      name="description"
+      content="Connect LionsDegree to Claude, ChatGPT or another assistant. Copy one link, paste it into your assistant's settings, and it can read your degree plan."
+    />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#06283a" />
+    <link rel="canonical" href="%SITE_URL%/connect/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="LionsDegree" />
+    <meta property="og:url" content="%SITE_URL%/connect/" />
+    <meta property="og:title" content="Connect your AI to your degree plan" />
+    <meta property="og:description" content="Copy one link into your assistant's settings. Nothing to install." />
+    <link rel="stylesheet" href="/src/landing.css" />
+  </head>
+  <body class="landing night connect-page">
+    <a href="#steps" class="skip-link">Skip to the steps</a>
+
+    <header class="conn-head">
+      <div class="scr-in">
+        <p class="home"><a href="/"><img src="/logo-dark.png" width="1074" height="904" alt="LionsDegree" /></a></p>
+        <p class="eyebrow">Works with your assistant</p>
+        <h1>Connect your AI to your degree plan.</h1>
+        <p class="lede">
+          Your assistant can read the plan you built here and answer questions
+          about your actual degree — what's left, what you can take next term,
+          what happens if you drop something. It takes about a minute to set up
+          and there is nothing to install.
+        </p>
+      </div>
+    </header>
+
+    <main id="steps" class="scr-in conn-main">
+      <!-- A real sequence: each step depends on the one before it, so the
+           numbering carries information rather than decorating the list. -->
+      <ol class="steps">
+        <li>
+          <h2>Sign in to LionsDegree</h2>
+          <p>
+            Use the Google or Microsoft button with your Penn State account.
+            Your assistant reads your plan from your account, so it needs to
+            know which plan is yours.
+          </p>
+          <p class="step-do"><a class="btn btn-go" href="/plan/">Open the planner</a></p>
+        </li>
+
+        <li>
+          <h2>Copy your connection link</h2>
+          <p>
+            This is the address your assistant uses to reach your plan. It is
+            the same for everyone — signing in is what makes it yours.
+          </p>
+          <div class="copyfield">
+            <span class="copyfield-url" id="connector-url">https://mcp.lionsdegree.com/sse</span>
+            <button type="button" class="copyfield-btn" data-copy="connector-url">Copy</button>
+          </div>
+          <p class="pending">
+            <strong>Not live yet.</strong> The connector is still being built.
+            This page is here so you know what to expect — check back before you
+            paste it anywhere.
+          </p>
+        </li>
+
+        <li>
+          <h2>Paste it into your assistant's settings</h2>
+          <p>Every assistant words this slightly differently. Look for whichever of these it uses:</p>
+          <ul class="where">
+            <li><strong>Claude</strong> — Settings, then Connectors, then Add custom connector.</li>
+            <li><strong>ChatGPT</strong> — Settings, then Connectors, then Add.</li>
+            <li><strong>Something else</strong> — look for "Connectors", "Integrations", or "MCP". Paste the link into the address or URL box.</li>
+          </ul>
+        </li>
+
+        <li>
+          <h2>Approve the connection</h2>
+          <p>
+            Your assistant will open a LionsDegree page asking whether to let it
+            read your plan. Say yes and you're connected. You can disconnect from
+            the same settings screen at any time.
+          </p>
+        </li>
+      </ol>
+
+      <section class="try">
+        <h2>Then ask it something</h2>
+        <p class="lede">Once it's connected, these all work:</p>
+        <ul class="asks">
+          <li>"What do I still need for my major?"</li>
+          <li>"Can I take CMPSC 465 next spring?"</li>
+          <li>"I want to study abroad in fall 2027 — rearrange my plan."</li>
+          <li>"Find me a 3-credit elective that also counts for a Gen Ed."</li>
+        </ul>
+        <p class="note">
+          Your assistant can change your plan when you ask it to. It will not
+          remove a course your degree requires unless you tell it to in your own
+          words.
+        </p>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="scr-in">
+        <p class="disclaim">
+          <strong>Unofficial.</strong> LionsDegree is not affiliated with,
+          endorsed by, or an official product of The Pennsylvania State
+          University. Confirm your degree plan with your academic adviser.
+        </p>
+        <p class="small">
+          <a href="/">Home</a> ·
+          <a href="/plan/">Open the planner</a> ·
+          <a href="/privacy/">Privacy</a> ·
+          <a href="/terms/">Terms</a> ·
+          <a href="https://github.com/okayojas/lionsdegree">Source</a>
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/connect.ts"></script>
+  </body>
+</html>
