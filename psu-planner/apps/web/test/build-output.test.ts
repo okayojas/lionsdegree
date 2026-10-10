@@ -12,7 +12,8 @@ import { describe, it, expect, beforeAll } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { requirementCoverage, type ReqSection } from "@psu-planner/engine";
+import { requirementCoverage } from "@psu-planner/engine";
+import { latestEdition, loadPrograms } from "../scripts/catalog-programs.mjs";
 
 const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "dist");
 const read = (rel: string) => fs.readFileSync(path.join(dist, rel), "utf-8");
@@ -307,6 +308,14 @@ describe("the coverage figure", () => {
    * catalog and compares — a hand-edited number, or one left over from a
    * previous catalog, fails here. */
   const html = () => read("index.html");
+  /** The coverage SECTION, not the whole page. Asserting /adviser/i against
+   * the document passed with this section deleted entirely -- the word
+   * already appears four times in the disclaimer and the limits list. */
+  const section = () => {
+    const m = /<section class="lp-stop" id="coverage">([\s\S]*?)<\/section>/.exec(html());
+    expect(m, "no #coverage section in the built page").toBeTruthy();
+    return m![1];
+  };
 
   it("states a percentage, not a placeholder", () => {
     expect(html(), "a %COVERAGE_% placeholder shipped as literal text").not.toContain("%COVERAGE");
@@ -314,44 +323,68 @@ describe("the coverage figure", () => {
   });
 
   it("matches what the shipped catalog actually computes to", () => {
-    const web = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-    const root = path.join(web, "public", "catalog");
-    const { latest } = JSON.parse(fs.readFileSync(path.join(root, "editions.json"), "utf-8"));
-
-    const programs: { requirementSections?: ReqSection[] }[] = [];
-    for (const kind of ["majors", "minors", "certificates"]) {
-      const dir = path.join(root, latest, "programs", kind);
-      if (!fs.existsSync(dir)) continue;
-      for (const f of fs.readdirSync(dir)) {
-        programs.push(JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8")));
-      }
-    }
-    const stat = requirementCoverage(programs);
+    // The same files the build read, via the same loader. The independence
+    // that matters is recomputing the STATISTIC; re-enumerating directories
+    // identically bought no drift detection, only a third copy to maintain.
+    const stat = requirementCoverage(loadPrograms());
 
     const shown = Number(/<strong>(\d{1,3})%<\/strong>/.exec(html())?.[1]);
     expect(shown, `the page says ${shown}% but the catalog computes to ${stat.percent}%`).toBe(stat.percent);
 
+    // Every number in the section, against the section -- not the document,
+    // whose failure message is the whole page.
+    const sec = section();
     const fmt = (v: number) => v.toLocaleString("en-US");
-    expect(html(), "the resolved/total counts disagree with the catalog")
-      .toContain(`${fmt(stat.resolved)} of ${fmt(stat.total)} requirements`);
-    expect(html(), "the adviser-defined count disagrees with the catalog")
-      .toContain(`<strong>${fmt(stat.adviserDefined)}</strong>`);
+    for (const [label, value] of [
+      ["named", stat.named],
+      ["patterned", stat.patterned],
+      ["unreadable", stat.unreadable],
+      ["gen-ed", stat.genEd],
+      ["adviser-defined", stat.adviserDefined],
+      ["programs", loadPrograms().length],
+    ] as const) {
+      expect(sec.includes(`<strong>${fmt(value)}</strong>`) || sec.includes(fmt(value)),
+        `the ${label} count on the page disagrees with the catalog (expected ${fmt(value)})`).toBe(true);
+    }
   });
 
-  it("names the edition it describes", () => {
-    // "stated per Edition, or clearly scoped if it is not".
-    expect(html()).toMatch(/\d{4}-\d{4} bulletin/);
+  it("names the edition it describes, and it is the one measured", () => {
+    // "stated per Edition, or clearly scoped if it is not". Checking the
+    // shape alone would pass on any year pair, including a stale one.
+    const named = /(\d{4}-\d{4}) bulletin/.exec(section())?.[1];
+    expect(named, "the coverage section names no edition").toBeTruthy();
+    expect(named).toBe(latestEdition());
   });
 
   it("says plainly why the adviser-defined ones are excluded", () => {
     // The exclusion is what makes the rest of the number credible, so it has
     // to be explained rather than buried in a footnote.
-    expect(html()).toMatch(/no list/i);
-    expect(html()).toMatch(/adviser/i);
-    expect(html()).toMatch(/not failures/i);
+    const sec = section();
+    expect(sec).toMatch(/no list/i);
+    expect(sec).toMatch(/adviser/i);
+    expect(sec).toMatch(/not failures/i);
   });
 
   it("counts unreadable rows as failures, in the open", () => {
-    expect(html()).toMatch(/could not read/i);
+    expect(section()).toMatch(/could not read/i);
+  });
+
+  it("does not call a subject-and-level rule a named course list", () => {
+    // 268 of the resolved rows are patterns like "any 400-level HIST", which
+    // is checkable but is not a named list. The first version of this page
+    // said "resolve to named courses" of all of them.
+    const sec = section();
+    const stat = requirementCoverage(loadPrograms());
+    const fmt = (v: number) => v.toLocaleString("en-US");
+    expect(sec, "the named/patterned split is not stated").toContain(`<strong>${fmt(stat.named)}</strong>`);
+    expect(sec).toContain(`<strong>${fmt(stat.patterned)}</strong>`);
+    expect(sec).toMatch(/subject and a level/i);
+  });
+
+  it("does not call a General Education row a parse failure", () => {
+    const stat = requirementCoverage(loadPrograms());
+    const sec = section();
+    expect(sec).toContain(`<strong>${stat.genEd.toLocaleString("en-US")}</strong>`);
+    expect(sec).toMatch(/General Education/i);
   });
 });

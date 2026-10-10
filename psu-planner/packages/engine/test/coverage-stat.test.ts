@@ -20,14 +20,14 @@ import { requirementCoverage, type ReqSection } from "../src/index.js";
 import { CATALOG_DIR } from "./edition.js";
 
 /** Every program in the shipped catalog for the edition under test. */
-function allPrograms(): { slug: string; requirementSections: ReqSection[] }[] {
-  const out: { slug: string; requirementSections: ReqSection[] }[] = [];
+function allPrograms(): { requirementSections: ReqSection[] }[] {
+  const out: { requirementSections: ReqSection[] }[] = [];
   for (const kind of ["majors", "minors", "certificates"]) {
     const dir = path.join(CATALOG_DIR, "programs", kind);
     if (!fs.existsSync(dir)) continue;
     for (const f of fs.readdirSync(dir)) {
       const p = JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8"));
-      out.push({ slug: p.slug ?? f, requirementSections: p.requirementSections ?? [] });
+      out.push({ requirementSections: p.requirementSections ?? [] });
     }
   }
   return out;
@@ -60,6 +60,23 @@ describe("the coverage figure", () => {
     expect(stat.resolved + stat.unreadable).toBeLessThanOrEqual(stat.total);
   });
 
+  it("separates a NAMED list from a subject-and-level pattern", () => {
+    // The published sentence says "name their courses outright" of one and
+    // "name a subject and a level" of the other. Lumping them together made
+    // the page's wording false for every patterned row.
+    expect(stat.named).toBeGreaterThan(0);
+    expect(stat.patterned).toBeGreaterThan(0);
+    expect(stat.named + stat.patterned).toBe(stat.resolved);
+    expect(stat.named, "a pattern is not a named list").toBeLessThan(stat.resolved);
+  });
+
+  it("separates General Education rows from rows it could not read", () => {
+    // They parse fine; they are answered by designation rather than by a
+    // course list. Calling them parse failures on the site was simply wrong.
+    expect(stat.genEd).toBeGreaterThan(0);
+    expect(stat.resolved + stat.unreadable + stat.genEd).toBe(stat.total);
+  });
+
   it("reports a percentage consistent with its own counts", () => {
     expect(stat.percent).toBe(Math.round((stat.resolved / stat.total) * 100));
     expect(stat.percent).toBeGreaterThan(0);
@@ -79,22 +96,48 @@ describe("the computation itself", () => {
 
   it("counts a named course list as resolved", () => {
     const stat = requirementCoverage([
-      { slug: "x", requirementSections: [section([{ type: "course", code: "MATH 140", credits: 3 }])] },
+      { requirementSections: [section([{ type: "course", code: "MATH 140", credits: 3 }])] },
     ]);
-    expect(stat).toMatchObject({ resolved: 1, total: 1, adviserDefined: 0, percent: 100 });
+    expect(stat).toMatchObject({ resolved: 1, named: 1, patterned: 0, total: 1, adviserDefined: 0, percent: 100 });
   });
 
   it("counts an unreadable row as a failure, in the denominator", () => {
     const stat = requirementCoverage([
-      { slug: "x", requirementSections: [section([{ type: "unstructured", commentRaw: "Select something" }])] },
+      { requirementSections: [section([{ type: "unstructured", commentRaw: "Select something" }])] },
     ]);
-    expect(stat).toMatchObject({ resolved: 0, total: 1, unreadable: 1, percent: 0 });
+    expect(stat).toMatchObject({ resolved: 0, total: 1, unreadable: 1, genEd: 0, percent: 0 });
+  });
+
+  it("counts a General Education row as its own thing, not as unreadable", () => {
+    const stat = requirementCoverage([
+      {
+        requirementSections: [section([{ type: "genEd", domain: "GA", credits: 3, commentRaw: "Select 3 credits of GA" }])],
+      },
+    ]);
+    expect(stat).toMatchObject({ genEd: 1, unreadable: 0, resolved: 0, total: 1 });
+  });
+
+  it("counts a subject-and-level rule as patterned, not as named", () => {
+    const stat = requirementCoverage([
+      {
+        requirementSections: [
+          section([
+            {
+              type: "selectCredits",
+              credits: 6,
+              commentRaw: "Select 6 credits of 400-level HIST courses",
+              from: { kind: "pattern", subjects: ["HIST"], minLevel: 400 },
+            },
+          ]),
+        ],
+      },
+    ]);
+    expect(stat).toMatchObject({ patterned: 1, named: 0, resolved: 1, percent: 100 });
   });
 
   it("puts an adviser-defined requirement in neither half", () => {
     const stat = requirementCoverage([
       {
-        slug: "x",
         requirementSections: [
           section([
             { type: "course", code: "MATH 140", credits: 3 },
@@ -110,7 +153,7 @@ describe("the computation itself", () => {
 
   it("ignores notes, which are prose rather than requirements", () => {
     const stat = requirementCoverage([
-      { slug: "x", requirementSections: [section([{ type: "note", commentRaw: "Select one concentration:" }])] },
+      { requirementSections: [section([{ type: "note", commentRaw: "Select one concentration:" }])] },
     ]);
     expect(stat.considered).toBe(0);
     expect(stat.total).toBe(0);

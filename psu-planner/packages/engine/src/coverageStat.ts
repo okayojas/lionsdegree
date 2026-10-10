@@ -15,12 +15,23 @@
  * one way a computed number can still lie. `poolIsAdviserDefined` exists to
  * keep those two apart (see requirements.ts).
  */
-import { poolFromRule, poolHasMembership, poolIsAdviserDefined } from "./requirements.js";
-import type { ReqRule, ReqSection } from "./requirements.js";
+import { poolFromRule, poolIsAdviserDefined } from "./requirements.js";
+import type { ReqSection } from "./requirements.js";
 
 export interface RequirementCoverage {
-  /** Requirements that resolve to a testable list of courses. */
+  /** Requirements the planner can check: `named` + `patterned`. */
   resolved: number;
+  /** Resolve to an explicit list of course codes. */
+  named: number;
+  /** Resolve to a subject and a level ("any 400-level HIST") rather than a
+   * list. Checkable, but NOT a named list -- kept separate so the published
+   * wording can be true of each part rather than true on average. */
+  patterned: number;
+  /** General Education categories. These parse fine; they are answered by the
+   * gen-ed audit, which tests a designation rather than a course code, so
+   * they are not counted as resolved. Counting them as failures understates
+   * the figure, which is the direction to err. */
+  genEd: number;
   /** Requirements we could not read. In the denominator, deliberately. */
   unreadable: number;
   /** The denominator: everything except adviser-defined requirements. */
@@ -33,19 +44,12 @@ export interface RequirementCoverage {
   percent: number;
 }
 
-/** A rule that states a requirement. `note` is prose between requirements and
- * carries none, so it is not counted either way. */
-function isRequirement(rule: ReqRule): boolean {
-  return rule.type !== "note";
-}
-
-/** Generic so a caller can pass whole program objects -- they carry a slug
- * and much else -- without TypeScript's excess-property check rejecting the
- * literal. The function reads only `requirementSections`. */
-export function requirementCoverage<T extends { requirementSections?: ReqSection[] }>(
-  programs: readonly T[],
+export function requirementCoverage(
+  programs: readonly { requirementSections?: ReqSection[] }[],
 ): RequirementCoverage {
-  let resolved = 0;
+  let named = 0;
+  let patterned = 0;
+  let genEd = 0;
   let unreadable = 0;
   let adviserDefined = 0;
   let considered = 0;
@@ -53,22 +57,32 @@ export function requirementCoverage<T extends { requirementSections?: ReqSection
   for (const program of programs) {
     for (const section of program.requirementSections ?? []) {
       for (const rule of section.rules ?? []) {
-        if (!isRequirement(rule)) continue;
-        considered++;
+        // A null Pool means the row states no requirement -- `note`, which is
+        // prose between requirements. Asking poolFromRule rather than
+        // re-listing the rule types here keeps ONE place that decides it; a
+        // copy would need editing in step with that switch forever.
         const pool = poolFromRule(rule);
+        if (pool === null) continue;
+        considered++;
         if (poolIsAdviserDefined(pool)) {
           adviserDefined++;
           continue;
         }
-        if (poolHasMembership(pool)) resolved++;
+        if (pool?.kind === "listed" || pool?.kind === "registry") named++;
+        else if (pool?.kind === "patterned") patterned++;
+        else if (pool?.kind === "genEd") genEd++;
         else unreadable++;
       }
     }
   }
 
   const total = considered - adviserDefined;
+  const resolved = named + patterned;
   return {
     resolved,
+    named,
+    patterned,
+    genEd,
     unreadable,
     total,
     adviserDefined,

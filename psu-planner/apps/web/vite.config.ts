@@ -55,6 +55,10 @@ function coverageFacts(): Record<string, string> {
   return {
     "%COVERAGE_PERCENT%": String(f.percent),
     "%COVERAGE_RESOLVED%": String(f.resolved),
+    "%COVERAGE_NAMED%": String(f.named),
+    "%COVERAGE_PATTERNED%": String(f.patterned),
+    "%COVERAGE_GENED%": String(f.genEd),
+    "%COVERAGE_UNREADABLE%": String(f.unreadable),
     "%COVERAGE_TOTAL%": String(f.total),
     "%COVERAGE_ADVISER%": String(f.adviser),
     "%COVERAGE_PROGRAMS%": String(f.programs),

@@ -146,21 +146,36 @@
              so it cannot drift away from the data it describes. -->
         <p class="lp-figure">
           <strong>%COVERAGE_PERCENT%%</strong>
-          <span>of requirements resolve to named courses</span>
+          <span>of requirements resolve to courses the planner can check</span>
         </p>
         <p>
-          %COVERAGE_RESOLVED% of %COVERAGE_TOTAL% requirements across
-          %COVERAGE_PROGRAMS% programs in the %COVERAGE_EDITION% bulletin. The
-          rest are rows the parser could not read, and they are counted as
-          failures here rather than quietly dropped.
+          Across %COVERAGE_PROGRAMS% programs in the %COVERAGE_EDITION% bulletin:
+          <strong>%COVERAGE_NAMED%</strong> requirements name their courses
+          outright, and another <strong>%COVERAGE_PATTERNED%</strong> name a
+          subject and a level, like any 400-level <span class="code">HIST</span>
+          course, which it checks the same way.
         </p>
         <p>
-          A further <strong>%COVERAGE_ADVISER%</strong> requirements are left out of that
+          <strong>%COVERAGE_UNREADABLE%</strong> are rows it could not read.
+          Those count as failures here rather than being quietly dropped, so
+          this figure falls when the parser gets worse instead of rising.
+          A further <strong>%COVERAGE_GENED%</strong> are General Education
+          categories, answered by the gen-ed audit rather than by a course
+          list; they are counted as failures too, which understates the number
+          rather than flattering it.
+        </p>
+        <p>
+          <strong>%COVERAGE_ADVISER%</strong> requirements are left out of the
           fraction entirely, because the bulletin publishes no list for them:
           it says to decide with your adviser. They are not failures and they
-          are not successes, so counting them either way would make this
-          number mean less. The planner shows them with the bulletin's own
-          wording rather than an empty list.
+          are not successes, so counting them either way would make this number
+          mean less. The planner shows them with the bulletin's own wording
+          rather than an empty list.
+        </p>
+        <p class="lp-small">
+          This describes the %COVERAGE_EDITION% bulletin. A plan pinned to an
+          earlier one is read against that bulletin instead, so its figure may
+          differ.
         </p>
       </section>
 
