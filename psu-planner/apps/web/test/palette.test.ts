@@ -73,6 +73,10 @@ const PAIRS: [string, string, string][] = [
   ["--primary-fg", "--primary", "label on an accent fill"],
   ["--accent-text", "--bg", "accent text on the page"],
   ["--text", "--primary-tint", "text on a selected row"],
+  // Keyword chips: extracted topic terms sit on the tint, in accent ink. A
+  // NEW pairing introduced with the chips -- --accent-text had only ever been
+  // measured against --bg, and --primary-tint only against --text.
+  ["--accent-text", "--primary-tint", "a keyword chip's label on its tint"],
   ["--text", "--surface-2", "text on an input"],
 ];
 

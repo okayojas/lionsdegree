@@ -148,6 +148,11 @@ function SlotSuggestions({ item, onFill }: { item: PlanItem; onFill: (code: stri
   );
 }
 
+/** How much of the bulletin's description to show before linking out. The
+ * catalog is Penn State's prose; an excerpt plus a link to the source is a
+ * reference, where the whole thing is a republication (DECISIONS.md 5.1). */
+const DESC_CHARS = 280;
+
 export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => void }) {
   const { plan, catalog, sched, mutatePlan, markCompleted, refreshCatalog, swapAlternative, removeItem } = usePlanner();
 
@@ -297,7 +302,29 @@ export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => 
             <span style={{ display: "block", marginTop: 4 }}>Every optimization honors these — the course is scheduled around them.</span>
           </div>
         )}
-        <p className="desc">{c?.description}</p>
+        {/* What the course is about, before the prose. The keywords are
+            extracted from the bulletin's description by the pipeline, so a
+            student can tell at a glance what a course covers without reading
+            a paragraph -- and without us republishing one in full. The
+            bulletin link is the authority for the rest. */}
+        {c?.keywords?.length ? (
+          <ul className="kw" aria-label={`What ${c.code} covers`}>
+            {c.keywords.map((k) => (
+              <li key={k}>{k}</li>
+            ))}
+          </ul>
+        ) : null}
+        {c?.description && (
+          <p className="desc">
+            {c.description.slice(0, DESC_CHARS)}
+            {c.description.length > DESC_CHARS ? "… " : " "}
+            {c.url && (
+              <a href={c.url} target="_blank" rel="noopener noreferrer">
+                Full description in the Bulletin
+              </a>
+            )}
+          </p>
+        )}
         <div className="row">
           <button
             className="primary"

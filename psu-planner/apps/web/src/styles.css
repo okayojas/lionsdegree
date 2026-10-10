@@ -641,3 +641,14 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   padding: var(--sp-2) var(--sp-3);
   margin-top: var(--sp-2);
 }
+
+/* Extracted topic terms: what a course covers, at a glance. Rendered as a
+   list rather than loose text so a screen reader announces a count and can
+   step through them -- "what is this course about" is exactly the question
+   someone scanning by keyboard is asking. */
+.kw { display: flex; flex-wrap: wrap; gap: var(--sp-2); list-style: none; padding: 0; margin: var(--sp-3) 0; }
+.kw li {
+  font-size: .78rem; line-height: 1; padding: 5px 9px; border-radius: var(--r-full);
+  background: var(--primary-tint); color: var(--accent-text); border: 1px solid transparent;
+  white-space: nowrap;
+}

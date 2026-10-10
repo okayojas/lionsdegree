@@ -266,7 +266,12 @@ export default function App() {
         <Dialog label="Course details" onClose={() => setPickedCourse(null)}>
             <h2>{pickedCourse.display}</h2>
             <div className="sub">{pickedCourse.title} · {pickedCourse.credits}</div>
-            <p className="desc">{pickedCourse.description.slice(0, 400)}{pickedCourse.description.length > 400 ? "…" : ""}</p>
+            {pickedCourse.keywords?.length ? (
+              <ul className="kw" aria-label={`What ${pickedCourse.code} covers`}>
+                {pickedCourse.keywords.map((k) => <li key={k}>{k}</li>)}
+              </ul>
+            ) : null}
+            <p className="desc">{pickedCourse.description.slice(0, 280)}{pickedCourse.description.length > 280 ? "…" : ""}</p>
             {pickedCourse.enforced && <div className="verbatim"><b>Enforced prerequisite:</b> {pickedCourse.enforced}</div>}
             {plan.completed[pickedCourse.code] ? (
               <>

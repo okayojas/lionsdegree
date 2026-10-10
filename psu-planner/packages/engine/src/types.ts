@@ -10,6 +10,11 @@ export interface Course {
   credits: string;
   creditsParsed: { min: number; max: number; repeatableMax: number | null } | null;
   description: string;
+  /** Topic terms extracted from `description` by the pipeline. Facts ABOUT
+   * the text rather than the text: what a student is shown a course covers,
+   * without republishing the University's prose (DECISIONS.md 5.1). Absent
+   * when nothing could be derived. */
+  keywords?: string[];
   enforced: string | null;
   concurrent: string | null;
   prereqAdvisory: string | null;

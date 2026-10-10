@@ -280,7 +280,11 @@ export async function executeTool(
         code: c.code,
         title: c.title,
         credits: c.credits,
-        description: fence(c.description),
+        // Keywords first: extracted topic terms are facts about the course
+        // and need no fencing. The description is the University's prose and
+        // does, and is excerpted rather than reproduced whole.
+        keywords: c.keywords ?? [],
+        description: fence(c.description.slice(0, 280)),
         enforced_prerequisites: c.enforced,
         enforced_concurrent: c.concurrent,
         genEd: c.genEd,

@@ -20,6 +20,12 @@ export const CourseSchema = z.object({
   credits: z.string(),
   creditsParsed: z.object({ min: z.number(), max: z.number(), repeatableMax: z.number().nullable() }).nullable(),
   description: z.string(),
+  /** Topic terms extracted from `description` (src/derive/keywords.ts).
+   * What a student is SHOWN about course content: extracted terms are facts
+   * about the text, where the description is the University's prose. Absent
+   * when nothing could be derived -- never present and empty, so "no keywords"
+   * is distinguishable from "no description". */
+  keywords: z.array(z.string()).optional(),
   enforced: z.string().nullable(),
   concurrent: z.string().nullable(),
   prereqAdvisory: z.string().nullable(),

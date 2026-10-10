@@ -649,6 +649,46 @@ history starts at a fresh root commit rather than a rewritten one. No `filter-re
 
 ## 5. Security & compliance decisions (2026-07-14)
 
+### 5.1 Course descriptions are Penn State's expression, not our facts
+
+- **The question:** the shipped catalog carried 14,493 course descriptions verbatim, 10.4 MB of
+  prose per edition, downloaded by every visitor.
+- **What is and is not ours.** Codes, credits, prerequisites and Gen Ed tags are *facts*; under
+  *Feist* they carry no copyright, and *Assessment Technologies v. WIREdata* (7th Cir. 2003) says a
+  compiler cannot use copyright to sequester the data underneath its compilation. A thousand
+  characters of prose describing a course is expression, and clears *Feist*'s "minimal spark" bar
+  easily. Penn State is state-related, not federal, so §105 does not apply, and the bulletin footer
+  asserts copyright with a named DMCA agent.
+- **Truncation does not fix it — measured.** A 400-character cap reproduces the ENTIRE description
+  for 6,762 courses (47%); the median is 540 characters and CMPSC 465's is 123. Brevity was never
+  what made *Authors Guild v. Google* work: a snippet cannot substitute for a 300-page book, but
+  taking all of a 123-character description means the excerpt IS the substitute.
+- **Fix: extract, do not excerpt.** `src/derive/keywords.ts` emits topic terms per course. Extracted
+  terms are facts *about* the text rather than the text, so they can be shown freely, and a student
+  still learns what a course covers. Display is keywords + a short excerpt + a link to the bulletin
+  page the text came from — a reference that sends traffic TO Penn State rather than standing in
+  for them, which also helps the market-harm factor.
+- **Why the extraction is deterministic.** Generating descriptions with a model would violate iron
+  rule 1 (2.5) *and* be legally weaker: text produced by a model that read PSU's description is a
+  derivative work — paraphrase does not launder copyright — and it reintroduces expression that is
+  now unverifiable. "Include all the keywords" constrains what goes in, not what gets invented
+  around them, which is the MATSE 444/448 mechanism exactly. A test asserts the output is a SUBSET
+  of the source's own words; a generated summary could not pass it.
+- **Part-of-speech filtering is load-bearing, not polish.** Without it ~1 keyword in 4 was a stray
+  verb ("pertaining", "comprehend", "judged", "intended") on a surface whose whole job is to say
+  what a course is about. Tagged per OCCURRENCE: a corpus-wide vote drops "writing" (verbal 86% of
+  the time overall, nominal in every English course) and keeps "comprehend" at 51%. Rejected first:
+  subject-concentration weighting (over-filtered — CMPSC 465 lost "trees" and "sets") and a
+  repeat-or-rare rule (CMPSC 465 got ZERO, because its description is one dense sentence where
+  nothing repeats — the signal fails precisely on the shortest, most keyword-dense entries).
+  Accepted limit: a gerund in a bare list tags as a verb, so "...graphs, sorting." loses "sorting".
+- **Still to do:** stop shipping descriptions altogether, replacing search's use of them with a
+  build-time inverted index. Measured at 88.9% top-25 agreement with today's ranking against 49.5%
+  for keywords alone, at 2.13 MB. Keeping the prose build-side only is *Authors Guild v. HathiTrust*
+  — full-text indexing with no display at all. The condition is that it must never ship: shipping
+  it and not rendering it is still distribution.
+
+
 - **Security headers** per OWASP Secure Headers baseline: `_headers` (Cloudflare Pages) sets HSTS
   (2y, preload), CSP (self-only scripts; no third-party origins except Supabase in connect-src;
   frame-ancestors none), nosniff, Referrer-Policy, Permissions-Policy, COOP/CORP. API adds Hono

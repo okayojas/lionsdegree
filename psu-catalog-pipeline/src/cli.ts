@@ -11,6 +11,7 @@ import { fetchPage } from "./lib/fetcher.js";
 import { discoverSubjects } from "./discover/subjects.js";
 import { discoverPrograms } from "./discover/programs.js";
 import { parseSubjectPage } from "./parse/courses.js";
+import { extractKeywords } from "./derive/keywords.js";
 import { parseProgramPage } from "./parse/program.js";
 import { applyOverrides } from "./normalize/overrides.js";
 import { buildCourseIndex, indexFromCourses, resolveCourseAsts, validateProgram, type IntegrityReport } from "./validate/integrity.js";
@@ -54,6 +55,20 @@ async function scrapeCourses(): Promise<{ files: string[]; count: number; astInc
   const index = indexFromCourses(all);
   const astStats = resolveCourseAsts(all, index);
   console.log(`[courses] AST integrity: ${astStats.resolved} leaves suffix-resolved, ${astStats.expanded} expanded to variant or-chains`);
+
+  // Phase 2b: derive keywords from the descriptions, while the whole corpus is
+  // in memory -- tf-idf needs every document to know what is distinctive about
+  // one. These are what a student is SHOWN about a course's content; the
+  // description itself is the University's prose (DECISIONS.md 5.1).
+  const keywords = extractKeywords(all, { subjects: new Set([...index.subjects].map((x) => x.toLowerCase())) });
+  for (const c of all) {
+    const kw = keywords.get(c.code);
+    if (kw?.length) c.keywords = kw;
+  }
+  console.log(
+    `[courses] keywords: ${keywords.size} of ${all.filter((c) => c.description?.trim()).length} described courses ` +
+      `(mean ${([...keywords.values()].reduce((a, v) => a + v.length, 0) / Math.max(1, keywords.size)).toFixed(1)})`,
+  );
 
   // Phase 3: validate + write.
   const files: string[] = [];
