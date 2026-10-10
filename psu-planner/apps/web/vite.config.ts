@@ -19,7 +19,17 @@ import { VitePWA } from "vite-plugin-pwa";
  * literals in the markup, moving the site meant finding all four, and a
  * preview deployed to *.pages.dev would unfurl the production card. Override
  * with SITE_URL in the environment for a preview build. */
-const SITE_URL = (process.env.SITE_URL ?? "https://lionsdegree.com").replace(/\/$/, "");
+const SITE_URL = (
+  // Explicit wins: a local preview deploy sets this.
+  process.env.SITE_URL ??
+  // Cloudflare sets CF_PAGES_URL on every Pages build, including previews, so
+  // a preview built BY Cloudflare labels itself correctly with no ceremony.
+  // Without this a preview inherits the production canonical URL and unfurls
+  // the production card, which is how a half-finished build gets shared
+  // looking like the real site.
+  process.env.CF_PAGES_URL ??
+  "https://lionsdegree.com"
+).replace(/\/$/, "");
 
 /** Substitutes %SITE_URL% in index.html. Vite only expands %VAR% from loaded
  * .env files, and the origin is not a secret, so it is declared above. */

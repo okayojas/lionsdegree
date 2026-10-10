@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "sync-catalog": "node scripts/sync-catalog.mjs",
-    "deploy": "npm run sync-catalog && npm run build && npm run og && npm run build && wrangler pages deploy dist --project-name lionsdegree",
+    "deploy": "npm run sync-catalog && npm run build && npm run og && wrangler pages deploy dist --project-name lionsdegree",
     "test": "vitest run",
     "test:build": "npm run build && vitest run",
     "test:e2e": "playwright test",
