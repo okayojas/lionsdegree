@@ -26,22 +26,34 @@ export default defineConfig({
     screenshot: "only-on-failure",
   },
   projects: [
-    { name: "desktop", use: { ...devices["Desktop Chrome"] } },
+    // Every other project runs against the DEFAULT build, which has no
+    // advisor; advisor.spec.ts is excluded from them for that reason.
+    { name: "desktop", testIgnore: /advisor\.spec\.ts/, use: { ...devices["Desktop Chrome"] } },
     // A real phone profile, because "most first visits are mobile" is the
     // reason the launch gate exists.
-    { name: "mobile", use: { ...devices["Pixel 7"] } },
+    { name: "mobile", testIgnore: /advisor\.spec\.ts/, use: { ...devices["Pixel 7"] } },
     // Dark is not a variant, it is half the product: this palette was retuned
     // for it (navy is unusable in dark at 1.42:1). The other two projects pin
     // the theme to light so contrast assertions measure a known target, which
     // left every dark rule unexercised by the browser suite.
-    { name: "desktop-dark", use: { ...devices["Desktop Chrome"], colorScheme: "dark" } },
+    { name: "desktop-dark", testIgnore: /advisor\.spec\.ts/, use: { ...devices["Desktop Chrome"], colorScheme: "dark" } },
     // Dark AND touch. Without it the `pointer: coarse` rules were only ever
     // rendered in light and the phone layer only ever in dark on a project
     // with a mouse -- so the combination a student actually has, a dark phone,
     // was the one combination nothing exercised.
-    { name: "mobile-dark", use: { ...devices["Pixel 7"], colorScheme: "dark" } },
+    { name: "mobile-dark", testIgnore: /advisor\.spec\.ts/, use: { ...devices["Pixel 7"], colorScheme: "dark" } },
+    // The advisor is BUILD-TIME configuration, so the only way to exercise
+    // the configured half is a second build served on its own port. Without
+    // this, inverting the chatConfigured gate left the whole suite green:
+    // every test ran against a build with no advisor in it.
+    {
+      name: "advisor",
+      testMatch: /advisor\.spec\.ts/,
+      use: { ...devices["Desktop Chrome"], baseURL: "http://127.0.0.1:4319" },
+    },
   ],
-  webServer: {
+  webServer: [
+    {
     // --host 127.0.0.1 is load-bearing: vite preview otherwise binds [::1]
     // only, and Playwright's readiness probe against 127.0.0.1 never answers,
     // so the suite dies on a 120s webServer timeout with no hint why.
@@ -56,7 +68,21 @@ export default defineConfig({
     // twice: a CSS fix that was present in the source and in a fresh build
     // was measured as "not applying", and a suite was diagnosed as flaky when
     // it was testing old bytes. A few seconds per run is the right trade.
-    reuseExistingServer: false,
-    timeout: 120_000,
-  },
+      reuseExistingServer: false,
+      timeout: 120_000,
+    },
+    {
+      // The same app built WITH an advisor configured. Same-origin endpoint,
+      // so it matches what deploy:self-host produces.
+      // Its OWN output directory. Both servers start together, and a second
+      // build writing to dist/ would overwrite the first server's bytes --
+      // the default build would then be serving the advisor one.
+      command:
+        "npm run build -- --outDir dist-advisor && npm run preview -- --outDir dist-advisor --port 4319 --strictPort --host 127.0.0.1",
+      url: "http://127.0.0.1:4319/plan/",
+      env: { VITE_CHAT_ENDPOINT: "/v1/chat" },
+      reuseExistingServer: false,
+      timeout: 120_000,
+    },
+  ],
 });

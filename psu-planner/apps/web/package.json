@@ -15,7 +15,7 @@
     "test:e2e": "playwright test",
     "test:e2e:install": "playwright install --with-deps chromium",
     "og": "node scripts/make-og.mjs",
-    "deploy:self-host": "npm run sync-catalog && npm run build && npm run og && node scripts/deploy-self-host.mjs"
+    "deploy:self-host": "node -e \"if(!process.env.VITE_CHAT_ENDPOINT){console.error('set VITE_CHAT_ENDPOINT=/v1/chat first');process.exit(1)}\" && npm run sync-catalog && npm run build && npm run og && node scripts/deploy-self-host.mjs"
   },
   "dependencies": {
     "@fontsource-variable/space-grotesk": "^5.3.0",

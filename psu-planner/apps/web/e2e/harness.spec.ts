@@ -77,10 +77,14 @@ test.describe("with no advisor configured", () => {
     const panel = planner.locator(".sidepanel");
     await expect(panel).toBeVisible();
     const text = (await panel.innerText()).trim();
-    expect(text.length, "the advisor panel rendered empty").toBeGreaterThan(20);
+    expect(text, "the side panel rendered empty with the advisor hidden").toMatch(/requirements/i);
   });
 
   test("shows no chat composer anywhere", async ({ planner }) => {
-    await expect(planner.locator(".chat-input, .chat-composer textarea")).toHaveCount(0);
+    // `.chat-input` is the real class; an earlier version also listed
+    // `.chat-composer textarea`, which matches nothing in this codebase and
+    // so asserted nothing.
+    await expect(planner.locator(".chat-input")).toHaveCount(0);
+    await expect(planner.locator(".sidepanel textarea")).toHaveCount(0);
   });
 });

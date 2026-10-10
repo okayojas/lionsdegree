@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import { currentUser, pullNewerPlan, signIn, signOut, supabase, syncConfigured } from "../data/sync";
 import { usePlanner, loadSavedPlan } from "../store";
+import { chatConfigured } from "../chat/config";
 
 export function AccountMenu({ onToast }: { onToast: (msg: string) => void }) {
   const [user, setUser] = useState<User | null>(null);
@@ -41,7 +42,7 @@ export function AccountMenu({ onToast }: { onToast: (msg: string) => void }) {
             <button role="menuitem" onClick={() => void signIn("azure")}>Microsoft (PSU account)</button>
             <button role="menuitem" onClick={() => void signIn("google")}>Google</button>
             <p style={{ fontSize: 10.5, color: "var(--muted)", margin: "2px 4px" }}>
-              Syncs your plan across devices and unlocks the AI advisor. Planning, the
+              Syncs your plan across devices{chatConfigured ? " and unlocks the AI advisor" : ""}. Planning, the
               optimizer, and the degree audit all work without an account.
             </p>
           </div>

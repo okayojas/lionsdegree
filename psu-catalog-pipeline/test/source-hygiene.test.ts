@@ -21,7 +21,12 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
-const SKIP = new Set(["node_modules", ".git", "dist", "build", "coverage", "data", "public", ".turbo"]);
+const SKIP = new Set(["node_modules", ".git", "build", "coverage", "data", "public", ".turbo"]);
+/** Build outputs, by prefix rather than by exact name. Minified bundles are
+ * full of bytes this test exists to find in SOURCE, and naming "dist" exactly
+ * meant a second output directory (dist-advisor, added for the advisor e2e
+ * project) was scanned and reported two false positives. */
+const isBuildOutput = (name: string) => name === "dist" || name.startsWith("dist-");
 const EXT = /\.(ts|tsx|js|jsx|mjs|cjs|css|html|ya?ml)$/;
 
 /** Tab, newline and carriage return are the only control characters any of
@@ -33,7 +38,7 @@ function sourceFiles(dir: string, out: string[] = []): string[] {
     if (e.name.startsWith(".") && e.name !== ".github") continue;
     const p = path.join(dir, e.name);
     if (e.isDirectory()) {
-      if (!SKIP.has(e.name)) sourceFiles(p, out);
+      if (!SKIP.has(e.name) && !isBuildOutput(e.name)) sourceFiles(p, out);
     } else if (EXT.test(e.name)) out.push(p);
   }
   return out;

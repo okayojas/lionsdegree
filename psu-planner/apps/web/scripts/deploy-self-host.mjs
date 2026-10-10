@@ -41,16 +41,22 @@ if (fs.existsSync(dst)) {
 }
 
 if (!process.env.VITE_CHAT_ENDPOINT) {
-  console.warn(
-    "VITE_CHAT_ENDPOINT is not set, so the build this deploys will HIDE the advisor " +
-      "and the proxy you are about to ship will never be called. Set it to /v1/chat and rebuild.",
+  // FAIL, do not warn. This script runs after the build in the npm chain, so
+  // a warning here arrives too late to act on and the deploy proceeds anyway:
+  // a proxy is shipped, billable, and never called, because the build it
+  // accompanies has no endpoint compiled into it.
+  console.error(
+    "VITE_CHAT_ENDPOINT is not set, so the build would HIDE the advisor and the proxy " +
+      "you are about to ship would never be called. " +
+      "Set VITE_CHAT_ENDPOINT=/v1/chat (in .env.local or the environment) and re-run.",
   );
+  process.exit(1);
 }
 
 fs.cpSync(src, dst, { recursive: true });
 try {
   const args = ["pages", "deploy", "dist", "--project-name", "lionsdegree", ...process.argv.slice(2)];
-  const r = spawnSync("npx", ["wrangler", ...args], { cwd: web, stdio: "inherit", shell: true });
+  const r = spawnSync("wrangler", args, { cwd: web, stdio: "inherit", shell: true });
   process.exitCode = r.status ?? 1;
 } finally {
   // Always, including on failure: a leftover functions/ makes the NEXT plain

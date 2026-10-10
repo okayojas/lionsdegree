@@ -21,9 +21,24 @@ const LOCAL = new Set(["localhost", "127.0.0.1", "[::1]"]);
  * Normalise a configured endpoint, or return null when the advisor should be
  * treated as absent.
  *
- * Accepts a same-origin path (`/v1/chat`, what a self-hoster running the
- * bundled Pages Function sets) or an absolute https URL (a proxy hosted
- * elsewhere). Exported for tests; prefer `chatEndpoint` below.
+ * SAME-ORIGIN ONLY. An absolute off-origin URL is rejected even when it is
+ * https, for two reasons that both bite the student rather than the person
+ * who configured it:
+ *
+ *   - `public/_headers` ships `connect-src 'self' https://*.supabase.co`, so
+ *     the browser blocks the request. The Advisor tab would render and every
+ *     send would fail -- precisely the "control that cannot work" this gate
+ *     exists to prevent, and the same failure as the http case below.
+ *   - useChat sends the student's Supabase access token as a Bearer header.
+ *     That is the credential their row-level security depends on, and an
+ *     off-origin endpoint hands it to a third party.
+ *
+ * A proxy hosted elsewhere is still supported: front it at your own origin,
+ * which is what the bundled Pages Function does. Pointing the browser
+ * straight at it would need the CSP widened too, and a config that silently
+ * contradicts the shipped CSP is worse than one that refuses.
+ *
+ * Exported for tests; prefer `chatEndpoint` below.
  */
 export function parseChatEndpoint(raw: string | undefined): string | null {
   const v = (raw ?? "").trim();
@@ -40,10 +55,9 @@ export function parseChatEndpoint(raw: string | undefined): string | null {
   } catch {
     return null;
   }
-  if (url.protocol === "https:") return v;
-  // http is mixed content on an https site and the browser blocks it, so the
-  // control would exist and never work. Local development is the exception.
-  if (url.protocol === "http:" && LOCAL.has(url.hostname)) return v;
+  // Localhost is the one absolute form that works: there is no CSP on a dev
+  // server and no network to carry the token off the machine.
+  if (LOCAL.has(url.hostname)) return v;
   return null;
 }
 

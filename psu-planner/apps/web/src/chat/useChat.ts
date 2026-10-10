@@ -12,7 +12,7 @@ import type { PlanDoc } from "@psu-planner/engine";
 import { usePlanner } from "../store";
 import { accessToken } from "../data/sync";
 import { executeTool, resetTurnGuards } from "./tools";
-import { chatEndpoint } from "./config";
+import { chatConfigured, chatEndpoint } from "./config";
 
 export interface DisplayMessage {
   role: "user" | "assistant";
@@ -65,7 +65,7 @@ async function streamCompletion(
   const token = await accessToken();
   let res: Response;
   try {
-    res = await fetch(chatEndpoint!, {
+    res = await fetch(chatEndpoint, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -159,7 +159,12 @@ export function useChat() {
 
   // Persist chat after every turn so a reload keeps the conversation.
   useEffect(() => {
-    if (busy) return;
+    // Nothing to persist when there is no advisor. SidePanel has to call this
+    // hook unconditionally -- hooks cannot be conditional -- so without this
+    // an app with no chat configured still wrote an empty conversation to
+    // localStorage on mount, which is not "fully local, the way account sync
+    // behaves": sync guards its own effect the same way.
+    if (!chatConfigured || busy) return;
     try {
       localStorage.setItem(CHAT_LS_KEY, JSON.stringify({ messages, wire: trimWire(wireRef.current) } satisfies PersistedChat));
     } catch { /* quota — drop persistence, never break chat */ }

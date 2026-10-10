@@ -110,9 +110,16 @@ npm run deploy             # static only, nothing billable
 npm run deploy:self-host   # puts the proxy in place for one deploy, then removes it
 ```
 
+`VITE_CHAT_ENDPOINT` must be same-origin: the shipped CSP allows
+`connect-src 'self'` plus Supabase, and the request carries the student's
+Supabase token, so an off-origin endpoint is rejected rather than shipped as
+a chat that cannot send. Host the proxy wherever you like and front it at
+your own origin.
+
 The self-host deploy needs `OPENAI_API_KEY` (secret) and a `RATE_LIMIT` KV
-binding on the Pages project, and `VITE_CHAT_ENDPOINT` set at build time or
-the advisor stays hidden and the function you just deployed is never called.
+binding on the Pages project, and it refuses to run without
+`VITE_CHAT_ENDPOINT` — otherwise it would ship a billable proxy that the
+build it accompanies can never call.
 Its hardening — rate limiting, the identity gate, prompt-injection fencing —
 is unchanged.
 

@@ -14,6 +14,7 @@ import { ImportModal } from "./components/ImportModal";
 import { PlanListView } from "./components/PlanListView";
 import { LegalModal } from "./components/LegalModal";
 import { AccountMenu } from "./components/AccountMenu";
+import { chatConfigured } from "./chat/config";
 
 export default function App() {
   const { plan, catalog, items, setPlan, mutatePlan, markCompleted, restoreItem, refreshCatalog, loading, loadError, servedEdition, repairNote, clearRepairNote } = usePlanner();
@@ -226,7 +227,7 @@ export default function App() {
           className="panel-resizer"
           role="separator"
           aria-orientation="vertical"
-          aria-label="Resize advisor panel"
+          aria-label={chatConfigured ? "Resize advisor panel" : "Resize side panel"}
           onPointerDown={startResize}
         />
         <SidePanel width={chatWidth} />
