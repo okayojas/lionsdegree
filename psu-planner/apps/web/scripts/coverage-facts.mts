@@ -18,6 +18,15 @@ import { fileURLToPath } from "node:url";
 import { requirementCoverage } from "@psu-planner/engine";
 import { latestEdition, loadPrograms } from "./catalog-programs.mjs";
 
+/** Distinct courses in the shipped index for this edition. The proof strip
+ * states it, so it is counted from the bytes that ship rather than typed. */
+function courseCount(edition: string): number {
+  const file = path.join(web, "public", "catalog", edition, "search-index.json");
+  const raw = JSON.parse(fs.readFileSync(file, "utf-8")) as { courses?: unknown[] } | unknown[];
+  const list = Array.isArray(raw) ? raw : (raw.courses ?? []);
+  return new Set(list.map((c) => (c as { code?: string }).code).filter(Boolean)).size;
+}
+
 const web = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 let edition: string;
@@ -47,6 +56,12 @@ fs.writeFileSync(
       total: n(s.total),
       adviser: n(s.adviserDefined),
       programs: n(programs.length),
+      // RAW copies for the count-up animation, which has to parse them as
+      // numbers. The formatted versions stay, because they are what renders
+      // before the script runs and what a reader sees if it never does.
+      programsRaw: String(programs.length),
+      courses: n(courseCount(edition)),
+      coursesRaw: String(courseCount(edition)),
     },
     null,
     2,

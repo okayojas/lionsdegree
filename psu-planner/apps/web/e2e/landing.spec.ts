@@ -7,6 +7,25 @@
  */
 import { test, expect, expectNoA11yViolations } from "./fixtures.js";
 
+/** Scroll the whole page and let it settle before an accessibility scan.
+ *
+ * Scroll reveals start at `opacity: 0`, and axe computes contrast against
+ * whatever is actually painted -- so an element mid-reveal measures as a
+ * washed-out blend and the scan reports a contrast failure that no reader
+ * ever sees. Worse, whether it fires depends on timing, so the result was
+ * nondeterministic. Scanning the settled page is also simply more honest:
+ * it is the page a student ends up looking at. */
+async function settle(page: Page): Promise<void> {
+  await page.evaluate(async () => {
+    for (let y = 0; y < document.body.scrollHeight; y += 400) {
+      window.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 50));
+    }
+    window.scrollTo(0, 0);
+  });
+  await page.waitForTimeout(800);
+}
+
 test.describe("with JavaScript turned off", () => {
   // The one script on this page sheds a stale service worker and nothing
   // else; the page must read completely without it. A previewer, a crawler
@@ -22,7 +41,7 @@ test.describe("with JavaScript turned off", () => {
 
   test("every section of the page is there", async ({ page }) => {
     await page.goto("/");
-    for (const heading of [/Pick your programs/i, /see what breaks/i, /Bring your own AI/i, /What it can.t do/i]) {
+    for (const heading of [/checked against your plan/i, /Straight from the Bulletin/i, /Bring your own AI/i, /won.t pretend to know/i]) {
       await expect(page.getByRole("heading", { name: heading })).toBeVisible();
     }
   });
@@ -128,6 +147,7 @@ test.describe("under reduced motion", () => {
 test.describe("the landing page is usable", () => {
   test("has no mechanically detectable accessibility violations", async ({ page }) => {
     await page.goto("/");
+    await settle(page);
     await expectNoA11yViolations(page, "the landing page");
   });
 
@@ -151,7 +171,7 @@ test.describe("the landing page is usable", () => {
     // the header to satisfy a test would be the tail wagging the dog. What
     // matters is that it is right there, not that it is at index 2.
     const seen: string[] = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 6; i++) {
       await page.keyboard.press("Tab");
       const href = await page.evaluate(() => (document.activeElement as HTMLAnchorElement)?.getAttribute("href"));
       if (href) seen.push(href);
@@ -352,5 +372,80 @@ test.describe("the page's own controls", () => {
       return out;
     });
     expect(bad, "a button's label does not meet AA against its own fill").toEqual([]);
+  });
+});
+
+test.describe("about and contact", () => {
+  test("both sections exist and are linked from somewhere visible", async ({ page }) => {
+    // Reachable, not "in the nav": below 34rem the bar keeps only the brand
+    // and the primary action, which is ordinary on a phone. The footer links
+    // both at every width, so that is where the guarantee lives.
+    await page.goto("/");
+    for (const id of ["about", "contact"]) {
+      await expect(page.locator(`#${id}`), `no #${id} section`).toBeVisible();
+      const links = page.locator(`a[href="#${id}"], a[href="/#${id}"]`);
+      const visible = await links.evaluateAll((els) =>
+        els.filter((e) => (e as HTMLElement).offsetParent !== null).length,
+      );
+      expect(visible, `nothing visible links to #${id} at this width`).toBeGreaterThan(0);
+    }
+  });
+
+  test("about says who made it without inventing a company", async ({ page }) => {
+    await page.goto("/");
+    const about = page.locator("#about");
+    await expect(about.getByRole("heading")).toBeVisible();
+    // It is one person's side project. Copy implying a team or a company
+    // would be the kind of small lie that makes the honest parts read as
+    // marketing too.
+    const text = (await about.innerText()).toLowerCase();
+    expect(text).toMatch(/one person|side project/);
+    expect(text, "about claims a team that does not exist").not.toMatch(/\bour team\b|\bwe are a company\b/);
+    // The claim a reader can check for themselves.
+    await expect(about.getByRole("link", { name: /github|open source/i })).toBeVisible();
+  });
+
+  test("contact reaches a human with JavaScript off", async ({ page, context }) => {
+    // The form is script-driven. If it were the ONLY route, a student on a
+    // locked-down machine would have a bug to report and nowhere to put it.
+    await context.route("**/*.js", (r) => r.abort());
+    await page.goto("/");
+    const contact = page.locator("#contact");
+    await expect(contact.locator("a[href^='mailto:']")).toBeVisible();
+    await expect(contact.locator("#feedback-form"), "the form shows before it can work").toBeHidden();
+  });
+
+  test("the form appears once the script can drive it", async ({ page }) => {
+    await page.goto("/");
+    const form = page.locator("#feedback-form");
+    await expect(form).toBeVisible();
+    await expect(form).toHaveAttribute("data-enhanced", "true");
+    await expect(form.locator("#fb-body")).toBeVisible();
+    // Email is optional: feedback that requires identifying yourself is
+    // feedback you do not get.
+    await expect(form.locator("#fb-email")).not.toHaveAttribute("required", /.*/);
+  });
+
+  test("refuses an empty message instead of sending nothing", async ({ page }) => {
+    await page.goto("/");
+    await page.locator("#feedback-form button[type=submit]").click();
+    await expect(page.locator("#feedback-form [data-status]")).toBeVisible();
+    await expect(page.locator("#feedback-form")).toHaveAttribute("data-state", "error");
+  });
+
+  test("the honeypot is reachable by no one who can see", async ({ page }) => {
+    await page.goto("/");
+    const trap = page.locator("#fb-website");
+    await expect(trap).toHaveCount(1);
+    // Off-screen, not display:none — and out of the tab order, so a keyboard
+    // user never lands in a field they cannot see.
+    await expect(trap).toHaveAttribute("tabindex", "-1");
+    await expect(page.locator(".fb-trap")).toHaveAttribute("aria-hidden", "true");
+  });
+
+  test("has no accessibility violations", async ({ page }) => {
+    await page.goto("/");
+    await settle(page);
+    await expectNoA11yViolations(page, "the landing page with about and contact");
   });
 });

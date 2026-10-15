@@ -64,7 +64,9 @@ describe("the landing document", () => {
 
     const kb = (s: string) => fs.statSync(path.join(dist, s.slice(1))).size / 1024;
     for (const s of srcs) expect(kb(s), `${s} is ${kb(s).toFixed(0)} KB on its own`).toBeLessThan(140);
-    const total = srcs.reduce((n, s) => n + kb(s), 0);
+    // DISTINCT files: the hero shot illustrates a feature section too, and
+    // the browser fetches it once.
+    const total = [...new Set(srcs)].reduce((n, s) => n + kb(s), 0);
     expect(total, `${total.toFixed(0)} KB of images on the landing page`).toBeLessThan(260);
   });
 
@@ -103,19 +105,25 @@ describe("the icons", () => {
     }
   });
 
-  it("set a theme colour that matches the page behind it", () => {
-    // One value, not a light/dark pair: the landing page is a single dark
-    // field in both schemes now. The browser chrome still has to agree with
-    // it, or the top of the screen is a different colour from the page.
+  it("set a theme colour for each scheme, matching the palette", () => {
+    // A pair again, now the page is cream-led: the browser chrome has to
+    // agree with the page in whichever scheme the reader is using, or the
+    // top of the screen is a different colour from the top of the document.
     const html = read("index.html");
-    const m = /<meta\s+name="theme-color"\s+content="([^"]+)"/.exec(html);
-    expect(m, "no theme-color on the landing document").toBeTruthy();
+    const tags = [...html.matchAll(/<meta\s+name="theme-color"[^>]*content="([^"]+)"/g)].map((m) => m[1]);
+    expect(tags, "expected a light and a dark theme-color").toHaveLength(2);
+    expect(html).toMatch(/prefers-color-scheme: light/);
+    expect(html).toMatch(/prefers-color-scheme: dark/);
     // `bundles()` belongs to the font describe; resolve the sheet here rather
     // than reaching across scopes for it.
     const sheet = fs.readdirSync(path.join(dist, "assets")).find((f) => f.startsWith("landing-") && f.endsWith(".css"));
     expect(sheet, "no landing stylesheet in dist/assets").toBeTruthy();
     const css = read(path.join("assets", sheet!));
-    expect(css, `theme-color is ${m![1]}, which the stylesheet never uses`).toContain(m![1]);
+    // Both values have to be colours the page actually paints, or the chrome
+    // agrees with the document in one scheme and not the other.
+    for (const colour of tags) {
+      expect(css, `theme-color ${colour} is a colour the stylesheet never uses`).toContain(colour);
+    }
   });
 });
 

@@ -215,7 +215,10 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   border-bottom: 1px solid var(--border); position: relative; z-index: 30;
 }
 .toolbar h1 {
-  font-size: var(--fs-md); margin: 0 var(--sp-2) 0 0; font-weight: 800; white-space: nowrap;
+  /* 700, not 800: Space Grotesk's variable weight axis tops out at 700, so a
+     larger number was already being clamped by the browser. Writing 800 said
+     the design wanted something it was never getting. */
+  font-size: var(--fs-md); margin: 0 var(--sp-2) 0 0; font-weight: 700; white-space: nowrap;
   /* The logo's deep blue, matching the "Lions" half of the wordmark. */
   color: var(--navy); letter-spacing: var(--track-tight); display: flex; align-items: center; gap: 8px;
 }
@@ -364,7 +367,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
   @starting-style { opacity: 0; transform: scale(0.95); }
 }
-.modal h2 { margin: 0 0 4px; font-size: var(--fs-lg); color: var(--text); font-weight: 800; letter-spacing: var(--track-tight); }
+.modal h2 { margin: 0 0 4px; font-size: var(--fs-lg); color: var(--text); font-weight: 700; letter-spacing: var(--track-tight); }
 .modal .sub { color: var(--text-muted); font-size: var(--fs-xs); margin-bottom: 10px; }
 .modal .status { border-radius: var(--r-sm); padding: 9px 12px; font-size: var(--fs-sm); margin: 10px 0; }
 .modal .status.ok { background: var(--success-bg); border: 1px solid var(--success-border); color: var(--success); }
@@ -383,7 +386,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 /* ---------- onboarding ---------- */
 .onboard { max-width: 720px; margin: 32px auto; padding: 0 20px 60px; }
 .onboard-hero { padding: 6px 0 4px; }
-.onboard-hero h1 { font-size: clamp(30px, 5.5vw, 44px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.04; margin: 10px 0 8px; color: var(--text); }
+.onboard-hero h1 { font-size: clamp(30px, 5.5vw, 44px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.04; margin: 10px 0 8px; color: var(--text); }
 .onboard-hero .lede { color: var(--text-muted); font-size: var(--fs-md); margin: 0 0 4px; max-width: 54ch; }
 .onboard-hero .lede a { color: var(--accent-text); }
 .route-hero { width: 100%; height: auto; margin: 18px 0 6px; display: block; }

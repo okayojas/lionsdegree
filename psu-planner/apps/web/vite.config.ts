@@ -62,6 +62,9 @@ function coverageFacts(): Record<string, string> {
     "%COVERAGE_TOTAL%": String(f.total),
     "%COVERAGE_ADVISER%": String(f.adviser),
     "%COVERAGE_PROGRAMS%": String(f.programs),
+    "%COVERAGE_PROGRAMS_RAW%": String(f.programsRaw),
+    "%COVERAGE_COURSES%": String(f.courses),
+    "%COVERAGE_COURSES_RAW%": String(f.coursesRaw),
     "%COVERAGE_EDITION%": String(f.edition),
   };
 }

@@ -66,4 +66,22 @@ for (const { name, clip } of shots) {
   console.log(`shots/${name}.png`);
 }
 
+// The phone shot is the LIST view, not the canvas shrunk down: the list is
+// the mobile experience, and photographing a drag surface nobody can drag
+// would be selling the wrong thing.
+const phone = await browser.newPage({ viewport: { width: 390, height: 760 }, deviceScaleFactor: 2 });
+await phone.addInitScript(
+  ([k, v, t]) => {
+    window.localStorage.setItem(k, v);
+    window.localStorage.setItem("lionsdegree-theme", t);
+    window.localStorage.setItem("lionsdegree-view", "list");
+  },
+  [PLAN_KEY, JSON.stringify(SEEDED), "light"],
+);
+await phone.goto(`${BASE}/plan/`, { waitUntil: "networkidle" });
+await phone.waitForTimeout(2200);
+await phone.screenshot({ path: path.join(OUT, "mobile.png") });
+console.log("shots/mobile.png");
+await phone.close();
+
 await browser.close();
