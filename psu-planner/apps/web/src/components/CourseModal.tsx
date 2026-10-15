@@ -4,7 +4,7 @@
  * tags over the full catalog. */
 import { useEffect, useMemo, useState } from "react";
 import {
-  GENED_BUCKETS, SAT, SUMMER_MAX_CREDITS, UNK, auditGenEd, checkCourse,
+  GENED_BUCKETS, SAT, SUMMER_MAX_CREDITS, UNK, auditGenEd, checkCourse, earliestLegalTerm,
   countableCourses, majorDeptPrefixes, parseTermLabel, rankSlotPicks, resolveSlotPool,
   type Catalog, type PlanItem, type Pool, type ReqSection, type SlotSuggestions as SlotSuggestionsResult,
 } from "@psu-planner/engine";
@@ -196,6 +196,17 @@ export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => 
     p.prereqOverrides = { ...(p.prereqOverrides ?? {}) };
     if (on) p.prereqOverrides[item.code!] = true; else delete p.prereqOverrides[item.code!];
   });
+  // Where this course could legally sit, if it cannot sit here. Computed
+  // alongside the status it belongs to, so the offer and the problem are
+  // always describing the same moment.
+  const fix = useMemo(
+    () =>
+      item.kind === "course" && item.code && !done && !overridden && plan
+        ? earliestLegalTerm(catalog, item.code, item.sem, sched, plan.terms.length, plan)
+        : null,
+    [catalog, item.kind, item.code, item.sem, sched, plan, done, overridden],
+  );
+
   const stCls = overridden ? "ok" : chk!.value === SAT ? "ok" : chk!.value === UNK ? "warn" : "bad";
   const stTxt = overridden
     ? "✓ Prerequisite override confirmed with your adviser."
@@ -230,6 +241,38 @@ export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => 
               );
             })}
           </ul>
+        )}
+        {fix && (
+          <div className="fixrow">
+            <p className="fixrow-why">
+              {fix.blockedBy.join(", ")} {fix.blockedBy.length === 1 ? "is" : "are"} scheduled
+              after this, so {item.code} can't be taken in {plan!.terms[item.sem]?.label ?? `term ${item.sem + 1}`}.
+            </p>
+            <button
+              className="primary"
+              onClick={() => {
+                // Say what will happen before it happens. Moving this course
+                // later can put it at or after something that depends on IT,
+                // so "nothing else moves" is true and still misleading when
+                // `breaks` is non-empty: nothing moves, something breaks.
+                const to = plan!.terms[fix.term]?.label ?? `term ${fix.term + 1}`;
+                const tail = fix.breaks.length
+                  ? `
+
+Heads up: ${fix.breaks.join(" and ")} ${fix.breaks.length === 1 ? "depends" : "depend"} on ${item.code}, and will be out of order afterwards. Nothing is moved for you — you would need to shift ${fix.breaks.length === 1 ? "it" : "them"} too.`
+                  : `
+
+Nothing else in your plan moves.`;
+                if (!confirm(`Move ${item.code} to ${to}?
+
+That is the earliest term where ${fix.blockedBy.join(" and ")} will be behind it.${tail}`)) return;
+                mutatePlan((p) => { p.moves[item.id] = fix.term; });
+                                onClose();
+              }}
+            >
+              Move it to {plan!.terms[fix.term]?.label ?? `term ${fix.term + 1}`}
+            </button>
+          </div>
         )}
         {!done && overridden && (
           <div className="row" style={{ marginTop: 4 }}>

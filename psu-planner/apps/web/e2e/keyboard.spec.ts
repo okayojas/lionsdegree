@@ -516,3 +516,77 @@ test.describe("the theme the suite is actually running in", () => {
       .toBeGreaterThanOrEqual(4.5);
   });
 });
+
+test.describe("a course in a term its prerequisites don't allow", () => {
+  /** Break a REAL prerequisite pair: find a course whose in-plan prerequisite
+   * sits in an earlier term, then move the course in front of it.
+   *
+   * addInitScript, NOT evaluate-then-reload. The fixture seeds the plan in its
+   * own init script, which re-runs on every navigation — a move written from
+   * the page is wiped by the very reload meant to apply it, and the test then
+   * passes against an untouched plan. Init scripts run in registration order,
+   * so this one patches the seeded plan after it lands.
+   *
+   * Editing the plan rather than dragging is also deliberate: the fix has to
+   * be reachable without a pointer (WCAG 2.2 SC 2.5.7), so the test must not
+   * need one either. */
+  async function breakAPrereq(page: Page): Promise<string | null> {
+    await page.addInitScript(() => {
+      const key = "psu-planner-plan-v1";
+      const plan = JSON.parse(window.localStorage.getItem(key)!);
+      const at = new Map<string, number>();
+      plan.terms.forEach((t: { items: { code?: string }[] }, i: number) => {
+        for (const it of t.items) if (it.code) at.set(it.code, i);
+      });
+      for (const [c, term] of at) {
+        if (term < 3) continue;
+        const subject = c.split(" ")[0];
+        if (![...at].some(([o, t]) => t < term && o.startsWith(subject + " "))) continue;
+        plan.moves[c] = 0;
+        window.localStorage.setItem(key, JSON.stringify(plan));
+        window.sessionStorage.setItem("__broken", c);
+        return;
+      }
+    });
+    await page.reload();
+    await expect(page.getByRole("banner")).toBeVisible({ timeout: 30_000 });
+    return page.evaluate(() => window.sessionStorage.getItem("__broken"));
+  }
+
+  test("offers to move it, names the blocker, and names the destination", async ({ planner }) => {
+    const code = await breakAPrereq(planner);
+    test.skip(!code, "no course in the seeded plan has an in-plan prerequisite to break");
+
+    await openListView(planner);
+    const region = planner.getByRole("region", { name: /list view/i });
+    await region.getByRole("button", { name: new RegExp(`Details for .*${code}`, "i") }).first().click();
+
+    // Unconditional. The seeded plan deterministically produces a blocker
+    // here, and a guarded assertion is how a test passes while checking
+    // nothing — which this one did until the move stopped being overwritten.
+    const fix = planner.locator(".fixrow");
+    await expect(fix, "no fix offered for a course whose prerequisites sit after it").toHaveCount(1);
+
+    // The reason has to name a course the student recognises...
+    await expect(fix.locator(".fixrow-why")).toContainText(/[A-Z]{2,8} \d/);
+    // ...and the button has to say where it is going, not just "fix".
+    await expect(fix.getByRole("button")).toContainText(/Move it to \S/);
+  });
+
+  test("the fix is a real button, reachable by keyboard", async ({ planner }) => {
+    // It must not be drag-only. A <button> is focusable and activates on
+    // Enter and Space by construction, which is the point of using one.
+    const code = await breakAPrereq(planner);
+    await openListView(planner);
+    await planner
+      .getByRole("region", { name: /list view/i })
+      .getByRole("button", { name: new RegExp(`Details for .*${code}`, "i") })
+      .first()
+      .click();
+    const fix = planner.locator(".fixrow button");
+    await expect(fix).toHaveCount(1);
+    await expect(fix).toBeEnabled();
+    const tag = await fix.evaluate((el) => el.tagName);
+    expect(tag, "the fix must be a button, not a div with a click handler").toBe("BUTTON");
+  });
+});

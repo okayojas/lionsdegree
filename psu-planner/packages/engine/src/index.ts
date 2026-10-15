@@ -21,3 +21,4 @@ export * from "./iug.js";
 export * from "./optimize.js";
 export { fenceCatalogText, FENCE_TAG } from "./fence.js";
 export { encodePostings, decodePostings, prefixRange, MAX_COUNT, type SearchIndexFile } from "./postings.js";
+export { earliestLegalTerm, type LegalTerm } from "./earliestLegal.js";
