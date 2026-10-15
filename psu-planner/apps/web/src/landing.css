@@ -210,16 +210,34 @@
 .hero .lede { max-width: 54ch; }
 
 /* ── 5.3 Proof strip ────────────────────────────────────────────────── */
-.proof { padding: clamp(2rem, 4vh, 3rem) 0; }
-.proof-row { display: flex; flex-wrap: wrap; gap: clamp(1.5rem, 5vw, 4rem); align-items: baseline; }
-.proof-item { margin: 0; display: grid; gap: 2px; }
+/* The proof strip carries the page's only hard evidence, and it sits in the
+   highest-leverage position on it — directly under the hero CTA. Sized to be
+   read from across a room rather than skimmed past. */
+.proof { padding: clamp(2.5rem, 6vh, 4.5rem) 0; }
+.proof-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+}
+.proof-item { margin: 0; display: grid; gap: var(--sp-2); }
 .proof-item strong {
   font-family: var(--font-mono);
-  font-size: var(--fs-lg); font-weight: 700;
-  color: var(--lamp); letter-spacing: -0.02em;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--lamp);
+  letter-spacing: -0.04em;
+  /* Tabular figures so the count-up does not reflow the label under it on
+     every frame. */
   font-variant-numeric: tabular-nums;
 }
-.proof-item span { font-size: var(--fs-xs); color: var(--haze); letter-spacing: .04em; }
+.proof-item span {
+  font-size: var(--fs-sm);
+  color: var(--haze);
+  letter-spacing: .04em;
+  line-height: 1.4;
+  max-width: 18ch;
+}
 
 /* ── Buttons ────────────────────────────────────────────────────────── */
 .actions { display: flex; flex-wrap: wrap; gap: var(--sp-4); margin: 0; }
