@@ -78,7 +78,37 @@ three crop and compress it differently.
 
 ---
 
-## The hero video — blocked, not forgotten
+## The hero video — first pass captured
+
+`scripts/hero-capture.mjs` records it headlessly against a running preview:
+
+```
+node scripts/hero-capture.mjs
+```
+
+It drives the real planner — drag a course into a term its prerequisite does
+not allow, the warning appears, click the fix, the card moves — with a drawn
+cursor, because Playwright's synthetic mouse moves no real pointer and without
+one the cards appear to move by themselves. Current output: **411 KB, 8.5 s,
+1280x720**, which is inside the spec's budget and duration.
+
+It is a FIRST PASS, and three things are still missing:
+
+- **Not a seamless loop.** The first and last frames differ, so it will jump.
+  The spec's method is to record twice as long, perform the action twice, and
+  cut a cycle whose ends match.
+- **No `hero.mp4`.** Playwright bundles a WebM-only ffmpeg with no MP4 muxer,
+  so the Safari and iOS fallback cannot be produced here. With a real ffmpeg
+  on PATH it is one command (below). Until then a `<video>` carrying only the
+  WebM is a black box on an iPhone, which is most of the audience for a link
+  shared in a group chat.
+- **25 fps, not 60.** Playwright's recorder is fixed at 25; drag footage wants
+  60, and at 25 the drag reads slightly steppy.
+
+Judge the pacing before anything else — a headless capture gets the sequence
+right and has no feel for timing.
+
+## Encoding reference
 
 The spec's A1 is an 8–12 second silent loop: drag a course into a term where
 its prerequisite is not satisfied, the amber warning appears, **click the
