@@ -33,6 +33,19 @@ export type ReqRule =
   | { type: "note"; commentRaw: string }
   | { type: "unstructured"; commentRaw: string };
 
+/** One program's requirements, as `program-requirements.json` stores them.
+ *
+ * Lives here rather than in the MCP package because it describes a CATALOG
+ * file, and the engine is what reads the catalog; MCP already depends on the
+ * engine, so the type can travel in that direction but not the other. */
+export interface ProgramRequirements {
+  slug: string;
+  name: string;
+  type: string;
+  totalCredits: number | null;
+  requirementSections: ReqSection[];
+}
+
 export interface ReqSection {
   heading: string;
   kind: string;

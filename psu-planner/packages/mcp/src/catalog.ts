@@ -9,15 +9,11 @@
  * major, so reading any other would answer a question they did not ask. */
 import fs from "node:fs";
 import path from "node:path";
-import { buildCatalog, hydrateSearchIndex, type Catalog, type ReqSection } from "@psu-planner/engine";
+import { buildCatalog, hydrateSearchIndex, type Catalog, type ProgramRequirements } from "@psu-planner/engine";
 
-export interface ProgramRequirements {
-  slug: string;
-  name: string;
-  type: string;
-  totalCredits: number | null;
-  requirementSections: ReqSection[];
-}
+// Re-exported, not redefined. It moved to the engine when discovery needed
+// it too, and two declarations of one catalog file's shape drift.
+export type { ProgramRequirements };
 
 export interface ProgramIndexEntry {
   slug: string;
