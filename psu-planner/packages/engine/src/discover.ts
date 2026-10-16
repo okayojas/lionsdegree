@@ -19,6 +19,7 @@
  * name at Penn State, but it is the title of courses that the AI programs
  * require. Searching names alone answers the spec's own example with nothing.
  */
+import { stem } from "./search.js";
 import type { Catalog } from "./types.js";
 import type { ProgramRequirements, ReqRule, ReqSection } from "./requirements.js";
 
@@ -55,8 +56,20 @@ const STOP = new Set(
    certificate degree program programs course courses credit credits`.split(/\s+/),
 );
 
+/** Query terms, stemmed.
+ *
+ * Matching is by substring against course titles, so a plural the catalog
+ * does not use finds nothing: "robots" returned no combinations at all while
+ * "robot" and "robotics" each returned two, because no course is titled
+ * anything-robots. Stemming to "robot" makes all three agree, and it is the
+ * same stemmer catalog search already uses -- a second one would be free to
+ * drift from it. */
 const words = (s: string): string[] =>
-  s.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length > 2 && !STOP.has(w));
+  s
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter((w) => w.length > 2 && !STOP.has(w))
+    .map(stem);
 
 /** Every course code a program's requirements can be satisfied by.
  *

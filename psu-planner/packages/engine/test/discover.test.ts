@@ -213,3 +213,16 @@ describe("the overlap figure is one a student could actually realise", () => {
     expect(ov.credits, "an elective pool is being counted course by course").toBeLessThan(ov.courses.length * 3);
   });
 });
+
+describe("word forms", () => {
+  it("finds the same programs whichever way a student pluralises", () => {
+    // "robots" found nothing while "robot" and "robotics" each found two:
+    // matching is by substring against course titles, and no course is
+    // titled anything-robots.
+    const forms = ["robot", "robots", "robotics"].map(
+      (q) => discover(q, { requirements, catalog, limit: 2 }).length,
+    );
+    expect(forms[0], "no combinations for the base word, so this proves nothing").toBeGreaterThan(0);
+    expect(new Set(forms).size, `plural forms disagree: ${forms.join(", ")}`).toBe(1);
+  });
+});

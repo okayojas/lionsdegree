@@ -14,6 +14,7 @@ import {
   buildPool,
   buildSchedule,
   checkCourse,
+  discover,
   fenceCatalogText,
   credOf,
   parsePlanFile,
@@ -87,6 +88,15 @@ export function listTools(): ToolDefinition[] {
       description:
         "The whole prerequisite tree for a course in ONE call, each node marked completed, in-plan or missing. Use this instead of walking prerequisites step by step.",
       inputSchema: obj({ code: str("Course code"), max_depth: num("How deep to walk, up to 6") }, ["code"]),
+    },
+    {
+      name: "discover_programs",
+      description:
+        "Turn an interest described in plain words into combinations of REAL Penn State credentials — a major with a minor and a certificate that reuse each other's coursework. Returns the credits that count toward more than one of them. Use this when the student says what they are interested in rather than naming a program; use search_programs when they already know the name. Returns nothing when the catalog has no match, which means say so rather than inventing a combination.",
+      inputSchema: obj(
+        { interest: str('What the student is into, in their words — "machine learning and clean energy"') },
+        ["interest"],
+      ),
     },
     {
       name: "search_programs",
@@ -350,6 +360,32 @@ export async function executeTool(
 
       const root = walk(code, 0);
       return { ...root, missing_from_plan: [...missing].filter((m) => m !== code) };
+    }
+
+    case "discover_programs": {
+      // The division of labour this whole feature rests on: the assistant
+      // does the language, the engine does the retrieval and the arithmetic.
+      // Every credential below is a program in the shipped catalog and every
+      // credit figure is summed from real course records — a model may
+      // rephrase or re-rank this, but iron rule 1 means it may not add to it.
+      const interest = String(args.interest ?? "").trim();
+      if (!interest) return { error: "interest is required — what is the student into?" };
+      const found = discover(interest, { requirements: data.programs, catalog: cat, limit: 3 });
+      if (!found.length) {
+        return {
+          combinations: [],
+          note: `Nothing in the ${data.edition} catalog matches "${interest}". Say so. Do NOT suggest programs from memory — they may not exist at Penn State, or not under that name.`,
+        };
+      }
+      return {
+        combinations: found.map((c) => ({
+          major: { slug: c.major.slug, name: c.major.name },
+          also: c.extras.map((e) => ({ slug: e.slug, name: e.name, type: e.type })),
+          credits_counting_twice: c.sharedCredits,
+          shared_courses: c.sharedCourses,
+        })),
+        note: "credits_counting_twice is computed from the programs' own requirements and is deliberately conservative — an elective slot counts once, not once per course that could fill it. Quote it as a floor.",
+      };
     }
 
     case "search_programs": {

@@ -187,3 +187,38 @@ describe("a catalog it cannot read", () => {
     await expect(loadContext({ planPath, catalogRoot: root })).rejects.toThrow(/sync-catalog/);
   });
 });
+
+describe("discover_programs", () => {
+  it("turns an interest into real credentials with a computed overlap", async () => {
+    const r = (await call("discover_programs", { interest: "machine learning and clean energy" })) as {
+      combinations: { major: { slug: string }; also: { slug: string; type: string }[]; credits_counting_twice: number }[];
+    };
+    expect(r.combinations.length, "nothing found for a mainstream interest").toBeGreaterThan(0);
+    for (const c of r.combinations) {
+      // Iron rule 1 at the tool boundary: a recommender that invents a
+      // plausible-sounding minor is the same failure as a transcriber that
+      // invents a plausible-sounding course.
+      expect(ctx.data.programs[c.major.slug], `${c.major.slug} is not a real program`).toBeTruthy();
+      for (const a of c.also) {
+        expect(ctx.data.programs[a.slug], `${a.slug} is not a real program`).toBeTruthy();
+        expect(["minor", "certificate"]).toContain(a.type);
+      }
+      expect(Number.isFinite(c.credits_counting_twice)).toBe(true);
+    }
+  });
+
+  it("tells the model to say nothing rather than fill the gap from memory", async () => {
+    // The dangerous failure. An assistant handed an empty result will happily
+    // name a program that does not exist at Penn State unless told not to.
+    const r = (await call("discover_programs", { interest: "qwertyuiop zxcvbnm" })) as {
+      combinations: unknown[]; note: string;
+    };
+    expect(r.combinations).toEqual([]);
+    expect(r.note).toMatch(/do not suggest programs from memory/i);
+  });
+
+  it("refuses an empty interest instead of returning the catalog", async () => {
+    const r = (await call("discover_programs", { interest: "  " })) as { error?: string };
+    expect(r.error).toMatch(/required/i);
+  });
+});
