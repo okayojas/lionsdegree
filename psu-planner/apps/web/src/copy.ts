@@ -1,9 +1,11 @@
-/** The copy button on /connect/.
+/** Copy buttons: the connection link on /connect/, the discovery prompt on
+ * the landing page.
  *
- * A progressive enhancement and nothing more: the connection link is plain
- * selectable text in the markup, so the page works with this script blocked,
- * failed, or not yet parsed. That matters more here than on most pages —
- * someone setting up a connector is often doing it on a locked-down machine.
+ * A progressive enhancement and nothing more: whatever is being copied is
+ * plain selectable text in the markup, so both pages work with this script
+ * blocked, failed, or not yet parsed. That matters more here than on most
+ * pages — someone setting up a connector is often doing it on a locked-down
+ * machine.
  */
 const COPIED_FOR = 1600;
 

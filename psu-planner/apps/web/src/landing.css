@@ -459,6 +459,22 @@
 }
 .copyfield-btn.is-done { background: var(--success); }
 
+/* The discovery prompt is a sentence, not an address: it wraps on words and
+   is set in the body face. Monospace and `word-break: break-all` are right
+   for a URL and wrong for English. */
+.copyfield-prose { align-items: flex-start; max-width: 42rem; }
+.copyfield-text {
+  flex: 1 1 18rem;
+  font-size: var(--fs-sm); line-height: 1.55; color: var(--text);
+  user-select: all;
+  padding: var(--sp-2) 0;
+}
+.ask-label {
+  font-family: var(--font-mono); font-size: var(--fs-xs);
+  letter-spacing: .12em; text-transform: uppercase; color: var(--primary);
+  margin: var(--sp-8) 0 var(--sp-3);
+}
+
 .pending {
   font-size: var(--fs-sm); line-height: 1.6; color: var(--text-muted);
   border-left: 3px solid var(--warning);

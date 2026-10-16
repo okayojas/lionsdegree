@@ -164,13 +164,19 @@
             </p>
           </div>
           <figure class="module at-right w-md lp-route reveal">
-            <svg viewBox="0 0 700 200" role="img"
+            <!-- Stations sit on the HORIZONTAL runs and the bends happen
+                 between them, so no label is ever crossed by the line it
+                 belongs to. The viewBox carries ~95 units of margin past the
+                 last station because the labels are centred and overflow the
+                 stops they name — at 390px that was PHYS 211 touching the
+                 module's edge. -->
+            <svg viewBox="0 0 760 215" role="img"
                  aria-label="A prerequisite route: MATH 140 leads to MATH 141, which leads to MATH 230 and to PHYS 211.">
-              <path class="route-line" d="M70 155 H200 Q250 155 250 105 H390 Q440 105 440 55 H630" />
-              <g class="route-stop" style="--i:0"><circle cx="70"  cy="155" r="11" /><text class="lp-stn" x="70"  y="192">MATH 140</text></g>
-              <g class="route-stop" style="--i:1"><circle cx="250" cy="105" r="11" /><text class="lp-stn" x="250" y="142">MATH 141</text></g>
-              <g class="route-stop" style="--i:2"><circle cx="440" cy="55"  r="11" /><text class="lp-stn" x="440" y="92">MATH 230</text></g>
-              <g class="route-stop" style="--i:3"><circle cx="630" cy="55"  r="11" /><text class="lp-stn" x="630" y="92">PHYS 211</text></g>
+              <path class="route-line" d="M95 165 H180 Q230 165 230 115 H385 Q435 115 435 65 H665" />
+              <g class="route-stop" style="--i:0"><circle cx="95"  cy="165" r="11" /><text class="lp-stn" x="95"  y="207">MATH 140</text></g>
+              <g class="route-stop" style="--i:1"><circle cx="300" cy="115" r="11" /><text class="lp-stn" x="300" y="157">MATH 141</text></g>
+              <g class="route-stop" style="--i:2"><circle cx="505" cy="65"  r="11" /><text class="lp-stn" x="505" y="107">MATH 230</text></g>
+              <g class="route-stop" style="--i:3"><circle cx="665" cy="65"  r="11" /><text class="lp-stn" x="665" y="107">PHYS 211</text></g>
             </svg>
             <figcaption class="note">Each stop unlocks the next. Move one and the line tells you what broke.</figcaption>
           </figure>
@@ -210,9 +216,15 @@
           </figure>
         </section>
 
-        <!-- ══ DISCOVERY — in development, okayojas/lionsdegree#22 ══════
+        <!-- ══ DISCOVERY (okayojas/lionsdegree#22) ══════════════════════
              Centred on the spine rather than off to one side: it is the
-             headline station, and the one thing nothing else does. -->
+             headline station, and the one thing nothing else does.
+
+             This runs in the student's own assistant, not here. There is no
+             hosted model, so the interpreting happens where the model
+             already is; the matching, the overlap arithmetic and the plan
+             are all deterministic code on our side. So the thing to hand a
+             reader is the sentence that starts it, not a search box. -->
         <section class="stop stop-wide" id="discovery">
           <div class="module tier-3 w-lg reveal">
             <p class="eyebrow">The part nobody else does</p>
@@ -226,11 +238,16 @@
               </ul>
               <p class="example-sum">9 credits count twice &middot; a real result from the 2026-2027 bulletin</p>
             </div>
-            <p class="wip">
-              <strong>In development</strong>
-              The engine works today. Reaching it needs an AI assistant
-              connected to LionsDegree, which is how the interpreting gets done
-              without us running a model.
+
+            <p class="ask-label">Paste this to your assistant:</p>
+            <div class="copyfield copyfield-prose">
+              <span class="copyfield-text" id="discovery-prompt">I&rsquo;m a Penn State student. Use LionsDegree to find programs that fit what I&rsquo;m into: machine learning and clean energy. Give me a major plus any minors and certificates that share credits with it, say how many credits count twice, and send me the link to open the plan.</span>
+              <button type="button" class="copyfield-btn" data-copy="discovery-prompt">Copy</button>
+            </div>
+            <p class="note">
+              Swap in your own interests. Works in Claude, ChatGPT or whatever
+              you use once it is connected &mdash;
+              <a href="/connect/">here is how to connect yours</a>.
             </p>
           </div>
         </section>
@@ -412,5 +429,6 @@
 
     <script type="module" src="/src/reveal.ts"></script>
     <script type="module" src="/src/feedback.ts"></script>
+    <script type="module" src="/src/copy.ts"></script>
   </body>
 </html>

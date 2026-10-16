@@ -95,6 +95,48 @@ test.describe("with JavaScript turned off", () => {
   });
 });
 
+test.describe("discovery", () => {
+  // It is not an unbuilt feature and must not read as one. The engine ships
+  // in the MCP package today; what it needs is a model to interpret "machine
+  // learning and clean energy", and the model is the student's own. So the
+  // page hands over the sentence that starts it rather than a search box it
+  // has no business rendering.
+  test("hands over a prompt rather than calling itself unfinished", async ({ page }) => {
+    await page.goto("/");
+    const mod = page.locator("#discovery");
+    await expect(mod).toBeVisible();
+    await expect(mod.locator(".wip"), "discovery is still labelled in development").toHaveCount(0);
+    await expect(mod.locator("#discovery-prompt")).toBeVisible();
+    await expect(mod.getByRole("link", { name: /connect yours/i })).toHaveAttribute("href", "/connect/");
+  });
+
+  test("the prompt is plain text a student can read and edit", async ({ page }) => {
+    await page.goto("/");
+    const text = (await page.locator("#discovery-prompt").innerText()).trim();
+    // Long enough to be a real instruction, and English rather than an
+    // incantation: this page is for people who have never opened a terminal.
+    expect(text.length).toBeGreaterThan(80);
+    expect(text).toMatch(/LionsDegree/);
+    expect(text, "the prompt reads like code").not.toMatch(/[{}<>]|\bjson\b|^\s*\//i);
+  });
+
+  test("still reads with JavaScript off, minus the button", async ({ page, context }) => {
+    await context.route("**/*.js", (r) => r.abort());
+    await page.goto("/");
+    // The prompt is markup, not something the script writes in. A student on
+    // a locked-down machine can still select it by hand.
+    await expect(page.locator("#discovery-prompt")).toContainText(/Penn State student/);
+  });
+
+  test("the copy button copies the prompt", async ({ page, context }) => {
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+    await page.goto("/");
+    await page.locator("[data-copy='discovery-prompt']").click();
+    const clip = await page.evaluate(() => navigator.clipboard.readText());
+    expect(clip).toBe((await page.locator("#discovery-prompt").innerText()).trim());
+  });
+});
+
 test.describe("the hero route", () => {
   test("is drawn, not left half-finished", async ({ page }) => {
     await page.goto("/");
