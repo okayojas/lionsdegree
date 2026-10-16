@@ -39,11 +39,19 @@ test.describe("with JavaScript turned off", () => {
     await expect(page.getByText("LionsDegree").first()).toBeVisible();
   });
 
-  test("every section of the page is there", async ({ page }) => {
+  test("every stop on the route is there", async ({ page }) => {
     await page.goto("/");
-    for (const heading of [/checked against your plan/i, /Straight from the Bulletin/i, /Bring your own AI/i, /won.t pretend to know/i]) {
+    for (const heading of [
+      /Straight from the Bulletin/i,
+      /Fewest terms, nothing out of sequence/i,
+      /Bring your own AI/i,
+      /will not pretend to know/i,
+    ]) {
       await expect(page.getByRole("heading", { name: heading })).toBeVisible();
     }
+    // The visual stops alternate with the written ones and carry claims of
+    // their own, so they have to render without script too.
+    await expect(page.locator('img[src="/shots/audit.png"]')).toBeVisible();
   });
 
   test("the way into the planner works", async ({ page }) => {
@@ -134,6 +142,11 @@ test.describe("under reduced motion", () => {
       const bad: string[] = [];
       for (const el of document.querySelectorAll<HTMLElement>("body *")) {
         const s = getComputedStyle(el);
+        // `<source>` inside the hero video generates no box, so its computed
+        // style resolves to empty strings rather than "0s". Named rather than
+        // skipping everything that resolves empty, which would quietly exempt
+        // any element the browser decided not to render.
+        if (el.tagName === "SOURCE") continue;
         if (s.transitionDuration !== "0s" && s.transitionProperty !== "none") {
           bad.push(`${el.tagName.toLowerCase()}.${el.className}: ${s.transitionDuration}`);
         }

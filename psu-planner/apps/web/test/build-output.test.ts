@@ -105,15 +105,18 @@ describe("the icons", () => {
     }
   });
 
-  it("set a theme colour for each scheme, matching the palette", () => {
-    // A pair again, now the page is cream-led: the browser chrome has to
-    // agree with the page in whichever scheme the reader is using, or the
-    // top of the screen is a different colour from the top of the document.
+  it("sets one theme colour, because the landing page has one", () => {
+    // It was a light/dark pair while the page was cream-led. The canvas
+    // design pins the landing dark whatever the system preference says, so a
+    // scheme-scoped pair would hand the chrome a cream the document never
+    // paints -- the exact mismatch the pair existed to prevent. One canvas,
+    // one value; the toggle still governs /plan/.
     const html = read("index.html");
     const tags = [...html.matchAll(/<meta\s+name="theme-color"[^>]*content="([^"]+)"/g)].map((m) => m[1]);
-    expect(tags, "expected a light and a dark theme-color").toHaveLength(2);
-    expect(html).toMatch(/prefers-color-scheme: light/);
-    expect(html).toMatch(/prefers-color-scheme: dark/);
+    expect(tags, "expected exactly one theme-color on a page with one canvas").toHaveLength(1);
+    expect(html, "a scheme-scoped theme-color on a page that ignores the scheme").not.toMatch(
+      /theme-color[^>]*prefers-color-scheme/,
+    );
     // `bundles()` belongs to the font describe; resolve the sheet here rather
     // than reaching across scopes for it.
     const sheet = fs.readdirSync(path.join(dist, "assets")).find((f) => f.startsWith("landing-") && f.endsWith(".css"));

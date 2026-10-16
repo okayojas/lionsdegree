@@ -36,7 +36,7 @@ export function blockHtml(b: Block): string {
 export function pageHtml(section: Section, siteUrl = "%SITE_URL%"): string {
   const path = section.path ?? "/";
   return `<!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,8 +44,7 @@ export function pageHtml(section: Section, siteUrl = "%SITE_URL%"): string {
     <meta name="description" content="${escapeHtml(section.description)}" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f1ebdf" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2b2a27" />
+    <meta name="theme-color" content="#2b2a27" />
     <link rel="canonical" href="${siteUrl}${path}" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="LionsDegree" />
@@ -54,7 +53,7 @@ export function pageHtml(section: Section, siteUrl = "%SITE_URL%"): string {
     <meta property="og:description" content="${escapeHtml(section.description)}" />
     <link rel="stylesheet" href="/src/landing.css" />
   </head>
-  <body class="landing band-paper legal-page">
+  <body class="landing legal-page">
     <a href="#doc" class="skip-link">Skip to the document</a>
     <header class="conn-head">
       <div class="wrap">

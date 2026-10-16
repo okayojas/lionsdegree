@@ -1,311 +1,296 @@
 # LionsDegree: Landing Page UI Spec
 
-**Supersedes** `Landing-Page-Spec.md`. Keep that file for the theme audit in section 0 and the three code fixes in section 1; everything else here replaces it.
+**Supersedes** `Landing-Page-Spec.md`. Keep that file for the theme audit in section 0.
 
-**Date:** October 2026
+**Date:** October 2026 · **Revision 2** — canvas and module architecture
 
 ---
 
 ## DECISIONS LAYERED ON TOP (2026-10-15)
 
-Agreed after reading this spec against the repo. Where these conflict with the
-body below, **these win**.
+Agreed after reading this spec against the repo. Where these conflict with the body below, **these win**.
 
-- **No pricing, anywhere.** The project is open source. §5.6's "Try one free
-  run" and "One run free. No card." are struck — see the section itself.
-- **Cream-led with dark accents**, not cream-only. The dominant surface is the
-  map paper this spec argues for, but the hero imagery and the limits section
-  sit on dark bands so the page is not flat. This supersedes both Part 1's
-  "light theme for everything" and the all-dark build it replaced.
-- **§5.6 Discovery and §5.7 live demo ship as placeholders.** Neither feature
-  exists (`okayojas/lionsdegree#22`, `#21`). A placeholder is honest; a section
-  demonstrating a feature nobody can use is not. Both must be built before
-  public launch.
-- **Part 8 is largely stale.** F1 (JetBrains Mono) is self-hosted, F2 (meta
-  tags) is done, F4 (reduced motion) is done. Only **F3** — `font-weight: 800`
-  at `styles.css` 218, 367 and 386 — is outstanding. A4 likewise: `og.png`
-  exists.
-- **Paths differ from the body.** The planner is at `/plan/`, not `/app`.
-  Privacy and terms are at `/privacy/` and `/terms/` rather than a combined
-  `/legal`, because Google and Microsoft OAuth verification require separately
-  reachable policy URLs.
-- **The no-new-custom-properties rule is relaxed** for the dark bands, which
-  need surface and ink tokens the app's light-only palette does not define.
+- **No pricing, anywhere.** The project is open source. The old "Try one free run" and "One run free. No card." are struck.
+- **Cream-led with dark accents**, not cream-only. *(Revision 2 reinterprets this — see §1.2. The resolution is a single canvas that passes through a dark stretch, not cream-only and not dark-only.)*
+- **§6.6 Discovery and §6.7 live demo ship as placeholders.** Neither feature exists (`okayojas/lionsdegree#22`, `#21`). A placeholder is honest; a section demonstrating a feature nobody can use is not. Both must be built before public launch.
+- **Part 8 is largely stale.** F1 (JetBrains Mono) is self-hosted, F2 (meta tags) is done, F4 (reduced motion) is done. Only **F3** — `font-weight: 800` at `styles.css` 218, 367, 386 — is outstanding. `og.png` exists.
+- **Paths:** the planner is at `/plan/`, not `/app`. Privacy and terms are at `/privacy/` and `/terms/` rather than a combined `/legal`, because Google and Microsoft OAuth verification require separately reachable policy URLs.
+- **The no-new-custom-properties rule is relaxed** for the dark stretch, which needs surface and ink tokens the light-only palette does not define.
 
 ---
 
-## 0. The architectural decision that drives everything
+## 1. THE CANVAS
 
-Bedrock Robotics uses cinematic photography because it has no product you can try in a browser. You do. **Your product is a better hero asset than any photograph**, and the job of this page is to prove the engine works in under ten seconds.
+### 1.1 Why the page felt flat
 
-So the page leads with a **short silent video loop of the flowchart in use**, not a photograph and not a live canvas. Reasons, in order:
+The previous revision was a stack of full-bleed bands: hero band, proof band, feature band, discovery band. Each had its own background, so the eye read six separate pages glued together. Bands are the definition of flat, because every boundary resets depth to zero.
 
-1. It loads instantly, needs no JavaScript, and works identically on a phone, where the drag canvas does not.
-2. It shows the magic without the visitor having to work out what to do. A live demo asks for effort before it delivers value.
-3. It costs nothing per visitor, unlike the AI discovery run.
+**Replace bands with one continuous canvas.** The background never changes section to section. Content sits *on* the canvas as discrete floating modules at varied positions and widths. There are no dividers, no full-bleed colour changes, no `<hr>`.
 
-The **live interactive demo moves further down the page** as "try it yourself," where it rewards people who are already interested. That sequencing is strictly better than either asset alone, and it fixes the mobile problem the earlier spec had to work around.
+This also makes the page look like the product, which is the whole argument: the planner is a canvas with cards on it, so the landing page is a canvas with cards on it.
 
-### Build target
+### 1.2 The canvas treatment — recommended
 
-Make the landing page a **separate static HTML entry**, not a route inside the SPA. Vite supports this through `build.rollupOptions.input`. `/` is a prerendered static page, `/app` mounts the planner. A marketing page inside a client-rendered SPA is bad for SEO and slow to first paint, and this page is your growth channel.
+You asked for the dark flowchart background throughout. That works, and §1.3 specifies it. But it reverses your own cream-led decision and gives up the thing that makes you visually distinctive, because every developer-tool site is dark.
+
+**Recommendation: one canvas that goes underground.**
+
+The canvas starts as cream map paper, descends into a dark stretch for the middle of the page, and surfaces back to cream at the end. The dot grid and the route line run continuously through the transition, unbroken.
+
+This is on-metaphor rather than arbitrary: transit maps go above ground and below ground. The route doesn't stop, the surroundings change. It gives you the depth and drama you want, keeps the cream that makes you recognisable, satisfies "cream-led with dark accents" as written, and still reads as one page because the route never breaks.
+
+The transition is a 240px gradient on the canvas background only. Modules crossing the boundary keep their own surface token and simply swap theme variables via a scoped class.
+
+**If you prefer all-dark**, everything else in this spec holds unchanged. Set the canvas to `--bg` dark throughout, drop the transition, and record product assets in dark theme for coherence. The module system, depth system, and route spine are identical either way.
+
+### 1.3 Canvas layers
+
+Four stacked layers, bottom to top:
+
+| z | Layer | Treatment |
+|---|---|---|
+| 0 | Base fill | `--bg` (cream, or dark, or the transition) |
+| 1 | Fine dot grid | `radial-gradient(... 6% ...) 1px` at **12px** spacing, opacity .5 |
+| 2 | Coarse dot grid | The existing `styles.css:175` grid at **24px** spacing |
+| 3 | Route spine | SVG, `--primary`, 3.5px, drawn on scroll, station dots at junctions |
+| 4 | Modules | Opaque cards, see Part 2 |
+
+Two grids at different scales produce depth without parallax and without a single moving pixel. This is the cheapest depth in the whole spec.
+
+Add a **vignette**: a fixed radial gradient dimming the canvas edges to about 6%, which focuses attention centrally and makes modules feel lit.
+
+### 1.4 The route spine
+
+The single most important cohesion device. One continuous SVG path running the full length of the page, from under the nav to the footer. It weaves between modules — left of one, right of the next — and has a station dot at every point where a module attaches.
+
+It draws as you scroll using `stroke-dashoffset`, reusing the existing `route-draw` keyframe. It passes *behind* modules, never over them.
+
+Where the discovery section needs a second route, `--route-b` branches off and rejoins. That is the only legitimate use of the green.
+
+On mobile the spine becomes a vertical line down the left margin at 24px, with modules stacked to its right. Still one continuous route.
 
 ---
 
-## PART 1: ASSET PRODUCTION BRIEF
+## 2. THE MODULE SYSTEM
 
-This is the part to do first, because everything else is layout around these assets.
+### 2.1 Build modules from real app CSS, not screenshots
 
-### Universal recording rules
+This is the central technique, and it's what Obsidian actually does. Their note, graph, plugin list, sync settings and version-history diff are live HTML recreations of product UI, not images. That's why their text is in the DOM.
 
-- **Record at 2560x1440, deliver downscaled.** Downscaled footage is visibly sharper than footage captured at delivery size.
-- **60fps** for anything with dragging. 30fps makes drag look like stuttering.
-- **Clean browser:** no bookmarks bar, no extensions, no notifications, no other tabs. Use a fresh profile if needed.
-- **Hide browser chrome entirely.** Crop it out, or record the viewport only. If you want a frame, use a drawn faux-browser bar in brand tokens rather than a real screenshot of Chrome.
-- **Light theme for everything except the one dark-mode shot.** Cream is the brand; it reads warmer and is more distinctive than dark UI, which every SaaS page has.
-- **Use the real ESci + AIE plan.** Real course codes (`CMPSC 465`, `A-I 341W`, `ESC 410H`, `EE 456`, `PHYS 214`) are the specificity that makes the page read as authored rather than generated.
-- **Move the cursor slowly and deliberately.** Fast cursor movement reads as frantic. Pause ~300ms before each click so the eye can follow.
-- **No personal data visible.** No real name, no email, no student ID, no account menu open.
-- **Cursor:** keep it visible but do not use a highlight ring or click-burst effect. Those read as a tutorial screencast, not a product.
+**You can do this better than almost anyone, because `styles.css` already contains every component you need:**
 
-### A1. Hero loop — the single most important asset
+| Module | Existing class to reuse |
+|---|---|
+| Course card | `.card` + `.card .code` + `.card .dot` + status variants `.st-ok` `.st-warn` `.st-bad` |
+| Semester column header | `.col-header` + `.col-header .cr` |
+| Course detail | `.modal` + `.modal .verbatim` + `.modal .status` |
+| Search results | `.search-results` + `.sr-item` + `.sr-code` + `.sr-snip mark` |
+| Progress / audit | `.progress` + `.progress .fill` (with the "you are here" marker) |
+| AI advisor | `.chat-msg` + `.chat-bubble` + `.chat-tools` |
+| List view | `.listview li` + `.lv-status` |
+| Legend | `.legend` + `.legend .line` |
 
-**What it shows, in one unbroken take:** drag a course into a semester where its prerequisite is not yet satisfied, the amber warning appears, click the one-click fix, the card moves and the dot turns green.
+**Why this beats screenshots on every axis:** real text in the DOM so it's indexable, selectable, translatable and screen-readable; pixel-perfect fidelity forever; a few KB instead of a few hundred; hover and focus states actually work; and it can never go stale when the app changes.
 
-> **Blocked.** The one-click fix does not exist (`okayojas/lionsdegree#21`), so
-> the final beat cannot be recorded. Until it does, the hero uses the still
-> flowchart already captured from the real planner.
+**Practical rule:** import the app's stylesheet into the landing page rather than copying rules. Copies drift.
 
-That ten-second sequence demonstrates the entire engine. It is the only thing on the page that has to be perfect.
+### 2.2 Module anatomy
+
+Every module is an opaque card on the canvas:
+
+- Background `--surface`, never transparent. Text must never sit directly on the dot grid.
+- `1.5px solid var(--border)`, matching `.card`
+- `--r-lg` corners
+- Elevation per §3.1
+- Padding `--sp-4` to `--sp-6`
+- A `.eyebrow` label, because wayfinding labels are already the identity
+
+**No backdrop blur.** The canvas is busy, which is exactly when glassmorphism is most tempting and most wrong. Opaque surfaces solve legibility properly.
+
+### 2.3 Module sizes
+
+Four widths, so the layout has rhythm rather than a uniform column:
+
+| Size | Width | Use |
+|---|---|---|
+| `sm` | 280px | A single course card, a stat, a quote |
+| `md` | 420px | Most content modules |
+| `lg` | 640px | The main explanation modules |
+| `xl` | 900px | Hero video, full flowchart fragment |
+
+Never centre everything. Modules alternate between left-of-spine and right-of-spine, with deliberate vertical overlap between neighbours (see §3.2).
+
+---
+
+## 3. THE DEPTH SYSTEM
+
+You already have the tokens for this and aren't using them as elevation.
+
+### 3.1 Elevation tiers
+
+Dark mode gives you a five-step surface ramp: `#2b2a27` → `#33322e` → `#3c3a35` → `#43413c` → `#4d4a44`. Light gives the same count. **Map them to elevation**, not to component type.
+
+| Tier | Surface | Shadow | Border | Use |
+|---|---|---|---|---|
+| 0 | canvas `--bg` | none | none | Background |
+| 1 | `--surface` | `--shadow-sm` | `--border` | Ambient modules, quiet detail |
+| 2 | `--surface` | `--shadow` | `--border` | Standard content modules |
+| 3 | `--surface-2` | `--shadow-lg` | `--border-strong` | Hero, discovery result, the things that matter |
+
+Three tiers visible at once is the maximum. More reads as noise.
+
+### 3.2 Overlap
+
+The strongest depth cue available and it costs nothing. Adjacent modules overlap vertically by 24 to 48px, with the higher-tier module on top. Overlap implies z-space in a way shadows alone never do.
+
+Do this on roughly a third of module pairs. Every pair overlapping looks like a collapsed stack.
+
+### 3.3 Distance
+
+Ambient modules — ones that are texture rather than content — render at `scale(0.94)` and `opacity: 0.55`, at tier 1. They read as further away. Use them for decorative course cards scattered behind the real content, the same way the planner has courses you aren't currently looking at.
+
+Three to five of these across the whole page. They must contain real course codes, never lorem.
+
+### 3.4 Light from above
+
+On dark canvas only, a 1px inset highlight on the top edge of each module:
+
+```css
+box-shadow: var(--shadow), inset 0 1px 0 color-mix(in srgb, var(--text) 8%, transparent);
+```
+
+Classic dark-UI depth trick. Subtle enough that nobody notices it consciously, and the surface reads as catching light. Skip it on cream, where it muddies.
+
+### 3.5 Hover
+
+Modules lift on hover exactly as `.card` does: `translateY(-1px)`, shadow one tier up, border to `--primary`. Reuse the existing transition. This makes the page feel like the app under the cursor, which is the point.
+
+### 3.6 What not to do
+
+No parallax. No glassmorphism or backdrop blur. No gradient fills on modules. No glow. No shadow larger than `--shadow-lg`. No 3D transforms or perspective. Depth comes from elevation, overlap, scale and contrast — the same four tools the app already uses.
+
+---
+
+## 4. ASSET BRIEF (much reduced)
+
+Because modules are live HTML, the screenshot list from revision 1 mostly disappears. What's still needed:
+
+### A1. Hero loop — still required
+
+The only thing HTML modules can't do is show interaction over time. This clip is the proof that the engine works.
+
+**One unbroken take:** drag a course into a semester where its prerequisite isn't satisfied, the amber warning appears, click the one-click fix, the card moves and the dot turns green.
 
 | Spec | Value |
 |---|---|
-| Duration | 8 to 12 seconds |
-| Loop | Seamless. Start and end on the identical frame, same scroll position, cursor in the same place. |
-| Audio | None. Record silent, strip the track. |
-| Framing | Three to four semester columns, roughly eight cards visible. Not the whole plan. |
-| Delivery | `hero.webm` (VP9) + `hero.mp4` (H.264 baseline, for Safari/iOS) |
-| Size budget | **Under 1.5MB for the WebM.** If it is larger, shorten it rather than compressing harder. |
-| Poster | `hero-poster.avif` with `.webp` fallback, the exact first frame |
+| Duration | 8 to 12 seconds, seamless loop |
+| Theme | Match the canvas at that point in the page |
+| Audio | None |
+| Framing | Three to four columns, ~8 cards. Not the whole plan. |
+| Delivery | `hero.webm` (VP9) + `hero.mp4` (H.264 baseline) |
+| Budget | Under 1.5MB WebM. Shorten rather than compress harder. |
+| Poster | Exact first frame, `.avif` + `.webp` |
 
-**How to get the seamless loop:** record 20 seconds, perform the action twice, then cut a single cycle where the first and last frames match. Check by scrubbing the join.
+Record at 2560x1440 and downscale, 60fps, clean browser with no chrome, cursor moved slowly with a ~300ms pause before each click, real ESci + AIE course codes, no personal data.
 
-**Encoding** (ffmpeg):
 ```
 ffmpeg -i raw.mov -vf "scale=1440:-2" -c:v libvpx-vp9 -crf 32 -b:v 0 -an hero.webm
 ffmpeg -i raw.mov -vf "scale=1440:-2" -c:v libx264 -crf 24 -profile:v baseline -movflags +faststart -an hero.mp4
 ```
 
-### A2. Feature clips — three short loops
+To get a clean loop: record 20 seconds performing the action twice, then cut one cycle where first and last frames match.
 
-Same rules, 4 to 6 seconds each, silent, seamless, delivered the same way. Budget under 600KB each.
+### A2. Optional second clip
 
-1. **Course detail.** Click a card, the modal opens showing the verbatim Bulletin description and the enforced prerequisite text. Proves the data is real and sourced.
-2. **Discovery.** Type an interest phrase, results appear as a combination of major plus minor plus certificate with the double-counted credits shown. This is the wedge, so it earns a clip.
-3. **AI advisor.** Ask something, the diff preview appears on the canvas with Accept and Reject. Shows the AI takes actions rather than chatting.
+The AI advisor diff preview appearing with Accept and Reject, 4 to 6 seconds. Only once that feature exists (`#22`).
 
-### A3. Still screenshots — five
+### A3. Already done
 
-Export at **2x**, deliver AVIF with WebP fallback, crop tight, round corners to `--r-lg` in CSS rather than baking them in. Transparent or cream background, never white.
-
-1. **Full flowchart, zoomed out.** The whole four-year plan with prerequisite routes visible. This is the "wow, that's my degree" image.
-2. **List view on mobile**, 390px wide frame. Proves it works on a phone.
-3. **Degree audit / progress panel**, showing real remaining requirements.
-4. **Dark mode**, any view. One shot only, to show the toggle exists.
-5. **The discovery result**, as a static image for the OG card.
-
-### A4. Open Graph image
-
-1200x630, `og.png`. Must contain: the wordmark with station dot, one short line of copy, and a tight crop of the flowchart showing real course codes. Test it by pasting the URL into iMessage, Discord, and Slack, which render it differently.
-
-This is currently missing entirely and it is the first thing anyone sees when a link is shared, which is your primary growth channel.
-
-### A5. Icons
-
-`favicon.svg`, `favicon-32.ico`, `apple-touch-icon.png` at 180px, and replacements for the placeholder `icon-192.png` and `icon-512.png` in `public/`. Use the simplified mark, not the full logo, for anything 32px or under.
-
-### A6. Optional: the long explainer
-
-A 60 to 90 second narrated walkthrough for the About page. Lower priority. If you make it, host it on Cloudflare Stream or Mux rather than self-hosting, and never autoplay it.
+`og.png` exists. Icons exist. No further stills needed — the modules replace them.
 
 ---
 
-## PART 2: INFORMATION ARCHITECTURE
+## 5. INFORMATION ARCHITECTURE
 
-**Three pages at launch.** Bedrock has seven because it has seven audiences. You have one.
-
-| Page | Purpose | Ship when |
+| Path | Purpose | Status |
 |---|---|---|
-| `/` | The landing page | Launch |
-| `/about` | Who built this and why. "Built by a Penn State student" is a genuine credibility asset. | Launch |
-| `/legal` | Privacy, terms, accessibility statement | Launch, required |
-| `/changelog` | What shipped recently | Once there is something to log |
-| `/pricing` | — | Only when you actually charge |
+| `/` | The canvas | Launch |
+| `/about` | Who built this and why | Launch |
+| `/privacy/` | Separate URL, OAuth verification needs it | Launch |
+| `/terms/` | Separate URL, same reason | Launch |
+| `/plan/` | The planner itself | Exists |
+| `/changelog` | Once there's something to log | Later |
 
-**Navigation: overlay menu.** Reads as legitimate at any page count and costs nothing. A `Menu` trigger in the top right opens a full-screen overlay with large type.
+**Overlay menu**, not an inline nav. A `Menu` trigger top right opens a full-screen overlay with large type. Reads as considered at any page count.
 
-```
-Home · About · Changelog · Legal          Open the planner →
-```
-
-Nav bar: sticky, `--surface`, `1px solid var(--border)` bottom, 56px, `z-index: 30` to match `.toolbar`. Left is the wordmark reusing the `h1::before` station-dot from `styles.css:152` so the page and the app are visibly one product. Right is the theme toggle and one primary CTA.
-
-Overlay open: `transform: translateY(-100%)` to `0`, 320ms `--ease-out`, items staggered 40ms. Trap focus, close on Escape, restore focus to the trigger.
+Nav bar: sticky, 56px, `--surface` with `1px solid var(--border)` bottom, `z-index: 30`. Wordmark left using the `h1::before` station dot from `styles.css:152`. Theme toggle and one primary CTA right.
 
 ---
 
-## PART 3: TEXTURE SYSTEM
+## 6. PAGE FLOW
 
-Your identity is literally "map paper." **Paper and print texture is on-brand in a way photography is not.** All of this is CSS, no image files.
+Not sections. **Stops along one route.** Each has a station dot on the spine.
 
-### T1. Paper grain
+### 6.1 Nav
+Per Part 5.
 
-An SVG `feTurbulence` overlay, fixed, non-interactive, sitting above the background and below content.
+### 6.2 Opening — cream canvas
 
-```css
-.grain::after {
-  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 1;
-  opacity: .035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-```
-Opacity **0.035 in light, 0.05 in dark**. Above 0.06 it reads as a dirty screen rather than paper. Do not animate it.
+Text module, `lg`, tier 2, left of spine.
 
-### T2. Map grid
+- Eyebrow: `UNOFFICIAL · BUILT FOR PENN STATE STUDENTS`
+- Headline: `Your degree is a route map. Now you can see it.` `clamp(30px, 5.5vw, 46px)`, weight **700** (F3 — Space Grotesk tops out at 700), `--track-tight`, line-height 1.05
+- Lede: `LionsDegree reads Penn State's Bulletin, works out what unlocks what, and builds a four-year plan that actually holds. Drag a course and it tells you what breaks.`
+- CTAs: `Open the planner` primary, `Watch it work` ghost
+- Trust line `--fs-xs`: `Free and open source. No account needed to try it.`
 
-Reuse the existing dotted grid from `styles.css:175` as the hero background, unchanged. It already does this job.
+Two or three **ambient course cards** scattered right of the spine at tier 1, `scale(0.94)`, `opacity .55`, showing real codes.
 
-### T3. Registration marks
+### 6.3 Hero video — `xl`, tier 3
 
-Thin crop marks in `--border-strong` at section corners, 12px arms, 1px. Print-shop detail that signals craft. Use on at most three sections.
-
-### T4. Halftone band
-
-Section dividers as a row of `--primary` dots fading in scale from 4px to 1px across the width. Replaces a plain `<hr>`.
-
-### T5. Off-register ink
-
-On one hero element only, a 1px offset duplicate of the headline in `--route-b` at 8% opacity, behind the real text. Mimics misaligned print plates. Use once on the whole site or it becomes a gimmick.
-
-**Banned:** gradients as decoration, glassmorphism, ambient glow, drop shadows larger than `--shadow-lg`, stock photography of any kind.
-
----
-
-## PART 4: SCROLL ANIMATION SYSTEM
-
-### Technique
-
-**Native CSS scroll-driven animations are the default.** They run on the compositor thread, so they do not block the main thread or damage INP, which is the metric that now matters most. Supported in Chromium 115+ and Safari 26.
-
-```css
-@supports (animation-timeline: view()) {
-  .reveal {
-    animation: reveal linear both;
-    animation-timeline: view();
-    animation-range: entry 10% cover 30%;
-  }
-}
-@keyframes reveal {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: none; }
-}
-```
-
-**IntersectionObserver fallback** for older browsers: add a `.in` class at 15% visibility, once only, never re-trigger on scroll up.
-
-**GSAP ScrollTrigger only if you need scrubbed timelines**, meaning animation tied continuously to scroll position rather than fired once. You likely do not. It is real weight for a benefit this page does not need.
-
-**Lenis is optional.** Under 4KB, and it disables smoothing automatically under `prefers-reduced-motion`. If you pair it with GSAP, disable Lenis's `autoRaf` and drive both from GSAP's ticker or you get two animation loops and visible jitter.
-
-### The hard rule
-
-**Animate `transform` and `opacity` only.** Animating width, height, top, or box-shadow forces layout recalculation during interaction and is what actually wrecks INP. No exceptions.
-
-### Choreography
-
-| Element | Motion | Duration |
-|---|---|---|
-| Section enter | Fade + 16px rise | 280ms `--ease-out` |
-| Staggered children | 60ms apart, max 5 before they feel slow | 240ms |
-| Hero route lines | Existing `route-draw` keyframe | 1500ms |
-| Hero station dots | Existing `stop-pop`, 140ms stagger | 340ms |
-| Feature screenshot | Fade + scale 0.98 to 1 | 320ms |
-| Number counters | Count up on first view, once | 900ms |
-| Nav on scroll | Add `--shadow-sm` past 80px | 160ms |
-
-Nothing over 500ms except the hero route draw. No parallax on images; it is the most common cause of jank and adds nothing here.
-
-### Reduced motion
-
-A full bypass, extending `styles.css:343` to the landing page: no reveals, no route draw, no counters, video replaced by its poster frame with a play button.
-
----
-
-## PART 5: PAGE STRUCTURE
-
-Nine blocks. Each earns its place.
-
-### 5.1 Nav
-Per Part 2.
-
-### 5.2 Hero
-
-Single column, centred, max 44rem for the text, then the video full width below at max 1100px.
-
-- **Eyebrow:** `UNOFFICIAL · BUILT FOR PENN STATE STUDENTS`
-- **Headline:** `Your degree is a route map. Now you can see it.` `clamp(30px, 5.5vw, 46px)`, weight 700 (not 800, see Part 8), `--track-tight`, line-height 1.05
-- **Lede:** `LionsDegree reads Penn State's Bulletin, works out what unlocks what, and builds a four-year plan that actually holds. Drag a course and it tells you what breaks.` `--fs-md`, `--text-muted`, max 54ch
-- **CTAs:** primary `Open the planner`, ghost secondary `Watch it work` which scrolls to 5.4
-- **Trust line:** `--fs-xs` muted, `Free. No account needed to try it.`
-
-**The video**, immediately below:
+The video in a module, canvas visible as a margin around it. Caption in `.eyebrow`: `LIVE FROM THE PLANNER · REAL PENN STATE PREREQUISITES`.
 
 ```html
-<video autoplay muted loop playsinline preload="metadata"
-       poster="/hero-poster.avif" aria-label="Dragging a course into a semester where its prerequisite is not met, the warning appearing, and the one-click fix resolving it">
+<video autoplay muted loop playsinline preload="metadata" poster="/hero-poster.avif"
+       aria-label="Dragging a course into a semester where its prerequisite is not met, the warning appearing, and the one-click fix resolving it">
   <source src="/hero.webm" type="video/webm">
   <source src="/hero.mp4" type="video/mp4">
 </video>
 ```
 
-Wrapped in `--surface`, `--r-lg`, `1.5px solid var(--border)`, `--shadow`, with the dotted map grid visible as a thin margin around it. Caption below in `.eyebrow`: `LIVE FROM THE PLANNER · REAL PENN STATE PREREQUISITES`.
+`autoplay muted loop playsinline` is required for iOS. `preload="metadata"`, not `auto`, so it doesn't fight LCP. **Visible pause control required** — WCAG 2.2.2 covers anything auto-playing beyond five seconds.
 
-`autoplay muted loop playsinline` is required for iOS. `preload="metadata"` not `auto`, so it does not fight LCP.
+### 6.4 Proof — three `sm` modules in a row
 
-### 5.3 Proof strip
-
-Directly below the hero CTA, because proof immediately beneath the CTA is the single highest-leverage placement available (+68% in the research), and more than half of SaaS pages omit it.
-
-You have no logos and no testimonials yet, so use **data proof**, which is stronger for a tool anyway:
+Directly after the hero, because proof immediately below the CTA is the highest-leverage placement there is and most comparable pages skip it.
 
 ```
 14,553 courses   ·   756 programs   ·   95% of prerequisites machine-verified
 ```
 
-Numbers in `--fs-lg` weight 700, labels in `--fs-xs` muted. Count up on first view. Every number must be traceable to the catalog.
+Numbers `--fs-lg` weight 700, labels `--fs-xs` muted. Count up on first view, once. Every number traceable to the catalog.
 
-### 5.4 Watch it work
+### 6.5 The descent — canvas goes dark
 
-The anchor target for the secondary CTA. Either the three feature clips in sequence, or the long explainer if you make one. Full-bleed `--surface` band with `--border` top and bottom.
+The 240px transition. The spine continues unbroken. An `.eyebrow` marks it: `UNDER THE HOOD`.
 
-### 5.5 Feature sections — three, alternating
+### 6.6 Three content modules on dark canvas
 
-One idea per viewport, scroll-revealed, image and text alternating sides. Each is a feature clip or a still from A2/A3.
+Alternating sides, overlapping where §3.2 allows. Each pairs prose with a **live HTML module** built from real app CSS.
 
-| Eyebrow | Headline | Body | Asset |
-|---|---|---|---|
-| `THE DATA IS REAL` | Straight from the Bulletin | Course descriptions verbatim, prerequisites parsed from Penn State's own text rather than hand-entered. If something can't be verified, it says so. | Course detail clip |
-| `IT SOLVES THE ORDERING` | Fewest semesters, nothing out of sequence | The optimizer places your capstone correctly, balances credit load, and never schedules a course before its prerequisite. | Full flowchart still |
-| `IT WORKS ON YOUR PHONE` | Built for registration week | List view when you're on a phone at 7am fighting for a seat. | Mobile still |
+| Eyebrow | Headline | Module to recreate |
+|---|---|---|
+| `THE DATA IS REAL` | Straight from the Bulletin | `.modal` with `.verbatim` showing a real description and enforced prerequisite text |
+| `IT SOLVES THE ORDERING` | Fewest semesters, nothing out of sequence | A flowchart fragment: three `.col-header` columns, six `.card`s, route lines between them |
+| `IT WORKS ON YOUR PHONE` | Built for registration week | `.listview` fragment at 390px width inside a drawn device frame |
 
-### 5.6 Discovery — the wedge
+### 6.7 Discovery — placeholder until `#22`
 
-Most visual weight after the hero. `--surface` full-bleed band.
+`lg`, tier 3, with `--route-b` branching off the spine and rejoining.
 
-- **Eyebrow:** `THE PART NOBODY ELSE DOES`
-- **Headline** `--fs-xl`: `Describe what you're into. Get a combination of real credentials.`
-- Discovery clip from A2
-- The worked example diagram, using `--route-b` for the branch lines since this is literally routes converging:
+- Eyebrow: `THE PART NOBODY ELSE DOES`
+- Headline: `Describe what you're into. Get a combination of real credentials.`
+- The worked example as a live module:
 
 ```
 "I like machine learning and clean energy"
@@ -314,127 +299,160 @@ Most visual weight after the hero. `--surface` full-bleed band.
    └─ Energy Engineering            certificate
    14 credits double-count · 1 extra semester
 ```
-- **CTA:** `Open the planner`. ~~`Try one free run` → signup. Caption: `One run free. No card.`~~
-  **Struck 2026-10-15: the project is open source and there is no paid tier.**
 
-> **Not built.** This section ships as a visible placeholder until
-> `okayojas/lionsdegree#22` lands. Do not write copy implying it works.
+**Honest placeholder treatment:** a `--warning`-bordered strip reading `In development`. No CTA promising a feature that doesn't exist, no pricing.
 
-### 5.7 Try it yourself — the live demo
+### 6.8 Live demo — placeholder until `#21`
 
-> **Not built.** Ships as a placeholder; the interactive canvas and the
-> one-click fix it depends on are `okayojas/lionsdegree#21`.
+Same treatment. When built: unauthenticated, deterministic, free. **Every drag needs a tap alternative** (WCAG 2.2 SC 2.5.7); keyboard support alone does not satisfy it. Mobile gets the list view instead of a drag canvas.
 
-Now, not in the hero. The interactive canvas with six to eight real courses, drag between columns, non-blocking warning with one-click fix, click for the verbatim description, hover for focus-plus-context.
+### 6.9 Surfacing — canvas returns to cream
 
-Unauthenticated and free, because it is deterministic and costs nothing. The discovery run stays gated.
+### 6.10 What this isn't — `md`, tier 2
 
-**Mobile:** replace with the list view and a `Open the full planner` CTA. Do not ship a drag canvas as a mobile interaction.
-
-**Every drag needs a tap alternative** (WCAG 2.2 SC 2.5.7). A `Move to semester` menu on each card. Keyboard support alone does not satisfy this.
-
-### 5.8 What this isn't
-
-Counterintuitive but it raises conversion for a tool people trust with graduation decisions, and it is on-brand for an engine that refuses to guess.
+Raises conversion for a tool people trust with graduation decisions, and it's on-brand for an engine that refuses to guess.
 
 - Not affiliated with or endorsed by Penn State.
 - Not a substitute for your adviser. Confirm before you register.
 - Course descriptions are verbatim from the University Bulletin.
-- **If a requirement can't be verified, it says so instead of guessing.** ← `--text`, not muted. This is the actual differentiator.
+- **If a requirement can't be verified, it says so instead of guessing.** ← `--text`, not muted.
 
-### 5.9 Final CTA + footer
+### 6.11 Close
 
-Repeat the primary CTA once. Footer in `--surface` with the wordmark, the disclaimer from `styles.css:136`, links to `bulletins.psu.edu`, `/legal`, `/.well-known/security.txt`, and a contact mailto. Bottom line `--fs-xs` muted: `Built by a Penn State student.`
+Final CTA repeated. The spine terminates in a filled station dot — the only filled dot on the page, every other being a ring. Footer: wordmark, the disclaimer from `styles.css:136`, links to `bulletins.psu.edu`, `/privacy/`, `/terms/`, `/.well-known/security.txt`, GitHub, contact. Bottom line `--fs-xs` muted: `Open source. Built by a Penn State student.`
 
 ---
 
-## PART 6: RESPONSIVE
+## 7. MOTION
+
+### Technique
+
+**Native CSS scroll-driven animations by default.** They run on the compositor thread, so they don't block the main thread or damage INP. Chromium 115+, Safari 26+.
+
+```css
+@supports (animation-timeline: view()) {
+  .module {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 8% cover 28%;
+  }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+```
+
+IntersectionObserver fallback at 15% visibility, once only, never re-trigger on scroll up.
+
+**GSAP ScrollTrigger only if you need scrubbed timelines.** The route-spine draw is the one candidate, and even that works with `animation-timeline: scroll()`.
+
+**Lenis optional**, under 4KB, honours `prefers-reduced-motion` automatically. If paired with GSAP, disable Lenis's `autoRaf` and drive both from GSAP's ticker or you get two loops and visible jitter.
+
+**Hard rule: animate `transform` and `opacity` only.** Layout-affecting properties force recalculation during interaction and are what actually wreck INP.
+
+### Choreography
+
+| Element | Motion | Duration |
+|---|---|---|
+| Module enter | Fade + 20px rise | 280ms `--ease-out` |
+| Ambient module enter | Fade only, no rise | 400ms |
+| Route spine | `stroke-dashoffset`, tied to scroll | continuous |
+| Station dots | Existing `stop-pop` as the spine reaches each | 340ms |
+| Canvas transition | Background position, scroll-linked | continuous |
+| Counters | Count up, once | 900ms |
+| Module hover | `translateY(-1px)` + shadow tier up | 150ms |
+
+Nothing over 500ms except the spine. Stagger no more than five siblings.
+
+### Reduced motion
+
+Full bypass: no reveals, no spine draw, no counters, canvas transition becomes a hard switch, video replaced by poster plus play button.
+
+---
+
+## 8. RESPONSIVE
 
 | Breakpoint | Behaviour |
 |---|---|
-| < 768px | Video stays (it is the mobile-safe hero). Live demo becomes list view. Features stack, image above text. Overlay menu full screen. All targets ≥44px. |
-| 768–1023 | Features stack but wider. Video full width. |
-| ≥ 1024 | Features alternate sides. Demo at full size. |
-| ≥ 1440 | Cap content at 1200px, centred. Video caps at 1100px. |
+| < 768px | Single column. Spine becomes a vertical line at 24px left, modules stacked right of it. All modules full width minus `--sp-4`. **No overlap, no ambient modules, no `scale()`** — depth on a small screen reads as broken layout. Video stays. Demo becomes list view. |
+| 768–1023 | Two-column feel, modules alternate but narrower. Overlap reduced to 16px. Ambient modules at most two. |
+| ≥ 1024 | Full canvas. Alternating sides, overlap, ambient modules, all four widths. |
+| ≥ 1440 | Canvas caps at 1280px, centred. Spine stays centred. |
 
-Design the mobile hero first. Most shared links open on a phone.
+Design mobile first. Most shared links open on a phone, and the canvas concept is the thing most likely to break there.
 
 ---
 
-## PART 7: ACCESSIBILITY
+## 9. ACCESSIBILITY
 
 - Skip link, reusing `.skip-link`.
-- One `h1`. Sections use `h2`. No skipped levels.
-- Video: `aria-label` describing what happens, and **a visible pause control**, because WCAG 2.2.2 requires a mechanism to stop anything that auto-plays for more than five seconds.
-- `prefers-reduced-motion`: poster frame plus play button instead of autoplay.
-- Every drag in the demo has a tap alternative.
-- Focus visible everywhere via the existing `:focus-visible` rule.
-- No status by colour alone; the amber warning needs icon and text.
-- **Verify `--text-muted` on `--bg` passes 4.5:1 in both themes.** `#6b6353` on `#f1ebdf` and `#b0a89a` on `#2b2a27` are both plausible but must be measured.
+- One `h1`; modules use `h2`. The canvas is decorative and must not create heading structure.
+- Dot grid, route spine, vignette and ambient modules all `aria-hidden="true"`.
+- Ambient modules at `opacity .55` are **decorative only** — never put information in them, since they will fail contrast.
+- Video needs a visible pause control (WCAG 2.2.2).
+- Every drag has a tap alternative (SC 2.5.7).
+- `prefers-reduced-motion` disables autoplay and all reveals.
+- **Measure `--text-muted` on `--bg` in both themes.** `#6b6353` on `#f1ebdf` and `#b0a89a` on `#2b2a27` are both plausible but unverified.
+- Modules must be opaque so text never sits on the grid.
 - Test at 200% zoom and keyboard-only.
 
 ---
 
-## PART 8: CODE FIXES REQUIRED FIRST
+## 10. BUILD ORDER
 
-Carried from the previous spec, still outstanding.
-
-**F1.** JetBrains Mono is not self-hosted. `package.json` only has `space-grotesk`. Course codes fall back to system monospace, so the one typographic choice carrying meaning renders differently on every OS. Add `@fontsource-variable/jetbrains-mono` and import it in `main.tsx`.
-
-**F2.** `index.html` is a title tag and nothing else. Needs description, Open Graph and Twitter tags, `theme-color` for both schemes (`#f1ebdf` / `#2b2a27`), favicon links, apple-touch-icon, and canonical.
-
-**F3.** `font-weight: 800` appears in four places but **Space Grotesk's variable axis tops out at 700**, so the browser already clamps it. Change those to 700 so intent matches output.
-
-**F4.** `prefers-reduced-motion` guard must extend to the landing page.
-
----
-
-## PART 9: BUILD ORDER
-
-1. **F1–F4.** Small, unblocks everything.
-2. **Record A1.** The hero loop. Everything else is layout around it.
-3. **Static shell.** Vite multi-page entry, nav, all nine blocks, footer, existing tokens only. Verify both themes.
-4. **Hero video** wired with poster, fallbacks, pause control.
-5. **Texture layer.** T1 and T2 first; T3–T5 only if they earn it.
-6. **Scroll reveals.** CSS scroll-driven with IntersectionObserver fallback.
-7. **Remaining assets.** A2, A3, A4, A5.
-8. **Live demo section**, list view first, then canvas, then tap-to-move.
-9. **About and Legal pages.**
-10. **Audit.** Lighthouse, axe, keyboard-only, 200% zoom, both themes, 375/768/1024/1440.
+1. **F3** — the three `font-weight: 800` declarations at `styles.css` 218, 367, 386.
+2. **Canvas layers.** Base, two grids, vignette. Static, no modules. Verify both themes and the transition.
+3. **Module primitives.** The four widths, three elevation tiers, hover. Import the app stylesheet rather than copying.
+4. **Route spine.** Static path first, threading correctly between module slots, before animating.
+5. **Static page**, all stops, real copy, no motion.
+6. **Record A1**, wire the hero video with poster, fallbacks, pause control.
+7. **Live HTML modules** for §6.6, built from real app classes.
+8. **Motion.** Module reveals, then spine draw, then counters.
+9. **Depth pass.** Overlap, ambient modules, light-from-above. This is the step that's easy to overdo; add it last so you can judge it against a finished page.
+10. **`/about`, `/privacy/`, `/terms/`.**
+11. **Audit.** Lighthouse, axe, keyboard-only, 200% zoom, both themes, 375/768/1024/1440.
 
 ---
 
-## PART 10: ACCEPTANCE CRITERIA
+## 11. ACCEPTANCE CRITERIA
 
-**Identity**
-- [ ] No new CSS custom properties; everything resolves to existing tokens
-- [ ] No third font family; mono only on course codes
-- [ ] `--route-b` only in the hero and the discovery diagram
-- [ ] No gradients, glassmorphism, ambient glow, or stock photography
-- [ ] Grain opacity ≤0.035 light, ≤0.05 dark
+**Canvas and cohesion**
+- [ ] Background never changes abruptly between stops; only the one 240px transition
+- [ ] No `<hr>`, no full-bleed section bands, no per-section background colours
+- [ ] Route spine is continuous from nav to footer with no breaks
+- [ ] Every module attaches to the spine at a station dot
+- [ ] Only the closing dot is filled; all others are rings
 
-**Assets**
-- [ ] Hero loop under 1.5MB WebM, seamless at the join
-- [ ] Poster frame is the exact first video frame, no flash on load
-- [ ] All screenshots 2x, AVIF with WebP fallback
-- [ ] OG image renders correctly in iMessage, Discord, and Slack
-- [ ] No personal data in any asset
+**Depth**
+- [ ] At most three elevation tiers visible at once
+- [ ] Roughly a third of module pairs overlap, not all
+- [ ] Three to five ambient modules, all containing real course codes
+- [ ] No parallax, glassmorphism, gradient fills, glow, or 3D transforms
+- [ ] No shadow larger than `--shadow-lg`
+
+**Modules**
+- [ ] Content modules are live HTML reusing app classes, not screenshots
+- [ ] The app stylesheet is imported, not copied
+- [ ] Every module is opaque; no text sits on the dot grid
+- [ ] Hover states work and match the app
 
 **Performance**
-- [ ] LCP under 2.5s on a throttled 4G mobile profile
+- [ ] LCP under 2.5s on throttled 4G mobile
 - [ ] INP under 200ms
-- [ ] CLS under 0.1; video and images have explicit dimensions
+- [ ] CLS under 0.1; video and modules have explicit dimensions
 - [ ] Only `transform` and `opacity` animated anywhere
 
 **Accessibility**
-- [ ] Video has a visible pause control (WCAG 2.2.2)
-- [ ] Every drag has a tap alternative (SC 2.5.7)
-- [ ] Full keyboard path through the page and the demo
-- [ ] 4.5:1 body text, 3:1 borders and route lines, both themes
-- [ ] `prefers-reduced-motion` disables autoplay and all reveals
+- [ ] Canvas layers and ambient modules are `aria-hidden`
+- [ ] Video has a visible pause control
+- [ ] Every drag has a tap alternative
+- [ ] 4.5:1 body text and 3:1 borders in both themes, measured
+- [ ] `prefers-reduced-motion` disables autoplay, reveals, spine and transition
 
 **Content**
-- [ ] Every number on the page is real and traceable to the catalog
-- [ ] Banned words absent: supercharge, revolutionize, seamless, effortless, unlock your potential, empower, journey, game-changing
+- [ ] Every number is real and traceable to the catalog
+- [ ] No pricing anywhere
+- [ ] Unbuilt features marked `In development`, with no CTA
 - [ ] Unofficial disclaimer visible without scrolling on mobile
-- [ ] Proof strip sits directly below the hero CTA
+- [ ] Banned words absent: supercharge, revolutionize, seamless, effortless, unlock your potential, empower, journey, game-changing

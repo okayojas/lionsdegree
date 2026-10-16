@@ -146,6 +146,40 @@ function counters(): void {
   for (const el of els) io.observe(el);
 }
 
+/* ── Hero loop ────────────────────────────────────────────────────────────
+   WCAG 2.2.2: anything that moves, auto-starts and runs past five seconds
+   needs a visible way to stop it. The control ships hidden and is revealed
+   here, because a pause button that cannot pause anything is worse than no
+   button — and `controls` is not an option, since the browser's chrome over
+   a silent product loop reads as a video the reader is meant to scrub. */
+function heroVideo(): void {
+  const video = document.querySelector<HTMLVideoElement>("#watch video");
+  const wrap = document.querySelector<HTMLElement>("#video-controls");
+  const btn = document.querySelector<HTMLButtonElement>("#video-toggle");
+  if (!video || !wrap || !btn) return;
+
+  wrap.hidden = false;
+  // Reduced motion means reduced motion, including the one piece of motion
+  // that is the page's main illustration. It stays on the first frame until
+  // asked for, which is what the poster is there for.
+  if (reduced()) {
+    video.autoplay = false;
+    video.pause();
+  }
+
+  const sync = () => {
+    btn.textContent = video.paused ? "Play" : "Pause";
+  };
+  btn.addEventListener("click", () => {
+    if (video.paused) void video.play().catch(() => {});
+    else video.pause();
+  });
+  video.addEventListener("play", sync);
+  video.addEventListener("pause", sync);
+  sync();
+}
+
 reveals();
 menu();
 counters();
+heroVideo();
