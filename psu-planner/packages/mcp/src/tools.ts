@@ -377,14 +377,22 @@ export async function executeTool(
           note: `Nothing in the ${data.edition} catalog matches "${interest}". Say so. Do NOT suggest programs from memory — they may not exist at Penn State, or not under that name.`,
         };
       }
+      // The link is the handoff. This tool cannot generate a plan -- the
+      // suggested-plan GRIDS are not bundled here, only the requirements --
+      // so the planner does it, from the same published grids onboarding
+      // uses. Hand the student the link rather than describing a schedule.
+      const site = process.env.LIONSDEGREE_SITE ?? "https://lionsdegree.com";
       return {
         combinations: found.map((c) => ({
           major: { slug: c.major.slug, name: c.major.name },
           also: c.extras.map((e) => ({ slug: e.slug, name: e.name, type: e.type })),
           credits_counting_twice: c.sharedCredits,
           shared_courses: c.sharedCourses,
+          open_as_a_plan: `${site}/plan/?programs=${[c.major.slug, ...c.extras.map((e) => e.slug)].map(encodeURIComponent).join("+")}`,
         })),
-        note: "credits_counting_twice is computed from the programs' own requirements and is deliberately conservative — an elective slot counts once, not once per course that could fill it. Quote it as a floor.",
+        note:
+          "credits_counting_twice is computed from the programs' own requirements and is deliberately conservative — an elective slot counts once, not once per course that could fill it, so quote it as a floor. " +
+          "Give the student open_as_a_plan: it builds the real term-by-term flowchart from Penn State's published plans. Do NOT write out a schedule yourself — you do not have the term grids, and inventing one would put courses in terms their prerequisites do not allow.",
       };
     }
 

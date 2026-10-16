@@ -3,6 +3,7 @@
  * major-switchers) -> AP / transfer / other credit -> generate. */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { generatePlan, type ProgramTemplate, type ReqSection } from "@psu-planner/engine";
+import { parseProgramLink } from "../data/deepLink";
 import { currentEdition, loadCoverage, loadEditions, loadProgram, loadProgramsIndex, loadSubject, setCatalogEdition } from "../data/catalogClient";
 import type { ProgramIndexEntry } from "../data/catalogClient";
 import { extractCodesFromFile, extractCodesFromText } from "../data/importSchedule";
@@ -53,6 +54,13 @@ export function Onboarding() {
   const [legal, setLegal] = useState(false);
   /** Schreyer Honors College admit cohort (null = not a Scholar). */
   const [honors, setHonors] = useState<1 | 2 | 3 | null>(null);
+  /** Programs named in `?programs=` that the catalog does not have. Shown
+   * rather than dropped: a student told "here is your plan" is owed the fact
+   * that one of the three credentials they were promised is missing. */
+  const [linkMissing, setLinkMissing] = useState<string[]>([]);
+  /** Applied once. Re-running it would fight the student every time they
+   * changed the selection it seeded. */
+  const linkApplied = useRef(false);
 
   useEffect(() => {
     loadEditions()
@@ -94,9 +102,55 @@ export function Onboarding() {
     setCompleted(new Set());
     setExtraCredits([]);
     loadProgramsIndex()
-      .then(setIndex)
+      .then((idx) => {
+        setIndex(idx);
+        void applyProgramLink(idx);
+      })
       .catch(() => setError("Could not load the program index — is the catalog data deployed?"));
   }, [servedEdition]);
+
+  /** Pre-select the programs an assistant chose.
+   *
+   * The handoff from Discovery: the student's own AI picks the credentials,
+   * and the planner generates the actual four-year plan from the published
+   * suggested-plan grids. The model never writes a term — it chooses what to
+   * feed the generator, and the generator is the same deterministic code
+   * this screen has always run.
+   *
+   * Slugs are checked against the index before anything is fetched, because
+   * a program a model invented is exactly what must not become a request. */
+  async function applyProgramLink(idx: ProgramIndexEntry[]): Promise<void> {
+    if (linkApplied.current) return;
+    const req = parseProgramLink(window.location.search, new Set(idx.map((p) => p.slug)));
+    if (!req) return;
+    linkApplied.current = true;
+    setLinkMissing(req.unknown);
+
+    const bySlug = new Map(idx.map((p) => [p.slug, p]));
+    const chosen = req.slugs.map((x) => bySlug.get(x)).filter((p): p is ProgramIndexEntry => !!p);
+    if (!chosen.length) return;
+
+    // The FULL program files, not just the index entries. `picked` is the
+    // selection; `loaded` is what generatePlan actually reads, and it holds
+    // the suggested-plan grids. Setting only `picked` left the generator with
+    // no templates and onboarding reporting that none of the chosen programs
+    // has a plan -- which was true of what it had been handed, and nothing to
+    // do with the programs themselves.
+    const progs = await Promise.all(
+      chosen.map((p) =>
+        loadProgram<PipelineProgram>(
+          p.type === "minor" ? "minors" : p.type === "certificate" ? "certificates" : "majors",
+          p.slug,
+        ).catch(() => null),
+      ),
+    );
+    const ok = chosen.filter((_, i) => progs[i]);
+    const failed = chosen.filter((_, i) => !progs[i]);
+    if (failed.length) setLinkMissing((cur) => [...cur, ...failed.map((p) => p.slug)]);
+    if (!ok.length) return;
+    setPicked(ok);
+    setLoaded(progs.filter((x): x is PipelineProgram => !!x));
+  }
 
   const matches = useMemo(() => {
     if (!index) return [];
@@ -513,6 +567,17 @@ export function Onboarding() {
         </div>
       </div>
 
+      {linkMissing.length > 0 && (
+        /* An assistant named something the catalog does not have. Said out
+           loud, because the alternative is a plan quietly missing one of the
+           credentials the student was told they were getting. */
+        <p className="link-missing" role="status">
+          <strong>Not in the {servedEdition} bulletin:</strong>{" "}
+          {linkMissing.join(", ")}. The rest {linkMissing.length === 1 ? "was" : "were"} selected
+          below — check the list before you generate, and search for{" "}
+          {linkMissing.length === 1 ? "it" : "them"} by name if you think the name is just different here.
+        </p>
+      )}
       {error && <p style={{ color: "var(--red)" }}>{error}</p>}
       <button className="primary" disabled={busy || picked.length === 0} onClick={generate} style={{ fontSize: 15, padding: "10px 22px" }}>
         {busy ? "Building your flowchart…" : "Build my flowchart →"}

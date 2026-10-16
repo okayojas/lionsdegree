@@ -668,3 +668,16 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 }
 .fixrow-why { margin: 0; font-size: var(--fs-sm); line-height: 1.5; color: var(--text); }
 .fixrow button { justify-self: start; }
+
+/* A program an assistant named that the catalog does not have. Warning, not
+   error: the rest of the request is still good and still selected. */
+.link-missing {
+  font-size: var(--fs-sm); line-height: 1.55;
+  color: var(--text);
+  background: var(--warning-bg);
+  border-left: 3px solid var(--warning);
+  border-radius: var(--r-sm);
+  padding: var(--sp-3) var(--sp-4);
+  margin: 0 0 var(--sp-4);
+  max-width: 62ch;
+}

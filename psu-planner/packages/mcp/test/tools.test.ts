@@ -147,7 +147,19 @@ describe("it needs nothing from the network", () => {
     // the project nothing and tells no one what a student is studying.
     expect(fs.existsSync(path.join(CATALOG, "editions.json"))).toBe(true);
     const src = fs.readFileSync(path.resolve(here, "..", "src", "tools.ts"), "utf-8");
-    expect(src).not.toMatch(/\bfetch\s*\(|https?:\/\/(?!bulletins)/);
+
+    // The property is NO OUTBOUND REQUEST, and the proxy for it is "no fetch
+    // and no foreign URL". Two hosts are allowed as URLs because they are
+    // handed to the student as links, never opened here: the Bulletin a
+    // course cites, and lionsdegree.com/plan/ which discovery returns so the
+    // planner can build the flowchart this package has no grids for.
+    expect(src, "a fetch in a package whose premise is that it makes none").not.toMatch(/\bfetch\s*\(/);
+    const urls = [...src.matchAll(/https?:\/\/[^\s"'`$)]+/g)].map((m) => new URL(m[0]).hostname);
+    const allowed = new Set(["bulletins.psu.edu", "lionsdegree.com"]);
+    expect(
+      [...new Set(urls)].filter((h) => !allowed.has(h)),
+      "a host this package has no business naming",
+    ).toEqual([]);
   });
 });
 
@@ -220,5 +232,31 @@ describe("discover_programs", () => {
   it("refuses an empty interest instead of returning the catalog", async () => {
     const r = (await call("discover_programs", { interest: "  " })) as { error?: string };
     expect(r.error).toMatch(/required/i);
+  });
+});
+
+describe("the handoff from discovery to a plan", () => {
+  it("hands back a link that opens the real planner", async () => {
+    const r = (await call("discover_programs", { interest: "artificial intelligence" })) as {
+      combinations: { major: { slug: string }; also: { slug: string }[]; open_as_a_plan: string }[];
+      note: string;
+    };
+    expect(r.combinations.length).toBeGreaterThan(0);
+    const c = r.combinations[0];
+    const url = new URL(c.open_as_a_plan);
+    expect(url.pathname).toBe("/plan/");
+    // Every slug in the link is one of the credentials just recommended --
+    // not a name reconstructed from the program's title.
+    const asked = url.searchParams.get("programs")!.split(" ");
+    expect(asked).toEqual([c.major.slug, ...c.also.map((a) => a.slug)]);
+    for (const slug of asked) expect(ctx.data.programs[slug], `${slug} is not a real program`).toBeTruthy();
+  });
+
+  it("tells the model not to invent a schedule it has no grids for", async () => {
+    // This package bundles requirements, not suggested-plan grids. An
+    // assistant writing out "Fall 2026: take these four" would be guessing
+    // at term placement the engine exists to compute.
+    const r = (await call("discover_programs", { interest: "artificial intelligence" })) as { note: string };
+    expect(r.note).toMatch(/do not write out a schedule yourself/i);
   });
 });
