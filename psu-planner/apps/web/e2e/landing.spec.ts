@@ -155,9 +155,15 @@ test.describe("the prerequisite journey", () => {
     await expect(journey.locator("canvas"), "a canvas with scripting off").toHaveCount(0);
   });
 
-  test("the diagram is described for a screen reader", async ({ page }) => {
+  test("the chain keeps an accessible description even when the 3D takes over", async ({ page }) => {
+    // The scene replaces the DIAGRAM, not the description. When WebGL is
+    // available the SVG is hidden from sight but stays in the accessibility
+    // tree, and the written verdict stays visible to everyone — an earlier
+    // `display: none` removed both and nothing failed.
     await page.goto("/");
-    await expect(page.getByRole("img", { name: /prerequisite chain/i })).toBeVisible();
+    await expect(page.getByRole("img", { name: /prerequisite chain/i })).toHaveCount(1);
+    await expect(page.locator(".journey-verdict")).toBeVisible();
+    await expect(page.locator(".journey-verdict")).toContainText(/EE 456/);
   });
 
   test.describe("under reduced motion", () => {

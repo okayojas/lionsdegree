@@ -86,23 +86,58 @@
       <!-- Stops on one route, not sections. Each attaches at a station dot;
            only the closing dot is filled. -->
       <div class="route">
-        <!-- ══ OPENING ══════════════════════════════════════════════════ -->
-        <section class="stop" id="hero">
-          <div class="module w-lg reveal">
-            <p class="eyebrow">Unofficial &middot; Built for Penn State students</p>
-            <h1>Your degree is a route map.<br />Now you can see it.</h1>
-            <p class="lede">
-              LionsDegree reads Penn State's Bulletin, works out what unlocks
-              what, and builds a four-year plan that actually holds. Drag a
-              course and it tells you what breaks.
-            </p>
-            <p class="actions">
-              <a class="btn btn-go" href="/plan/">Open the planner</a>
-              <a class="btn btn-quiet" href="#watch">Watch it work</a>
-            </p>
-            <p class="trust">Free and open source. No account needed to try it.</p>
-            <p class="note">
-              <strong>Unofficial.</strong> Not affiliated with or endorsed by Penn State.
+        <!-- ══ OPENING: THE JOURNEY IS THE HERO ════════════════════════
+             The page opens on the product's actual claim rather than on a
+             sentence about it — a real chain of thirteen courses ending at
+             AI 410, with a real conflict in amber. The Bulletin makes EE 456
+             an enforced prerequisite of AI 410, and the plan this was built
+             from puts both in the same term.
+
+             The written thesis sits OVER the scene, not after it. Everything
+             here is static markup: where the guards in reveal.ts allow it a
+             WebGL scene mounts behind, and where they do not the SVG below
+             is a complete opening on its own. The page must never need the
+             3D (docs/landing-3d-journey.md §8). -->
+        <section class="stop stop-bleed" id="hero">
+          <div class="module w-xl hero-journey journey" id="journey">
+            <div class="hero-words">
+              <p class="eyebrow">Unofficial &middot; Built for Penn State students</p>
+              <h1>Your degree is a route map.<br />Now you can see it.</h1>
+              <p class="lede">
+                Thirteen real Penn State courses, and the one the engine caught:
+                EE&nbsp;456 is required before AI&nbsp;410 and scheduled in the
+                same term.
+              </p>
+              <p class="actions">
+                <a class="btn btn-go" href="/plan/">Open the planner</a>
+                <a class="btn btn-quiet" href="#watch">Watch it work</a>
+              </p>
+              <p class="trust">Free and open source. No account needed to try it.</p>
+              <p class="note">
+                <strong>Unofficial.</strong> Not affiliated with or endorsed by Penn State.
+              </p>
+            </div>
+
+            <figure class="journey-static">
+              <svg viewBox="0 0 960 260" role="img"
+                   aria-label="A prerequisite chain of seven courses from MATH 141 to AI 410. EE 456, an enforced prerequisite of AI 410, is flagged amber because it is scheduled in the same term as the course it is supposed to come before.">
+                <path class="route-line" d="M60 200 H170 Q215 200 215 160 H330 Q375 160 375 120 H520 Q565 120 565 84 H780" />
+                <path class="route-branch" d="M640 206 Q700 206 735 150 Q760 110 780 88" />
+                <g class="route-stop" style="--i:0"><circle cx="60"  cy="200" r="10" /><text class="lp-stn" x="60"  y="236">MATH 141</text></g>
+                <g class="route-stop" style="--i:1"><circle cx="215" cy="160" r="10" /><text class="lp-stn" x="215" y="196">PHYS 214</text></g>
+                <g class="route-stop" style="--i:2"><circle cx="375" cy="120" r="10" /><text class="lp-stn" x="375" y="156">ESC 312</text></g>
+                <g class="route-stop" style="--i:3"><circle cx="520" cy="120" r="10" /><text class="lp-stn" x="520" y="156">CMPSC 360</text></g>
+                <g class="route-stop" style="--i:4"><circle cx="565" cy="84"  r="10" /><text class="lp-stn" x="565" y="58">AI 100</text></g>
+                <g class="route-stop" style="--i:5"><circle cx="680" cy="84"  r="10" /><text class="lp-stn" x="680" y="58">AI 341W</text></g>
+                <g class="route-stop is-conflict" style="--i:6"><circle cx="640" cy="206" r="10" /><text class="lp-stn" x="640" y="242">EE 456</text></g>
+                <g class="route-stop" style="--i:7"><circle cx="780" cy="84"  r="10" /><text class="lp-stn" x="780" y="58">AI 410</text></g>
+              </svg>
+            </figure>
+            <p class="note journey-verdict">
+              <strong class="journey-flag">EE 456 is scheduled too late.</strong>
+              The Bulletin lists it as an enforced prerequisite of AI 410, and
+              the plan puts both in the same term — so the chain cannot be
+              satisfied as written. The planner catches this before you register.
             </p>
           </div>
         </section>
@@ -182,48 +217,9 @@
           </figure>
         </section>
 
-        <!-- ══ THE JOURNEY ══════════════════════════════════════════════
-             A real chain of thirteen courses ending at AI 410, and the amber
-             stop is a real conflict: the Bulletin makes EE 456 an enforced
-             prerequisite of AI 410, and the plan this was built from puts
-             both in the same term.
-
-             The SVG below is the whole story on its own. Where the guards in
-             reveal.ts allow it, a WebGL scene mounts on top and the reader
-             travels the chain by scrolling — but nothing here depends on
-             that, and with JavaScript off this is what ships. -->
-        <section class="stop stop-wide" aria-labelledby="journey-h">
-          <div class="module w-xl reveal journey" id="journey">
-            <p class="eyebrow">One real chain</p>
-            <h2 id="journey-h">Thirteen courses, and the one that does not fit.</h2>
-
-            <figure class="journey-static">
-              <svg viewBox="0 0 960 260" role="img"
-                   aria-label="A prerequisite chain of seven courses from MATH 141 to AI 410. EE 456, an enforced prerequisite of AI 410, is flagged amber because it is scheduled in the same term as the course it is supposed to come before.">
-                <path class="route-line" d="M60 200 H170 Q215 200 215 160 H330 Q375 160 375 120 H520 Q565 120 565 84 H780" />
-                <path class="route-branch" d="M640 206 Q700 206 735 150 Q760 110 780 88" />
-                <g class="route-stop" style="--i:0"><circle cx="60"  cy="200" r="10" /><text class="lp-stn" x="60"  y="236">MATH 141</text></g>
-                <g class="route-stop" style="--i:1"><circle cx="215" cy="160" r="10" /><text class="lp-stn" x="215" y="196">PHYS 214</text></g>
-                <g class="route-stop" style="--i:2"><circle cx="375" cy="120" r="10" /><text class="lp-stn" x="375" y="156">ESC 312</text></g>
-                <g class="route-stop" style="--i:3"><circle cx="520" cy="120" r="10" /><text class="lp-stn" x="520" y="156">CMPSC 360</text></g>
-                <g class="route-stop" style="--i:4"><circle cx="565" cy="84"  r="10" /><text class="lp-stn" x="565" y="58">AI 100</text></g>
-                <g class="route-stop" style="--i:5"><circle cx="680" cy="84"  r="10" /><text class="lp-stn" x="680" y="58">AI 341W</text></g>
-                <g class="route-stop is-conflict" style="--i:6"><circle cx="640" cy="206" r="10" /><text class="lp-stn" x="640" y="242">EE 456</text></g>
-                <g class="route-stop" style="--i:7"><circle cx="780" cy="84"  r="10" /><text class="lp-stn" x="780" y="58">AI 410</text></g>
-              </svg>
-              <figcaption class="note">
-                <strong class="journey-flag">EE 456 is scheduled too late.</strong>
-                The Bulletin lists it as an enforced prerequisite of AI 410, and
-                the plan puts both in the same term — so the chain cannot be
-                satisfied as written. The planner catches this before you register.
-              </figcaption>
-            </figure>
-          </div>
-        </section>
-
         <section class="stop">
           <figure class="module w-md shot reveal">
-            <img src="/shots/audit.png" width="620" height="700" loading="lazy" decoding="async"
+            <img src="/shots/audit.png" width="354" height="859" loading="lazy" decoding="async"
                  alt="The requirements panel: Engineering Science B.S. with 29 requirements on track, 3 to do and 1 to check manually." />
             <figcaption class="note">Every requirement, checked against what you have actually planned.</figcaption>
           </figure>

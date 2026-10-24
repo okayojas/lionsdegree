@@ -91,6 +91,9 @@ importers:
       hono:
         specifier: ^4.6.0
         version: 4.12.29
+      sharp:
+        specifier: ^0.35.0
+        version: 0.35.3(@types/node@24.13.3)
       tsx:
         specifier: ^4.19.0
         version: 4.23.0

@@ -12,6 +12,7 @@
  *   BASE=http://localhost:4173 node scripts/...
  */
 import { chromium } from "@playwright/test";
+import sharp from "sharp";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -54,17 +55,109 @@ for (let i = 0; i < 4; i++) {
 }
 await page.waitForTimeout(500);
 
-const shots = [
-  // The chart itself: course cards and the prerequisite lines between them.
-  { name: "flowchart", clip: { x: 10, y: 70, width: 920, height: 700 } },
-  // The audit panel: what the plan still owes, checked against the catalog.
-  { name: "audit", clip: { x: 1010, y: 70, width: 480, height: 700 } },
-];
+/* ── Framing ────────────────────────────────────────────────────────────
+   These clips used to be four hardcoded pixel rectangles guessed against a
+   1500x940 viewport. Any layout change -- a wider panel, a taller toolbar --
+   slid the subject off-centre, and nothing failed, so the shots quietly
+   drifted until someone looked at the landing page and said the photos were
+   badly framed.
 
-for (const { name, clip } of shots) {
-  await page.screenshot({ path: path.join(OUT, `${name}.png`), clip });
-  console.log(`shots/${name}.png`);
+   Now the crop is DERIVED: measure where the subject actually is, then build
+   a window centred on it. Content is centred by construction rather than by
+   a number somebody typed once. */
+
+/** Union of every match's box, in page coordinates — the real extent of the
+ * content, as opposed to the extent of the surface it is drawn on. The chart
+ * lives inside a pan/zoom viewport that always fills its pane, so measuring
+ * the container tells you nothing about where the cards ended up. */
+async function contentBox(page, selector) {
+  return page.evaluate((sel) => {
+    const seen = [...document.querySelectorAll(sel)].filter((el) => {
+      const r = el.getBoundingClientRect();
+      return r.width > 0 && r.height > 0;
+    });
+    if (!seen.length) return null;
+    const box = seen.reduce(
+      (acc, el) => {
+        const r = el.getBoundingClientRect();
+        return {
+          left: Math.min(acc.left, r.left),
+          top: Math.min(acc.top, r.top),
+          right: Math.max(acc.right, r.right),
+          bottom: Math.max(acc.bottom, r.bottom),
+        };
+      },
+      { left: Infinity, top: Infinity, right: -Infinity, bottom: -Infinity },
+    );
+    return { ...box, count: seen.length };
+  }, selector);
 }
+
+/** The subject plus breathing room, clamped to the page.
+ *
+ * SIZED by the content, not just positioned by it. A fixed 920x700 window
+ * centred on the cards still left half the frame as empty canvas, because
+ * the plan does not happen to be 700px tall — centring the subject inside a
+ * frame it does not fill just moves the dead space around. Deriving both the
+ * origin and the extent means the subject fills the shot by construction. */
+function frame(subject, { pad, bounds }) {
+  const x = Math.max(bounds.left, subject.left - pad);
+  const y = Math.max(bounds.top, subject.top - pad);
+  return {
+    x: Math.round(x),
+    y: Math.round(y),
+    width: Math.round(Math.min(subject.right + pad, bounds.right) - x),
+    height: Math.round(Math.min(subject.bottom + pad, bounds.bottom) - y),
+  };
+}
+
+const page1 = { left: 0, top: 0, right: 1500, bottom: 940 };
+
+// The chart: frame the COURSE CARDS, not the viewport that holds them. This
+// also crops the toolbar out, which the old fixed rectangle used to slice
+// through mid-word.
+const cards = await contentBox(page, ".viewport .card");
+if (!cards) throw new Error("no course cards found — did the seeded plan load?");
+console.log(`  framing the chart on ${cards.count} cards`);
+const flowchart = frame(cards, { pad: 28, bounds: page1 });
+
+// The audit panel is a fixed pane, so its own box IS the subject. Trim a few
+// pixels off the resizer edge so the shot does not include a grab handle.
+const panel = await contentBox(page, ".sidepanel");
+if (!panel) throw new Error("no .sidepanel found");
+const audit = {
+  x: Math.round(panel.left + 6),
+  y: Math.round(panel.top),
+  width: Math.round(panel.right - panel.left - 6),
+  height: Math.round(Math.min(panel.bottom, page1.bottom) - panel.top),
+};
+
+/** Screenshot, then quantise.
+ *
+ * Playwright writes full-depth PNG. These shots are flat UI -- a handful of
+ * fills, text, and thin strokes -- so a palette costs nothing visible and
+ * saves two thirds of the bytes. Framing the shots properly made them larger
+ * (the subject now fills the frame instead of sharing it with empty canvas),
+ * which pushed `mobile.png` from 45 KB to 214 KB and straight through the
+ * 140 KB-per-image budget. The budget is right and the shot is right; what
+ * was missing was this step.
+ *
+ * Same scar as the brand mark, which shipped as 192 KB of full-depth PNG for
+ * four flat colours. */
+async function capture(target, name, clip) {
+  const raw = await target.screenshot(clip ? { clip } : { fullPage: false });
+  const out = path.join(OUT, `${name}.png`);
+  await sharp(raw)
+    .png({ palette: true, quality: 82, effort: 10 })
+    .toFile(out);
+  const meta = await sharp(out).metadata();
+  const kb = fs.statSync(out).size / 1024;
+  console.log(`shots/${name}.png  ${meta.width}x${meta.height}  ${kb.toFixed(0)} KB`);
+  return { width: meta.width, height: meta.height, kb };
+}
+
+await capture(page, "flowchart", flowchart);
+await capture(page, "audit", audit);
 
 // The phone shot is the LIST view, not the canvas shrunk down: the list is
 // the mobile experience, and photographing a drag surface nobody can drag
@@ -80,8 +173,7 @@ await phone.addInitScript(
 );
 await phone.goto(`${BASE}/plan/`, { waitUntil: "networkidle" });
 await phone.waitForTimeout(2200);
-await phone.screenshot({ path: path.join(OUT, "mobile.png") });
-console.log("shots/mobile.png");
+await capture(phone, "mobile");
 await phone.close();
 
 await browser.close();

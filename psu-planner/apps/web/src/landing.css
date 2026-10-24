@@ -337,6 +337,69 @@
   font-family: var(--font-mono); font-size: 24px; letter-spacing: .06em; text-anchor: middle;
 }
 
+/* ── The hero is the journey ────────────────────────────────────────────
+   The page opens on the scene rather than on a paragraph about it. The
+   words sit OVER it, so the reader meets the claim and the evidence at the
+   same moment instead of scrolling from one to the other. */
+.stop-bleed { padding-top: clamp(1rem, 3vh, 2rem); }
+@media (min-width: 64rem) {
+  /* Full width: the hero is the one stop that does not sit to one side of
+     the spine, because there is nothing for it to be beside. */
+  .stop-bleed > * { grid-column: 1 / -1; justify-self: stretch; }
+}
+.hero-journey {
+  position: relative;
+  min-height: clamp(30rem, 82vh, 54rem);
+  max-width: none;
+  display: grid;
+  align-content: start;
+  overflow: hidden;
+}
+/* Above the canvas and the labels, and narrow enough that the scene is not
+   hidden behind a wall of text. */
+.hero-words {
+  position: relative;
+  z-index: 3;
+  max-width: 34rem;
+  pointer-events: none;
+}
+.hero-words a, .hero-words button { pointer-events: auto; }
+.hero-journey h1 { font-size: clamp(32px, 5.6vw, 54px); }
+/* A legibility scrim, not a decoration: white text over a moving scene is
+   unreadable the moment a bright node passes behind a glyph. */
+.hero-journey::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    color-mix(in srgb, var(--bg) 82%, transparent) 0%,
+    color-mix(in srgb, var(--bg) 52%, transparent) 34%,
+    transparent 60%
+  );
+}
+/* The static chain is the fallback AND the composition when the 3D is off:
+   it sits low-right so the words never cross it. */
+.hero-journey .journey-static { position: relative; z-index: 1; margin-top: auto; align-self: end; }
+.hero-journey.is-live .hero-words { text-shadow: 0 1px 12px color-mix(in srgb, var(--bg) 80%, transparent); }
+
+@media (max-width: 64rem) {
+  .hero-journey { min-height: clamp(26rem, 70vh, 38rem); }
+  .hero-words { max-width: none; }
+  /* The diagonal scrim leaves the bottom-left readable on a wide screen and
+     nothing readable on a narrow one, where the words stack full width. */
+  .hero-journey::before {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--bg) 90%, transparent) 0%,
+      color-mix(in srgb, var(--bg) 70%, transparent) 46%,
+      transparent 78%
+    );
+  }
+}
+
 /* ── The journey ────────────────────────────────────────────────────────
    The static SVG is the baseline and is styled to look finished on its own.
    `.is-live` is added by reveal.ts only after the WebGL scene has actually
@@ -354,10 +417,29 @@
 .journey-flag { color: var(--warning); display: block; }
 
 /* Live scene. The canvas sits behind the labels and above nothing else. */
-.journey.is-live .journey-static { display: none; }
+/* The 3D replaces the DIAGRAM, never the description. `display: none` here
+   took the whole figure out — including the sentence naming the conflict —
+   so the explanation vanished for everyone the moment WebGL happened to
+   work, and the chain lost its accessible description with it. The SVG is
+   hidden from sight but kept in the accessibility tree; the verdict below
+   stays visible always. */
+.journey.is-live .journey-static {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  pointer-events: none;
+}
+.journey-verdict { position: relative; z-index: 3; max-width: 46ch; }
+.hero-journey .journey-verdict { margin-top: auto; }
 .journey.is-live { min-height: clamp(26rem, 68vh, 44rem); display: flex; flex-direction: column; }
 .journey-canvas { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: var(--r-lg); display: block; }
-.journey.is-live > :not(.journey-canvas) { position: relative; z-index: 1; }
+/* The hero words are excluded by NAME. Without that, this selector (0,3,0)
+   outranks `.hero-words { z-index: 3 }` (0,1,0) and pins the copy underneath
+   the legibility scrim — the h1 and the CTA render dimmed and nothing in the
+   rule that set z-index 3 looks wrong. Same shape as the `.bar-cta` collision
+   in the header. */
+.journey.is-live > :not(.journey-canvas):not(.hero-words) { position: relative; z-index: 1; }
 /* Clipped as well as bounds-checked in the loop: belt and braces, because a
    label escaping the module reads as a page bug, not a scene one. */
 .journey-labels { position: absolute; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; border-radius: var(--r-lg); }
