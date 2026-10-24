@@ -179,7 +179,64 @@ function heroVideo(): void {
   sync();
 }
 
+/* ── The 3D prerequisite journey ─────────────────────────────────────────
+   ADR 0002 and docs/landing-3d-journey.md. Three.js is ~140 KB and is NEVER
+   in the initial payload: it arrives through a dynamic `import()`, and only
+   once the container is actually on screen.
+
+   The static module inside the container is the baseline, not a degraded
+   state. If the guards say no, if the import fails, if WebGL will not start
+   — the page is already complete and nothing is missing. That is why the
+   failure path here is silent: there is nothing for a reader to act on. */
+function journey(): void {
+  const container = document.querySelector<HTMLElement>("#journey");
+  if (!container) return;
+
+  // Two guards, and both are correctness rather than budget avoidance (the
+  // ADR is explicit that the desktop-only guard was dropped — the 3D is the
+  // product demonstration, so phones get it too, with a tighter camera).
+  //
+  // `save-data` is a reader telling us not to spend their bytes; reduced
+  // motion is a reader telling us not to move things. Neither is negotiable,
+  // and neither has anything to do with how big the chunk is.
+  const connection = (navigator as { connection?: { saveData?: boolean } }).connection;
+  if (connection?.saveData === true) return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  // A canvas we cannot create is not worth downloading a renderer for.
+  try {
+    const probe = document.createElement("canvas");
+    if (!probe.getContext("webgl2") && !probe.getContext("webgl")) return;
+  } catch {
+    return;
+  }
+
+  if (!("IntersectionObserver" in window)) return;
+
+  let started = false;
+  const io = new IntersectionObserver(
+    (entries) => {
+      if (started || !entries.some((e) => e.isIntersecting)) return;
+      started = true;
+      io.disconnect();
+      void import("./landing/journey.js")
+        .then(({ mount }) => {
+          const handle = mount(container);
+          container.classList.add("is-live");
+          addEventListener("pagehide", () => handle.dispose(), { once: true });
+        })
+        .catch(() => {
+          // Offline, blocked, or a chunk that never shipped. The static
+          // module is still sitting there and still says the same thing.
+        });
+    },
+    { rootMargin: "200px" },
+  );
+  io.observe(container);
+}
+
 reveals();
 menu();
 counters();
 heroVideo();
+journey();

@@ -5,32 +5,11 @@
 import { createClient, type SupabaseClient, type User } from "@supabase/supabase-js";
 import type { PlanDoc } from "@psu-planner/engine";
 
-const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
-const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
+/** The config gate lives in `sync-config.ts`, which imports no Supabase code,
+ * so a caller can ask "is sync on?" without downloading the client. */
+import { supabaseUrl as url, supabaseAnonKey as anonKey, syncConfigured } from "./sync-config";
 
-/** The gate used to test PRESENCE only, so a placeholder left in `.env.local`
- * (`https://<project-ref>.supabase.co`) passed it, `createClient` threw
- * "Invalid supabaseUrl", and the throw unmounted AccountMenu and SidePanel —
- * a blank planner with no error UI. Validate the shape and degrade to
- * local-only instead, which is the conservative failure (see CONTRIBUTING). */
-function isUsableUrl(u: string | undefined): u is string {
-  if (!u) return false;
-  try {
-    const { protocol } = new URL(u);
-    return protocol === "https:" || protocol === "http:";
-  } catch {
-    return false;
-  }
-}
-
-if (url && !isUsableUrl(url)) {
-  console.error(
-    `[sync] VITE_SUPABASE_URL is not a valid URL (${url}). Account sync is OFF and the ` +
-      `planner will run local-only. Fix or remove it in apps/web/.env.local — see .env.example.`,
-  );
-}
-
-export const syncConfigured = isUsableUrl(url) && Boolean(anonKey);
+export { syncConfigured };
 
 let client: SupabaseClient | null = null;
 export function supabase(): SupabaseClient | null {

@@ -11,6 +11,7 @@
 import { describe, it, expect, beforeAll } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
+import zlib from "node:zlib";
 import { fileURLToPath } from "node:url";
 import { requirementCoverage } from "@psu-planner/engine";
 import { latestEdition, loadPrograms } from "../scripts/catalog-programs.mjs";
@@ -24,6 +25,83 @@ beforeAll(() => {
     throw new Error(`no build output at ${dist} — run \`pnpm --filter web build\` before this suite`);
   }
 });
+
+/* Two ceilings, both GZIPPED, both measured (ADR 0002).
+ *
+ * GZIPPED, not bytes on disk: the budget exists to bound the time a student
+ * on a phone spends waiting, and what they wait for is the transfer. Three.js
+ * is 535 KB on disk and 136 KB on the wire, and holding the page to the
+ * former would be policing a number nobody experiences. Cloudflare Pages
+ * compresses by default.
+ *
+ * WHY TWO. One number cannot do both jobs. The total stops the loophole the
+ * old test had — deferring a chunk must not make it free. The eager number is
+ * the thing the original 20 KB limit was actually protecting: first paint.
+ * Fixing the metric is what revealed they had drifted apart, and that the
+ * landing page was eagerly shipping 55 KB of Supabase client so a contact
+ * form below the fold could decide whether to render.
+ *
+ * Do not round either up to make a build pass. Re-measure, and put the figure
+ * in the commit message — that is the discipline the ADR exists to impose. */
+
+/** Script that runs before the page is interactive. Measured at 4.2 KB. */
+const LANDING_EAGER_CEILING_KB = 12;
+
+/** Everything reachable, lazy chunks included. Measured at 190.7 KB — of
+ * which Three.js is 135.6 and the Supabase client 56.0, both deferred. */
+const LANDING_SCRIPT_CEILING_KB = 230;
+
+/** Every script reachable from `entries`, static or dynamic, as dist-relative
+ * paths.
+ *
+ * Rollup emits both kinds of edge as a bare `from "./chunk-x.js"` /
+ * `import("./chunk-y.js")` specifier in the built file, so one scan catches
+ * both — which is the point. Resolution is textual rather than a real parse:
+ * a bundler's output is machine-written and regular, and a parser here would
+ * be a second implementation of the thing under test. */
+function reachableScripts(entries: string[], follow: "static" | "all"): Set<string> {
+  const seen = new Set<string>();
+  const queue = entries.map((e) => e.replace(/^\//, ""));
+
+  while (queue.length) {
+    const rel = queue.shift()!;
+    if (seen.has(rel) || !exists(rel)) continue;
+    seen.add(rel);
+
+    const src = read(rel);
+    const dir = path.posix.dirname(rel);
+    // `import("x")` is the dynamic edge; `from "x"` and a bare `import "x"`
+    // are static. Rollup writes both as plain relative specifiers, so the
+    // only thing separating them is the parenthesis.
+    const edges = /(?:\bfrom\s*|\bimport\s*(\()?\s*)["']([^"']+\.js)["']/g;
+    for (const m of src.matchAll(edges)) {
+      const dynamic = Boolean(m[1]);
+      if (dynamic && follow === "static") continue;
+      const spec = m[2];
+      // Bare specifiers would mean an unbundled dependency; there are none in
+      // this build, and treating one as a path would silently measure zero.
+      if (!spec.startsWith(".") && !spec.startsWith("/")) continue;
+      queue.push(path.posix.normalize(spec.startsWith("/") ? spec.slice(1) : path.posix.join(dir, spec)));
+    }
+  }
+  return seen;
+}
+
+/** Transfer size of every reachable script, which is what a reader waits for.
+ *
+ * `statSync` would report the uncompressed file; the browser is handed the
+ * gzipped stream. For Three.js the gap is 535 KB against 136 KB, so the two
+ * numbers lead to completely different decisions. */
+function scriptKb(entries: string[], follow: "static" | "all"): number {
+  let total = 0;
+  for (const rel of reachableScripts(entries, follow)) {
+    total += zlib.gzipSync(fs.readFileSync(path.join(dist, rel))).length;
+  }
+  return total / 1024;
+}
+
+const entryScripts = () =>
+  [...read("index.html").matchAll(/<script\b[^>]*\bsrc="(\/[^"]+)"/g)].map((m) => m[1]);
 
 describe("the landing document", () => {
   it("is a real document, readable with no JavaScript", () => {
@@ -47,11 +125,47 @@ describe("the landing document", () => {
     // was inline SVG and the page happened to contain no images.
     const scripts = [...read("index.html").matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map((m) => m[1]);
     expect(scripts.some((s) => /\/assets\/plan-.*\.js$/.test(s))).toBe(false);
-    // Whatever it does load stays tiny; the planner bundle is ~500 KB.
-    const bytes = scripts
-      .filter((s) => s.startsWith("/"))
-      .reduce((sum, s) => sum + fs.statSync(path.join(dist, s.slice(1))).size, 0);
-    expect(bytes).toBeLessThan(20 * 1024);
+  });
+
+  it("keeps the first paint light: what loads before anyone scrolls", () => {
+    // THE NUMBER THAT PROTECTS THE PHONE READER. Static import graph only --
+    // the bytes a student waits for when the page opens, before any lazy
+    // chunk is asked for. Measured at 4.2 KB.
+    const kb = scriptKb(entryScripts(), "static");
+    expect(kb, `${kb.toFixed(1)} KB of script runs before the page is interactive`).toBeLessThan(
+      LANDING_EAGER_CEILING_KB,
+    );
+  });
+
+  it("weighs every script a visitor downloads, including lazy chunks", () => {
+    // ADR 0002. This assertion used to read `<script src>` out of the markup
+    // and stop there -- so a chunk fetched by a runtime `import()` appeared in
+    // neither this limit nor the image one. Lazy-loading Three.js would have
+    // passed the suite without the suite ever having considered it.
+    //
+    // A budget that can be stepped around by changing HOW a file is requested
+    // rather than WHETHER it is downloaded measures nothing. Together with
+    // the eager limit above, the pair says: deferring work is allowed, and
+    // deferring it does not make it free.
+    const entries = entryScripts();
+    expect(entries.length, "no entry scripts on the landing page").toBeGreaterThan(0);
+    const kb = scriptKb(entries, "all");
+    expect(kb, `landing scripts total ${kb.toFixed(1)} KB across the whole import graph`).toBeLessThan(
+      LANDING_SCRIPT_CEILING_KB,
+    );
+  });
+
+  it("still never reaches the planner through a lazy import either", () => {
+    // The markup check above only sees entry scripts. The whole point of
+    // walking the graph is that a transitive edge is just as real an import,
+    // and `plan-*.js` arriving that way would be the same failure wearing a
+    // different hat.
+    const entries = [...read("index.html").matchAll(/<script\b[^>]*\bsrc="(\/[^"]+)"/g)].map((m) => m[1]);
+    const reached = [...reachableScripts(entries)];
+    expect(
+      reached.filter((f) => /^assets\/plan-.*\.js$/.test(f)),
+      "the planner bundle is reachable from the landing page",
+    ).toEqual([]);
   });
 
   it("keeps its imagery light enough to be worth loading", () => {

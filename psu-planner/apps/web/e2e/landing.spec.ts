@@ -137,6 +137,48 @@ test.describe("discovery", () => {
   });
 });
 
+test.describe("the prerequisite journey", () => {
+  // docs/landing-3d-journey.md §7. The 3D is an enhancement over a module
+  // that must already be complete, so these test the page WITHOUT it: the
+  // guards, and what is left when they say no.
+  test("the static chain is the whole story on its own, with no JavaScript", async ({ page, context }) => {
+    await context.route("**/*.js", (r) => r.abort());
+    await page.goto("/");
+    const journey = page.locator("#journey");
+    await expect(journey).toBeVisible();
+    // Real course codes in the markup, not drawn by a script.
+    await expect(journey).toContainText("EE 456");
+    await expect(journey).toContainText("AI 410");
+    // And the conflict is stated, not just coloured — colour alone carries
+    // nothing to a reader who cannot see it.
+    await expect(journey).toContainText(/enforced prerequisite/i);
+    await expect(journey.locator("canvas"), "a canvas with scripting off").toHaveCount(0);
+  });
+
+  test("the diagram is described for a screen reader", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByRole("img", { name: /prerequisite chain/i })).toBeVisible();
+  });
+
+  test.describe("under reduced motion", () => {
+    test.use({ reducedMotion: "reduce" });
+
+    test("never loads the 3D at all", async ({ page }) => {
+      // Not "loads it and holds it still" — the guard returns before the
+      // dynamic import, so Three.js is never fetched.
+      const requested: string[] = [];
+      page.on("request", (r) => requested.push(r.url()));
+      await page.goto("/");
+      await page.locator("#journey").scrollIntoViewIfNeeded();
+      await page.waitForTimeout(1200);
+      expect(requested.filter((u) => /journey-.*\.js/.test(u)), "the 3D chunk was fetched anyway").toEqual([]);
+      await expect(page.locator("#journey canvas")).toHaveCount(0);
+      // And what remains still looks finished.
+      await expect(page.locator("#journey .journey-static")).toBeVisible();
+    });
+  });
+});
+
 test.describe("the hero route", () => {
   test("is drawn, not left half-finished", async ({ page }) => {
     await page.goto("/");

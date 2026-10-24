@@ -337,6 +337,78 @@
   font-family: var(--font-mono); font-size: 24px; letter-spacing: .06em; text-anchor: middle;
 }
 
+/* ── The journey ────────────────────────────────────────────────────────
+   The static SVG is the baseline and is styled to look finished on its own.
+   `.is-live` is added by reveal.ts only after the WebGL scene has actually
+   mounted, so a failed import leaves the static diagram exactly as it was
+   rather than hiding it behind nothing. */
+.journey { position: relative; }
+.journey-static svg { width: 100%; height: auto; overflow: visible; }
+.journey-static .route-line { fill: none; stroke: var(--primary); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 1600; stroke-dashoffset: 1600; animation: route-draw 1.6s var(--ease-out) forwards; }
+.journey-static .route-branch { fill: none; stroke: var(--warning); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 6 7; opacity: .85; }
+.journey-static .route-stop { opacity: 0; transform-box: fill-box; transform-origin: center; animation: stop-pop .34s var(--ease-out) forwards; animation-delay: calc(.35s + var(--i) * .11s); }
+.journey-static circle { fill: var(--bg); stroke: var(--primary); stroke-width: 4; }
+.journey-static .is-conflict circle { stroke: var(--warning); }
+.journey-static .lp-stn { fill: var(--text-muted); stroke: none; font-family: var(--font-mono); font-size: 19px; letter-spacing: .05em; text-anchor: middle; }
+.journey-static .is-conflict .lp-stn { fill: var(--warning); }
+.journey-flag { color: var(--warning); display: block; }
+
+/* Live scene. The canvas sits behind the labels and above nothing else. */
+.journey.is-live .journey-static { display: none; }
+.journey.is-live { min-height: clamp(26rem, 68vh, 44rem); display: flex; flex-direction: column; }
+.journey-canvas { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: var(--r-lg); display: block; }
+.journey.is-live > :not(.journey-canvas) { position: relative; z-index: 1; }
+/* Clipped as well as bounds-checked in the loop: belt and braces, because a
+   label escaping the module reads as a page bug, not a scene one. */
+.journey-labels { position: absolute; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; border-radius: var(--r-lg); }
+.journey-label { position: absolute; transform: translateX(-50%); transition: opacity .18s linear; }
+.journey-label button {
+  pointer-events: auto;
+  display: grid; gap: 2px; text-align: center;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  padding: var(--sp-2) var(--sp-3);
+  font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .08em;
+  color: var(--text); cursor: default; white-space: nowrap;
+}
+.journey-label button.has-note { cursor: pointer; }
+.journey-label button.has-note:hover { border-color: var(--primary); color: var(--primary); }
+.journey-label button:disabled { opacity: .72; }
+.journey-label button span { display: block; font-family: var(--font-sans); font-size: 11px; letter-spacing: 0; color: var(--text-muted); max-width: 18ch; overflow: hidden; text-overflow: ellipsis; }
+.journey-label.is-conflict button { border-color: var(--warning); color: var(--warning); }
+
+/* ── Field notes ────────────────────────────────────────────────────── */
+.journey-dialog {
+  width: min(34rem, calc(100vw - 2rem));
+  background: var(--surface-2); color: var(--text);
+  border: 1.5px solid var(--border-strong); border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg), inset 0 1px 0 color-mix(in srgb, var(--text) 10%, transparent);
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+.journey-dialog::backdrop { background: rgb(0 0 0 / .55); }
+.jd-body { transition: opacity .12s var(--ease-out), transform .12s var(--ease-out); }
+.jd-body.is-swapping { opacity: 0; transform: translateY(6px); }
+.jd-kind { font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--warning); margin: 0 0 var(--sp-2); }
+.jd-code { font-family: var(--font-mono); font-size: clamp(1.4rem, 3vw, 1.9rem); margin: 0 0 var(--sp-1); letter-spacing: .02em; }
+.jd-title { color: var(--text-muted); margin: 0 0 var(--sp-4); }
+.jd-facts { display: grid; grid-template-columns: auto 1fr; gap: var(--sp-2) var(--sp-4); margin: 0 0 var(--sp-4); font-size: var(--fs-sm); }
+.jd-facts dt { font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
+.jd-facts dd { margin: 0; color: var(--text); }
+.jd-question { border-left: 3px solid var(--primary); padding-left: var(--sp-4); color: var(--text); margin: 0 0 var(--sp-4); }
+.jd-source { font-size: var(--fs-xs); color: var(--text-muted); margin: 0; }
+.jd-nav { display: flex; align-items: center; gap: var(--sp-3); margin-top: var(--sp-6); }
+.jd-nav button { min-height: 40px; border-radius: var(--r-full); padding: 0 var(--sp-4); font-family: var(--font-mono); }
+.jd-close { margin-left: auto; background: var(--primary); color: var(--primary-fg); border-color: var(--primary); font-family: var(--font-sans) !important; font-weight: 700; }
+.jd-count { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted); }
+/* Announced, never shown. */
+.jd-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+@media (max-width: 64rem) {
+  .journey.is-live { min-height: clamp(22rem, 60vh, 32rem); }
+  .journey-label button span { display: none; }
+}
+
 .asks { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--sp-2); }
 .asks li { border-left: 2px solid var(--border-strong); padding: var(--sp-2) 0 var(--sp-2) var(--sp-4); color: var(--text); font-size: var(--fs-sm); line-height: 1.5; }
 
@@ -533,6 +605,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* The 3D scene is never loaded at all under reduced motion (reveal.ts
+     returns before the import), so only the static diagram needs settling. */
+  .journey-static .route-line { animation: none; stroke-dashoffset: 0; }
+  .journey-static .route-stop { animation: none; opacity: 1; }
+  .jd-body { transition: none; }
   .lp-route .route-line { animation: none; stroke-dashoffset: 0; }
   .lp-route .route-stop { animation: none; opacity: 1; }
   .menu.is-open a { animation: none; }

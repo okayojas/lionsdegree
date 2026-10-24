@@ -11,7 +11,11 @@
  * a human — which is the whole point of a contact section, and the thing a
  * JavaScript-only form quietly takes away.
  */
-import { supabase, syncConfigured } from "./data/sync";
+// The config gate is a compile-time env check with no Supabase code behind
+// it. The client itself -- 55 KB gzipped -- is imported only when someone
+// actually submits, so a reader who never touches the form never pays for it
+// (ADR 0002; the old budget test could not see this chunk at all).
+import { syncConfigured } from "./data/sync-config";
 
 const MAX = 4000;
 const MIN = 4;
@@ -54,6 +58,7 @@ async function send(form: HTMLFormElement): Promise<void> {
     return;
   }
 
+  const { supabase } = await import("./data/sync");
   const sb = supabase();
   if (!sb) {
     setState(form, "error", "The form isn't available on this build. The email address above works.");

@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lion runner on the prerequisite route — evaluation artifact</title>
+<meta name="theme-color" content="#2b2a27">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#2b2a27;--surface:#33322e;--surface-2:#3c3a35;
+  --border:#45423c;--border-strong:#5e584e;
+  --text:#ece6da;--text-muted:#b0a89a;
+  --primary:#cba3ee;--primary-fg:#2b2a27;--warning:#d3ab6b;--warning-border:#4e4530;
+  --r-sm:6px;--r:10px;--r-lg:14px;
+  --fs-xs:11.5px;--fs-sm:13px;--fs-base:14px;--fs-md:16px;
+  --track-tight:-.02em;--track-label:.08em;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --shadow:0 2px 12px hsl(220 30% 3% / .45);--shadow-lg:0 18px 50px hsl(220 30% 3% / .55);
+  --font:"Space Grotesk",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0}
+html{scrollbar-width:none}html::-webkit-scrollbar{display:none}
+body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+#track{height:600vh}
+#frame{position:fixed;inset:0;height:100vh;height:100dvh;overflow:hidden;background:var(--bg)}
+canvas{display:block;position:absolute;inset:0}
+#grid{position:absolute;inset:0;pointer-events:none;opacity:.45;
+  background-image:radial-gradient(rgba(236,230,218,.07) 1px,transparent 1px);background-size:26px 26px}
+#vig{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 48%,transparent 42%,rgba(0,0,0,.5) 100%)}
+#labels,#lionLayer{position:absolute;inset:0;pointer-events:none}
+
+.lab{position:absolute;transform:translate(-50%,-50%);will-change:transform,opacity}
+.lab button{pointer-events:auto;font:inherit;cursor:pointer;font-family:var(--mono);
+  font-size:11.5px;font-weight:700;color:var(--text);background:rgba(60,58,53,.92);
+  border:1.5px solid var(--border-strong);border-radius:var(--r-sm);padding:5px 9px;white-space:nowrap;
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(236,230,218,.1);
+  transition:border-color .16s var(--ease-out),transform .16s var(--ease-out)}
+.lab button:hover,.lab button:focus-visible{border-color:var(--primary);transform:translateY(-1px)}
+.lab.conflict button{border-color:var(--warning-border);background:rgba(52,47,31,.92)}
+.lab .sub{display:block;font-family:var(--font);font-size:9.5px;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-top:2px}
+
+#lion{position:absolute;left:0;top:0;transform-origin:50% 100%;will-change:transform;
+  filter:drop-shadow(0 0 14px rgba(203,163,238,.4))}
+
+.scene{position:absolute;inset:0;display:grid;pointer-events:none;padding:0 clamp(22px,6vw,86px)}
+.scene>div{pointer-events:auto;max-width:44ch}
+.eyebrow{font-size:var(--fs-xs);font-weight:700;letter-spacing:var(--track-label);
+  text-transform:uppercase;color:var(--text-muted);margin-bottom:14px}
+h1{font-size:clamp(30px,5.4vw,56px);font-weight:700;letter-spacing:var(--track-tight);line-height:1.05}
+h2{font-size:clamp(24px,3.6vw,38px);font-weight:700;letter-spacing:var(--track-tight);line-height:1.1}
+p.lede{margin-top:16px;color:var(--text-muted);font-size:var(--fs-md);line-height:1.5}
+#sc1{align-content:center}
+#sc2{align-content:center;justify-content:end;text-align:right;opacity:0}#sc2>div{margin-left:auto}
+#sc3{align-content:end;padding-bottom:clamp(70px,13vh,130px);opacity:0}
+
+#hud{position:absolute;left:clamp(22px,6vw,86px);bottom:26px;display:flex;gap:14px;align-items:center;
+  font-family:var(--mono);font-size:10.5px;color:var(--text-muted);pointer-events:none}
+#hud .bar{width:120px;height:3px;background:var(--border);border-radius:9px;overflow:hidden}
+#hud .fill{height:100%;width:0;background:var(--primary);border-radius:9px}
+#note{position:fixed;right:14px;bottom:14px;z-index:60;max-width:300px;background:var(--surface-2);
+  border:1px solid var(--border-strong);border-radius:var(--r);padding:11px 13px;
+  font-size:11px;line-height:1.45;color:var(--text-muted);box-shadow:var(--shadow)}
+#note b{color:var(--text);display:block;margin-bottom:3px}
+
+dialog{border:1px solid var(--border-strong);border-radius:var(--r-lg);padding:0;
+  background:rgba(44,43,40,.97);color:var(--text);width:420px;max-width:calc(100vw - 56px);
+  max-height:calc(100dvh - 48px);margin-left:auto;margin-right:28px;box-shadow:var(--shadow-lg)}
+dialog::backdrop{background:rgba(20,19,17,.45);backdrop-filter:blur(3px)}
+dialog[open]{animation:sl .24s var(--ease-out)}@keyframes sl{from{opacity:0;transform:translateX(16px)}}
+.dh{position:sticky;top:0;display:flex;align-items:center;gap:8px;padding:13px 18px 13px 26px;
+  background:inherit;border-bottom:1px solid var(--border)}
+.dh .bd{width:7px;height:7px;border-radius:50%;background:var(--primary)}
+.dh .lbl{flex:1;font-family:var(--mono);font-size:10px;letter-spacing:.09em;color:var(--text-muted)}
+.dh button{width:44px;height:44px;background:none;border:0;color:var(--text-muted);font-size:20px;cursor:pointer}
+.db{padding:20px 26px 8px}
+.db .kind{font-family:var(--mono);font-size:10px;letter-spacing:.09em;color:var(--primary)}
+.db h3{font-size:30px;font-weight:700;line-height:1.08;letter-spacing:var(--track-tight);margin:9px 0 0}
+.db .deck{font-size:14.5px;line-height:1.45;color:var(--text-muted);margin-top:9px}
+.db .hist{font-size:var(--fs-base);line-height:1.65;margin-top:13px}
+.db hr{border:0;border-top:1px solid var(--border);margin:18px 0}
+.db .sub{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--text-muted)}
+.db .subtxt{font-size:var(--fs-sm);line-height:1.6;margin:6px 0 14px}
+.disc{border-left:2px solid var(--primary);padding-left:12px;margin-top:14px;
+  font-size:var(--fs-xs);line-height:1.5;color:var(--text-muted)}
+.df{display:flex;gap:10px;align-items:center;padding:13px 26px 18px;border-top:1px solid var(--border);margin-top:14px}
+.df button{font:inherit;font-size:var(--fs-xs);font-weight:600;padding:9px 12px;cursor:pointer;
+  color:var(--text);background:var(--surface-2);border:1px solid var(--border-strong);border-radius:var(--r-sm)}
+.df .count{flex:1;text-align:center;font-family:var(--mono);font-size:11px;color:var(--text-muted)}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:4px}
+@media (max-width:860px){dialog{margin:auto 10px 10px;width:auto;max-width:none;border-radius:16px;max-height:84dvh}
+  #note{display:none}.lab .sub{display:none}#sc2{justify-content:start;text-align:left}#sc2>div{margin-left:0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="frame">
+  <div id="grid"></div><div id="vig"></div>
+  <div id="labels"></div>
+  <div id="lionLayer">
+    <!-- Procedural articulated placeholder. Replace with your own mark's frames. -->
+    <svg id="lion" width="128" height="84" viewBox="0 0 128 84" aria-hidden="true">
+      <g id="lionRoot" fill="#ece6da">
+        <!-- back legs -->
+        <g id="bl1"><rect x="-3.5" y="0" width="7" height="17" rx="3.5"/><rect id="bl1b" x="-3" y="14" width="6" height="16" rx="3"/></g>
+        <g id="bl2"><rect x="-3.5" y="0" width="7" height="17" rx="3.5"/><rect id="bl2b" x="-3" y="14" width="6" height="16" rx="3"/></g>
+        <!-- front legs -->
+        <g id="fl1"><rect x="-3.5" y="0" width="7" height="16" rx="3.5"/><rect id="fl1b" x="-3" y="13" width="6" height="15" rx="3"/></g>
+        <g id="fl2"><rect x="-3.5" y="0" width="7" height="16" rx="3.5"/><rect id="fl2b" x="-3" y="13" width="6" height="15" rx="3"/></g>
+        <!-- tail -->
+        <path id="tail" d="M0 0 C -14 -4 -24 2 -30 12" stroke="#ece6da" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <!-- body -->
+        <g id="body">
+          <path d="M22 22 C 34 10 68 8 86 16 C 96 20 100 28 96 34 C 88 44 46 46 30 40 C 20 36 18 28 22 22 Z"/>
+          <!-- head, profile, facing right -->
+          <path d="M88 14 C 98 8 112 10 118 18 C 122 23 121 28 116 30 L 124 31 L 116 35 C 110 39 98 38 92 32 C 87 27 85 19 88 14 Z"/>
+          <!-- ear -->
+          <path d="M96 12 L 99 3 L 105 11 Z"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <section class="scene" id="sc1"><div>
+    <p class="eyebrow">Unofficial · built for Penn State students</p>
+    <h1>Every prerequisite is a route. Follow one.</h1>
+    <p class="lede">Scroll to run the chain that ends at A&#8209;I&nbsp;410. Thirteen real courses, real Bulletin prerequisites, one real scheduling conflict.</p>
+  </div></section>
+  <section class="scene" id="sc2"><div>
+    <p class="eyebrow">Under the hood</p>
+    <h2>The engine reads the Bulletin's own grammar.</h2>
+    <p class="lede">Enforced prerequisites are parsed into logic, not typed in by hand. Click any stop to read what it unlocks.</p>
+  </div></section>
+  <section class="scene" id="sc3"><div>
+    <p class="eyebrow">Conflict detected</p>
+    <h2>EE&nbsp;456 is scheduled the same term as the course it unlocks.</h2>
+    <p class="lede">The amber stop is a real error in the plan this was built from. The optimizer catches it before you register.</p>
+  </div></section>
+
+  <div id="hud"><span id="ptxt">0.000</span><span class="bar"><span class="fill" id="pfill"></span></span><span>ROUTE PROGRESS</span></div>
+</div>
+<div id="track"></div>
+<div id="note"><b>Evaluation artifact</b>The lion is a <i>procedural articulated placeholder</i> — a 2D billboard in a 3D scene, to show the mechanism. Your own mark's run frames drop straight in. No CC0 rigged big cat with a run cycle appears to exist.</div>
+
+<dialog id="dlg" aria-labelledby="dtitle">
+  <div class="dh"><span class="bd"></span><span class="lbl">COURSE ATLAS / FIELD NOTES</span>
+    <button id="dclose" aria-label="Close">×</button></div>
+  <div class="db" id="dbody">
+    <p class="kind" id="dkind"></p><h3 id="dtitle"></h3>
+    <p class="deck" id="ddeck"></p><p class="hist" id="dhist"></p><hr>
+    <p class="sub">WHAT IT UNLOCKS</p><p class="subtxt" id="dunl"></p>
+    <p class="sub">THE PLANNING QUESTION</p><p class="subtxt" id="dq"></p>
+    <p class="disc">Descriptions verbatim from the Penn State University Bulletin. Unofficial — confirm with your adviser before registering.</p>
+  </div>
+  <div class="df"><button id="dprev">PREVIOUS</button><span class="count" id="dcount"></span><button id="dnext">NEXT COURSE</button></div>
+</dialog>
+
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.169.0/build/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const INK=0xece6da,VIOLET=0xcba3ee,AMBER=0xd3ab6b,MUTED=0x5e584e,BG=0x2b2a27;
+
+const NODES=[
+  {c:"MATH 141",t:"Calculus II",p:[0,0,0],main:1},
+  {c:"PHYS 214",t:"Wave Motion & Quantum",p:[14,3,-26],main:1},
+  {c:"ESC 312",t:"Wave, Particle & Ensemble",p:[-6,7,-54],main:1},
+  {c:"ESC 419",t:"Electronic Properties",p:[-28,10,-70],main:0},
+  {c:"CMPSC 360",t:"Discrete Mathematics",p:[18,0,-84],main:1},
+  {c:"STAT 401",t:"Experimental Methods",p:[40,-4,-98],main:0},
+  {c:"A-I 100",t:"Artificial Intelligence",p:[4,6,-114],main:1},
+  {c:"A-I 305",t:"Algorithmic Foundations",p:[-26,-2,-126],main:0},
+  {c:"A-I 370",t:"Problem Formulation",p:[16,9,-146],main:1},
+  {c:"CMPSC 448",t:"Machine Learning",p:[44,2,-162],main:0},
+  {c:"A-I 341W",t:"Responsible AI",p:[-4,12,-178],main:1},
+  {c:"EE 456",t:"Neural Networks",p:[-34,4,-192],main:0,conflict:1},
+  {c:"A-I 410",t:"AI Systems and Tools",p:[12,16,-212],main:1}
+];
+const EDGES=[[0,1],[1,2],[2,3],[4,7],[4,8],[5,7],[5,8],[6,8],[6,10],[8,10],[9,12],[10,12],[11,12],[2,4],[8,9]];
+const RECORDS=[
+  {c:"A-I 410",kind:"TERMINUS / THE TARGET",deck:"AI Systems and Tools.",
+   hist:"Practical hardware and software considerations in reliable, scalable deployment of modern machine learning and AI models. The end of this particular route.",
+   unl:"Nothing downstream. This is where the chain lands.",q:"Everything upstream must resolve before Spring 2028. Does it?"},
+  {c:"EE 456",kind:"CONFLICT / SCHEDULED TOO LATE",deck:"Introduction to Neural Networks.",
+   hist:"The Bulletin lists EE 456 as an enforced prerequisite of A-I 410. In the plan this scene was built from, both sit in Spring 2028, so the chain cannot be satisfied as scheduled.",
+   unl:"Required before A-I 410. Currently concurrent with it.",q:"Move EE 456 earlier, or push A-I 410 later?"},
+  {c:"A-I 341W",kind:"WRITING INTENSIVE",deck:"Responsible Artificial Intelligence.",
+   hist:"Conceptual frameworks and technical tools for designing systems that maximise the benefits of AI while minimising potential harm. Carries the Writing Across the Curriculum designation.",
+   unl:"Required before A-I 410. Also clears the W requirement.",q:"Does double-counting the W requirement free a slot elsewhere?"},
+  {c:"A-I 370",kind:"BRANCH POINT",deck:"Problem Formulation and Automated Problem Solving.",
+   hist:"Methods for automated problem solving through search, optimisation and constraint satisfaction. Enforced prerequisite A-I 100, with STAT 401 enforced concurrently.",
+   unl:"Gates A-I 375 and is a concurrent requirement of A-I 341W.",q:"A-I 100 sits in the same term in the source plan. A second conflict."}
+];
+
+const frame=document.getElementById('frame');
+const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(BG,1);
+frame.insertBefore(renderer.domElement,frame.firstChild);
+const scene=new THREE.Scene();scene.fog=new THREE.Fog(BG,70,250);
+const cam=new THREE.PerspectiveCamera(52,1,.1,900);
+
+const ringGeo=new THREE.TorusGeometry(2.2,.42,10,42),coreGeo=new THREE.SphereGeometry(.85,14,12);
+const meshes=NODES.map(n=>{
+  const col=n.conflict?AMBER:(n.main?VIOLET:MUTED),g=new THREE.Group();
+  const ring=new THREE.Mesh(ringGeo,new THREE.MeshBasicMaterial({color:col}));
+  const core=new THREE.Mesh(coreGeo,new THREE.MeshBasicMaterial({color:BG}));
+  const halo=new THREE.Mesh(new THREE.TorusGeometry(3.1,.1,8,42),
+    new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.3}));
+  g.add(ring,core,halo);g.position.set(...n.p);g.userData={halo};scene.add(g);return g;
+});
+const edgeMat=new THREE.LineBasicMaterial({color:MUTED,transparent:true,opacity:.55});
+const mainMat=new THREE.LineBasicMaterial({color:VIOLET,transparent:true,opacity:.85});
+EDGES.forEach(([a,b])=>{
+  const g=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...NODES[a].p),new THREE.Vector3(...NODES[b].p)]);
+  scene.add(new THREE.Line(g,(NODES[a].main&&NODES[b].main)?mainMat:edgeMat));
+});
+const curve=new THREE.CatmullRomCurve3(NODES.filter(n=>n.main).map(n=>new THREE.Vector3(...n.p)),false,'catmullrom',.4);
+
+const dustGeo=new THREE.BufferGeometry(),dpos=new Float32Array(900);
+for(let i=0;i<300;i++){dpos[i*3]=(Math.random()-.5)*190;dpos[i*3+1]=(Math.random()-.5)*110;dpos[i*3+2]=-Math.random()*250+20;}
+dustGeo.setAttribute('position',new THREE.BufferAttribute(dpos,3));
+scene.add(new THREE.Points(dustGeo,new THREE.PointsMaterial({color:INK,size:.32,transparent:true,opacity:.34})));
+
+function resize(){renderer.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();}
+addEventListener('resize',resize);resize();
+
+const labelWrap=document.getElementById('labels');
+const labels=NODES.map((n,i)=>{
+  const d=document.createElement('div');d.className='lab'+(n.conflict?' conflict':'');
+  const b=document.createElement('button');
+  b.innerHTML=`${n.c}<span class="sub">${n.t}</span>`;
+  b.setAttribute('aria-label',`Read the field notes for ${n.c}, ${n.t}`);
+  const r=RECORDS.findIndex(x=>x.c===n.c);
+  b.addEventListener('click',()=>openDlg(r>=0?r:0,b));
+  d.appendChild(b);labelWrap.appendChild(d);return d;
+});
+
+/* ---------- the lion: 2D billboard, articulated procedurally ---------- */
+const lion=document.getElementById('lion');
+const bl1=document.getElementById('bl1'),bl2=document.getElementById('bl2');
+const fl1=document.getElementById('fl1'),fl2=document.getElementById('fl2');
+const bl1b=document.getElementById('bl1b'),bl2b=document.getElementById('bl2b');
+const fl1b=document.getElementById('fl1b'),fl2b=document.getElementById('fl2b');
+const body=document.getElementById('body'),tail=document.getElementById('tail');
+/* hip / shoulder anchors in SVG space */
+const HIP_X=30,HIP_Y=36,SHO_X=80,SHO_Y=34,TAIL_X=24,TAIL_Y=24;
+function gait(ph){
+  /* bounding gait: fronts together, backs together, half-cycle apart */
+  const bA=Math.sin(ph)*46, bB=Math.sin(ph+.5)*46;
+  const fA=Math.sin(ph+Math.PI)*50, fB=Math.sin(ph+Math.PI+.5)*50;
+  bl1.setAttribute('transform',`translate(${HIP_X},${HIP_Y}) rotate(${bA})`);
+  bl2.setAttribute('transform',`translate(${HIP_X+5},${HIP_Y}) rotate(${bB})`);
+  fl1.setAttribute('transform',`translate(${SHO_X},${SHO_Y}) rotate(${fA})`);
+  fl2.setAttribute('transform',`translate(${SHO_X-5},${SHO_Y}) rotate(${fB})`);
+  /* lower segments flex on the recovery half */
+  bl1b.setAttribute('transform',`rotate(${Math.max(0,-Math.sin(ph))*42},0,14)`);
+  bl2b.setAttribute('transform',`rotate(${Math.max(0,-Math.sin(ph+.5))*42},0,14)`);
+  fl1b.setAttribute('transform',`rotate(${Math.max(0,-Math.sin(ph+Math.PI))*38},0,13)`);
+  fl2b.setAttribute('transform',`rotate(${Math.max(0,-Math.sin(ph+Math.PI+.5))*38},0,13)`);
+  /* body bob at twice the leg frequency, tail counter-sways */
+  body.setAttribute('transform',`translate(0,${Math.sin(ph*2)*2.2}) rotate(${Math.sin(ph*2)*3},64,28)`);
+  tail.setAttribute('transform',`translate(${TAIL_X},${TAIL_Y}) rotate(${Math.sin(ph+1.1)*16})`);
+}
+
+let target=0,shown=0,last=performance.now(),phase=0;
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+const ramp=(p,a,b)=>clamp((p-a)/(b-a),0,1);
+const eoc=t=>1-Math.pow(1-t,3);
+function read(){const m=document.documentElement.scrollHeight-innerHeight;target=m>0?clamp(scrollY/m,0,1):0;}
+addEventListener('scroll',read,{passive:true});addEventListener('resize',read);read();
+
+const sc1=document.getElementById('sc1'),sc2=document.getElementById('sc2'),sc3=document.getElementById('sc3');
+const ptxt=document.getElementById('ptxt'),pfill=document.getElementById('pfill');
+const v3=new THREE.Vector3(),vLion=new THREE.Vector3();
+
+function tick(now){
+  const dt=Math.min(64,now-last);last=now;
+  const prev=shown;
+  if(RM)shown=target;else shown+=(target-shown)*(1-Math.pow(1-.11,dt/16.667));
+  const p=shown;
+  ptxt.textContent=p.toFixed(3);pfill.style.width=(p*100)+'%';
+
+  const t=clamp(p*.97,0,.999);
+  curve.getPointAt(t,v3);
+  cam.position.set(v3.x+Math.sin(t*7)*4,v3.y+9,v3.z+22);
+  curve.getPointAt(clamp(t+.055,0,1),v3);cam.lookAt(v3);
+
+  /* lion rides slightly ahead of the camera, projected to screen */
+  curve.getPointAt(clamp(t+.030,0,1),vLion);
+  const sp=vLion.clone().project(cam);
+  const sx=(sp.x*.5+.5)*innerWidth, sy=(-sp.y*.5+.5)*innerHeight;
+  const dist=vLion.distanceTo(cam.position);
+  const sc=clamp(34/dist,.35,1.5);
+  lion.style.transform=`translate(${sx-64*sc}px,${sy-70*sc}px) scale(${sc})`;
+  lion.style.opacity=sp.z<1?String(clamp(1.6-dist/60,0,1)):'0';
+
+  /* gait speed follows scroll velocity, with a slow idle trot */
+  const speed=Math.abs(shown-prev)*520;
+  phase+=RM?0:(0.06+speed)*(dt/16.667);
+  if(!RM)gait(phase);
+
+  meshes.forEach((g,i)=>{
+    const d=g.position.distanceTo(cam.position),near=clamp(1-(d-18)/60,0,1);
+    g.userData.halo.material.opacity=.12+near*.5;g.scale.setScalar(.85+near*.3);
+    const q=g.position.clone().project(cam),vis=q.z<1&&near>.04,L=labels[i];
+    L.style.opacity=vis?String(clamp(near*1.5,0,1)):'0';
+    L.style.visibility=vis?'visible':'hidden';
+    if(vis){L.style.left=((q.x*.5+.5)*innerWidth)+'px';L.style.top=((-q.y*.5+.5)*innerHeight-34)+'px';}
+    L.querySelector('button').tabIndex=(vis&&near>.4)?0:-1;
+  });
+
+  const o1=eoc(ramp(p,0,.16));
+  sc1.style.opacity=String(1-o1);sc1.style.transform=`translateY(${-50*o1}px)`;
+  sc1.style.visibility=o1>=1?'hidden':'visible';
+  const i2=eoc(ramp(p,.26,.40)),o2=eoc(ramp(p,.54,.64));
+  sc2.style.opacity=String(i2*(1-o2));sc2.style.visibility=(i2<=0||o2>=1)?'hidden':'visible';
+  const i3=eoc(ramp(p,.78,.90));
+  sc3.style.opacity=String(i3);sc3.style.visibility=i3<=0?'hidden':'visible';
+
+  renderer.render(scene,cam);
+  requestAnimationFrame(tick);
+}
+gait(0);requestAnimationFrame(tick);
+
+const dlg=document.getElementById('dlg'),dbody=document.getElementById('dbody');
+let idx=0,opener=null;
+function paint(){const r=RECORDS[idx];
+  dkind.textContent=r.kind;dtitle.textContent=r.c;ddeck.textContent=r.deck;
+  dhist.textContent=r.hist;dunl.textContent=r.unl;dq.textContent=r.q;
+  dcount.textContent=String(idx+1).padStart(2,'0')+' / '+String(RECORDS.length).padStart(2,'0');}
+function swap(n){idx=(n+RECORDS.length)%RECORDS.length;
+  if(RM){paint();return;}
+  dbody.style.transition='opacity .12s,transform .12s';
+  dbody.style.opacity='0';dbody.style.transform='translateY(6px)';
+  setTimeout(()=>{paint();dbody.style.opacity='1';dbody.style.transform='none';},120);}
+function openDlg(i,tr){idx=i;opener=tr;paint();document.body.style.overflow='hidden';
+  dlg.showModal();document.getElementById('dclose').focus();}
+function closeDlg(){dlg.close();document.body.style.overflow='';if(opener)opener.focus({preventScroll:true});}
+document.getElementById('dclose').onclick=closeDlg;
+document.getElementById('dprev').onclick=()=>swap(idx-1);
+document.getElementById('dnext').onclick=()=>swap(idx+1);
+dlg.addEventListener('cancel',e=>{e.preventDefault();closeDlg();});
+dlg.addEventListener('click',e=>{if(e.target===dlg)closeDlg();});
+addEventListener('keydown',e=>{if(!dlg.open)return;
+  if(e.key==='ArrowRight')swap(idx+1);if(e.key==='ArrowLeft')swap(idx-1);});
+</script>
+</body>
+</html>
