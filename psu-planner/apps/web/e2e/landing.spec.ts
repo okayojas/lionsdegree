@@ -66,7 +66,12 @@ test.describe("with JavaScript turned off", () => {
     ]) {
       await expect(page.getByRole("heading", { name: heading })).toBeVisible();
     }
-    await expect(page.getByRole("heading", { name: /What this isn.t/i })).toBeVisible();
+    // The "what this isn't" section was removed by request — the page is
+    // about the product. What it carried that MATTERS is still asserted:
+    // the unaffiliated disclaimer below, and the coverage breakdown that
+    // `build-output.test.ts` scopes to `#coverage`. Its replacement heading
+    // is checked here so the section cannot quietly disappear with it.
+    await expect(page.getByRole("heading", { name: /how the number was measured/i })).toBeVisible();
   });
 
   test("the way into the planner works", async ({ page }) => {

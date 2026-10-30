@@ -64,9 +64,14 @@ export function mount(container: HTMLElement): JourneyHandle {
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // ── Renderer ──────────────────────────────────────────────────────────
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: "high-performance" });
+  // TRANSPARENT, not matching. An opaque clear colour made the scene a flat
+  // rectangle sitting on a page that carries dot grids and a vignette over
+  // the same hue -- identical colour, visibly different surface, and a seam
+  // where one began. Matching the two would have worked until either side
+  // moved; compositing over the page means they cannot disagree.
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  renderer.setClearColor(BG, 1);
+  renderer.setClearAlpha(0);
   const canvas = renderer.domElement;
   // The canvas carries no information a screen reader needs; the labels do.
   canvas.setAttribute("aria-hidden", "true");
@@ -74,6 +79,9 @@ export function mount(container: HTMLElement): JourneyHandle {
   container.insertBefore(canvas, container.firstChild);
 
   const scene = new THREE.Scene();
+  // Fog still resolves to BG even though nothing clears to it: distant
+  // geometry has to fade into the colour the PAGE is painting behind the
+  // canvas, and that colour is --bg either way.
   scene.fog = new THREE.Fog(BG, 70, 250);
   const cam = new THREE.PerspectiveCamera(52, 1, 0.1, 900);
 

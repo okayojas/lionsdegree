@@ -190,49 +190,13 @@
 .btn-quiet:hover { border-color: var(--primary); color: var(--primary); }
 .btn:active { transform: scale(.98); }
 
-/* ── The journey ────────────────────────────────────────────────────────
-   The static SVG is the baseline and is styled to look finished on its own.
-   `.is-live` is added by reveal.ts only after the WebGL scene has actually
-   mounted, so a failed import leaves the static diagram exactly as it was
-   rather than hiding it behind nothing. */
-.journey { position: relative; }
-.journey-static svg { width: 100%; height: auto; overflow: visible; }
-.journey-static .route-line { fill: none; stroke: var(--primary); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 1600; stroke-dashoffset: 1600; animation: route-draw 1.6s var(--ease-out) forwards; }
-.journey-static .route-branch { fill: none; stroke: var(--warning); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 6 7; opacity: .85; }
-.journey-static .route-stop { opacity: 0; transform-box: fill-box; transform-origin: center; animation: stop-pop .34s var(--ease-out) forwards; animation-delay: calc(.35s + var(--i) * .11s); }
-.journey-static circle { fill: var(--bg); stroke: var(--primary); stroke-width: 4; }
-.journey-static .is-conflict circle { stroke: var(--warning); }
-.journey-static .lp-stn { fill: var(--text-muted); stroke: none; font-family: var(--font-mono); font-size: 19px; letter-spacing: .05em; text-anchor: middle; }
-.journey-static .is-conflict .lp-stn { fill: var(--warning); }
-.journey-flag { color: var(--warning); display: block; }
-
-/* Live scene. The canvas sits behind the labels and above nothing else. */
-/* The 3D replaces the DIAGRAM, never the description. `display: none` here
-   took the whole figure out — including the sentence naming the conflict —
-   so the explanation vanished for everyone the moment WebGL happened to
-   work, and the chain lost its accessible description with it. The SVG is
-   hidden from sight but kept in the accessibility tree; the verdict below
-   stays visible always. */
-.journey.is-live .journey-static {
-  position: absolute;
-  width: 1px; height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  pointer-events: none;
-}
-.journey-verdict { position: relative; z-index: 3; max-width: 46ch; }
-.hero-journey .journey-verdict { margin-top: auto; }
-.journey.is-live { min-height: clamp(26rem, 68vh, 44rem); display: flex; flex-direction: column; }
-.journey-canvas { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: var(--r-lg); display: block; }
-/* The hero words are excluded by NAME. Without that, this selector (0,3,0)
-   outranks `.hero-words { z-index: 3 }` (0,1,0) and pins the copy underneath
-   the legibility scrim — the h1 and the CTA render dimmed and nothing in the
-   rule that set z-index 3 looks wrong. Same shape as the `.bar-cta` collision
-   in the header. */
-.journey.is-live > :not(.journey-canvas):not(.hero-words) { position: relative; z-index: 1; }
-/* Clipped as well as bounds-checked in the loop: belt and braces, because a
-   label escaping the module reads as a page bug, not a scene one. */
-.journey-labels { position: absolute; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; border-radius: var(--r-lg); }
+/* ── The journey's labels and field notes ───────────────────────────────
+   The scene's own layout lives in "THE JOURNEY IS THE PAGE" further down.
+   What was here was the previous design's copy of it — `.journey-static`,
+   `.journey-canvas`, `.journey-labels` and a `.journey.is-live` that set
+   `display: flex` against the later rule's `position: absolute; inset: 0`.
+   Two blocks describing the same elements is how one of them silently
+   stops being the one that matters. */
 .journey-label { position: absolute; transform: translateX(-50%); transition: opacity .18s linear; }
 .journey-label button {
   pointer-events: auto;
@@ -277,7 +241,6 @@
 .jd-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 @media (max-width: 64rem) {
-  .journey.is-live { min-height: clamp(22rem, 60vh, 32rem); }
   .journey-label button span { display: none; }
 }
 
@@ -505,13 +468,29 @@
    `reveal.ts` ever sets.
    ===================================================================== */
 .journey-scroll { position: relative; }
+/* FULL BLEED. The stage spans the viewport so the scene is the whole width
+   of the screen rather than a panel in the middle of one — `width: 100%`
+   and not `100vw`, because 100vw includes the scrollbar gutter and the
+   overflow tests at 320-560px catch that immediately.
+   Readability is handled per-element below: the stage being edge to edge
+   must not let a heading run 1440px wide. */
 .journey-stage {
+  --gutter: clamp(1.5rem, 6vw, 4rem);
+  --measure: 1180px;
   position: relative;
-  width: min(1180px, 100% - clamp(1.5rem, 6vw, 4rem));
-  margin-inline: auto;
+  width: 100%;
   padding: clamp(2rem, 6vh, 4rem) 0;
 }
 .journey { position: relative; }
+/* Static document mode: content sits in the page's normal column. Dropped
+   entirely once the stage is pinned, where the scene owns the full width
+   and the scenes are positioned individually. */
+.journey-static,
+.journey-verdict,
+.scenes {
+  width: min(var(--measure), 100% - var(--gutter) * 2);
+  margin-inline: auto;
+}
 .journey-static svg { width: 100%; height: auto; overflow: visible; }
 .journey-static .route-line { fill: none; stroke: var(--primary); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 1600; stroke-dashoffset: 1600; animation: route-draw 1.6s var(--ease-out) forwards; }
 .journey-static .route-branch { fill: none; stroke: var(--warning); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 6 7; opacity: .85; }
@@ -556,17 +535,24 @@
   position: absolute; width: 1px; height: 1px;
   overflow: hidden; clip-path: inset(50%); pointer-events: none;
 }
-.journey-canvas { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: var(--r-lg); display: block; }
-.journey-labels { position: absolute; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; border-radius: var(--r-lg); }
+/* NO BACKGROUND and NO RADIUS on either layer. The renderer composites over
+   the page now (alpha, `setClearAlpha(0)`), so the page's dot grids and
+   vignette run straight through the scene and there is no surface change
+   where it begins. A rounded corner would reinstate exactly the panel edge
+   the transparency removes. */
+.journey-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.journey-labels { position: absolute; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; }
 
 .is-pinned .scenes {
   position: absolute; inset: 0; z-index: 3;
-  display: block; margin: 0;
+  display: block; width: auto; margin: 0;
   pointer-events: none;
 }
 .is-pinned .scene {
   position: absolute;
-  left: clamp(0.5rem, 4vw, 3rem);
+  /* Lines up with the page's content column on a wide screen, and falls
+     back to the gutter once the viewport is narrower than the column. */
+  left: max(var(--gutter), calc((100% - var(--measure)) / 2));
   top: 50%; transform: translateY(-50%);
   opacity: 0; visibility: hidden;
   transition: opacity .35s var(--ease-out);
@@ -598,7 +584,9 @@
 
 @media (max-width: 64rem) {
   .scene { max-width: none; }
-  .is-pinned .scene { left: clamp(0.5rem, 4vw, 1.5rem); right: clamp(0.5rem, 4vw, 1.5rem); }
+  /* `right` as well as `left` here, so the scene is a box between two
+     gutters rather than a 30rem column that could reach past the edge. */
+  .is-pinned .scene { left: var(--gutter); right: var(--gutter); }
   .is-pinned .scenes::before {
     background: linear-gradient(180deg,
       color-mix(in srgb, var(--bg) 88%, transparent) 0%,
