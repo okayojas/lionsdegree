@@ -124,6 +124,35 @@ function withoutEmpties(c: Record<string, unknown>): Record<string, unknown> {
   return out;
 }
 
+/** audit-index.json — what the DEGREE AUDIT needs about every course (#26).
+ *
+ * The audit has to see the whole catalog: an elective or a General Education
+ * requirement can be satisfied by almost anything, so narrowing it to the
+ * subjects a plan already touches would silently hide real options from a
+ * student. What it does not need is every field. It needs to know a course
+ * exists, what it is called, what it is worth, and which requirement buckets
+ * it can fill.
+ *
+ * Five fields against twenty-two is the difference between 206 KB and 2.36 MB
+ * on a path every student walks (#24). Everything left out is left out
+ * because it already lives where it is used:
+ *
+ *   description  never shipped at all (DECISIONS.md 5.1)
+ *   keywords     in the per-subject file the course modal already loads
+ *   url          likewise, and only 526 distinct values across 14,615 courses
+ *   prereqAst    only wanted for courses the chart loads real subject files for
+ *   credits      the same fact as creditsParsed, in a shape nothing computes on
+ *   t            search postings; meaningless until somebody types
+ */
+interface AuditRow {
+  code: string;
+  title: string;
+  creditsParsed?: unknown;
+  genEd?: string[];
+  attributes?: string[];
+}
+const auditRows: AuditRow[] = [];
+
 const slim: unknown[] = [];
 const descriptions = new Map<string, string>();
 for (const dir of [path.join(outDir, "courses"), path.join(outDir, "courses", "grad")]) {
@@ -138,6 +167,19 @@ for (const dir of [path.join(outDir, "courses"), path.join(outDir, "courses", "g
       // covers; `url` points at the Bulletin for the prose itself.
       const { description: _drop, ...rest } = c;
       slim.push(withoutEmpties(rest));
+
+      // Built from the SAME loop as `slim`, so the two cannot cover different
+      // sets of courses. A separate pass over the same directories would be
+      // one filter away from quietly omitting a subject.
+      auditRows.push(
+        withoutEmpties({
+          code: c.code,
+          title: c.title,
+          creditsParsed: c.creditsParsed ?? null,
+          genEd: c.genEd ?? [],
+          attributes: c.attributes ?? [],
+        }) as unknown as AuditRow,
+      );
     }
   }
 }
@@ -176,8 +218,13 @@ const searchIndexPath = path.join(outDir, "search-index.json");
 fs.writeFileSync(searchIndexPath, JSON.stringify({ terms, courses: slim }), "utf-8");
 const slimMb = fs.statSync(searchIndexPath).size / 1048576;
 
+const auditIndexPath = path.join(outDir, "audit-index.json");
+fs.writeFileSync(auditIndexPath, JSON.stringify({ courses: auditRows }), "utf-8");
+const auditMb = fs.statSync(auditIndexPath).size / 1048576;
+
 console.log(
   `programs_index: ${programs.length} programs; subjects_index: ${Object.keys(subjects).length} subjects; ` +
     `search-index: ${slim.length} courses, ${slimMb.toFixed(1)} MB; ` +
+    `audit-index: ${auditRows.length} courses, ${auditMb.toFixed(2)} MB; ` +
     `program-requirements: ${Object.keys(programRequirements).length} programs, ${(fs.statSync(reqPath).size / 1048576).toFixed(1)} MB`,
 );
