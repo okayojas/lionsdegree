@@ -132,97 +132,6 @@
 .menu.is-open a:nth-child(6) { animation-delay: .2s; }
 @keyframes menu-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 
-/* ── The route, and the stops on it ─────────────────────────────────────
-   The device that makes this one page rather than a stack. A single line
-   runs the whole document; every module attaches at a station dot. */
-.route { width: min(1280px, 100% - clamp(1.5rem, 6vw, 4rem)); margin-inline: auto; position: relative; }
-.route::before {
-  /* The spine. A real line, behind every module, unbroken nav to footer. */
-  content: "";
-  position: absolute;
-  top: 0; bottom: 0;
-  left: var(--spine-x, 24px);
-  width: 3.5px;
-  margin-left: -1.75px;
-  background: var(--primary);
-  opacity: .5;
-  z-index: 0;
-}
-@media (min-width: 64rem) { .route { --spine-x: 50%; } }
-
-.stop {
-  position: relative;
-  z-index: 1;
-  padding: clamp(2.5rem, 7vh, 5rem) 0;
-  display: grid;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-}
-/* The station dot: a ring, matching `.card .dot` and the wordmark. */
-.stop::before {
-  content: "";
-  position: absolute;
-  top: clamp(2.5rem, 7vh, 5rem);
-  left: var(--spine-x, 24px);
-  width: 13px; height: 13px;
-  margin: 6px 0 0 -5.5px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 3px solid var(--primary);
-  /* Behind the modules, in front of the spine. `.stop` is a stacking context
-     of its own, so -1 cannot escape below `.route::before`; with z-index 2 it
-     painted ON TOP of every centred `stop-wide` card. */
-  z-index: -1;
-}
-/* Only the last dot is filled — the end of the line. */
-.stop-end::before { background: var(--primary); }
-
-/* Modules alternate sides of the spine above the breakpoint. */
-@media (min-width: 64rem) {
-  .stop { grid-template-columns: 1fr 1fr; align-items: center; column-gap: clamp(3rem, 6vw, 5rem); }
-  /* Modules hug the spine rather than drifting to the page edges: a station
-     sits ON the line, and a card floating 200px away from it reads as two
-     unrelated columns with a stripe between them. */
-  .stop > * { grid-column: 1; justify-self: end; }
-  .stop > .at-right { grid-column: 2; justify-self: start; }
-  .stop-wide > * { grid-column: 1 / -1; justify-self: center; }
-  /* Modules are vertically centred here, so a dot pinned to the top of the
-     stop sits level with nothing. */
-  .stop::before { top: 50%; margin-top: -6.5px; }
-}
-
-/* ── Modules ────────────────────────────────────────────────────────────
-   Live HTML built from the app's own classes, never screenshots: the text
-   stays indexable and selectable, it is kilobytes rather than hundreds, and
-   it cannot go stale. The app stylesheet is IMPORTED above, not copied —
-   copies drift. */
-.module {
-  /* A <figure> carries `margin: 1em 40px` from the UA sheet. Combined with
-     the full-width rule below 64rem that is 40px of horizontal overflow, and
-     the page scrolls sideways on a phone. */
-  margin: 0;
-  background: var(--surface-2);
-  border: 1.5px solid var(--border-strong);
-  border-radius: var(--r-lg);
-  padding: clamp(1.1rem, 2.4vw, 1.75rem);
-  /* Light from above. On a canvas where the fill differs by 1.26:1, this 1px
-     brighter top edge is a primary separation cue. */
-  box-shadow: var(--shadow), inset 0 1px 0 color-mix(in srgb, var(--text) 10%, transparent);
-  transition: transform .15s var(--ease-out), box-shadow .15s var(--ease-out), border-color .15s var(--ease-out);
-}
-/* Lifts exactly as `.card` does, so the page feels like the app under the
-   cursor. */
-.module:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg), inset 0 1px 0 color-mix(in srgb, var(--text) 10%, transparent); border-color: var(--primary); }
-
-/* Elevation, mapped to importance rather than to component type. */
-.tier-1 { background: var(--surface); border-color: var(--border); box-shadow: var(--shadow-sm), inset 0 1px 0 color-mix(in srgb, var(--text) 6%, transparent); }
-.tier-3 { background: var(--surface-hover); box-shadow: var(--shadow-lg), inset 0 1px 0 color-mix(in srgb, var(--text) 12%, transparent); }
-
-/* Four widths, so the layout has rhythm instead of a uniform column. */
-.w-sm { max-width: 280px; }
-.w-md { max-width: 420px; }
-.w-lg { max-width: 640px; }
-.w-xl { max-width: 900px; }
-
 /* ── Type ───────────────────────────────────────────────────────────── */
 .landing h1, .landing h2 {
   font-weight: 700;
@@ -251,7 +160,13 @@
 .note { font-size: var(--fs-sm); line-height: 1.6; color: var(--text-muted); }
 .trust { font-size: var(--fs-xs); color: var(--text-muted); }
 
-/* ── Buttons ────────────────────────────────────────────────────────── */
+/* ── Buttons ──────────────────────────────────────────────────────────
+   `--cta` is NOT `--primary`. Petrol is the structural accent, chosen to
+   be quiet enough to sit behind course cards all day without shouting.
+   The action that asks someone to start is the one thing on the page that
+   should shout, so it gets its own brighter blue. Dark text on it, which
+   is what makes a saturated fill readable rather than glowing. */
+.landing { --cta: #3aa9f0; --cta-hover: #5dbbf5; --cta-fg: #10243a; }
 .actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin: var(--sp-4) 0 0; }
 .btn {
   display: inline-flex; align-items: center; gap: var(--sp-3);
@@ -264,141 +179,16 @@
 .btn-sm { min-height: 36px; padding: .4rem 1rem; font-size: var(--fs-sm); }
 .btn-go { background: var(--primary); color: var(--primary-fg); }
 .btn-go:hover { background: var(--primary-hover); }
+.btn-cta {
+  background: var(--cta); color: var(--cta-fg);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--cta) 55%, transparent);
+  transition: background .2s var(--ease-out), box-shadow .3s var(--ease-out), transform .12s var(--ease-out);
+}
+.btn-cta:hover { background: var(--cta-hover); box-shadow: 0 0 0 6px color-mix(in srgb, var(--cta) 22%, transparent); }
+.btn-lg { min-height: 56px; padding: 1rem 2rem; font-size: var(--fs-md); }
 .btn-quiet { border-color: var(--border-strong); color: var(--text); }
 .btn-quiet:hover { border-color: var(--primary); color: var(--primary); }
 .btn:active { transform: scale(.98); }
-
-/* ── Proof ──────────────────────────────────────────────────────────────
-   Three separate modules, not three columns inside one. Floating them
-   independently lets the canvas show between the figures, which is the
-   whole argument for a canvas. */
-.proof > .proof-row { grid-column: 1 / -1; justify-self: stretch; }
-.proof-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: clamp(1rem, 2.5vw, 2rem); }
-.proof-item { margin: 0; display: grid; gap: var(--sp-2); align-content: center; justify-self: center; width: 100%; }
-.proof-item strong {
-  font-family: var(--font-mono);
-  font-size: clamp(1.9rem, 4vw, 2.6rem);
-  font-weight: 700; line-height: 1; letter-spacing: -.03em;
-  color: var(--text);
-  font-variant-numeric: tabular-nums;
-}
-.proof-item span { font-size: var(--fs-xs); color: var(--text-muted); line-height: 1.4; }
-
-/* ── In development ─────────────────────────────────────────────────────
-   An unbuilt feature says so. No CTA, because there is nothing to click. */
-.wip {
-  border-left: 3px solid var(--warning);
-  padding: var(--sp-2) 0 var(--sp-2) var(--sp-4);
-  font-size: var(--fs-sm);
-  color: var(--text-muted);
-  margin: var(--sp-4) 0 0;
-}
-.wip strong {
-  font-family: var(--font-mono); font-size: var(--fs-xs);
-  letter-spacing: .12em; text-transform: uppercase; color: var(--warning);
-  display: block; margin-bottom: 4px;
-}
-
-/* A worked example, as markup rather than a monospace box — nobody using
-   this should need to know what code looks like. */
-.example { display: grid; gap: var(--sp-3); }
-.example-q { font-size: var(--fs-md); color: var(--text); margin: 0; }
-.example-list { list-style: none; margin: 0; padding: 0 0 0 var(--sp-4); border-left: 2px solid var(--border-strong); display: grid; gap: var(--sp-2); }
-.example-list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--sp-3); }
-.example-name { color: var(--text); font-weight: 700; font-size: var(--fs-sm); }
-.example-kind { font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--primary); }
-.example-sum { font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .06em; color: var(--text-muted); margin: 0; }
-
-/* ── Product imagery ────────────────────────────────────────────────── */
-.shot { margin: 0; }
-.shot img, .shot video {
-  display: block; width: 100%; height: auto;
-  border-radius: var(--r-sm);
-  background: var(--bg);
-}
-.shot figcaption { margin-top: var(--sp-3); }
-
-/* ── The route diagram ──────────────────────────────────────────────── */
-.lp-route svg { width: 100%; height: auto; overflow: visible; }
-/* Sizes are in viewBox units, so they scale with the module. At the width a
-   .w-md column gives it the svg renders at roughly half scale -- 13px text
-   became 7px and the stations were unreadable. */
-/* `route-draw` and `stop-pop` come from the app stylesheet imported above.
-   A second pair of keyframes saying the same thing is how the marketing
-   diagram and the real one start drawing at different speeds. */
-.lp-route .route-line { fill: none; stroke: var(--primary); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: route-draw 1.5s var(--ease-out) forwards; }
-.lp-route .route-stop { opacity: 0; transform-box: fill-box; transform-origin: center; animation: stop-pop .34s var(--ease-out) forwards; animation-delay: calc(.4s + var(--i) * .14s); }
-.lp-route circle { fill: var(--bg); stroke: var(--primary); stroke-width: 5; }
-.lp-route .lp-stn {
-  fill: var(--text-muted);
-  /* SVG `stroke` INHERITS: the app's `.route-stop` puts a 3px stroke on the
-     group for the station rings, and at this size it swallows the glyph. */
-  stroke: none;
-  font-family: var(--font-mono); font-size: 24px; letter-spacing: .06em; text-anchor: middle;
-}
-
-/* ── The hero is the journey ────────────────────────────────────────────
-   The page opens on the scene rather than on a paragraph about it. The
-   words sit OVER it, so the reader meets the claim and the evidence at the
-   same moment instead of scrolling from one to the other. */
-.stop-bleed { padding-top: clamp(1rem, 3vh, 2rem); }
-@media (min-width: 64rem) {
-  /* Full width: the hero is the one stop that does not sit to one side of
-     the spine, because there is nothing for it to be beside. */
-  .stop-bleed > * { grid-column: 1 / -1; justify-self: stretch; }
-}
-.hero-journey {
-  position: relative;
-  min-height: clamp(30rem, 82vh, 54rem);
-  max-width: none;
-  display: grid;
-  align-content: start;
-  overflow: hidden;
-}
-/* Above the canvas and the labels, and narrow enough that the scene is not
-   hidden behind a wall of text. */
-.hero-words {
-  position: relative;
-  z-index: 3;
-  max-width: 34rem;
-  pointer-events: none;
-}
-.hero-words a, .hero-words button { pointer-events: auto; }
-.hero-journey h1 { font-size: clamp(32px, 5.6vw, 54px); }
-/* A legibility scrim, not a decoration: white text over a moving scene is
-   unreadable the moment a bright node passes behind a glyph. */
-.hero-journey::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(
-    105deg,
-    color-mix(in srgb, var(--bg) 82%, transparent) 0%,
-    color-mix(in srgb, var(--bg) 52%, transparent) 34%,
-    transparent 60%
-  );
-}
-/* The static chain is the fallback AND the composition when the 3D is off:
-   it sits low-right so the words never cross it. */
-.hero-journey .journey-static { position: relative; z-index: 1; margin-top: auto; align-self: end; }
-.hero-journey.is-live .hero-words { text-shadow: 0 1px 12px color-mix(in srgb, var(--bg) 80%, transparent); }
-
-@media (max-width: 64rem) {
-  .hero-journey { min-height: clamp(26rem, 70vh, 38rem); }
-  .hero-words { max-width: none; }
-  /* The diagonal scrim leaves the bottom-left readable on a wide screen and
-     nothing readable on a narrow one, where the words stack full width. */
-  .hero-journey::before {
-    background: linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--bg) 90%, transparent) 0%,
-      color-mix(in srgb, var(--bg) 70%, transparent) 46%,
-      transparent 78%
-    );
-  }
-}
 
 /* ── The journey ────────────────────────────────────────────────────────
    The static SVG is the baseline and is styled to look finished on its own.
@@ -698,4 +488,127 @@
   .reveals-armed .reveal { opacity: 1; transform: none; transition: none; }
   @supports (animation-timeline: view()) { .reveal { animation: none; opacity: 1; transform: none; } }
   .landing * { transition: none !important; }
+}
+
+
+/* =====================================================================
+   THE JOURNEY IS THE PAGE
+   =====================================================================
+   One scroll through one prerequisite chain. A tall scroller sets the
+   travel distance; a sticky stage holds the scene still while the reader
+   moves through it; the scenes cross-fade on top.
+
+   WITHOUT JAVASCRIPT none of that happens and none of it needs to: the
+   stage is not sticky, the scenes are in normal flow, and the page reads
+   as an ordinary short document with a diagram at the top. Everything
+   below that depends on the 3D is scoped to `.is-live`, which only
+   `reveal.ts` ever sets.
+   ===================================================================== */
+.journey-scroll { position: relative; }
+.journey-stage {
+  position: relative;
+  width: min(1180px, 100% - clamp(1.5rem, 6vw, 4rem));
+  margin-inline: auto;
+  padding: clamp(2rem, 6vh, 4rem) 0;
+}
+.journey { position: relative; }
+.journey-static svg { width: 100%; height: auto; overflow: visible; }
+.journey-static .route-line { fill: none; stroke: var(--primary); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 1600; stroke-dashoffset: 1600; animation: route-draw 1.6s var(--ease-out) forwards; }
+.journey-static .route-branch { fill: none; stroke: var(--warning); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 6 7; opacity: .85; }
+.journey-static .route-stop { opacity: 0; transform-box: fill-box; transform-origin: center; animation: stop-pop .34s var(--ease-out) forwards; animation-delay: calc(.35s + var(--i) * .11s); }
+.journey-static circle { fill: var(--bg); stroke: var(--primary); stroke-width: 4; }
+.journey-static .is-conflict circle { stroke: var(--warning); }
+.journey-static .lp-stn { fill: var(--text-muted); stroke: none; font-family: var(--font-mono); font-size: 19px; letter-spacing: .05em; text-anchor: middle; }
+.journey-static .is-conflict .lp-stn { fill: var(--warning); }
+.journey-flag { color: var(--warning); display: block; }
+.journey-verdict { max-width: 52ch; margin-top: var(--sp-6); }
+
+/* ── Scenes ─────────────────────────────────────────────────────────────
+   A bold line and a sentence under it. Nothing else: the scene behind is
+   the illustration, so a scene that also carried a screenshot would be
+   two pictures of the same claim. */
+.scenes { display: grid; gap: clamp(3rem, 10vh, 7rem); margin-top: clamp(3rem, 8vh, 5rem); }
+.scene { max-width: 30rem; }
+.scene h1, .scene h2 {
+  font-weight: 700; letter-spacing: -0.03em; line-height: 1.03;
+  margin: 0 0 var(--sp-4); text-wrap: balance;
+}
+.scene h1 { font-size: clamp(34px, 6vw, 58px); }
+.scene h2 { font-size: clamp(26px, 4vw, 40px); }
+.scene p { font-size: var(--fs-md); line-height: 1.5; color: var(--text-muted); margin: 0 0 var(--sp-4); }
+.scene .lede { color: var(--text); }
+.scene .actions { margin-top: var(--sp-6); }
+
+/* ── Live: pin the stage, cross-fade the scenes ───────────────────────── */
+.is-live .journey-scroll,
+.journey-scroll.is-live { }
+.journey-stage.is-pinned {
+  position: sticky;
+  top: 56px;                      /* clears the sticky header */
+  height: calc(100vh - 56px);
+  display: grid;
+  align-items: center;
+  padding: 0;
+}
+.journey.is-live { position: absolute; inset: 0; }
+.journey.is-live .journey-static,
+.journey.is-live .journey-verdict {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip-path: inset(50%); pointer-events: none;
+}
+.journey-canvas { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: var(--r-lg); display: block; }
+.journey-labels { position: absolute; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; border-radius: var(--r-lg); }
+
+.is-pinned .scenes {
+  position: absolute; inset: 0; z-index: 3;
+  display: block; margin: 0;
+  pointer-events: none;
+}
+.is-pinned .scene {
+  position: absolute;
+  left: clamp(0.5rem, 4vw, 3rem);
+  top: 50%; transform: translateY(-50%);
+  opacity: 0; visibility: hidden;
+  transition: opacity .35s var(--ease-out);
+}
+.is-pinned .scene.is-on { opacity: 1; visibility: visible; }
+.is-pinned .scene a, .is-pinned .scene button { pointer-events: auto; }
+/* A legibility scrim behind the words only — white type over a moving
+   scene is unreadable the instant a bright node passes under a glyph. */
+.is-pinned .scenes::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(100deg,
+    color-mix(in srgb, var(--bg) 84%, transparent) 0%,
+    color-mix(in srgb, var(--bg) 50%, transparent) 36%,
+    transparent 62%);
+}
+
+/* ── The coda ───────────────────────────────────────────────────────── */
+.coda {
+  width: min(44rem, 100% - clamp(1.5rem, 6vw, 4rem));
+  margin: clamp(4rem, 12vh, 8rem) auto 0;
+  display: grid; gap: clamp(2rem, 5vh, 3rem);
+}
+.coda h2 {
+  font-family: var(--font-mono); font-size: var(--fs-xs);
+  letter-spacing: .14em; text-transform: uppercase; color: var(--primary);
+  font-weight: 500; margin: 0 0 var(--sp-3);
+}
+.coda p { color: var(--text-muted); line-height: 1.65; margin: 0; }
+
+@media (max-width: 64rem) {
+  .scene { max-width: none; }
+  .is-pinned .scene { left: clamp(0.5rem, 4vw, 1.5rem); right: clamp(0.5rem, 4vw, 1.5rem); }
+  .is-pinned .scenes::before {
+    background: linear-gradient(180deg,
+      color-mix(in srgb, var(--bg) 88%, transparent) 0%,
+      color-mix(in srgb, var(--bg) 62%, transparent) 50%,
+      transparent 82%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-static .route-line { animation: none; stroke-dashoffset: 0; }
+  .journey-static .route-stop { animation: none; opacity: 1; }
+  .is-pinned .scene { transition: none; }
 }

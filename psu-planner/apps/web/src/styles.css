@@ -681,3 +681,38 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   margin: 0 0 var(--sp-4);
   max-width: 62ch;
 }
+
+/* ── Loading skeletons ──────────────────────────────────────────────────
+   Shapes, not sentences. These appear on nearly every load now that the
+   degree audit waits for the chart to paint before fetching the catalog,
+   and "Running the degree audit…" in grey text reads as a stalled app where
+   a settling shape reads as one that is working.
+
+   The shimmer is opacity-only so it composites instead of repainting, and
+   it stops dead under reduced motion — a pulsing block is exactly the kind
+   of ambient movement that setting exists to suppress. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.audit-skeleton { display: flex; flex-direction: column; gap: 10px; padding-top: 6px; }
+.sk-row {
+  display: block; height: 12px; border-radius: 4px;
+  background: var(--surface-hover);
+  animation: sk-pulse 1.25s var(--ease-out) infinite;
+}
+@keyframes sk-pulse { 0%, 100% { opacity: .45; } 50% { opacity: .9; } }
+
+/* Greyed-out stand-ins for the course cards, so the canvas is never an
+   empty rectangle while the plan resolves. Laid out on the same grid the
+   real cards use, so nothing jumps when they arrive. */
+.card-skeleton {
+  border-radius: var(--r-sm);
+  background: var(--surface-hover);
+  border: 1px solid var(--border);
+  animation: sk-pulse 1.25s var(--ease-out) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-row, .card-skeleton { animation: none; opacity: .6; }
+}

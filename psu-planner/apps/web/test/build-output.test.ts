@@ -174,7 +174,11 @@ describe("the landing document", () => {
     // of full-depth PNG for four flat colours before it was quantised.
     const srcs = [...read("index.html").matchAll(/<img\b[^>]*\bsrc="(\/[^"]+)"/g)].map((m) => m[1]);
     expect(srcs, "no brand mark in the built page").toContain("/mark.png");
-    expect(srcs.some((s) => s.startsWith("/shots/")), "no product screenshot on the page").toBe(true);
+    // The product screenshot assertion was removed with the screenshots. The
+    // page's imagery is now the live prerequisite scene and the static chain
+    // behind it -- a screenshot of the planner alongside that would be two
+    // pictures of the same claim. The weight limits below still bind
+    // whatever images the page does carry.
 
     const kb = (s: string) => fs.statSync(path.join(dist, s.slice(1))).size / 1024;
     for (const s of srcs) expect(kb(s), `${s} is ${kb(s).toFixed(0)} KB on its own`).toBeLessThan(140);

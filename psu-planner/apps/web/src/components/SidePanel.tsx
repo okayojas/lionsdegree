@@ -112,6 +112,20 @@ function ChatLocked() {
   );
 }
 
+/** Resolve once the browser has nothing more important to do.
+ *
+ * `requestIdleCallback` where it exists; a double rAF elsewhere (Safari),
+ * which still puts us after the next paint. Capped by a timeout so a busy
+ * main thread cannot postpone the audit indefinitely. */
+function firstIdle(): Promise<void> {
+  return new Promise((resolve) => {
+    const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => void })
+      .requestIdleCallback;
+    if (ric) ric(() => resolve(), { timeout: 1200 });
+    else requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+  });
+}
+
 function AuditTab() {
   const { plan } = usePlanner();
   const [audits, setAudits] = useState<{ name: string; audit: AuditResult }[] | null>(null);
@@ -121,6 +135,18 @@ function AuditTab() {
     if (!plan) return;
     let alive = true;
     (async () => {
+      // YIELD BEFORE THE BIG FETCH. This tab is the default when no advisor
+      // is configured, so it mounts on every page load and used to start
+      // pulling the whole catalog -- 2.4 MB gzipped, 11 MB parsed, all
+      // 14,615 courses -- while the chart was still laying itself out. The
+      // download competed for bandwidth with the plan's own data and the
+      // JSON.parse then blocked the main thread, which is why the flowchart
+      // took ~4s to settle when it had everything it needed at ~1.3s.
+      //
+      // The audit is not what a student looks at first; the chart is. So
+      // let the chart paint and go interactive, then fetch.
+      await firstIdle();
+      if (!alive) return;
       const cat = await loadFullCatalog();
       const coveredBy = await loadCoverage();
       const pool = buildPool(plan, cat);
@@ -135,7 +161,18 @@ function AuditTab() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rev]);
 
-  if (!audits) return <div className="chat-empty">Running the degree audit…</div>;
+  // A skeleton rather than a sentence: the audit arrives after the chart
+  // now, so this is on screen for a moment on every load and a line of grey
+  // text reads as "broken" where shapes read as "coming".
+  if (!audits)
+    return (
+      <div className="chat-messages audit-skeleton" role="status" aria-label="Running the degree audit">
+        <span className="sr-only">Running the degree audit…</span>
+        {[72, 54, 61, 44, 66, 38].map((w, i) => (
+          <span key={i} className="sk-row" style={{ width: `${w}%`, animationDelay: `${i * 90}ms` }} />
+        ))}
+      </div>
+    );
   return (
     // tabIndex makes the scroll region reachable: axe flags a scrollable
     // area with no focusable content because a keyboard user cannot reach

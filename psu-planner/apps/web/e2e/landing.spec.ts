@@ -5,24 +5,38 @@
  * does not run JavaScript, followed — if they tap it — by a page that has to
  * load fast on a phone on campus wifi. Everything here is about that path.
  */
-import { test, expect, expectNoA11yViolations } from "./fixtures.js";
 
-/** Scroll the whole page and let it settle before an accessibility scan.
+/** Scroll until the scene containing `selector` is the active one.
  *
- * Scroll reveals start at `opacity: 0`, and axe computes contrast against
- * whatever is actually painted -- so an element mid-reveal measures as a
- * washed-out blend and the scan reports a contrast failure that no reader
- * ever sees. Worse, whether it fires depends on timing, so the result was
- * nondeterministic. Scanning the settled page is also simply more honest:
- * it is the page a student ends up looking at. */
-async function settle(page: Page): Promise<void> {
-  await page.evaluate(async () => {
-    for (let y = 0; y < document.body.scrollHeight; y += 400) {
-      window.scrollTo(0, y);
-      await new Promise((r) => setTimeout(r, 50));
-    }
-    window.scrollTo(0, 0);
-  });
+ * The scenes do not scroll past the viewport — the stage is pinned and they
+ * cross-fade in place — so `scrollIntoViewIfNeeded` has nothing to move and
+ * reports success while the element is still at `opacity: 0`. Progress
+ * through the scroller is the thing that selects a scene, so that is what
+ * this drives. With the 3D inactive the scenes simply stack and this is a
+ * harmless no-op. */
+async function showScene(page: Page, selector: string): Promise<void> {
+  // Wait for the journey to pin itself first. It arrives on a dynamic
+  // import behind an IntersectionObserver, so a scroll computed before that
+  // reads a scroller with no height yet, skips, and leaves scene 0 showing
+  // — which looks exactly like the scene never activating.
+  await page
+    .waitForFunction(() => document.querySelector(".journey-stage.is-pinned") !== null, undefined, {
+      timeout: 4000,
+    })
+    .catch(() => {
+      /* no 3D here (no WebGL, reduced motion, save-data): scenes stack and
+         are all visible, so there is nothing to drive. */
+    });
+  await page.evaluate((sel) => {
+    const el = document.querySelector(sel)?.closest(".scene");
+    const scenes = [...document.querySelectorAll("#scenes .scene")];
+    const scroller = document.getElementById("journey-scroll");
+    if (!el || !scroller || !scenes.length) return;
+    const i = scenes.indexOf(el as HTMLElement);
+    const span = scroller.getBoundingClientRect().height - window.innerHeight;
+    if (span <= 0) return;
+    window.scrollTo(0, scroller.offsetTop + span * ((i + 0.5) / scenes.length));
+  }, selector);
   await page.waitForTimeout(800);
 }
 
@@ -39,19 +53,20 @@ test.describe("with JavaScript turned off", () => {
     await expect(page.getByText("LionsDegree").first()).toBeVisible();
   });
 
-  test("every stop on the route is there", async ({ page }) => {
+  test("every scene is there", async ({ page }) => {
+    // The page is now one journey with a scene per feature. With no script
+    // the scenes do not cross-fade -- they simply stack -- so every one of
+    // them has to be readable in the markup.
     await page.goto("/");
     for (const heading of [
-      /Straight from the Bulletin/i,
+      /straight from the Bulletin/i,
       /Fewest terms, nothing out of sequence/i,
+      /catches what you would not/i,
       /Bring your own AI/i,
-      /will not pretend to know/i,
     ]) {
       await expect(page.getByRole("heading", { name: heading })).toBeVisible();
     }
-    // The visual stops alternate with the written ones and carry claims of
-    // their own, so they have to render without script too.
-    await expect(page.locator('img[src="/shots/audit.png"]')).toBeVisible();
+    await expect(page.getByRole("heading", { name: /What this isn.t/i })).toBeVisible();
   });
 
   test("the way into the planner works", async ({ page }) => {
@@ -67,7 +82,7 @@ test.describe("with JavaScript turned off", () => {
     // way to act on either, and seeing them says "this is not for you".
     await page.goto("/");
     await expect(page.locator("pre, code"), "the landing page is showing code").toHaveCount(0);
-    const cta = page.getByRole("link", { name: /how to connect it/i });
+    const cta = page.getByRole("link", { name: /how to connect it/i }).first();
     await expect(cta).toBeVisible();
     await expect(cta).toHaveAttribute("href", "/connect/");
   });
@@ -102,16 +117,24 @@ test.describe("discovery", () => {
   // page hands over the sentence that starts it rather than a search box it
   // has no business rendering.
   test("hands over a prompt rather than calling itself unfinished", async ({ page }) => {
+    // With the journey live the scenes cross-fade and only the current one
+    // is on screen, so this scrolls to the AI scene the way a reader does.
     await page.goto("/");
+    await showScene(page, "#discovery");
     const mod = page.locator("#discovery");
     await expect(mod).toBeVisible();
     await expect(mod.locator(".wip"), "discovery is still labelled in development").toHaveCount(0);
     await expect(mod.locator("#discovery-prompt")).toBeVisible();
-    await expect(mod.getByRole("link", { name: /connect yours/i })).toHaveAttribute("href", "/connect/");
+    // The walkthrough link lives in the same scene, beside the prompt.
+    await expect(page.locator("#ai").getByRole("link", { name: /how to connect it/i })).toHaveAttribute(
+      "href",
+      "/connect/",
+    );
   });
 
   test("the prompt is plain text a student can read and edit", async ({ page }) => {
     await page.goto("/");
+    await showScene(page, "#discovery");
     const text = (await page.locator("#discovery-prompt").innerText()).trim();
     // Long enough to be a real instruction, and English rather than an
     // incantation: this page is for people who have never opened a terminal.
@@ -131,6 +154,7 @@ test.describe("discovery", () => {
   test("the copy button copies the prompt", async ({ page, context }) => {
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
     await page.goto("/");
+    await showScene(page, "#discovery");
     await page.locator("[data-copy='discovery-prompt']").click();
     const clip = await page.evaluate(() => navigator.clipboard.readText());
     expect(clip).toBe((await page.locator("#discovery-prompt").innerText()).trim());
@@ -185,25 +209,54 @@ test.describe("the prerequisite journey", () => {
   });
 });
 
-test.describe("the hero route", () => {
+test.describe("the static chain", () => {
+  // The small decorative route diagram that used to sit mid-page is gone --
+  // the journey's own chain is the page's diagram now, and two drawings of
+  // the same idea was one too many.
   test("is drawn, not left half-finished", async ({ page }) => {
     await page.goto("/");
-    // Every station eventually appears. The draw is staggered, so this is the
-    // end state rather than the first frame.
-    const stops = page.locator(".lp-route .route-stop");
-    await expect(stops).toHaveCount(4);
-    for (let i = 0; i < 4; i++) {
+    const stops = page.locator(".journey-static .route-stop");
+    await expect(stops).toHaveCount(8);
+    for (let i = 0; i < 8; i++) {
       await expect(stops.nth(i)).toHaveCSS("opacity", "1", { timeout: 5000 });
     }
   });
 
   test("names each station with a course code", async ({ page }) => {
     await page.goto("/");
-    const names = await page.locator(".lp-route .lp-stn").allTextContents();
-    expect(names.length).toBeGreaterThan(2);
+    const names = await page.locator(".journey-static .lp-stn").allTextContents();
+    expect(names.length).toBeGreaterThan(4);
     for (const n of names) expect(n.trim()).toMatch(/^[A-Z]{2,8} \d/);
   });
 });
+
+/** The front door (#14).
+ *
+ * This page's job is to survive being shared. A student sends the link to a
+ * group chat, and what arrives is a preview card rendered by something that
+ * does not run JavaScript, followed — if they tap it — by a page that has to
+ * load fast on a phone on campus wifi. Everything here is about that path.
+ */
+import { test, expect, expectNoA11yViolations } from "./fixtures.js";
+
+/** Scroll the whole page and let it settle before an accessibility scan.
+ *
+ * Scroll reveals start at `opacity: 0`, and axe computes contrast against
+ * whatever is actually painted -- so an element mid-reveal measures as a
+ * washed-out blend and the scan reports a contrast failure that no reader
+ * ever sees. Worse, whether it fires depends on timing, so the result was
+ * nondeterministic. Scanning the settled page is also simply more honest:
+ * it is the page a student ends up looking at. */
+async function settle(page: Page): Promise<void> {
+  await page.evaluate(async () => {
+    for (let y = 0; y < document.body.scrollHeight; y += 400) {
+      window.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 50));
+    }
+    window.scrollTo(0, 0);
+  });
+  await page.waitForTimeout(800);
+}
 
 test.describe("under reduced motion", () => {
   test.use({ reducedMotion: "reduce" });
@@ -213,8 +266,8 @@ test.describe("under reduced motion", () => {
     // Complete: a student who asked for less motion still gets the whole
     // diagram, rather than a line frozen at the first frame of its draw.
     const state = await page.evaluate(() => {
-      const line = document.querySelector<SVGPathElement>(".lp-route .route-line")!;
-      const stop = document.querySelector<SVGCircleElement>(".lp-route .route-stop")!;
+      const line = document.querySelector<SVGPathElement>(".journey-static .route-line")!;
+      const stop = document.querySelector<SVGCircleElement>(".journey-static .route-stop")!;
       return {
         offset: getComputedStyle(line).strokeDashoffset,
         stopOpacity: getComputedStyle(stop).opacity,
@@ -254,11 +307,10 @@ test.describe("the landing page is usable", () => {
     await expectNoA11yViolations(page, "the landing page");
   });
 
-  test("the route diagram is described for a screen reader", async ({ page }) => {
+  test("the chain is described for a screen reader", async ({ page }) => {
     // It carries the page's thesis. An unlabelled svg conveys none of it.
     await page.goto("/");
-    const fig = page.getByRole("img", { name: /prerequisite route/i });
-    await expect(fig).toBeVisible();
+    await expect(page.getByRole("img", { name: /prerequisite chain/i })).toHaveCount(1);
   });
 
   test("reaches the planner by keyboard, without hunting", async ({ page }) => {
@@ -285,11 +337,12 @@ test.describe("the landing page is usable", () => {
 });
 
 test.describe("the coverage figure", () => {
-  test("is readable with JavaScript off, like everything else here", async ({ page }) => {
+  test("is readable with JavaScript off, like everything else here", async ({ page, context }) => {
+    await context.route("**/*.js", (r) => r.abort());
     await page.goto("/");
     const section = page.locator("#coverage");
     await expect(section).toBeVisible();
-    await expect(section.locator(".lp-figure strong").first()).toHaveText(/^\d{1,3}%$/);
+    await expect(page.locator("strong").filter({ hasText: /^\d{1,3}%$/ }).first()).toBeVisible();
   });
 
   test("explains the exclusion rather than burying it", async ({ page }) => {
@@ -305,7 +358,8 @@ test.describe("the coverage figure", () => {
     // --primary at display size on the page background. The only new coloured
     // element this section introduces, and the one most likely to slip.
     await page.goto("/");
-    const ratio = await page.locator(".lp-figure strong").first().evaluate((el) => {
+    await showScene(page, "#coverage");
+    const ratio = await page.locator(".scene strong").filter({ hasText: /^\d{1,3}%$/ }).first().evaluate((el) => {
       const lum = (c: number) => {
         const s = c / 255;
         return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;

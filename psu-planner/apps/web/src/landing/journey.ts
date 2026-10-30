@@ -49,6 +49,11 @@ function token(styles: CSSStyleDeclaration, name: string, fallback: number): num
 }
 
 export function mount(container: HTMLElement): JourneyHandle {
+  // The scroller sets the travel distance; the stage is what gets pinned.
+  const scroller = (container.closest(".journey-scroll") ?? container) as HTMLElement;
+  const stage = (container.closest(".journey-stage") ?? container) as HTMLElement;
+  const scenes = [...document.querySelectorAll<HTMLElement>("#scenes .scene")];
+
   const styles = getComputedStyle(document.documentElement);
   const BG = token(styles, "--bg", 0x2b2a27);
   const PETROL = token(styles, "--primary", 0x8dc1d8);
@@ -221,14 +226,13 @@ export function mount(container: HTMLElement): JourneyHandle {
   let shown = 0;
   const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
   function readScroll(): void {
-    // Tracks the module's CENTRE, from 85% of the viewport down to 25%. An
-    // earlier version ran until the module's bottom edge passed the top of
-    // the screen, which put the arrival — the amber conflict, the thing the
-    // whole scene exists to show — off-screen at the moment it happened.
-    const rect = container.getBoundingClientRect();
-    const centre = rect.top + rect.height / 2;
-    const span = innerHeight * 0.6;
-    target = clamp((innerHeight * 0.85 - centre) / span, 0, 1);
+    // Progress through the SCROLLER, not the stage. The stage is sticky, so
+    // its own box barely moves — reading it would report a journey that
+    // never starts. The scroller is the tall element whose height defines
+    // how far the reader travels.
+    const rect = scroller.getBoundingClientRect();
+    const span = rect.height - innerHeight;
+    target = span > 0 ? clamp(-rect.top / span, 0, 1) : 0;
   }
 
   // ── The loop, which must not run when nobody can see it ───────────────
@@ -302,6 +306,16 @@ export function mount(container: HTMLElement): JourneyHandle {
       }
     }
 
+    // ── Scenes ──────────────────────────────────────────────────────
+    // Each scene owns an equal slice of the journey. Exactly one is on at
+    // a time: cross-fading two would put two headlines over the same frame
+    // and read as a rendering fault rather than a transition.
+    if (scenes.length) {
+      const slice = 1 / scenes.length;
+      const active = Math.min(scenes.length - 1, Math.floor(shown / slice));
+      for (let i = 0; i < scenes.length; i++) scenes[i].classList.toggle("is-on", i === active);
+    }
+
     renderer.render(scene, cam);
   }
 
@@ -333,6 +347,14 @@ export function mount(container: HTMLElement): JourneyHandle {
   addEventListener("resize", readScroll);
   document.addEventListener("visibilitychange", visibility);
 
+  // Pin the stage and give the scroller its travel distance only once the
+  // scene is actually mounted. Doing it in CSS would pin an empty box on
+  // every browser that never loads the 3D, and a reader with WebGL off
+  // would scroll several screens of nothing.
+  stage.classList.add("is-pinned");
+  scroller.style.height = `${Math.max(2, scenes.length) * 100}vh`;
+  container.classList.add("is-live");
+
   resize();
   readScroll();
   shown = target;
@@ -355,6 +377,10 @@ export function mount(container: HTMLElement): JourneyHandle {
       removeEventListener("resize", readScroll);
       document.removeEventListener("visibilitychange", visibility);
       canvas.removeEventListener("webglcontextlost", lost);
+      stage.classList.remove("is-pinned");
+      scroller.style.height = "";
+      container.classList.remove("is-live");
+      for (const sc of scenes) sc.classList.remove("is-on");
       dialog.dispose();
       for (const g of geometries) g.dispose();
       for (const m of materials) m.dispose();

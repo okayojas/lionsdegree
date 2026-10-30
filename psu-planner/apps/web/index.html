@@ -63,7 +63,7 @@
         <span>LionsDegree</span>
       </a>
       <p class="bar-right">
-        <a class="btn btn-go btn-sm bar-cta" href="/plan/">Open the planner</a>
+        <a class="btn btn-cta btn-sm bar-cta" href="/plan/">Start my plan</a>
         <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu">
           <span class="menu-btn-label">Menu</span>
           <span class="menu-btn-bars" aria-hidden="true"><i></i><i></i></span>
@@ -83,41 +83,22 @@
     </div>
 
     <main>
-      <!-- Stops on one route, not sections. Each attaches at a station dot;
-           only the closing dot is filled. -->
-      <div class="route">
-        <!-- ══ OPENING: THE JOURNEY IS THE HERO ════════════════════════
-             The page opens on the product's actual claim rather than on a
-             sentence about it — a real chain of thirteen courses ending at
-             AI 410, with a real conflict in amber. The Bulletin makes EE 456
-             an enforced prerequisite of AI 410, and the plan this was built
-             from puts both in the same term.
+      <!-- ══ ONE JOURNEY ══════════════════════════════════════════════════
+           The page is a single scroll through a real prerequisite chain.
+           Each stop along the way states one thing the product does: a bold
+           line and a sentence under it, nothing else. No screenshots, no
+           feature grid, no stack of cards — the scene IS the argument, and
+           the copy only names what the reader is looking at.
 
-             The written thesis sits OVER the scene, not after it. Everything
-             here is static markup: where the guards in reveal.ts allow it a
-             WebGL scene mounts behind, and where they do not the SVG below
-             is a complete opening on its own. The page must never need the
-             3D (docs/landing-3d-journey.md §8). -->
-        <section class="stop stop-bleed" id="hero">
-          <div class="module w-xl hero-journey journey" id="journey">
-            <div class="hero-words">
-              <p class="eyebrow">Unofficial &middot; Built for Penn State students</p>
-              <h1>Your degree is a route map.<br />Now you can see it.</h1>
-              <p class="lede">
-                Thirteen real Penn State courses, and the one the engine caught:
-                EE&nbsp;456 is required before AI&nbsp;410 and scheduled in the
-                same term.
-              </p>
-              <p class="actions">
-                <a class="btn btn-go" href="/plan/">Open the planner</a>
-                <a class="btn btn-quiet" href="#watch">Watch it work</a>
-              </p>
-              <p class="trust">Free and open source. No account needed to try it.</p>
-              <p class="note">
-                <strong>Unofficial.</strong> Not affiliated with or endorsed by Penn State.
-              </p>
-            </div>
-
+           Everything here is static markup and reads top to bottom as an
+           ordinary document. Where the guards in reveal.ts allow it, a WebGL
+           scene mounts behind and the scenes cross-fade as the camera
+           travels; where they do not, the chain below is the illustration
+           and the scenes simply stack. The page must never need the 3D
+           (docs/landing-3d-journey.md §8). -->
+      <div class="journey-scroll" id="journey-scroll">
+        <div class="journey-stage">
+          <div class="journey" id="journey" aria-hidden="false">
             <figure class="journey-static">
               <svg viewBox="0 0 960 260" role="img"
                    aria-label="A prerequisite chain of seven courses from MATH 141 to AI 410. EE 456, an enforced prerequisite of AI 410, is flagged amber because it is scheduled in the same term as the course it is supposed to come before.">
@@ -135,305 +116,134 @@
             </figure>
             <p class="note journey-verdict">
               <strong class="journey-flag">EE 456 is scheduled too late.</strong>
-              The Bulletin lists it as an enforced prerequisite of AI 410, and
-              the plan puts both in the same term — so the chain cannot be
-              satisfied as written. The planner catches this before you register.
+              The Bulletin makes it an enforced prerequisite of AI 410, and the
+              plan puts both in the same term.
             </p>
           </div>
-        </section>
 
-        <!-- ══ THE HERO LOOP ════════════════════════════════════════════ -->
-        <section class="stop stop-wide" id="watch">
-          <figure class="module w-xl shot reveal">
-            <video
-              autoplay muted loop playsinline preload="metadata"
-              poster="/shots/hero-poster.png"
-              width="1280" height="720"
-              aria-label="Dragging a course into a term where its prerequisite is not met, the warning appearing, and the one-click fix resolving it."
-            >
-              <source src="/shots/hero.webm" type="video/webm" />
-            </video>
-            <figcaption class="eyebrow">Live from the planner &middot; Real Penn State prerequisites</figcaption>
-            <!-- Ships hidden; `reveal.ts` reveals it and explains why. -->
-            <p class="actions" id="video-controls" hidden>
-              <button type="button" class="btn btn-quiet btn-sm" id="video-toggle">Pause</button>
-            </p>
-          </figure>
-        </section>
+          <div class="scenes" id="scenes">
+            <section class="scene is-first" id="hero">
+              <p class="eyebrow">Unofficial &middot; Built for Penn State students</p>
+              <h1>Your degree is a route map.</h1>
+              <p class="lede">Thirteen real courses. One real conflict. Scroll the chain.</p>
+              <p class="actions">
+                <a class="btn btn-cta" href="/plan/">Start my plan &mdash; free</a>
+              </p>
+              <p class="note">
+                <strong>Unofficial.</strong> Not affiliated with or endorsed by Penn State.
+              </p>
+            </section>
 
-        <!-- ══ PROOF ════════════════════════════════════════════════════
-             Immediately after the hero. Every figure is generated from the
-             shipped catalog at build time, never typed in. -->
-        <section class="stop stop-wide proof" aria-label="What the catalog contains">
-          <div class="proof-row">
-            <p class="module w-sm proof-item reveal">
-              <strong data-count-to="%COVERAGE_COURSES_RAW%">%COVERAGE_COURSES%</strong>
-              <span>courses read</span>
-            </p>
-            <p class="module w-sm proof-item reveal">
-              <strong data-count-to="%COVERAGE_PROGRAMS_RAW%">%COVERAGE_PROGRAMS%</strong>
-              <span>programs</span>
-            </p>
-            <p class="module w-sm proof-item reveal">
-              <strong data-count-to="%COVERAGE_PERCENT%" data-count-suffix="%">%COVERAGE_PERCENT%%</strong>
-              <span>of requirements machine-verified</span>
-            </p>
+            <section class="scene">
+              <h2>Every prerequisite, straight from the Bulletin.</h2>
+              <p>Parsed from Penn State's own text, never hand-entered.
+                <strong>%COVERAGE_PERCENT%%</strong> of requirements across
+                %COVERAGE_PROGRAMS% programs resolve to real, named courses.</p>
+            </section>
+
+            <section class="scene">
+              <h2>Fewest terms, nothing out of sequence.</h2>
+              <p>The optimizer balances your load, keeps the core early, and
+                never schedules a course before what it depends on.</p>
+            </section>
+
+            <section class="scene">
+              <h2>It catches what you would not.</h2>
+              <p>The amber stop is real: a required course sitting in the same
+                term as the one it unlocks. Found before you register, not after.</p>
+            </section>
+
+            <section class="scene" id="ai">
+              <h2>Bring your own AI.</h2>
+              <p>Connect Claude or ChatGPT and ask it about your actual degree —
+                or let it pick the degree. Paste this to find a major, minors
+                and certificates that share credits:</p>
+              <div class="copyfield copyfield-prose" id="discovery">
+                <span class="copyfield-text" id="discovery-prompt">I&rsquo;m a Penn State student. Use LionsDegree to find programs that fit what I&rsquo;m into: machine learning and clean energy. Give me a major plus any minors and certificates that share credits with it, and send me the link to open the plan.</span>
+                <button type="button" class="copyfield-btn" data-copy="discovery-prompt">Copy</button>
+              </div>
+              <p class="actions">
+                <a class="btn btn-cta" href="/connect/">How to connect it</a>
+              </p>
+            </section>
+
+            <section class="scene is-last">
+              <h2>Start at the first stop.</h2>
+              <p>No account needed. Free and open source.</p>
+              <p class="actions">
+                <a class="btn btn-cta btn-lg" href="/plan/">Open the planner</a>
+              </p>
+            </section>
           </div>
+        </div>
+      </div>
+
+      <!-- ══ THE SHORT PRINT ════════════════════════════════════════════
+           Everything a reader needs that is not a feature. Deliberately
+           after the journey and deliberately brief. -->
+      <div class="coda">
+        <section id="coverage">
+          <h2>What this isn't</h2>
+          <p>Not affiliated with Penn State. Not a substitute for your adviser.
+            It cannot see when a class actually runs — check LionPATH.
+            If a requirement cannot be verified, it says so instead of guessing.</p>
+          <!-- The headline figure never travels without its caveats. A bare
+               "95%" is the kind of number that sounds like a guarantee, and
+               the split below is what makes it a measurement instead. Kept
+               here rather than in the journey so the scroll stays short. -->
+          <p class="note">
+            Measured across %COVERAGE_PROGRAMS% programs in the
+            %COVERAGE_EDITION% bulletin, not estimated.
+            <strong>%COVERAGE_NAMED%</strong> requirements name their courses
+            outright, and <strong>%COVERAGE_PATTERNED%</strong> give you a
+            subject and a level to choose within. <strong>%COVERAGE_UNREADABLE%</strong>
+            we could not read at all, and those are flagged for you rather than
+            guessed at. <strong>%COVERAGE_GENED%</strong> are General Education
+            buckets, filled from the designations a course carries.
+          </p>
+          <p class="note">
+            Left out of that percentage altogether: the
+            <strong>%COVERAGE_ADVISER%</strong> requirements where the Bulletin
+            publishes <strong>no list</strong> and tells you to ask your adviser.
+            Those are not failures to read something — there is nothing there to
+            read — so the planner shows you the requirement's own wording instead.
+          </p>
         </section>
 
-        <!-- ══ THREE CONTENT STOPS ══════════════════════════════════════
-             Each stop is one station carrying both halves of its claim: the
-             sentence and the thing it is a sentence about. They were separate
-             stops, which doubled the page height and left every row half
-             empty — the layout was telling the reader these were six
-             unrelated points rather than three. The side the text sits on
-             alternates, so the eye crosses the spine at every station. -->
-        <section class="stop">
-          <div class="module w-md reveal">
-            <p class="eyebrow">The data is real</p>
-            <h2>Straight from the Bulletin</h2>
-            <p>
-              Prerequisites are parsed from Penn State's own text rather than
-              hand-entered, and every course links back to the page it came
-              from. If something cannot be verified, it says so.
-            </p>
-          </div>
-          <figure class="module at-right w-md lp-route reveal">
-            <!-- Stations sit on the HORIZONTAL runs and the bends happen
-                 between them, so no label is ever crossed by the line it
-                 belongs to. The viewBox carries ~95 units of margin past the
-                 last station because the labels are centred and overflow the
-                 stops they name — at 390px that was PHYS 211 touching the
-                 module's edge. -->
-            <svg viewBox="0 0 760 215" role="img"
-                 aria-label="A prerequisite route: MATH 140 leads to MATH 141, which leads to MATH 230 and to PHYS 211.">
-              <path class="route-line" d="M95 165 H180 Q230 165 230 115 H385 Q435 115 435 65 H665" />
-              <g class="route-stop" style="--i:0"><circle cx="95"  cy="165" r="11" /><text class="lp-stn" x="95"  y="207">MATH 140</text></g>
-              <g class="route-stop" style="--i:1"><circle cx="300" cy="115" r="11" /><text class="lp-stn" x="300" y="157">MATH 141</text></g>
-              <g class="route-stop" style="--i:2"><circle cx="505" cy="65"  r="11" /><text class="lp-stn" x="505" y="107">MATH 230</text></g>
-              <g class="route-stop" style="--i:3"><circle cx="665" cy="65"  r="11" /><text class="lp-stn" x="665" y="107">PHYS 211</text></g>
-            </svg>
-            <figcaption class="note">Each stop unlocks the next. Move one and the line tells you what broke.</figcaption>
-          </figure>
+        <section id="about">
+          <h2>About</h2>
+          <p>One person's side project, started September 2026, because planning
+            a Penn State degree means holding four documents open at once and
+            everyone ends up building the same slightly-wrong spreadsheet.
+            <a href="https://github.com/okayojas/lionsdegree">Open source under Apache 2.0</a>.</p>
         </section>
 
-        <section class="stop">
-          <figure class="module w-md shot reveal">
-            <img src="/shots/audit.png" width="354" height="859" loading="lazy" decoding="async"
-                 alt="The requirements panel: Engineering Science B.S. with 29 requirements on track, 3 to do and 1 to check manually." />
-            <figcaption class="note">Every requirement, checked against what you have actually planned.</figcaption>
-          </figure>
-          <div class="module at-right w-md reveal">
-            <p class="eyebrow">It solves the ordering</p>
-            <h2>Fewest terms, nothing out of sequence</h2>
-            <p>
-              The optimizer balances your credit load, keeps the prescribed core
-              early, and never schedules a course before the thing it depends
-              on. Capstones land at the end, where they belong.
-            </p>
-            <p class="actions"><a class="btn btn-go" href="/plan/">Build your plan</a></p>
-          </div>
-        </section>
+        <section id="contact">
+          <h2>Contact</h2>
+          <p>Found a requirement read wrong? Email
+            <a href="mailto:ovk5113@psu.edu">ovk5113@psu.edu</a> or open a
+            <a href="https://github.com/okayojas/lionsdegree/issues">GitHub issue</a>.</p>
 
-        <section class="stop">
-          <div class="module w-md reveal">
-            <p class="eyebrow">It works on your phone</p>
-            <h2>Built for registration week</h2>
-            <p>
-              The list view carries everything the chart does &mdash; every
-              course, every prerequisite status, every action &mdash; for when
-              you are on a phone at 7am fighting for a seat.
-            </p>
-          </div>
-          <figure class="module at-right w-sm shot reveal">
-            <img src="/shots/mobile.png" width="390" height="760" loading="lazy" decoding="async"
-                 alt="The planner's list view on a phone: each term as a section, each course showing whether its prerequisites are met." />
-          </figure>
-        </section>
-
-        <!-- ══ DISCOVERY (okayojas/lionsdegree#22) ══════════════════════
-             Centred on the spine rather than off to one side: it is the
-             headline station, and the one thing nothing else does.
-
-             This runs in the student's own assistant, not here. There is no
-             hosted model, so the interpreting happens where the model
-             already is; the matching, the overlap arithmetic and the plan
-             are all deterministic code on our side. So the thing to hand a
-             reader is the sentence that starts it, not a search box. -->
-        <section class="stop stop-wide" id="discovery">
-          <div class="module tier-3 w-lg reveal">
-            <p class="eyebrow">The part nobody else does</p>
-            <h2>Describe what you are into. Get a combination of real credentials.</h2>
-            <div class="example">
-              <p class="example-q">&ldquo;machine learning and clean energy&rdquo;</p>
-              <ul class="example-list">
-                <li><span class="example-name">Artificial Intelligence Methods and Applications, B.S.</span><span class="example-kind">major</span></li>
-                <li><span class="example-name">Energy Business and Finance, Minor</span><span class="example-kind">minor</span></li>
-                <li><span class="example-name">Building Artificial Intelligence, Certificate</span><span class="example-kind">certificate</span></li>
-              </ul>
-              <p class="example-sum">9 credits count twice &middot; a real result from the 2026-2027 bulletin</p>
+          <form id="feedback-form" class="fb" hidden novalidate>
+            <div class="fb-row">
+              <label for="fb-body">What is on your mind?</label>
+              <textarea id="fb-body" name="body" rows="3" required
+                        placeholder="CMPSC 465 shows as needing MATH 230, but the Bulletin says MATH 220…"></textarea>
+              <p class="fb-count" data-count aria-hidden="true"></p>
             </div>
-
-            <p class="ask-label">Paste this to your assistant:</p>
-            <div class="copyfield copyfield-prose">
-              <span class="copyfield-text" id="discovery-prompt">I&rsquo;m a Penn State student. Use LionsDegree to find programs that fit what I&rsquo;m into: machine learning and clean energy. Give me a major plus any minors and certificates that share credits with it, say how many credits count twice, and send me the link to open the plan.</span>
-              <button type="button" class="copyfield-btn" data-copy="discovery-prompt">Copy</button>
+            <div class="fb-row">
+              <label for="fb-email">Your email <span class="fb-opt">optional</span></label>
+              <input id="fb-email" name="email" type="email" autocomplete="email" placeholder="you@psu.edu" />
             </div>
-            <p class="note">
-              Swap in your own interests. Works in Claude, ChatGPT or whatever
-              you use once it is connected &mdash;
-              <a href="/connect/">here is how to connect yours</a>.
-            </p>
-          </div>
-        </section>
-
-        <!-- ══ BRING YOUR OWN AI, and the demo that is not built yet ════ -->
-        <section class="stop" id="ai">
-          <div class="module w-md reveal" id="ai-module">
-            <p class="eyebrow">Works with your assistant</p>
-            <h2>Bring your own AI.</h2>
-            <p>
-              Connect LionsDegree to Claude, ChatGPT or whatever you already
-              use. Your assistant reads your actual plan and answers questions
-              about your degree instead of guessing at it.
-            </p>
-            <ul class="asks">
-              <li>&ldquo;What do I still need for my major?&rdquo;</li>
-              <li>&ldquo;Can I take CMPSC 465 next spring?&rdquo;</li>
-              <li>&ldquo;I want to study abroad in fall 2027 &mdash; rearrange my plan.&rdquo;</li>
-            </ul>
-            <p class="actions"><a class="btn btn-go" href="/connect/">How to connect it</a></p>
-          </div>
-
-          <div class="module at-right w-md reveal" id="demo">
-            <p class="eyebrow">Try it yourself</p>
-            <h2>A few real courses, right here.</h2>
-            <p>
-              Drag one somewhere its prerequisite does not allow and watch the
-              engine catch it &mdash; without signing up for anything.
-            </p>
-            <p class="wip">
-              <strong>In development</strong>
-              The planner already does this. <a href="/plan/">Open it</a> and
-              drag a course into a term it does not belong in.
-            </p>
-          </div>
-        </section>
-
-        <!-- ══ WHAT THIS ISN'T ══════════════════════════════════════════ -->
-        <section class="stop stop-wide" id="coverage">
-          <div class="module w-lg reveal">
-            <p class="eyebrow">What this isn't</p>
-            <h2>The things it will not pretend to know.</h2>
-            <p>Not affiliated with or endorsed by Penn State.</p>
-            <p>Not a substitute for your adviser. Confirm before you register.</p>
-            <p>
-              It cannot see when a class actually runs &mdash; Penn State does
-              not publish that in a form anyone can read automatically. Check
-              LionPATH.
-            </p>
-            <p class="headline-note">
-              If a requirement cannot be verified, it says so instead of guessing.
-            </p>
-            <p class="lp-figure">
-              <strong>%COVERAGE_PERCENT%%</strong>
-              of requirements across %COVERAGE_PROGRAMS% programs resolve to
-              real, named courses.
-            </p>
-            <p class="note">
-              Measured against the %COVERAGE_EDITION% bulletin, not estimated.
-              <strong>%COVERAGE_NAMED%</strong> requirements name their courses
-              outright, and <strong>%COVERAGE_PATTERNED%</strong> give you
-              a subject and a level to choose within. <strong>%COVERAGE_UNREADABLE%</strong>
-              we could not read at all, and those are flagged for you rather
-              than guessed at. <strong>%COVERAGE_GENED%</strong> are
-              General Education buckets, filled from the designations a
-              course carries.
-            </p>
-            <p class="note">
-              Left out of that percentage altogether: the
-              <strong>%COVERAGE_ADVISER%</strong> requirements where the Bulletin
-              publishes <strong>no list</strong> and tells you to ask your
-              adviser. Those are not failures to read something &mdash; there is
-              nothing there to read &mdash; so the planner shows you the
-              requirement's own wording instead.
-            </p>
-          </div>
-        </section>
-
-        <!-- ══ ABOUT and CONTACT ════════════════════════════════════════
-             One station: who made this, and how to tell them it is wrong. -->
-        <section class="stop">
-          <div class="module w-md reveal" id="about">
-            <p class="eyebrow">About</p>
-            <h2>Built by a student who got tired of the spreadsheet.</h2>
-            <p>
-              Planning a Penn State degree means holding four documents open at
-              once: the Bulletin for what your major requires, a page per course
-              for what it needs first, the General Education framework, and
-              LionPATH for what you have already done. Nothing joins them up. So
-              everyone builds the same spreadsheet, and everyone's is slightly
-              wrong.
-            </p>
-            <p>
-              It is one person's side project, not a company &mdash; started in
-              September 2026 and
-              <a href="https://github.com/okayojas/lionsdegree">open source under Apache 2.0</a>,
-              so you can read exactly how every number on this page was produced.
-            </p>
-            <p>
-              The rule it is built on: <strong>never guess</strong>. Course data
-              comes from a deterministic parse of the Bulletin's own markup, no
-              language model ever writes into the catalog, and anything the
-              parser cannot read is shown to you as unreadable rather than
-              filled in with something plausible.
-            </p>
-          </div>
-
-          <div class="module at-right w-md reveal" id="contact">
-            <p class="eyebrow">Contact</p>
-            <h2>Tell us what is wrong.</h2>
-            <p>
-              Found a requirement it read incorrectly, a prerequisite it missed,
-              or a course that should not be there? Every catalog bug reported
-              is one no other student hits.
-            </p>
-            <p class="note">
-              Or email <a href="mailto:ovk5113@psu.edu">ovk5113@psu.edu</a> directly.
-              Bugs in the planner itself are best filed as
-              <a href="https://github.com/okayojas/lionsdegree/issues">GitHub issues</a>.
-            </p>
-
-            <form id="feedback-form" class="fb" hidden novalidate>
-              <div class="fb-row">
-                <label for="fb-body">What is on your mind?</label>
-                <textarea id="fb-body" name="body" rows="4" required
-                          placeholder="CMPSC 465 shows as needing MATH 230, but the Bulletin says MATH 220…"></textarea>
-                <p class="fb-count" data-count aria-hidden="true"></p>
-              </div>
-              <div class="fb-row">
-                <label for="fb-email">Your email <span class="fb-opt">optional, only if you want a reply</span></label>
-                <input id="fb-email" name="email" type="email" autocomplete="email" placeholder="you@psu.edu" />
-              </div>
-              <!-- A field no human sees. Naive bots fill it in; people never do. -->
-              <div class="fb-trap" aria-hidden="true">
-                <label for="fb-website">Leave this empty</label>
-                <input id="fb-website" name="website" type="text" tabindex="-1" autocomplete="off" />
-              </div>
-              <div class="fb-actions">
-                <button type="submit" class="btn btn-go">Send feedback</button>
-                <p class="fb-status" data-status role="status" aria-live="polite" hidden></p>
-              </div>
-            </form>
-          </div>
-        </section>
-
-        <!-- ══ CLOSE — the one filled station dot ═══════════════════════ -->
-        <section class="stop stop-wide stop-end">
-          <div class="module tier-3 w-lg reveal close">
-            <h2>Start with your major. See the rest fall into place.</h2>
-            <p class="actions"><a class="btn btn-go" href="/plan/">Open the planner</a></p>
-          </div>
+            <div class="fb-trap" aria-hidden="true">
+              <label for="fb-website">Leave this empty</label>
+              <input id="fb-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+            <div class="fb-actions">
+              <button type="submit" class="btn btn-cta">Send feedback</button>
+              <p class="fb-status" data-status role="status" aria-live="polite" hidden></p>
+            </div>
+          </form>
         </section>
       </div>
     </main>
