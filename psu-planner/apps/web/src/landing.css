@@ -158,7 +158,6 @@
 .landing strong { color: var(--text); }
 .landing a:not(.btn):not(.brand) { color: var(--primary); }
 .note { font-size: var(--fs-sm); line-height: 1.6; color: var(--text-muted); }
-.trust { font-size: var(--fs-xs); color: var(--text-muted); }
 
 /* ── Buttons ──────────────────────────────────────────────────────────
    `--cta` is NOT `--primary`. Petrol is the structural accent, chosen to
@@ -186,8 +185,6 @@
 }
 .btn-cta:hover { background: var(--cta-hover); box-shadow: 0 0 0 6px color-mix(in srgb, var(--cta) 22%, transparent); }
 .btn-lg { min-height: 56px; padding: 1rem 2rem; font-size: var(--fs-md); }
-.btn-quiet { border-color: var(--border-strong); color: var(--text); }
-.btn-quiet:hover { border-color: var(--primary); color: var(--primary); }
 .btn:active { transform: scale(.98); }
 
 /* ── The journey's labels and field notes ───────────────────────────────
@@ -243,18 +240,6 @@
 @media (max-width: 64rem) {
   .journey-label button span { display: none; }
 }
-
-.asks { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--sp-2); }
-.asks li { border-left: 2px solid var(--border-strong); padding: var(--sp-2) 0 var(--sp-2) var(--sp-4); color: var(--text); font-size: var(--fs-sm); line-height: 1.5; }
-
-.lp-figure strong {
-  display: block;
-  font-family: var(--font-mono); font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 700; line-height: 1; letter-spacing: -.03em;
-  color: var(--primary); margin-bottom: var(--sp-2);
-}
-/* Not muted: this is the actual differentiator. */
-.headline-note { font-size: var(--fs-md); font-weight: 700; line-height: 1.45; color: var(--text); max-width: 42ch; }
 
 /* ── Feedback form ──────────────────────────────────────────────────────
    Revealed by the script. A form that cannot submit without JavaScript
@@ -376,11 +361,6 @@
   user-select: all;
   padding: var(--sp-2) 0;
 }
-.ask-label {
-  font-family: var(--font-mono); font-size: var(--fs-xs);
-  letter-spacing: .12em; text-transform: uppercase; color: var(--primary);
-  margin: var(--sp-8) 0 var(--sp-3);
-}
 
 .pending {
   font-size: var(--fs-sm); line-height: 1.6; color: var(--text-muted);
@@ -395,11 +375,6 @@
 .try { margin-top: clamp(2rem, 4vw, 3rem); }
 .try h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
 
-/* The last module on the route. Centred, because there is nothing after it
-   to align to. */
-.close { text-align: center; }
-.close .actions { justify-content: center; }
-
 /* ── Footer ─────────────────────────────────────────────────────────── */
 .foot { border-top: 1px solid var(--border-strong); padding: clamp(2.5rem, 6vh, 4rem) 0; margin-top: clamp(2rem, 5vh, 4rem); }
 .foot-in { width: min(1280px, 100% - clamp(1.5rem, 6vw, 4rem)); margin-inline: auto; }
@@ -409,35 +384,10 @@
 .small a:hover { color: var(--text); }
 .built { font-size: var(--fs-xs); margin-top: var(--sp-4); }
 
-/* ── Motion ─────────────────────────────────────────────────────────────
-   Native scroll-driven where supported: it runs on the compositor, so it
-   neither blocks the main thread nor damages INP. Only transform and
-   opacity, anywhere. The IntersectionObserver fallback is armed by the
-   script ONLY when the native path is missing, so with JavaScript off
-   nothing is hidden. */
-@supports (animation-timeline: view()) {
-  .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 8% cover 28%; }
-}
-@keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
-.reveals-armed .reveal { opacity: 0; transform: translateY(20px); transition: opacity .28s var(--ease-out), transform .28s var(--ease-out); }
-.reveals-armed .reveal.is-in { opacity: 1; transform: none; }
-
 /* ── Quality floor ──────────────────────────────────────────────────────
    Focus uses --primary (7.35:1), never a border colour: --border-strong is
    2.04:1 against the canvas and would be an indicator nobody can see. */
 .landing :is(a, .btn, button):focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: var(--r-sm); }
-
-@media (max-width: 64rem) {
-  /* Depth on a small screen reads as broken layout, so the canvas keeps its
-     grids and loses its stagecraft: no alternating sides, no overlap. One
-     column, the spine down the left, every module as wide as the column —
-     the fixed widths are a desktop rhythm device and at 420px in an 800px
-     tablet column they just look like a mistake. */
-  .route { --spine-x: 24px; }
-  .stop { padding-left: 46px; }
-  .stop::before { margin-left: -5.5px; }
-  .w-sm, .w-md, .w-lg, .w-xl { max-width: 44rem; width: 100%; }
-}
 
 @media (prefers-reduced-motion: reduce) {
   /* The 3D scene is never loaded at all under reduced motion (reveal.ts
@@ -445,11 +395,7 @@
   .journey-static .route-line { animation: none; stroke-dashoffset: 0; }
   .journey-static .route-stop { animation: none; opacity: 1; }
   .jd-body { transition: none; }
-  .lp-route .route-line { animation: none; stroke-dashoffset: 0; }
-  .lp-route .route-stop { animation: none; opacity: 1; }
   .menu.is-open a { animation: none; }
-  .reveals-armed .reveal { opacity: 1; transform: none; transition: none; }
-  @supports (animation-timeline: view()) { .reveal { animation: none; opacity: 1; transform: none; } }
   .landing * { transition: none !important; }
 }
 

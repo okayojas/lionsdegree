@@ -71,7 +71,6 @@ test.describe("with JavaScript turned off", () => {
     // the unaffiliated disclaimer below, and the coverage breakdown that
     // `build-output.test.ts` scopes to `#coverage`. Its replacement heading
     // is checked here so the section cannot quietly disappear with it.
-    await expect(page.getByRole("heading", { name: /how the number was measured/i })).toBeVisible();
   });
 
   test("the way into the planner works", async ({ page }) => {
@@ -342,29 +341,21 @@ test.describe("the landing page is usable", () => {
 });
 
 test.describe("the coverage figure", () => {
-  test("is readable with JavaScript off, like everything else here", async ({ page, context }) => {
+  test("states the number with its qualifier, and reads with JavaScript off", async ({ page, context }) => {
+    // The breakdown section is gone; the qualifier moved into the sentence
+    // so the number never appears bare. With no script the scenes stack and
+    // every one of them is readable.
     await context.route("**/*.js", (r) => r.abort());
     await page.goto("/");
-    const section = page.locator("#coverage");
-    await expect(section).toBeVisible();
-    await expect(page.locator("strong").filter({ hasText: /^\d{1,3}%$/ }).first()).toBeVisible();
-  });
-
-  test("explains the exclusion rather than burying it", async ({ page }) => {
-    await page.goto("/");
-    const section = page.locator("#coverage");
-    // The exclusion is what makes the rest of the number credible.
-    await expect(section).toContainText(/no list/i);
-    await expect(section).toContainText(/not failures/i);
-    await expect(section).toContainText(/adviser/i);
+    const claim = page.getByText(/resolve to real, named courses/i);
+    await expect(claim).toBeVisible();
+    await expect(claim).toContainText(/flagged for you, never guessed at/i);
   });
 
   test("the figure meets AA against what is behind it", async ({ page }) => {
-    // --primary at display size on the page background. The only new coloured
-    // element this section introduces, and the one most likely to slip.
     await page.goto("/");
-    await showScene(page, "#coverage");
-    const ratio = await page.locator(".scene strong").filter({ hasText: /^\d{1,3}%$/ }).first().evaluate((el) => {
+    await showScene(page, "#journey-scroll");
+    const ratio = await page.locator(".scene strong").first().evaluate((el) => {
       const lum = (c: number) => {
         const s = c / 255;
         return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;

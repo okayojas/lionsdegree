@@ -447,19 +447,11 @@ describe("the default deployment", () => {
 });
 
 describe("the coverage figure", () => {
-  /** The claim on the public site. The ticket's whole point is that it is
-   * computed rather than written, so the test recomputes it from the shipped
-   * catalog and compares — a hand-edited number, or one left over from a
-   * previous catalog, fails here. */
+  /** The claim on the public site. Its whole point is that it is computed
+   * rather than written, so the test recomputes it from the shipped catalog
+   * and compares -- a hand-edited number, or one left over from a previous
+   * catalog, fails here. */
   const html = () => read("index.html");
-  /** The coverage SECTION, not the whole page. Asserting /adviser/i against
-   * the document passed with this section deleted entirely -- the word
-   * already appears four times in the disclaimer and the limits list. */
-  const section = () => {
-    const m = /<section\b[^>]*\bid="coverage"[^>]*>([\s\S]*?)<\/section>/.exec(html());
-    expect(m, "no #coverage section in the built page").toBeTruthy();
-    return m![1];
-  };
 
   it("states a percentage, not a placeholder", () => {
     expect(html(), "a %COVERAGE_% placeholder shipped as literal text").not.toContain("%COVERAGE");
@@ -467,68 +459,28 @@ describe("the coverage figure", () => {
   });
 
   it("matches what the shipped catalog actually computes to", () => {
-    // The same files the build read, via the same loader. The independence
-    // that matters is recomputing the STATISTIC; re-enumerating directories
+    // The same files the build read, via the same loader. Recomputing the
+    // STATISTIC is the independence that matters; re-enumerating directories
     // identically bought no drift detection, only a third copy to maintain.
     const stat = requirementCoverage(loadPrograms());
-
     const shown = Number(/<strong>(\d{1,3})%<\/strong>/.exec(html())?.[1]);
     expect(shown, `the page says ${shown}% but the catalog computes to ${stat.percent}%`).toBe(stat.percent);
 
-    // Every number in the section, against the section -- not the document,
-    // whose failure message is the whole page.
-    const sec = section();
-    const fmt = (v: number) => v.toLocaleString("en-US");
-    for (const [label, value] of [
-      ["named", stat.named],
-      ["patterned", stat.patterned],
-      ["unreadable", stat.unreadable],
-      ["gen-ed", stat.genEd],
-      ["adviser-defined", stat.adviserDefined],
-      ["programs", loadPrograms().length],
-    ] as const) {
-      expect(sec.includes(`<strong>${fmt(value)}</strong>`) || sec.includes(fmt(value)),
-        `the ${label} count on the page disagrees with the catalog (expected ${fmt(value)})`).toBe(true);
-    }
+    // The programs the figure is measured across, so "95%" cannot quietly
+    // become a percentage of something smaller.
+    expect(html()).toContain(loadPrograms().length.toLocaleString("en-US"));
   });
 
-  it("names the edition it describes, and it is the one measured", () => {
-    // "stated per Edition, or clearly scoped if it is not". Checking the
-    // shape alone would pass on any year pair, including a stale one.
-    const named = /(\d{4}-\d{4}) bulletin/.exec(section())?.[1];
-    expect(named, "the coverage section names no edition").toBeTruthy();
-    expect(named).toBe(latestEdition());
-  });
-
-  it("says plainly why the adviser-defined ones are excluded", () => {
-    // The exclusion is what makes the rest of the number credible, so it has
-    // to be explained rather than buried in a footnote.
-    const sec = section();
-    expect(sec).toMatch(/no list/i);
-    expect(sec).toMatch(/adviser/i);
-    expect(sec).toMatch(/not failures/i);
-  });
-
-  it("counts unreadable rows as failures, in the open", () => {
-    expect(section()).toMatch(/could not read/i);
-  });
-
-  it("does not call a subject-and-level rule a named course list", () => {
-    // 268 of the resolved rows are patterns like "any 400-level HIST", which
-    // is checkable but is not a named list. The first version of this page
-    // said "resolve to named courses" of all of them.
-    const sec = section();
-    const stat = requirementCoverage(loadPrograms());
-    const fmt = (v: number) => v.toLocaleString("en-US");
-    expect(sec, "the named/patterned split is not stated").toContain(`<strong>${fmt(stat.named)}</strong>`);
-    expect(sec).toContain(`<strong>${fmt(stat.patterned)}</strong>`);
-    expect(sec).toMatch(/subject and a level/i);
-  });
-
-  it("does not call a General Education row a parse failure", () => {
-    const stat = requirementCoverage(loadPrograms());
-    const sec = section();
-    expect(sec).toContain(`<strong>${stat.genEd.toLocaleString("en-US")}</strong>`);
-    expect(sec).toMatch(/General Education/i);
+  it("never lets the number travel without its qualifier", () => {
+    // THE HONESTY GUARD, and the reason this describe still exists after the
+    // breakdown section was removed for brevity. A bare "95%" reads as a
+    // guarantee; what makes it a measurement is saying what the other 5% is.
+    // The long breakdown is gone by request -- the clause is not, and this is
+    // what stops it being tidied away next time the page gets shorter.
+    const claim = /<strong>\d{1,3}%<\/strong>([\s\S]{0,240})/.exec(html())?.[1] ?? "";
+    expect(
+      claim,
+      "the coverage percentage is stated with nothing qualifying it",
+    ).toMatch(/flagged|never guessed|verify|cannot be verified/i);
   });
 });

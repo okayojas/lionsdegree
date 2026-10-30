@@ -10,44 +10,10 @@
 
 const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* ── Scroll reveals ──────────────────────────────────────────────────────
-   Where `animation-timeline: view()` exists the stylesheet already does this
-   on the compositor thread and this function does nothing at all. The
-   observer is only for browsers without it. */
-function reveals(): void {
-  if (reduced()) return;
-  if (CSS.supports("animation-timeline", "view()")) return;
-  if (!("IntersectionObserver" in window)) return;
-
-  const targets = [...document.querySelectorAll<HTMLElement>(".reveal")];
-  if (!targets.length) return;
-  document.documentElement.classList.add("reveals-armed");
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      for (const e of entries) {
-        if (!e.isIntersecting) continue;
-        e.target.classList.add("is-in");
-        // One-way. Re-hiding on scroll-up makes a page feel broken when you
-        // go back to re-read something.
-        io.unobserve(e.target);
-      }
-    },
-    { threshold: 0.15 },
-  );
-  for (const t of targets) io.observe(t);
-
-  // Anything already on screen reveals at once rather than animating in
-  // behind the fold the reader is currently looking at.
-  requestAnimationFrame(() => {
-    for (const t of targets) {
-      if (t.getBoundingClientRect().top < window.innerHeight * 0.9) {
-        t.classList.add("is-in");
-        io.unobserve(t);
-      }
-    }
-  });
-}
+/* The scroll-reveal pass that used to live here is gone with the design it
+   served. The page was a stack of modules that faded in as you reached them;
+   it is now one journey whose scenes cross-fade from scroll progress, which
+   `landing/journey.ts` drives. Nothing on any page carries `.reveal`. */
 
 /* ── Overlay menu ─────────────────────────────────────────────────────── */
 function menu(): void {
@@ -235,7 +201,6 @@ function journey(): void {
   io.observe(container);
 }
 
-reveals();
 menu();
 counters();
 heroVideo();
