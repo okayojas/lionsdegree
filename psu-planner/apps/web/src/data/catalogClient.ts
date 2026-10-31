@@ -1,6 +1,6 @@
 /** Loads pipeline-produced static catalog files (served from /catalog in dev,
  * CDN in prod) and assembles the runtime Catalog for the courses a plan needs. */
-import { astCourses, buildCatalog, hydrateSearchIndex, loadSearchPostings, type Catalog, type Course, type FlowchartPatterns, type IugSpec } from "@psu-planner/engine";
+import { astCourses, buildCatalog, loadSearchPostings, type Catalog, type Course, type FlowchartPatterns, type IugSpec } from "@psu-planner/engine";
 
 const ROOT = "/catalog";
 
@@ -32,7 +32,7 @@ export async function loadEditions(): Promise<EditionsIndex> {
         if (!r.ok) throw new Error(`editions.json missing (${r.status})`);
         return r.json() as Promise<EditionsIndex>;
       })
-      // Drop the memo on failure, as loadFullCatalog does. Keeping a rejected
+      // Drop the memo on failure, as the audit index does. Keeping a rejected
       // promise cached makes one flaky fetch permanent for the session: every
       // later call to base() rejects too, so every catalog read fails and
       // even "Start over" cannot recover.
@@ -58,7 +58,6 @@ export function setCatalogEdition(next: string): void {
   iugIndexCache = null;
   programsIndexCache = null;
   apCache = null;
-  fullCatalogPromise = null;
   auditIndexPromise = null;
   postingsPromise = null;
 }
@@ -404,45 +403,7 @@ export async function loadSearchCatalog(): Promise<Catalog> {
   return catalog;
 }
 
-/** Full catalog for search — loads all subjects lazily once, then caches. */
-let fullCatalogPromise: Promise<Catalog> | null = null;
-/** The entire course catalog (used by chat search / course-details tools).
- * MEMOIZED and PARALLEL-loaded: the AI often calls catalog tools several times
- * a turn, and loading ~500 subject files one-at-a-time per call was slow enough
- * to blow the chat's request timeout ("the AI stopped working"). A failed
- * subject fetch is skipped, not fatal — a partial catalog still answers most
- * questions. */
-export async function loadFullCatalog(onProgress?: (loaded: number, total: number) => void): Promise<Catalog> {
-  if (fullCatalogPromise) return fullCatalogPromise;
-  fullCatalogPromise = (async () => {
-    // ONE request for the slim search index (~0.7 MB over the wire) instead of
-    // 275 subject files totalling 20 MB. Descriptions in it are truncated to a
-    // search blurb; a course card reads the full text from its subject file,
-    // which it already loads. Falls back to the slow path if the index is
-    // missing, so an older catalog still works.
-    try {
-      const raw = await getJson<unknown[]>("search-index.json");
-      onProgress?.(1, 1);
-      return buildCatalog(hydrateSearchIndex(raw));
-    } catch {
-      /* no index in this edition — fall through */
-    }
-    const idx = await loadSubjectsIndex();
-    const prefixes = Object.keys(idx);
-    let done = 0;
-    const chunks = await Promise.all(
-      prefixes.map((p) =>
-        loadSubject(p)
-          .catch(() => [] as Course[])
-          .finally(() => onProgress?.(++done, prefixes.length)),
-      ),
-    );
-    return buildCatalog(chunks.flat());
-  })();
-  try {
-    return await fullCatalogPromise;
-  } catch (e) {
-    fullCatalogPromise = null; // let a later call retry after a transient failure
-    throw e;
-  }
-}
+/* `loadFullCatalog` lived here. It is gone with `search-index.json` (#29):
+   the audit reads the audit index, search adds the postings, and course
+   detail reads the subject file. Nothing was left that wanted all twenty-two
+   fields for all 14,615 courses at once. */

@@ -8,7 +8,7 @@ import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import { decodePostings, encodePostings, prefixRange, MAX_COUNT } from "../src/postings.js";
-import { CATALOG_DIR } from "./edition.js";
+import { CATALOG_DIR, fullIndexDir } from "./edition.js";
 
 describe("the postings codec", () => {
   it("round-trips ids and counts", () => {
@@ -131,7 +131,7 @@ describe("the published catalog", () => {
   });
 
   it("ships a search index of counts, carrying no text of its own", () => {
-    const idx = JSON.parse(fs.readFileSync(path.join(CATALOG_DIR, "search-index.json"), "utf-8"));
+    const idx = JSON.parse(fs.readFileSync(path.join(fullIndexDir(), "search-index.json"), "utf-8"));
     expect(Array.isArray(idx.terms), "index is not in the postings format").toBe(true);
     expect(idx.terms.length).toBeGreaterThan(1000);
     // Sorted: prefixRange binary-searches it, and an unsorted dictionary would

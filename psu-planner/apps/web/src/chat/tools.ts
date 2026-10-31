@@ -8,7 +8,7 @@ import {
   type Catalog, type ReqSection, type ScheduleConstraint,
 } from "@psu-planner/engine";
 import { auditIug, fenceCatalogText } from "@psu-planner/engine";
-import { loadCourse, loadCoverage, loadFullCatalog, loadIug, loadIugIndex, loadProgramBySlug, loadProgramsIndex } from "../data/catalogClient";
+import { loadCourse, loadCoverage, loadSearchCatalog, loadIug, loadIugIndex, loadProgramBySlug, loadProgramsIndex } from "../data/catalogClient";
 import { usePlanner } from "../store";
 import { appendAction, getActions } from "./ledger";
 
@@ -27,8 +27,15 @@ function record(tool: string, summary: string, revBefore: number | null) {
   appendAction({ tool, summary, planRevBefore: revBefore, planRevAfter: usePlanner.getState().plan?.rev ?? null });
 }
 
+/** The catalog the advisor reasons over.
+ *
+ * The audit index plus search ranking data (#29). It covers every course,
+ * which is what the advisor needs to answer "what could fill this slot", and
+ * it no longer drags 2.4 MB of combined index along to do it. Course PROSE
+ * is not in it and never was the right thing to read from an index —
+ * `get_course_details` fetches the subject file for that. */
 async function fullCatalog() {
-  return loadFullCatalog();
+  return loadSearchCatalog();
 }
 
 function state() {
@@ -132,13 +139,22 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
       const fetched = await loadCourse(code).catch(() => null);
       const c = fetched ?? cat[code];
       if (!c) return { error: `${args.code} is not in the PSU catalog` };
+      // The index fallback knows the course exists and what it is worth, but
+      // carries no prose, no prerequisite text and no bulletin link. OMIT
+      // those rather than send empty strings: `"description": ""` reads to a
+      // model as "this course has no description", which is a fact about the
+      // catalog that is not true. Absent means absent.
+      const partial = !fetched;
       return {
-        code: c.code, display: c.display, title: c.title, credits: c.credits,
+        code: c.code, display: c.display, title: c.title,
+        ...(partial ? {} : { credits: c.credits }),
         // Catalog prose is untrusted retrieved data — fence it so the model
         // treats it as reference text, never as instructions (S4 prompt-injection).
-        description: fenceCatalogText(c.description.slice(0, 900)),
-        enforced_prerequisites: c.enforced, enforced_concurrent: c.concurrent,
-        genEd: c.genEd, bulletin_url: c.url,
+        ...(partial ? {} : { description: fenceCatalogText(c.description.slice(0, 900)) }),
+        ...(partial ? {} : { enforced_prerequisites: c.enforced, enforced_concurrent: c.concurrent }),
+        genEd: c.genEd,
+        ...(partial ? {} : { bulletin_url: c.url }),
+        ...(partial ? { note: "Only index-level data was available for this course; its Bulletin page was not reachable." } : {}),
       };
     }
 

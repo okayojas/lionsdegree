@@ -125,6 +125,15 @@ for (const edition of editions) {
   const dst = path.join(DST, edition);
   fs.rmSync(dst, { recursive: true, force: true }); // this edition only
   fs.cpSync(src, dst, { recursive: true });
+  // `search-index.json` is built for the MCP package, which bundles its own
+  // catalog and has no boot-time constraint. The web app must never see it:
+  // it carries every field of every course plus the search postings in one
+  // 2.4 MB file, and the whole of #24 was that file sitting on the path
+  // every student waits on. Excluded here rather than hoped-about, because
+  // a recursive copy has no opinion about what it carries.
+  for (const mcpOnly of ["search-index.json"]) {
+    fs.rmSync(path.join(dst, mcpOnly), { force: true });
+  }
   const stripped = stripDescriptions(dst);
   console.log(`synced ${edition} (${countFiles(dst)} files, ${stripped.toFixed(1)} MB of description prose withheld)`);
 }

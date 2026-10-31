@@ -123,19 +123,20 @@ describe.skipIf(editions.length === 0)("the audit index", () => {
       });
 
       it("stays small enough to be worth the split", () => {
-        // The whole point of #26 is the gap between this and the file it
-        // replaces. If they converge, the split has stopped paying and the
-        // next person should know before shipping it.
+        // This used to compare against `search-index.json`, which #29 deleted
+        // — so the comparison now runs against the postings, the one large
+        // artifact left. The audit index rides the boot path on every load
+        // and the postings do not, so the gap between them is the shape the
+        // whole split exists to produce. If they converge, something has been
+        // added to the wrong file.
         const gz = (f: string) => zlib.gzipSync(fs.readFileSync(path.join(outRoot, edition, f))).length / 1024;
         const audit = gz("audit-index.json");
-        const search = gz("search-index.json");
+        const postings = gz("search-postings.json");
+        expect(audit, `audit index is ${audit.toFixed(0)} KB gzipped (measured 210)`).toBeLessThan(350);
         expect(
           audit,
-          `audit index is ${audit.toFixed(0)} KB gzipped against the search index's ${search.toFixed(0)} KB`,
-        ).toBeLessThan(350);
-        expect(audit, "the audit index is no longer meaningfully smaller than what it replaces").toBeLessThan(
-          search / 4,
-        );
+          `the boot-path index (${audit.toFixed(0)} KB) is no longer much smaller than the on-demand postings (${postings.toFixed(0)} KB)`,
+        ).toBeLessThan(postings / 3);
       });
     });
   }

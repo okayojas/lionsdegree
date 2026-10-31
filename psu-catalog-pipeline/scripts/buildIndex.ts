@@ -153,7 +153,6 @@ interface AuditRow {
 }
 const auditRows: AuditRow[] = [];
 
-const slim: unknown[] = [];
 const descriptions = new Map<string, string>();
 for (const dir of [path.join(outDir, "courses"), path.join(outDir, "courses", "grad")]) {
   if (!fs.existsSync(dir)) continue;
@@ -163,11 +162,6 @@ for (const dir of [path.join(outDir, "courses"), path.join(outDir, "courses", "g
       // tool hand out an empty bulletin link for every course -- a false
       // economy that cost correctness for nothing.
       descriptions.set(c.code, c.description ?? "");
-      // `description` is DROPPED, not shortened. Keywords say what the course
-      // covers; `url` points at the Bulletin for the prose itself.
-      const { description: _drop, ...rest } = c;
-      slim.push(withoutEmpties(rest));
-
       // Built from the SAME loop as `slim`, so the two cannot cover different
       // sets of courses. A separate pass over the same directories would be
       // one filter away from quietly omitting a subject.
@@ -209,10 +203,34 @@ const reqPath = path.join(outDir, "program-requirements.json");
 fs.writeFileSync(reqPath, JSON.stringify(programRequirements), "utf-8");
 
 const { terms, byCode } = buildPostings(descriptions);
-for (const entry of slim) {
-  const e = entry as { code?: string; t?: number[] };
-  const packed = e.code ? byCode.get(e.code) : undefined;
-  if (packed?.length) e.t = packed;
+/* search-index.json — now built FOR THE MCP PACKAGE ONLY (#29).
+ *
+ * #29 set out to delete this outright. It cannot be: `packages/mcp` reads it
+ * as a required file and its `prepublishOnly` syncs it, so removing the
+ * emission breaks that package at publish and at runtime. The ticket's claim
+ * that the MCP package was unaffected was simply wrong, and the build failing
+ * is how that surfaced.
+ *
+ * What #29 actually achieves, and what matters, is that the WEB app never
+ * requests it: the audit reads audit-index.json, search adds
+ * search-postings.json, and course detail reads the subject file. This file
+ * is deliberately excluded from the web catalog sync, so it cannot find its
+ * way back onto a path a student waits on.
+ *
+ * Retiring it for real means giving the MCP package a bundle of its own.
+ * That is a separate piece of work, not a line to delete here. */
+const slim: unknown[] = [];
+for (const dir of [path.join(outDir, "courses"), path.join(outDir, "courses", "grad")]) {
+  if (!fs.existsSync(dir)) continue;
+  for (const f of fs.readdirSync(dir).filter((f) => f.endsWith(".json"))) {
+    for (const c of JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8"))) {
+      const { description: _drop, ...rest } = c;
+      const e = withoutEmpties(rest) as { code?: string; t?: number[] };
+      const packed = e.code ? byCode.get(e.code) : undefined;
+      if (packed?.length) e.t = packed;
+      slim.push(e);
+    }
+  }
 }
 const searchIndexPath = path.join(outDir, "search-index.json");
 fs.writeFileSync(searchIndexPath, JSON.stringify({ terms, courses: slim }), "utf-8");
@@ -240,7 +258,7 @@ const postingsMb = fs.statSync(postingsPath).size / 1048576;
 
 console.log(
   `programs_index: ${programs.length} programs; subjects_index: ${Object.keys(subjects).length} subjects; ` +
-    `search-index: ${slim.length} courses, ${slimMb.toFixed(1)} MB; ` +
+    `search-index(mcp): ${slim.length} courses, ${slimMb.toFixed(1)} MB; ` +
     `audit-index: ${auditRows.length} courses, ${auditMb.toFixed(2)} MB; ` +
     `search-postings: ${Object.keys(postings).length} courses, ${postingsMb.toFixed(2)} MB; ` +
     `program-requirements: ${Object.keys(programRequirements).length} programs, ${(fs.statSync(reqPath).size / 1048576).toFixed(1)} MB`,

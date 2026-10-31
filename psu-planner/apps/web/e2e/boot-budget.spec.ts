@@ -158,6 +158,55 @@ test.describe("the planner's boot payload", () => {
     ).toBe(true);
   });
 
+  test("never asks for the retired combined index", async ({ page, baseURL }) => {
+    // #29. `search-index.json` is gone: the audit reads the audit index,
+    // search adds the postings, course detail reads the subject file. A
+    // request for it would mean something had been pointed back at an
+    // artifact the pipeline no longer builds — a 404 that degrades silently
+    // rather than failing, which is the worst shape for a regression.
+    //
+    // Exercised across the three paths that used to pull it, not just boot.
+    const origin = new URL(baseURL!).origin;
+    const asked: string[] = [];
+    page.on("request", (r) => {
+      const u = new URL(r.url());
+      if (u.origin === origin && u.pathname.includes("search-index")) asked.push(u.pathname);
+    });
+
+    await seedPlan(page);
+    await page.goto("/plan/");
+    // This assertion is about REQUESTS, not layout, so it must not depend on
+    // which view rendered. A phone opens the list rather than the chart, and
+    // waiting on a chart card there spent the whole timeout before asserting
+    // anything.
+    await page.locator(".card").first().waitFor({ timeout: 30_000 }).catch(() => {});
+    await page.waitForTimeout(2000);
+
+    // Exercise search and course detail where the layout offers them. At
+    // phone width the toolbar collapses and the chart becomes a list, so the
+    // assertion still runs -- against the boot path alone -- rather than the
+    // test pretending those surfaces were checked when they were not.
+    const box = page.locator(".searchbox input").first();
+    if (await box.isVisible().catch(() => false)) {
+      await box.fill("robotics");
+      await expect(page.locator(".sr-item").first()).toBeVisible({ timeout: 30_000 });
+    }
+    // Dismiss the results first. They render over the chart, so a click on a
+    // card below is intercepted and Playwright waits for actionability until
+    // the test times out -- which looks like a hang, not an overlay.
+    await page.keyboard.press("Escape");
+    await page.mouse.click(5, 5);
+    await expect(page.locator(".sr-item")).toHaveCount(0, { timeout: 10_000 }).catch(() => {});
+
+    const card = page.locator(".card").first();
+    if (await card.isVisible().catch(() => false)) {
+      await card.click({ timeout: 15_000 }).catch(() => {});
+      await page.waitForTimeout(2000);
+    }
+
+    expect(asked, "something still requests the retired combined index").toEqual([]);
+  });
+
   test("reports which single file dominates it", async ({ page, baseURL }) => {
     // Not a size assertion — a shape assertion. The thing that went wrong on
     // #24 was one file quietly becoming most of the payload, so this fails

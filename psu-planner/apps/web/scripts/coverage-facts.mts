@@ -18,10 +18,18 @@ import { fileURLToPath } from "node:url";
 import { requirementCoverage } from "@psu-planner/engine";
 import { latestEdition, loadPrograms } from "./catalog-programs.mjs";
 
-/** Distinct courses in the shipped index for this edition. The proof strip
- * states it, so it is counted from the bytes that ship rather than typed. */
+/** Distinct courses in the shipped catalog for this edition. The landing page
+ * states it, so it is counted from the bytes that ship rather than typed.
+ *
+ * Reads the AUDIT INDEX since #29 retired `search-index.json`. The figure is
+ * unchanged — both carry one row per course, and the audit index is asserted
+ * in the pipeline suite to cover every course the catalog contains — but the
+ * file it is counted from has to be one that still exists. This script
+ * failing the build is how that was caught, which is the right failure: a
+ * count of courses is a claim on the public site, and a silent fallback to
+ * zero would have shipped it. */
 function courseCount(edition: string): number {
-  const file = path.join(web, "public", "catalog", edition, "search-index.json");
+  const file = path.join(web, "public", "catalog", edition, "audit-index.json");
   const raw = JSON.parse(fs.readFileSync(file, "utf-8")) as { courses?: unknown[] } | unknown[];
   const list = Array.isArray(raw) ? raw : (raw.courses ?? []);
   return new Set(list.map((c) => (c as { code?: string }).code).filter(Boolean)).size;

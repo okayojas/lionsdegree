@@ -17,10 +17,10 @@ import {
   type Catalog,
   type Registry,
 } from "../src/index.js";
-import { CATALOG_DIR } from "./edition.js";
+import { CATALOG_DIR, fullIndexDir } from "./edition.js";
 
 const catalog: Catalog = buildCatalog(
-  hydrateSearchIndex(JSON.parse(fs.readFileSync(path.join(CATALOG_DIR, "search-index.json"), "utf-8"))),
+  hydrateSearchIndex(JSON.parse(fs.readFileSync(path.join(fullIndexDir(), "search-index.json"), "utf-8"))),
 );
 const base = { exclude: new Set<string>(), majorPrefixes: new Set<string>(), needUS: false, needIL: false };
 

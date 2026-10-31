@@ -8,7 +8,7 @@ import {
   countableCourses, majorDeptPrefixes, parseTermLabel, rankSlotPicks, resolveSlotPool,
   type Catalog, type PlanItem, type Pool, type ReqSection, type SlotSuggestions as SlotSuggestionsResult,
 } from "@psu-planner/engine";
-import { loadFullCatalog, loadProgramBySlug } from "../data/catalogClient";
+import { loadAuditIndex, loadProgramBySlug } from "../data/catalogClient";
 import { usePlanner } from "../store";
 import { Dialog } from "./Dialog";
 
@@ -40,7 +40,7 @@ function SlotSuggestions({ item, onFill }: { item: PlanItem; onFill: (code: stri
   useEffect(() => {
     let alive = true;
     (async () => {
-      const full: Catalog = await loadFullCatalog();
+      const full: Catalog = await loadAuditIndex();
       if (!plan) return;
       const inPlan = new Set(items.filter((i) => i.kind === "course").map((i) => i.code as string));
       const completed = new Set(Object.keys(plan.completed ?? {}));

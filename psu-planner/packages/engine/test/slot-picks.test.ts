@@ -22,12 +22,16 @@ import {
   type ProgramTemplate,
   type ReqSection,
 } from "../src/index.js";
-import { CATALOG_DIR } from "./edition.js";
+import { CATALOG_DIR, fullIndexDir } from "./edition.js";
 
 const load = (rel: string) => JSON.parse(fs.readFileSync(path.join(CATALOG_DIR, rel), "utf-8"));
 const esc = load("programs/majors/engineering-engineering-science-bs.json");
 
-const catalog: Catalog = buildCatalog(hydrateSearchIndex(load("search-index.json")));
+// The combined index moved to the MCP bundle (#29); this suite wants a
+// whole catalog, so it reads it from where it now ships.
+const catalog: Catalog = buildCatalog(
+  hydrateSearchIndex(JSON.parse(fs.readFileSync(path.join(fullIndexDir(), "search-index.json"), "utf-8"))),
+);
 
 const template: ProgramTemplate = {
   slug: esc.slug,
