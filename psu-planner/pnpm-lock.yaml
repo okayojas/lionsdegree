@@ -129,6 +129,18 @@ importers:
         specifier: ^3.0.0
         version: 3.2.7(@types/node@24.13.3)(terser@5.51.2)(tsx@4.23.0)
 
+  packages/identity:
+    devDependencies:
+      '@types/node':
+        specifier: ^24.0.0
+        version: 24.13.3
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^3.0.0
+        version: 3.2.7(@types/node@24.13.3)(terser@5.51.2)(tsx@4.23.0)
+
   packages/mcp:
     dependencies:
       '@modelcontextprotocol/sdk':
@@ -137,6 +149,9 @@ importers:
       '@psu-planner/engine':
         specifier: workspace:*
         version: link:../engine
+      '@psu-planner/identity':
+        specifier: workspace:*
+        version: link:../identity
       zod:
         specifier: ^4.6.7
         version: 4.6.7

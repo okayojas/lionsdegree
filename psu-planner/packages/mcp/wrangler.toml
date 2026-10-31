@@ -35,6 +35,32 @@ binding = "CATALOG"
 # is a 404" was passing only because no asset happened to sit there.
 run_worker_first = true
 
+# Registered assistants, authorization codes, rate-limit counters and
+# the revocation denylist. Everything here is short-lived except a
+# registered client, and nothing is a student's Plan.
+#
+[[kv_namespaces]]
+binding = "OAUTH"
+id = "9253a3a7bc10447d92b401e7b0d771b9"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "12cf7229b8524d95bed03c77ec908325"
+
+# SECRETS, never in this file:
+#   npx wrangler secret put SUPABASE_JWT_SECRET   # Supabase → Settings → API → JWT Secret
+#   npx wrangler secret put SUPABASE_ANON_KEY     # public by design, but it is config, not code
+#
+# And in Supabase → Authentication → URL Configuration, add this
+# Worker's /callback to the allowed redirect URLs, or the sign-in hop
+# comes back rejected.
+
+[vars]
+SUPABASE_URL = "https://bjwjfmqcmbcnnzqnabqm.supabase.co"
+# Questions per student per day. Generous: this stops one person
+# exhausting the service, it does not ration anybody.
+RATE_LIMIT_PER_DAY = "1000"
+
 [observability]
 enabled = true
 

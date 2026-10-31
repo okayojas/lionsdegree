@@ -20,8 +20,33 @@ import type { CatalogSource } from "../src/source.js";
 
 const CATALOG = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "catalog");
 
+const SECRET = "test-jwt-secret";
+
+const b64url = (b: Uint8Array) =>
+  btoa(String.fromCharCode(...b)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+
+/** A signed-in student.
+ *
+ * #34 closed the connector: every /mcp request needs one. These tests
+ * are about what the connector ANSWERS, not about who may ask — that is
+ * `worker-auth.test.ts` — so they carry a valid token and get on with
+ * it. */
+async function studentToken(sub = "test-student"): Promise<string> {
+  const enc = (o: unknown) => b64url(new TextEncoder().encode(JSON.stringify(o)));
+  const body = `${enc({ alg: "HS256", typ: "JWT" })}.${enc({ sub, exp: Math.floor(Date.now() / 1000) + 3600 })}`;
+  const key = await crypto.subtle.importKey(
+    "raw", new TextEncoder().encode(SECRET), { name: "HMAC", hash: "SHA-256" }, false, ["sign"],
+  );
+  const sig = new Uint8Array(await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(body)));
+  return `${body}.${b64url(sig)}`;
+}
+
+let AUTH = "";
+beforeAll(async () => { AUTH = `Bearer ${await studentToken()}`; });
+
 /** Cloudflare's asset binding, backed by the files that actually ship. */
 const env: Env = {
+  SUPABASE_JWT_SECRET: SECRET,
   CATALOG: {
     async fetch(req: Request): Promise<Response> {
       const rel = decodeURIComponent(new URL(req.url).pathname.replace(/^\//, ""));
@@ -40,7 +65,12 @@ const env: Env = {
 const POST = (body: unknown, headers: Record<string, string> = {}) =>
   new Request("https://mcp.lionsdegree.com/mcp", {
     method: "POST",
-    headers: { "content-type": "application/json", accept: "application/json, text/event-stream", ...headers },
+    headers: {
+      "content-type": "application/json",
+      accept: "application/json, text/event-stream",
+      authorization: AUTH,
+      ...headers,
+    },
     body: typeof body === "string" ? body : JSON.stringify(body),
   });
 
@@ -190,7 +220,10 @@ describe("when the request is wrong", () => {
     // than an HTML page the client cannot parse, AND it must not hand an
     // anonymous caller our file layout or build commands. The reason
     // goes to the log.
-    const broken: Env = { CATALOG: { async fetch() { return new Response("nope", { status: 404 }); } } };
+    const broken: Env = {
+      SUPABASE_JWT_SECRET: SECRET,
+      CATALOG: { async fetch() { return new Response("nope", { status: 404 }); } },
+    } as Env;
     const res = await worker.fetch(POST(INIT), broken);
     const body = await payload(res);
     expect(body.jsonrpc).toBe("2.0");
@@ -214,6 +247,7 @@ describe("a warm isolate", () => {
     // asks.
     let reads = 0;
     const counting: Env = {
+      SUPABASE_JWT_SECRET: SECRET,
       CATALOG: {
         async fetch(req: Request): Promise<Response> {
           reads++;

@@ -24,13 +24,31 @@
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
+import { rateLimit, verifyJwt, type KVLike, type VerifiedIdentity } from "@psu-planner/identity";
 import { loadEdition, type EditionCatalog } from "./catalog.js";
 import { FetchCatalogSource, type Fetcher } from "./source.js";
+import { handleOAuth, isRevoked, type OAuthEnv } from "./oauth.js";
 import { executeTool, listTools, type ToolContext } from "./tools.js";
 
-export interface Env {
+export interface Env extends OAuthEnv {
   /** Cloudflare's static-asset binding, serving `catalog/`. */
   CATALOG: Fetcher;
+
+  /** Supabase's JWT signing secret. Verifies the student's access token.
+   *
+   * REQUIRED. Absent, the connector refuses every request rather than
+   * serving the open surface #33 shipped — a deploy that forgot a secret
+   * must not quietly become a deploy with no gate. */
+  SUPABASE_JWT_SECRET?: string;
+
+  /** Where the rate-limit counters live. Without it they are per-isolate
+   * and a student gets roughly one budget per isolate, which is loose
+   * but never zero. */
+  RATE_LIMIT?: KVLike;
+
+  /** Questions per student per day. Generous: this exists to stop one
+   * person exhausting the service, not to meter anyone. */
+  RATE_LIMIT_PER_DAY?: string;
 }
 
 /** Parsed Editions, kept for as long as the isolate lives.
@@ -147,9 +165,76 @@ const SIGNPOST =
   "This is a Model Context Protocol endpoint, not a web page. Point your\n" +
   "assistant at /mcp — see https://lionsdegree.com/connect/ for how.\n";
 
+/** A JSON-RPC error with the status a protocol client expects.
+ *
+ * Every refusal below goes through here, so none of them can
+ * accidentally answer with HTML, a bare string, or a stack trace — the
+ * caller is a program, and a program that cannot parse the refusal
+ * reports "the server broke" to a student who would rather hear "sign
+ * in". */
+function rpcError(status: number, message: string, headers: Record<string, string> = {}): Response {
+  return Response.json(
+    { jsonrpc: "2.0", id: null, error: { code: status === 429 ? -32000 : -32001, message } },
+    { status, headers },
+  );
+}
+
+/** The one thing an unauthenticated caller is told.
+ *
+ * IDENTICAL for every reason a token can fail — missing, malformed,
+ * expired, signed by somebody else. Explaining which part was wrong is
+ * explaining how to iterate towards one that works. */
+const SIGN_IN = "Sign in to LionsDegree to use this connector. See https://lionsdegree.com/connect/.";
+
+/** Who is asking, or a Response saying why we will not say.
+ *
+ * Runs BEFORE anything is read or computed. An anonymous request must
+ * cost this service nothing. */
+async function identify(request: Request, env: Env, resourceUrl: URL): Promise<VerifiedIdentity | Response> {
+  if (!env.SUPABASE_JWT_SECRET) {
+    // Logged loudly, said quietly: the operator needs to know which
+    // secret is missing, the caller must not be told anything about our
+    // configuration.
+    console.error("[mcp] SUPABASE_JWT_SECRET is not set — refusing every request");
+    return rpcError(503, "This connector is not accepting requests right now.");
+  }
+
+  // `WWW-Authenticate` with `resource_metadata` is how an MCP client
+  // discovers where to authenticate. A bare 401 leaves it guessing.
+  const challenge = {
+    "www-authenticate":
+      `Bearer realm="LionsDegree", resource_metadata="${new URL("/.well-known/oauth-protected-resource", resourceUrl).toString()}"`,
+  };
+
+  const header = request.headers.get("authorization") ?? "";
+  const bearer = /^Bearer\s+(.+)$/i.exec(header)?.[1];
+  if (!bearer) return rpcError(401, SIGN_IN, challenge);
+
+  const identity = await verifyJwt(bearer, { secret: env.SUPABASE_JWT_SECRET });
+  if (!identity) return rpcError(401, SIGN_IN, challenge);
+
+  // A signature says the token was issued; it cannot say the student
+  // still wants it honoured. Checked after the signature so a forged
+  // token costs a KV read of nothing.
+  if (await isRevoked(env, bearer)) return rpcError(401, SIGN_IN, challenge);
+
+  return identity;
+}
+
+/** Questions per student per day, if nothing says otherwise. Generous on
+ * purpose: a student working through a degree audit with their
+ * assistant asks a lot of questions, and the limit exists to stop one
+ * person exhausting the service rather than to ration anybody. */
+const DEFAULT_DAILY_LIMIT = 1000;
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
+
+    // Discovery, registration and the sign-in flow. Before the gate,
+    // obviously: these are how a caller GETS a token.
+    const auth = await handleOAuth(request, env);
+    if (auth) return auth;
 
     if (url.pathname === "/" || url.pathname === "") {
       return new Response(SIGNPOST, { status: 200, headers: { "content-type": "text/plain; charset=utf-8" } });
@@ -177,6 +262,22 @@ export default {
     }
     if (url.pathname !== "/mcp") {
       return new Response("not found — the connector is at /mcp", { status: 404 });
+    }
+
+    // THE GATE, before the catalog is touched. An anonymous or
+    // over-budget request must cost this service nothing: no asset read,
+    // no parse, no tool.
+    const who = await identify(request, env, url);
+    if (who instanceof Response) return who;
+
+    const limit = Number(env.RATE_LIMIT_PER_DAY) || DEFAULT_DAILY_LIMIT;
+    const budget = await rateLimit(env.RATE_LIMIT, `user:${who.sub}`, limit);
+    if (!budget.ok) {
+      return rpcError(
+        429,
+        "You have reached today's limit for this connector. It resets at midnight UTC.",
+        { "retry-after": String(budget.resetInSeconds) },
+      );
     }
 
     try {

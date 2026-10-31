@@ -25,7 +25,8 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
     "@psu-planner/engine": "workspace:*",
-    "zod": "^4.6.7"
+    "zod": "^4.6.7",
+    "@psu-planner/identity": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
