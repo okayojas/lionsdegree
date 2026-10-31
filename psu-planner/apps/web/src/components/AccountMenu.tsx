@@ -36,7 +36,7 @@ export function AccountMenu({ onToast }: { onToast: (msg: string) => void }) {
   if (!user) {
     return (
       <div style={{ position: "relative" }}>
-        <button aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen(!open)}>Sign in</button>
+        <button className="btn-signin" aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen(!open)}>Sign in</button>
         {open && (
           <div role="menu" style={{ position: "absolute", right: 0, top: 38, background: "var(--surface)", color: "var(--text)", border: "1px solid var(--line)", borderRadius: 10, padding: 8, zIndex: 60, display: "flex", flexDirection: "column", gap: 6, minWidth: 220, boxShadow: "var(--shadow-lg)" }}>
             <button role="menuitem" onClick={() => void signIn("azure")}>Microsoft (PSU account)</button>

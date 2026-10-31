@@ -618,3 +618,64 @@ test.describe("about and contact", () => {
     await expectNoA11yViolations(page, "the landing page with about and contact");
   });
 });
+
+test.describe("entering and re-entering the page", () => {
+  /** The journey's scroller has its NATURAL height until the 3D chunk lands,
+   * at which point journey.ts sets it to one screen per scene. Anything that
+   * restores a scroll offset across that growth lands in the wrong place --
+   * measured before the fix: a reload from deep in the page came back at
+   * scrollY 2334 of a document that was still only 3234px tall, i.e. near
+   * the bottom, and scrolling back up ran the camera through every scene in
+   * reverse. That is what "it starts me at the bottom and breaks the
+   * animation" was. */
+  const settle = async (page: import("@playwright/test").Page) => {
+    await page.waitForTimeout(1800);
+  };
+
+  test("opens at the top, even after a reload from deep in the journey", async ({ page }) => {
+    await page.goto("/");
+    await settle(page);
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight - 1200));
+    await page.waitForTimeout(600);
+    expect(await page.evaluate(() => window.scrollY), "setup: never got down the page").toBeGreaterThan(500);
+
+    await page.reload();
+    await settle(page);
+    expect(
+      await page.evaluate(() => window.scrollY),
+      "the page restored a scroll offset taken against a shorter document",
+    ).toBe(0);
+  });
+
+  test("comes back from a sibling page with the journey still alive", async ({ page }) => {
+    // The scene used to be disposed on `pagehide`, which fires on a bfcache
+    // suspend too. Nothing remounted it: the observer had disconnected and
+    // its `started` flag was still set, so the reader returned to a dead
+    // canvas inside a stage that was still pinned.
+    await page.goto("/");
+    await settle(page);
+    const tall = await page.evaluate(() => document.documentElement.scrollHeight);
+    test.skip(tall < 3000, "the 3D never mounted in this profile, so there is nothing to restore");
+
+    await page.goto("/connect/");
+    await page.goBack();
+    await settle(page);
+
+    expect(await page.evaluate(() => document.documentElement.scrollHeight), "the page came back short")
+      .toBeGreaterThan(3000);
+    expect(
+      await page.evaluate(() => !!document.querySelector("#journey.is-live")),
+      "the journey did not survive the back navigation",
+    ).toBe(true);
+  });
+
+  test("still honours a deep link to a section", async ({ page }) => {
+    // Forcing the top on entry must not break `/#about`. It is scrolled to
+    // AFTER the journey mounts, because doing it while the scroller is
+    // still short lands hundreds of pixels off.
+    await page.goto("/#about");
+    await settle(page);
+    const top = await page.evaluate(() => document.getElementById("about")?.getBoundingClientRect().top ?? 9999);
+    expect(Math.abs(top), `#about sits ${Math.round(top)}px from the top of the viewport`).toBeLessThan(200);
+  });
+});

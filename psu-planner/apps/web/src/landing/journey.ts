@@ -30,6 +30,16 @@ const PHONE_LABEL_CAP = 3;
 
 export interface JourneyHandle {
   dispose(): void;
+  /** Re-measure and re-read the scroll position.
+   *
+   * Needed after a back/forward restore: the page comes back out of the
+   * bfcache with its old scroll offset and its old canvas size, but the
+   * render loop was paused and `shown` still holds the camera position from
+   * before the reader left. Without this the scene is frozen at wherever
+   * they were when they navigated away, and only unsticks once they scroll
+   * -- which is exactly what "the animation breaks when you come back"
+   * looked like. */
+  resync(): void;
 }
 
 /** Read a CSS custom property as a Three.js colour.
@@ -377,6 +387,16 @@ export function mount(container: HTMLElement): JourneyHandle {
   canvas.addEventListener("webglcontextlost", lost);
 
   return {
+    resync(): void {
+      resize();
+      readScroll();
+      // Jump the camera to where the scroll says it should be instead of
+      // easing from a stale position, which would read as a lurch on
+      // arrival rather than as the page simply being where you left it.
+      shown = target;
+      start();
+    },
+
     dispose(): void {
       stop();
       seen.disconnect();

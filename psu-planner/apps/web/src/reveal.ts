@@ -10,6 +10,41 @@
 
 const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+/* ── Scroll restoration ───────────────────────────────────────────────────
+   THE PAGE OPENED AT THE BOTTOM. The journey's scroller has its natural
+   height until the 3D mounts, at which point `journey.ts` sets it to
+   `scenes * 100vh` -- six screens. On a reload or a back-navigation the
+   browser restores the previous offset against the SHORT page, the chunk
+   then lands and the document grows six-fold underneath it, and the reader
+   is left somewhere near the end of a journey they have not taken. Scrolling
+   back up then runs the camera through the scenes in reverse, which is what
+   "it breaks the animation" was.
+
+   Turning restoration off is the honest fix rather than a workaround: this
+   page is one continuous animation driven by scroll offset, so an offset
+   restored from a previous visit is not a position in a document, it is a
+   frame number from a different screening. Deep links still work -- a hash
+   is an explicit request and is honoured below, after the height is final.
+
+   Set at module scope so it lands before the browser's restore. */
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+/** Put the reader where the URL says, once the page is its final height.
+ *
+ * Called after the journey mounts, because scrolling to `#about` while the
+ * scroller is still short lands hundreds of pixels off. */
+function applyEntryPosition(): void {
+  const hash = location.hash.slice(1);
+  const target = hash && document.getElementById(hash);
+  if (target) {
+    target.scrollIntoView({ behavior: "auto", block: "start" });
+    return;
+  }
+  // `instant`, not `smooth`: this is where the page STARTS, and animating
+  // to it would show the reader a scroll they did not perform.
+  window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+}
+
 /* The scroll-reveal pass that used to live here is gone with the design it
    served. The page was a stack of modules that faded in as you reached them;
    it is now one journey whose scenes cross-fade from scroll progress, which
@@ -189,7 +224,32 @@ function journey(): void {
         .then(({ mount }) => {
           const handle = mount(container);
           container.classList.add("is-live");
-          addEventListener("pagehide", () => handle.dispose(), { once: true });
+          // The document is only now its real height -- mount is what sets
+          // the scroller's `100vh` per scene. Anything that depends on the
+          // final height has to happen after this line, not before.
+          applyEntryPosition();
+
+          // NOT `pagehide` -> dispose. That is what broke the back button:
+          // pagehide fires on a bfcache suspend, the scene was torn down,
+          // and nothing remounted it on the way back -- the observer had
+          // already disconnected itself and `started` was still true, so
+          // the reader returned to a dead canvas and a pinned stage.
+          //
+          // The page comes back out of the bfcache intact, so the right
+          // move is to keep the scene and resync it. The render loop is
+          // already paused while hidden by the journey's own
+          // visibilitychange handler, so nothing runs in the background.
+          addEventListener("pageshow", (e) => {
+            if ((e as PageTransitionEvent).persisted) handle.resync();
+          });
+          // Disposal is gated on `persisted` being FALSE -- a real unload,
+          // not a bfcache suspend. It must not be an `unload` listener:
+          // registering one makes the page bfcache-INELIGIBLE in Chrome, so
+          // the tidier-looking version would have silently disabled the
+          // very restore path this is here to support.
+          addEventListener("pagehide", (e) => {
+            if (!(e as PageTransitionEvent).persisted) handle.dispose();
+          });
         })
         .catch(() => {
           // Offline, blocked, or a chunk that never shipped. The static

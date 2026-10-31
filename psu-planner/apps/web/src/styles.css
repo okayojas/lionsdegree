@@ -915,3 +915,15 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
    landing page carries, from the same markup, so the wordmark reads as one
    thing across both surfaces. */
 .toolbar h1 b { color: var(--primary); font-weight: inherit; }
+
+/* Sign in, in the same bright blue as the landing page's Start button and
+   the chart's Connect button. Those three are the only places the product
+   asks for something, so they are the only places that get the colour --
+   everything else in the toolbar is a tool, and a toolbar where every
+   control shouts has no emphasis left to spend. */
+.toolbar .btn-signin {
+  background: var(--cta-blue); color: var(--cta-blue-fg);
+  border-color: color-mix(in srgb, var(--cta-blue) 70%, #000);
+  font-weight: 700;
+}
+.toolbar .btn-signin:hover:not(:disabled) { background: var(--cta-blue-hover); }
