@@ -16,7 +16,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "sync-catalog": "node scripts/sync-catalog.mjs",
-    "prepublishOnly": "npm run sync-catalog && npm run build"
+    "prepublishOnly": "npm run sync-catalog && npm run build",
+    "measure-memory": "npx tsx --expose-gc scripts/measure-memory.mts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",

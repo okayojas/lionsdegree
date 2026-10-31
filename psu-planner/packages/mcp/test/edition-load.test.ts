@@ -10,6 +10,7 @@
  * without reaching inside the loader at all.
  */
 import { describe, it, expect } from "vitest";
+import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { FsCatalogSource, type CatalogSource } from "../src/source.js";
@@ -76,7 +77,7 @@ describe("loading an Edition", () => {
     const src = recorder();
     const ed = await loadEdition(src, "2026-2027");
     await ed.ensureCourses(["MATH 141"]);
-    expect(touched(src, "courses/MATH.json").length).toBe(1);
+    expect(touched(src, "courses/math.json").length).toBe(1);
   });
 
   it("upgrades a Course from a slim row to one with prerequisites", async () => {
@@ -98,7 +99,7 @@ describe("loading an Edition", () => {
     const ed = await loadEdition(src, "2026-2027");
     await ed.ensureCourses(["MATH 140", "MATH 141", "MATH 230"]);
     await ed.ensureCourses(["MATH 220"]);
-    expect(touched(src, "courses/MATH.json").length).toBe(1);
+    expect(touched(src, "courses/math.json").length).toBe(1);
   });
 
   it("follows one hop into the subjects a prerequisite names", async () => {
@@ -136,5 +137,69 @@ describe("loading an Edition", () => {
     const src = recorder();
     await loadEdition(src, "2025-2026");
     expect(src.reads.filter((p) => p.startsWith("2026-2027"))).toEqual([]);
+  });
+});
+
+describe("locating a subject's file", () => {
+  /** THE BUG THIS EXISTS FOR. The first version built
+   * `courses/${SUBJECT}.json` from the Course code. The shipped files are
+   * lower-cased (`courses/math.json`) and some are slugged rather than
+   * lower-cased (`AI` -> `a-i.json`), so it resolved NOTHING on a
+   * case-sensitive filesystem and nothing ever for those subjects.
+   *
+   * It passed every test, because the machine it was written on has a
+   * case-insensitive filesystem. CI is Linux and the fetch source this
+   * seam exists for is case-sensitive by definition, so the tests have to
+   * compare against real filenames rather than against whether a read
+   * happened to succeed. */
+  const shipped = () => {
+    // RECURSIVE. Graduate files live in `courses/grad/`, and a flat listing
+    // reported all 94 of them as missing -- the test being wrong in the
+    // same direction as the bug it was written to catch.
+    const out = new Set<string>();
+    const walk = (dir: string, prefix: string) => {
+      if (!fs.existsSync(dir)) return;
+      for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+        if (e.isDirectory()) walk(path.join(dir, e.name), `${prefix}${e.name}/`);
+        else if (e.name.endsWith(".json")) out.add(`${prefix}${e.name}`);
+      }
+    };
+    walk(path.join(CATALOG, "2026-2027", "courses"), "courses/");
+    return out;
+  };
+
+  it("asks for paths that exist exactly as spelled", async () => {
+    const index = JSON.parse(
+      fs.readFileSync(path.join(CATALOG, "2026-2027", "subjects_index.json"), "utf-8"),
+    ) as Record<string, string>;
+    const onDisk = shipped();
+    const wrong = Object.entries(index).filter(([, file]) => !onDisk.has(file));
+    expect(wrong.slice(0, 5), `${wrong.length} subjects point at a file that is not there`).toEqual([]);
+  });
+
+  it("finds a subject whose filename is slugged, not merely lower-cased", async () => {
+    // AI ships as `courses/a-i.json`. Lower-casing the code gives
+    // `ai.json`, which does not exist -- so this is the case that fails
+    // even on a case-insensitive filesystem.
+    const src = recorder();
+    const ed = await loadEdition(src, "2026-2027");
+    const before = ed.catalog["AI 100"];
+    expect(before, "AI 100 is not in the audit index; pick another slugged subject").toBeTruthy();
+    await ed.ensureCourses(["AI 100"]);
+    expect(ed.catalog["AI 100"]?.astComplete, "the slugged subject file was never found").toBe(true);
+  });
+
+  it("refuses to start without the subject index rather than silently finding nothing", async () => {
+    // Without it every lookup misses, every Course stays a slim row, and
+    // the server answers about prerequisites it never read.
+    const partial: CatalogSource = {
+      async read<T>(p: string): Promise<T | null> {
+        if (p.endsWith("audit-index.json")) return { courses: [{ code: "MATH 140" }] } as T;
+        if (p.endsWith("program-requirements.json")) return { x: {} } as T;
+        return null;
+      },
+      async editions() { return ["2026-2027"]; },
+    };
+    await expect(loadEdition(partial, "2026-2027")).rejects.toThrow(/subject index/i);
   });
 });

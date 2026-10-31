@@ -38,6 +38,10 @@ const FILES = [
   "search-postings.json",
   "program-requirements.json",
   "programs_index.json",
+  // Where each subject's course file actually lives. Without it the server
+  // cannot locate a single one -- the names are lower-cased and sometimes
+  // slugged (AI -> a-i.json), so they cannot be derived from the code.
+  "subjects_index.json",
   "coverage.json",
 ];
 
@@ -48,7 +52,7 @@ const DIRS = ["courses"];
  * shipped a server that started fine and then told every student their
  * Courses do not exist — a confident wrong answer, which is the one failure
  * this package refuses (iron rule 2). */
-const REQUIRED = ["audit-index.json", "program-requirements.json"];
+const REQUIRED = ["audit-index.json", "program-requirements.json", "subjects_index.json"];
 
 if (!fs.existsSync(SRC)) {
   console.error(`no catalog at ${SRC} — run the web app's sync-catalog first`);
@@ -85,8 +89,12 @@ function assertNoDescriptions(dir, edition) {
       continue;
     }
     if (!e.name.endsWith(".json")) continue;
-    const rows = JSON.parse(fs.readFileSync(p, "utf-8"));
-    if (!Array.isArray(rows)) continue;
+    const parsed = JSON.parse(fs.readFileSync(p, "utf-8"));
+    // Both shapes. A bare array is a subject file; `{courses: [...]}` is
+    // the audit index. Skipping the second meant the guard did not cover
+    // the one file every Edition is required to ship.
+    const rows = Array.isArray(parsed) ? parsed : Array.isArray(parsed?.courses) ? parsed.courses : null;
+    if (!rows) continue;
     const leaked = rows.filter((c) => typeof c?.description === "string" && c.description.length);
     if (leaked.length) {
       console.error(
@@ -116,6 +124,11 @@ for (const ed of editions) {
     fs.copyFileSync(from, path.join(DST, ed, f));
     total += fs.statSync(from).size;
   }
+
+  // Checked across the WHOLE Edition, flat files included -- the guard
+  // used to run only over the directories, so the audit index was never
+  // looked at.
+  assertNoDescriptions(path.join(DST, ed), ed);
 
   for (const d of DIRS) {
     const from = path.join(SRC, ed, d);

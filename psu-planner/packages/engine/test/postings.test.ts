@@ -144,10 +144,12 @@ describe("the published catalog", () => {
     // Counts, not text. Every value is a packed array of numbers.
     const entries = Object.entries(file.postings as Record<string, number[]>);
     expect(entries.length).toBeGreaterThan(10_000);
-    for (const [, packed] of entries.slice(0, 500)) {
-      expect(Array.isArray(packed)).toBe(true);
-      for (const n of packed) expect(typeof n).toBe("number");
-    }
+    // EVERY entry, not a sample. The retarget briefly checked the first
+    // 500, which is a weaker guarantee than the one it replaced -- and the
+    // thing being guarded against is a single course carrying text where
+    // counts belong.
+    const notNumbers = entries.filter(([, packed]) => !Array.isArray(packed) || packed.some((n) => typeof n !== "number"));
+    expect(notNumbers.map(([code]) => code).slice(0, 5), `${notNumbers.length} entries are not arrays of counts`).toEqual([]);
   });
 
   it("ships no course description anywhere in the bundled catalog", () => {

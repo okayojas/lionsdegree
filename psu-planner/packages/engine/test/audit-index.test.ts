@@ -57,3 +57,40 @@ describe("hydrating an audit-index row", () => {
     expect([c.subject, c.number]).toEqual(["CMPSC", "465"]);
   });
 });
+
+describe("a Course whose prerequisites were never read", () => {
+  /** FOUND BY REVIEW, NOT BY A TEST. `checkCourse` returned SAT whenever a
+   * Course had no prerequisite data — which was harmless while every
+   * Course arrived fully loaded, and became a wrong answer the moment the
+   * MCP server started hydrating from the audit index on demand (#31).
+   *
+   * An unhydrated Course looks exactly like a Course with no
+   * prerequisites. `astComplete` is what tells them apart, and nothing
+   * read it. */
+  it("is reported as unverifiable, not as satisfied", async () => {
+    const { checkCourse, buildCatalog, UNK, SAT } = await import("../src/index.js");
+    const slim = buildCatalog([hydrateAuditRow({ code: "CMPSC 465", title: "Data Structures" })]);
+    const r = checkCourse(slim, "CMPSC 465", 0, {});
+    expect(r.value, "an unread prerequisite tree was reported satisfied").not.toBe(SAT);
+    expect(r.value).toBe(UNK);
+    expect(r.leaves[0]?.v).toBe(UNK);
+  });
+
+  it("says so in words a student can act on", async () => {
+    const { checkCourse, buildCatalog } = await import("../src/index.js");
+    const slim = buildCatalog([hydrateAuditRow({ code: "CMPSC 465" })]);
+    const leaf = checkCourse(slim, "CMPSC 465", 0, {}).leaves[0];
+    expect(leaf && "text" in leaf ? leaf.text : "").toMatch(/verify manually/i);
+  });
+
+  it("still reports a genuinely prerequisite-free Course as satisfied", async () => {
+    // The guard keys on `astComplete`, so a real Course that simply has no
+    // prerequisites must not be dragged into "cannot determine" with it --
+    // 6,094 Courses in one Edition are in exactly that position.
+    const { checkCourse, buildCatalog, SAT } = await import("../src/index.js");
+    const real = buildCatalog([
+      { ...hydrateAuditRow({ code: "ART 100", title: "Intro" }), astComplete: true },
+    ] as never);
+    expect(checkCourse(real, "ART 100", 0, {}).value).toBe(SAT);
+  });
+});

@@ -37,6 +37,7 @@ import {
   hydrateAuditRow,
   isAuditIndex,
   loadSearchPostings,
+  subjectOf,
   type AuditIndexFile,
   type Catalog,
   type Course,
@@ -80,6 +81,14 @@ export interface EditionCatalog {
    * read twice. */
   ensureCourses(codes: readonly string[]): Promise<void>;
 
+  /** The same, for whole subjects rather than individual Courses.
+   *
+   * Exists because the caller that wants this — ranking a requirement's
+   * candidate Courses — genuinely has subjects, and the first version
+   * smuggled them through `ensureCourses` as synthetic codes like
+   * `"MATH 0"`. A fake Course code is a lie the next reader has to decode. */
+  ensureSubjects(subjects: readonly string[]): Promise<void>;
+
   /** Load the ranking data that search scores descriptions with.
    *
    * Separate because it is 7.8 MB that does nothing until a query arrives,
@@ -87,19 +96,30 @@ export interface EditionCatalog {
   ensureSearchRanking(): Promise<void>;
 }
 
-/** The subject a Course code belongs to. Derived, never stored — a pipeline
- * test asserts the split holds for all 14,615 Courses. */
-function subjectOf(code: string): string {
-  const space = code.indexOf(" ");
-  return (space > 0 ? code.slice(0, space) : code).trim().toUpperCase();
-}
+/** Where a subject's files live, from the catalog's own index.
+ *
+ * NOT GUESSED. The first version of this built `courses/${SUBJECT}.json`
+ * and was wrong twice over: the shipped files are lower-case
+ * (`courses/math.json`), and some subjects are slugged rather than
+ * lower-cased (`AI` -> `courses/a-i.json`, `CS` -> `c-s.json`). It
+ * resolved nothing at all on a case-sensitive filesystem and nothing ever
+ * for those 41 subjects — but it passed every test on a case-insensitive
+ * one, which is the only reason it got this far.
+ *
+ * `subjects_index.json` is the mapping the web client already reads, so
+ * using it is also what stops the two readers developing separate ideas
+ * about where a Course lives.
+ *
+ * A subject can have an undergraduate file, a graduate one, or both — an
+ * IUG Plan mixes 400-level with 500/800-level in the same subject — so
+ * both keys are tried and the results merged. */
+type SubjectsIndex = Record<string, string>;
 
-/** Graduate Courses live in their own directory. A subject can appear in
- * either or both, so both are tried and the results merged. */
-const subjectPaths = (edition: string, subject: string) => [
-  `${edition}/courses/${subject}.json`,
-  `${edition}/courses/grad/${subject}.json`,
-];
+function subjectPaths(edition: string, subject: string, index: SubjectsIndex): string[] {
+  return [index[subject], index[`${subject}:grad`]]
+    .filter((f): f is string => typeof f === "string" && f.length > 0)
+    .map((f) => `${edition}/${f}`);
+}
 
 export async function loadEdition(source: CatalogSource, edition: string): Promise<EditionCatalog> {
   const index = await source.read<AuditIndexFile>(`${edition}/audit-index.json`);
@@ -139,23 +159,49 @@ export async function loadEdition(source: CatalogSource, edition: string): Promi
   const coverage = (await source.read<{ coveredBy?: Record<string, { by: string }[]> }>(`${edition}/coverage.json`)) ?? {};
   const programsIndex = (await source.read<ProgramIndexEntry[]>(`${edition}/programs_index.json`)) ?? [];
 
-  const loadedSubjects = new Set<string>();
+  // This one the server CANNOT do without, and its absence is silent: with
+  // no index, every subject lookup misses, every Course stays a slim audit
+  // row, and the server answers questions about prerequisites it never
+  // read. Loud at startup beats wrong at every query (iron rule 2).
+  const subjectsRaw = await source.read<SubjectsIndex>(`${edition}/subjects_index.json`);
+  if (!subjectsRaw || !Object.keys(subjectsRaw).length) {
+    throw new Error(
+      `The ${edition} subject index is missing, so no course file could ever be located. ` +
+        `Re-run \`node scripts/sync-catalog.mjs\` to rebuild this server's catalog.`,
+    );
+  }
+
+  const subjects: SubjectsIndex = subjectsRaw;
+  const loadedSubjects = new Map<string, Promise<Course[]>>();
   let rankingLoaded: Promise<void> | null = null;
 
   /** Read one subject's files and fold them into the catalog. Returns the
    * Courses added, so the caller can look at their prerequisites. */
   async function loadSubject(subject: string): Promise<Course[]> {
-    if (loadedSubjects.has(subject)) return [];
-    loadedSubjects.add(subject);
-    const found: Course[] = [];
-    for (const p of subjectPaths(edition, subject)) {
-      const rows = await source.read<Course[]>(p);
-      if (Array.isArray(rows)) found.push(...rows);
-    }
-    // A full Course REPLACES its audit row. Callers hold `catalog` across
-    // this, so it is mutated rather than rebuilt.
-    for (const [key, course] of Object.entries(buildCatalog(found))) catalog[key] = course;
-    return found;
+    // MEMOISED ON THE PROMISE, not on a flag. The first version marked a
+    // subject loaded BEFORE awaiting its bytes, so a second caller
+    // arriving during the read saw "already done" and went on to evaluate
+    // against audit rows that had not been replaced yet — answering about
+    // prerequisites that were still in flight. Handing back the same
+    // promise makes the second caller wait for the first one's bytes.
+    // `ensureSearchRanking` already did this; this did not.
+    const inFlight = loadedSubjects.get(subject);
+    if (inFlight) return inFlight;
+
+    const work = (async () => {
+      const found: Course[] = [];
+      for (const p of subjectPaths(edition, subject, subjects)) {
+        const rows = await source.read<Course[]>(p);
+        if (Array.isArray(rows)) found.push(...rows);
+      }
+      // A full Course REPLACES its audit row. Callers hold `catalog`
+      // across this, so it is mutated rather than rebuilt.
+      for (const [key, course] of Object.entries(buildCatalog(found))) catalog[key] = course;
+      return found;
+    })();
+
+    loadedSubjects.set(subject, work);
+    return work;
   }
 
   return {
@@ -194,6 +240,12 @@ export async function loadEdition(source: CatalogSource, edition: string): Promi
         }
       }
       for (const s of hop) await loadSubject(s);
+    },
+
+    async ensureSubjects(wanted) {
+      for (const s of new Set(wanted.map((x) => x.trim().toUpperCase()).filter(Boolean))) {
+        await loadSubject(s);
+      }
     },
 
     async ensureSearchRanking() {

@@ -49,6 +49,17 @@ export interface AuditIndexFile {
  * not actually read, and report a requirement satisfied on the strength of
  * it (iron rule 2).
  */
+/** The subject half of a Course code, upper-cased.
+ *
+ * One implementation, because this split is load-bearing in three places
+ * now: hydrating an audit row, locating a subject file, and matching a
+ * pattern rule. The pipeline asserts it reproduces the stored `subject`
+ * for all 14,615 Courses. */
+export function subjectOf(code: string): string {
+  const space = code.indexOf(" ");
+  return (space > 0 ? code.slice(0, space) : code).trim().toUpperCase();
+}
+
 export function hydrateAuditRow(r: AuditRow): Course {
   const space = r.code.indexOf(" ");
   return {

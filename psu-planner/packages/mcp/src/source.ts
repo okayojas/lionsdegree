@@ -46,22 +46,40 @@ export interface CatalogSource {
  * not a missing file, and conflating the two would hide it.
  */
 export function assertInsideCatalog(relPath: string): string {
-  const clean = relPath.replace(/\\/g, "/").replace(/^\/+/, "");
-  const parts: string[] = [];
-  for (const seg of clean.split("/")) {
-    if (seg === "" || seg === ".") continue;
-    if (seg === "..") {
-      if (!parts.length) throw new Error(`refusing to read ${relPath}: it points outside the catalog`);
-      parts.pop();
-      continue;
-    }
-    parts.push(seg);
-  }
-  // An absolute path, or one that climbed out and back in, is refused on the
-  // intent rather than on where it happened to land.
-  if (relPath.startsWith("/") || relPath.includes("..")) {
+  const refuse = (): never => {
     throw new Error(`refusing to read ${relPath}: it points outside the catalog`);
+  };
+
+  // DECODE FIRST. This used to test for a literal `..` and nothing else, so
+  // `%2e%2e` walked straight through. Harmless against a filesystem, which
+  // does not decode — and not harmless at all against the fetch source this
+  // interface exists for, because a URL parser resolves `%2e%2e` as a
+  // double-dot segment. The caller that matters turns a Course code
+  // supplied by a MODEL into a path, so the decoded form is the one that
+  // has to be judged.
+  let decoded = relPath;
+  for (let i = 0; i < 3; i++) {
+    let next: string;
+    try {
+      next = decodeURIComponent(decoded);
+    } catch {
+      refuse(); // a malformed escape is not something to guess at
+    }
+    if (next! === decoded) break;
+    decoded = next!;
   }
+
+  const clean = decoded.replace(/\\/g, "/");
+  if (clean.startsWith("/")) refuse();
+  if (clean === ".." || clean.startsWith("../") || clean.endsWith("/..") || clean.includes("/../")) refuse();
+  // A drive letter or a scheme is an absolute path wearing a disguise.
+  if (/^[a-zA-Z]:/.test(clean)) refuse();
+  if (/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(clean)) refuse();
+  // A NUL truncates the path for some syscalls, so the string that was
+  // checked and the string that gets opened would not be the same one.
+  if (clean.includes("\0")) refuse();
+
+  const parts = clean.split("/").filter((seg) => seg !== "" && seg !== ".");
   if (!parts.length) throw new Error(`refusing to read ${relPath}: it names no file`);
   return parts.join("/");
 }

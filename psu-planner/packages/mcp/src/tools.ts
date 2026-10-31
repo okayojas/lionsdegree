@@ -22,6 +22,8 @@ import {
   majorDeptPrefixes,
   rankSlotPicks,
   resolveSlotPool,
+  subjectOf,
+  type Pool,
   searchCatalog,
   type Catalog,
   type PlanDoc,
@@ -262,17 +264,19 @@ async function hydrateChain(data: EditionCatalog, root: string, depth: number): 
 }
 
 /** The subjects a slot's pool could draw from, so their prerequisite
- * structure can be read before candidates are ranked on readiness.
+ * structure is read before candidates are ranked on readiness.
  *
- * A `genEd` pool draws from the whole catalog and is deliberately absent:
- * the audit index already carries gen-ed designations, so matching works,
- * and only `prerequisites_met` degrades to "cannot determine" -- which is
- * the honest answer when the structure has not been read.
+ * A `genEd` pool draws from the whole catalog and is deliberately absent.
+ * The audit index already carries gen-ed designations, so matching still
+ * works; what degrades is `prerequisites_met`, which reports false for a
+ * Course whose structure was never read. That is understated rather than
+ * wrong, and loading 527 files to improve it would undo the whole change.
  */
-function poolSubjects(pool: { kind: string; courses?: string[]; subjects?: string[] } | null): string[] {
+function poolSubjects(pool: Pool | null): string[] {
   if (!pool) return [];
-  if (pool.kind === "listed" || pool.kind === "registry") return pool.courses ?? [];
-  if (pool.kind === "patterned") return (pool.subjects ?? []).map((s) => `${s} 0`);
+  if (pool.kind === "listed" || pool.kind === "registry") return pool.courses.map(subjectOf);
+  if (pool.kind === "patterned") return pool.subjects;
+  // `genEd` and anything added later: no bounded subject set to read.
   return [];
 }
 
@@ -299,7 +303,7 @@ export async function executeTool(
       // Ranking scores candidates partly on whether their prerequisites are
       // met, which needs their structure read. Bounded: a listed pool names
       // its Courses and a patterned one names its subjects.
-      await data.ensureCourses(poolSubjects(pool as never));
+      await data.ensureSubjects(poolSubjects(pool));
       const ranked = rankSlotPicks(cat, pool, {
         exclude: new Set(items.filter((i) => i.kind === "course").map((i) => i.code!)),
         majorPrefixes: majorDeptPrefixes(plan),

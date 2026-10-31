@@ -13,7 +13,6 @@ import {
   checkCourse,
   buildSchedule,
   generatePlan,
-  hydrateSearchIndex,
   majorDeptPrefixes,
   poolFromRule,
   rankSlotPicks,

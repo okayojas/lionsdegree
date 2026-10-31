@@ -48,6 +48,30 @@ export function checkCourse(catalog: Catalog, code: string, mySem: number, sched
   const c = catalog[code];
   const res: CheckResult = { value: SAT, leaves: [] };
   if (!c) return res;
+
+  // A Course whose prerequisite structure was never READ cannot be
+  // reported satisfied.
+  //
+  // `astComplete: false` with nothing parsed means exactly that: the
+  // Course came from the audit index, which carries no prerequisite
+  // fields at all, and its subject file has not been loaded. The fall
+  // through below would have returned SAT -- "no prerequisites found,
+  // therefore none" -- which is the confident wrong answer iron rule 2
+  // exists to forbid. It is the difference between "anyone can take this"
+  // and "we have not looked".
+  //
+  // Only when nothing was parsed. A Course with `astComplete: false`
+  // because part of its prerequisite TEXT defeated the parser still gets
+  // evaluated on the part that did parse, and the unparsed phrase already
+  // surfaces as its own UNK leaf.
+  const nothingParsed = !c.prereqAst && !c.enforced && !c.concurrentAst && !c.concurrent;
+  if (nothingParsed && c.astComplete === false) {
+    return {
+      value: UNK,
+      leaves: [{ kind: "phrase", text: `${code}: prerequisites not loaded — verify manually`, v: UNK }],
+    };
+  }
+
   const prereqAst = c.prereqAst ?? (c.enforced ? parsePrereqText(c.enforced) : null);
   const concAst = c.concurrentAst ?? (c.concurrent ? parsePrereqText(c.concurrent) : null);
   if (prereqAst) {

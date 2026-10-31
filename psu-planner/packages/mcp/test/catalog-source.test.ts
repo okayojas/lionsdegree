@@ -20,6 +20,21 @@ import os from "node:os";
 import path from "node:path";
 import { FsCatalogSource, type CatalogSource } from "../src/source.js";
 
+/** Materialise the contract's files on disk and hand back the root. */
+function writeTree(files: Record<string, string>): string {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "ld-catalog-"));
+  for (const [rel, body] of Object.entries(files)) {
+    const file = path.join(root, rel);
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, body);
+  }
+  // Editions are discovered from the directory when there is no index, so
+  // the older one needs to exist as a directory even though it has no
+  // files of its own in the contract set.
+  fs.mkdirSync(path.join(root, "2025-2026"), { recursive: true });
+  return root;
+}
+
 /** Build a throwaway catalog tree on disk and hand back its root. */
 function scratchCatalog(): string {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "ld-catalog-"));
@@ -41,10 +56,25 @@ function scratchCatalog(): string {
   return root;
 }
 
-export function describeCatalogSource(name: string, make: (root: string) => CatalogSource): void {
+/** The files every implementation is tested against, as data rather than
+ * as a directory. The first version handed the factory a disk path, which
+ * is exactly what a fetch source cannot be built from — so the harness
+ * could not have been reused by the implementation it was written for. A
+ * fetch source's factory serves these from a stub; the filesystem's writes
+ * them to a temp tree. */
+export const CONTRACT_FILES: Record<string, string> = {
+  "editions.json": JSON.stringify({ editions: ["2025-2026", "2026-2027"], latest: "2026-2027" }),
+  "2026-2027/audit-index.json": JSON.stringify({ courses: [{ code: "MATH 140", title: "Calculus I" }] }),
+  "2026-2027/courses/MATH.json": JSON.stringify([
+    { code: "MATH 140", title: "Calculus I", subject: "MATH", number: "140" },
+  ]),
+  "2026-2027/broken.json": "{ not json",
+};
+
+export function describeCatalogSource(name: string, make: (files: Record<string, string>) => CatalogSource): void {
   describe(name, () => {
     it("reads a JSON file at a catalog-relative path", async () => {
-      const src = make(scratchCatalog());
+      const src = make(CONTRACT_FILES);
       const index = await src.read<{ courses: { code: string }[] }>("2026-2027/audit-index.json");
       expect(index?.courses[0].code).toBe("MATH 140");
     });
@@ -53,7 +83,7 @@ export function describeCatalogSource(name: string, make: (root: string) => Cata
       // Subject files live a directory down and are fetched one at a time.
       // A source that only handled flat paths would work right up until a
       // Course detail was asked for.
-      const src = make(scratchCatalog());
+      const src = make(CONTRACT_FILES);
       const subject = await src.read<unknown[]>("2026-2027/courses/MATH.json");
       expect(Array.isArray(subject)).toBe(true);
     });
@@ -64,7 +94,7 @@ export function describeCatalogSource(name: string, make: (root: string) => Cata
       // publish. The caller decides what a miss means; the source only
       // reports it. Throwing here would turn every optional read into a
       // try/catch at the call site, which is where one gets forgotten.
-      const src = make(scratchCatalog());
+      const src = make(CONTRACT_FILES);
       expect(await src.read("2026-2027/courses/NOPE.json")).toBeNull();
     });
 
@@ -72,12 +102,12 @@ export function describeCatalogSource(name: string, make: (root: string) => Cata
       // Same reasoning, and it keeps the two sources alike: a fetch source
       // gets an HTML error page where it expected JSON far more often than
       // a filesystem gets a corrupt file.
-      const src = make(scratchCatalog());
+      const src = make(CONTRACT_FILES);
       expect(await src.read("2026-2027/broken.json")).toBeNull();
     });
 
     it("lists the Editions it can serve, newest last", async () => {
-      const src = make(scratchCatalog());
+      const src = make(CONTRACT_FILES);
       expect(await src.editions()).toEqual(["2025-2026", "2026-2027"]);
     });
 
@@ -86,15 +116,40 @@ export function describeCatalogSource(name: string, make: (root: string) => Cata
       // into a path. A traversal that escapes the catalog is the difference
       // between serving a subject file and serving whatever else the
       // process can reach.
-      const src = make(scratchCatalog());
-      for (const bad of ["../secrets.json", "2026-2027/../../etc/passwd", "/etc/passwd"]) {
-        await expect(src.read(bad), `${bad} was not refused`).rejects.toThrow(/outside the catalog/i);
+      //
+      // THE ENCODED CASES ARE THE POINT. The first version tested for a
+      // literal `..`, so `%2e%2e` passed cleanly — invisible against a
+      // filesystem, which does not decode, and a real escape against the
+      // fetch source this interface exists for, whose URL parser does.
+      const src = make(CONTRACT_FILES);
+      const bad = [
+        "../secrets.json",
+        "2026-2027/../../etc/passwd",
+        "/etc/passwd",
+        "%2e%2e/secrets.json",
+        "2026-2027/%2e%2e/%2e%2e/secrets.json",
+        "%252e%252e/secrets.json",
+        String.raw`..\secrets.json`,
+        "C:/Windows/win.ini",
+        "file:///etc/passwd",
+        "https://example.com/evil.json",
+      ];
+      for (const p of bad) {
+        await expect(src.read(p), `${p} was not refused`).rejects.toThrow(/outside the catalog/i);
       }
+    });
+
+    it("still reads an ordinary path that merely contains a dot", async () => {
+      // The guard must reject traversal, not punctuation. A subject file
+      // named `a-i.json` is the normal case, and over-refusing would take
+      // out 41 real subjects.
+      const src = make(CONTRACT_FILES);
+      expect(await src.read("2026-2027/courses/MATH.json")).not.toBeNull();
     });
   });
 }
 
-describeCatalogSource("the filesystem catalog source", (root) => new FsCatalogSource(root));
+describeCatalogSource("the filesystem catalog source", (files) => new FsCatalogSource(writeTree(files)));
 
 describe("the filesystem catalog source, specifically", () => {
   it("falls back to reading the directory when there is no editions index", async () => {
