@@ -483,7 +483,9 @@ test.describe("connecting an assistant", () => {
     // Shipping a dead link with no warning sends students to paste something
     // that silently fails, and they blame their assistant.
     await page.goto("/connect/");
-    await expect(page.getByText(/not live yet/i)).toBeVisible();
+    // Scoped to the callout rather than the whole page: the header now also
+    // says the steps are not live yet, and an unscoped match found both.
+    await expect(page.locator(".pending")).toContainText(/not live yet/i);
   });
 
   test("is reachable from the landing page and the footer", async ({ page }) => {
@@ -498,12 +500,27 @@ test.describe("connecting an assistant, with scripting on", () => {
     await expectNoA11yViolations(page);
   });
 
-  test("the copy button copies the link", async ({ page, context }) => {
-    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  test("offers nothing to copy while the connector does not exist", async ({ page }) => {
+    // There WAS a Copy button, with "not live yet" printed underneath it.
+    // That invites the copy and explains afterwards that it cannot work.
+    // The caveat comes first now and the button is gone until there is a
+    // service behind it -- at which point this assertion inverts, which is
+    // the right moment to have to think about it.
     await page.goto("/connect/");
-    await page.getByRole("button", { name: /^copy$/i }).click();
-    const clip = await page.evaluate(() => navigator.clipboard.readText());
-    expect(clip).toBe(await page.locator("#connector-url").innerText());
+    await expect(page.getByRole("button", { name: /^copy$/i })).toHaveCount(0);
+    await expect(page.locator(".pending")).toContainText(/not live yet/i);
+  });
+
+  test("advertises the transport path the connector will actually serve", async ({ page }) => {
+    // THE BUG THIS REPLACES. The page published `/sse` for months. That is
+    // the older MCP transport and not what will be served here, so a
+    // student who saved the link was saving the wrong one -- and nothing
+    // compared the published address to the intended one, which is exactly
+    // why it went unnoticed. See the spec, issue 30.
+    await page.goto("/connect/");
+    const url = (await page.locator("#connector-url").innerText()).trim();
+    expect(url, "the connect page still advertises the /sse transport").not.toContain("/sse");
+    expect(url, `the advertised connector URL is ${url}`).toBe("https://mcp.lionsdegree.com/mcp");
   });
 });
 

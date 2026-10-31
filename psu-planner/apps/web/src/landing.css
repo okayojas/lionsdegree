@@ -665,3 +665,9 @@
   .journey-static .route-stop { animation: none; opacity: 1; }
   .is-pinned .scene { transition: none; }
 }
+
+/* The address before the connector exists. Shown so a reader knows what is
+   coming, styled so it does not read as an action: no Copy button, muted,
+   and the "not live" line sits above it rather than underneath. */
+.copyfield.is-pending { opacity: .65; }
+.copyfield.is-pending .copyfield-url { user-select: all; }

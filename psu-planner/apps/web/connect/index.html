@@ -47,10 +47,14 @@
         <p class="eyebrow">Works with your assistant</p>
         <h1>Connect your AI to your degree plan.</h1>
         <p class="lede">
-          Your assistant can read the plan you built here and answer questions
-          about your actual degree — what's left, what you can take next term,
-          what happens if you drop something. It takes about a minute to set up
-          and there is nothing to install.
+          Your assistant will be able to read the plan you built here and
+          answer questions about your actual degree — what's left, what you can
+          take next term, what happens if you drop something. It will take
+          about a minute to set up, with nothing to install.
+        </p>
+        <p class="note">
+          <strong>Being built now.</strong> This page describes how it will
+          work so you know what is coming; the steps below are not live yet.
         </p>
       </div>
     </header>
@@ -71,19 +75,26 @@
 
         <li>
           <h2>Copy your connection link</h2>
+          <!-- The caveat comes BEFORE the address, and there is no Copy
+               button until there is something to copy. It used to sit
+               underneath one, which invites the copy and explains afterwards
+               that it will not work.
+
+               The path is /mcp, not /sse. /sse is the older transport and is
+               not what will be served here -- advertising it meant a student
+               who saved the link now would have saved the wrong one. -->
+          <p class="pending">
+            <strong>Not live yet.</strong> The connector is being built — see
+            <a href="https://github.com/okayojas/lionsdegree/issues/30">issue&nbsp;30</a>
+            for where it is up to. Nothing to paste anywhere yet.
+          </p>
           <p>
-            This is the address your assistant uses to reach your plan. It is
+            When it lands, this is the address your assistant will use. It is
             the same for everyone — signing in is what makes it yours.
           </p>
-          <div class="copyfield">
-            <span class="copyfield-url" id="connector-url">https://mcp.lionsdegree.com/sse</span>
-            <button type="button" class="copyfield-btn" data-copy="connector-url">Copy</button>
+          <div class="copyfield is-pending">
+            <span class="copyfield-url" id="connector-url">https://mcp.lionsdegree.com/mcp</span>
           </div>
-          <p class="pending">
-            <strong>Not live yet.</strong> The connector is still being built.
-            This page is here so you know what to expect — check back before you
-            paste it anywhere.
-          </p>
         </li>
 
         <li>
@@ -108,7 +119,7 @@
 
       <section class="try">
         <h2>Then ask it something</h2>
-        <p class="lede">Once it's connected, these all work:</p>
+        <p class="lede">Once it's connected, these are the kinds of things it will answer:</p>
         <ul class="asks">
           <li>"What do I still need for my major?"</li>
           <li>"Can I take CMPSC 465 next spring?"</li>
