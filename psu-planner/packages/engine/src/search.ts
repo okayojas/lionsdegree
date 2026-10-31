@@ -26,69 +26,58 @@ function hasRun(tokens: string[], stems: string[]): boolean {
 }
 
 
-/** The shared term dictionary of the loaded search index, sorted ascending.
+/** The body signal: which terms appear how often in each Course's
+ * description, plus the dictionary those term ids index into.
  *
- * Module-level because it belongs to the catalog as a whole rather than to any
- * one course, and `searchCatalog` takes a Catalog (a map of Courses) with
- * nowhere to hang it. Set by `hydrateSearchIndex`; empty until then, which
- * makes every description count zero -- search still works off code and title,
- * it just loses the body signal. That is the honest degradation: a catalog
- * built from subject files rather than the index has no postings. */
-let DICT: readonly string[] = [];
-
-/** Decoded postings per course code, built once at hydrate. */
-const POSTINGS = new Map<string, Map<number, number>>();
-
-export function loadSearchDictionary(terms: readonly string[]): void {
-  DICT = terms;
+ * A VALUE, NOT MODULE STATE, and that is the whole point. This used to be
+ * a pair of module-level variables set by `loadSearchPostings`. One
+ * process, one Edition — fine for a browser, which shows one bulletin at
+ * a time and clears on switch. Not fine for the hosted connector, where a
+ * single isolate serves many students and the second Edition to load
+ * replaced the first's dictionary globally: Edition A then scored against
+ * Edition B's vocabulary, permanently, because the loader's memo recorded
+ * the work as done. A stale index across an Edition change is a
+ * correctness bug (ADR 0001).
+ *
+ * Term ids are indices into `terms`, so a ranking and a dictionary are
+ * meaningless apart. Keeping them in one value is what makes mixing them
+ * up impossible rather than merely discouraged. */
+export interface SearchRanking {
+  /** Sorted ascending: `prefixRange` binary-searches it. */
+  readonly terms: readonly string[];
+  /** Course code -> term id -> count. */
+  readonly postings: ReadonlyMap<string, ReadonlyMap<number, number>>;
 }
 
-/** The body signal, loaded on its own (#28).
+/** No body signal at all.
  *
- * The postings used to arrive welded to the course records, which meant a
- * student opening a plan downloaded the ranking data for 14,615 courses in
- * order to look at a chart. They are 31% of that file and mean nothing until
- * somebody types, so the web client now fetches them separately on first
- * search and hands them here.
+ * Search still works on code and title — that is the honest degradation
+ * when a catalog was built from subject files, or when the postings have
+ * not been fetched yet because nobody has searched. */
+export const NO_RANKING: SearchRanking = { terms: [], postings: new Map() };
+
+/** Decode the packed postings file into a ranking.
  *
- * `encoded` is the same packed form the index carried: code -> postings,
- * decoded once at load rather than per query. Replaces whatever was loaded
- * before, so switching Edition cannot leave one bulletin's term ids pointing
- * into another's dictionary (ADR 0001). */
-export function loadSearchPostings(terms: readonly string[], encoded: Record<string, number[]>): void {
-  DICT = terms;
-  POSTINGS.clear();
+ * `encoded` is the packed form the pipeline writes: code -> postings,
+ * decoded once here rather than per query. */
+export function buildSearchRanking(terms: readonly string[], encoded: Record<string, number[]>): SearchRanking {
+  const postings = new Map<string, Map<number, number>>();
   for (const [code, packed] of Object.entries(encoded)) {
-    if (packed?.length) POSTINGS.set(code, decodePostings(packed));
+    if (packed?.length) postings.set(code, decodePostings(packed));
   }
-  prefixMemo = new Map();
+  return { terms, postings };
 }
 
-/** Forget the body signal.
- *
- * `DICT` and `POSTINGS` are module state, so clearing the web client's memo
- * is not enough on its own: term ids index a SPECIFIC edition's dictionary,
- * and a failed refetch after an edition switch would otherwise leave the new
- * bulletin's courses scored against the old one's vocabulary (ADR 0001).
- * Scoring stops rather than scoring wrongly -- code and title still rank. */
-export function clearSearchPostings(): void {
-  DICT = [];
-  POSTINGS.clear();
-  prefixMemo = new Map();
-}
-
-
-/** Per-query memo: a stem resolves to the same dictionary ids for every course
- * it is tested against, and resolving is a binary search plus a scan. */
-let prefixMemo = new Map<string, number[]>();
-
-function idsFor(stem: string): number[] {
-  let ids = prefixMemo.get(stem);
+/** Per-query memo: a stem resolves to the same dictionary ids for every
+ * Course it is tested against, and resolving is a binary search plus a
+ * scan. Built per call, so it cannot outlive the ranking it indexes. */
+function idsFor(ranking: SearchRanking, memo: Map<string, number[]>, stem: string): number[] {
+  let ids = memo.get(stem);
   if (!ids) {
-    const [lo, hi] = prefixRange(DICT, stem);
+    const [lo, hi] = prefixRange(ranking.terms, stem);
     ids = [];
     for (let i = lo; i < hi; i++) ids.push(i);
-    prefixMemo.set(stem, ids);
+    memo.set(stem, ids);
   }
   return ids;
 }
@@ -99,18 +88,23 @@ function idsFor(stem: string): number[] {
  * "statistics" and "statistical". Summing every dictionary entry that starts
  * with the stem reproduces that, minus infix matches ("stat" no longer hits
  * inside "thermostat") -- which is a behaviour change in the right direction. */
-function descCount(c: Course, stem: string): number {
-  const p = POSTINGS.get(c.code);
-  if (!p || !DICT.length) return 0;
+function descCount(ranking: SearchRanking, memo: Map<string, number[]>, c: Course, stem: string): number {
+  const p = ranking.postings.get(c.code);
+  if (!p || !ranking.terms.length) return 0;
   let n = 0;
-  for (const id of idsFor(stem)) n += p.get(id) ?? 0;
+  for (const id of idsFor(ranking, memo, stem)) n += p.get(id) ?? 0;
   return n;
 }
 
-export function searchCatalog(catalog: Catalog, q: string, limit = 25): string[] {
+export function searchCatalog(
+  catalog: Catalog,
+  q: string,
+  limit = 25,
+  ranking: SearchRanking = NO_RANKING,
+): string[] {
   const stems = qterms(q);
   if (!stems.length) return [];
-  prefixMemo = new Map();
+  const memo = new Map<string, number[]>();
   const res: { key: string; score: number }[] = [];
   const visited = new Set<string>();
   for (const key in catalog) {
@@ -127,7 +121,7 @@ export function searchCatalog(catalog: Catalog, q: string, limit = 25): string[]
       if (code.includes(t)) s += 8;
       if (title.includes(t)) s += 6;
       else inTitleAll = false;
-      s += Math.min(descCount(c, t), 5);
+      s += Math.min(descCount(ranking, memo, c, t), 5);
       if (!s) { ok = false; break; }
       score += s;
     }
@@ -185,22 +179,26 @@ export function snippet(desc: string, stems: string[]): { text: string; ranges: 
  *
  * The index carries NO description prose. It carries postings -- per-term
  * counts over the description -- which is what the scorer always consumed
- * (postings.ts, DECISIONS.md 5.1). Decoding them is this function's second
- * job: the dictionary is shared across the whole file, so it is loaded once
- * here rather than threaded through every call.
+ * (postings.ts, DECISIONS.md 5.1).
  *
- * Accepts both shapes. A bare array is the pre-postings index, which hydrates
- * with no body signal rather than throwing -- an old cached index in a service
- * worker should degrade to code-and-title search, not break the page. */
-export function hydrateSearchIndex(raw: unknown[] | SearchIndexFile): Course[] {
+ * Returns the Courses AND the ranking rather than stashing the ranking in
+ * module state, which is what it used to do: one process could then hold
+ * only one Edition's vocabulary, and the hosted connector serves many.
+ * The caller decides what to keep.
+ *
+ * Accepts both shapes. A bare array is the pre-postings index, which
+ * hydrates with no body signal rather than throwing -- an old cached index
+ * in a service worker should degrade to code-and-title search, not break
+ * the page. */
+export function hydrateSearchIndex(raw: unknown[] | SearchIndexFile): { courses: Course[]; ranking: SearchRanking } {
   const file = Array.isArray(raw) ? { terms: [], courses: raw } : raw;
-  loadSearchDictionary(file.terms ?? []);
-  POSTINGS.clear();
+  const postings = new Map<string, Map<number, number>>();
   for (const entry of file.courses) {
     const e = entry as { code?: string; t?: number[] };
-    if (e.code && e.t?.length) POSTINGS.set(e.code, decodePostings(e.t));
+    if (e.code && e.t?.length) postings.set(e.code, decodePostings(e.t));
   }
-  return (file.courses as Partial<Course>[]).map((c) => ({
+  const ranking: SearchRanking = { terms: file.terms ?? [], postings };
+  const courses = (file.courses as Partial<Course>[]).map((c) => ({
     code: c.code ?? "",
     subject: c.subject ?? "",
     number: c.number ?? "",
@@ -226,4 +224,5 @@ export function hydrateSearchIndex(raw: unknown[] | SearchIndexFile): Course[] {
     level: c.level ?? "undergraduate",
     url: c.url ?? "",
   }));
+  return { courses, ranking };
 }

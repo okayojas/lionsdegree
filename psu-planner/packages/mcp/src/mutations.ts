@@ -46,6 +46,11 @@ export interface MutationResult {
 function commit(ctx: ToolContext, mutate: (plan: PlanDoc) => void | false): MutationResult | null {
   // Work on a copy: a mutation that throws halfway must not leave the
   // in-memory plan in a state the file does not match.
+  // `executeTool` refuses every mutation by name when there is no Plan
+  // (it is not in CATALOG_ONLY), so this cannot be reached without one.
+  // this function writes to a student's degree, and "the caller promised"
+  // is not the guarantee to rely on there.
+  if (!ctx.plan) throw new Error("no plan is loaded, so there is nothing to change");
   const next: PlanDoc = JSON.parse(JSON.stringify(ctx.plan));
   if (mutate(next) === false) return null;
   next.rev = (next.rev ?? 0) + 1;
@@ -67,8 +72,15 @@ function reoptimize(ctx: ToolContext, plan: PlanDoc): PlanDoc {
   return plan;
 }
 
+/** Does the Plan carry this Course because a Program requires it?
+ *
+ * `origin` is what makes it a requirement rather than something the
+ * student added. With no Plan there is nothing required of anyone, and
+ * the caller (remove_course's consent gate) reads false as "not required"
+ * -- which is the safe direction only because every mutation is already
+ * refused without a Plan. */
 const isRequired = (ctx: ToolContext, code: string): boolean =>
-  ctx.plan.terms.some((t) => t.items.some((i) => "code" in i && i.code === code && !!i.origin));
+  !!ctx.plan?.terms.some((t) => t.items.some((i) => "code" in i && i.code === code && !!i.origin));
 
 export async function executeMutation(
   name: string,
@@ -79,17 +91,29 @@ export async function executeMutation(
   const termIndex = Number(args.term_index ?? NaN);
   const cat = ctx.data.catalog;
 
+  // No mutation is in CATALOG_ONLY, so `executeTool` has already refused
+  // the planless case by name, so this is a routing-bug guard rather than
+  // a user-facing one.
+  if (!ctx.plan) return null;
+
+  // A GETTER, NOT A SNAPSHOT. `commit` REPLACES `ctx.plan` with the
+  // mutated document, so anything that reads the Plan after a commit must
+  // re-read it. Capturing it once in a local was the first version of
+  // this, and `optimize_schedule` then reported the term count of the
+  // Plan it had replaced — the test caught it at 7 against 8.
+  const plan = () => ctx.plan!;
+
   switch (name) {
     case "add_course": {
       if (!cat[code]) return { error: `${code || args.code} is not in the ${ctx.data.edition} catalog — search for it first` };
-      if (!Number.isInteger(termIndex) || termIndex < 0 || termIndex >= ctx.plan.terms.length) {
-        return { error: `term_index must be between 0 and ${ctx.plan.terms.length - 1}` };
+      if (!Number.isInteger(termIndex) || termIndex < 0 || termIndex >= plan().terms.length) {
+        return { error: `term_index must be between 0 and ${plan().terms.length - 1}` };
       }
       if (ctx.items.some((i) => i.kind === "course" && i.code === code)) {
         return { error: `${code} is already in the plan` };
       }
       const r = commit(ctx, (p) => { p.added.push({ code, sem: termIndex }); });
-      return { ...r, added: code, term: ctx.plan.terms[termIndex]?.label };
+      return { ...r, added: code, term: plan().terms[termIndex]?.label };
     }
 
     case "remove_course": {
@@ -133,8 +157,8 @@ export async function executeMutation(
       if (!["not-in", "not-before", "pin"].includes(rule)) {
         return { error: `rule must be one of: not-in, not-before, pin` };
       }
-      if (!Number.isInteger(termIndex) || termIndex < 0 || termIndex >= ctx.plan.terms.length) {
-        return { error: `term_index must be between 0 and ${ctx.plan.terms.length - 1}` };
+      if (!Number.isInteger(termIndex) || termIndex < 0 || termIndex >= plan().terms.length) {
+        return { error: `term_index must be between 0 and ${plan().terms.length - 1}` };
       }
       const r = commit(ctx, (p) => {
         const constraint: ScheduleConstraint = { code, type: rule as ScheduleConstraint["type"], termIndex };
@@ -146,13 +170,13 @@ export async function executeMutation(
       });
       return {
         ...r,
-        constraint: { code, rule, term: ctx.plan.terms[termIndex]?.label },
+        constraint: { code, rule, term: plan().terms[termIndex]?.label },
         note: "The course is still in the degree; the schedule was re-flowed around the constraint.",
       };
     }
 
     case "optimize_schedule": {
-      const before = ctx.plan.terms.length;
+      const before = plan().terms.length;
       const target = Number(args.target_terms ?? NaN);
       let note = "";
       const r = commit(ctx, (p) => {
@@ -162,7 +186,7 @@ export async function executeMutation(
         });
         note = res.capstoneNote ?? "";
       });
-      return { ...r, terms_before: before, terms_after: ctx.plan.terms.length, note: note || undefined };
+      return { ...r, terms_before: before, terms_after: plan().terms.length, note: note || undefined };
     }
 
     case "fill_slot": {
@@ -207,12 +231,12 @@ export async function executeMutation(
         const labels = termSequence(start, p.terms.length + 1, p.summerYears ?? []);
         p.terms.push({ label: labels[p.terms.length]?.label ?? `Term ${p.terms.length + 1}`, items: [] });
       });
-      return { ...r, terms: ctx.plan.terms.length };
+      return { ...r, terms: plan().terms.length };
     }
 
     case "skip_term": {
-      if (!Number.isInteger(termIndex) || termIndex < 0 || termIndex >= ctx.plan.terms.length) {
-        return { error: `term_index must be between 0 and ${ctx.plan.terms.length - 1}` };
+      if (!Number.isInteger(termIndex) || termIndex < 0 || termIndex >= plan().terms.length) {
+        return { error: `term_index must be between 0 and ${plan().terms.length - 1}` };
       }
       const r = commit(ctx, (p) => {
         p.terms[termIndex].gap = true;
@@ -222,7 +246,7 @@ export async function executeMutation(
       });
       return {
         ...r,
-        skipped: ctx.plan.terms[termIndex]?.label,
+        skipped: plan().terms[termIndex]?.label,
         note: "Coursework was re-flowed around the gap; nothing was removed and graduation moves back one term.",
       };
     }

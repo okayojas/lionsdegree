@@ -35,8 +35,13 @@ import { FsCatalogSource, type CatalogSource } from "./source.js";
 import { executeMutation } from "./mutations.js";
 
 export interface ToolContext {
-  /** Mutable: a write refreshes these so the next call sees the new plan. */
-  plan: PlanDoc;
+  /** Mutable: a write refreshes these so the next call sees the new plan.
+   *
+   * NULL on the hosted connector's catalog-only surface (#33), where
+   * there is no student signed in yet and the tools answer about the
+   * Bulletin rather than about anyone's degree. Tools that need a Plan
+   * refuse by name rather than reaching into it — see CATALOG_ONLY. */
+  plan: PlanDoc | null;
   planPath: string;
   data: EditionCatalog;
   items: PlanItem[];
@@ -57,7 +62,38 @@ const obj = (properties: Record<string, unknown>, required: string[] = []) => ({
 const str = (description: string) => ({ type: "string", description });
 const num = (description: string) => ({ type: "number", description });
 
-export function listTools(): ToolDefinition[] {
+/** The tools that answer from the Bulletin alone.
+ *
+ * AN ALLOWLIST, DELIBERATELY, and the inversion is the whole point. The
+ * first version listed the Plan-shaped tools instead and missed three of
+ * the seven mutations — `fill_slot`, `add_term` and `skip_term` were
+ * advertised on the unauthenticated endpoint, which the live deploy
+ * showed and no test did.
+ *
+ * Getting a denylist wrong exposes a tool. Getting an allowlist wrong
+ * hides one. A new tool is Plan-shaped until someone says otherwise, and
+ * the cost of forgetting is a missing feature rather than a student's
+ * degree reachable without an account.
+ *
+ * `mcp-surface.test.ts` asserts every mutation is outside this set, read
+ * from `executeMutation`'s own cases so the two cannot drift. */
+export const CATALOG_ONLY: ReadonlySet<string> = new Set([
+  "search_catalog",
+  "get_course_details",
+  "get_prereq_chain",
+  "search_programs",
+  "discover_programs",
+]);
+
+/** Does this tool need a student's Plan? Everything not named above. */
+export const needsPlan = (name: string): boolean => !CATALOG_ONLY.has(name);
+
+export function listTools(opts: { catalogOnly?: boolean } = {}): ToolDefinition[] {
+  const all = allTools();
+  return opts.catalogOnly ? all.filter((t) => CATALOG_ONLY.has(t.name)) : all;
+}
+
+function allTools(): ToolDefinition[] {
   return [
     {
       name: "get_plan",
@@ -290,7 +326,22 @@ export async function executeTool(
   const mutated = await executeMutation(name, args, ctx);
   if (mutated) return mutated;
 
-  const { plan, data, items, sched } = ctx;
+  const { data, items, sched } = ctx;
+
+  // The line between "about the Bulletin" and "about you". On the hosted
+  // catalog surface there is no Plan, and a tool that needs one says so
+  // instead of reaching into null — which is a stack trace where an
+  // explanation belongs.
+  if (needsPlan(name) && !ctx.plan) {
+    return {
+      error:
+        `${name} needs your plan, and this connector is not signed in to an account yet. ` +
+        `Course, prerequisite and program questions work without one.`,
+    };
+  }
+  // Safe past the guard above: every case below that reads `plan` is in
+  // NEEDS_PLAN, which the e2e asserts.
+  const plan = ctx.plan as PlanDoc;
   const cat: Catalog = data.catalog;
   const code = typeof args.code === "string" ? args.code.trim().toUpperCase() : "";
 
@@ -374,7 +425,10 @@ export async function executeTool(
       // by what the Course is about.
       await data.ensureSearchRanking();
       const limit = Math.min(Number(args.limit ?? 10) || 10, MAX_RESULTS);
-      return searchCatalog(cat, String(args.query ?? ""), limit).map((c) => ({
+      // The Edition's OWN ranking, passed explicitly. It used to come
+      // from engine module state, which one isolate serving two Editions
+      // would have crossed.
+      return searchCatalog(cat, String(args.query ?? ""), limit, data.ranking).map((c) => ({
         code: cat[c].code,
         title: cat[c].title,
         credits: cat[c].credits,
@@ -436,21 +490,32 @@ export async function executeTool(
       const maxDepth = Math.min(Number(args.max_depth ?? 4) || 4, 6);
       await hydrateChain(data, code, maxDepth);
       if (!cat[code]) return { error: `${code || args.code} is not in the ${data.edition} catalog` };
-      const completed = new Set(Object.keys(plan.completed).filter((c) => plan.completed[c]));
+      // THE CHAIN IS A BULLETIN FACT; the statuses are a fact about one
+      // student. So the chain answers with or without a Plan, and only
+      // the annotations go missing — "what does MATH 230 require" is
+      // exactly the question the hosted connector exists for, and
+      // refusing it for want of an account would be refusing the easy
+      // half because the hard half is absent.
+      const hasPlan = ctx.plan !== null;
+      const completed = new Set(
+        hasPlan ? Object.keys(plan.completed).filter((c) => plan.completed[c]) : [],
+      );
       const planned = new Map(items.filter((i) => i.kind === "course").map((i) => [i.code!, i.sem]));
       const missing = new Set<string>();
       const seen = new Set<string>();
 
-      interface Node { code: string; title?: string; status: string; prerequisites?: Node[]; note?: string }
+      interface Node { code: string; title?: string; status?: string; prerequisites?: Node[]; note?: string }
       const walk = (c: string, depth: number): Node => {
         const course = cat[c];
-        const status = completed.has(c)
-          ? "completed"
-          : planned.has(c)
-            ? `in plan, ${plan.terms[planned.get(c)!]?.label ?? `term ${planned.get(c)! + 1}`}`
-            : "MISSING";
+        const status = !hasPlan
+          ? undefined
+          : completed.has(c)
+            ? "completed"
+            : planned.has(c)
+              ? `in plan, ${plan.terms[planned.get(c)!]?.label ?? `term ${planned.get(c)! + 1}`}`
+              : "MISSING";
         if (status === "MISSING") missing.add(c);
-        const node: Node = { code: c, title: course?.title, status };
+        const node: Node = { code: c, title: course?.title, ...(status ? { status } : {}) };
         // One call returns the whole tree. A per-step walk blew the message
         // cap and timed out a real conversation (DECISIONS.md 4).
         if (depth >= maxDepth) return { ...node, note: "deeper prerequisites not expanded" };
@@ -462,7 +527,12 @@ export async function executeTool(
       };
 
       const root = walk(code, 0);
-      return { ...root, missing_from_plan: [...missing].filter((m) => m !== code) };
+      // No Plan means no "missing from it". Saying every prerequisite is
+      // missing would read as a judgement about a student who has not
+      // told us anything yet.
+      return hasPlan
+        ? { ...root, missing_from_plan: [...missing].filter((m) => m !== code) }
+        : { ...root, note: "Prerequisite chain from the Bulletin. Sign in to see which of these you already have." };
     }
 
     case "discover_programs": {

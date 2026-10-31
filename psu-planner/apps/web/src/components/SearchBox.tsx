@@ -1,7 +1,7 @@
 /** Toolbar search over the full catalog (lazily loaded on first focus). */
 import { useEffect, useRef, useState } from "react";
 import { qterms, searchCatalog, snippet, type Catalog, type Course } from "@psu-planner/engine";
-import { loadSearchCatalog } from "../data/catalogClient";
+import { loadSearchCatalog, searchRanking } from "../data/catalogClient";
 import { usePlanner } from "../store";
 
 export function SearchBox({ onPick }: { onPick: (course: Course) => void }) {
@@ -42,7 +42,7 @@ export function SearchBox({ onPick }: { onPick: (course: Course) => void }) {
 
   const run = (query: string, cat: Catalog | null) => {
     if (!cat || !query.trim()) { setHits([]); setShow(!!query.trim()); return; }
-    setHits(searchCatalog(cat, query));
+    setHits(searchCatalog(cat, query, 25, searchRanking()));
     setShow(true);
   };
 

@@ -18,7 +18,7 @@ import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { FsCatalogSource, type CatalogSource } from "../src/source.js";
+import { FetchCatalogSource, FsCatalogSource, type CatalogSource } from "../src/source.js";
 
 /** Materialise the contract's files on disk and hand back the root. */
 function writeTree(files: Record<string, string>): string {
@@ -150,6 +150,64 @@ export function describeCatalogSource(name: string, make: (files: Record<string,
 }
 
 describeCatalogSource("the filesystem catalog source", (files) => new FsCatalogSource(writeTree(files)));
+
+/** The hosted source, against a stub standing in for Cloudflare's asset
+ * binding. ONE LINE, and it inherits every assertion above — which is the
+ * reason the contract was written over a factory rather than a directory.
+ * If the two ever answer differently, they fail here rather than when a
+ * student asks their assistant about a Course. */
+describeCatalogSource(
+  "the fetch catalog source",
+  (files) =>
+    new FetchCatalogSource({
+      async fetch(req: Request): Promise<Response> {
+        const rel = decodeURIComponent(new URL(req.url).pathname.replace(/^\//, ""));
+        const body = files[rel];
+        return body === undefined
+          ? new Response("not found", { status: 404 })
+          : new Response(body, { status: 200, headers: { "content-type": "application/json" } });
+      },
+    }),
+);
+
+describe("the fetch catalog source, specifically", () => {
+  const serving = (files: Record<string, string>) =>
+    new FetchCatalogSource({
+      async fetch(req: Request): Promise<Response> {
+        const rel = decodeURIComponent(new URL(req.url).pathname.replace(/^\//, ""));
+        const body = files[rel];
+        return body === undefined
+          ? new Response("not found", { status: 404 })
+          : new Response(body, { status: 200 });
+      },
+    });
+
+  it("treats a 404 as absent rather than as an error", async () => {
+    expect(await serving({}).read("2026-2027/courses/NOPE.json")).toBeNull();
+  });
+
+  it("treats a server error as absent too, rather than throwing mid-answer", async () => {
+    // A 500 from the asset host is not something a student can act on,
+    // and a Course that cannot be read degrades to what the audit index
+    // knows -- the same as a missing file. Throwing here would take out
+    // the whole tool call instead of one Course.
+    const broken = new FetchCatalogSource({
+      async fetch(): Promise<Response> {
+        return new Response("upstream is sad", { status: 500 });
+      },
+    });
+    expect(await broken.read("2026-2027/audit-index.json")).toBeNull();
+  });
+
+  it("survives the fetch itself rejecting", async () => {
+    const offline = new FetchCatalogSource({
+      async fetch(): Promise<Response> {
+        throw new Error("network");
+      },
+    });
+    expect(await offline.read("2026-2027/audit-index.json")).toBeNull();
+  });
+});
 
 describe("the filesystem catalog source, specifically", () => {
   it("falls back to reading the directory when there is no editions index", async () => {

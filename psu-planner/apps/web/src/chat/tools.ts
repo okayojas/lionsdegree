@@ -8,7 +8,7 @@ import {
   type Catalog, type ReqSection, type ScheduleConstraint,
 } from "@psu-planner/engine";
 import { auditIug, fenceCatalogText } from "@psu-planner/engine";
-import { loadCourse, loadCoverage, loadSearchCatalog, loadIug, loadIugIndex, loadProgramBySlug, loadProgramsIndex } from "../data/catalogClient";
+import { loadCourse, loadCoverage, loadSearchCatalog, loadIug, loadIugIndex, loadProgramBySlug, loadProgramsIndex, searchRanking } from "../data/catalogClient";
 import { usePlanner } from "../store";
 import { appendAction, getActions } from "./ledger";
 
@@ -92,7 +92,7 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
       const cat = await fullCatalog();
       const q = String(args.query ?? "");
       const limit = Math.min(Number(args.limit ?? 10), 25);
-      return searchCatalog(cat, q, limit).map((code) => {
+      return searchCatalog(cat, q, limit, searchRanking()).map((code) => {
         const c = cat[code];
         return { code: c.code, display: c.display, title: c.title, credits: c.credits, genEd: c.genEd };
       });

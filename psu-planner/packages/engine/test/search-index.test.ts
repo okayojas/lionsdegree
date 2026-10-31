@@ -1,23 +1,25 @@
-/** The slim search index: every course an Edition publishes, carrying enough
- * to find and schedule a course but not the prose that dominates the Catalog's
- * size.
+/** Search quality against the slim catalog.
  *
- * NOW AN MCP-PACKAGE ARTIFACT (#29). The web app no longer reads it — the
- * audit reads `audit-index.json`, search adds `search-postings.json`, and
- * course detail reads the subject file — and it is deliberately excluded from
- * the web catalog sync, because one 2.4 MB file on the path every student
- * waits on is the whole of #24.
+ * THE ARTIFACT MOVED TWICE AND THIS SUITE WENT QUIET. It used to read
+ * `search-index.json`; #29 took that off the web's boot path and #31
+ * removed it from the MCP package too, which left every case here
+ * skipping on a missing file — a search-quality guard that had stopped
+ * guarding anything while still appearing in the run.
  *
- * It survives because `packages/mcp` requires it: that package bundles its own
- * catalog, cannot reasonably carry the full one, and has no boot-time
- * constraint. So the tests follow it to where it now lives rather than
- * asserting against a file the web app stopped shipping. */
+ * It now reads what actually ships: `audit-index.json` for the Courses
+ * and `search-postings.json` for the ranking, which is the pair the
+ * hosted connector searches with. Same question as before — does the
+ * slim catalog return what the full one would — asked of the files that
+ * exist. */
 import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import zlib from "node:zlib";
-import { buildCatalog, hydrateSearchIndex, searchCatalog, type Course } from "../src/index.js";
+import {
+  buildCatalog, buildSearchRanking, hydrateAuditRow, searchCatalog,
+  type AuditIndexFile, type Course, type SearchRanking,
+} from "../src/index.js";
 import { CATALOG_DIR, CATALOG_ROOT, latestEdition } from "./edition.js";
 
 /** The MCP package's bundled catalog, which is where this artifact lives now.
@@ -29,13 +31,24 @@ const MCP_CATALOG = path.resolve(
 );
 const mcpEdition = fs.existsSync(path.join(MCP_CATALOG, latestEdition()))
   ? latestEdition()
-  : (fs.existsSync(MCP_CATALOG) ? (fs.readdirSync(MCP_CATALOG).filter((d) => fs.existsSync(path.join(MCP_CATALOG, d, "search-index.json")))[0] ?? "") : "");
+  : (fs.existsSync(MCP_CATALOG) ? (fs.readdirSync(MCP_CATALOG).filter((d) => fs.existsSync(path.join(MCP_CATALOG, d, "audit-index.json")))[0] ?? "") : "");
 const MCP_DIR = mcpEdition ? path.join(MCP_CATALOG, mcpEdition) : "";
-const indexPath = MCP_DIR ? path.join(MCP_DIR, "search-index.json") : "";
-const haveIndex = Boolean(indexPath) && fs.existsSync(indexPath);
+const indexPath = MCP_DIR ? path.join(MCP_DIR, "audit-index.json") : "";
+const postingsPath = MCP_DIR ? path.join(MCP_DIR, "search-postings.json") : "";
+const haveIndex = Boolean(indexPath) && fs.existsSync(indexPath) && fs.existsSync(postingsPath);
 
 function slim(): Course[] {
-  return hydrateSearchIndex(JSON.parse(fs.readFileSync(indexPath, "utf-8")));
+  const file = JSON.parse(fs.readFileSync(indexPath, "utf-8")) as AuditIndexFile;
+  return file.courses.map(hydrateAuditRow);
+}
+
+/** The body signal the hosted connector loads on first search. */
+function ranking(): SearchRanking {
+  const f = JSON.parse(fs.readFileSync(postingsPath, "utf-8")) as {
+    terms: string[];
+    postings: Record<string, number[]>;
+  };
+  return buildSearchRanking(f.terms, f.postings);
 }
 
 /** Every course in the full Catalog, read the slow way, for comparison. */
@@ -63,15 +76,22 @@ describe.skipIf(!haveIndex)("the slim search index (MCP bundle)", () => {
     expect(missing.slice(0, 10)).toEqual([]);
   });
 
-  it("carries what scheduling needs: credits, prerequisites and gen-ed tags", () => {
+  it("carries what the audit needs, and says plainly what it does not", () => {
+    // Credits and gen-ed designations ARE here: the audit reasons about
+    // every Course in the catalog and those are what it reads.
     const by = new Map(slim().map((c) => [c.code, c]));
-    // MATH 141 has a real prerequisite and a GQ designation; if the index
-    // dropped either, prereq chains and gen-ed audits would quietly weaken.
     const m = by.get("MATH 141");
     expect(m).toBeDefined();
     expect(m!.creditsParsed?.min).toBeGreaterThan(0);
-    expect(m!.prereqAst).not.toBeNull();
     expect(by.get("ENGL 015")?.genEd ?? by.get("ENGL 15")?.genEd).toBeDefined();
+
+    // Prerequisites are NOT, and that is the design rather than a gap —
+    // they live in the subject file, loaded for the Courses that need
+    // them (#31). What matters is that a row without them SAYS so:
+    // `astComplete: false` is what stops a prerequisite check reporting
+    // "satisfied" on structure nobody read (iron rule 2).
+    expect(m!.prereqAst, "an audit row invented a prerequisite tree").toBeNull();
+    expect(m!.astComplete, "an audit row claimed complete prerequisites").toBe(false);
   });
 
   it("is small enough to download on a phone", () => {
@@ -97,19 +117,27 @@ describe.skipIf(!haveIndex)("the slim search index (MCP bundle)", () => {
     // results merely exist is how a search regression ships.
     const slimCat = buildCatalog(slim());
     const fullCat = buildCatalog(fullCourses());
+    const rank = ranking();
     for (const q of ["robotics", "public speaking", "machine learning", "thermodynamics"]) {
+      // The full catalog carries descriptions, so it ranks on them
+      // directly; the slim one needs the postings handed to it. Same
+      // signal, two routes to it — which is exactly what is being
+      // compared.
       const want = searchCatalog(fullCat, q, 25);
-      const got = new Set(searchCatalog(slimCat, q, 25));
+      const got = new Set(searchCatalog(slimCat, q, 25, rank));
       const kept = want.filter((c) => got.has(c)).length / Math.max(want.length, 1);
       expect(kept, `${q}: only ${(100 * kept).toFixed(0)}% of the full catalog's top 25 survived`).toBeGreaterThanOrEqual(0.9);
     }
-    expect(searchCatalog(slimCat, "CMPSC 465", 10)).toContain("CMPSC 465");
+    expect(searchCatalog(slimCat, "CMPSC 465", 10, rank)).toContain("CMPSC 465");
   });
 
-  it("keeps the bulletin link, which the chat hands to students", () => {
-    // Dropping `url` saved 0.01 MB compressed and made every bulletin link
-    // an empty string.
-    expect(slim().filter((c) => c.url).length).toBeGreaterThan(1000);
+  it("leaves the bulletin link to the subject file, and says so", () => {
+    // The audit index deliberately carries no `url` -- 11% of the old
+    // combined file for 526 distinct values (#24). `get_course_details`
+    // loads the subject file, which has it. What matters is that an
+    // audit row does not pretend to one: an empty string rendered as a
+    // link is worse than a tool that goes and fetches the real thing.
+    expect(slim().every((c) => c.url === "")).toBe(true);
   });
 
   it("is produced for every Edition the MCP package bundles", () => {
@@ -123,7 +151,7 @@ describe.skipIf(!haveIndex)("the slim search index (MCP bundle)", () => {
       .filter((e) => e.isDirectory())
       .map((e) => e.name);
     expect(bundled.length, "the MCP package bundles no edition at all").toBeGreaterThan(0);
-    const missing = bundled.filter((ed) => !fs.existsSync(path.join(MCP_CATALOG, ed, "search-index.json")));
+    const missing = bundled.filter((ed) => !fs.existsSync(path.join(MCP_CATALOG, ed, "audit-index.json")));
     expect(missing, "editions bundled without a course index").toEqual([]);
   });
 

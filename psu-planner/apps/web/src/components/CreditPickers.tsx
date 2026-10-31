@@ -2,7 +2,7 @@
  * search. Both emit course codes that join the "completed" set. */
 import { useEffect, useRef, useState } from "react";
 import { searchCatalog, type Catalog } from "@psu-planner/engine";
-import { loadApCredits, loadSearchCatalog, type ApExam } from "../data/catalogClient";
+import { loadApCredits, loadSearchCatalog, type ApExam, searchRanking } from "../data/catalogClient";
 
 
 
@@ -64,7 +64,7 @@ export function CourseSearchPicker({ onAdd, placeholder }: { onAdd: (code: strin
   const timer = useRef<ReturnType<typeof setTimeout>>();
 
   const run = (query: string, cat: Catalog | null) => {
-    setHits(cat && query.trim() ? searchCatalog(cat, query, 8) : []);
+    setHits(cat && query.trim() ? searchCatalog(cat, query, 8, searchRanking()) : []);
   };
 
   return (

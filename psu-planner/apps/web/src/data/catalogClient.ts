@@ -1,6 +1,6 @@
 /** Loads pipeline-produced static catalog files (served from /catalog in dev,
  * CDN in prod) and assembles the runtime Catalog for the courses a plan needs. */
-import { astCourses, buildCatalog, clearSearchPostings, hydrateAuditRow, loadSearchPostings, type AuditRow, type Catalog, type Course, type FlowchartPatterns, type IugSpec } from "@psu-planner/engine";
+import { astCourses, buildCatalog, buildSearchRanking, hydrateAuditRow, NO_RANKING, type AuditRow, type SearchRanking, type Catalog, type Course, type FlowchartPatterns, type IugSpec } from "@psu-planner/engine";
 
 const ROOT = "/catalog";
 
@@ -60,7 +60,10 @@ export function setCatalogEdition(next: string): void {
   apCache = null;
   auditIndexPromise = null;
   postingsPromise = null;
-  clearSearchPostings();
+  // The ranking's term ids index a SPECIFIC Edition's dictionary, so it
+  // goes with the memo. Scoring stops rather than scoring wrongly: code
+  // and title still rank (ADR 0001).
+  ranking = NO_RANKING;
 }
 
 export function currentEdition(): string | null {
@@ -332,6 +335,20 @@ export async function loadAuditIndex(): Promise<Catalog> {
 
 let postingsPromise: Promise<void> | null = null;
 
+/** The body signal for the Edition currently being shown.
+ *
+ * ONE at a time, which is all a browser ever needs — the planner shows a
+ * single bulletin and clears this on switch. It is a value rather than
+ * engine module state because the hosted connector serves many Editions
+ * from one isolate and could not share a global; keeping the engine free
+ * of that global is what makes both possible. */
+let ranking: SearchRanking = NO_RANKING;
+
+/** The ranking for whatever Edition is loaded, for callers that search. */
+export function searchRanking(): SearchRanking {
+  return ranking;
+}
+
 /** The body signal for ranking, fetched the first time anyone searches (#28).
  *
  * 1,263 KB gzipped of posting lists that mean nothing until a student types.
@@ -351,7 +368,7 @@ async function ensureSearchPostings(): Promise<void> {
     // index THIS edition's dictionary, and loading them under another
     // bulletin's would score against the wrong vocabulary (ADR 0001).
     if (at !== generation) return;
-    loadSearchPostings(raw.terms ?? [], raw.postings ?? {});
+    ranking = buildSearchRanking(raw.terms ?? [], raw.postings ?? {});
   })().catch((e) => {
     console.warn("[search] ranking data unavailable; falling back to code and title", e);
     postingsPromise = null;

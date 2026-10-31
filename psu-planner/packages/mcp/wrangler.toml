@@ -1,0 +1,30 @@
+# The hosted connector (#33).
+#
+# Catalog as STATIC ASSETS, not bundled into the script. The audit index
+# alone is 2 MB and the subject files another 12, which no Worker script
+# limit accommodates — and bundling them would also mean parsing
+# everything to answer anything. As assets they are fetched per path, on
+# demand, by `FetchCatalogSource`.
+#
+# `binding` rather than a public route: the catalog is read by this
+# Worker, not served to the internet. `assets.directory` is the tree
+# `scripts/sync-catalog.mjs` writes.
+
+name = "lionsdegree-mcp"
+main = "src/worker.ts"
+compatibility_date = "2026-10-01"
+
+# `nodejs_compat` for the SDK's few Node built-in imports on paths this
+# Worker does not take (the stdio transport, mostly). Without it the
+# bundler fails on the import graph rather than at runtime.
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./catalog"
+binding = "CATALOG"
+
+[observability]
+enabled = true
+
+[placement]
+mode = "smart"

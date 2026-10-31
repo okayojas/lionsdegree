@@ -36,10 +36,12 @@ import {
   buildCatalog,
   hydrateAuditRow,
   isAuditIndex,
-  loadSearchPostings,
+  buildSearchRanking,
+  NO_RANKING,
   subjectOf,
   type AuditIndexFile,
   type Catalog,
+  type SearchRanking,
   type Course,
   type ProgramRequirements,
 } from "@psu-planner/engine";
@@ -91,9 +93,20 @@ export interface EditionCatalog {
 
   /** Load the ranking data that search scores descriptions with.
    *
-   * Separate because it is 7.8 MB that does nothing until a query arrives,
-   * and most sessions never search. */
+   * Separate because it is tens of megabytes of heap that does nothing
+   * until a query arrives, and most sessions never search. */
   ensureSearchRanking(): Promise<void>;
+
+  /** The body signal for THIS Edition.
+   *
+   * Held here rather than in engine module state, which is what it used
+   * to be. One isolate serves many students and the second Edition to
+   * load replaced the first's dictionary globally — Edition A then
+   * scored against Edition B's vocabulary, permanently, because the
+   * loader's memo recorded the work as done. Term ids index a specific
+   * dictionary; a stale one across an Edition change is a correctness
+   * bug (ADR 0001). */
+  readonly ranking: SearchRanking;
 }
 
 /** Where a subject's files live, from the catalog's own index.
@@ -174,6 +187,7 @@ export async function loadEdition(source: CatalogSource, edition: string): Promi
   const subjects: SubjectsIndex = subjectsRaw;
   const loadedSubjects = new Map<string, Promise<Course[]>>();
   let rankingLoaded: Promise<void> | null = null;
+  let ranking: SearchRanking = NO_RANKING;
 
   /** Read one subject's files and fold them into the catalog. Returns the
    * Courses added, so the caller can look at their prerequisites. */
@@ -209,6 +223,9 @@ export async function loadEdition(source: CatalogSource, edition: string): Promi
     catalog,
     programs,
     programsIndex,
+    get ranking() {
+      return ranking;
+    },
     coveredBy: Object.fromEntries(
       Object.entries(coverage.coveredBy ?? {}).map(([k, v]) => [k, v.map((x) => x.by)]),
     ),
@@ -258,7 +275,7 @@ export async function loadEdition(source: CatalogSource, edition: string): Promi
         );
         // No postings is not an error: search still ranks on code and
         // title, which is honest degradation rather than a broken tool.
-        if (file?.terms && file.postings) loadSearchPostings(file.terms, file.postings);
+        if (file?.terms && file.postings) ranking = buildSearchRanking(file.terms, file.postings);
       })();
       await rankingLoaded;
     },

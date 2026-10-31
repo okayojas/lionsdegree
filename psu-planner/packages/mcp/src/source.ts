@@ -118,3 +118,58 @@ export class FsCatalogSource implements CatalogSource {
       .sort();
   }
 }
+
+/** Anything that answers a `Request` with a `Response`.
+ *
+ * Cloudflare's static-asset binding has exactly this shape, and so does
+ * `globalThis.fetch`. Taking the narrow interface rather than the binding
+ * type keeps this file free of Workers types and testable with a stub. */
+export interface Fetcher {
+  fetch(request: Request): Promise<Response>;
+}
+
+/** The catalog served over HTTP, for the hosted connector.
+ *
+ * The Worker cannot hold the catalog in memory — 128 MB against a
+ * measured 64 MB for the old combined index, before anything else — so it
+ * reads the slim audit index at startup and everything else on demand.
+ * This is the half that goes and gets it.
+ *
+ * `base` is only ever used to make the path absolute for the binding; the
+ * host is irrelevant and never reached. */
+export class FetchCatalogSource implements CatalogSource {
+  constructor(
+    private readonly assets: Fetcher,
+    private readonly base = "https://catalog.invalid/",
+  ) {}
+
+  async read<T>(relPath: string): Promise<T | null> {
+    const safe = assertInsideCatalog(relPath);
+    try {
+      const res = await this.assets.fetch(new Request(new URL(safe, this.base).toString()));
+      // ABSENT, UPSTREAM-BROKEN AND UNPARSEABLE ALL READ AS NULL, on
+      // purpose. The caller already distinguishes what it can do without
+      // — a missing subject file degrades a Course to what the audit
+      // index knows, a missing audit index is fatal — and it makes that
+      // judgement from the path it asked for, not from an HTTP status it
+      // would have to learn to interpret. A 500 from the asset host is
+      // not a different kind of "we do not have this" to a student.
+      if (!res.ok) return null;
+      return (await res.json()) as T;
+    } catch {
+      // A rejected fetch, a body that is not JSON, an aborted stream.
+      // Same answer: we do not have it.
+      return null;
+    }
+  }
+
+  async editions(): Promise<string[]> {
+    // No directory listing over HTTP, which is why `editions.json` is
+    // written by sync-catalog rather than inferred. The filesystem source
+    // can fall back to reading the directory; this one has nothing to
+    // fall back to, so an absent index means an empty catalog and the
+    // loader says so loudly.
+    const index = await this.read<{ editions?: string[] }>("editions.json");
+    return index?.editions ?? [];
+  }
+}
