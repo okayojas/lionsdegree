@@ -195,10 +195,37 @@
       <div class="coda">
         <section id="about">
           <h2>About</h2>
-          <p>One person's side project, started September 2026, because planning
-            a Penn State degree means holding four documents open at once and
-            everyone ends up building the same slightly-wrong spreadsheet.
-            <a href="https://github.com/okayojas/lionsdegree">Open source under Apache 2.0</a>.</p>
+          <!-- A person, not a project description. The previous version
+               opened "One person's side project" and never said who the
+               person was, which is the one thing an About section owes a
+               reader. The photo is part of that: a tool that tells you your
+               degree is wrong is easier to trust when you can see who built
+               it and that he is a student too. -->
+          <div class="bio">
+            <!-- PHOTO GOES HERE. Drop the file at public/about-ojas.jpg and
+                 uncomment; the layout already reserves the column for it and
+                 collapses to one column without it, so this is the only edit
+                 needed. Left commented rather than pointing at a file that
+                 does not exist, which ships a broken-image icon next to
+                 someone's name and fails the image-budget test.
+            <img class="bio-photo" src="/about-ojas.jpg" width="320" height="320"
+                 alt="Ojas Khadakban" loading="lazy" decoding="async" />
+            -->
+            <div class="bio-text">
+              <p>I'm <strong>Ojas Khadakban</strong>, a Penn State student
+                studying Engineering Science and AI Engineering. I build things with AI for a living and
+                for fun — AI engineering is the work I want to do, and this is
+                the project where I learned most of it.</p>
+              <p>LionsDegree started because planning a degree here means
+                holding four documents open at once, and every student I know
+                ends up building the same slightly-wrong spreadsheet. I got
+                tired of it and built the thing I wanted instead: it reads the
+                Bulletin itself, so it knows what actually depends on what.</p>
+              <p>It's free and it always will be.
+                <a href="https://github.com/okayojas/lionsdegree">The whole thing is open source</a>,
+                Apache 2.0 — read it, fork it, tell me where it's wrong.</p>
+            </div>
+          </div>
         </section>
 
         <section id="contact">

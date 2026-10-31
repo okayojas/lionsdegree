@@ -564,11 +564,14 @@ test.describe("about and contact", () => {
     await page.goto("/");
     const about = page.locator("#about");
     await expect(about.getByRole("heading")).toBeVisible();
-    // It is one person's side project. Copy implying a team or a company
-    // would be the kind of small lie that makes the honest parts read as
-    // marketing too.
+    // One student, named. Copy implying a team or a company would be the
+    // kind of small lie that makes the honest parts read as marketing too --
+    // and the opposite failure is just as bad: the section used to open
+    // "one person's side project" and never say WHO, which is the one thing
+    // an About section owes a reader. So the test asks for a name.
     const text = (await about.innerText()).toLowerCase();
-    expect(text).toMatch(/one person|side project/);
+    expect(text, "about does not say who built this").toMatch(/ojas/);
+    expect(text, "about does not say they are a student").toMatch(/student/);
     expect(text, "about claims a team that does not exist").not.toMatch(/\bour team\b|\bwe are a company\b/);
     // The claim a reader can check for themselves.
     await expect(about.getByRole("link", { name: /github|open source/i })).toBeVisible();
@@ -677,5 +680,64 @@ test.describe("entering and re-entering the page", () => {
     await settle(page);
     const top = await page.evaluate(() => document.getElementById("about")?.getBoundingClientRect().top ?? 9999);
     expect(Math.abs(top), `#about sits ${Math.round(top)}px from the top of the viewport`).toBeLessThan(200);
+  });
+});
+
+test.describe("the first second of the page", () => {
+  /** THE GRAPHIC GLITCH ON LOAD. The static SVG chain is the no-JavaScript
+   * fallback, so it is in the markup and paints immediately, carrying its
+   * own 1.6s line-draw. The 3D chunk lands around 700ms later and clips it
+   * away -- so the reader watched a flat transit diagram start drawing
+   * itself and then vanish mid-stroke.
+   *
+   * It is now held back from the moment the guards say the scene is
+   * coming, and released again by every path that gives up on it. The
+   * release half is the one that matters: holding it forever would mean a
+   * reader with no WebGL sees an empty page where the illustration is. */
+  test("never shows the static chain when the 3D is coming", async ({ page }) => {
+    await page.goto("/");
+    // Sampled across the window the flash used to live in.
+    const seen: string[] = [];
+    for (let i = 0; i < 10; i++) {
+      // OPACITY, not `visibility`: the chain has to stay in the
+      // accessibility tree the whole time (see "keeps an accessible
+      // description" above), so invisibility here can only ever mean
+      // opacity 0. Asserting on `visibility` would pass for an
+      // implementation that broke the screen-reader description.
+      seen.push(
+        await page.evaluate(() => {
+          const el = document.querySelector(".journey-static");
+          return el ? getComputedStyle(el).opacity : "absent";
+        }),
+      );
+      await page.waitForTimeout(120);
+    }
+    const mounted = await page.evaluate(() => !!document.querySelector(".journey-canvas"));
+    test.skip(!mounted, "the 3D never mounted in this profile, so there was nothing to hide for");
+    expect(seen.filter((v) => v !== "0"), "the static chain was visible before the scene arrived").toEqual([]);
+    // And it is still announced, invisible or not.
+    await expect(page.getByRole("img", { name: /prerequisite chain/i })).toHaveCount(1);
+  });
+
+  test("shows the static chain when the 3D chunk cannot be fetched", async ({ page }) => {
+    // Offline, blocked by an extension, or a chunk that never shipped. The
+    // page is complete without the scene and has to look it.
+    await page.route("**/*journey*.js", (r) => r.abort());
+    await page.goto("/");
+    await page.waitForTimeout(2200);
+    const el = page.locator(".journey-static");
+    await expect(el, "the fallback illustration stayed hidden after the 3D failed").toBeVisible();
+    expect(await page.evaluate(() => !!document.querySelector(".journey-canvas"))).toBe(false);
+  });
+
+  test("shows the static chain for a reader who asked for no motion", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/");
+    await page.waitForTimeout(1500);
+    await expect(page.locator(".journey-static")).toBeVisible();
+    expect(
+      await page.evaluate(() => !!document.querySelector(".journey-canvas")),
+      "the 3D mounted for a reader who asked for reduced motion",
+    ).toBe(false);
   });
 });

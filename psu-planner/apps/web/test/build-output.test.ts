@@ -172,7 +172,12 @@ describe("the landing document", () => {
     // Images are the largest contentful paint here, so their weight is what a
     // student on a phone actually waits for. The brand mark alone was 192 KB
     // of full-depth PNG for four flat colours before it was quantised.
-    const srcs = [...read("index.html").matchAll(/<img\b[^>]*\bsrc="(\/[^"]+)"/g)].map((m) => m[1]);
+    // Comments stripped first: a commented-out <img> is not a reference, it
+    // is markup parked for later, and the browser never fetches it. Scanning
+    // the raw text counted one and reported the page as carrying an image
+    // that does not exist.
+    const markup = read("index.html").replace(/<!--[\s\S]*?-->/g, "");
+    const srcs = [...markup.matchAll(/<img\b[^>]*\bsrc="(\/[^"]+)"/g)].map((m) => m[1]);
     expect(srcs, "no brand mark in the built page").toContain("/mark.png");
     // The product screenshot assertion was removed with the screenshots. The
     // page's imagery is now the live prerequisite scene and the static chain
@@ -180,7 +185,17 @@ describe("the landing document", () => {
     // pictures of the same claim. The weight limits below still bind
     // whatever images the page does carry.
 
-    const kb = (s: string) => fs.statSync(path.join(dist, s.slice(1))).size / 1024;
+    // Names the file rather than letting `statSync` throw ENOENT with a
+    // path and no explanation. A referenced image that is not in the build
+    // is a broken-image icon on the live page, so this should read as the
+    // bug it is.
+    const kb = (s: string) => {
+      const file = path.join(dist, s.slice(1));
+      if (!fs.existsSync(file)) {
+        throw new Error(`the landing page references ${s}, which is not in the build — add the file or drop the reference`);
+      }
+      return fs.statSync(file).size / 1024;
+    };
     for (const s of srcs) expect(kb(s), `${s} is ${kb(s).toFixed(0)} KB on its own`).toBeLessThan(140);
     // DISTINCT files: the hero shot illustrates a feature section too, and
     // the browser fetches it once.
@@ -469,6 +484,16 @@ describe("the coverage figure", () => {
   it("states a percentage, not a placeholder", () => {
     expect(html(), "a %COVERAGE_% placeholder shipped as literal text").not.toContain("%COVERAGE");
     expect(html()).toMatch(/<strong>\d{1,3}%<\/strong>/);
+  });
+
+  it("ships no unsubstituted placeholder of any kind", () => {
+    // The check above only knew about %COVERAGE_%. Any %SHOUTING_TOKEN% in
+    // the output is a substitution that was written into the markup and
+    // never wired into vite.config -- it renders as literal percent-signed
+    // text on the live page, which is the single most embarrassing class of
+    // bug this site can ship. Catching the SHAPE catches the next one too.
+    const strays = [...read("index.html").matchAll(/%[A-Z][A-Z0-9_]{2,}%/g)].map((m) => m[0]);
+    expect([...new Set(strays)], "unsubstituted placeholders reached the built page").toEqual([]);
   });
 
   it("matches what the shipped catalog actually computes to", () => {

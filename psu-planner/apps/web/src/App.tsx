@@ -166,8 +166,23 @@ export default function App() {
         )}
         <div className="spacer" />
         <div className="progress" role="status" aria-label="Degree progress">
+          {/* Two spellings of one number, because a phone cannot fit the
+              sentence: at 412px "7 of 128 credits completed" wrapped onto
+              four lines and ran into the next control. CSS cannot split a
+              text node, so the short form is markup.
+              NOT aria-hidden, and the long form is never `display: none` --
+              only visually hidden on narrow screens. This is a live region:
+              what a screen reader announces when the number changes is the
+              CONTENT, so removing the sentence from the content would leave
+              it reading out "7/128 cr". The wrapper keeps "Degree progress"
+              as its name; the sentence stays in the content for everyone. */}
           <span className="lbl">
-            {String(done).replace(/\.0$/, "")} of {String(total).replace(/\.0$/, "")} credits completed
+            <span className="lbl-long">
+              {String(done).replace(/\.0$/, "")} of {String(total).replace(/\.0$/, "")} credits completed
+            </span>
+            <span className="lbl-short">
+              {String(done).replace(/\.0$/, "")}/{String(total).replace(/\.0$/, "")} cr
+            </span>
           </span>
           <div className="bar"><div className="fill" style={{ width: total ? `${(done / total) * 100}%` : 0 }} /></div>
         </div>

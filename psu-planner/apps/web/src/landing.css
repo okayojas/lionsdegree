@@ -441,6 +441,7 @@
      returns before the import), so only the static diagram needs settling. */
   .journey-static .route-line { animation: none; stroke-dashoffset: 0; }
   .journey-static .route-stop { animation: none; opacity: 1; }
+  .journey-static, .journey-verdict { animation: none; }
   .jd-body { transition: none; }
   .menu.is-open a { animation: none; }
   .landing * { transition: none !important; }
@@ -484,6 +485,39 @@
   width: min(var(--measure), 100% - var(--gutter) * 2);
   margin-inline: auto;
 }
+/* Held back while the 3D is on its way, released the moment anything says
+   it is not coming (reveal.ts). `visibility`, not `display`, so the box
+   keeps its size and the page does not reflow when the scene arrives.
+
+   The fade covers the few milliseconds before the deferred module runs: a
+   reader who IS getting the static chain sees it arrive deliberately, and
+   a reader who is not never sees it at all. */
+.journey-static,
+.journey-verdict {
+  animation: jn-arrive .45s var(--ease-out) .2s both;
+}
+@keyframes jn-arrive { from { opacity: 0; } to { opacity: 1; } }
+
+/* OPACITY, NOT `visibility` OR `display`. The SVG carries the journey's
+   accessible description -- `role="img"` with the whole conflict spelled
+   out in its label -- and both of those properties take an element out of
+   the accessibility tree. An earlier `display: none` here removed the
+   description and nothing caught it; `visibility: hidden` is the same
+   mistake wearing different clothes. Opacity hides it from sight, keeps it
+   in the tree, and keeps its box so nothing reflows when the scene lands. */
+.journey-pending .journey-static,
+.journey-pending .journey-verdict {
+  animation: none;
+  opacity: 0;
+}
+/* Held at the END of the draw rather than paused part-way. If the chain is
+   ever released -- the chunk failed, WebGL died -- it should fade in
+   complete, not resume a line-draw the reader never saw start. Pausing left
+   every stop at opacity 0 forever, which is a half-finished illustration
+   that merely happened to be invisible. */
+.journey-pending .journey-static .route-line { animation: none; stroke-dashoffset: 0; }
+.journey-pending .journey-static .route-stop { animation: none; opacity: 1; }
+
 .journey-static svg { width: 100%; height: auto; overflow: visible; }
 .journey-static .route-line { fill: none; stroke: var(--primary); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 1600; stroke-dashoffset: 1600; animation: route-draw 1.6s var(--ease-out) forwards; }
 .journey-static .route-branch { fill: none; stroke: var(--warning); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 6 7; opacity: .85; }
@@ -583,6 +617,35 @@
   font-weight: 500; margin: 0 0 var(--sp-3);
 }
 .coda p { color: var(--text-muted); line-height: 1.65; margin: 0; }
+
+/* ── The bio ─────────────────────────────────────────────────────────
+   Photo beside the words on anything wider than a phone, stacked below
+   it. The photo is decorative in the sense that the text stands alone
+   without it -- but it carries the alt text anyway, because "who wrote
+   this" is exactly the question a reader who cannot see it is asking. */
+/* One column until there is a photo to put beside the words. `:has` means
+   dropping the <img> in is the only edit required -- no paired CSS change
+   to forget. */
+.bio { display: grid; gap: clamp(1.25rem, 4vw, 2rem); align-items: start; }
+.bio:has(.bio-photo) { grid-template-columns: 8.5rem 1fr; }
+.bio-photo {
+  width: 8.5rem; height: 8.5rem; border-radius: var(--r-lg);
+  object-fit: cover; display: block;
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow);
+  /* A tinted block while it loads and if it never arrives, so the layout
+     does not jump and a missing file is not a broken-image icon next to
+     someone's name. */
+  background: var(--surface-2);
+}
+.bio-text { display: grid; gap: var(--sp-4); }
+.bio-text p { margin: 0; }
+.bio-text strong { color: var(--text); font-weight: 700; }
+
+@media (max-width: 34rem) {
+  .bio:has(.bio-photo) { grid-template-columns: 1fr; }
+  .bio-photo { width: 6.5rem; height: 6.5rem; }
+}
 
 @media (max-width: 64rem) {
   .scene { max-width: none; }

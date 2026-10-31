@@ -129,8 +129,14 @@ test.describe("the menu", () => {
     await expect(menu).toBeVisible();
     const bar = await page.locator(".toolbar").boundingBox();
     const box = await menu.boundingBox();
-    const fromRight = bar!.x + bar!.width - (box!.x + box!.width);
-    expect(fromRight, "the menu is not at the trailing edge of the toolbar").toBeLessThan(80);
+    // Only where the toolbar is a single row. On a phone it wraps to two by
+    // design, so "the trailing edge" is not a position anything occupies and
+    // asserting it would be measuring the wrong layout. The toolbar's own
+    // one-row budget below covers every width where this claim applies.
+    if (bar!.height < 70) {
+      const fromRight = bar!.x + bar!.width - (box!.x + box!.width);
+      expect(fromRight, "the menu is not at the trailing edge of the toolbar").toBeLessThan(80);
+    }
 
     await menu.click();
     const panel = page.locator(".toolbar-menu");
@@ -151,4 +157,37 @@ test.describe("the menu", () => {
     await expect(page.locator(".pagemenu-panel a", { hasText: "Home" })).toBeVisible();
     await expect(page.locator(".pagemenu-panel a[href='/connect/']")).toBeVisible();
   });
+});
+
+test.describe("the toolbar", () => {
+  /** It wrapped to two and three rows across every ordinary laptop width.
+   * MEASURED before: 107px at 1280 and at 1024, 156px at 820, against a
+   * 56px single row. The Menu button ended up alone on a second line, which
+   * reads as a broken header rather than a responsive one.
+   *
+   * This was NOT introduced by the controls work -- it predates it -- but a
+   * header that silently grows a second row is exactly the kind of thing
+   * nothing fails on, so it gets a number. */
+  const ONE_ROW_MAX = 70; // a single row measures 56
+
+  for (const width of [820, 1024, 1280, 1366, 1440, 1920]) {
+    test(`fits on one row at ${width}px`, async ({ page }) => {
+      test.skip(
+        (page.viewportSize()?.width ?? 0) < 700,
+        "phone profile: the toolbar collapses and the chart becomes a list",
+      );
+      await page.addInitScript(
+        ([k, p]) => window.localStorage.setItem(k as string, p as string),
+        ["psu-planner-plan-v1", JSON.stringify(SEEDED_PLAN)] as const,
+      );
+      await page.setViewportSize({ width, height: 820 });
+      await page.goto("/plan/");
+      await page.locator(".card").first().waitFor({ timeout: 60_000 }).catch(() => {});
+      const box = await page.locator(".toolbar").boundingBox();
+      expect(
+        box!.height,
+        `the toolbar is ${Math.round(box!.height)}px tall at ${width}px — it has wrapped`,
+      ).toBeLessThan(ONE_ROW_MAX);
+    });
+  }
 });

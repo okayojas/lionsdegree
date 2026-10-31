@@ -251,10 +251,15 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
      flexes gets squeezed to nothing between them -- it measured 18px. The
      spacer is a desktop layout device; give the field a row of its own. */
   .toolbar .spacer { display: none; }
-  .progress { min-width: 0; flex: 1; }
+  .progress { min-width: 0; flex: 0 0 auto; }
+  /* The long/short label swap is NOT here. This block sits above the base
+     `.progress .lbl-short { display: none }` declaration, and a media query
+     adds no specificity -- so the later base rule won and the phone showed
+     neither spelling. It lives at the foot of this file instead. */
 }
 .progress { display: flex; flex-direction: column; gap: 4px; min-width: 190px; }
-.progress .lbl { font-size: var(--fs-xs); color: var(--text-muted); }
+.progress .lbl { font-size: var(--fs-xs); color: var(--text-muted); white-space: nowrap; }
+.progress .lbl-short { display: none; }
 .progress .bar { height: 6px; background: var(--surface-2); border-radius: var(--r-full); position: relative; }
 .progress .fill { height: 100%; background: var(--primary); border-radius: var(--r-full); transition: width .4s var(--ease-out); position: relative; }
 .progress .fill::after {  /* "you are here" station marker */
@@ -269,7 +274,44 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 .legend .line.red { border-top-color: var(--danger); }
 /* Decorative, aria-hidden, and three lines tall on a phone. The edges it
    describes are not legible at that width anyway. */
-@media (max-width: 760px) { .legend { display: none; } }
+/* The legend goes well before a phone. MEASURED: at 1280 and 1366 -- the
+   two most common laptop widths -- the toolbar wrapped to two rows and
+   dropped Sign in and Menu onto the second, which reads as a broken header
+   rather than a responsive one. The legend is ~350px of the row and the
+   least load-bearing thing in it: the chart's line styles are also
+   explained in the course modal, and a solid-vs-dashed-vs-red key is not
+   what a student came to the page for. Everything else in the toolbar is a
+   control.
+
+   1400px, not 1280, so there is room to spare rather than the layout
+   sitting exactly on the edge of wrapping. */
+@media (max-width: 1400px) { .legend { display: none; } }
+
+/* Below the legend's breakpoint the row is still tight on a small laptop or
+   an iPad in landscape: MEASURED, the Menu button alone wrapped to a second
+   line at 1024. The search field is the one item that can give up width
+   without losing a function -- it is a text input, and a narrower one still
+   takes the same query. The progress readout shrinks with it.
+
+   A `min-width: 0` is required for either to shrink at all: a flex item
+   will not go below its content's intrinsic width without it, which is why
+   setting `width` alone did nothing the first time. */
+@media (max-width: 1400px) {
+  .toolbar .searchbox { min-width: 0; flex: 1 1 14rem; }
+  .toolbar .searchbox input { width: 100%; min-width: 0; }
+  .toolbar .progress { min-width: 140px; }
+}
+
+/* A tablet in portrait, which is above the 760px breakpoint where the chart
+   becomes a list and so still gets the full toolbar. MEASURED at 820px: two
+   rows even after the rules above. The credits READOUT stays -- it is the
+   one number a student opens this page to see -- and the bar under it goes,
+   since it says the same thing less precisely. */
+@media (max-width: 920px) {
+  .toolbar .searchbox { flex: 1 1 8rem; }
+  .toolbar .progress { min-width: 0; }
+  .toolbar .progress .bar { display: none; }
+}
 
 /* ---------- flowchart (the route map) ---------- */
 .viewport {
@@ -924,3 +966,28 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   font-weight: 700;
 }
 .toolbar .btn-signin:hover:not(:disabled) { background: var(--cta-blue-hover); }
+
+/* The credits readout, in the one spelling that fits.
+   Placed at the END of the file deliberately: the equivalent rules inside
+   the 760px block near the top are declared BEFORE
+   `.progress .lbl-short { display: none }`, and since a media query carries
+   no specificity of its own the later base rule won -- the phone rendered
+   neither label and the readout silently measured 0x0. Source order is the
+   whole mechanism here, so this must stay last. */
+@media (max-width: 760px) {
+  /* Visually hidden, NOT `display: none`: the progress readout is a live
+     region and the sentence is what gets announced when the figure moves.
+     Hiding it from the tree would leave a screen reader saying "7/128 cr". */
+  .toolbar .progress .lbl-long {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+  .toolbar .progress .lbl-short { display: inline; }
+
+  /* The menu panel anchors LEFT on a phone. The toolbar wraps here and the
+     Menu button sits near the left of the second row, so a right-anchored
+     panel extended off the side of the screen -- measured at x = -60 on a
+     412px viewport. Capped to the viewport so it cannot overflow the other
+     way either. */
+  .toolbar-menu { left: 0; right: auto; transform-origin: top left; max-width: calc(100vw - 24px); }
+}

@@ -189,30 +189,70 @@ function heroVideo(): void {
    state. If the guards say no, if the import fails, if WebGL will not start
    — the page is already complete and nothing is missing. That is why the
    failure path here is silent: there is nothing for a reader to act on. */
-function journey(): void {
-  const container = document.querySelector<HTMLElement>("#journey");
-  if (!container) return;
-
-  // Two guards, and both are correctness rather than budget avoidance (the
-  // ADR is explicit that the desktop-only guard was dropped — the 3D is the
-  // product demonstration, so phones get it too, with a tighter camera).
-  //
-  // `save-data` is a reader telling us not to spend their bytes; reduced
-  // motion is a reader telling us not to move things. Neither is negotiable,
-  // and neither has anything to do with how big the chunk is.
+/** Whether the 3D journey is going to be attempted at all.
+ *
+ * Two guards, and both are correctness rather than budget avoidance (the ADR
+ * is explicit that the desktop-only guard was dropped -- the 3D is the
+ * product demonstration, so phones get it too, with a tighter camera).
+ *
+ * `save-data` is a reader telling us not to spend their bytes; reduced
+ * motion is a reader telling us not to move things. Neither is negotiable,
+ * and neither has anything to do with how big the chunk is.
+ *
+ * Pulled out of `journey()` because the ANSWER is needed long before the
+ * mount: see `holdStatic` below. */
+function will3D(): boolean {
   const connection = (navigator as { connection?: { saveData?: boolean } }).connection;
-  if (connection?.saveData === true) return;
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
+  if (connection?.saveData === true) return false;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
   // A canvas we cannot create is not worth downloading a renderer for.
   try {
     const probe = document.createElement("canvas");
-    if (!probe.getContext("webgl2") && !probe.getContext("webgl")) return;
+    if (!probe.getContext("webgl2") && !probe.getContext("webgl")) return false;
   } catch {
+    return false;
+  }
+  return "IntersectionObserver" in window;
+}
+
+/* ── The flash before the scene ──────────────────────────────────────────
+   THE GRAPHIC GLITCH ON FIRST LOAD. The static SVG chain is the page's
+   no-JavaScript fallback, so it is in the markup and paints immediately --
+   and it carries its own entrance animation, a 1.6s line draw with the
+   stops popping in behind it. The 3D chunk lands around 700ms later and
+   `is-live` clips the SVG away. MEASURED: the reader watches a flat transit
+   diagram start drawing itself, then vanish mid-stroke and be replaced by
+   something else entirely.
+
+   So the DECISION to mount, which is synchronous and cheap, is made here --
+   not when the chunk arrives -- and the static chain is held back the whole
+   time. Held, not removed: every path that gives up on the 3D releases it
+   again, so the fallback still appears for a reader who was never going to
+   get the scene. A CSS delay alone could not do this, because the chunk's
+   arrival time is a network fact and no fixed delay is right for everyone.
+
+   An inline <head> script would hide it a few milliseconds sooner. The CSP
+   is `script-src 'self'` with no `unsafe-inline`, so there is no such thing
+   available here -- and a module script runs before first paint in practice,
+   which the CSS fade below covers either way. */
+const HOLD = "journey-pending";
+function holdStatic(): void {
+  if (will3D()) document.documentElement.classList.add(HOLD);
+}
+function releaseStatic(): void {
+  document.documentElement.classList.remove(HOLD);
+}
+
+function journey(): void {
+  const container = document.querySelector<HTMLElement>("#journey");
+  if (!container) {
+    releaseStatic();
     return;
   }
-
-  if (!("IntersectionObserver" in window)) return;
+  if (!will3D()) {
+    releaseStatic();
+    return;
+  }
 
   let started = false;
   const io = new IntersectionObserver(
@@ -253,13 +293,21 @@ function journey(): void {
         })
         .catch(() => {
           // Offline, blocked, or a chunk that never shipped. The static
-          // module is still sitting there and still says the same thing.
+          // chain is still sitting there and still says the same thing --
+          // so let it through, which is the whole reason it was held
+          // rather than removed.
+          releaseStatic();
         });
     },
     { rootMargin: "200px" },
   );
   io.observe(container);
 }
+
+// Before anything else: decide whether the static chain is about to be
+// replaced, and if so keep it off the screen rather than letting it animate
+// and then disappear.
+holdStatic();
 
 menu();
 counters();
