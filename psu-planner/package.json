@@ -22,12 +22,17 @@
     "typescript": "^5.6.0"
   },
   "pnpm": {
-    "//": "S7: force patched transitive build-tooling deps flagged by pnpm audit. Run `pnpm install` to apply, then `pnpm audit`.",
+    "//": "Force patched transitive deps flagged by `pnpm audit`. Run `pnpm install` to apply, then `pnpm audit --prod --audit-level=high`.",
+    "//floors": "Each floor is the PATCHED version, not the version that happened to be installed. A caret floor below the fix (fast-uri sat at ^3.1.4 against six highs needing >=3.1.7) is satisfied by the vulnerable release, so the resolver never moves and the override reads as protection while providing none. When raising one of these, write the advisory it closes.",
     "overrides": {
       "postcss": "^8.5.18",
-      "fast-uri": "^3.1.4",
-      "brace-expansion": "^5.0.8",
-      "sharp": "^0.35.0"
+      "fast-uri": "^3.1.9",
+      "brace-expansion": "^5.0.12",
+      "sharp": "^0.35.5",
+      "body-parser": "^2.4.0",
+      "zod": "^4.6.7",
+      "ip-address": "^10.7.4",
+      "qs": "^6.16.1"
     }
   }
 }
