@@ -1,7 +1,7 @@
 /** Toolbar search over the full catalog (lazily loaded on first focus). */
 import { useEffect, useRef, useState } from "react";
 import { qterms, searchCatalog, snippet, type Catalog, type Course } from "@psu-planner/engine";
-import { loadFullCatalog } from "../data/catalogClient";
+import { loadSearchCatalog } from "../data/catalogClient";
 import { usePlanner } from "../store";
 
 export function SearchBox({ onPick }: { onPick: (course: Course) => void }) {
@@ -16,8 +16,12 @@ export function SearchBox({ onPick }: { onPick: (course: Course) => void }) {
 
   const ensureFull = async () => {
     if (full || loadingPct !== null) return;
+    // Indeterminate rather than a percentage: this is now two fetches, one
+    // of which is usually already resolved, so a progress number would be
+    // mostly 0 and then 100. The spinner says "working", which is all a
+    // sub-second wait can honestly claim.
     setLoadingPct(0);
-    const cat = await loadFullCatalog((n, t) => setLoadingPct(Math.round((n / t) * 100)));
+    const cat = await loadSearchCatalog();
     setFull(cat);
     setLoadingPct(null);
   };

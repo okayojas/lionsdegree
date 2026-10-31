@@ -107,6 +107,57 @@ test.describe("the planner's boot payload", () => {
     ).toBeLessThan(BOOT_CEILING_KB);
   });
 
+  test("fetches the search ranking data only when somebody searches", async ({ page, baseURL }) => {
+    // #28. The postings are 1,263 KB gzipped and mean nothing until a student
+    // types, so they must not be on the boot path — and must arrive exactly
+    // once when they are wanted, not per keystroke.
+    const origin = new URL(baseURL!).origin;
+    const hits: string[] = [];
+    page.on("request", (r) => {
+      const u = new URL(r.url());
+      if (u.origin === origin && u.pathname.includes("search-postings")) hits.push(u.pathname);
+    });
+
+    await seedPlan(page);
+    await page.goto("/plan/");
+    await page.locator(".card").first().waitFor({ timeout: 60_000 });
+    await page.waitForTimeout(1500);
+    expect(hits, "the ranking data was fetched before anyone searched").toEqual([]);
+
+    const box = page.locator(".searchbox input").first();
+    await box.fill("robotics");
+    await expect(page.locator(".sr-item").first()).toBeVisible({ timeout: 30_000 });
+    expect(hits.length, "the ranking data was not fetched when search was used").toBe(1);
+
+    // Typing more must not refetch: the memo is what makes this affordable.
+    await box.fill("");
+    await box.fill("machine learning");
+    await expect(page.locator(".sr-item").first()).toBeVisible({ timeout: 30_000 });
+    expect(hits.length, "the ranking data was fetched again on a second query").toBe(1);
+  });
+
+  test("still ranks description matches, not just codes and titles", async ({ page }) => {
+    // The split would be worthless if it quietly turned full-text search into
+    // prefix matching on the code. "robotics" appears in course DESCRIPTIONS
+    // far more than in titles, and finding the right course for it is the
+    // incident that produced the index in the first place (DECISIONS.md 4.2).
+    await seedPlan(page);
+    await page.goto("/plan/");
+    await page.locator(".card").first().waitFor({ timeout: 60_000 });
+
+    const box = page.locator(".searchbox input").first();
+    await box.fill("robotics");
+    await expect(page.locator(".sr-item").first()).toBeVisible({ timeout: 30_000 });
+    const codes = (await page.locator(".sr-item .sr-code").allTextContents()).map((t) => t.trim().split("\n")[0]);
+    expect(codes.length, "no results for a term that is common in descriptions").toBeGreaterThan(5);
+    // At least one hit whose CODE does not contain the query — i.e. it was
+    // found by what the course is about, which is the body signal working.
+    expect(
+      codes.some((c) => !c.toLowerCase().includes("robot")),
+      "every result matched the code, so the body signal is not loaded",
+    ).toBe(true);
+  });
+
   test("reports which single file dominates it", async ({ page, baseURL }) => {
     // Not a size assertion — a shape assertion. The thing that went wrong on
     // #24 was one file quietly becoming most of the payload, so this fails

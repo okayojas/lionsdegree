@@ -43,6 +43,37 @@ export function loadSearchDictionary(terms: readonly string[]): void {
   DICT = terms;
 }
 
+/** The body signal, loaded on its own (#28).
+ *
+ * The postings used to arrive welded to the course records, which meant a
+ * student opening a plan downloaded the ranking data for 14,615 courses in
+ * order to look at a chart. They are 31% of that file and mean nothing until
+ * somebody types, so the web client now fetches them separately on first
+ * search and hands them here.
+ *
+ * `encoded` is the same packed form the index carried: code -> postings,
+ * decoded once at load rather than per query. Replaces whatever was loaded
+ * before, so switching Edition cannot leave one bulletin's term ids pointing
+ * into another's dictionary (ADR 0001). */
+export function loadSearchPostings(terms: readonly string[], encoded: Record<string, number[]>): void {
+  DICT = terms;
+  POSTINGS.clear();
+  for (const [code, packed] of Object.entries(encoded)) {
+    if (packed?.length) POSTINGS.set(code, decodePostings(packed));
+  }
+  prefixMemo = new Map();
+}
+
+/** Whether a body signal is loaded at all.
+ *
+ * Search WORKS without it — code and title matching still rank — so this is
+ * not a readiness gate. It exists so a caller can tell the difference between
+ * "no results" and "no results yet", which are different things to show a
+ * student. */
+export function hasSearchPostings(): boolean {
+  return POSTINGS.size > 0;
+}
+
 /** Per-query memo: a stem resolves to the same dictionary ids for every course
  * it is tested against, and resolving is a binary search plus a scan. */
 let prefixMemo = new Map<string, number[]>();

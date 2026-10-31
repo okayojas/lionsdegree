@@ -222,9 +222,26 @@ const auditIndexPath = path.join(outDir, "audit-index.json");
 fs.writeFileSync(auditIndexPath, JSON.stringify({ courses: auditRows }), "utf-8");
 const auditMb = fs.statSync(auditIndexPath).size / 1048576;
 
+/** search-postings.json — the body signal, on its own (#28).
+ *
+ * The term dictionary plus per-course posting lists: how often each
+ * dictionary term occurs in a course's description, capped at 5. It is the
+ * one question the scorer asks of the prose, and the prose itself still
+ * stops here at the build (DECISIONS.md 5.1).
+ *
+ * Split out because it is 31% of the old index and means nothing until
+ * somebody types. A student opening a plan was downloading the ranking data
+ * for 14,615 courses in order to look at a chart. */
+const postings: Record<string, number[]> = {};
+for (const [code, packed] of byCode) if (packed.length) postings[code] = packed;
+const postingsPath = path.join(outDir, "search-postings.json");
+fs.writeFileSync(postingsPath, JSON.stringify({ terms, postings }), "utf-8");
+const postingsMb = fs.statSync(postingsPath).size / 1048576;
+
 console.log(
   `programs_index: ${programs.length} programs; subjects_index: ${Object.keys(subjects).length} subjects; ` +
     `search-index: ${slim.length} courses, ${slimMb.toFixed(1)} MB; ` +
     `audit-index: ${auditRows.length} courses, ${auditMb.toFixed(2)} MB; ` +
+    `search-postings: ${Object.keys(postings).length} courses, ${postingsMb.toFixed(2)} MB; ` +
     `program-requirements: ${Object.keys(programRequirements).length} programs, ${(fs.statSync(reqPath).size / 1048576).toFixed(1)} MB`,
 );

@@ -2,7 +2,7 @@
  * search. Both emit course codes that join the "completed" set. */
 import { useEffect, useRef, useState } from "react";
 import { searchCatalog, type Catalog } from "@psu-planner/engine";
-import { loadApCredits, loadFullCatalog, type ApExam } from "../data/catalogClient";
+import { loadApCredits, loadSearchCatalog, type ApExam } from "../data/catalogClient";
 
 
 
@@ -73,7 +73,7 @@ export function CourseSearchPicker({ onAdd, placeholder }: { onAdd: (code: strin
         style={{ width: "100%" }}
         placeholder={placeholder ?? "Search any PSU course you've taken — code or title"}
         value={q}
-        onFocus={() => { if (!catalog) void loadFullCatalog().then((c) => { setCatalog(c); run(q, c); }); }}
+        onFocus={() => { if (!catalog) void loadSearchCatalog().then((c) => { setCatalog(c); run(q, c); }); }}
         onChange={(e) => {
           setQ(e.target.value);
           clearTimeout(timer.current);

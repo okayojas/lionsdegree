@@ -1,6 +1,6 @@
 /** Loads pipeline-produced static catalog files (served from /catalog in dev,
  * CDN in prod) and assembles the runtime Catalog for the courses a plan needs. */
-import { astCourses, buildCatalog, hydrateSearchIndex, type Catalog, type Course, type FlowchartPatterns, type IugSpec } from "@psu-planner/engine";
+import { astCourses, buildCatalog, hydrateSearchIndex, loadSearchPostings, type Catalog, type Course, type FlowchartPatterns, type IugSpec } from "@psu-planner/engine";
 
 const ROOT = "/catalog";
 
@@ -60,6 +60,7 @@ export function setCatalogEdition(next: string): void {
   apCache = null;
   fullCatalogPromise = null;
   auditIndexPromise = null;
+  postingsPromise = null;
 }
 
 export function currentEdition(): string | null {
@@ -362,6 +363,45 @@ export async function loadAuditIndex(): Promise<Catalog> {
     auditIndexPromise = null; // let a later attempt retry a transient failure
     throw e;
   }
+}
+
+let postingsPromise: Promise<void> | null = null;
+
+/** The body signal for ranking, fetched the first time anyone searches (#28).
+ *
+ * 1,263 KB gzipped of posting lists that mean nothing until a student types.
+ * They used to ride along with the course records, so opening a plan paid for
+ * the ranking data of 14,615 courses in order to look at a chart.
+ *
+ * Failure is NOT fatal and deliberately so: without postings, `searchCatalog`
+ * still ranks on code and title, which finds "CMPSC 465" perfectly well and
+ * only degrades matching on description topics. A student who gets slightly
+ * worse ordering is better served than one who gets an error page. */
+async function ensureSearchPostings(): Promise<void> {
+  if (postingsPromise) return postingsPromise;
+  postingsPromise = (async () => {
+    const at = generation;
+    const raw = await getJson<{ terms: string[]; postings: Record<string, number[]> }>("search-postings.json");
+    // An edition switch while this was in flight: the term ids in this file
+    // index THIS edition's dictionary, and loading them under another
+    // bulletin's would score against the wrong vocabulary (ADR 0001).
+    if (at !== generation) return;
+    loadSearchPostings(raw.terms ?? [], raw.postings ?? {});
+  })().catch((e) => {
+    console.warn("[search] ranking data unavailable; falling back to code and title", e);
+    postingsPromise = null;
+  });
+  return postingsPromise;
+}
+
+/** A catalog good enough to search, and the ranking data to search it with.
+ *
+ * The audit index is already in memory for most students — the Requirements
+ * panel loads it on every boot — so the marginal cost of a first search is
+ * the postings alone. */
+export async function loadSearchCatalog(): Promise<Catalog> {
+  const [catalog] = await Promise.all([loadAuditIndex(), ensureSearchPostings()]);
+  return catalog;
 }
 
 /** Full catalog for search — loads all subjects lazily once, then caches. */
