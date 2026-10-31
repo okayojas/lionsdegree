@@ -98,7 +98,6 @@
 .brand img { width: auto; height: 34px; display: block; background: #f1ebdf; border-radius: var(--r-sm); padding: 3px 5px; }
 .brand span { font-size: 1.08rem; font-weight: 700; letter-spacing: -0.025em; color: var(--text); }
 
-.bar-left { display: flex; align-items: center; gap: var(--sp-4); margin: 0; }
 .bar-right { display: flex; align-items: center; gap: var(--sp-4); margin: 0; }
 
 /* Two words, two colours. `Lions` in the brand blue, `Degree` in the cream
@@ -292,7 +291,9 @@
 .connect-page, .legal-page { padding-bottom: 0; }
 .wrap { width: min(1200px, 100% - clamp(2rem, 8vw, 6rem)); margin-inline: auto; position: relative; z-index: 2; }
 .conn-head { padding: clamp(2rem, 6vw, 4rem) 0 clamp(1.25rem, 3vw, 2.25rem); position: relative; z-index: 2; }
-.conn-head .home { margin: 0 0 var(--sp-6); display: flex; align-items: center; gap: var(--sp-4); }
+/* Brand leading, menu trailing -- the same arrangement as the landing
+   page's bar and the planner's toolbar. */
+.conn-head .home { margin: 0 0 var(--sp-6); display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); }
 
 /* ── Menu on the no-JavaScript pages ────────────────────────────────────
    /connect/, /privacy/ and /terms/ are static documents that ship no
@@ -310,7 +311,8 @@
 .pagemenu[open] > summary .menu-btn-bars i:last-child { transform: translateY(-3px) rotate(-45deg); }
 .pagemenu .menu-btn-bars i { transition: transform .18s var(--ease-out); }
 .pagemenu-panel {
-  position: absolute; top: calc(100% + 6px); left: 0; z-index: 40;
+  /* Anchored right, under a button on the trailing edge. */
+  position: absolute; top: calc(100% + 6px); right: 0; z-index: 40;
   display: grid; min-width: 13rem; padding: var(--sp-2);
   background: var(--surface); border: 1px solid var(--border-strong);
   border-radius: var(--r); box-shadow: var(--shadow-lg);

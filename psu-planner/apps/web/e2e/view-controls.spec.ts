@@ -115,8 +115,9 @@ test.describe("the chart's view controls", () => {
 
 test.describe("the menu", () => {
   test("is in the same corner on the planner as on every other page", async ({ page }) => {
-    // Not a style assertion -- a findability one. It used to sit at the far
-    // right of a toolbar that wraps, so it moved as the window changed size.
+    // Not a style assertion -- a consistency one. The landing page, the
+    // planner and the three static pages all put the menu at the TRAILING
+    // edge; which edge matters far less than it never moving between them.
     await page.addInitScript(
       ([k, p]) => window.localStorage.setItem(k as string, p as string),
       ["psu-planner-plan-v1", JSON.stringify(SEEDED_PLAN)] as const,
@@ -128,13 +129,18 @@ test.describe("the menu", () => {
     await expect(menu).toBeVisible();
     const bar = await page.locator(".toolbar").boundingBox();
     const box = await menu.boundingBox();
-    expect(box!.x - bar!.x, "the menu is not at the leading edge of the toolbar").toBeLessThan(80);
+    const fromRight = bar!.x + bar!.width - (box!.x + box!.width);
+    expect(fromRight, "the menu is not at the trailing edge of the toolbar").toBeLessThan(80);
 
     await menu.click();
     const panel = page.locator(".toolbar-menu");
     await expect(panel).toBeVisible();
-    // Anchored right, the panel hung off the left of the screen.
-    expect((await panel.boundingBox())!.x).toBeGreaterThanOrEqual(-1);
+    // Anchored left under a trailing-edge button, the panel would hang off
+    // the side of the screen and most of it would be unreachable.
+    const pb = await panel.boundingBox();
+    expect(pb!.x, "the menu panel is off the left of the screen").toBeGreaterThanOrEqual(-1);
+    expect(pb!.x + pb!.width, "the menu panel runs off the right of the screen")
+      .toBeLessThanOrEqual(page.viewportSize()!.width + 1);
   });
 
   test("is reachable on a page that ships no JavaScript", async ({ page }) => {

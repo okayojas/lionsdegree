@@ -155,11 +155,36 @@ export default function App() {
     <div className="app">
       <a href="#main" className="skip-link">Skip to plan</a>
       <div className="toolbar" role="banner">
-        {/* Menu first, in the same corner it occupies on the landing page
-            and on every static page. It used to sit at the far right of a
-            toolbar that wraps, which meant it moved as the window changed
-            width -- the one control that should never have to be looked
-            for. */}
+        <h1><b>Lions</b>Degree</h1>
+        <SearchBox onPick={openFromSearch} />
+        {view === "canvas" && (
+          <div className="legend" aria-hidden="true">
+            <span className="lg"><span className="line" /> prerequisite</span>
+            <span className="lg"><span className="line dash" /> may be concurrent</span>
+            <span className="lg"><span className="line red" /> violated order</span>
+          </div>
+        )}
+        <div className="spacer" />
+        <div className="progress" role="status" aria-label="Degree progress">
+          <span className="lbl">
+            {String(done).replace(/\.0$/, "")} of {String(total).replace(/\.0$/, "")} credits completed
+          </span>
+          <div className="bar"><div className="fill" style={{ width: total ? `${(done / total) * 100}%` : 0 }} /></div>
+        </div>
+        <button onClick={() => switchView(view === "canvas" ? "list" : "canvas")} aria-pressed={view === "list"}>
+          {view === "canvas" ? "List view" : "Flowchart view"}
+        </button>
+        <button
+          onClick={toggleTheme}
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+        >
+          {theme === "dark" ? "☀️" : "🌙"}
+        </button>
+        <AccountMenu onToast={setToast} />
+        {/* Menu on the trailing edge, next to the account control --
+            the same corner the landing page and the static pages put
+            it. One position across every surface is the point. */}
         <div className="toolbar-menu-wrap">
           <button aria-haspopup="menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>Menu ▾</button>
           {menuOpen && (
@@ -205,33 +230,6 @@ export default function App() {
             </div>
           )}
         </div>
-        <h1><b>Lions</b>Degree</h1>
-        <SearchBox onPick={openFromSearch} />
-        {view === "canvas" && (
-          <div className="legend" aria-hidden="true">
-            <span className="lg"><span className="line" /> prerequisite</span>
-            <span className="lg"><span className="line dash" /> may be concurrent</span>
-            <span className="lg"><span className="line red" /> violated order</span>
-          </div>
-        )}
-        <div className="spacer" />
-        <div className="progress" role="status" aria-label="Degree progress">
-          <span className="lbl">
-            {String(done).replace(/\.0$/, "")} of {String(total).replace(/\.0$/, "")} credits completed
-          </span>
-          <div className="bar"><div className="fill" style={{ width: total ? `${(done / total) * 100}%` : 0 }} /></div>
-        </div>
-        <button onClick={() => switchView(view === "canvas" ? "list" : "canvas")} aria-pressed={view === "list"}>
-          {view === "canvas" ? "List view" : "Flowchart view"}
-        </button>
-        <button
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-          title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-        >
-          {theme === "dark" ? "☀️" : "🌙"}
-        </button>
-        <AccountMenu onToast={setToast} />
       </div>
       <div className="main-row" id="main" role="main">
         {view === "canvas" ? <PlanCanvas onOpenItem={setOpenItem} /> : <PlanListView onOpenItem={setOpenItem} />}
