@@ -82,6 +82,33 @@ describe.skipIf(editions.length === 0)("the audit index", () => {
         expect(untitled.slice(0, 10), "courses in the index with no title").toEqual([]);
       });
 
+      it("lets subject and number be derived from the code", () => {
+        // THE INVARIANT THE INDEX RELIES ON. `subject` and `number` are not
+        // stored — the web client splits them back out of `code`, because
+        // storing what you can derive is weight on a path every student
+        // walks. The audit's pattern rules ("any MATH at 400 level") match on
+        // exactly those two fields, so if the Bulletin ever produces a code
+        // where the split does not reproduce them, pattern matching goes
+        // quietly wrong for that subject. Better to fail the build.
+        const wrong: string[] = [];
+        for (const dir of [path.join(outRoot, edition, "courses"), path.join(outRoot, edition, "courses", "grad")]) {
+          if (!fs.existsSync(dir)) continue;
+          for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".json"))) {
+            for (const c of JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8"))) {
+              const at = (c.code ?? "").indexOf(" ");
+              const subject = at > 0 ? c.code.slice(0, at) : c.code;
+              const number = at > 0 ? c.code.slice(at + 1) : "";
+              if (subject !== c.subject || number !== c.number) {
+                wrong.push(`${c.code}: subject=${c.subject} number=${c.number}`);
+              }
+            }
+          }
+        }
+        expect(wrong.slice(0, 10), `${wrong.length} courses whose code does not split into subject and number`).toEqual(
+          [],
+        );
+      });
+
       it("carries no field it is not supposed to", () => {
         // THE ANTI-REGROWTH GUARD. `description` would be a licensing
         // problem (DECISIONS.md 5.1); `t` would put the search postings back

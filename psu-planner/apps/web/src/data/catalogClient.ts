@@ -59,6 +59,7 @@ export function setCatalogEdition(next: string): void {
   programsIndexCache = null;
   apCache = null;
   fullCatalogPromise = null;
+  auditIndexPromise = null;
 }
 
 export function currentEdition(): string | null {
@@ -274,6 +275,93 @@ export async function loadCatalogFor(codes: string[]): Promise<Catalog> {
   }
   for (const p of hop) courses = courses.concat(await loadSubject(p));
   return buildCatalog(courses);
+}
+
+/* ── The audit index (#27) ───────────────────────────────────────────────
+   What the degree audit needs about every course, and nothing else.
+
+   The audit has to see the whole catalog, because an elective or a General
+   Education requirement can be satisfied by almost anything — narrowing it
+   to the subjects a plan already touches would quietly hide real options.
+   But it reads five things off a course: the code, the credits, the subject
+   and number a pattern rule matches on, and the gen-ed designations. So it
+   gets a file carrying five things: 210 KB gzipped against the 2,419 KB it
+   used to pull (#24).
+
+   SUBJECT AND NUMBER ARE DERIVED, not stored. Verified across all 14,615
+   courses in both editions: `subject` is exactly the code before the space
+   and `number` exactly the part after, with zero exceptions. A pipeline test
+   asserts that invariant at build time, so if the Bulletin ever produces a
+   code where it does not hold, the build says so rather than the audit
+   quietly mis-matching pattern rules. */
+interface AuditRow {
+  code: string;
+  title?: string;
+  creditsParsed?: Course["creditsParsed"];
+  genEd?: string[];
+  attributes?: string[];
+}
+
+/** A whole `Course` from a five-field row.
+ *
+ * Everything absent is filled with the EMPTY value, never a plausible one.
+ * `prereqAst: null` with `astComplete: false` says "no prerequisite
+ * structure was loaded", which is what the chart's own subject-file load is
+ * for; inventing one here would let the audit reason about prerequisites it
+ * has not actually read (iron rule 2). */
+function hydrateAuditRow(r: AuditRow): Course {
+  const space = r.code.indexOf(" ");
+  return {
+    code: r.code,
+    subject: space > 0 ? r.code.slice(0, space) : r.code,
+    number: space > 0 ? r.code.slice(space + 1) : "",
+    display: r.code,
+    title: r.title ?? "",
+    credits: "",
+    creditsParsed: r.creditsParsed ?? null,
+    description: "",
+    enforced: null,
+    concurrent: null,
+    prereqAdvisory: null,
+    prereqAst: null,
+    concurrentAst: null,
+    astComplete: false,
+    genEd: r.genEd ?? [],
+    attributes: r.attributes ?? [],
+    crossListings: [],
+    aliases: [],
+    level: "undergraduate",
+    url: "",
+  } as Course;
+}
+
+let auditIndexPromise: Promise<Catalog> | null = null;
+
+/** Every course, as much as an audit needs of it.
+ *
+ * Memoised per edition: `setCatalogEdition` drops this with the rest, because
+ * auditing one edition's plan against another's course list is the silent
+ * wrongness ADR 0001 exists to prevent — Editions are forward-only and pinned
+ * per plan, so a stale index here is a correctness bug and not a cache miss.
+ *
+ * A failed fetch REJECTS rather than returning an empty catalog. An empty one
+ * would read as "no course in the catalog satisfies this requirement", which
+ * is a confident wrong answer; the caller shows that the audit could not be
+ * run instead. */
+export async function loadAuditIndex(): Promise<Catalog> {
+  if (auditIndexPromise) return auditIndexPromise;
+  auditIndexPromise = (async () => {
+    const raw = await getJson<{ courses: AuditRow[] }>("audit-index.json");
+    const rows = Array.isArray(raw?.courses) ? raw.courses : [];
+    if (!rows.length) throw new Error("audit-index.json is empty");
+    return buildCatalog(rows.map(hydrateAuditRow));
+  })();
+  try {
+    return await auditIndexPromise;
+  } catch (e) {
+    auditIndexPromise = null; // let a later attempt retry a transient failure
+    throw e;
+  }
 }
 
 /** Full catalog for search — loads all subjects lazily once, then caches. */

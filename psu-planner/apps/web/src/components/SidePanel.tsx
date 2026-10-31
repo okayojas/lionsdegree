@@ -4,7 +4,7 @@ import type { User } from "@supabase/supabase-js";
 import { auditProgram, buildPool, type AuditResult, type ReqSection } from "@psu-planner/engine";
 import { useChat } from "../chat/useChat";
 import { ChatMarkdown } from "../chat/ChatMarkdown";
-import { loadCoverage, loadFullCatalog, loadProgramBySlug } from "../data/catalogClient";
+import { loadAuditIndex, loadCoverage, loadProgramBySlug } from "../data/catalogClient";
 import { currentUser, onAuthChange, signIn, syncConfigured } from "../data/sync";
 import { usePlanner } from "../store";
 import { useMediaQuery, PHONE_QUERY } from "../hooks/useMediaQuery";
@@ -129,6 +129,7 @@ function firstIdle(): Promise<void> {
 function AuditTab() {
   const { plan } = usePlanner();
   const [audits, setAudits] = useState<{ name: string; audit: AuditResult }[] | null>(null);
+  const [failed, setFailed] = useState(false);
   const rev = plan?.rev;
 
   useEffect(() => {
@@ -147,19 +148,43 @@ function AuditTab() {
       // let the chart paint and go interactive, then fetch.
       await firstIdle();
       if (!alive) return;
-      const cat = await loadFullCatalog();
-      const coveredBy = await loadCoverage();
-      const pool = buildPool(plan, cat);
-      const results: { name: string; audit: AuditResult }[] = [];
-      for (const slug of plan.programs) {
-        const prog = await loadProgramBySlug<{ name: string; requirementSections: ReqSection[] }>(slug);
-        if (prog) results.push({ name: prog.name, audit: auditProgram(prog.requirementSections, pool, cat, coveredBy) });
+      try {
+        // The audit index, not the whole catalog. It still covers every
+        // course -- an elective or a gen-ed slot can be almost anything --
+        // but it carries five fields per course instead of twenty-two, which
+        // is 210 KB against 2,419 KB on a path every student walks (#24).
+        const cat = await loadAuditIndex();
+        const coveredBy = await loadCoverage();
+        const pool = buildPool(plan, cat);
+        const results: { name: string; audit: AuditResult }[] = [];
+        for (const slug of plan.programs) {
+          const prog = await loadProgramBySlug<{ name: string; requirementSections: ReqSection[] }>(slug);
+          if (prog) results.push({ name: prog.name, audit: auditProgram(prog.requirementSections, pool, cat, coveredBy) });
+        }
+        if (alive) setAudits(results);
+      } catch (e) {
+        // Conservative degradation (iron rule 2). Nothing here may read as a
+        // satisfied requirement: a student who cannot see the audit knows to
+        // check, where a student shown an empty audit reads "nothing left to
+        // do" and registers on it.
+        console.error("[audit] could not load the catalog index", e);
+        if (alive) setFailed(true);
       }
-      if (alive) setAudits(results);
     })();
     return () => { alive = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rev]);
+
+  if (failed)
+    return (
+      <div className="chat-empty" role="status">
+        <p style={{ margin: 0 }}>
+          <strong>The degree audit could not run.</strong> The course catalog did not load, so
+          nothing here has been checked — this is not a statement that your requirements are met.
+          Reload to try again, and verify with your adviser either way.
+        </p>
+      </div>
+    );
 
   // A skeleton rather than a sentence: the audit arrives after the chart
   // now, so this is on screen for a moment on every load and a line of grey

@@ -31,15 +31,18 @@ const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "d
 
 /** Total gzipped weight of the planner's boot payload, in KB.
  *
- * MEASURED at 2,896 KB across 74 requests, plus ~15% headroom. The first
- * draft of this line guessed 2,700 and was wrong by 200 KB, which is the
- * small version of the mistake that produced #24 — a number written from an
- * estimate rather than read off a run.
+ * MEASURED at 702 KB across 76 requests, plus ~15% headroom (#27).
+ * Previously 2,896 KB, when the degree audit pulled the entire search index
+ * on mount; it now reads the 210 KB audit index instead.
+ *
+ * The first draft of this line guessed 2,700 against a real 2,896 — wrong by
+ * 200 KB, which is the small version of the mistake that produced #24: a
+ * number written from an estimate rather than read off a run.
  *
  * Re-measure by reading the figure this test prints on failure, and record it
  * in the commit that moves this line. Rounding it up to make a build pass is
  * the exact failure ADR 0002 exists to prevent. */
-const BOOT_CEILING_KB = 3330;
+const BOOT_CEILING_KB = 810;
 
 /** Gzip the file a request resolved to.
  *
@@ -125,14 +128,14 @@ test.describe("the planner's boot payload", () => {
     const [worstPath, worstKb] = [...seen.entries()].sort((a, b) => b[1] - a[1])[0] ?? ["", 0];
     const share = total > 0 ? worstKb / total : 0;
 
-    // Deliberately loose: today `search-index.json` is 84% of the payload
-    // (2,419 of 2,896 KB) and this records that rather than pretending
-    // otherwise. #27 and #28 are what bring it down — tighten this with them,
-    // and it becomes a real guard once no single file dominates.
+    // Tightened with #27. The heaviest single request is now the audit index
+    // at 210 of 702 KB — 30%. One file being most of the payload is precisely
+    // the shape #24 turned out to be, so the threshold tracks reality rather
+    // than sitting where no plausible regression would ever reach it.
     expect(
       share,
       `${worstPath} is ${(share * 100).toFixed(0)}% of the boot payload ` +
         `(${worstKb.toFixed(0)} of ${total.toFixed(0)} KB gzipped)`,
-    ).toBeLessThan(0.9);
+    ).toBeLessThan(0.5);
   });
 });
