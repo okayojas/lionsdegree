@@ -15,7 +15,11 @@
 
 export interface KVLike {
   get(key: string, opts?: { cacheTtl?: number }): Promise<string | null>;
+  /** `expirationTtl` is in SECONDS and Cloudflare enforces a minimum of
+   * 60. Anything smaller is rejected outright — which is why deleting is
+   * `delete`, below, and not a short-lived tombstone. */
   put(key: string, value: string, opts?: { expirationTtl?: number }): Promise<void>;
+  delete(key: string): Promise<void>;
 }
 
 export interface RateLimitResult {

@@ -249,7 +249,10 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
       expires_in: session.expires_in ?? 3600,
     };
     await cfg.kv.put(`code:${ourCode}`, JSON.stringify(issued), { expirationTtl: CODE_TTL });
-    await cfg.kv.put(`pend:${state}`, "", { expirationTtl: 1 });
+    // DELETED, not tombstoned. This was `put(key, "", {expirationTtl: 1})`,
+    // and Cloudflare rejects any TTL under 60 seconds — so the call threw,
+    // the flow 500ed, and nothing was consumed.
+    await cfg.kv.delete(`pend:${state}`);
 
     const back = new URL(pending.redirect_uri);
     back.searchParams.set("code", ourCode);
@@ -270,7 +273,12 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
     if (!raw) return oauthError("invalid_grant", "That code is not valid. It may already have been used.");
     // SINGLE USE, deleted before anything else can go wrong. A code that
     // survives its exchange is a code that can be replayed.
-    await cfg.kv.put(`code:${code}`, "", { expirationTtl: 1 });
+    //
+    // `delete`, not a one-second tombstone: Cloudflare rejects a TTL
+    // under 60 seconds, so the tombstone THREW — the exchange 500ed and
+    // the code stayed spendable for its full minute. The test stub
+    // ignored `expirationTtl`, which is why nothing caught it.
+    await cfg.kv.delete(`code:${code}`);
 
     const issued = JSON.parse(raw) as IssuedCode;
     if (form.get("client_id") !== issued.client_id) {

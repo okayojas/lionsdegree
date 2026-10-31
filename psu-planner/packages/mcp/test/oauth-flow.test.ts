@@ -32,7 +32,18 @@ function memoryKv(): KVLike {
   const store = new Map<string, string>();
   return {
     async get(k) { return store.get(k) ?? null; },
-    async put(k, v) { store.set(k, v); },
+    async put(k, v, opts) {
+      // CLOUDFLARE'S REAL CONTRACT. A TTL under 60 seconds is rejected
+      // outright, and the stub used to ignore `expirationTtl` entirely —
+      // which is how a "delete" written as a one-second tombstone passed
+      // every test and threw in production, leaving authorization codes
+      // spendable twice.
+      if (opts?.expirationTtl !== undefined && opts.expirationTtl < 60) {
+        throw new Error(`Invalid expiration_ttl of ${opts.expirationTtl}. Must be at least 60.`);
+      }
+      store.set(k, v);
+    },
+    async delete(k) { store.delete(k); },
   };
 }
 

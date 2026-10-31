@@ -17,7 +17,15 @@ function fakeKv(): KVLike & { store: Map<string, string> } {
   return {
     store,
     async get(k) { return store.get(k) ?? null; },
-    async put(k, v) { store.set(k, v); },
+    async put(k, v, opts) {
+      // Cloudflare rejects a TTL under 60 seconds; a stub that ignores
+      // it lets a caller ship one that throws in production.
+      if (opts?.expirationTtl !== undefined && opts.expirationTtl < 60) {
+        throw new Error(`Invalid expiration_ttl of ${opts.expirationTtl}. Must be at least 60.`);
+      }
+      store.set(k, v);
+    },
+    async delete(k) { store.delete(k); },
   };
 }
 
