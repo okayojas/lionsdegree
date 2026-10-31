@@ -7,33 +7,45 @@
 -- comparison was also a read followed by a write with no atomicity, so even
 -- a correct client-side check loses the race it was written to win.
 --
--- WHY IN THE DATABASE. A conflict rule honoured by one writer is not a
--- conflict rule. The planner is about to stop being the only writer — the
--- hosted connector's mutating tools write to this same row (#36) — and the
--- rule has to bind whoever shows up, including a client we have not written
--- yet and a model we do not control. Here it is one statement that cannot
--- be skipped, not a convention each caller has to remember.
+-- A BACKSTOP, NOT THE MECHANISM. The compare-and-swap is a conditional
+-- update issued by the client: the row is matched on the revision the
+-- writer last agreed with, so the compare and the swap are one statement
+-- nobody can land inside. See ADR 0003.
 --
--- WHY `rev` AND NOT A TIMESTAMP. Clocks on two devices disagree, and the
--- disagreement is silent. `rev` is a counter the writer increments from
--- what it read, so stating it IS stating what the write was based on:
--- "I computed this from rev 5". If the stored row is already at 6, that
--- claim is false and the write is refused rather than merged on a guess.
--- This is iron rule 2 applied to concurrency.
+-- This trigger only refuses a write that would move `rev` BACKWARDS, which
+-- no correct client sends and which would quietly undo work if one did.
+--
+-- It is deliberately not the whole rule, because it cannot be: "rev must
+-- increase" is monotonicity, not agreement. `rev` advances on every local
+-- edit, including edits no server has seen — the push is debounced and two
+-- quick edits coalesce — so a device at revision 7 writing over a server
+-- at 6 may be perfectly in sync or may be about to destroy somebody's
+-- work, and this trigger cannot tell which. The first version of this
+-- migration tried, and got it wrong: two tabs at 5, one edits once and
+-- pushes 6, the other edits twice and pushes 7, and 7 wins. The compare
+-- has to name the base, which only the client knows.
 
 create or replace function public.plans_rev_must_advance()
 returns trigger
 language plpgsql
+-- Pinned so the function cannot be made to resolve a different `raise`
+-- or operator through a caller's search_path (Supabase's linter asks for
+-- this on every SECURITY-adjacent function, and it costs nothing here).
+set search_path = ''
 as $$
 begin
   if new.rev is null or new.rev <= old.rev then
     -- The message carries both numbers because the client shows them to a
     -- student: "your copy is behind" is only actionable with the gap.
     raise exception
-      'stale plan write: this update is based on rev %, but the stored plan is already at rev %',
-      coalesce(new.rev, 0) - 1, old.rev
+      'plan revision went backwards: tried to write rev %, but the stored plan is already at rev %',
+      new.rev, old.rev
       using errcode = 'LD001',
             hint = 'Re-read the plan and apply the change to the current revision.';
+    -- The message no longer fabricates a "based on" number. It used to
+    -- print `new.rev - 1`, which is only the base when no edits coalesced
+    -- -- so it told a confident story that was wrong exactly when the
+    -- conflict was real.
   end if;
   return new;
 end;

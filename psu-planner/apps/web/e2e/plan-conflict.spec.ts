@@ -15,7 +15,7 @@
  * migration. Stubbing also lets the race be deterministic, which a real
  * round trip could not be.
  */
-import { test, expect, SEEDED_PLAN } from "./fixtures.js";
+import { test, expect, expectNoA11yViolations, SEEDED_PLAN } from "./fixtures.js";
 import type { Page, Route } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
@@ -33,33 +33,109 @@ const STALE = {
 
 /** Make the app believe sync is configured and signed in, and decide what
  * the server says to each write. Returns the writes it saw. */
-async function stubSupabase(page: Page, respond: (n: number) => "ok" | "stale"): Promise<{ writes: unknown[] }> {
-  const seen = { writes: [] as unknown[] };
+/** A plan the server can plausibly be holding.
+ *
+ * It has to be a real one. The sign-in path pulls whatever the server has
+ * and adopts it, so a sentinel object is not an inert marker — it becomes
+ * the student's Plan and the chart never renders. Marked by its `id` so a
+ * test can tell whose copy survived. */
+/** A Plan the server can plausibly be holding.
+ *
+ * `adopted` decides whether the device will take it at sign-in, and the
+ * two cases are genuinely different situations rather than a detail:
+ *
+ *   adopted  — the device pulls it and reaches AGREEMENT at its revision,
+ *              which is what a later write can then be stale against.
+ *   not      — the device never saw it, so its first write is an INSERT
+ *              against a row that already exists: the same conflict, by
+ *              the other route.
+ *
+ * The lever is the timestamp, because the sign-in pull still gates on it
+ * — reasonably, since at sign-in there is no conflict to resolve, just
+ * two copies and a question of which is newer. */
+function serverPlan(id: string, rev: number, adopted: boolean): Record<string, unknown> {
+  return {
+    ...(SEEDED_PLAN as Record<string, unknown>),
+    id,
+    rev,
+    ...(adopted ? { updatedAt: new Date(Date.now() + 60_000).toISOString() } : {}),
+  };
+}
 
+/** One row, shared by however many pages are pointed at it.
+ *
+ * NOT A CANNED RESPONSE. The first version answered every write with the
+ * same scripted 400, which tests that the app reacts to a refusal but
+ * cannot test whether a refusal would ever HAPPEN — and the rule being
+ * checked was wrong in a way a canned stub could never show. This holds a
+ * `rev` and applies the same compare-and-swap Postgres would, so two
+ * pages genuinely race for it.
+ *
+ * `rev === null` means no row yet, which is the INSERT path. */
+interface Server {
+  rev: number | null;
+  doc: unknown;
+  updatedAt: string;
+  accepted: number[];
+  refused: number[];
+}
+
+function makeServer(): Server {
+  return { rev: null, doc: null, updatedAt: new Date(0).toISOString(), accepted: [], refused: [] };
+}
+
+async function stubSupabase(page: Page, server: Server): Promise<void> {
   await page.route("**/auth/v1/**", (route: Route) =>
     route.fulfill({
       status: 200,
       contentType: "application/json",
       body: JSON.stringify({
-        user: { id: "00000000-0000-0000-0000-000000000001", email: "student@psu.edu" },
+        id: "00000000-0000-0000-0000-000000000001",
+        aud: "authenticated",
+        role: "authenticated",
+        email: "student@psu.edu",
       }),
     }),
   );
 
   await page.route("**/rest/v1/plans**", async (route: Route) => {
     const req = route.request();
-    if (req.method() === "GET") {
-      return route.fulfill({ status: 200, contentType: "application/json", body: "[]" });
-    }
-    seen.writes.push(req.postDataJSON?.() ?? null);
-    if (respond(seen.writes.length) === "stale") {
-      // PostgREST surfaces a trigger's exception as 400 with the SQLSTATE.
-      return route.fulfill({ status: 400, contentType: "application/json", body: JSON.stringify(STALE) });
-    }
-    return route.fulfill({ status: 201, contentType: "application/json", body: "[]" });
-  });
+    const url = new URL(req.url());
+    const json = (status: number, body: unknown) =>
+      route.fulfill({ status, contentType: "application/json", body: JSON.stringify(body) });
 
-  return seen;
+    if (req.method() === "GET") {
+      return json(200, server.rev === null ? [] : [{ doc: server.doc, rev: server.rev, updated_at: server.updatedAt }]);
+    }
+
+    const sent = (req.postDataJSON?.() ?? {}) as { rev?: number; doc?: unknown; updated_at?: string };
+
+    if (req.method() === "POST") {
+      // INSERT. A row already there is a unique violation, same as Postgres.
+      if (server.rev !== null) {
+        server.refused.push(sent.rev ?? -1);
+        return json(409, { code: "23505", message: "duplicate key value violates unique constraint" });
+      }
+      server.rev = sent.rev ?? 1;
+      server.doc = sent.doc;
+      server.updatedAt = sent.updated_at ?? new Date().toISOString();
+      server.accepted.push(server.rev);
+      return json(201, []);
+    }
+
+    // UPDATE. The client states the rev it last agreed on as `rev=eq.N`;
+    // this is the compare-and-swap, and it matches no row when stale.
+    const want = Number(/eq\.(\d+)/.exec(url.searchParams.get("rev") ?? "")?.[1] ?? NaN);
+    if (server.rev !== want) {
+      server.refused.push(sent.rev ?? -1);
+      return json(200, []); // zero rows affected: the refusal
+    }
+    server.rev = sent.rev ?? server.rev;
+    server.doc = sent.doc;
+    server.updatedAt = sent.updated_at ?? new Date().toISOString();
+    server.accepted.push(server.rev!);
+    return json(200, [{ rev: server.rev }]);
+  });
 }
 
 /** The project this build points at.
@@ -162,7 +238,9 @@ async function editThePlan(page: Page): Promise<boolean> {
 
 test.describe("when the same plan was changed somewhere else", () => {
   test("the student is told, and is not left guessing", async ({ page }) => {
-    await stubSupabase(page, () => "stale");
+    const server = makeServer();
+    server.rev = 99; // a row this device has never agreed with
+    await stubSupabase(page, server);
     await openPlanner(page, true);
 
     test.skip(!(await editThePlan(page)), "no term control at this width to edit through");
@@ -178,7 +256,9 @@ test.describe("when the same plan was changed somewhere else", () => {
     // A toast auto-dismisses after 3.5s, which is right for "added MATH
     // 141" and wrong for "your edit did not save" -- there is a decision
     // to make and it should not disappear mid-thought.
-    await stubSupabase(page, () => "stale");
+    const server = makeServer();
+    server.rev = 99; // a row this device has never agreed with
+    await stubSupabase(page, server);
     await openPlanner(page, true);
     test.skip(!(await editThePlan(page)), "no term control at this width to edit through");
 
@@ -191,7 +271,9 @@ test.describe("when the same plan was changed somewhere else", () => {
   test("keeps the student's own edit while telling them", async ({ page }) => {
     // The refused write must not take the edit down with it. The change
     // they just made is still in front of them and still on the device.
-    await stubSupabase(page, () => "stale");
+    const server = makeServer();
+    server.rev = 99; // a row this device has never agreed with
+    await stubSupabase(page, server);
     await openPlanner(page, true);
     test.skip(!(await editThePlan(page)), "no term control at this width to edit through");
 
@@ -202,7 +284,8 @@ test.describe("when the same plan was changed somewhere else", () => {
 
   test("an accepted save says nothing at all", async ({ page }) => {
     // The other half: this must not fire on the ordinary path.
-    await stubSupabase(page, () => "ok");
+    const server = makeServer();
+    await stubSupabase(page, server);
     await openPlanner(page, true);
     test.skip(!(await editThePlan(page)), "no term control at this width to edit through");
 
@@ -212,15 +295,129 @@ test.describe("when the same plan was changed somewhere else", () => {
 });
 
 test.describe("the local plan after a refused save", () => {
-  test("is exactly what it was", async ({ page }) => {
-    // THE ASSERTION THAT MATTERS. Everything else in this ticket is about
-    // telling the student; this is about not destroying their work while
-    // doing so. Byte-identical, not "looks similar".
-    await stubSupabase(page, () => "stale");
+  test("still holds the edit the student just made", async ({ page }) => {
+    // THE ASSERTION THAT MATTERS. Everything else is about telling the
+    // student; this is about not destroying their work while doing so.
+    //
+    // The first version of this test never made an edit, so no push ever
+    // happened and it passed by asserting that nothing changed when
+    // nothing had been asked to.
+    const server = makeServer();
+    server.rev = 99;
+    await stubSupabase(page, server);
     await openPlanner(page, true);
-    const before = await storedPlan(page);
-    await page.waitForTimeout(3500); // past the 2.5s debounce
-    expect(await storedPlan(page)).toBe(before);
+    test.skip(!(await editThePlan(page)), "no term control at this width to edit through");
+
+    await expect(page.locator(".conflict-bar")).toBeVisible({ timeout: 15_000 });
+    const after = await storedPlan(page);
+    const edited = await page.evaluate(() => {
+      const p = JSON.parse(window.localStorage.getItem("psu-planner-plan-v1") ?? "{}");
+      return (p.terms ?? []).filter((t: { gap?: boolean }) => t.gap).length;
+    });
+    expect(edited, "the skipped term was rolled back by the refused save").toBeGreaterThan(0);
+    expect(after, "the local plan was emptied").toBeTruthy();
+  });
+
+  test("leaves the server's copy untouched", async ({ page }) => {
+    // The other side of the same coin, and the one the spec names: a
+    // rejected write moves no bytes on the server either.
+    const server = makeServer();
+    server.rev = 99;
+    // NOT adopted: this device has never agreed with the server, so its
+    // first write is an insert against a row that is already there.
+    server.doc = serverPlan("written-by-the-other-device", 99, false);
+    await stubSupabase(page, server);
+    await openPlanner(page, true);
+    test.skip(!(await editThePlan(page)), "no term control at this width to edit through");
+
+    await expect(page.locator(".conflict-bar")).toBeVisible({ timeout: 15_000 });
+    expect(server.rev, "the server's revision moved on a refused write").toBe(99);
+    expect(
+      (server.doc as { id?: string })?.id,
+      "the server's plan was overwritten by the refused write",
+    ).toBe("written-by-the-other-device");
+    expect(server.accepted, "a write was accepted when it should have been refused").toEqual([]);
+  });
+});
+
+test.describe("two writers, racing", () => {
+  test("the second one is refused, however many edits it coalesced", async ({ page, browser }) => {
+    // THE BUG THE FIRST IMPLEMENTATION HAD. A rule of "rev must increase"
+    // is monotonicity, not agreement: tab A edits once and pushes rev 6,
+    // tab B edits TWICE (the debounce coalesces them) and pushes 7 — and
+    // 7 beats 6, so tab A's work vanished. Both reviews caught it; this
+    // test is what would have.
+    //
+    // Two real pages against one shared row.
+    // The server already holds a Plan, and BOTH devices load it before
+    // either edits — so both genuinely agree at the same revision, which
+    // is what makes what follows a race rather than two unrelated writes.
+    const server = makeServer();
+    server.rev = 7;
+    server.doc = serverPlan("shared", 7, true);
+    server.updatedAt = (server.doc as { updatedAt: string }).updatedAt;
+
+    // SEPARATE CONTEXTS, not two pages in one. Pages in a context share
+    // localStorage, so they would share the synced-revision marker too,
+    // and the second write would be legitimately in agreement. Two
+    // devices is what this is about, and two devices do not share a disk.
+    const a = page;
+    const other = await browser.newContext();
+    const b = await other.newPage();
+    await stubSupabase(a, server);
+    await stubSupabase(b, server);
+
+    await openPlanner(a, true);
+    await openPlanner(b, true);
+    // Let both finish adopting the server's copy before anyone edits.
+    await a.waitForTimeout(2000);
+    await b.waitForTimeout(2000);
+
+    // Adopting the server's copy itself schedules a push, so both devices
+    // write the revision they just adopted before anyone edits. Those are
+    // no-ops that land legitimately; the baseline is what the server holds
+    // once they have settled.
+    await expect.poll(() => server.accepted.length, { timeout: 15_000 }).toBeGreaterThan(0);
+    const adopted = server.rev!;
+
+    test.skip(!(await editThePlan(a)), "no term control at this width to edit through");
+    await expect
+      .poll(() => server.rev, { timeout: 15_000, message: "tab A's edit never landed" })
+      .toBeGreaterThan(adopted);
+    const afterA = server.rev!;
+
+    // B edits twice, so its local rev outruns the server's by two.
+    await editThePlan(b);
+    await editThePlan(b);
+    await page.waitForTimeout(5000);
+
+    // THE WHOLE POINT. B's two edits coalesced into one push whose
+    // revision is HIGHER than A's — under a "rev must increase" rule it
+    // would have won and A's work would be gone. Under compare-and-swap
+    // it names a revision the server has moved past, and lands nowhere.
+    expect(server.rev, "tab B overwrote tab A by having a bigger number").toBe(afterA);
+    expect(
+      server.refused.some((r) => r > afterA),
+      `tab B's coalesced write was not refused (accepted ${server.accepted.join(",")}, refused ${server.refused.join(",")})`,
+    ).toBe(true);
+    await expect(b.locator(".conflict-bar"), "tab B was not told").toBeVisible();
+    await other.close();
+  });
+
+  test("an accepted write advances the revision the server holds", async ({ page }) => {
+    // Criterion: "Accepted writes advance `rev`". Nothing asserted this.
+    const server = makeServer();
+    await stubSupabase(page, server);
+    await openPlanner(page, true);
+    test.skip(!(await editThePlan(page)), "no term control at this width to edit through");
+
+    await expect.poll(() => server.accepted.length, { timeout: 15_000 }).toBeGreaterThan(0);
+    const first = server.rev!;
+    await editThePlan(page);
+    await expect
+      .poll(() => server.rev, { timeout: 15_000, message: "a second accepted write did not advance rev" })
+      .toBeGreaterThan(first);
+    expect(server.refused, "an ordinary second edit was refused").toEqual([]);
   });
 });
 
@@ -239,5 +436,45 @@ test.describe("a student who never signs in", () => {
     expect(before, "no plan was stored at all").toBeTruthy();
     await page.waitForTimeout(3000);
     expect(await storedPlan(page), "the local plan was disturbed with no account").toBe(before);
+  });
+});
+
+test.describe("the conflict notice itself", () => {
+  test("is announced, reachable by keyboard, and passes axe", async ({ page }) => {
+    // New UI on a suite that gates on accessibility. An `alert` because a
+    // student needs to hear this without having been looking at the
+    // corner of the screen; keyboard-reachable because the decision it
+    // asks for is the only way out of it.
+    const server = makeServer();
+    server.rev = 99; // a row this device has never agreed with
+    await stubSupabase(page, server);
+    await openPlanner(page, true);
+    test.skip(!(await editThePlan(page)), "no term control at this width to edit through");
+
+    const bar = page.locator(".conflict-bar");
+    await expect(bar).toBeVisible({ timeout: 15_000 });
+    await expect(bar).toHaveAttribute("role", "alert");
+
+    const load = bar.getByRole("button", { name: /load the newer plan/i });
+    const dismiss = bar.getByRole("button", { name: /not now/i });
+    await expect(load).toBeVisible();
+    await expect(dismiss).toBeVisible();
+
+    await load.focus();
+    await expect(load).toBeFocused();
+    await dismiss.focus();
+    await expect(dismiss).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(bar, "Enter on Not now did not dismiss it").toHaveCount(0);
+  });
+
+  test("has no accessibility violations", async ({ page }) => {
+    const server = makeServer();
+    server.rev = 99; // a row this device has never agreed with
+    await stubSupabase(page, server);
+    await openPlanner(page, true);
+    test.skip(!(await editThePlan(page)), "no term control at this width to edit through");
+    await expect(page.locator(".conflict-bar")).toBeVisible({ timeout: 15_000 });
+    await expectNoA11yViolations(page);
   });
 });

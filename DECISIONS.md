@@ -14,7 +14,7 @@ Companion to `README.md`; project memory lives with the AI assistant's notes.
 | AI tiers | Free = rate-limited `gpt-5-mini` via our proxy; paid = `gpt-5` + web search | User has an OpenAI key (not Anthropic). Rejected: fine-tuning a small model (teaches style, not facts — would hallucinate prereqs); self-hosted GPU (~$150-400/mo idle > API costs); in-browser WebLLM (2-3GB download, excludes phones, weak tool-calling) kept as a possible later free path. |
 | RAG strategy | Tool-based retrieval over local catalog (search/details/audit/chain tools), no embeddings in v1 | Deterministic, offline-capable, no hallucinated course data. Embeddings (`text-embedding-3-small`) optional later for semantic elective search. |
 | Accounts | Local-first (localStorage/IndexedDB), optional sign-in later (Supabase, Google + Microsoft OAuth) to sync | Zero-friction first use; PSU students all have Microsoft accounts. Required accounts rejected (adoption friction). |
-| Sync conflicts | Last-write-wins per plan doc, loser kept as restorable snapshot | CRDT rejected as overkill: one user, whole-doc unit, rare conflicts. |
+| Sync conflicts | Compare-and-swap on `rev`: a write names the revision it last saw and lands only if the server is still there; otherwise refused and surfaced (ADR 0003) | Was last-write-wins. Two tabs editing one Plan destroyed each other's work silently, which is the one failure this project cannot have. CRDT still rejected as overkill: one user, whole-doc unit, rare conflicts — refusing is enough. |
 | Chat architecture | Client-owned tool loop; server = stateless streaming proxy | Plan is local-first, so tools execute in the browser against local state. Server injects system prompt + tool defs (client can't override), holds the API key, rate-limits. Server-authoritative rejected: would mirror plan state per message and break anonymous use. |
 | Flowchart renderer | Port the demo's custom column-snapped SVG renderer | React Flow rejected: its free-form graph model fights column snapping, credit headers, and eval-derived edges. Demo math was proven; ported to Pointer Events for touch. |
 | Hosting model | Static CDN (Cloudflare Pages) + stateless Worker + Supabase | Catalog is read-only between semester scrapes = perfect static case. Kubernetes rejected: it's compute orchestration, not storage; $50-200+/mo + ops burden for zero benefit. |
@@ -717,7 +717,8 @@ history starts at a fresh root commit rather than a rewritten one. No `filter-re
   deny-by-default (`supabase/migrations/0001_plans.sql` — every policy checks auth.uid()).
   Vercel not needed: Cloudflare Pages covers hosting/functions.
 - **Sync is config-gated**: no VITE_SUPABASE_* env → account UI hides, app stays fully local.
-  LWW conflict policy with local backup before adopting a remote plan.
+  Compare-and-swap conflict policy (ADR 0003), with a local backup before
+  adopting a remote plan.
 - **Legal pages** (privacy/terms/accessibility) live in-app, honest to architecture (local-first,
   no tracking, no chat storage, AI disclosure). Lawyer review before paid launch.
 - **Accessibility**: equivalent list view (semantic sections/lists, text statuses, keyboard move

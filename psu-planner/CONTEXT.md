@@ -105,5 +105,22 @@ A requirement a Plan demonstrably meets.
 A requirement we cannot judge either way, usually because the prerequisite text
 defeated reading. Distinct from unmet, and never collapsed into satisfied.
 
+**Revision**:
+Which version of a Plan this is. Advances on every edit, including edits no
+server has seen. It says where a copy IS, never what it was working from —
+which is why agreement needs a second number, below.
+_Avoid_: version — a Plan has no versions a student would name.
+
+**Agreement**:
+The Revision a device last knew the server was holding for a Plan. What a
+write names, and what the server must still be at for the write to land. A
+write naming a Revision the server has moved past is **Refused**: nothing is
+merged and nothing is overwritten.
+
+**Refused**:
+A write that did not happen because the Plan had changed somewhere else. The
+student is told and keeps their copy; it is not an error, and it is not a
+silent loss. See ADR 0003.
+
 **Violation**:
 A Course scheduled before something it enforces as a prerequisite.

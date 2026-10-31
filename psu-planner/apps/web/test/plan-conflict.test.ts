@@ -60,6 +60,9 @@ describe("what the student is told", () => {
     // exactly the misreading this sentence exists to prevent.
     expect(msg, "does not say the local copy survived").toMatch(/kept|safe on this device|backed up/i);
     expect(msg, "does not tell the student what to do").toMatch(/reload|refresh|load the newer/i);
+    // And points at something they can open. "Your version is safe"
+    // without a door is a reassurance, not a recovery path.
+    expect(msg, "does not say where the kept copy can be found").toMatch(/plan history/i);
   });
 
   it("blames nobody and mentions no revision numbers", () => {

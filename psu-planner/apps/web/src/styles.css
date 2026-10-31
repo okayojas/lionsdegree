@@ -1016,7 +1016,11 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   color: var(--text); border-radius: var(--r-sm); padding: 6px 12px;
   font-size: var(--fs-sm); font-weight: 600; cursor: pointer; white-space: nowrap;
 }
-.conflict-bar .cb-go { background: var(--warning-solid); color: var(--primary-fg); border-color: var(--warning-solid); }
+/* `--warning` (#8a5f28), not `--warning-solid` (#a2722f). The solid
+   variant is a FILL — a chart dot, a progress bar — and cream text on it
+   measures 3.80:1, which axe caught. The text variant was darkened for
+   exactly this reason and measures 5.06:1. */
+.conflict-bar .cb-go { background: var(--warning); color: var(--primary-fg); border-color: var(--warning); }
 .conflict-bar button:hover { filter: brightness(1.06); }
 
 @media (max-width: 560px) {

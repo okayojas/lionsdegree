@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { progress, type Course, type PlanItem } from "@psu-planner/engine";
 import { usePlanner, loadSavedPlan, getPlanHistory, type PlanHistoryEntry } from "./store";
 import { conflictMessage, flushPush, pullNewerPlan, setConflictListener } from "./data/sync";
-import type { PlanDoc } from "@psu-planner/engine";
 import { loadCourse, loadIugIndex, type IugIndexEntry } from "./data/catalogClient";
 import { downloadPlan, openPlanFile } from "./data/planFileIO";
 import { Onboarding } from "./components/Onboarding";
@@ -98,9 +97,12 @@ export default function App() {
      save": the student has to decide something, and a message that
      disappears while they are reading it leaves them working against a
      copy that has quietly stopped saving. This stays until they act. */
-  const [conflict, setConflict] = useState<PlanDoc | null>(null);
+  // A boolean. It held the refused PlanDoc, which nothing read — the
+  // banner shows one fixed message and the recovery path re-reads from
+  // storage. Carrying the document implied a use that did not exist.
+  const [conflict, setConflict] = useState(false);
   useEffect(() => {
-    setConflictListener((stale) => setConflict(stale));
+    setConflictListener(() => setConflict(true));
     return () => setConflictListener(null);
   }, []);
 
@@ -110,11 +112,11 @@ export default function App() {
      and that a conflict surfaces while they still remember causing it. */
   useEffect(() => {
     const onHide = () => {
-      if (document.visibilityState === "hidden" && plan) void flushPush(plan);
+      if (document.visibilityState === "hidden") void flushPush();
     };
     document.addEventListener("visibilitychange", onHide);
     return () => document.removeEventListener("visibilitychange", onHide);
-  }, [plan]);
+  }, []);
 
   // A skeleton chart, not a centred sentence. The saved plan already knows
   // its terms and how many courses sit in each, so the grid can be on screen
@@ -466,8 +468,8 @@ export default function App() {
                 // `pullNewerPlan` backs the local copy up before handing
                 // back the remote one, so the edit that lost is still
                 // recoverable after this.
-                const newer = await pullNewerPlan(loadSavedPlan());
-                setConflict(null);
+                const newer = await pullNewerPlan(loadSavedPlan(), true);
+                setConflict(false);
                 if (newer) {
                   await setPlan(newer);
                   setToast("Loaded the newer plan. Your previous version was backed up.");
@@ -478,7 +480,7 @@ export default function App() {
             >
               Load the newer plan
             </button>
-            <button type="button" onClick={() => setConflict(null)}>Not now</button>
+            <button type="button" onClick={() => setConflict(false)}>Not now</button>
           </span>
         </div>
       )}
