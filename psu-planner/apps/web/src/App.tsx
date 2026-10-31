@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { progress, type Course, type PlanItem } from "@psu-planner/engine";
 import { usePlanner, loadSavedPlan, getPlanHistory, type PlanHistoryEntry } from "./store";
+import { conflictMessage, flushPush, pullNewerPlan, setConflictListener } from "./data/sync";
+import type { PlanDoc } from "@psu-planner/engine";
 import { loadCourse, loadIugIndex, type IugIndexEntry } from "./data/catalogClient";
 import { downloadPlan, openPlanFile } from "./data/planFileIO";
 import { Onboarding } from "./components/Onboarding";
@@ -89,6 +91,30 @@ export default function App() {
     const t = setTimeout(() => setToast(null), 3500);
     return () => clearTimeout(t);
   }, [toast]);
+
+  /* ── A save that was refused ──────────────────────────────────────────
+     NOT a toast. A toast dismisses itself after 3.5 seconds, which is
+     right for "added MATH 141" and wrong for "your last edit did not
+     save": the student has to decide something, and a message that
+     disappears while they are reading it leaves them working against a
+     copy that has quietly stopped saving. This stays until they act. */
+  const [conflict, setConflict] = useState<PlanDoc | null>(null);
+  useEffect(() => {
+    setConflictListener((stale) => setConflict(stale));
+    return () => setConflictListener(null);
+  }, []);
+
+  /* The debounce is 2.5s, which is most of the gap between a student's
+     last edit and switching away from the tab. Flushing on hide means the
+     server holds the edit they just made rather than the one before it --
+     and that a conflict surfaces while they still remember causing it. */
+  useEffect(() => {
+    const onHide = () => {
+      if (document.visibilityState === "hidden" && plan) void flushPush(plan);
+    };
+    document.addEventListener("visibilitychange", onHide);
+    return () => document.removeEventListener("visibilitychange", onHide);
+  }, [plan]);
 
   // A skeleton chart, not a centred sentence. The saved plan already knows
   // its terms and how many courses sit in each, so the grid can be on screen
@@ -429,6 +455,33 @@ export default function App() {
         />
       )}
       {showLegal && <LegalModal onClose={() => setShowLegal(false)} />}
+      {conflict && (
+        <div className="conflict-bar" role="alert">
+          <p>{conflictMessage()}</p>
+          <span className="cb-actions">
+            <button
+              type="button"
+              className="cb-go"
+              onClick={async () => {
+                // `pullNewerPlan` backs the local copy up before handing
+                // back the remote one, so the edit that lost is still
+                // recoverable after this.
+                const newer = await pullNewerPlan(loadSavedPlan());
+                setConflict(null);
+                if (newer) {
+                  await setPlan(newer);
+                  setToast("Loaded the newer plan. Your previous version was backed up.");
+                } else {
+                  setToast("Nothing newer to load — try your edit again.");
+                }
+              }}
+            >
+              Load the newer plan
+            </button>
+            <button type="button" onClick={() => setConflict(null)}>Not now</button>
+          </span>
+        </div>
+      )}
       {toast && <div className="toast" role="status">{toast}</div>}
     </div>
   );

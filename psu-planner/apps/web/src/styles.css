@@ -991,3 +991,35 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
      way either. */
   .toolbar-menu { left: 0; right: auto; transform-origin: top left; max-width: calc(100vw - 24px); }
 }
+
+/* A save that was refused.
+   Deliberately not a toast: a toast dismisses itself, and this is a
+   message the student has to act on. Sits above everything, stays until
+   they choose, and is an `alert` so it is announced rather than waited
+   for. Amber, not red -- nothing is broken and nothing is lost; a copy of
+   their work just did not reach the server. */
+.conflict-bar {
+  position: fixed; left: 50%; transform: translateX(-50%);
+  bottom: 18px; z-index: 300;
+  display: flex; align-items: center; gap: var(--sp-4);
+  max-width: min(42rem, calc(100vw - 24px));
+  padding: 12px 16px;
+  background: var(--warning-bg); color: var(--warning);
+  border: 1px solid var(--warning-border); border-radius: var(--r);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--fs-sm); line-height: 1.45;
+}
+.conflict-bar p { margin: 0; }
+.cb-actions { display: flex; gap: 8px; flex: none; }
+.conflict-bar button {
+  border: 1px solid var(--warning-border); background: var(--surface);
+  color: var(--text); border-radius: var(--r-sm); padding: 6px 12px;
+  font-size: var(--fs-sm); font-weight: 600; cursor: pointer; white-space: nowrap;
+}
+.conflict-bar .cb-go { background: var(--warning-solid); color: var(--primary-fg); border-color: var(--warning-solid); }
+.conflict-bar button:hover { filter: brightness(1.06); }
+
+@media (max-width: 560px) {
+  .conflict-bar { flex-direction: column; align-items: stretch; bottom: 10px; }
+  .cb-actions { justify-content: flex-end; }
+}
