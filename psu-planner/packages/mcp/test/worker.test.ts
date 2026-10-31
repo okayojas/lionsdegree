@@ -282,3 +282,34 @@ describe("catalog prose reaching a model", () => {
     expect(src).toMatch(/fenceCatalogText/);
   });
 });
+
+describe("the connector's public surface", () => {
+  it("answers only its own routes, not whatever is in the catalog tree", async () => {
+    // FOUND AGAINST THE LIVE DEPLOY. Cloudflare serves a matching asset
+    // BEFORE the handler unless told otherwise, so
+    // `/2026-2027/courses/math.json` came back 200 from the bucket and
+    // this handler's 404 was never reached — the endpoint's public
+    // surface was whatever the catalog happened to contain rather than a
+    // decision. `run_worker_first` in wrangler.toml is what fixes it;
+    // this asserts the handler's half.
+    //
+    // Nothing was leaking: the shipped files carry no Bulletin prose
+    // (DECISIONS.md 5.1, enforced by sync-catalog) and the same files
+    // are already public on lionsdegree.com.
+    for (const p of ["/2026-2027/courses/math.json", "/editions.json", "/2026-2027/audit-index.json"]) {
+      const res = await worker.fetch(new Request(`https://mcp.lionsdegree.com${p}`), env);
+      expect(res.status, `${p} was answered by the connector`).toBe(404);
+    }
+  });
+
+  it("keeps wrangler configured so the handler actually runs first", () => {
+    // The assertion above is about this file; without the config the
+    // request never reaches it. Checked together, because either alone
+    // passes while the endpoint is wrong.
+    const toml = fs.readFileSync(
+      path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "wrangler.toml"),
+      "utf-8",
+    );
+    expect(toml, "assets would be served before the Worker").toMatch(/run_worker_first\s*=\s*true/);
+  });
+});

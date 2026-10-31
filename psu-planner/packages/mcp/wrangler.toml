@@ -22,6 +22,18 @@ compatibility_flags = ["nodejs_compat"]
 [assets]
 directory = "./catalog"
 binding = "CATALOG"
+# THE WORKER OWNS ITS ROUTING. Without this, Cloudflare serves a matching
+# asset BEFORE the handler runs, so `/2026-2027/courses/math.json` was
+# answered from the bucket and the handler's 404 was never reached — the
+# endpoint's public surface was whatever the catalog tree happened to
+# contain rather than a decision.
+#
+# Nothing was leaking: the shipped files carry no Bulletin prose
+# (sync-catalog refuses to build otherwise, DECISIONS.md 5.1) and the
+# same files are already public on lionsdegree.com. But a connector
+# should answer only what it means to, and the test asserting "/anything
+# is a 404" was passing only because no asset happened to sit there.
+run_worker_first = true
 
 [observability]
 enabled = true
