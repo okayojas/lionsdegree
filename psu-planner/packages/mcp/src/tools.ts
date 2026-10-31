@@ -88,6 +88,10 @@ export const CATALOG_ONLY: ReadonlySet<string> = new Set([
 /** Does this tool need a student's Plan? Everything not named above. */
 export const needsPlan = (name: string): boolean => !CATALOG_ONLY.has(name);
 
+/** Every tool this server actually offers, derived from the definitions
+ * so a new one cannot be added without becoming callable. */
+const KNOWN_TOOLS: ReadonlySet<string> = new Set(allTools().map((t) => t.name));
+
 export function listTools(opts: { catalogOnly?: boolean } = {}): ToolDefinition[] {
   const all = allTools();
   return opts.catalogOnly ? all.filter((t) => CATALOG_ONLY.has(t.name)) : all;
@@ -332,6 +336,12 @@ export async function executeTool(
   // catalog surface there is no Plan, and a tool that needs one says so
   // instead of reaching into null — which is a stack trace where an
   // explanation belongs.
+  if (!KNOWN_TOOLS.has(name)) {
+    // Said plainly. This used to fall into the planless branch and
+    // answer "that needs your plan", which sends a model off to find an
+    // account for a tool that does not exist.
+    return { error: `unknown tool: ${name}. Call tools/list to see what this server offers.` };
+  }
   if (needsPlan(name) && !ctx.plan) {
     return {
       error:
@@ -339,8 +349,10 @@ export async function executeTool(
         `Course, prerequisite and program questions work without one.`,
     };
   }
-  // Safe past the guard above: every case below that reads `plan` is in
-  // NEEDS_PLAN, which the e2e asserts.
+  // Past the guard above, the only case that reads `plan` while being in
+  // CATALOG_ONLY is `get_prereq_chain`, which gates on `hasPlan` itself
+  // and asks for the Bulletin half only. `mcp-surface.test.ts` holds the
+  // rest of the line.
   const plan = ctx.plan as PlanDoc;
   const cat: Catalog = data.catalog;
   const code = typeof args.code === "string" ? args.code.trim().toUpperCase() : "";

@@ -54,7 +54,14 @@ export interface SearchRanking {
  * Search still works on code and title — that is the honest degradation
  * when a catalog was built from subject files, or when the postings have
  * not been fetched yet because nobody has searched. */
-export const NO_RANKING: SearchRanking = { terms: [], postings: new Map() };
+export const NO_RANKING: SearchRanking = Object.freeze({
+  terms: Object.freeze([]) as readonly string[],
+  // Frozen so a caller cannot write into the shared singleton. Two
+  // Editions that have both loaded nothing DO share this object, which
+  // is correct -- "no ranking" is one thing -- but it means identity is
+  // not a test for isolation; compare the loaded ones.
+  postings: new Map<string, ReadonlyMap<number, number>>(),
+});
 
 /** Decode the packed postings file into a ranking.
  *

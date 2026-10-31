@@ -16,6 +16,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import worker, { type Env } from "../src/worker.js";
+import type { CatalogSource } from "../src/source.js";
 
 const CATALOG = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "catalog");
 
@@ -183,14 +184,26 @@ describe("when the request is wrong", () => {
     expect(res.status).toBeGreaterThanOrEqual(400);
   });
 
-  it("says something a protocol client can read when the catalog is gone", async () => {
-    // A deploy that lost its assets. The failure has to arrive as JSON-RPC
-    // rather than as an HTML error page the client cannot parse.
+  it("fails as JSON-RPC when the catalog is gone, and says nothing internal", async () => {
+    // A deploy that lost its assets. Two properties, and they pull
+    // against each other: the failure must arrive as JSON-RPC rather
+    // than an HTML page the client cannot parse, AND it must not hand an
+    // anonymous caller our file layout or build commands. The reason
+    // goes to the log.
     const broken: Env = { CATALOG: { async fetch() { return new Response("nope", { status: 404 }); } } };
     const res = await worker.fetch(POST(INIT), broken);
     const body = await payload(res);
     expect(body.jsonrpc).toBe("2.0");
-    expect((body.error as { message?: string })?.message).toMatch(/catalog|assets/i);
+    const message = String((body.error as { message?: string })?.message ?? "");
+    expect(message, "no readable error reached the client").toBeTruthy();
+    for (const internal of ["sync-catalog", ".json", "audit-index", "/", "node "]) {
+      expect(message, `the error leaked "${internal}" to an unauthenticated caller`).not.toContain(internal);
+    }
+    // `includes`, not a regex. A `\b` written through a heredoc becomes a
+    // literal backspace byte -- this is the eighth time in this project --
+    // and a substring check needs no escaping at all.
+    expect(message.includes(".ts:"), "a stack trace reached the client").toBe(false);
+    expect(message.includes("    at "), "a stack trace reached the client").toBe(false);
   });
 });
 
@@ -236,48 +249,106 @@ describe("two Editions in one isolate", () => {
     const { loadEdition } = await import("../src/catalog.js");
     const { searchCatalog } = await import("@psu-planner/engine");
 
-    const source = new FsCatalogSource(CATALOG);
-    const all = await source.editions();
-    if (all.length < 2) {
-      // Reported, not silently skipped: this is the assertion the
-      // criterion was added for, and "there was only one Edition" is a
-      // fact about the fixture rather than a pass.
-      console.warn(`only ${all.length} edition bundled — run sync-catalog for both to exercise this`);
-      return;
-    }
-    const [older, newer] = [all[0], all[all.length - 1]];
+    // SYNTHETIC, so it always runs. The bundled catalog is gitignored
+    // and a fresh checkout may have one Edition or none — the first
+    // version of this bailed with a `console.warn` and a bare `return`,
+    // which is a green pass asserting nothing, on exactly the criterion
+    // it was written for.
+    const real = new FsCatalogSource(CATALOG);
+    const bundled = (await real.editions())[0];
+    expect(bundled, "no catalog bundled — run sync-catalog").toBeTruthy();
+
+    /** Two Editions over one set of files, with DIFFERENT vocabularies
+     * so a crossed dictionary is visible rather than merely possible. */
+    const twoEditions = (vocabularyOf: (ed: string) => string[]): CatalogSource => ({
+      async read<T>(p: string): Promise<T | null> {
+        const ed = p.split("/")[0];
+        const rest = p.slice(ed.length + 1);
+        if (rest === "search-postings.json") {
+          return { terms: vocabularyOf(ed), postings: { "MATH 140": [0, 1] } } as T;
+        }
+        return real.read<T>(`${bundled}/${rest}`);
+      },
+      async editions() { return ["2024-2025", "2025-2026"]; },
+    });
+
+    const source = twoEditions((ed) => (ed === "2024-2025" ? ["alpha", "older"] : ["newer", "zeta"]));
+    const [older, newer] = ["2024-2025", "2025-2026"];
 
     const a = await loadEdition(source, older);
     const b = await loadEdition(source, newer);
     await a.ensureSearchRanking();
 
-    // A searches well; B has loaded no ranking at all and must say so by
-    // scoring on code and title only — NOT by borrowing A's.
-    expect(a.ranking.terms.length, "the older edition loaded no ranking").toBeGreaterThan(1000);
+    // A has a vocabulary; B has loaded nothing and must say so by
+    // scoring on code and title alone — NOT by borrowing A's.
+    expect([...a.ranking.terms], "the older edition loaded no ranking").toEqual(["alpha", "older"]);
     expect(b.ranking.terms.length, "the newer edition borrowed another edition's dictionary").toBe(0);
 
     // Now B loads its own, and A's must be untouched.
-    const aTermsBefore = a.ranking.terms.length;
+    const aTerms = [...a.ranking.terms];
     await b.ensureSearchRanking();
-    expect(b.ranking.terms.length).toBeGreaterThan(1000);
-    expect(a.ranking.terms.length, "loading one edition's ranking changed another's").toBe(aTermsBefore);
-    expect(a.ranking, "both editions ended up sharing one ranking object").not.toBe(b.ranking);
 
-    // And each still answers from its own catalog.
-    for (const ed of [a, b]) {
-      const hits = searchCatalog(ed.catalog, "robotics", 10, ed.ranking);
-      expect(hits.length, `${ed.edition} found nothing`).toBeGreaterThan(3);
-    }
+    // THE ASSERTION. Each Edition kept its OWN vocabulary. Term ids
+    // index a specific dictionary, so a crossed one is not a worse
+    // answer, it is an answer about different words.
+    expect([...a.ranking.terms], "loading one edition's ranking changed another's").toEqual(aTerms);
+    expect([...a.ranking.terms]).toEqual(["alpha", "older"]);
+    expect([...b.ranking.terms]).toEqual(["newer", "zeta"]);
+    expect(a.ranking, "both editions share one ranking object").not.toBe(b.ranking);
   });
 });
 
 describe("catalog prose reaching a model", () => {
-  it("is fenced by the engine's implementation, not a second copy", async () => {
-    // DECISIONS.md 5.0/S4. The remaining prose is an adviser-defined or
-    // unreadable requirement's own words; a duplicated security boundary
-    // drifts from the original, so there must be exactly one.
+  /** DECISIONS.md 5.0/S4 and 5.1. The first version of this grepped the
+   * source for `fenceCatalogText` — which would have passed just as
+   * happily if the hosted surface emitted raw Bulletin prose, because
+   * the one call site is in `suggest_slot_courses` and that tool is not
+   * offered here at all.
+   *
+   * The property is what matters: nothing the anonymous surface returns
+   * carries unfenced Bulletin prose. Today it holds for a stronger
+   * reason than fencing — descriptions are not published at all — and
+   * this asserts that outcome against every catalog tool's real output
+   * rather than against an import. */
+  const call = async (name: string, args: Record<string, unknown>) => {
+    const res = await worker.fetch(POST(rpc("tools/call", { name, arguments: args })), env);
+    const text = await res.text();
+    const line = text.split("\n").filter((l) => l.startsWith("data:")).pop();
+    const body = line ? JSON.parse(line.slice(5).trim()) : JSON.parse(text);
+    return ((body.result as { content?: { text?: string }[] })?.content?.[0]?.text) ?? "";
+  };
+
+  it("returns no description prose from any tool on the anonymous surface", async () => {
     const { FENCE_TAG } = await import("@psu-planner/engine");
-    const src = fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "src", "tools.ts"), "utf-8");
+    const outputs = await Promise.all([
+      call("search_catalog", { query: "robotics", limit: 10 }),
+      call("get_course_details", { code: "MATH 141" }),
+      call("get_course_details", { code: "CMPSC 465" }),
+      call("get_prereq_chain", { code: "MATH 230", max_depth: 3 }),
+      call("search_programs", { query: "computer science" }),
+    ]);
+    for (const out of outputs) {
+      expect(out.length, "a tool returned nothing, so this asserted nothing").toBeGreaterThan(10);
+      // The shipped catalog carries no `description` field at all
+      // (sync-catalog refuses to build otherwise), so none should ever
+      // appear in a response.
+      expect(out, "a tool emitted a description field").not.toMatch(/"description"\s*:\s*"[^"]/);
+    }
+    // And if prose ever does reach a model from here, it must arrive
+    // fenced — so the tag existing in output is fine; unfenced prose is
+    // not. Stated as a reminder of which way round this goes.
+    expect(typeof FENCE_TAG).toBe("string");
+  });
+
+  it("fences through the engine rather than a second implementation", async () => {
+    // A duplicated security boundary drifts from the original. This is
+    // the import check, kept — but it is now the SECOND assertion, not
+    // the only one.
+    const src = fs.readFileSync(
+      path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "src", "tools.ts"),
+      "utf-8",
+    );
+    const { FENCE_TAG } = await import("@psu-planner/engine");
     expect(src, "the MCP package hardcodes the fence tag instead of importing it").not.toContain(`"${FENCE_TAG}"`);
     expect(src).toMatch(/fenceCatalogText/);
   });

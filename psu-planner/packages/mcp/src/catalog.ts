@@ -192,6 +192,13 @@ export async function loadEdition(source: CatalogSource, edition: string): Promi
   /** Read one subject's files and fold them into the catalog. Returns the
    * Courses added, so the caller can look at their prerequisites. */
   async function loadSubject(subject: string): Promise<Course[]> {
+    // Not in the index at all: this Edition does not publish the subject.
+    // Genuinely absent rather than unreadable, so it is remembered.
+    if (!subjects[subject] && !subjects[`${subject}:grad`]) {
+      loadedSubjects.set(subject, Promise.resolve([]));
+      return [];
+    }
+
     // MEMOISED ON THE PROMISE, not on a flag. The first version marked a
     // subject loaded BEFORE awaiting its bytes, so a second caller
     // arriving during the read saw "already done" and went on to evaluate
@@ -203,11 +210,34 @@ export async function loadEdition(source: CatalogSource, edition: string): Promi
     if (inFlight) return inFlight;
 
     const work = (async () => {
+      const paths = subjectPaths(edition, subject, subjects);
       const found: Course[] = [];
-      for (const p of subjectPaths(edition, subject, subjects)) {
+      let failed = false;
+      for (const p of paths) {
         const rows = await source.read<Course[]>(p);
         if (Array.isArray(rows)) found.push(...rows);
+        // The INDEX SAID THIS FILE EXISTS. A source returns null for
+        // absent, broken and unreachable alike -- deliberately, since a
+        // caller decides what a miss means -- so this is where the three
+        // are told apart: a path the subjects index names and we could
+        // not read is a FAILURE, not an empty subject.
+        else failed = true;
       }
+
+      if (failed) {
+        // DO NOT REMEMBER A FAILURE AS AN ANSWER. Memoised, one transient
+        // 500 made that isolate report `enforced_prerequisites: null` for
+        // every Course in the subject, for its whole life -- "this has no
+        // prerequisites" where "we could not read them" is the only
+        // honest answer (iron rule 2). Dropping the memo means the next
+        // question retries instead of being served the same silence.
+        loadedSubjects.delete(subject);
+        // Anything that DID arrive is still folded in; a subject with an
+        // undergraduate file and a missing graduate one is better served
+        // half-known than not at all, and the Courses that did not arrive
+        // keep `astComplete: false`.
+      }
+
       // A full Course REPLACES its audit row. Callers hold `catalog`
       // across this, so it is mutated rather than rebuilt.
       for (const [key, course] of Object.entries(buildCatalog(found))) catalog[key] = course;

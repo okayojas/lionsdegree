@@ -82,6 +82,21 @@ function reoptimize(ctx: ToolContext, plan: PlanDoc): PlanDoc {
 const isRequired = (ctx: ToolContext, code: string): boolean =>
   !!ctx.plan?.terms.some((t) => t.items.some((i) => "code" in i && i.code === code && !!i.origin));
 
+/** Every tool this function handles.
+ *
+ * Stated once so the planless guard below can be scoped to it, and
+ * exported so `mcp-surface.test.ts` can check the catalog-only surface
+ * against the real list rather than a second hand-written one. */
+export const MUTATIONS: ReadonlySet<string> = new Set([
+  "add_course",
+  "add_term",
+  "fill_slot",
+  "optimize_schedule",
+  "remove_course",
+  "set_schedule_constraint",
+  "skip_term",
+]);
+
 export async function executeMutation(
   name: string,
   args: Record<string, unknown>,
@@ -91,10 +106,19 @@ export async function executeMutation(
   const termIndex = Number(args.term_index ?? NaN);
   const cat = ctx.data.catalog;
 
-  // No mutation is in CATALOG_ONLY, so `executeTool` has already refused
-  // the planless case by name, so this is a routing-bug guard rather than
-  // a user-facing one.
-  if (!ctx.plan) return null;
+  // SCOPED TO NAMES THIS FUNCTION HANDLES. `executeTool` calls this
+  // first for every tool and reads null as "not a mutation, carry on",
+  // so an unscoped guard here answered `get_course_details` with "needs
+  // a plan" and short-circuited the whole read surface.
+  //
+  // For a name it does handle, reaching here without a Plan is a routing
+  // bug — and it must not return null either, because that would fall
+  // through to the read switch and turn a misroute into a confidently
+  // wrong answer rather than an error.
+  if (!MUTATIONS.has(name)) return null;
+  if (!ctx.plan) {
+    return { error: `${name} needs a plan, and this connector has none loaded.` } as unknown as MutationResult;
+  }
 
   // A GETTER, NOT A SNAPSHOT. `commit` REPLACES `ctx.plan` with the
   // mutated document, so anything that reads the Plan after a commit must

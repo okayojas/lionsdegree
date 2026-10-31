@@ -203,3 +203,78 @@ describe("locating a subject's file", () => {
     await expect(loadEdition(partial, "2026-2027")).rejects.toThrow(/subject index/i);
   });
 });
+
+describe("a subject file that could not be read", () => {
+  /** IRON RULE 2, on the hosted path. A source returns null for absent,
+   * broken and unreachable alike — deliberately, since the caller
+   * decides what a miss means. But the loader MEMOISED that null, so one
+   * transient 500 made the isolate answer `enforced_prerequisites: null`
+   * for every Course in the subject for its whole life: "this has no
+   * prerequisites" where "we could not read them" is the only honest
+   * answer.
+   *
+   * The subjects index is what tells the three apart — it names the file
+   * that should exist. */
+  const flaky = (failFirst: boolean): { source: CatalogSource; reads: () => number } => {
+    let reads = 0;
+    let fail = failFirst;
+    return {
+      reads: () => reads,
+      source: {
+        async read<T>(p: string): Promise<T | null> {
+          if (p.endsWith("audit-index.json")) return { courses: [{ code: "CMPSC 465", title: "DS&A" }] } as T;
+          if (p.endsWith("program-requirements.json")) return { x: {} } as T;
+          if (p.endsWith("subjects_index.json")) return { CMPSC: "courses/cmpsc.json" } as T;
+          if (p.includes("cmpsc.json")) {
+            reads++;
+            if (fail) { fail = false; return null; }
+            // A whole Course: `buildCatalog` walks `aliases` and
+            // `crossListings`, so a partial fixture fails on shape rather
+            // than on the behaviour under test.
+            return [{ code: "CMPSC 465", title: "DS&A", subject: "CMPSC", number: "465",
+                      display: "CMPSC 465", credits: "3", creditsParsed: null,
+                      description: "", enforced: "CMPSC 122", concurrent: null,
+                      prereqAdvisory: null, prereqAst: null, concurrentAst: null,
+                      astComplete: true, genEd: [], attributes: [],
+                      crossListings: [], aliases: [], level: "undergraduate", url: "" }] as T;
+          }
+          return null;
+        },
+        async editions() { return ["2026-2027"]; },
+      },
+    };
+  };
+
+  it("is retried rather than remembered as 'no prerequisites'", async () => {
+    const { source } = flaky(true);
+    const ed = await loadEdition(source, "2026-2027");
+    await ed.ensureCourses(["CMPSC 465"]);
+    expect(ed.catalog["CMPSC 465"].astComplete, "a failed read was treated as a complete answer").toBe(false);
+
+    await ed.ensureCourses(["CMPSC 465"]);
+    expect(
+      ed.catalog["CMPSC 465"].enforced,
+      "a transient failure was cached as 'this course has no prerequisites'",
+    ).toBe("CMPSC 122");
+    expect(ed.catalog["CMPSC 465"].astComplete).toBe(true);
+  });
+
+  it("does not re-read a subject that loaded cleanly", async () => {
+    // The retry must not cost a fetch per question on the happy path.
+    const { source, reads } = flaky(false);
+    const ed = await loadEdition(source, "2026-2027");
+    await ed.ensureCourses(["CMPSC 465"]);
+    await ed.ensureCourses(["CMPSC 465"]);
+    await ed.ensureCourses(["CMPSC 131"]);
+    expect(reads(), "a healthy subject was fetched more than once").toBe(1);
+  });
+
+  it("does not re-walk the index for a subject this Edition never published", async () => {
+    // Genuinely absent, not unreadable: remembered, so a Plan naming an
+    // old subject does not retry forever.
+    const { source } = flaky(false);
+    const ed = await loadEdition(source, "2026-2027");
+    await expect(ed.ensureCourses(["ZZZZ 999"])).resolves.not.toThrow();
+    await expect(ed.ensureCourses(["ZZZZ 999"])).resolves.not.toThrow();
+  });
+});

@@ -160,9 +160,19 @@ export default {
       // thing a health check can report.
       try {
         const data = await catalogFor(env);
+        // The Edition and the course count are already stated on the
+        // public site, so this adds nothing a reader could not already
+        // have — and both are what makes this check mean "the catalog
+        // answers" rather than "the process is up".
         return Response.json({ ok: true, edition: data.edition, courses: Object.keys(data.catalog).length });
       } catch (e) {
-        return Response.json({ ok: false, error: (e as Error).message }, { status: 503 });
+        // The reason is LOGGED, not returned. An internal message can
+        // carry a file layout or a build command, and an anonymous
+        // caller has no use for either (DECISIONS.md 5.0 S5/S8/S13:
+        // upstream errors logged server-side, replaced with a generic
+        // message).
+        console.error("[mcp] health check failed", e);
+        return Response.json({ ok: false }, { status: 503 });
       }
     }
     if (url.pathname !== "/mcp") {
@@ -181,14 +191,20 @@ export default {
     } catch (e) {
       // A JSON-RPC error, never a stack trace. The caller is a protocol
       // client: an HTML error page or a raw throw is something it cannot
-      // read, and the student sees their assistant fail silently.
+      // read, and the student just sees their assistant fail silently.
       // `id: null` is what the spec says to send when the request could
       // not be parsed well enough to know its id.
+      //
+      // GENERIC. The detail goes to the log, not to an unauthenticated
+      // caller — an internal message here would carry our file layout
+      // and a build command. What the model gets back is enough to tell
+      // the student something useful and nothing else.
+      console.error("[mcp] request failed", e);
       return Response.json(
         {
           jsonrpc: "2.0",
           id: null,
-          error: { code: -32603, message: `connector error: ${(e as Error).message}` },
+          error: { code: -32603, message: "The LionsDegree connector could not answer that. Try again shortly." },
         },
         { status: 500 },
       );
