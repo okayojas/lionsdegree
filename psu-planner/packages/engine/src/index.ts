@@ -13,6 +13,7 @@ export * from "./slotPicks.js";
 export * from "./planFile.js";
 export * from "./repair.js";
 export * from "./audit.js";
+export * from "./auditIndex.js";
 export * from "./flowchartPatterns.js";
 export * from "./capstone.js";
 export * from "./genEd.js";

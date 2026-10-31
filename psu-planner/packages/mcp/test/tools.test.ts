@@ -187,7 +187,7 @@ describe("a catalog it cannot read", () => {
 
   it("refuses to start when the course index is present but empty", async () => {
     const root = scratch();
-    fs.writeFileSync(path.join(root, ED, "search-index.json"), "[]");
+    fs.writeFileSync(path.join(root, ED, "audit-index.json"), JSON.stringify({ courses: [] }));
     fs.writeFileSync(path.join(root, ED, "program-requirements.json"), JSON.stringify({ a: {} }));
     // Parsed-but-empty is the same failure wearing a different hat.
     await expect(loadContext({ planPath, catalogRoot: root })).rejects.toThrow(/empty/i);
@@ -195,7 +195,7 @@ describe("a catalog it cannot read", () => {
 
   it("says how to fix it", async () => {
     const root = scratch();
-    fs.writeFileSync(path.join(root, ED, "search-index.json"), "{ not json");
+    fs.writeFileSync(path.join(root, ED, "audit-index.json"), "{ not json");
     await expect(loadContext({ planPath, catalogRoot: root })).rejects.toThrow(/sync-catalog/);
   });
 });

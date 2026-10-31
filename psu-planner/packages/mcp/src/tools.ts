@@ -28,7 +28,8 @@ import {
   type PlanItem,
   type Schedule,
 } from "@psu-planner/engine";
-import { loadEdition, publishedEditions, type EditionCatalog } from "./catalog.js";
+import { loadEdition, type EditionCatalog } from "./catalog.js";
+import { FsCatalogSource, type CatalogSource } from "./source.js";
 import { executeMutation } from "./mutations.js";
 
 export interface ToolContext {
@@ -175,16 +176,51 @@ export function listTools(): ToolDefinition[] {
   ];
 }
 
-/** Read the student's plan and the one edition it is pinned to. */
-export async function loadContext(opts: { planPath: string; catalogRoot: string }): Promise<ToolContext> {
+/** Read the student's Plan and the one Edition it is pinned to.
+ *
+ * `catalogRoot` still works and still means a directory on disk; passing a
+ * `source` instead is what lets the hosted connector reuse every line of
+ * this without a second implementation. */
+export async function loadContext(opts: {
+  planPath: string;
+  catalogRoot?: string;
+  source?: CatalogSource;
+}): Promise<ToolContext> {
+  const source = opts.source ?? new FsCatalogSource(opts.catalogRoot!);
   const text = await fs.promises.readFile(opts.planPath, "utf-8");
-  const editions = publishedEditions(opts.catalogRoot);
+  const editions = await source.editions();
   const parsed = parsePlanFile(text, editions);
   if (!parsed.ok) throw new Error(parsed.reason);
 
-  const data = loadEdition(opts.catalogRoot, parsed.plan.edition ?? editions[0]);
+  const data = await loadEdition(source, parsed.plan.edition ?? editions[0]);
+
+  // THE LOAD THAT MAKES PREREQUISITES ANSWERABLE. The audit index carries
+  // no prerequisite structure, so every Course arrives as `astComplete:
+  // false` -- which correctly reports "could not be checked" rather than
+  // "satisfied", and would do so for the student's entire Plan. Reading
+  // the subject files behind the Plan's own Courses, plus one hop into
+  // what their prerequisites name, is what turns that into real answers.
+  // It is the Plan's subjects, not the catalog: a dozen files, not 527.
+  await data.ensureCourses(planCodes(parsed.plan));
+
   const items = buildItems(parsed.plan, data.catalog);
   return { plan: parsed.plan, planPath: opts.planPath, data, items, sched: buildSchedule(parsed.plan, items, data.catalog) };
+}
+
+/** Every Course code a Plan mentions, including ones it has removed or
+ * pinned into a slot -- all of them end up on the chart or in the audit. */
+function planCodes(plan: PlanDoc): string[] {
+  const out: string[] = [];
+  for (const term of plan.terms ?? []) {
+    for (const spec of term.items ?? []) {
+      const code = (spec as { code?: string }).code;
+      if (code) out.push(code);
+    }
+  }
+  for (const added of plan.added ?? []) if (added.code) out.push(added.code);
+  for (const code of Object.values(plan.slotFills ?? {})) if (code) out.push(code);
+  for (const code of Object.keys(plan.completed ?? {})) if (code) out.push(code);
+  return out;
 }
 
 /** Catalog prose reaching a model is fenced so it reads as reference data and
@@ -195,6 +231,50 @@ export async function loadContext(opts: { planPath: string; catalogRoot: string 
  * from the first. */
 
 const MAX_RESULTS = 25;
+
+/** Load enough subject files for a prerequisite walk `depth` levels deep.
+ *
+ * `ensureCourses` follows one hop, which is right for the Plan's own
+ * Courses. A chain tool walks further than that, and an unloaded level
+ * would come back with no `prereqAst` and silently look like the end of
+ * the chain -- a shorter tree presented as a complete one, which is the
+ * confident-wrong-answer shape (iron rule 2). Bounded by `depth`, which
+ * the caller already caps at 6.
+ */
+async function hydrateChain(data: EditionCatalog, root: string, depth: number): Promise<void> {
+  let frontier = [root];
+  const seen = new Set<string>([root]);
+  for (let d = 0; d <= depth && frontier.length; d++) {
+    await data.ensureCourses(frontier);
+    const next: string[] = [];
+    for (const c of frontier) {
+      const ast = data.catalog[c]?.prereqAst;
+      if (!ast) continue;
+      for (const k of astCourses(ast)) {
+        if (!seen.has(k)) {
+          seen.add(k);
+          next.push(k);
+        }
+      }
+    }
+    frontier = next;
+  }
+}
+
+/** The subjects a slot's pool could draw from, so their prerequisite
+ * structure can be read before candidates are ranked on readiness.
+ *
+ * A `genEd` pool draws from the whole catalog and is deliberately absent:
+ * the audit index already carries gen-ed designations, so matching works,
+ * and only `prerequisites_met` degrades to "cannot determine" -- which is
+ * the honest answer when the structure has not been read.
+ */
+function poolSubjects(pool: { kind: string; courses?: string[]; subjects?: string[] } | null): string[] {
+  if (!pool) return [];
+  if (pool.kind === "listed" || pool.kind === "registry") return pool.courses ?? [];
+  if (pool.kind === "patterned") return (pool.subjects ?? []).map((s) => `${s} 0`);
+  return [];
+}
 
 export async function executeTool(
   name: string,
@@ -216,6 +296,10 @@ export async function executeTool(
       if (!slot) return { error: `no open slot with id ${args.slot_id} — call get_plan for current slot ids` };
       const prog = slot.slotProgram ? data.programs[slot.slotProgram] : undefined;
       const pool = prog && slot.slotLabel ? resolveSlotPool(slot.slotLabel, prog.requirementSections) : null;
+      // Ranking scores candidates partly on whether their prerequisites are
+      // met, which needs their structure read. Bounded: a listed pool names
+      // its Courses and a patterned one names its subjects.
+      await data.ensureCourses(poolSubjects(pool as never));
       const ranked = rankSlotPicks(cat, pool, {
         exclude: new Set(items.filter((i) => i.kind === "course").map((i) => i.code!)),
         majorPrefixes: majorDeptPrefixes(plan),
@@ -279,6 +363,12 @@ export async function executeTool(
     }
 
     case "search_catalog": {
+      // The 7.8 MB of ranking data, fetched the first time somebody
+      // actually searches. Without it search still works on code and title,
+      // so this is a quality step rather than a correctness one -- but it
+      // is the difference between finding "robotics" by name and finding it
+      // by what the Course is about.
+      await data.ensureSearchRanking();
       const limit = Math.min(Number(args.limit ?? 10) || 10, MAX_RESULTS);
       return searchCatalog(cat, String(args.query ?? ""), limit).map((c) => ({
         code: cat[c].code,
@@ -289,6 +379,10 @@ export async function executeTool(
     }
 
     case "get_course_details": {
+      // Keywords, the bulletin URL and the prerequisite text all live in
+      // the subject file, not the audit index -- without this the tool
+      // would answer with empty strings for every one of them.
+      await data.ensureCourses([code]);
       const c = cat[code];
       if (!c) return { error: `${code || args.code} is not in the ${data.edition} catalog` };
       return {
@@ -311,6 +405,10 @@ export async function executeTool(
     }
 
     case "check_prerequisites": {
+      // One hop is enough here: the check reads THIS Course's prerequisite
+      // tree and asks whether each leaf is in the schedule, never what
+      // those leaves themselves require.
+      await data.ensureCourses([code]);
       if (!cat[code]) return { error: `${code || args.code} is not in the ${data.edition} catalog` };
       const term = Number(args.term_index ?? 0);
       const chk = checkCourse(cat, code, term, sched);
@@ -331,8 +429,9 @@ export async function executeTool(
     }
 
     case "get_prereq_chain": {
-      if (!cat[code]) return { error: `${code || args.code} is not in the ${data.edition} catalog` };
       const maxDepth = Math.min(Number(args.max_depth ?? 4) || 4, 6);
+      await hydrateChain(data, code, maxDepth);
+      if (!cat[code]) return { error: `${code || args.code} is not in the ${data.edition} catalog` };
       const completed = new Set(Object.keys(plan.completed).filter((c) => plan.completed[c]));
       const planned = new Map(items.filter((i) => i.kind === "course").map((i) => [i.code!, i.sem]));
       const missing = new Set<string>();

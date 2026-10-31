@@ -22,16 +22,16 @@ import {
   type ProgramTemplate,
   type ReqSection,
 } from "../src/index.js";
-import { CATALOG_DIR, fullIndexDir } from "./edition.js";
+import { CATALOG_DIR, fullShippedCatalog } from "./edition.js";
 
 const load = (rel: string) => JSON.parse(fs.readFileSync(path.join(CATALOG_DIR, rel), "utf-8"));
 const esc = load("programs/majors/engineering-engineering-science-bs.json");
 
-// The combined index moved to the MCP bundle (#29); this suite wants a
-// whole catalog, so it reads it from where it now ships.
-const catalog: Catalog = buildCatalog(
-  hydrateSearchIndex(JSON.parse(fs.readFileSync(path.join(fullIndexDir(), "search-index.json"), "utf-8"))),
-);
+// This suite wants a whole catalog. The combined index it used to read is
+// gone (#31); the per-subject files it ships instead carry strictly more
+// about each Course, including the prerequisite structure these picks are
+// ranked on.
+const catalog: Catalog = buildCatalog(fullShippedCatalog() as never);
 
 const template: ProgramTemplate = {
   slug: esc.slug,

@@ -8,7 +8,7 @@ import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import { decodePostings, encodePostings, prefixRange, MAX_COUNT } from "../src/postings.js";
-import { CATALOG_DIR, fullIndexDir } from "./edition.js";
+import { CATALOG_DIR, shippedCatalogDir } from "./edition.js";
 
 describe("the postings codec", () => {
   it("round-trips ids and counts", () => {
@@ -130,17 +130,44 @@ describe("the published catalog", () => {
     expect(missing / total).toBeLessThan(0.01);
   });
 
-  it("ships a search index of counts, carrying no text of its own", () => {
-    const idx = JSON.parse(fs.readFileSync(path.join(fullIndexDir(), "search-index.json"), "utf-8"));
-    expect(Array.isArray(idx.terms), "index is not in the postings format").toBe(true);
-    expect(idx.terms.length).toBeGreaterThan(1000);
+  it("ships ranking data of counts, carrying no text of its own", () => {
+    // Retargeted by #31 from the retired combined index to the postings
+    // file that replaced it. The GUARD is the point and is unchanged: what
+    // we publish may say how often a term occurs in a description, never
+    // what the description says (DECISIONS.md 5.1).
+    const file = JSON.parse(fs.readFileSync(path.join(shippedCatalogDir(), "search-postings.json"), "utf-8"));
+    expect(Array.isArray(file.terms), "postings are not in the expected format").toBe(true);
+    expect(file.terms.length).toBeGreaterThan(1000);
     // Sorted: prefixRange binary-searches it, and an unsorted dictionary would
     // silently return wrong ranges rather than fail.
-    const sorted = [...idx.terms].sort();
-    expect(idx.terms).toEqual(sorted);
-    // No course entry carries prose.
-    for (const c of idx.courses) expect(c.description ?? "").toBe("");
-    // And the postings are actually there.
-    expect(idx.courses.filter((c: { t?: number[] }) => c.t?.length).length).toBeGreaterThan(10_000);
+    expect(file.terms).toEqual([...file.terms].sort());
+    // Counts, not text. Every value is a packed array of numbers.
+    const entries = Object.entries(file.postings as Record<string, number[]>);
+    expect(entries.length).toBeGreaterThan(10_000);
+    for (const [, packed] of entries.slice(0, 500)) {
+      expect(Array.isArray(packed)).toBe(true);
+      for (const n of packed) expect(typeof n).toBe("number");
+    }
+  });
+
+  it("ships no course description anywhere in the bundled catalog", () => {
+    // The combined index was the only place prose could have leaked when
+    // this suite was written. #31 ships `courses/` as well, so the guard
+    // has to cover the files that actually carry the Bulletin's fields --
+    // this is the artifact that would be republishing Penn State's text.
+    const dir = shippedCatalogDir();
+    let checked = 0;
+    for (const sub of [path.join(dir, "courses"), path.join(dir, "courses", "grad")]) {
+      if (!fs.existsSync(sub)) continue;
+      for (const f of fs.readdirSync(sub).filter((x) => x.endsWith(".json"))) {
+        const rows = JSON.parse(fs.readFileSync(path.join(sub, f), "utf-8"));
+        if (!Array.isArray(rows)) continue;
+        for (const c of rows) {
+          checked++;
+          expect(c.description ?? "", `${c.code} ships description prose`).toBe("");
+        }
+      }
+    }
+    expect(checked, "no course files were checked — the guard asserted nothing").toBeGreaterThan(10_000);
   });
 });

@@ -1,5 +1,9 @@
 /** The audit index's rows become Courses, and a wrong field is a wrong answer.
  *
+ * Moved here from the web app when the MCP server became a second reader of
+ * this index (#31). One hydration, one set of answers about what a Course
+ * is -- the bug below is the argument for that.
+ *
  * WHY THIS FILE EXISTS. #27 pointed the degree audit at `audit-index.json`
  * instead of the 2.4 MB combined index, and the hydrator that turns those
  * slim rows back into Courses hardcoded `level: "undergraduate"`. The index
@@ -15,7 +19,7 @@
  * invisible for a release. Nothing tested this seam, which is why it shipped.
  */
 import { describe, it, expect } from "vitest";
-import { hydrateAuditRow } from "../src/data/catalogClient";
+import { hydrateAuditRow } from "../src/auditIndex.js";
 
 describe("hydrating an audit-index row", () => {
   it("keeps a graduate course graduate", () => {
