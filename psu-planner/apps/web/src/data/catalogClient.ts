@@ -1,6 +1,6 @@
 /** Loads pipeline-produced static catalog files (served from /catalog in dev,
  * CDN in prod) and assembles the runtime Catalog for the courses a plan needs. */
-import { astCourses, buildCatalog, loadSearchPostings, type Catalog, type Course, type FlowchartPatterns, type IugSpec } from "@psu-planner/engine";
+import { astCourses, buildCatalog, clearSearchPostings, loadSearchPostings, type Catalog, type Course, type FlowchartPatterns, type IugSpec } from "@psu-planner/engine";
 
 const ROOT = "/catalog";
 
@@ -60,6 +60,7 @@ export function setCatalogEdition(next: string): void {
   apCache = null;
   auditIndexPromise = null;
   postingsPromise = null;
+  clearSearchPostings();
 }
 
 export function currentEdition(): string | null {
@@ -300,6 +301,9 @@ interface AuditRow {
   creditsParsed?: Course["creditsParsed"];
   genEd?: string[];
   attributes?: string[];
+  /** Absent means undergraduate: the pipeline drops the common case to save
+   * weight, so only graduate rows carry it. */
+  level?: string;
 }
 
 /** A whole `Course` from a five-field row.
@@ -309,7 +313,7 @@ interface AuditRow {
  * structure was loaded", which is what the chart's own subject-file load is
  * for; inventing one here would let the audit reason about prerequisites it
  * has not actually read (iron rule 2). */
-function hydrateAuditRow(r: AuditRow): Course {
+export function hydrateAuditRow(r: AuditRow): Course {
   const space = r.code.indexOf(" ");
   return {
     code: r.code,
@@ -330,7 +334,13 @@ function hydrateAuditRow(r: AuditRow): Course {
     attributes: r.attributes ?? [],
     crossListings: [],
     aliases: [],
-    level: "undergraduate",
+    // READ, not assumed. This was hardcoded to "undergraduate" and the index
+    // is built from courses/ AND courses/grad/ -- 5,126 of 14,615 rows are
+    // 500-level or higher. The engine gates gen-ed and elective suggestions
+    // on `level !== "undergraduate"`, so hardcoding it offered graduate
+    // courses to undergraduates: a plausible invented value, which is exactly
+    // what this function's own contract forbids.
+    level: (r.level as Course["level"]) ?? "undergraduate",
     url: "",
   } as Course;
 }

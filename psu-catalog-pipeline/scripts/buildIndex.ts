@@ -150,6 +150,9 @@ interface AuditRow {
   creditsParsed?: unknown;
   genEd?: string[];
   attributes?: string[];
+  /** Only ever present for graduate courses: `withoutEmpties` drops the
+   * "undergraduate" common case, so 9,489 of 14,615 rows carry nothing. */
+  level?: string;
 }
 const auditRows: AuditRow[] = [];
 
@@ -162,9 +165,12 @@ for (const dir of [path.join(outDir, "courses"), path.join(outDir, "courses", "g
       // tool hand out an empty bulletin link for every course -- a false
       // economy that cost correctness for nothing.
       descriptions.set(c.code, c.description ?? "");
-      // Built from the SAME loop as `slim`, so the two cannot cover different
-      // sets of courses. A separate pass over the same directories would be
-      // one filter away from quietly omitting a subject.
+      // Built from the SAME walk that collects descriptions, so the audit
+      // index cannot cover a different set of courses than the catalog it is
+      // derived from. (`slim` moved to its own walk in #29; this comment used
+      // to name it and was wrong for a release.) A separate pass over the
+      // same directories would be one filter away from quietly omitting a
+      // subject -- which the pipeline suite now also asserts against.
       auditRows.push(
         withoutEmpties({
           code: c.code,
@@ -172,6 +178,12 @@ for (const dir of [path.join(outDir, "courses"), path.join(outDir, "courses", "g
           creditsParsed: c.creditsParsed ?? null,
           genEd: c.genEd ?? [],
           attributes: c.attributes ?? [],
+          // NOT omittable. The index is built from courses/ AND courses/grad/,
+          // and 5,126 of these rows are 500-level or higher. The engine gates
+          // gen-ed and elective suggestions on `level !== "undergraduate"`
+          // (genEd.ts, slotPicks.ts), so a row that does not carry this is a
+          // graduate course the planner will happily offer a sophomore.
+          level: c.level ?? "undergraduate",
         }) as unknown as AuditRow,
       );
     }

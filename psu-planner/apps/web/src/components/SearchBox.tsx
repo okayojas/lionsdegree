@@ -7,7 +7,7 @@ import { usePlanner } from "../store";
 export function SearchBox({ onPick }: { onPick: (course: Course) => void }) {
   const items = usePlanner((s) => s.items);
   const [full, setFull] = useState<Catalog | null>(null);
-  const [loadingPct, setLoadingPct] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
   const [q, setQ] = useState("");
   const [hits, setHits] = useState<string[]>([]);
   const [show, setShow] = useState(false);
@@ -15,15 +15,21 @@ export function SearchBox({ onPick }: { onPick: (course: Course) => void }) {
   const boxRef = useRef<HTMLDivElement>(null);
 
   const ensureFull = async () => {
-    if (full || loadingPct !== null) return;
-    // Indeterminate rather than a percentage: this is now two fetches, one
-    // of which is usually already resolved, so a progress number would be
-    // mostly 0 and then 100. The spinner says "working", which is all a
-    // sub-second wait can honestly claim.
-    setLoadingPct(0);
-    const cat = await loadSearchCatalog();
-    setFull(cat);
-    setLoadingPct(null);
+    if (full || loading) return;
+    // Indeterminate rather than a percentage. This is now two fetches, one of
+    // which is usually already resolved, so a progress number would read 0
+    // and then 100 -- and the first draft of this kept the "%" in the
+    // placeholder after the percentage stopped being computed, so every
+    // student who typed saw a permanent "Loading catalog... 0%". A state that
+    // cannot express a percentage cannot render a wrong one.
+    setLoading(true);
+    try {
+      setFull(await loadSearchCatalog());
+    } finally {
+      // Cleared even when the fetch throws, or a failed load locks search
+      // into a loading state no retry can leave.
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -57,7 +63,7 @@ export function SearchBox({ onPick }: { onPick: (course: Course) => void }) {
   return (
     <div className="searchbox" ref={boxRef}>
       <input
-        placeholder={loadingPct !== null ? `Loading catalog… ${loadingPct}%` : "Search courses by code or description"}
+        placeholder={loading ? "Loading catalog…" : "Search courses by code or description"}
         value={q}
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => { void ensureFull(); if (q.trim()) setShow(true); }}

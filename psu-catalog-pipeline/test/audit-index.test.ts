@@ -45,7 +45,7 @@ function coursesOnDisk(edition: string): Set<string> {
   return codes;
 }
 
-const ALLOWED = new Set(["code", "title", "creditsParsed", "genEd", "attributes"]);
+const ALLOWED = new Set(["code", "title", "creditsParsed", "genEd", "attributes", "level"]);
 
 describe.skipIf(editions.length === 0)("the audit index", () => {
   it("has been built for at least one edition", () => {
@@ -73,6 +73,35 @@ describe.skipIf(editions.length === 0)("the audit index", () => {
         const onDisk = coursesOnDisk(edition);
         const extra = index.courses.map((c) => c.code as string).filter((c) => !onDisk.has(c));
         expect(extra.slice(0, 10), "the index names courses the catalog does not").toEqual([]);
+      });
+
+      it("marks graduate courses as graduate", () => {
+        // The engine decides whether a course may fill a gen-ed or elective
+        // slot by reading `level`. The index is built from courses/ AND
+        // courses/grad/, so a row that omits it is a graduate course the
+        // planner will offer an undergraduate. The client treats an absent
+        // value as "undergraduate" -- the common case, dropped to save
+        // weight -- which makes a MISSING level on a grad course a silent
+        // wrong answer rather than a loud one.
+        const grads = new Set<string>();
+        for (const dir of [path.join(outRoot, edition, "courses", "grad")]) {
+          if (!fs.existsSync(dir)) continue;
+          for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".json"))) {
+            for (const c of JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8"))) {
+              if (c?.code && c.level && c.level !== "undergraduate") grads.add(c.code);
+            }
+          }
+        }
+        if (!grads.size) return; // this edition published no graduate catalog
+        const byCode = new Map(index.courses.map((c) => [c.code as string, c]));
+        const mislabelled = [...grads].filter((code) => {
+          const row = byCode.get(code);
+          return row && (row.level ?? "undergraduate") === "undergraduate";
+        });
+        expect(
+          mislabelled.slice(0, 10),
+          `${mislabelled.length} graduate courses would be offered to undergraduates`,
+        ).toEqual([]);
       });
 
       it("carries a title for every course", () => {

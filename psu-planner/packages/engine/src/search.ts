@@ -64,15 +64,19 @@ export function loadSearchPostings(terms: readonly string[], encoded: Record<str
   prefixMemo = new Map();
 }
 
-/** Whether a body signal is loaded at all.
+/** Forget the body signal.
  *
- * Search WORKS without it — code and title matching still rank — so this is
- * not a readiness gate. It exists so a caller can tell the difference between
- * "no results" and "no results yet", which are different things to show a
- * student. */
-export function hasSearchPostings(): boolean {
-  return POSTINGS.size > 0;
+ * `DICT` and `POSTINGS` are module state, so clearing the web client's memo
+ * is not enough on its own: term ids index a SPECIFIC edition's dictionary,
+ * and a failed refetch after an edition switch would otherwise leave the new
+ * bulletin's courses scored against the old one's vocabulary (ADR 0001).
+ * Scoring stops rather than scoring wrongly -- code and title still rank. */
+export function clearSearchPostings(): void {
+  DICT = [];
+  POSTINGS.clear();
+  prefixMemo = new Map();
 }
+
 
 /** Per-query memo: a stem resolves to the same dictionary ids for every course
  * it is tested against, and resolving is a binary search plus a scan. */

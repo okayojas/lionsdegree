@@ -31,9 +31,15 @@ const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "d
 
 /** Total gzipped weight of the planner's boot payload, in KB.
  *
- * MEASURED at 702 KB across 76 requests, plus ~15% headroom (#27).
- * Previously 2,896 KB, when the degree audit pulled the entire search index
- * on mount; it now reads the 210 KB audit index instead.
+ * MEASURED at 689 KB across 74 requests, stable over three consecutive runs,
+ * plus ~15% headroom. Previously 2,896 KB, when the degree audit pulled the
+ * entire search index on mount; it now reads the 212 KB audit index instead.
+ *
+ * The audit index grew 2 KB here, to carry each course's `level` -- it was
+ * being invented at hydration, and 5,126 graduate courses were coming back
+ * as undergraduate. Correctness bought for 0.3% of the boot payload. The
+ * total still fell, which is the ratchet working rather than a reason to
+ * stop reading the number.
  *
  * The first draft of this line guessed 2,700 against a real 2,896 — wrong by
  * 200 KB, which is the small version of the mistake that produced #24: a
@@ -42,7 +48,7 @@ const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "d
  * Re-measure by reading the figure this test prints on failure, and record it
  * in the commit that moves this line. Rounding it up to make a build pass is
  * the exact failure ADR 0002 exists to prevent. */
-const BOOT_CEILING_KB = 810;
+const BOOT_CEILING_KB = 790;
 
 /** Gzip the file a request resolved to.
  *
