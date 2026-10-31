@@ -339,9 +339,22 @@ describe("the landing page's content", () => {
 
   it("says what this is as static text, before asking for anything", () => {
     // The headline has to be in the markup, not produced by a script: that is
-    // the entire reason this page is a document.
-    expect(html()).toMatch(/Your degree is a route/i);
+    // the entire reason this page is a document. The hero is the wordmark
+    // plus one line saying what the product is, so both are checked -- a
+    // logotype on its own tells a first-time reader nothing.
+    expect(html(), "the wordmark is not in the markup").toMatch(/<b>Lions<\/b>Degree/);
+    expect(html(), "nothing in the markup says what this is").toMatch(/degree planner/i);
     expect(html()).toMatch(/prerequisite/i);
+  });
+
+  it("claims it is unofficial exactly once", () => {
+    // It was said three times: an eyebrow, a line under the hero, and the
+    // footer. Repeating a disclaimer does not make it more binding, it makes
+    // the page read as nervous about itself -- and the footer is where a
+    // reader looks for it. One statement, in the place it belongs.
+    const hits = html().match(/unofficial/gi) ?? [];
+    expect(hits.length, `"unofficial" appears ${hits.length} times on the landing page`).toBe(1);
+    expect(html()).toMatch(/not affiliated with/i);
   });
 
   it("sends people to a walkthrough instead of showing them code", () => {

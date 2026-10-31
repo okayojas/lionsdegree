@@ -57,7 +57,26 @@ export function pageHtml(section: Section, siteUrl = "%SITE_URL%"): string {
     <a href="#doc" class="skip-link">Skip to the document</a>
     <header class="conn-head">
       <div class="wrap">
-        <p class="home"><a class="brand" href="/"><img src="/mark.png" width="420" height="327" alt="" /><span>LionsDegree</span></a></p>
+        <p class="home">
+          <!-- Menu in the same corner as every other page. \`<details>\`
+               rather than a scripted panel: these documents ship no
+               JavaScript, and an OAuth reviewer's crawler must be able to
+               read them with none. -->
+          <details class="pagemenu">
+            <summary class="menu-btn">
+              <span class="menu-btn-label">Menu</span>
+              <span class="menu-btn-bars" aria-hidden="true"><i></i><i></i></span>
+            </summary>
+            <nav class="pagemenu-panel" aria-label="All pages">
+              <a href="/">Home</a>
+              <a href="/connect/">Connect your AI</a>
+              <a href="/privacy/">Privacy</a>
+              <a href="/terms/">Terms</a>
+              <a class="menu-go" href="/plan/">Open the planner &rarr;</a>
+            </nav>
+          </details>
+          <a class="brand" href="/"><img src="/mark.png" width="420" height="327" alt="" /><span><b>Lions</b>Degree</span></a>
+        </p>
         <h1>${escapeHtml(section.heading)}</h1>
       </div>
     </header>

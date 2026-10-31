@@ -48,9 +48,13 @@ test.describe("with JavaScript turned off", () => {
 
   test("the page still explains what this is", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText(/route/i);
+    // The h1 is the wordmark now, so the EXPLAINING moved to the line under
+    // it. Both are checked: a logotype alone tells a first-time reader
+    // nothing, and a description with no name attached is not a landing
+    // page either.
+    await expect(page.getByRole("heading", { level: 1 })).toContainText(/LionsDegree/);
+    await expect(page.getByText(/degree planner/i).first()).toBeVisible();
     await expect(page.getByText(/prerequisite/i).first()).toBeVisible();
-    await expect(page.getByText("LionsDegree").first()).toBeVisible();
   });
 
   test("every scene is there", async ({ page }) => {
@@ -101,16 +105,28 @@ test.describe("with JavaScript turned off", () => {
     expect(size, `the disclaimer renders at ${size}px`).toBeGreaterThanOrEqual(13);
   });
 
-  test("the disclaimer is readable on a phone without scrolling", async ({ page }) => {
-    // Adopting Penn State's own colours strengthens the association, so a
-    // student has to meet the statement that this is not Penn State before
-    // they meet anything else. In the footer it is true but unread.
+  test("the disclaimer is on the page and readable", async ({ page }) => {
+    // THIS USED TO REQUIRE THE DISCLAIMER ABOVE THE FOLD, and the reason it
+    // gave was that the page wore Penn State's own colours, so the denial
+    // had to arrive before the association did. That premise no longer
+    // holds: `--primary` was deliberately moved 20 degrees off Beaver Blue
+    // for exactly this reason (styles.css), so the page no longer trades on
+    // the University's colour at all.
+    //
+    // What replaced it: the statement appears ONCE, in the footer, where a
+    // reader looks for it -- it had grown to three separate claims on one
+    // page, which reads as a product nervous about itself rather than a
+    // candid one. The planner carries the same line in its own footer on
+    // every screen, so nobody reaches a plan without passing it.
+    //
+    // Still asserted here, because an unofficial tool that stops saying so
+    // is a different and much worse problem than one that says it quietly.
     await page.setViewportSize({ width: 375, height: 760 });
     await page.goto("/");
-    const box = await page.getByText(/Not affiliated with or endorsed by/i).first().boundingBox();
-    expect(box, "no above-the-fold disclaimer found").not.toBeNull();
-    expect(box!.y + box!.height, `the disclaimer starts ${Math.round(box!.y)}px down a 760px screen`)
-      .toBeLessThanOrEqual(760);
+    const claim = page.getByText(/not affiliated with/i).first();
+    await expect(claim, "the landing page no longer says it is unofficial").toBeVisible();
+    const size = await claim.evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
+    expect(size, `the disclaimer renders at ${size}px`).toBeGreaterThanOrEqual(13);
   });
 });
 

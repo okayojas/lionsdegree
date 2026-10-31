@@ -161,6 +161,32 @@ describe("the outgoing accent is gone", () => {
     expect(violetHues).toEqual([]);
   });
 
+  it("uses one sign-up blue across the planner and the landing page", () => {
+    // `--cta-blue` is declared in styles.css and `--cta` in landing.css,
+    // because neither file imports the other and both render the button.
+    // Two hex literals for one colour is exactly the duplication that drifts
+    // silently -- the landing page and the chart would end up a shade apart,
+    // which reads as a rendering bug rather than a decision.
+    const landing = fs.readFileSync(
+      path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "src", "landing.css"),
+      "utf-8",
+    );
+    // String.raw: in a plain template literal `\s` collapses to a bare `s`,
+    // so the pattern silently became `--cta-blues*:s*` and matched nothing.
+    const pick = (src: string, name: string) =>
+      src.match(new RegExp(String.raw`${name}\s*:\s*(#[0-9a-f]{6})`, "i"))?.[1]?.toLowerCase();
+    expect(pick(css, "--cta-blue"), "styles.css does not declare --cta-blue").toBeTruthy();
+    expect(pick(css, "--cta-blue")).toBe(pick(landing, "--cta"));
+    expect(pick(css, "--cta-blue-hover")).toBe(pick(landing, "--cta-hover"));
+    expect(pick(css, "--cta-blue-fg")).toBe(pick(landing, "--cta-fg"));
+  });
+
+  it("keeps the sign-up button legible", () => {
+    // A bright fill is the easy half; the label on it is where these fail.
+    const ratio = contrast(light["--cta-blue-fg"], light["--cta-blue"]);
+    expect(ratio, `the sign-up label measures ${ratio.toFixed(2)}:1 on its own fill`).toBeGreaterThanOrEqual(4.5);
+  });
+
   it("no violet survives anywhere in the stylesheet", () => {
     // Retuning a palette by changing --primary alone leaves the old hue in
     // hover states, tints and legacy aliases, which reads as a bug.

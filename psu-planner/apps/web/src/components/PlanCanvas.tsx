@@ -2,10 +2,11 @@
  * React component using Pointer Events (mouse + touch). */
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  LAYOUT, cardStatus, columnFromX, computeEdges, credOf, defaultOrderKey,
-  fitView, layoutColumns, worldSize, type PlanItem,
+  LAYOUT, ZOOM, cardStatus, clampView, columnFromX, computeEdges, credOf, defaultOrderKey,
+  fitView, layoutColumns, offsetForFraction, panBounds, viewportFraction, worldSize, type PlanItem,
 } from "@psu-planner/engine";
 import { usePlanner } from "../store";
+import { ViewControls } from "./ViewControls";
 
 interface DragState {
   type: "pan" | "card";
@@ -36,6 +37,26 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
     return cols;
   }, [items, numTerms]);
 
+  // The slider positions are a function of the viewport size, so it has to
+  // be state rather than read off the ref at render: a resize changes how
+  // much of the plan is off-screen, and therefore where the handles sit.
+  const [vp, setVp] = useState({ w: 0, h: 0 });
+  useEffect(() => {
+    const el = vpRef.current;
+    if (!el) return;
+    const sync = () => {
+      const r = el.getBoundingClientRect();
+      setVp({ w: r.width, h: r.height });
+    };
+    sync();
+    // Not window.resize: the viewport also changes when the side panel opens
+    // or the toolbar wraps, neither of which resizes the window.
+    if (typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(sync);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   useEffect(() => {
     // First mount with no saved view: fit to content.
     if (!plan?.view && vpRef.current && items.length) {
@@ -49,12 +70,40 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
     mutatePlan((p) => { p.view = v; });
   };
 
+  // Against worldW, not the drag-time effWorldW. The extra column that
+  // appears while a card is in flight is a drop target, not plan content,
+  // and having the slider range jump mid-drag would move the chart under
+  // the card being dragged.
+  const bounds = useMemo(
+    () => panBounds(worldW, worldH, vp.w, vp.h, view.k),
+    [worldW, worldH, vp.w, vp.h, view.k],
+  );
+
+  /** Apply a view change from a control: clamp it, and persist, since unlike
+   * a drag there is no pointer-up to persist on. */
+  const commitView = (next: { x: number; y: number; k: number }) => {
+    const v = clampView(next, worldW, worldH, vp.w, vp.h);
+    setView(v);
+    persistView(v);
+  };
+
   const onWheel = (e: React.WheelEvent) => {
     const k0 = view.k;
-    const k = Math.min(2.2, Math.max(0.25, k0 * (e.deltaY < 0 ? 1.12 : 0.89)));
+    const k = Math.min(ZOOM.MAX, Math.max(ZOOM.MIN, k0 * (e.deltaY < 0 ? 1.12 : 0.89)));
     const r = vpRef.current!.getBoundingClientRect();
     const cx = e.clientX - r.left, cy = e.clientY - r.top;
     setView({ x: cx - (cx - view.x) * (k / k0), y: cy - (cy - view.y) * (k / k0), k });
+  };
+
+  /** Zoom about the CENTRE of the viewport. The wheel zooms about the
+   * pointer, which is right for a wheel and wrong for a slider — there is no
+   * pointer over the chart when the handle is being dragged, and anchoring
+   * on the last known one throws the content off-screen. */
+  const zoomTo = (kRaw: number) => {
+    const k0 = view.k;
+    const k = Math.min(ZOOM.MAX, Math.max(ZOOM.MIN, kRaw));
+    const cx = vp.w / 2, cy = vp.h / 2;
+    commitView({ x: cx - (cx - view.x) * (k / k0), y: cy - (cy - view.y) * (k / k0), k });
   };
 
   const onPointerDown = (e: React.PointerEvent) => {
@@ -144,6 +193,16 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
     >
+      <ViewControls
+        xFraction={viewportFraction(view.x, bounds.minX, bounds.maxX)}
+        yFraction={viewportFraction(view.y, bounds.minY, bounds.maxY)}
+        zoom={view.k}
+        onPanX={(f) => commitView({ ...view, x: offsetForFraction(f, bounds.minX, bounds.maxX) })}
+        onPanY={(f) => commitView({ ...view, y: offsetForFraction(f, bounds.minY, bounds.maxY) })}
+        onZoom={zoomTo}
+        onFit={() => commitView(fitView(worldW, worldH, vp.w, vp.h))}
+        connectHref="/connect/"
+      />
       <div className="world" style={{ transform: `translate(${view.x}px,${view.y}px) scale(${view.k})`, width: effWorldW, height: worldH }}>
         <svg className="edges" width={effWorldW} height={worldH}>
           <defs>

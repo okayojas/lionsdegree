@@ -14,6 +14,7 @@ import { ImportModal } from "./components/ImportModal";
 import { PlanListView } from "./components/PlanListView";
 import { LegalModal } from "./components/LegalModal";
 import { AccountMenu } from "./components/AccountMenu";
+import { PlanSkeleton } from "./components/PlanSkeleton";
 import { chatConfigured } from "./chat/config";
 
 export default function App() {
@@ -89,7 +90,13 @@ export default function App() {
     return () => clearTimeout(t);
   }, [toast]);
 
-  if (!booted || loading) return <div className="loading">Loading your plan…</div>;
+  // A skeleton chart, not a centred sentence. The saved plan already knows
+  // its terms and how many courses sit in each, so the grid can be on screen
+  // immediately -- only the codes, titles and prerequisite arrows wait on the
+  // catalog. `loadSavedPlan` rather than `plan` because on a cold start the
+  // store has not been populated yet, and that first moment is exactly the
+  // one this is for.
+  if (!booted || loading) return <PlanSkeleton plan={plan ?? loadSavedPlan()} />;
   // A failed catalog fetch used to leave the spinner up forever. The plan is
   // still safe in local storage, so offer the retry rather than implying the
   // work is gone.
@@ -148,34 +155,12 @@ export default function App() {
     <div className="app">
       <a href="#main" className="skip-link">Skip to plan</a>
       <div className="toolbar" role="banner">
-        <h1>LionsDegree</h1>
-        <SearchBox onPick={openFromSearch} />
-        {view === "canvas" && (
-          <div className="legend" aria-hidden="true">
-            <span className="lg"><span className="line" /> prerequisite</span>
-            <span className="lg"><span className="line dash" /> may be concurrent</span>
-            <span className="lg"><span className="line red" /> violated order</span>
-          </div>
-        )}
-        <div className="spacer" />
-        <div className="progress" role="status" aria-label="Degree progress">
-          <span className="lbl">
-            {String(done).replace(/\.0$/, "")} of {String(total).replace(/\.0$/, "")} credits completed
-          </span>
-          <div className="bar"><div className="fill" style={{ width: total ? `${(done / total) * 100}%` : 0 }} /></div>
-        </div>
-        <button onClick={() => switchView(view === "canvas" ? "list" : "canvas")} aria-pressed={view === "list"}>
-          {view === "canvas" ? "List view" : "Flowchart view"}
-        </button>
-        <button
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-          title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-        >
-          {theme === "dark" ? "☀️" : "🌙"}
-        </button>
-        <AccountMenu onToast={setToast} />
-        <div style={{ position: "relative" }}>
+        {/* Menu first, in the same corner it occupies on the landing page
+            and on every static page. It used to sit at the far right of a
+            toolbar that wraps, which meant it moved as the window changed
+            width -- the one control that should never have to be looked
+            for. */}
+        <div className="toolbar-menu-wrap">
           <button aria-haspopup="menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>Menu ▾</button>
           {menuOpen && (
             <div role="menu" className="toolbar-menu" onClick={() => setMenuOpen(false)}>
@@ -220,6 +205,33 @@ export default function App() {
             </div>
           )}
         </div>
+        <h1><b>Lions</b>Degree</h1>
+        <SearchBox onPick={openFromSearch} />
+        {view === "canvas" && (
+          <div className="legend" aria-hidden="true">
+            <span className="lg"><span className="line" /> prerequisite</span>
+            <span className="lg"><span className="line dash" /> may be concurrent</span>
+            <span className="lg"><span className="line red" /> violated order</span>
+          </div>
+        )}
+        <div className="spacer" />
+        <div className="progress" role="status" aria-label="Degree progress">
+          <span className="lbl">
+            {String(done).replace(/\.0$/, "")} of {String(total).replace(/\.0$/, "")} credits completed
+          </span>
+          <div className="bar"><div className="fill" style={{ width: total ? `${(done / total) * 100}%` : 0 }} /></div>
+        </div>
+        <button onClick={() => switchView(view === "canvas" ? "list" : "canvas")} aria-pressed={view === "list"}>
+          {view === "canvas" ? "List view" : "Flowchart view"}
+        </button>
+        <button
+          onClick={toggleTheme}
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+        >
+          {theme === "dark" ? "☀️" : "🌙"}
+        </button>
+        <AccountMenu onToast={setToast} />
       </div>
       <div className="main-row" id="main" role="main">
         {view === "canvas" ? <PlanCanvas onOpenItem={setOpenItem} /> : <PlanListView onOpenItem={setOpenItem} />}

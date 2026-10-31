@@ -98,9 +98,19 @@
 .brand img { width: auto; height: 34px; display: block; background: #f1ebdf; border-radius: var(--r-sm); padding: 3px 5px; }
 .brand span { font-size: 1.08rem; font-weight: 700; letter-spacing: -0.025em; color: var(--text); }
 
+.bar-left { display: flex; align-items: center; gap: var(--sp-4); margin: 0; }
 .bar-right { display: flex; align-items: center; gap: var(--sp-4); margin: 0; }
-/* Below 34rem the bar keeps the brand and the menu only: two actions and a
-   wordmark do not fit across a small phone without one of them wrapping.
+
+/* Two words, two colours. `Lions` in the brand blue, `Degree` in the cream
+   the page is set in -- the split IS the identity, so it is carried by a
+   `<b>` in the markup rather than by two spans or a gradient: it stays one
+   word to a screen reader, to find-in-page and to anyone copying it. The
+   same rule serves the bar's small wordmark and the hero's large one, so
+   they cannot drift apart. */
+.brand span b, .wordmark b { color: var(--primary); font-weight: inherit; }
+/* Below 34rem the bar keeps the menu and the wordmark only: the CTA on top
+   of those does not fit across a small phone without something wrapping.
+   The hero's own Start button is one scroll away, so nothing is lost.
    Qualified by `.bar` because `.btn { display: inline-flex }` is declared
    later in this file at the same specificity and would otherwise win. */
 @media (max-width: 34rem) { .bar .bar-cta { display: none; } }
@@ -282,7 +292,42 @@
 .connect-page, .legal-page { padding-bottom: 0; }
 .wrap { width: min(1200px, 100% - clamp(2rem, 8vw, 6rem)); margin-inline: auto; position: relative; z-index: 2; }
 .conn-head { padding: clamp(2rem, 6vw, 4rem) 0 clamp(1.25rem, 3vw, 2.25rem); position: relative; z-index: 2; }
-.conn-head .home { margin: 0 0 var(--sp-6); }
+.conn-head .home { margin: 0 0 var(--sp-6); display: flex; align-items: center; gap: var(--sp-4); }
+
+/* ── Menu on the no-JavaScript pages ────────────────────────────────────
+   /connect/, /privacy/ and /terms/ are static documents that ship no
+   script, and the landing page's menu is a scripted panel. Rather than
+   pull that script onto three pages to get one button, these use
+   `<details>`: open/close, Escape, focus order and the disclosure
+   semantics are all the browser's, and there is nothing that can fail to
+   load. It sits in the same corner as every other surface's menu, which is
+   the point of adding it at all. */
+.pagemenu { position: relative; }
+.pagemenu > summary { list-style: none; }
+.pagemenu > summary::-webkit-details-marker { display: none; }
+.pagemenu > summary:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; border-radius: var(--r-sm); }
+.pagemenu[open] > summary .menu-btn-bars i:first-child { transform: translateY(3px) rotate(45deg); }
+.pagemenu[open] > summary .menu-btn-bars i:last-child { transform: translateY(-3px) rotate(-45deg); }
+.pagemenu .menu-btn-bars i { transition: transform .18s var(--ease-out); }
+.pagemenu-panel {
+  position: absolute; top: calc(100% + 6px); left: 0; z-index: 40;
+  display: grid; min-width: 13rem; padding: var(--sp-2);
+  background: var(--surface); border: 1px solid var(--border-strong);
+  border-radius: var(--r); box-shadow: var(--shadow-lg);
+}
+/* `.landing a:not(.btn):not(.brand)` paints every link on these pages the
+   accent, which inside a menu makes five accented rows and no hierarchy --
+   the one item that IS the action stops standing out. Qualified past that
+   rule rather than loosening it, since accent links are right everywhere
+   else on the page. */
+.landing .pagemenu-panel a {
+  padding: 9px 12px; border-radius: var(--r-sm);
+  color: var(--text); text-decoration: none; font-size: var(--fs-sm); font-weight: 600;
+}
+.landing .pagemenu-panel a:hover { background: var(--surface-hover); }
+.landing .pagemenu-panel .menu-go { color: var(--primary); margin-top: var(--sp-2); border-top: 1px solid var(--border); border-radius: 0 0 var(--r-sm) var(--r-sm); padding-top: 12px; }
+
+@media (prefers-reduced-motion: reduce) { .pagemenu .menu-btn-bars i { transition: none; } }
 .conn-head .brand img { height: 42px; }
 .conn-head h1 { font-size: clamp(2rem, 5vw, 3.6rem); }
 .conn-main { padding-bottom: clamp(3rem, 7vw, 5rem); position: relative; z-index: 2; }
@@ -459,6 +504,15 @@
   margin: 0 0 var(--sp-4); text-wrap: balance;
 }
 .scene h1 { font-size: clamp(34px, 6vw, 58px); }
+/* The hero is the wordmark and nothing else, so it is set larger and
+   tighter than a sentence heading would be -- this is a logotype being
+   read, not a line of prose. */
+.scene h1.wordmark {
+  font-size: clamp(46px, 11vw, 104px);
+  letter-spacing: -0.045em;
+  line-height: .95;
+  margin-bottom: var(--sp-3);
+}
 .scene h2 { font-size: clamp(26px, 4vw, 40px); }
 .scene p { font-size: var(--fs-md); line-height: 1.5; color: var(--text-muted); margin: 0 0 var(--sp-4); }
 .scene .lede { color: var(--text); }

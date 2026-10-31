@@ -6,7 +6,7 @@
     <title>LionsDegree: prerequisite-aware degree planning for Penn State</title>
     <meta
       name="description"
-      content="Pick your majors, minors and certificates; LionsDegree builds a term-by-term plan that respects every prerequisite. Unofficial, not affiliated with Penn State."
+      content="An AI-augmented, dynamic, optimized Penn State degree planner. Pick your majors, minors and certificates; LionsDegree builds a term-by-term plan that respects every prerequisite."
     />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -58,16 +58,22 @@
     </div>
 
     <header class="bar">
-      <a class="brand" href="/">
-        <img src="/mark.png" width="420" height="327" alt="" />
-        <span>LionsDegree</span>
-      </a>
-      <p class="bar-right">
-        <a class="btn btn-cta btn-sm bar-cta" href="/plan/">Start my plan</a>
+      <!-- Menu first, and first in the DOM as well as on screen. Every
+           surface of this product puts it in the same corner, so it is
+           where a reader looks for it without having to find it again on
+           each page. -->
+      <p class="bar-left">
         <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu">
           <span class="menu-btn-label">Menu</span>
           <span class="menu-btn-bars" aria-hidden="true"><i></i><i></i></span>
         </button>
+        <a class="brand" href="/">
+          <img src="/mark.png" width="420" height="327" alt="" />
+          <span><b>Lions</b>Degree</span>
+        </a>
+      </p>
+      <p class="bar-right">
+        <a class="btn btn-cta btn-sm bar-cta" href="/plan/">Start my plan</a>
       </p>
     </header>
 
@@ -123,14 +129,15 @@
 
           <div class="scenes" id="scenes">
             <section class="scene is-first" id="hero">
-              <p class="eyebrow">Unofficial &middot; Built for Penn State students</p>
-              <h1>Your degree is a route map.</h1>
-              <p class="lede">Thirteen real courses. One real conflict. Scroll the chain.</p>
+              <!-- The wordmark IS the hero. Two words, two colours: Lions in
+                   the logo's blue, Degree in the cream the whole page is set
+                   in. The split is the identity, so it is marked up rather
+                   than painted on -- `<b>` keeps it one readable word for a
+                   screen reader and for anyone copying the text. -->
+              <h1 class="wordmark"><b>Lions</b>Degree</h1>
+              <p class="lede">AI&#8209;augmented, dynamic, optimized degree planner.</p>
               <p class="actions">
                 <a class="btn btn-cta" href="/plan/">Start my plan &mdash; free</a>
-              </p>
-              <p class="note">
-                <strong>Unofficial.</strong> Not affiliated with or endorsed by Penn State.
               </p>
             </section>
 

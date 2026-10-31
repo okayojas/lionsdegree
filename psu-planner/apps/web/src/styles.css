@@ -94,6 +94,14 @@
   --success: #3d6848; --success-solid: #5a8c69; --success-bg: #e9efe4; --success-border: #c3d4bf;
   --warning: #8a5f28; --warning-solid: #a2722f; --warning-bg: #f4ecdb; --warning-border: #e2cfa8;
   --danger: #9c4a46;  --danger-solid: #bf6360;  --danger-bg: #f3e5e2;  --danger-border: #e0bcb7;
+  /* The sign-up blue, shared with the landing page's `--cta`.
+     NOT --primary. Petrol is the structural accent and is deliberately
+     quiet; this is the one colour reserved for the action we are actually
+     asking for, and it is bright on purpose. Declared here as well as in
+     landing.css because the planner's chart carries the same button and
+     the two files do not import each other -- palette.test.ts asserts the
+     values stay identical, so this is duplication that cannot drift. */
+  --cta-blue: #3aa9f0; --cta-blue-hover: #5dbbf5; --cta-blue-fg: #10243a;
   --focus-ring: #1d627f;
   --shadow-color: 35 25% 30%;
   --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / .08);
@@ -220,11 +228,21 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
      the design wanted something it was never getting. */
   font-size: var(--fs-md); margin: 0 var(--sp-2) 0 0; font-weight: 700; white-space: nowrap;
   /* The logo's deep blue, matching the "Lions" half of the wordmark. */
-  color: var(--navy); letter-spacing: var(--track-tight); display: flex; align-items: center; gap: 8px;
+  /* NOT a flex container, though it was one for years to centre the dot.
+     Flex blockifies its children, so the `<b>` wrapping "Lions" became a
+     block: it rendered as "Lions Degree" with the row's gap between the
+     halves, and -- the part a screenshot does not show -- the accessible
+     name computed as "Lions Degree" too, so the heading stopped matching
+     its own product name for a screen reader. An inline run with an
+     inline-block dot gives the same picture and keeps the wordmark one
+     word in both trees. */
+  color: var(--navy); letter-spacing: var(--track-tight); line-height: 1;
 }
 .toolbar h1::before {  /* wordmark station-dot */
-  content: ""; width: 12px; height: 12px; border-radius: 50%;
-  background: var(--surface); border: 3.5px solid var(--primary); flex: none;
+  content: ""; display: inline-block; vertical-align: middle;
+  width: 12px; height: 12px; border-radius: 50%; margin-right: 8px;
+  position: relative; top: -1px;
+  background: var(--surface); border: 3.5px solid var(--primary);
 }
 .toolbar .spacer { flex: 1; }
 @media (max-width: 760px) {
@@ -515,9 +533,12 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 
 /* ---------- toolbar menu ---------- */
 .toolbar-menu {
-  position: absolute; right: 0; top: 40px; background: var(--surface); border: 1px solid var(--border);
+  /* Drops from the LEFT, under the button, which moved to the leading edge
+     of the toolbar. Anchored right, the panel hung off the left of the
+     screen and most of it was unreachable. */
+  position: absolute; left: 0; top: 40px; background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--r); padding: 6px; z-index: 60; display: flex; flex-direction: column; gap: 2px; min-width: 230px; box-shadow: var(--shadow-lg);
-  transform-origin: top right; transition: opacity 160ms var(--ease-out), transform 160ms var(--ease-out);
+  transform-origin: top left; transition: opacity 160ms var(--ease-out), transform 160ms var(--ease-out);
   @starting-style { opacity: 0; transform: scale(0.96) translateY(-4px); }
 }
 .toolbar-menu button { text-align: left; border: none; background: var(--surface); color: var(--text); font-weight: 500; border-radius: var(--r-sm); }
@@ -716,3 +737,181 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 @media (prefers-reduced-motion: reduce) {
   .sk-row, .card-skeleton { animation: none; opacity: .6; }
 }
+
+/* ── Chart view controls ────────────────────────────────────────────────
+   Pan and zoom were drag-and-wheel only. Neither announces itself: nothing
+   on screen said the canvas continued past the frame, so a student who had
+   never thought to drag a diagram saw whatever part of their plan happened
+   to fit and assumed that was all of it. The sliders are the affordance —
+   where the handle sits is how much more there is.
+
+   Mounted on the viewport, OUTSIDE `.world`, so they neither scale nor
+   translate with the content they drive. */
+.view-controls { position: absolute; inset: 0; pointer-events: none; z-index: 20; }
+.view-controls > * { pointer-events: auto; }
+
+/* The one bright thing on the chart. Every other control here is muted on
+   purpose so this does not have to compete with them. */
+.vc-connect {
+  position: absolute; top: 12px; right: 14px;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 15px; border-radius: var(--r-full);
+  background: var(--cta-blue); color: var(--cta-blue-fg);
+  font-size: var(--fs-sm); font-weight: 700; letter-spacing: .01em;
+  text-decoration: none; white-space: nowrap;
+  border: 1px solid color-mix(in srgb, var(--cta-blue) 70%, #000);
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--cta-blue) 38%, transparent);
+  transition: background .15s var(--ease-out), box-shadow .15s var(--ease-out), transform .15s var(--ease-out);
+}
+.vc-connect:hover { background: var(--cta-blue-hover); box-shadow: 0 3px 16px color-mix(in srgb, var(--cta-blue) 52%, transparent); transform: translateY(-1px); }
+.vc-connect:active { transform: none; }
+
+/* Edge-mounted pan tracks, each one lying along the axis it drives: across
+   the bottom, down the right. A control that sits perpendicular to the
+   motion it produces has to be read before it can be used. */
+/* Each track sits in a lane of its own: the x track stops short of the
+   right edge and the y track stops short of the bottom, so neither runs
+   under the zoom cluster in the corner. An overlapping handle is one you
+   cannot grab. */
+.vc-pan { position: absolute; appearance: none; background: none; margin: 0; }
+.vc-pan-x { left: 16px; right: 64px; bottom: 8px; height: 20px; }
+.vc-pan-y { top: 56px; bottom: 212px; right: 8px; width: 20px; writing-mode: vertical-lr; }
+
+.vc-pan::-webkit-slider-runnable-track,
+.vc-zoom-range::-webkit-slider-runnable-track {
+  background: var(--surface-active);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+}
+.vc-pan::-moz-range-track,
+.vc-zoom-range::-moz-range-track {
+  background: var(--surface-active);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+}
+.vc-pan-x::-webkit-slider-runnable-track { height: 6px; }
+.vc-pan-y::-webkit-slider-runnable-track { width: 6px; }
+.vc-pan-x::-moz-range-track { height: 6px; }
+.vc-pan-y::-moz-range-track { width: 6px; }
+
+.vc-pan::-webkit-slider-thumb,
+.vc-zoom-range::-webkit-slider-thumb {
+  appearance: none; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--primary);
+  box-shadow: var(--shadow-sm); cursor: grab; margin-top: -6px;
+}
+.vc-pan-y::-webkit-slider-thumb { margin: 0 0 0 -6px; }
+.vc-pan::-moz-range-thumb,
+.vc-zoom-range::-moz-range-thumb {
+  width: 18px; height: 18px; border-radius: 50%; box-sizing: border-box;
+  background: var(--surface); border: 2px solid var(--primary);
+  box-shadow: var(--shadow-sm); cursor: grab;
+}
+.vc-pan:hover::-webkit-slider-thumb, .vc-zoom-range:hover::-webkit-slider-thumb { background: var(--primary-tint); }
+.vc-pan:focus-visible, .vc-zoom-range:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: var(--r-full); }
+
+/* Zoom sits in the corner the two pan tracks leave free, so the three
+   controls read as one cluster rather than three stray widgets. */
+.vc-zoom {
+  position: absolute; right: 8px; bottom: 36px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 7px 5px; border-radius: var(--r);
+  background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow);
+}
+.vc-zoom button {
+  width: 24px; height: 24px; padding: 0; line-height: 1;
+  display: grid; place-items: center;
+  font-size: 15px; font-weight: 700;
+  border-radius: var(--r-sm); border: 1px solid var(--border);
+  background: var(--surface); color: var(--text); cursor: pointer;
+}
+.vc-zoom button:hover { background: var(--surface-hover); }
+.vc-zoom .vc-fit { width: auto; padding: 0 7px; font-size: var(--fs-xs); font-weight: 600; }
+.vc-zoom-range { appearance: none; background: none; margin: 0; width: 20px; height: 92px; writing-mode: vertical-lr; direction: rtl; }
+.vc-zoom-range::-webkit-slider-runnable-track { width: 6px; }
+.vc-zoom-range::-moz-range-track { width: 6px; }
+.vc-zoom-range::-webkit-slider-thumb { margin: 0 0 0 -6px; }
+
+/* A phone shows the list view, not the chart, and at this width the tracks
+   would eat the plan. The gestures still work; only the chrome goes. */
+@media (max-width: 760px) {
+  .vc-pan, .vc-zoom-range { display: none; }
+  .vc-zoom { flex-direction: row; bottom: 10px; }
+  .vc-connect { top: 8px; right: 10px; padding: 7px 12px; font-size: var(--fs-xs); }
+}
+
+/* The skeleton stands in for the whole app while the plan loads, so unlike
+   `.viewport` inside the shell it has to fill the screen itself. */
+.plan-skeleton {
+  position: fixed; inset: 0; cursor: default;
+  /* Nothing here is draggable or clickable; the dot grid and the settling
+     blocks are the entire message. */
+  pointer-events: none;
+}
+.plan-skeleton .col-header { opacity: .55; }
+
+/* ── Build overlay ──────────────────────────────────────────────────────
+   Between pressing Build and seeing the chart there are several seconds of
+   main-thread work. The button label alone could not carry that: it changed
+   in state but the thread was taken before the change ever painted, so the
+   press looked like it had done nothing. This covers the form the instant
+   it is clicked -- see `nextPaint` in BuildOverlay.tsx for the half of the
+   fix that makes "instant" true. */
+.build-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  display: grid; place-items: center;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(3px);
+  animation: bo-fade .18s var(--ease-out) both;
+}
+@keyframes bo-fade { from { opacity: 0; } to { opacity: 1; } }
+
+.bo-card {
+  width: min(92vw, 460px); padding: 26px 28px 22px;
+  background: var(--surface); border: 1px solid var(--border-strong);
+  border-radius: var(--r-lg); box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+.bo-title { margin: 0 0 18px; font-size: var(--fs-md); font-weight: 700; color: var(--text); }
+
+/* A chart drawing itself, in miniature. The columns arrive one at a time,
+   which is movement without claiming a percentage the build cannot
+   actually report. */
+.bo-grid { display: flex; justify-content: center; align-items: flex-start; gap: 9px; min-height: 100px; margin-bottom: 20px; }
+/* Opacity and transform ONLY, so this runs on the compositor and keeps
+   moving while the main thread is busy generating the plan -- which is the
+   entire window this overlay covers. Anything that needed a layout pass,
+   or a JS timer, would freeze solid for the whole wait. */
+.bo-col {
+  display: flex; flex-direction: column; gap: 6px;
+  animation: bo-col-in .42s var(--ease-out) both;
+}
+@keyframes bo-col-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.bo-node {
+  display: block; width: 28px; height: 16px; border-radius: 3px;
+  background: var(--surface-hover); border: 1px solid var(--border);
+  animation: sk-pulse 1.25s var(--ease-out) infinite;
+}
+
+.bo-steps { list-style: none; margin: 0 0 16px; padding: 0; text-align: left; display: inline-block; }
+.bo-steps li { display: flex; align-items: center; gap: 9px; padding: 3px 0; font-size: var(--fs-sm); color: var(--text-muted); }
+.bo-steps li.is-now { color: var(--text); font-weight: 600; }
+.bo-steps li.is-done { color: var(--success); }
+.bo-tick { width: 14px; text-align: center; font-weight: 700; }
+.bo-note { margin: 0; font-size: var(--fs-xs); color: var(--text-muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .build-overlay { animation: none; }
+  .bo-col { animation: none; }
+  .bo-node { animation: none; opacity: .6; }
+}
+
+/* The toolbar's menu moved to the leading edge, matching the landing page
+   and the static pages. It used to sit at the far right of a bar that wraps
+   at narrow widths, so the one control a lost user reaches for was also the
+   one that moved as the window changed size. */
+.toolbar-menu-wrap { position: relative; order: -1; }
+/* `Lions` in the accent, `Degree` in the body colour -- the same split the
+   landing page carries, from the same markup, so the wordmark reads as one
+   thing across both surfaces. */
+.toolbar h1 b { color: var(--primary); font-weight: inherit; }

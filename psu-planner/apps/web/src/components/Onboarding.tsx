@@ -9,6 +9,7 @@ import type { ProgramIndexEntry } from "../data/catalogClient";
 import { extractCodesFromFile, extractCodesFromText } from "../data/importSchedule";
 import { ApCreditPicker, CourseSearchPicker } from "./CreditPickers";
 import { LegalModal } from "./LegalModal";
+import { BuildOverlay, nextPaint, type BuildStage } from "./BuildOverlay";
 import { usePlanner } from "../store";
 
 /** Next term by calendar: Jan–Jul -> Fall same year; Aug–Dec -> Spring next year. */
@@ -50,6 +51,11 @@ export function Onboarding() {
   const [pasteText, setPasteText] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
+  /** Which part of the build is running, for the overlay. `null` means not
+   * building. Separate from `busy` because `busy` only ever says "something
+   * is happening"; this says what, which is the difference between a wait
+   * that feels stalled and one that feels like progress. */
+  const [stage, setStage] = useState<BuildStage | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [legal, setLegal] = useState(false);
   /** Schreyer Honors College admit cohort (null = not a Scholar). */
@@ -208,9 +214,26 @@ export function Onboarding() {
     return groups;
   }, [loaded, campusChoice]);
 
+  /** How many columns the overlay should draw. `track` is the selected
+   * programs' own suggested terms, so this is the real shape of the chart
+   * being built rather than a decorative count -- capped because the
+   * overlay is a card, not the chart itself. Eight when nothing is picked
+   * yet, which is the length of a standard degree. */
+  const termEstimate = Math.min(10, Math.max(4, track.length || 8));
+
   const generate = async () => {
     setBusy(true);
+    setStage("reading");
     setError(null);
+    // THE POINT OF THIS AWAIT. Everything below runs on the main thread --
+    // reading subject files, generating the plan, then optimizing it -- and
+    // React has not painted the overlay yet when the click handler is
+    // entered. Without yielding first, the state updates above and the work
+    // below land in the same frame: the page freezes with the old screen
+    // still on it, and the student's click appears to have done nothing for
+    // several seconds. Two frames, because one only gets us to the render,
+    // not past the paint. ~32ms, against a multi-second build.
+    await nextPaint();
     try {
       // Programs with a plan grid contribute terms; minors/certificates
       // without one still contribute their requirements (overlap-checked
@@ -228,6 +251,7 @@ export function Onboarding() {
       if (!templates.some((t) => t.semesters.length > 0)) {
         setError("None of the selected programs has a suggested academic plan — pick at least one major.");
         setBusy(false);
+        setStage(null);
         return;
       }
       const allCompleted = [...new Set([...completed, ...extraCredits.map((x) => x.code), ...imported])];
@@ -240,6 +264,8 @@ export function Onboarding() {
           if (allCompleted.includes(c.code) && c.genEd.length) genEdTags[c.code] = c.genEd;
         }
       }
+      setStage("planning");
+      await nextPaint();
       const plan = generatePlan(templates, {
         startTerm: { term: startTerm, year: startYear },
         completedCourses: allCompleted,
@@ -254,10 +280,15 @@ export function Onboarding() {
       // Schreyer scholars get honors-section upgrades + per-year credit audit
       // (applied by the store's plan pipeline).
       if (honors) plan.honors = { admit: honors };
+      setStage("optimizing");
+      await nextPaint();
       await setPlan(plan, { repairOrdering: true, optimize: true });
+      // No setStage(null) on success: setPlan swaps this whole screen out
+      // for the chart, and clearing it first would flash the empty form.
     } catch (e) {
       setError(String(e));
       setBusy(false);
+      setStage(null);
     }
   };
 
@@ -588,6 +619,7 @@ export function Onboarding() {
         </button>
       </p>
       {legal && <LegalModal onClose={() => setLegal(false)} />}
+      {stage && <BuildOverlay stage={stage} terms={termEstimate} />}
     </div>
   );
 }
