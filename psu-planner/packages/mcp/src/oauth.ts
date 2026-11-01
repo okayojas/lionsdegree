@@ -45,14 +45,25 @@ export interface OAuthEnv {
   OAUTH?: KVLike;
   SUPABASE_URL?: string;
   SUPABASE_ANON_KEY?: string;
+  /** Signs client_ids as well as verifying Supabase tokens — through a
+   * derived key with its own label, so the two uses cannot be
+   * confused. See `mintClientId`. */
+  SUPABASE_JWT_SECRET?: string;
 }
 
 /** Everything the flow needs, or null if the operator has not finished
  * setting it up. Checked once at the door: issuing codes that nothing
  * can exchange is worse than refusing. */
-function config(env: OAuthEnv): { kv: KVLike; supabase: string; anon: string } | null {
-  if (!env.OAUTH || !env.SUPABASE_URL || !env.SUPABASE_ANON_KEY) return null;
-  return { kv: env.OAUTH, supabase: env.SUPABASE_URL.replace(/\/+$/, ""), anon: env.SUPABASE_ANON_KEY };
+function config(
+  env: OAuthEnv,
+): { kv: KVLike; supabase: string; anon: string; jwtSecret: string } | null {
+  if (!env.OAUTH || !env.SUPABASE_URL || !env.SUPABASE_ANON_KEY || !env.SUPABASE_JWT_SECRET) return null;
+  return {
+    kv: env.OAUTH,
+    supabase: env.SUPABASE_URL.replace(/\/+$/, ""),
+    anon: env.SUPABASE_ANON_KEY,
+    jwtSecret: env.SUPABASE_JWT_SECRET,
+  };
 }
 
 const json = (body: unknown, status = 200, headers: Record<string, string> = {}) =>
@@ -149,7 +160,74 @@ const PENDING_TTL = 300;
  * WHAT GOES IN IS A STAGE AND A SHAPE, never a credential: no codes, no
  * verifiers, no tokens, no email. Enough to say which check refused and
  * what it was looking at, and nothing that would matter if the record
- * leaked. One day's retention, last ten only. */
+ * leaked. One day's retention, last ten only.
+ *
+ * (Declared below, after the client-id helpers.) */
+
+/** A client_id that CARRIES its own registration.
+ *
+ * WHY THIS IS NOT A KV LOOKUP ANY MORE. A registration is written by
+ * one request and read by a different one — an assistant registers
+ * from its own servers, then sends the student's browser to /authorize
+ * — and anything that can make the second read miss ends the sign-in
+ * with "unknown client", a message the student can do nothing about.
+ * We watched exactly that happen to a real connection attempt against
+ * a record that provably existed.
+ *
+ * So the registration travels INSIDE the identifier. `/authorize`
+ * verifies a signature and reads the redirect URIs straight out of it:
+ * no storage, nothing to propagate, nothing to expire early, and no
+ * way to be handed an id we issued and fail to recognise it.
+ *
+ * The signature is what makes it safe. Without one, a caller could
+ * mint a client_id naming any redirect URI they liked and turn this
+ * into an open redirector for authorization codes. The key is derived
+ * from the JWT secret with its own label rather than used directly,
+ * so a signature here can never be mistaken for a token signature.
+ *
+ * It is NOT secret: a client_id appears in the browser's address bar
+ * by design. It is only unforgeable. */
+const CLIENT_ID_LABEL = "lionsdegree-oauth-client-id-v1";
+
+async function clientIdKey(secret: string): Promise<CryptoKey> {
+  const base = await crypto.subtle.importKey(
+    "raw", new TextEncoder().encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"],
+  );
+  const derived = new Uint8Array(
+    await crypto.subtle.sign("HMAC", base, new TextEncoder().encode(CLIENT_ID_LABEL)),
+  );
+  return crypto.subtle.importKey("raw", derived, { name: "HMAC", hash: "SHA-256" }, false, ["sign", "verify"]);
+}
+
+async function mintClientId(secret: string, client: Omit<Client, "client_id">): Promise<string> {
+  const payload = b64url(new TextEncoder().encode(JSON.stringify(client)));
+  const sig = await crypto.subtle.sign("HMAC", await clientIdKey(secret), new TextEncoder().encode(payload));
+  return `${payload}.${b64url(new Uint8Array(sig))}`;
+}
+
+/** The registration inside a client_id, or null if it is not one of
+ * ours. Null is not an error here — it means "fall back to looking it
+ * up", which is what keeps assistants registered before this change
+ * working. */
+async function readClientId(secret: string, clientId: string): Promise<Client | null> {
+  const [payload, sig] = clientId.split(".");
+  if (!payload || !sig) return null;
+  try {
+    const expected = await crypto.subtle.sign(
+      "HMAC", await clientIdKey(secret), new TextEncoder().encode(payload),
+    );
+    if (b64url(new Uint8Array(expected)) !== sig) return null;
+    const json = JSON.parse(
+      new TextDecoder().decode(
+        Uint8Array.from(atob(payload.replace(/-/g, "+").replace(/_/g, "/")), (c) => c.charCodeAt(0)),
+      ),
+    ) as Omit<Client, "client_id">;
+    return Array.isArray(json.redirect_uris) ? { ...json, client_id: clientId } : null;
+  } catch {
+    return null;
+  }
+}
+
 const FAILURE_LOG = "oauth:recent-failures";
 const FAILURE_LOG_TTL = 60 * 60 * 24;
 const FAILURE_LOG_KEEP = 10;
@@ -260,12 +338,13 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
       return oauthError("invalid_redirect_uri", "Redirect URIs must be https, or http on loopback.");
     }
 
-    const client: Client = {
-      client_id: randomId(16),
+    const registration = {
       client_name: typeof body.client_name === "string" ? body.client_name.slice(0, 120) : "an assistant",
       redirect_uris: uris.slice(0, 10),
     };
-    await cfg.kv.put(`client:${client.client_id}`, JSON.stringify(client), { expirationTtl: 60 * 60 * 24 * 180 });
+    // THE ID CARRIES THE REGISTRATION. Nothing is stored, so there is
+    // nothing for /authorize to fail to find — see `mintClientId`.
+    const client: Client = { ...registration, client_id: await mintClientId(cfg.jwtSecret, registration) };
     // No `client_secret`: an assistant cannot keep one, and issuing a
     // secret that cannot be protected invites it being treated as if it
     // could be.
@@ -281,8 +360,15 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
     const challenge = q.get("code_challenge") ?? "";
     const method = q.get("code_challenge_method") ?? "";
 
-    const raw = await cfg.kv.get(`client:${clientId}`);
-    const client = raw ? (JSON.parse(raw) as Client) : null;
+    // The id itself first. Falling back to storage keeps assistants
+    // that registered before this change working — Claude holds a
+    // client_id per connector and does not re-register, so dropping
+    // the lookup would strand every existing connection permanently.
+    let client = await readClientId(cfg.jwtSecret, clientId);
+    if (!client) {
+      const raw = await cfg.kv.get(`client:${clientId}`);
+      client = raw ? (JSON.parse(raw) as Client) : null;
+    }
     // REFUSED IN PLACE, never by redirecting. Anyone can call this with
     // somebody else's client_id; bouncing the error to an unverified
     // redirect is how the next request's code reaches an attacker.
@@ -296,7 +382,15 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
       // sees a sign-in that refuses them for no reason they can act
       // on. Measured on this namespace: a write was still unreadable
       // six seconds later.
-      await noteFailure(cfg.kv, "authorize", `unknown client (client_id_present=${!!clientId}) — never registered, registration expired, or the registration has not propagated across regions`);
+      // THE VALUE, not just its presence. A client_id is public — it
+      // sits in the browser's address bar — and recording only
+      // `present=true` cost a whole deploy-and-retry round when the
+      // one question was whether the id matched anything we issued.
+      await noteFailure(
+        cfg.kv,
+        "authorize",
+        `unknown client (client_id=${clientId.slice(0, 80)}) — not one we signed, and not in storage`,
+      );
       return oauthError("invalid_client", "Unknown client. Register first.");
     }
     if (!client.redirect_uris.includes(redirectUri)) {

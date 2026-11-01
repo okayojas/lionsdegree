@@ -363,7 +363,10 @@ describe("a sign-in that dies before the callback", () => {
     const [last] = await breadcrumbs();
     expect(last?.stage, "the stage that refused was not recorded").toBe("authorize");
     expect(last.why).toMatch(/unknown client/);
-    expect(last.why, "the most likely cause is not named").toMatch(/propagated/);
+    // THE ID ITSELF, because "present=true" is what cost a whole
+    // deploy-and-retry round: the only question was whether the id
+    // matched anything we issued, and the record could not say.
+    expect(last.why, "the breadcrumb does not name the id that was refused").toContain("never-registered");
   });
 
   it("records a redirect_uri the client never registered", async () => {
@@ -394,5 +397,80 @@ describe("a sign-in that dies before the callback", () => {
     );
     expect(res.status).toBe(302);
     expect(await breadcrumbs(), "a successful sign-in was recorded as a failure").toHaveLength(0);
+  });
+});
+
+describe("a client_id that carries its own registration", () => {
+  const authorize = (clientId: string, redirect: string) =>
+    req(
+      `/authorize?response_type=code&client_id=${encodeURIComponent(clientId)}` +
+        `&redirect_uri=${encodeURIComponent(redirect)}&code_challenge=YWJj&code_challenge_method=S256`,
+    );
+
+  it("WORKS WITH NOTHING IN STORAGE, which is the whole point", async () => {
+    // THE FAILURE THIS REPLACES. A real connection attempt died at
+    // /authorize with "unknown client" against a registration that
+    // provably existed — an assistant registers from its own servers
+    // and sends the student's browser here, and anything that makes
+    // that second read miss ends the sign-in with a message the
+    // student can do nothing about.
+    //
+    // Emptying the store between the two requests is the strongest
+    // available statement that the lookup is gone.
+    const client = await registerClient("https://assistant.example/cb");
+    kv.store.clear();
+
+    const res = await authorize(client, "https://assistant.example/cb");
+    expect(res.status, "/authorize still depends on stored state").toBe(302);
+    expect(res.headers.get("location")).toContain("supabase.co");
+  });
+
+  it("still honours the redirect URIs it was registered with", async () => {
+    const client = await registerClient("https://assistant.example/cb");
+    kv.store.clear();
+    const res = await authorize(client, "https://somewhere-else.example/cb");
+    expect(res.status, "a client_id was accepted for a redirect it never registered").toBe(400);
+  });
+
+  it("REFUSES ONE NOBODY SIGNED", async () => {
+    // THE RISK THE SIGNATURE EXISTS FOR. Without it, anyone could mint
+    // a client_id naming any redirect they like and turn this endpoint
+    // into an open redirector for authorization codes — the exact
+    // thing PKCE and redirect registration are there to prevent.
+    const forged =
+      btoa(JSON.stringify({ client_name: "mine", redirect_uris: ["https://attacker.example/cb"] }))
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=+$/, "") + ".not-a-real-signature";
+
+    const res = await authorize(forged, "https://attacker.example/cb");
+    expect(res.status, "a forged client_id was accepted").toBe(400);
+    expect(res.headers.get("location"), "a code was sent to an unregistered redirect").toBeNull();
+  });
+
+  it("refuses one signed with the wrong key", async () => {
+    // Same payload, a signature from a different secret. If this
+    // passed, the key would not be doing anything.
+    const client = await registerClient("https://assistant.example/cb");
+    const [payload] = client.split(".");
+    const other = `${payload}.YWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFh`;
+    expect((await authorize(other, "https://assistant.example/cb")).status).toBe(400);
+  });
+
+  it("still accepts an assistant that registered the old way", async () => {
+    // Claude holds one client_id per connector and does not
+    // re-register. Dropping the stored lookup would strand every
+    // connection made before this change, permanently, with no way for
+    // a student to fix it from their side.
+    kv.store.set(
+      "client:legacy-id-from-before",
+      JSON.stringify({
+        client_id: "legacy-id-from-before",
+        client_name: "an older assistant",
+        redirect_uris: ["https://assistant.example/cb"],
+      }),
+    );
+    const res = await authorize("legacy-id-from-before", "https://assistant.example/cb");
+    expect(res.status, "existing connections were broken by the change").toBe(302);
   });
 });
