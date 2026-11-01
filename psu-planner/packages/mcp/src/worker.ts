@@ -268,6 +268,59 @@ function mcpServer(env: Env, data: EditionCatalog, accessToken: string): Server 
 /** What a browser sees at the root. Not the protocol endpoint — pasting
  * this host into an address bar is a thing people do, and a bare 404
  * tells them nothing about whether they have the right URL. */
+/** Headers that let a BROWSER talk to this connector.
+ *
+ * An MCP client is not always a program on a server. Claude's web app
+ * is a web page, so every call it makes is a cross-origin request and
+ * the browser enforces CORS on our behalf — silently, before anything
+ * reaches us. Without these headers the connector is reachable by curl
+ * and by nothing a student actually uses.
+ *
+ * `*` IS CORRECT HERE, AND IT IS NOT LAZINESS. This is a bearer-token
+ * API: authority comes from the Authorization header, which a browser
+ * only sends when the page deliberately attaches it. There are no
+ * cookies on this path to be ridden — the one cookie in the service is
+ * scoped to /callback, which is a top-level navigation and not a CORS
+ * request at all. Allowing every origin therefore grants nothing a
+ * caller could not already do with curl, and credentials mode stays
+ * off so `*` remains legal.
+ *
+ * `expose-headers` IS LOAD-BEARING, not decoration. `WWW-Authenticate`
+ * is not on the CORS safelist, so a browser hides it from JavaScript
+ * unless it is named here — and that header is the entire discovery
+ * mechanism: it is how a client learns WHERE to sign in. Allowed but
+ * unexposed means a client that can reach the 401 and cannot read the
+ * one thing the 401 was for. */
+const CORS_HEADERS: Record<string, string> = {
+  "access-control-allow-origin": "*",
+  "access-control-expose-headers": "WWW-Authenticate, Mcp-Session-Id, Mcp-Protocol-Version",
+};
+
+/** Answer a preflight. 204, no body, and cacheable for a day so a
+ * student's assistant is not asking permission before every call. */
+function preflight(): Response {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      ...CORS_HEADERS,
+      "access-control-allow-methods": "GET, POST, DELETE, OPTIONS",
+      // Named rather than reflected: `mcp-protocol-version` and
+      // `mcp-session-id` are the transport's own, and `authorization`
+      // is how a signed-in student is recognised.
+      "access-control-allow-headers":
+        "authorization, content-type, accept, mcp-protocol-version, mcp-session-id, last-event-id",
+      "access-control-max-age": "86400",
+    },
+  });
+}
+
+/** The same response, readable by a browser. */
+function cors(res: Response): Response {
+  const headers = new Headers(res.headers);
+  for (const [k, v] of Object.entries(CORS_HEADERS)) headers.set(k, v);
+  return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
+}
+
 const SIGNPOST =
   "LionsDegree MCP connector.\n\n" +
   "This is a Model Context Protocol endpoint, not a web page. Point your\n" +
@@ -358,7 +411,30 @@ const DEFAULT_DAILY_LIMIT = 1000;
  * the same question a student's assistant asks, rather than a
  * reimplementation of it that can drift. */
 async function handleRequest(request: Request, env: Env): Promise<Response> {
+  // EVERY EXIT, not the ones somebody remembered. The 401 is the one
+  // that matters most — it carries `WWW-Authenticate`, which is how a
+  // client discovers where to sign in — and it is also the exit a
+  // reader is least likely to think of as "a response that needs
+  // headers". Wrapping once is the only version of this that cannot
+  // drift as paths are added.
+  return cors(await route(request, env));
+}
+
+async function route(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
+
+    // THE PREFLIGHT, BEFORE THE GATE. A CORS preflight is
+    // unauthenticated by definition — browsers never attach
+    // credentials to one — so a gate that runs first answers it 401
+    // and the browser never sends the real request at all.
+    //
+    // THIS IS WHAT BROKE THE FIRST REAL CONNECTION ATTEMPT. Claude's
+    // web client is a browser; the preflight to /mcp came back 401,
+    // the actual POST was never made, and so nothing reached
+    // /register, nothing refused, and nothing was logged. The silence
+    // in the logs WAS the symptom — we spent three rounds adding
+    // instrumentation to stages the request had never reached.
+    if (request.method === "OPTIONS") return preflight();
 
     // Discovery, registration and the sign-in flow. Before the gate,
     // obviously: these are how a caller GETS a token.
