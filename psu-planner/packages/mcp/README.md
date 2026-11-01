@@ -45,8 +45,31 @@ variable.
 | `get_prereq_chain` | The whole prerequisite tree, in one call |
 | `search_programs` | Majors, minors and certificates |
 | `audit_requirements` | What each of your programs still needs |
+| `discover_programs` | Programs that fit what you have already taken |
 
-**Read-only.** It cannot change your plan. Editing is done in the planner.
+And seven that change your plan:
+
+| Tool | Does |
+|---|---|
+| `add_course` | Puts a course in a term |
+| `remove_course` | Takes one out — see below |
+| `set_schedule_constraint` | "Not that term", "no earlier than", "exactly there" |
+| `optimize_schedule` | Repacks the whole plan in one call |
+| `fill_slot` | Chooses a course for an open requirement |
+| `add_term` | Appends an empty term |
+| `skip_term` | Marks a term as a gap year, co-op or leave |
+
+**Every change says which revision it was computed from.** Each of these takes
+`based_on_revision` — the `revision` you last read. If you have edited your
+plan in the planner since then, the change is refused rather than allowed to
+overwrite you, and your assistant is told to re-read and try again. Nothing is
+ever merged on a guess.
+
+**Removing a required course needs your words, not your assistant's.** A course
+your degree requires is refused unless the call carries the sentence you used
+when you asked for it, and that sentence comes back in the answer so you can
+see what was claimed on your behalf. This cannot prove you said it — nothing at
+that layer can — but a quiet boolean nobody sees is no longer enough.
 
 ## Two things it deliberately will not tell you
 

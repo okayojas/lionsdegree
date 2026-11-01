@@ -304,21 +304,49 @@ describe("what the connector offers", () => {
  * that accepted every PATCH would certify a connector the real database
  * refuses — the mistake this project has now made three times. */
 function plansTable(initial: Record<string, unknown>, rev = 4) {
-  let row = { doc: initial, rev, updated_at: "2026-10-20T09:00:00.000Z" };
+  let row = { id: "fixture-plan", doc: initial, rev, updated_at: "2026-10-20T09:00:00.000Z" };
+  const asked: { url: string; method: string; headers: Record<string, string> }[] = [];
+
   const reply = async (input: RequestInfo | URL, init?: RequestInit) => {
     const url = new URL(String(input));
-    if ((init?.method ?? "GET") === "GET") return Response.json([row]);
+    const method = init?.method ?? "GET";
+    asked.push({
+      url: url.toString(),
+      method,
+      headers: Object.fromEntries(
+        Object.entries((init?.headers ?? {}) as Record<string, string>).map(([k, v]) => [k.toLowerCase(), v]),
+      ),
+    });
+    if (method === "GET") return Response.json([row]);
 
-    const want = url.searchParams.get("rev")?.replace(/^eq\./, "");
-    if (String(row.rev) !== want) return Response.json([]); // the refusal
+    // BOTH FILTERS, because PostgREST applies both. Ignoring `id` would
+    // let a write land that named the wrong plan, and ignoring `rev`
+    // would make the compare-and-swap a no-op — which is the stub being
+    // more permissive than the database, the mistake this project has
+    // now made three times.
+    const eq = (k: string) => url.searchParams.get(k)?.replace(/^eq\./, "");
+    if (eq("id") !== row.id || eq("rev") !== String(row.rev)) return Response.json([]);
+
     const sent = JSON.parse(String(init?.body ?? "{}")) as {
       doc: Record<string, unknown>; rev: number; updated_at: string;
     };
-    row = { doc: sent.doc, rev: sent.rev, updated_at: sent.updated_at };
+    // Migration 0003's trigger, which refuses a revision that does not
+    // advance whatever the filter matched. Modelled here as well as in
+    // `plan-store.test.ts`: two stubs for one database must not have
+    // two fidelities.
+    if (sent.rev <= row.rev) {
+      return new Response(JSON.stringify({ code: "LD001", message: "plan revision went backwards" }), {
+        status: 400,
+        headers: { "content-type": "application/json" },
+      });
+    }
+    row = { ...row, doc: sent.doc, rev: sent.rev, updated_at: sent.updated_at };
     return Response.json([row]);
   };
+
   return {
     reply,
+    asked,
     stored: () => row,
     /** The student saves from the planner, which is what makes the
      * assistant's in-flight change stale. */
@@ -329,10 +357,7 @@ function plansTable(initial: Record<string, unknown>, rev = 4) {
 function withTable(table: ReturnType<typeof plansTable>) {
   const real = globalThis.fetch;
   globalThis.fetch = ((input: RequestInfo | URL, init?: RequestInit) => table.reply(input, init)) as typeof fetch;
-  return {
-    asked: [] as { url: string; headers: Record<string, string> }[],
-    restore: () => { globalThis.fetch = real; },
-  };
+  return { asked: table.asked, restore: () => { globalThis.fetch = real; } };
 }
 
 describe("a change the assistant makes", () => {
@@ -377,6 +402,141 @@ describe("a change the assistant makes", () => {
     expect(result!.ok).toBe(true);
     expect((table.stored().doc as { edition?: string }).edition).toBe("2025-2026");
     expect((result!.plan as { edition?: string }).edition).toBe("2025-2026");
+  });
+});
+
+/** EVERY ONE OF THE SEVEN, through the Worker.
+ *
+ * The first draft of this file proved the hosted write path with
+ * `add_term` alone and left the other six to the local tests — which
+ * is `add_term` wearing seven hats. The hosted path has its own store,
+ * its own context construction and its own refusal handling, and
+ * "the local one works" has never been evidence about any of those.
+ *
+ * Each case is a real call with real arguments, so a tool that is
+ * reachable but broken hosted fails here rather than in production.
+ */
+const EVERY_MUTATION: { name: string; args: Record<string, unknown>; changed: (doc: Record<string, unknown>) => boolean }[] = [
+  {
+    name: "add_course",
+    args: { code: "CMPSC 465", term_index: 5 },
+    changed: (d) => JSON.stringify(d.added ?? []).includes("CMPSC 465"),
+  },
+  {
+    name: "remove_course",
+    // A Course the student added, so the consent gate is not what is
+    // under test here — it has its own cases below.
+    args: { code: "ECON 102", user_explicitly_asked: true, student_words: "I would rather not take that one at all" },
+    changed: (d) => JSON.stringify(d.removed ?? {}).includes("ECON 102"),
+  },
+  {
+    name: "set_schedule_constraint",
+    args: { code: "CHEM 110", rule: "not-in", term_index: 0 },
+    changed: (d) => JSON.stringify(d.constraints ?? []).includes("CHEM 110"),
+  },
+  {
+    name: "fill_slot",
+    // `GE-0-0` is the first open requirement slot in the fixture; the
+    // ids come from get_plan and are stable for a given plan.
+    args: { slot_id: "GE-0-0", code: "CMPSC 465" },
+    changed: (d) => JSON.stringify(d.slotFills ?? {}).includes("CMPSC 465"),
+  },
+  { name: "optimize_schedule", args: {}, changed: (d) => Array.isArray(d.terms) },
+  { name: "add_term", args: {}, changed: (d) => (d.terms as unknown[]).length === 9 },
+  { name: "skip_term", args: { term_index: 3 }, changed: (d) => JSON.stringify(d.terms).includes('"gap":true') },
+];
+
+describe.each(EVERY_MUTATION)("$name, hosted", ({ name, args, changed }) => {
+  it("lands against the stored plan", async () => {
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, name, { ...args, based_on_revision: 4 });
+    expect(result!.ok, JSON.stringify(result)).toBe(true);
+    expect(changed(table.stored().doc as Record<string, unknown>), `${name} did not change the stored plan`).toBe(true);
+  });
+
+  it("returns the resulting plan and the revisions", async () => {
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, name, { ...args, based_on_revision: 4 });
+    expect((result!.plan as { terms?: unknown[] })?.terms, `${name} returned no plan`).toBeTruthy();
+    expect(result!.based_on_revision).toBe(4);
+    expect(result!.revision).toBe(5);
+  });
+
+  it("is refused when the plan has moved on, and writes nothing", async () => {
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    table.editedInThePlanner();
+    const before = JSON.stringify(table.stored());
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, name, { ...args, based_on_revision: 4 });
+    expect(result!.ok, `${name} landed on a plan it was not computed from`).not.toBe(true);
+    expect(JSON.stringify(table.stored()), `${name} wrote despite being refused`).toBe(before);
+  });
+
+  it("keeps the plan pinned to its Edition", async () => {
+    // ADR 0001, and the ones that matter most are the three that re-run
+    // the OPTIMIZER — `optimize_schedule`, `set_schedule_constraint`
+    // and `skip_term` rebuild the terms, which is where a pin would be
+    // dropped if anything were going to drop it.
+    const table = plansTable({ ...PLAN, edition: "2025-2026" });
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, name, { ...args, based_on_revision: 4 });
+    expect(result!.ok, JSON.stringify(result)).toBe(true);
+    expect(
+      (table.stored().doc as { edition?: string }).edition,
+      `${name} re-based the student onto a different bulletin`,
+    ).toBe("2025-2026");
+  });
+
+  it("requires the revision it was computed from", async () => {
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const before = JSON.stringify(table.stored());
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, name, args);
+    expect(result!.error, `${name} wrote without naming a revision`).toMatch(/based_on_revision/);
+    expect(JSON.stringify(table.stored())).toBe(before);
+  });
+});
+
+describe("how a write reaches the database", () => {
+  it("is sent as the student, so row-level security decides whose plan it touches", async () => {
+    // THE SAME PROPERTY AS THE READ, and it was asserted only on the
+    // read. A write carrying anything more privileged would make this
+    // code the thing standing between two students' degrees.
+    const theirToken = await signedIn("student-7");
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    await call(env(), `Bearer ${theirToken}`, "add_term", { based_on_revision: 4 });
+
+    const write = table.asked.find((a) => a.method === "PATCH");
+    expect(write, "no write reached the database").toBeTruthy();
+    expect(write!.headers.authorization, "the write did not run as the student").toBe(`Bearer ${theirToken}`);
+    expect(JSON.stringify(write!.headers)).not.toMatch(/service_role/i);
+  });
+
+  it("names the plan and the revision, and nothing about the user", async () => {
+    // `id` plus the policy is exactly one row. A `user_id` filter here
+    // would make the application the gate and leave the policy untested
+    // in practice — the same deliberate omission as the read.
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    await call(env(), `Bearer ${await signedIn()}`, "add_term", { based_on_revision: 4 });
+
+    const write = table.asked.find((a) => a.method === "PATCH")!;
+    expect(write.url).toMatch(/id=eq\./);
+    expect(write.url).toMatch(/rev=eq\.4/);
+    expect(write.url, "the application is filtering, so the policy is untested").not.toMatch(/user_id/);
+  });
+
+  it("asks for the affected rows back, or a refusal is indistinguishable from a success", async () => {
+    // PostgREST answers 204 with no body on both a match and a no-op
+    // without this, and the connector would report every refused write
+    // as applied.
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    await call(env(), `Bearer ${await signedIn()}`, "add_term", { based_on_revision: 4 });
+    expect(table.asked.find((a) => a.method === "PATCH")!.headers.prefer).toMatch(/return=representation/);
   });
 });
 

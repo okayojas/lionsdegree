@@ -123,6 +123,33 @@ describe("when nothing has changed", () => {
     expect(await pullNewerPlan(plan(5, "2026-11-01T10:00:00.000Z"))).toBeNull();
   });
 
+  it("pulls nothing over unsynced local work, even when this clock runs SLOW", async () => {
+    // THE OTHER HALF OF THE CLOCK BUG, and the dangerous direction.
+    // The server is exactly where we left it — rev 5, the revision this
+    // device agreed with — so it has nothing to give. But the student
+    // has edited since (rev 6, unpushed) and this machine's clock is
+    // behind, so the remote timestamp looks newer. Pulling here
+    // replaces work the student can still see on their screen with a
+    // copy the server already had.
+    rememberSyncedRev("p", 5);
+    remote = { doc: plan(5, "2026-11-01T10:00:00.000Z"), rev: 5, updated_at: "2026-11-01T10:00:00.000Z" };
+    const unsynced = plan(6, "2026-11-01T08:00:00.000Z");
+    expect(
+      await pullNewerPlan(unsynced),
+      "a slow clock discarded edits the server never had",
+    ).toBeNull();
+  });
+
+  it("still honours a forced pull, which is what the conflict banner asks for", async () => {
+    // The student pressed "load the newer plan". They are choosing,
+    // and the local copy is backed up on the way through.
+    rememberSyncedRev("p", 5);
+    remote = { doc: plan(7, "2026-11-01T10:00:00.000Z"), rev: 7, updated_at: "2026-11-01T10:00:00.000Z" };
+    const pulled = await pullNewerPlan(plan(6, "2026-11-01T23:00:00.000Z"), true);
+    expect(pulled, "the one button that exists for this did nothing").toBeTruthy();
+    expect((pulled as { rev: number }).rev).toBe(7);
+  });
+
   it("pulls nothing when there is no remote plan at all", async () => {
     remote = null;
     expect(await pullNewerPlan(plan(3, "2026-11-01T10:00:00.000Z"))).toBeNull();

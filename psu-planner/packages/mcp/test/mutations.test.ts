@@ -65,6 +65,23 @@ describe("a change that does not say what it was based on", () => {
     expect(fs.readFileSync(planPath, "utf-8")).toBe(before);
   });
 
+  it("cannot be satisfied by sending nothing", async () => {
+    // THE COERCION HOLE. `Number(null)`, `Number("")`, `Number([])` and
+    // `Number(false)` are all 0 — so on a plan sitting at revision 0,
+    // which is every plan predating `rev` and every one just created, a
+    // model got past the guard by sending null. A guard a caller can
+    // satisfy by sending nothing is not a guard.
+    const before = fs.readFileSync(planPath, "utf-8");
+    for (const nothing of [null, "", [], false, "4", undefined]) {
+      const r = (await executeTool("add_term", { based_on_revision: nothing }, ctx)) as {
+        ok?: boolean; error?: string;
+      };
+      expect(r.ok, `based_on_revision: ${JSON.stringify(nothing)} was accepted`).not.toBe(true);
+      expect(r.error).toMatch(/based_on_revision/);
+    }
+    expect(fs.readFileSync(planPath, "utf-8"), "something wrote").toBe(before);
+  });
+
   it("is refused when the revision has moved on, and writes nothing", async () => {
     // The student edited in the planner since the model last read. The
     // model's change is computed from a plan that no longer exists, and
@@ -151,6 +168,27 @@ describe("removing a required course", () => {
     expect(fs.readFileSync(planPath, "utf-8"), "a refused removal still wrote").toBe(before);
   });
 
+  it("does not refuse a real sentence that happens to contain the word", async () => {
+    // FALSE POSITIVES COST A STUDENT THEIR REQUEST. The first version
+    // matched "user" or "student" anywhere within thirty characters of
+    // a verb, which blocks a student writing about a user manual or
+    // about being a transfer student. The check is now subject-then-
+    // verb, and the echo is what the guard actually rests on.
+    const code = requiredCode();
+    for (const genuine of [
+      "the user manual said I don't need it for my track",
+      "I'm a transfer student and I already did this one elsewhere",
+      "Drop it, I am not taking it",
+    ]) {
+      const r = (await call("remove_course", {
+        code, user_explicitly_asked: true, student_words: genuine,
+      })) as { ok?: boolean; needs_confirmation?: boolean };
+      expect(r.needs_confirmation, `a genuine sentence was blocked: "${genuine}"`).not.toBe(true);
+      // Put it back for the next iteration.
+      await call("add_course", { code, term_index: 0 });
+    }
+  });
+
   it("is refused when the quote is the model talking about the student", async () => {
     // Not a quote at all — it is the model narrating its own authority.
     // Someone asking for a course to be dropped says "I"; a model
@@ -160,6 +198,9 @@ describe("removing a required course", () => {
       "The user asked me to remove this course from their plan",
       "the student confirmed they want it dropped",
       "This user said they no longer need it",
+      "They asked me to take it out",
+      "The student has requested its removal",
+      "the user told me to drop it",
     ]) {
       const r = (await call("remove_course", {
         code, user_explicitly_asked: true, student_words: narration,

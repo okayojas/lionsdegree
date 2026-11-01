@@ -41,6 +41,19 @@ export interface MutationResult {
   [k: string]: unknown;
 }
 
+/** The revision the store is at, as far as this context knows.
+ *
+ * ONE ACCESSOR, because there were two: the guard compared the model's
+ * claim against `ctx.rev ?? 0` while `commit` swapped against
+ * `ctx.rev ?? ctx.plan.rev ?? 0`. Wherever `ctx.rev` was undefined the
+ * two layers were guarding different numbers, which is the one thing a
+ * two-layer check must never do.
+ *
+ * The store's number wins over the document's: the column is what a
+ * compare-and-swap is matched against, and the document's copy can lag
+ * it when a device coalesced edits before pushing. */
+const heldRev = (ctx: ToolContext): number => ctx.rev ?? ctx.plan?.rev ?? 0;
+
 /** What a model is told when its change was computed from a Plan that
  * has since moved on.
  *
@@ -48,16 +61,27 @@ export interface MutationResult {
  * same bytes — which fails again, and the model either loops or gives up
  * and tells the student their planner is broken. Re-read, recompute,
  * call again. */
-const staleWrite = (name: string): MutationResult => ({
+const staleWrite = (name: string, computedFrom: number, held?: number): MutationResult => ({
   error:
     "The plan changed while you were working on it, so this change was not applied — " +
     "nothing was overwritten and nothing was merged.",
   stale_read: true,
+  // BOTH NUMBERS, on the refusal as well as on the success. Without
+  // them a transcript shows that something lost a race but not what,
+  // and the student asking "what happened to my edit?" has nothing to
+  // look at.
+  based_on_revision: computedFrom,
+  current_revision: held,
   remedy:
     `Call get_plan to read the current plan, decide whether ${name} still makes sense ` +
     "against it, and then call again. Do not repeat this call unchanged: it was computed " +
     "from a revision that no longer exists.",
-  why: "The student almost certainly edited their plan in the planner just now.",
+  // NOT "the student just edited their plan". That is the usual cause,
+  // not a fact — a write can also be refused because the row is not
+  // visible to this session at all, and telling a student they edited
+  // something they did not is a confident wrong answer about their own
+  // actions.
+  why: "Most often the student edited their plan in the planner while you were working.",
 });
 
 /** Apply a change, persist it, and refresh the context so the next tool call
@@ -89,11 +113,11 @@ async function commit(
   // BASED ON THE STORE'S REVISION, not the document's. The two differ
   // when a device coalesced edits before pushing, and the store's is the
   // number the swap is matched against.
-  const base = ctx.rev ?? ctx.plan.rev ?? 0;
+  const base = heldRev(ctx);
   next.rev = base + 1;
   next.updatedAt = new Date().toISOString();
 
-  if ((await ctx.store.write(next, base)) === "stale") return staleWrite(name);
+  if ((await ctx.store.write(next, base)) === "stale") return staleWrite(name, base);
 
   ctx.plan = next;
   ctx.rev = next.rev;
@@ -132,14 +156,24 @@ function reoptimize(ctx: ToolContext, plan: PlanDoc): PlanDoc {
  * the flag is no longer sufficient: it must come with the student's own
  * sentence, and that sentence is echoed back where a human can see it.
  *
- * WHAT THIS CAN AND CANNOT DO. It cannot verify that a student said
- * anything — nothing at this layer can, and pretending otherwise would
- * be its own kind of lie. What it can do is make the quiet path
- * unavailable: a model cannot drop a requirement by setting one field
- * true, it has to produce words and those words are shown. The
- * third-person check below is the cheap half of that — a quote of a
- * student says "I"; a model narrating its own authority writes "the
- * user asked me to", which is not a quote at all.
+ * WHAT THIS CAN AND CANNOT DO, stated plainly because overclaiming here
+ * would be worse than the weak guard it replaced. It cannot verify that
+ * a student said anything. Nothing at this layer can: every field
+ * arrives from the model, including the quote.
+ *
+ * THE PROPERTY THAT IS REAL is the echo. A removal of a required Course
+ * now carries, into the student's own transcript, the sentence it was
+ * justified by — so a fabricated one is something they can find, where a
+ * silently-set boolean was not. Everything below is a cheap filter in
+ * front of that, not the guarantee.
+ *
+ * The one pattern worth catching is a model narrating its own authority
+ * — "the user asked me to" is not a quote, it is the model agreeing with
+ * itself. It is matched tightly (subject immediately followed by the
+ * verb) because a loose match blocks real sentences: a student writing
+ * "the user manual said I don't need it" is quoting nobody but
+ * themselves. A determined paraphrase gets through, and that is what the
+ * echo is for.
  *
  * The same rule on both servers, deliberately. A security property that
  * depends on which deployment you reached is one nobody can reason
@@ -153,15 +187,18 @@ function consentProblem(args: Record<string, unknown>): string | null {
   if (!words) {
     return "student_words is required here: quote what the student said when they asked for this.";
   }
-  if (words.length < 8) {
-    return "student_words does not read as something a student said — quote their actual sentence.";
+  // Only the degenerate case. A longer floor was arbitrary — it rejected
+  // "Drop it." while admitting "yes drop" — and dressing an arbitrary
+  // number up as a judgement about what a student sounds like is the
+  // overclaiming this guard is supposed to avoid.
+  if (words.length < 3) {
+    return "student_words is too short to be anything the student said — quote their sentence.";
   }
 
-  // A MODEL DESCRIBING ITS OWN PERMISSION, which is the thing this
-  // whole guard exists to refuse. Someone asking for a course to be
-  // dropped talks about themselves and the course; a model reaching for
-  // authority it was not given writes about "the user".
-  if (/\b(the |this )?(user|student)\b[^.?!]{0,30}\b(asked|confirmed|said|wants|requested|agreed)\b/i.test(words)) {
+  // "The user asked me to", not "the user manual said". Subject, then
+  // verb, with nothing in between but a hedge.
+  const narrating = /\b(the |this )?(user|student|they)\s+(has |have |already |just )?(asked|confirmed|said|told|wants|wanted|requested|agreed|approved)\b/i;
+  if (narrating.test(words)) {
     return (
       "student_words reads as your description of the student rather than their own words. " +
       "Quote them directly, or ask them if they have not been asked."
@@ -230,8 +267,13 @@ export async function executeMutation(
   //
   // Both layers earn their place: this one catches a stale decision, the
   // store's catches a genuine race with the planner tab.
-  const stated = Number(args.based_on_revision);
-  if (!Number.isInteger(stated)) {
+  // STRICTLY A NUMBER. `Number(null)`, `Number("")`, `Number([])` and
+  // `Number(false)` are all 0, so coercing here let a model past the
+  // guard on any Plan sitting at revision 0 by sending null — which is
+  // every Plan that predates `rev` and every one just created. A guard
+  // a caller can satisfy by sending nothing is not a guard.
+  const stated = args.based_on_revision;
+  if (typeof stated !== "number" || !Number.isInteger(stated)) {
     return {
       error: `${name} needs based_on_revision: the revision of the plan this change was computed from.`,
       remedy:
@@ -240,7 +282,7 @@ export async function executeMutation(
       why: "Without it there is no way to tell this change apart from one based on a plan the student has since edited.",
     };
   }
-  if (stated !== (ctx.rev ?? 0)) return staleWrite(name);
+  if (stated !== heldRev(ctx)) return staleWrite(name, stated, heldRev(ctx));
 
   // A GETTER, NOT A SNAPSHOT. `commit` REPLACES `ctx.plan` with the
   // mutated document, so anything that reads the Plan after a commit must

@@ -1,8 +1,9 @@
 /** The tools a student's assistant can call.
  *
- * READ-ONLY. Nothing here writes to the plan file. Mutating tools are a
- * separate piece of work, and shipping one early would let an assistant
- * change a plan the student never agreed to expose to writes.
+ * The reads live here; `mutations.ts` holds the seven that write, and
+ * every one of those states the revision it was computed from so a
+ * change based on a Plan the student has since edited is refused rather
+ * than allowed to overwrite them (ADR 0003).
  *
  * The dispatcher is the seam this is tested at. Protocol framing belongs to
  * the SDK and testing it would assert a library rather than this behaviour. */
@@ -129,10 +130,11 @@ export const needsPlan = (name: string): boolean => !CATALOG_ONLY.has(name);
 
 /** Plan-shaped tools that only READ.
  *
- * The hosted connector can offer these once a student is signed in
- * (#35). The four that WRITE stay out until #36 gives them a safe way
- * to do it — a mutation against a Plan the browser is also editing is
- * a different problem, and it has its own ticket.
+ * Named because the two halves of the hosted surface arrived at
+ * different times: these in #35, the seven that write in #36 once each
+ * one became a compare-and-swap against the revision it was computed
+ * from. The distinction still earns its keep — a read costs a student
+ * nothing if the model is confused, and a write costs them their plan.
  *
  * Named explicitly rather than derived as "not a mutation": the same
  * allowlist reasoning as CATALOG_ONLY. A tool nobody classified should
@@ -252,7 +254,8 @@ function allTools(): ToolDefinition[] {
             description:
               "The student's own sentence asking for this, quoted. Not your summary of it, not your " +
               "question to them, and not something you decided on their behalf — if they have not said " +
-              "it, you do not have this, and the removal should not happen. Shown to the student.",
+              "it, you do not have this, and the removal should not happen. It is returned in the " +
+              "answer, so repeat it to them when you confirm what you did.",
           },
           based_on_revision: basedOn,
         },

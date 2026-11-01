@@ -112,11 +112,18 @@ export class FilePlanStore implements PlanStore {
   async write(plan: PlanDoc, baseRev: number): Promise<WriteOutcome> {
     const { default: fs } = await import("node:fs");
 
-    // The file IS the revision here — there is no column to swap
-    // against — so the check reads what is on disk right now rather than
-    // trusting what this process loaded at startup. A student editing in
-    // the planner with the local server running is exactly the case the
-    // whole rule exists for, and that student's save lands here.
+    // A READ THEN A WRITE, which the interface above says a swap must
+    // not be — so the exception is stated rather than left to be
+    // noticed. A plain file offers no conditional write; the atomic
+    // version needs locking that POSIX and Windows disagree about, for
+    // a case with one writing process and a human at the keyboard.
+    //
+    // What it does buy is the case the rule exists for: the student
+    // edited in the planner while this server was running, so the
+    // revision ON DISK is not the one this process loaded at startup.
+    // Reading it back catches that; the surviving window is between
+    // these two lines, and the hosted store — where there really are
+    // two writers — swaps in the database instead.
     if (fs.existsSync(this.path)) {
       const held = JSON.parse(fs.readFileSync(this.path, "utf-8")) as { plan?: { rev?: number } };
       if ((held.plan?.rev ?? 0) !== baseRev) return "stale";
@@ -276,9 +283,14 @@ export class SupabasePlanStore implements PlanStore {
 /** Migration 0003 raises its own SQLSTATE when a revision goes
  * backwards. Read here so a write refused by the trigger is reported as
  * what it is rather than as "the database is down" — the remedy is to
- * re-read and recompute, not to wait. */
+ * re-read and recompute, not to wait.
+ *
+ * THE ERRCODE AND NOTHING ELSE. A bare 409 used to count, which folded
+ * `unique_violation` in with it — and `sync.ts` keeps those apart
+ * deliberately, because one means "re-read and recompute" and the other
+ * does not. Telling a model to retry something that will never succeed
+ * is how it loops. */
 async function isStaleWrite(res: Response): Promise<boolean> {
-  if (res.status === 409) return true;
   const body = await res.text().catch(() => "");
   return body.includes(STALE_REV_SQLSTATE);
 }

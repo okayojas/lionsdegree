@@ -276,20 +276,38 @@ export async function pullNewerPlan(local: PlanDoc | null, force = false): Promi
   // ADR 0003 replaced clocks with `rev` for writes because two devices'
   // clocks disagree quietly. This is the same rule applied to reads.
   const agreed = syncedRev(remote.id);
-  const noLocalEdits = !!local && agreed !== null && local.rev === agreed;
-  if (noLocalEdits && remoteRev !== agreed) {
-    // Fall through: take it.
-  } else if (!force && local && new Date(local.updatedAt) >= new Date(remote.updatedAt)) {
-    // Both sides moved, or nothing did. A pull here would replace
-    // unsynced local work without saying so, and the refused push is
-    // what raises that properly.
+  if (!force && local && agreed !== null) {
+    // The server is exactly where we left it, so there is nothing over
+    // there to take — whatever the clocks say. Falling through to the
+    // timestamp comparison here was the other half of the same bug: a
+    // SLOW local clock made the remote look newer and pulled, replacing
+    // unsynced local edits with a copy the server already had. ADR
+    // 0003: clock skew stops mattering.
+    if (remoteRev === agreed) return null;
+    // We have no unsynced edits and the server has moved: unambiguously
+    // somebody else's change — their other device, or their assistant.
+    if (local.rev === agreed) return remember(remote, remoteRev, local);
+  }
+  if (!force && local && new Date(local.updatedAt) >= new Date(remote.updatedAt)) {
+    // Both sides moved. A pull here would replace unsynced local work
+    // without saying so; the refused push is what raises that properly.
     return null;
   }
-  if (local) {
-    try { localStorage.setItem(BACKUP_KEY, JSON.stringify(local)); } catch { /* full */ }
+  return remember(remote, remoteRev, local);
+}
+
+/** Take the remote copy: back up what it replaces, and record that we
+ * now agree with the server at this revision so the next push states it.
+ *
+ * Both return paths go through here. They used to be one path; when the
+ * revision-based branch was added above, duplicating these three lines
+ * would have been the easy way to forget the backup on one of them —
+ * and the backup is the only reason a wrong pull is recoverable. */
+function remember(remote: PlanDoc, rev: number, replacing: PlanDoc | null): PlanDoc {
+  if (replacing) {
+    try { localStorage.setItem(BACKUP_KEY, JSON.stringify(replacing)); } catch { /* full */ }
   }
-  // We now agree with the server at this revision; the next push states it.
-  rememberSyncedRev(remote.id, remoteRev);
+  rememberSyncedRev(remote.id, rev);
   return remote;
 }
 
