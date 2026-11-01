@@ -12,6 +12,7 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { executeTool, listTools, loadContext, type ToolContext } from "../src/tools.js";
+import { MUTATIONS } from "../src/mutations.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const CATALOG = path.resolve(here, "..", "catalog");
@@ -27,7 +28,12 @@ beforeEach(async () => {
   ctx = await loadContext({ planPath, catalogRoot: CATALOG });
 });
 
-const call = (name: string, args: Record<string, unknown> = {}) => executeTool(name, args, ctx);
+/** Every tool that writes states the revision it was computed from
+ * (#36). These tests are about what the mutations DO, so the helper
+ * supplies the current one by default; the cases where it is missing or
+ * out of date have their own tests below and in `worker-plan.test.ts`. */
+const call = (name: string, args: Record<string, unknown> = {}) =>
+  executeTool(name, { based_on_revision: ctx.rev, ...args }, ctx);
 const onDisk = () => JSON.parse(fs.readFileSync(planPath, "utf-8")).plan;
 const codesIn = () => onDisk().terms.flatMap((t: { items: { code?: string }[] }) => t.items.flatMap((i) => (i.code ? [i.code] : [])));
 
@@ -37,6 +43,41 @@ describe("the mutating surface", () => {
     for (const n of ["add_course", "remove_course", "set_schedule_constraint", "optimize_schedule", "fill_slot", "add_term", "skip_term"]) {
       expect(names, n).toContain(n);
     }
+  });
+
+  it("asks every one of them which revision the change was computed from", () => {
+    // Required, not optional. An optional guard is one a model can skip,
+    // and the whole point is that it cannot assert its way past this.
+    for (const t of listTools().filter((t) => MUTATIONS.has(t.name))) {
+      const schema = t.inputSchema as { properties: Record<string, unknown>; required: string[] };
+      expect(schema.properties.based_on_revision, `${t.name} does not take it`).toBeTruthy();
+      expect(schema.required, `${t.name} does not require it`).toContain("based_on_revision");
+    }
+  });
+});
+
+describe("a change that does not say what it was based on", () => {
+  it("is refused, and writes nothing", async () => {
+    const before = fs.readFileSync(planPath, "utf-8");
+    const r = (await executeTool("add_term", {}, ctx)) as { error?: string; remedy?: string };
+    expect(r.error, "a change landed without naming the revision it came from").toMatch(/based_on_revision/);
+    expect(r.remedy).toMatch(/get_plan/);
+    expect(fs.readFileSync(planPath, "utf-8")).toBe(before);
+  });
+
+  it("is refused when the revision has moved on, and writes nothing", async () => {
+    // The student edited in the planner since the model last read. The
+    // model's change is computed from a plan that no longer exists, and
+    // applying it would erase what they just did.
+    const before = fs.readFileSync(planPath, "utf-8");
+    const stale = (ctx.rev ?? 0) - 1;
+    const r = (await executeTool("add_term", { based_on_revision: stale }, ctx)) as {
+      ok?: boolean; stale_read?: boolean; remedy?: string;
+    };
+    expect(r.ok, "a stale change landed").not.toBe(true);
+    expect(r.stale_read).toBe(true);
+    expect(r.remedy, "the refusal named no remedy").toMatch(/get_plan/);
+    expect(fs.readFileSync(planPath, "utf-8"), "a refused change still wrote").toBe(before);
   });
 });
 
@@ -95,11 +136,49 @@ describe("removing a required course", () => {
     expect(r.suggestion).toMatch(/set_schedule_constraint/);
   });
 
-  it("goes through when the student has actually said so", async () => {
+  it("is refused when the flag is set but nothing was quoted", async () => {
+    // THE SELF-ASSERTED FLAG. A boolean is the easiest thing in the
+    // world for a model to set, and before this it was the whole guard.
+    // Asking for the student's sentence does not prove they said it —
+    // nothing here can — but it makes the quiet path unavailable.
     const code = requiredCode();
-    const r = (await call("remove_course", { code, user_explicitly_asked: true })) as { ok?: boolean };
+    const before = fs.readFileSync(planPath, "utf-8");
+    const r = (await call("remove_course", { code, user_explicitly_asked: true })) as {
+      error?: string; needs_confirmation?: boolean;
+    };
+    expect(r.needs_confirmation, "a bare flag was enough to drop a graduation requirement").toBe(true);
+    expect(r.error).toMatch(/student_words/);
+    expect(fs.readFileSync(planPath, "utf-8"), "a refused removal still wrote").toBe(before);
+  });
+
+  it("is refused when the quote is the model talking about the student", async () => {
+    // Not a quote at all — it is the model narrating its own authority.
+    // Someone asking for a course to be dropped says "I"; a model
+    // reaching for permission writes "the user asked me to".
+    const code = requiredCode();
+    for (const narration of [
+      "The user asked me to remove this course from their plan",
+      "the student confirmed they want it dropped",
+      "This user said they no longer need it",
+    ]) {
+      const r = (await call("remove_course", {
+        code, user_explicitly_asked: true, student_words: narration,
+      })) as { needs_confirmation?: boolean };
+      expect(r.needs_confirmation, `"${narration}" passed as the student's own words`).toBe(true);
+    }
+    expect(codesIn(), "a requirement was dropped on the model's narration").toContain(code);
+  });
+
+  it("goes through when the student has actually said so, in their words", async () => {
+    const code = requiredCode();
+    const said = "I've decided to switch majors, please take it out of my degree";
+    const r = (await call("remove_course", {
+      code, user_explicitly_asked: true, student_words: said,
+    })) as { ok?: boolean; on_the_strength_of?: string };
     expect(r.ok).toBe(true);
     expect(codesIn()).not.toContain(code);
+    // Echoed back, so the claim is visible to the person it is about.
+    expect(r.on_the_strength_of, "the claim was acted on but never shown").toBe(said);
   });
 });
 

@@ -9,7 +9,7 @@
  * destroyed one another's work. The losing local copy stays on the device
  * and in Plan history. */
 import { createClient, type SupabaseClient, type User } from "@supabase/supabase-js";
-import type { PlanDoc } from "@psu-planner/engine";
+import { STALE_REV_SQLSTATE, type PlanDoc } from "@psu-planner/engine";
 
 /** The config gate lives in `sync-config.ts`, which imports no Supabase code,
  * so a caller can ask "is sync on?" without downloading the client. */
@@ -92,7 +92,7 @@ const BACKUP_KEY = "lionsdegree-conflict-backup";
  * The contract between that migration and this file. Matching on the
  * message text instead would break the first time the wording improves,
  * and matching on nothing would mean every failure looked alike. */
-export const STALE_REV_CODE = "LD001";
+export const STALE_REV_CODE = STALE_REV_SQLSTATE;
 
 /** Postgres' unique_violation. An insert that collides is a Plan the
  * server already has, which is a conflict, not a failure to retry. */
@@ -259,12 +259,37 @@ export async function pullNewerPlan(local: PlanDoc | null, force = false): Promi
     .maybeSingle();
   if (!data) return null;
   const remote = data.doc as PlanDoc;
-  if (!force && local && new Date(local.updatedAt) >= new Date(remote.updatedAt)) return null;
+  const remoteRev = (data.rev as number) ?? remote.rev;
+
+  // AGREEMENT FIRST, CLOCKS ONLY AS A FALLBACK.
+  //
+  // When this device has no unsynced edits — its revision is exactly the
+  // one it last agreed with the server on — a different revision over
+  // there is unambiguously somebody else's change, and it must be taken
+  // whatever the timestamps say. That case used to fail: since #36 the
+  // other writer can be the student's assistant, whose `updated_at`
+  // comes from a SERVER, so a browser clock a few minutes fast made the
+  // local copy look newer than a change made after it. The student asks
+  // their assistant to add a course, watches it confirmed, opens the
+  // planner, and it is not there.
+  //
+  // ADR 0003 replaced clocks with `rev` for writes because two devices'
+  // clocks disagree quietly. This is the same rule applied to reads.
+  const agreed = syncedRev(remote.id);
+  const noLocalEdits = !!local && agreed !== null && local.rev === agreed;
+  if (noLocalEdits && remoteRev !== agreed) {
+    // Fall through: take it.
+  } else if (!force && local && new Date(local.updatedAt) >= new Date(remote.updatedAt)) {
+    // Both sides moved, or nothing did. A pull here would replace
+    // unsynced local work without saying so, and the refused push is
+    // what raises that properly.
+    return null;
+  }
   if (local) {
     try { localStorage.setItem(BACKUP_KEY, JSON.stringify(local)); } catch { /* full */ }
   }
   // We now agree with the server at this revision; the next push states it.
-  rememberSyncedRev(remote.id, (data.rev as number) ?? remote.rev);
+  rememberSyncedRev(remote.id, remoteRev);
   return remote;
 }
 

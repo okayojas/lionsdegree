@@ -163,16 +163,13 @@ describe("what the connector offers", () => {
     expect(text).toMatch(/get_prereq_chain/);
   });
 
-  it("does not advertise a tool that would always refuse", async () => {
-    // The four that CHANGE a Plan. Reads went hosted in #35; writes do
-    // not until #36, and offering a tool that will always say no wastes
-    // a turn and teaches the model this connector is unreliable.
+  it("offers the tools that change a Plan, since #36 made them swap-safe", async () => {
     const res = await worker.fetch(POST(rpc("tools/list")), env);
     const text = await res.text();
     // Derived from the dispatch set: there are seven, and a list typed
     // out here would be wrong the first time an eighth is added.
     for (const writes of MUTATIONS) {
-      expect(text, `${writes} was offered before hosted writes exist`).not.toMatch(new RegExp(`"${writes}"`));
+      expect(text, `${writes} is not reachable`).toMatch(new RegExp(`"${writes}"`));
     }
   });
 });

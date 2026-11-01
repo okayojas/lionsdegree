@@ -81,12 +81,15 @@ describe("the catalog-only surface", () => {
  * own definitions, for exactly the reason the catalog surface is.
  */
 describe("the hosted surface", () => {
-  it("offers nothing that can change a student's Plan", () => {
-    // THE ASSERTION THAT MATTERS. Reads went hosted in #35; writes wait
-    // for #36, and a write offered before then is a model editing a
-    // degree plan a student is also editing in another window.
-    const leaked = mutatingTools().filter((m) => HOSTED_TOOLS.has(m));
-    expect(leaked, "a tool that writes to a Plan is offered on the hosted connector").toEqual([]);
+  it("offers the writes now that each one is a compare-and-swap", () => {
+    // #35 held these back; #36 is what made them safe to offer. The
+    // thing that changed is not the tool, it is that a write now names
+    // the revision it was computed from and is refused if that revision
+    // has moved on — so the planner tab the student also has open
+    // cannot be silently overwritten.
+    for (const m of mutatingTools()) {
+      expect(HOSTED_TOOLS.has(m), `${m} is not reachable on the hosted connector`).toBe(true);
+    }
   });
 
   it("offers every Plan tool that only reads", () => {
@@ -95,11 +98,14 @@ describe("the hosted surface", () => {
     }
   });
 
-  it("is the catalog tools plus those reads, and nothing else", () => {
-    // Anything not in one of the two named sets is unclassified, and
-    // unclassified must mean hidden rather than exposed.
+  it("is assembled from the named sets, never from \"everything\"", () => {
+    // THE PROPERTY THAT SURVIVES #36. The surface happens to be every
+    // tool today, and the temptation is to write it that way — but then
+    // the next tool anybody adds is exposed the moment it exists,
+    // without anyone deciding. Unclassified must still mean hidden.
     const names = listTools({ offer: HOSTED_TOOLS }).map((t) => t.name).sort();
-    expect(names).toEqual([...new Set([...CATALOG_ONLY, ...READABLE_PLAN_TOOLS])].sort());
+    const classified = [...new Set([...CATALOG_ONLY, ...READABLE_PLAN_TOOLS, ...mutatingTools()])].sort();
+    expect(names).toEqual(classified);
   });
 
   it("still answers the Bulletin questions without touching a Plan", () => {

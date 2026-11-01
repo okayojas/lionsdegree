@@ -283,29 +283,188 @@ describe("what the connector offers", () => {
     expect(offered).toContain("search_catalog");
   });
 
-  it("does not offer a tool that writes", async () => {
-    // Reads only until #36. A mutation against a Plan the browser is
-    // also editing is a different problem with its own ticket, and
-    // offering the tool before it is solved invites the model to try.
+  it("offers every tool that writes, since each is now a compare-and-swap", async () => {
     const offered = await tools(env(), `Bearer ${await signedIn()}`);
-    // DERIVED, not typed out. There are seven mutations and the first
+    // DERIVED, not typed out. There are seven mutations and an earlier
     // draft of this list named four — the same miscount that put three
     // of them on the unauthenticated surface in #33.
     for (const writes of MUTATIONS) {
-      expect(offered, `${writes} was offered before hosted writes exist`).not.toContain(writes);
+      expect(offered, `${writes} is not reachable`).toContain(writes);
     }
   });
 
-  it("refuses a write even if one is called anyway", async () => {
-    // A tool nobody advertised is still a tool somebody can name.
-    db = database(rows(PLAN));
+  it("refuses a tool nobody classified", async () => {
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "drop_out", {});
+    expect(result!.error).toMatch(/not a tool this connector offers/i);
+  });
+});
+
+/** A stateful stand-in for PostgREST: it holds the row and honours the
+ * `rev=eq.` filter, because THAT FILTER IS THE COMPARE-AND-SWAP. A stub
+ * that accepted every PATCH would certify a connector the real database
+ * refuses — the mistake this project has now made three times. */
+function plansTable(initial: Record<string, unknown>, rev = 4) {
+  let row = { doc: initial, rev, updated_at: "2026-10-20T09:00:00.000Z" };
+  const reply = async (input: RequestInfo | URL, init?: RequestInit) => {
+    const url = new URL(String(input));
+    if ((init?.method ?? "GET") === "GET") return Response.json([row]);
+
+    const want = url.searchParams.get("rev")?.replace(/^eq\./, "");
+    if (String(row.rev) !== want) return Response.json([]); // the refusal
+    const sent = JSON.parse(String(init?.body ?? "{}")) as {
+      doc: Record<string, unknown>; rev: number; updated_at: string;
+    };
+    row = { doc: sent.doc, rev: sent.rev, updated_at: sent.updated_at };
+    return Response.json([row]);
+  };
+  return {
+    reply,
+    stored: () => row,
+    /** The student saves from the planner, which is what makes the
+     * assistant's in-flight change stale. */
+    editedInThePlanner: () => { row = { ...row, rev: row.rev + 1 }; },
+  };
+}
+
+function withTable(table: ReturnType<typeof plansTable>) {
+  const real = globalThis.fetch;
+  globalThis.fetch = ((input: RequestInfo | URL, init?: RequestInit) => table.reply(input, init)) as typeof fetch;
+  return {
+    asked: [] as { url: string; headers: Record<string, string> }[],
+    restore: () => { globalThis.fetch = real; },
+  };
+}
+
+describe("a change the assistant makes", () => {
+  it("lands, and the stored plan carries it", async () => {
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_term", { based_on_revision: 4 });
+    expect(result!.ok, JSON.stringify(result)).toBe(true);
+    expect((table.stored().doc as { terms: unknown[] }).terms.length)
+      .toBe((PLAN.terms as unknown[]).length + 1);
+  });
+
+  it("states the revision it was computed from", async () => {
+    // So a model can say what its change was based on, and so a human
+    // reading the transcript can see which revision lost a race.
+    const table = plansTable(PLAN, 11);
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_term", { based_on_revision: 11 });
+    expect(result!.based_on_revision, "the write did not say what it was based on").toBe(11);
+    expect(result!.revision).toBe(12);
+  });
+
+  it("returns the resulting plan, not just an acknowledgement", async () => {
+    // "ok: true" leaves a model describing what it INTENDED, because
+    // that is all it has. The resulting Plan lets it say what actually
+    // happened — including the parts it did not ask for.
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_term", { based_on_revision: 4 });
+    const view = result!.plan as { terms?: unknown[]; revision?: number };
+    expect(view?.terms, "the mutation did not return the resulting plan").toBeTruthy();
+    expect(view.terms!.length).toBe((PLAN.terms as unknown[]).length + 1);
+    expect(view.revision).toBe(5);
+  });
+
+  it("keeps the plan pinned to its Edition", async () => {
+    // ADR 0001. A mutation must not re-base a student onto a different
+    // bulletin, which would change which requirements apply to them.
+    const table = plansTable({ ...PLAN, edition: "2025-2026" });
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_term", { based_on_revision: 4 });
+    expect(result!.ok).toBe(true);
+    expect((table.stored().doc as { edition?: string }).edition).toBe("2025-2026");
+    expect((result!.plan as { edition?: string }).edition).toBe("2025-2026");
+  });
+});
+
+describe("a change computed from a plan the student has since edited", () => {
+  it("IS REFUSED, and the stored plan is left byte-identical", async () => {
+    // THE ASSERTION THAT MATTERS IN THIS TICKET. The student saved from
+    // the planner while the assistant was thinking. Landing the
+    // assistant's change here erases an edit made thirty seconds ago,
+    // and nothing anywhere says so — the exact failure ADR 0003 exists
+    // to prevent, now with a second writer who is not a browser tab.
+    const table = plansTable(PLAN);
+    db = withTable(table);
+
+    // The assistant reads...
+    await call(env(), `Bearer ${await signedIn()}`, "get_plan");
+    // ...the student saves...
+    table.editedInThePlanner();
+    const before = JSON.stringify(table.stored());
+
+    // ...the assistant writes, based on what it read a moment ago.
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_term", { based_on_revision: 4 });
+
+    expect(result!.ok, "a stale write landed").not.toBe(true);
+    expect(result!.stale_read).toBe(true);
+    expect(JSON.stringify(table.stored()), "a refused write still changed the stored plan").toBe(before);
+  });
+
+  it("tells the model what to do instead of just that it failed", async () => {
+    // "Conflict" on its own invites a retry of the same bytes, which
+    // fails again — and the model either loops or tells the student
+    // their planner is broken.
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    await call(env(), `Bearer ${await signedIn()}`, "get_plan");
+    table.editedInThePlanner();
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_term", { based_on_revision: 4 });
+    expect(result!.remedy, "the refusal named no remedy").toMatch(/get_plan/);
+    expect(result!.remedy).toMatch(/again/i);
+    expect(result!.error).toMatch(/not applied|not.*overwritten/i);
+  });
+
+  it("says nothing that reads as success", async () => {
+    // A refusal carrying `terms: 9` beside an error is a sentence a
+    // model will summarise as "I added a term".
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    await call(env(), `Bearer ${await signedIn()}`, "get_plan");
+    table.editedInThePlanner();
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_term", { based_on_revision: 4 });
+    expect(result!.terms, "a refusal reported a term count").toBeUndefined();
+    expect(result!.plan, "a refusal returned a plan as though one had been written").toBeUndefined();
+    expect(result!.ok).toBeUndefined();
+  });
+});
+
+describe("removing a required course, hosted", () => {
+  /** A Course the program's template placed, not one the student added. */
+  const required = (): string => {
+    for (const t of PLAN.terms as { items: { code?: string; origin?: unknown }[] }[]) {
+      for (const i of t.items) if (i.code && i.origin) return i.code;
+    }
+    throw new Error("fixture has no template-placed course");
+  };
+
+  it("refuses a flag the model set on its own", async () => {
+    // Hosted, this guard is the last thing between a model misreading a
+    // sentence and a dropped graduation requirement — over a network,
+    // against a shared database, with the student not watching.
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const before = JSON.stringify(table.stored());
     const { result } = await call(env(), `Bearer ${await signedIn()}`, "remove_course", {
-      code: "CHEM 110", user_explicitly_asked: true,
+      code: required(), user_explicitly_asked: true, based_on_revision: 4,
     });
-    expect(result!.error).toMatch(/not available on the hosted connector/i);
-    // And the refusal must not be the pre-#35 one. "this connector has
-    // no plan loaded" is now false, and it reads as an instruction to
-    // build a plan the student already has.
-    expect(result!.error, "refused with a reason that is no longer true").not.toMatch(/has none loaded/i);
+    expect(result!.needs_confirmation, "a bare flag dropped a graduation requirement").toBe(true);
+    expect(JSON.stringify(table.stored()), "a refused removal still wrote").toBe(before);
+  });
+
+  it("goes through when the student's own words came with it", async () => {
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "remove_course", {
+      code: required(),
+      user_explicitly_asked: true,
+      based_on_revision: 4,
+      student_words: "I am not doing that course, please take it out of my degree",
+    });
+    expect(result!.ok, JSON.stringify(result)).toBe(true);
+    expect(result!.on_the_strength_of).toMatch(/take it out/);
   });
 });

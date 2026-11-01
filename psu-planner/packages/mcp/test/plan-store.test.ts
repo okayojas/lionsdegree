@@ -36,6 +36,7 @@ const A_PLAN = {
 };
 
 export function describePlanStore(name: string, make: (plan: unknown | null) => PlanStore): void {
+  describeWrites(name, make);
   describe(name, () => {
     it("reads the student's Plan", async () => {
       const held = await make(A_PLAN).read(EDITIONS);
@@ -74,6 +75,62 @@ export function describePlanStore(name: string, make: (plan: unknown | null) => 
   });
 }
 
+/** The other half of the contract: storing a Plan, and REFUSING to.
+ *
+ * A write is where this package can destroy work rather than merely
+ * misinform, so the rule is compare-and-swap (ADR 0003): a write names
+ * the revision it was computed from and lands only if the store is still
+ * at it. The two implementations must agree, because a student's edit
+ * must not survive or vanish depending on which server their assistant
+ * was talking to.
+ */
+function describeWrites(name: string, make: (plan: unknown | null) => PlanStore): void {
+  describe(`${name}, writing`, () => {
+    const edited = (from: typeof A_PLAN, rev: number) => ({
+      ...from,
+      rev,
+      updatedAt: "2026-10-02T12:00:00.000Z",
+      added: [{ code: "STAT 200", sem: 0 }],
+    });
+
+    it("stores a plan computed from the revision it holds", async () => {
+      const store = make(A_PLAN);
+      expect(await store.write(edited(A_PLAN, 8) as never, 7)).toBe("written");
+      const held = await store.read(EDITIONS);
+      expect(held?.rev).toBe(8);
+      expect(held?.plan.added).toEqual([{ code: "STAT 200", sem: 0 }]);
+    });
+
+    it("REFUSES a write computed from a revision that has moved on", async () => {
+      // THE ASSERTION THAT MATTERS. The student edited in the planner
+      // while the assistant was thinking; the assistant's write is based
+      // on what it read a minute ago. Landing it erases an edit the
+      // student just made and nothing anywhere says so.
+      const store = make(A_PLAN);
+      expect(await store.write(edited(A_PLAN, 7) as never, 6), "a stale write landed").toBe("stale");
+    });
+
+    it("leaves the stored plan byte-identical when it refuses", async () => {
+      // A refusal that half-applied would be worse than one that lands:
+      // the student's work is gone AND the assistant reports failure, so
+      // nobody goes looking for it.
+      const store = make(A_PLAN);
+      const before = JSON.stringify((await store.read(EDITIONS))?.plan);
+      await store.write(edited(A_PLAN, 7) as never, 6);
+      expect(JSON.stringify((await store.read(EDITIONS))?.plan), "a refused write changed the stored plan").toBe(before);
+    });
+
+    it("keeps the plan pinned to its Edition across a write", async () => {
+      // ADR 0001. A mutation must not quietly re-base a student onto a
+      // different bulletin, which would change which requirements apply
+      // to them without anyone saying so.
+      const store = make({ ...A_PLAN, edition: "2025-2026" });
+      await store.write({ ...A_PLAN, edition: "2025-2026", rev: 8 } as never, 7);
+      expect((await store.read(EDITIONS))?.plan.edition).toBe("2025-2026");
+    });
+  });
+}
+
 /** The local server's store: the file the student exported. */
 describePlanStore("the file plan store", (plan) => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "ld-plan-"));
@@ -88,18 +145,49 @@ describePlanStore("the file plan store", (plan) => {
   return new FilePlanStore(file);
 });
 
-/** The hosted store, against a stub standing in for PostgREST. ONE
- * LINE, and it inherits every assertion above. */
+/** The hosted store, against a stub standing in for PostgREST — and it
+ * inherits every assertion above.
+ *
+ * The stub holds a row and honours the `rev=eq.` filter, because that
+ * filter IS the compare-and-swap. A stub that accepted every PATCH would
+ * certify a store the real database refuses, which is the mistake this
+ * project has made three times (#34's KV minimums). */
 describePlanStore("the supabase plan store", (plan) => {
-  const rows =
+  let row =
     plan === null
-      ? []
-      : [{ doc: typeof plan === "string" ? plan : plan, rev: (plan as { rev?: number })?.rev ?? 1, updated_at: (plan as { updatedAt?: string })?.updatedAt ?? "" }];
+      ? null
+      : {
+          doc: plan,
+          rev: (plan as { rev?: number })?.rev ?? 1,
+          updated_at: (plan as { updatedAt?: string })?.updatedAt ?? "",
+        };
+
   return new SupabasePlanStore({
     url: "https://project.supabase.co",
     anonKey: "anon",
     accessToken: "student-token",
-    fetch: async () => Response.json(rows),
+    fetch: async (input, init) => {
+      const url = new URL(String(input));
+      if ((init?.method ?? "GET") === "GET") return Response.json(row ? [row] : []);
+
+      // PATCH. `rev=eq.N` matches only when the stored revision is still
+      // N, and PostgREST returns the rows it touched — none when the
+      // filter matched nothing, which is the refusal.
+      const want = url.searchParams.get("rev")?.replace(/^eq\./, "");
+      if (!row || String(row.rev) !== want) return Response.json([]);
+
+      const sent = JSON.parse(String(init?.body ?? "{}")) as { doc: unknown; rev: number; updated_at: string };
+      // The trigger from migration 0003, which refuses a revision that
+      // does not advance whatever the filter said.
+      if (sent.rev <= row.rev) {
+        return new Response(JSON.stringify({ code: "LD001", message: "plan revision went backwards" }), {
+          status: 400,
+          headers: { "content-type": "application/json" },
+        });
+      }
+      row = { doc: sent.doc, rev: sent.rev, updated_at: sent.updated_at };
+      return Response.json([row]);
+    },
   });
 });
 

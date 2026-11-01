@@ -36,7 +36,6 @@ import {
   listTools,
   needsPlan,
   NO_PLAN,
-  READABLE_PLAN_TOOLS,
   type ToolContext,
 } from "./tools.js";
 
@@ -160,7 +159,7 @@ async function catalogFor(env: Env, want?: string): Promise<EditionCatalog> {
  * be read. `executeTool` refuses the Plan-shaped tools by name against
  * this rather than reaching into null. */
 function catalogContext(data: EditionCatalog): ToolContext {
-  return { plan: null, planPath: "", data, items: [], sched: {} };
+  return { plan: null, planPath: "", store: null, data, items: [], sched: {} };
 }
 
 /** The student's Plan, read under THEIR identity, or a reason it is not
@@ -207,7 +206,7 @@ async function planContext(
     // Edition we do not carry, which is why neither rule is restated
     // here. Two servers answering "which bulletin governs you?"
     // differently is the bug; one reader is the fix.
-    return { ctx: await contextFor(held, await catalogFor(env, held.plan.edition)) };
+    return { ctx: await contextFor(held, await catalogFor(env, held.plan.edition), store) };
   } catch (e) {
     if (e instanceof PlanUnopenable) {
       // Permanent, and the engine already wrote it for a student to
@@ -223,12 +222,19 @@ async function planContext(
   }
 }
 
+/** A tool result on the wire. JSON in a text block is what the protocol
+ * carries; said once so three call sites cannot shape it differently. */
+const rpcContent = (result: unknown) => ({
+  content: [{ type: "text" as const, text: JSON.stringify(result) }],
+});
+
 function mcpServer(env: Env, data: EditionCatalog, accessToken: string): Server {
   const server = new Server({ name: "lionsdegree", version: "0.1.0" }, { capabilities: { tools: {} } });
 
-  // The caller is a signed-in student, so the Plan-shaped reads are
-  // answerable now. Every tool that WRITES stays out until #36 gives
-  // them a safe way to do it.
+  // The caller is a signed-in student, so everything is answerable:
+  // reads since #35, writes since #36. A write is a compare-and-swap
+  // against the revision it was computed from, so the planner tab the
+  // student also has open cannot be silently overwritten.
   server.setRequestHandler(ListToolsRequestSchema, async () => ({
     tools: listTools({ offer: HOSTED_TOOLS }),
   }));
@@ -237,35 +243,23 @@ function mcpServer(env: Env, data: EditionCatalog, accessToken: string): Server 
     const name = req.params.name;
     const args = (req.params.arguments ?? {}) as Record<string, unknown>;
 
-    // A tool nobody advertised is still a tool somebody can name, and
-    // the honest refusal is "not here yet" — not "this connector has no
-    // plan loaded", which was true before #35 and would now send a
-    // student to build a second plan they already have.
-    if (needsPlan(name) && !READABLE_PLAN_TOOLS.has(name)) {
-      return {
-        content: [{
-          type: "text",
-          text: JSON.stringify({
-            error:
-              `${name} is not available on the hosted connector yet — it changes your plan, ` +
-              "and changes are made at https://lionsdegree.com/plan/ for now.",
-          }),
-        }],
-      };
+    // A tool nobody classified is a tool nobody decided to expose. The
+    // allowlist is checked here as well as in `listTools`, because a
+    // model can name anything it likes.
+    if (!HOSTED_TOOLS.has(name)) {
+      return rpcContent({ error: `${name} is not a tool this connector offers.` });
     }
 
-    // Catalog questions never touch the database.
-    if (!READABLE_PLAN_TOOLS.has(name)) {
-      const result = await executeTool(name, args, catalogContext(data));
-      return { content: [{ type: "text", text: JSON.stringify(result) }] };
+    // Catalog questions never touch the database. A database outage must
+    // not take prerequisite lookups down with it, and a student with no
+    // Plan should not pay a round trip to ask what MATH 141 requires.
+    if (!needsPlan(name)) {
+      return rpcContent(await executeTool(name, args, catalogContext(data)));
     }
 
     const got = await planContext(env, accessToken);
-    if ("unavailable" in got) {
-      return { content: [{ type: "text", text: JSON.stringify({ error: got.unavailable }) }] };
-    }
-    const result = await executeTool(name, args, got.ctx);
-    return { content: [{ type: "text", text: JSON.stringify(result) }] };
+    if ("unavailable" in got) return rpcContent({ error: got.unavailable });
+    return rpcContent(await executeTool(name, args, got.ctx));
   });
 
   return server;

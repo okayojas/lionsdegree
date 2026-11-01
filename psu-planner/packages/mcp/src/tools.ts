@@ -31,9 +31,10 @@ import {
   type Schedule,
 } from "@psu-planner/engine";
 import { loadEdition, type EditionCatalog } from "./catalog.js";
-import { FilePlanStore, type StoredPlan } from "./planStore.js";
+import { FilePlanStore, type PlanStore, type StoredPlan } from "./planStore.js";
 import { FsCatalogSource, type CatalogSource } from "./source.js";
-import { executeMutation } from "./mutations.js";
+import { executeMutation, MUTATIONS } from "./mutations.js";
+import { planView } from "./planView.js";
 
 export interface ToolContext {
   /** Mutable: a write refreshes these so the next call sees the new plan.
@@ -44,6 +45,14 @@ export interface ToolContext {
    * refuse by name rather than reaching into it — see CATALOG_ONLY. */
   plan: PlanDoc | null;
   planPath: string;
+  /** Where a change is written back to.
+   *
+   * On the context, not reached for at the call site, because this is
+   * the ONE thing that differs between a student's own file and a shared
+   * database — and `mutations.ts` must not know which it has, or the two
+   * surfaces will eventually disagree about what a write means. Null on
+   * the catalog-only surface, where there is nothing to write to. */
+  store: PlanStore | null;
   /** The revision and time the Plan was read at, when it came from a
    * store that knows. Reported by `get_plan`: a model that cannot say
    * how current its view is will imply it is live. */
@@ -67,6 +76,30 @@ const obj = (properties: Record<string, unknown>, required: string[] = []) => ({
 });
 const str = (description: string) => ({ type: "string", description });
 const num = (description: string) => ({ type: "number", description });
+
+/** The revision a change was computed from.
+ *
+ * ON EVERY TOOL THAT WRITES, and required, because the server cannot
+ * supply it. The hosted connector is stateless: it re-reads the Plan at
+ * the start of every request, so swapping against its OWN read would
+ * always succeed — the window would be microseconds wide and the check
+ * would be theatre. The revision that matters is the one the MODEL was
+ * looking at when it decided, which may be several turns old.
+ *
+ * So the model states it, and a change computed from a revision that has
+ * since moved on is refused. That is the difference between "nobody
+ * wrote in the last millisecond" and "this change still makes sense for
+ * the plan as it now stands".
+ *
+ * Required rather than optional: an optional guard is one a model can
+ * skip, and the point is that it cannot assert its way past this. */
+const basedOn = {
+  type: "number",
+  description:
+    "The `revision` from the last get_plan, or from the last change you made. If the student " +
+    "has edited their plan since then, this change is refused rather than allowed to overwrite " +
+    "them — read the plan again and redo it against what you read.",
+};
 
 /** The tools that answer from the Bulletin alone.
  *
@@ -113,13 +146,21 @@ export const READABLE_PLAN_TOOLS: ReadonlySet<string> = new Set([
 
 /** THE HOSTED SURFACE, in one place.
  *
- * What a signed-in student's assistant is offered: every catalog tool,
- * plus the Plan tools that only read. Declared here rather than assembled
- * at the call site so there is one answer to "what does the connector
- * expose?" — and so `mcp-surface.test.ts` can check it against the
- * mutation list by derivation instead of against a name list somebody
- * has to remember to update. */
-export const HOSTED_TOOLS: ReadonlySet<string> = new Set([...CATALOG_ONLY, ...READABLE_PLAN_TOOLS]);
+ * What a signed-in student's assistant is offered. #35 opened the reads;
+ * #36 opens the writes, so this is now everything — but it is still
+ * assembled from the three named sets rather than written as "all
+ * tools", because the next tool somebody adds should have to be
+ * classified before it is reachable. An unclassified tool is hidden, and
+ * the cost of forgetting is a missing feature rather than a model
+ * editing a degree nobody meant it to touch.
+ *
+ * `mcp-surface.test.ts` checks this against the dispatcher's own cases,
+ * so the list cannot drift from what the server actually handles. */
+export const HOSTED_TOOLS: ReadonlySet<string> = new Set([
+  ...CATALOG_ONLY,
+  ...READABLE_PLAN_TOOLS,
+  ...MUTATIONS,
+]);
 
 /** Every tool this server actually offers, derived from the definitions
  * so a new one cannot be added without becoming callable. */
@@ -189,7 +230,10 @@ function allTools(): ToolDefinition[] {
     {
       name: "add_course",
       description: "Add a course to a term in the plan.",
-      inputSchema: obj({ code: str("Course code"), term_index: num("0-based term") }, ["code", "term_index"]),
+      inputSchema: obj(
+        { code: str("Course code"), term_index: num("0-based term"), based_on_revision: basedOn },
+        ["code", "term_index", "based_on_revision"],
+      ),
     },
     {
       name: "remove_course",
@@ -203,9 +247,17 @@ function allTools(): ToolDefinition[] {
             description:
               "Only true when the student has said, in their own words, that they want this course out of their degree. Never infer it.",
           },
+          student_words: {
+            type: "string",
+            description:
+              "The student's own sentence asking for this, quoted. Not your summary of it, not your " +
+              "question to them, and not something you decided on their behalf — if they have not said " +
+              "it, you do not have this, and the removal should not happen. Shown to the student.",
+          },
+          based_on_revision: basedOn,
         },
-        ["code"],
-      ),
+        ["code", "based_on_revision"],
+      )
     },
     {
       name: "set_schedule_constraint",
@@ -216,31 +268,41 @@ function allTools(): ToolDefinition[] {
           code: str("Course code"),
           rule: str('"not-in" (not that term), "not-before" (no earlier than), or "pin" (exactly there)'),
           term_index: num("0-based term"),
+          based_on_revision: basedOn,
         },
-        ["code", "rule", "term_index"],
-      ),
+        ["code", "rule", "term_index", "based_on_revision"],
+      )
     },
     {
       name: "optimize_schedule",
       description:
         "Repack the whole plan into the fewest full-time terms in ONE call, honouring prerequisites, the credit cap and every constraint. Use this for any 'graduate sooner / consolidate' request rather than moving courses one at a time.",
-      inputSchema: obj({ target_terms: num("Optional: aim for exactly this many terms") }),
+      inputSchema: obj(
+        { target_terms: num("Optional: aim for exactly this many terms"), based_on_revision: basedOn },
+        ["based_on_revision"],
+      ),
     },
     {
       name: "fill_slot",
       description: "Choose a course for an open requirement slot. Refused if the course is not on that requirement's approved list.",
-      inputSchema: obj({ slot_id: str("A slot_id from get_plan"), code: str("Course code") }, ["slot_id", "code"]),
+      inputSchema: obj(
+        { slot_id: str("A slot_id from get_plan"), code: str("Course code"), based_on_revision: basedOn },
+        ["slot_id", "code", "based_on_revision"],
+      ),
     },
     {
       name: "add_term",
       description: "Append an empty term to the end of the plan.",
-      inputSchema: obj({}),
+      inputSchema: obj({ based_on_revision: basedOn }, ["based_on_revision"]),
     },
     {
       name: "skip_term",
       description:
         "Mark a term as intentionally empty — a gap year, co-op or leave. Coursework re-flows around it and graduation moves back; nothing is removed.",
-      inputSchema: obj({ term_index: num("0-based term") }, ["term_index"]),
+      inputSchema: obj(
+        { term_index: num("0-based term"), based_on_revision: basedOn },
+        ["term_index", "based_on_revision"],
+      ),
     },
     {
       name: "audit_requirements",
@@ -268,14 +330,15 @@ export async function loadContext(opts: {
   const source = opts.source ?? new FsCatalogSource(opts.catalogRoot!);
   const editions = await source.editions();
 
-  const held = await new FilePlanStore(opts.planPath).read(editions);
+  const store = new FilePlanStore(opts.planPath);
+  const held = await store.read(editions);
   if (!held) throw new Error(NO_PLAN);
   // The engine's reader has already pinned this: an unpinned Plan reads
   // as the oldest Edition, and one pinned to an Edition we do not carry
   // was refused above. Restating either rule here is how the two servers
   // would come to disagree about which requirements govern a student.
   const data = await loadEdition(source, held.plan.edition!);
-  return contextFor(held, data, opts.planPath);
+  return contextFor(held, data, store, opts.planPath);
 }
 
 /** Said in one place, because it is said from two servers and a student
@@ -298,6 +361,7 @@ export const NO_PLAN =
 export async function contextFor(
   held: StoredPlan,
   data: EditionCatalog,
+  store: PlanStore,
   planPath = "",
 ): Promise<ToolContext> {
   // THE LOAD THAT MAKES PREREQUISITES ANSWERABLE. The audit index carries
@@ -313,6 +377,7 @@ export async function contextFor(
   return {
     plan: held.plan,
     planPath,
+    store,
     // What the store actually held, carried so `get_plan` can say how
     // current this view is rather than implying it is live.
     rev: held.rev,
@@ -475,43 +540,8 @@ export async function executeTool(
       };
     }
 
-    case "get_plan": {
-      const prog = progress(plan, items, cat);
-      return {
-        // HOW CURRENT THIS IS, said rather than implied. A model with no
-        // way to express staleness will answer as though the view were
-        // live, and a student acting on an hour-old plan has no reason
-        // to doubt it.
-        as_of: ctx.updatedAt || undefined,
-        revision: ctx.rev,
-        freshness_note:
-          ctx.updatedAt
-            ? `This is the plan as it was last saved (${ctx.updatedAt}). If the student has edited it since in another window, say so rather than assuming this is current.`
-            : undefined,
-        edition: data.edition,
-        edition_note:
-          "Requirements come from the bulletin edition in force when the student entered their major. This plan follows " +
-          `${data.edition}.`,
-        programs: plan.programs,
-        credits: { completed: prog.done, planned_total: prog.total },
-        completed_courses: Object.keys(plan.completed).filter((c) => plan.completed[c]),
-        terms: plan.terms.map((t, i) => ({
-          index: i,
-          label: t.label,
-          credits: items.filter((it) => it.sem === i).reduce((sum, it) => sum + credOf(it, cat), 0),
-          courses: items
-            .filter((it) => it.sem === i && it.kind === "course")
-            .map((it) => ({
-              code: it.code,
-              title: cat[it.code!]?.title ?? "(not in this edition's catalog — unverified)",
-              prerequisites: checkCourse(cat, it.code!, it.sem, sched).value === 2 ? "satisfied" : "check",
-            })),
-          open_slots: items
-            .filter((it) => it.sem === i && it.kind === "slot")
-            .map((it) => ({ slot_id: it.id, kind: it.slot, label: it.slotLabel, credits: it.credits })),
-        })),
-      };
-    }
+    case "get_plan":
+      return planView(ctx, plan);
 
     case "search_catalog": {
       // The 7.8 MB of ranking data, fetched the first time somebody

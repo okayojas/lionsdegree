@@ -14,7 +14,14 @@
  * application the thing standing between two students, and reduce the
  * policy to a backstop nobody exercises.
  */
-import { PLAN_FILE_FORMAT, PLAN_FILE_VERSION, parsePlanFile, type PlanDoc } from "@psu-planner/engine";
+import {
+  PLAN_FILE_FORMAT,
+  PLAN_FILE_VERSION,
+  exportPlanFile,
+  parsePlanFile,
+  STALE_REV_SQLSTATE,
+  type PlanDoc,
+} from "@psu-planner/engine";
 
 /** The Plan was reached and cannot be opened.
  *
@@ -40,6 +47,14 @@ export interface StoredPlan {
   updatedAt: string;
 }
 
+/** What happened to a write.
+ *
+ * Two outcomes, and no third: a write either landed or was refused.
+ * There is deliberately no "merged" — ADR 0003 — because merging two
+ * degree plans on a guess produces a schedule neither person asked for,
+ * and nobody can tell afterwards which parts were theirs. */
+export type WriteOutcome = "written" | "stale";
+
 export interface PlanStore {
   /** The student's Plan, or null if they have none.
    *
@@ -56,6 +71,19 @@ export interface PlanStore {
    * them. The engine's own reader makes that judgement; this is just
    * where it is handed the facts. */
   read(editions: string[]): Promise<StoredPlan | null>;
+
+  /** Store `plan`, but only if the store is still at `baseRev`.
+   *
+   * COMPARE-AND-SWAP, not a write with a check in front of it (ADR
+   * 0003). The condition and the write are one operation, because a read
+   * then a write is two — and in the gap between them the student saves
+   * from the planner and their edit is gone.
+   *
+   * "stale" is not an error. It is the correct answer to "apply this
+   * change to the plan as it was a minute ago" when the plan has moved
+   * on, and the caller's job is to re-read and recompute rather than to
+   * retry the same bytes harder. */
+  write(plan: PlanDoc, baseRev: number): Promise<WriteOutcome>;
 }
 
 /** Wrap a stored Plan document in the file envelope the engine's reader
@@ -79,6 +107,27 @@ export class FilePlanStore implements PlanStore {
     const parsed = parsePlanFile(fs.readFileSync(this.path, "utf-8"), editions);
     if (!parsed.ok) throw new PlanUnopenable(parsed.reason);
     return { plan: parsed.plan, rev: parsed.plan.rev ?? 0, updatedAt: parsed.plan.updatedAt ?? "" };
+  }
+
+  async write(plan: PlanDoc, baseRev: number): Promise<WriteOutcome> {
+    const { default: fs } = await import("node:fs");
+
+    // The file IS the revision here — there is no column to swap
+    // against — so the check reads what is on disk right now rather than
+    // trusting what this process loaded at startup. A student editing in
+    // the planner with the local server running is exactly the case the
+    // whole rule exists for, and that student's save lands here.
+    if (fs.existsSync(this.path)) {
+      const held = JSON.parse(fs.readFileSync(this.path, "utf-8")) as { plan?: { rev?: number } };
+      if ((held.plan?.rev ?? 0) !== baseRev) return "stale";
+    } else if (baseRev !== 0) {
+      // The file this write was computed from is gone. Recreating it
+      // would resurrect a Plan the student may have deleted.
+      return "stale";
+    }
+
+    fs.writeFileSync(this.path, exportPlanFile(plan), "utf-8");
+    return "written";
   }
 }
 
@@ -167,4 +216,71 @@ export class SupabasePlanStore implements PlanStore {
       updatedAt: row.updated_at ?? parsed.plan.updatedAt ?? "",
     };
   }
+
+  async write(plan: PlanDoc, baseRev: number): Promise<WriteOutcome> {
+    const base = this.opts.url.replace(/\/+$/, "");
+
+    // THE SWAP IS THE `rev=eq.` FILTER, and it is the whole mechanism:
+    // Postgres evaluates it while holding the row, so a planner save
+    // that lands first simply makes this match nothing. A SELECT here
+    // followed by an UPDATE would leave a window, and the window is
+    // precisely where a student's work disappears.
+    //
+    // Still no `user_id` filter — same reason as the read. `id` plus
+    // row-level security is exactly one row, and the policy is what
+    // makes it theirs.
+    const url =
+      `${base}/rest/v1/plans?id=eq.${encodeURIComponent(plan.id)}&rev=eq.${encodeURIComponent(String(baseRev))}`;
+
+    const go = this.opts.fetch ?? fetch;
+    let res: Response;
+    try {
+      res = await go(url, {
+        method: "PATCH",
+        headers: {
+          apikey: this.opts.anonKey,
+          authorization: `Bearer ${this.opts.accessToken}`,
+          "content-type": "application/json",
+          // Without this PostgREST answers 204 with no body on both a
+          // match and a no-op, and the two are indistinguishable — which
+          // would make every refused write look like a successful one.
+          prefer: "return=representation",
+        },
+        body: JSON.stringify({
+          doc: plan,
+          rev: plan.rev,
+          updated_at: plan.updatedAt,
+        }),
+      });
+    } catch (e) {
+      console.error("[plan] write failed", e);
+      throw new Error("Your plan could not be saved right now.");
+    }
+
+    if (!res.ok) {
+      // Including the stale-write SQLSTATE raised by migration 0003's
+      // guard: a revision that went backwards is the same refusal
+      // wearing a trigger's clothes.
+      if (await isStaleWrite(res)) return "stale";
+      console.error("[plan] write rejected", res.status);
+      throw new Error("Your plan could not be saved right now.");
+    }
+
+    const rows = (await res.json().catch(() => null)) as unknown[] | null;
+    // ZERO ROWS IS THE REFUSAL. The filter matched nothing, which means
+    // the stored revision is not the one this change was computed from.
+    return Array.isArray(rows) && rows.length > 0 ? "written" : "stale";
+  }
 }
+
+/** Migration 0003 raises its own SQLSTATE when a revision goes
+ * backwards. Read here so a write refused by the trigger is reported as
+ * what it is rather than as "the database is down" — the remedy is to
+ * re-read and recompute, not to wait. */
+async function isStaleWrite(res: Response): Promise<boolean> {
+  if (res.status === 409) return true;
+  const body = await res.text().catch(() => "");
+  return body.includes(STALE_REV_SQLSTATE);
+}
+
+

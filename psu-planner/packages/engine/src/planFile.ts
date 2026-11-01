@@ -12,6 +12,16 @@
 import type { PlanDoc } from "./types.js";
 
 export const PLAN_FILE_FORMAT = "lionsdegree.plan";
+
+/** The SQLSTATE migration 0003 raises when a Plan's revision would go
+ * backwards.
+ *
+ * Here, in the one package both the planner and the connector depend on,
+ * because it is a contract between a migration and EVERY client of it —
+ * and a second copy of a constant is a bug that only shows up the day
+ * somebody changes one of them. Matching on the message text instead
+ * would break the first time the wording improves. */
+export const STALE_REV_SQLSTATE = "LD001";
 export const PLAN_FILE_VERSION = 1;
 
 export interface PlanFile {
