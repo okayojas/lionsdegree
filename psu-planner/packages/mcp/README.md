@@ -46,6 +46,13 @@ variable.
 | `search_programs` | Majors, minors and certificates |
 | `audit_requirements` | What each of your programs still needs |
 | `discover_programs` | Programs that fit what you have already taken |
+| `simulate_change` | What a change *would* do — see below |
+
+**`simulate_change` is the one worth knowing about.** "What would my plan
+look like if I studied abroad next fall?" runs the change against a copy and
+hands back the candidate plan, what moved, and any prerequisite it breaks.
+Your stored plan is not touched. It is the real optimiser, not a preview of
+one, so what you are shown is what you would get.
 
 And seven that change your plan:
 

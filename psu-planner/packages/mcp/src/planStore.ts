@@ -138,6 +138,43 @@ export class FilePlanStore implements PlanStore {
   }
 }
 
+/** A store that holds a Plan and keeps it to itself.
+ *
+ * What `simulate_change` writes to. The mutation it runs is the real
+ * one — same code, same optimiser — so it expects somewhere to persist;
+ * this is somewhere that goes nowhere. The alternative was a flag
+ * threaded through `commit` saying "do not actually write", which is a
+ * branch inside the write path that only one caller takes, and the
+ * first time it is wrong a preview becomes a change. */
+export class MemoryPlanStore implements PlanStore {
+  /** `rev` is passed in rather than read off the document because the
+   * two disagree, and the disagreement is not cosmetic. Hosted, the
+   * REVISION IS A COLUMN and the document's own copy can lag it — so a
+   * sandbox that believed the document refused a change the real store
+   * would have accepted, and the student was shown "that is not
+   * possible" about something that is. Caught by the first hosted test
+   * written for #37. */
+  constructor(private held: PlanDoc | null = null, private rev = held?.rev ?? 0) {}
+
+  async read(): Promise<StoredPlan | null> {
+    return this.held
+      ? { plan: this.held, rev: this.rev, updatedAt: this.held.updatedAt ?? "" }
+      : null;
+  }
+
+  async write(plan: PlanDoc, baseRev: number): Promise<WriteOutcome> {
+    // The swap is honoured even here. A sandbox more permissive than
+    // the real store would let a simulation succeed where the change it
+    // previews would be refused — which is the same class of mistake as
+    // a stub that accepts what the database rejects, pointed the other
+    // way.
+    if (this.rev !== baseRev) return "stale";
+    this.held = plan;
+    this.rev = plan.rev ?? baseRev + 1;
+    return "written";
+  }
+}
+
 export interface SupabasePlanStoreOptions {
   url: string;
   /** Public by design; it identifies the project, not the student. */

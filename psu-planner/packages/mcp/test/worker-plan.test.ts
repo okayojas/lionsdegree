@@ -592,6 +592,41 @@ describe("a change computed from a plan the student has since edited", () => {
   });
 });
 
+describe("showing a student a change before they make it, hosted", () => {
+  it("answers with a candidate plan and writes NOTHING", async () => {
+    // THE CRITERION, against a database rather than a temp file. A
+    // simulation that reached the stored plan would be the worst
+    // version of this feature: the student asked what WOULD happen.
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const before = JSON.stringify(table.stored());
+
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "simulate_change", {
+      change: "skip_term",
+      arguments: { term_index: 2 },
+    });
+
+    expect(result!.applied).toBe(false);
+    expect((result!.candidate_plan as { terms?: unknown[] })?.terms, "no candidate came back").toBeTruthy();
+    expect(JSON.stringify(table.stored()), "a simulation changed the stored plan").toBe(before);
+    expect(table.asked.some((a) => a.method === "PATCH"), "a simulation sent a write").toBe(false);
+  });
+
+  it("pins the candidate to the plan's own Edition", async () => {
+    const table = plansTable({ ...PLAN, edition: "2025-2026" });
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "simulate_change", {
+      change: "add_term",
+      arguments: {},
+    });
+    expect((result!.candidate_plan as { edition?: string }).edition).toBe("2025-2026");
+  });
+
+  it("is offered to a signed-in student", async () => {
+    expect(await tools(env(), `Bearer ${await signedIn()}`)).toContain("simulate_change");
+  });
+});
+
 describe("removing a required course, hosted", () => {
   /** A Course the program's template placed, not one the student added. */
   const required = (): string => {

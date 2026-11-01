@@ -35,6 +35,7 @@ import { loadEdition, type EditionCatalog } from "./catalog.js";
 import { FilePlanStore, type PlanStore, type StoredPlan } from "./planStore.js";
 import { FsCatalogSource, type CatalogSource } from "./source.js";
 import { executeMutation, MUTATIONS } from "./mutations.js";
+import { simulateChange } from "./simulate.js";
 import { planView } from "./planView.js";
 
 export interface ToolContext {
@@ -144,6 +145,11 @@ export const READABLE_PLAN_TOOLS: ReadonlySet<string> = new Set([
   "audit_requirements",
   "check_prerequisites",
   "suggest_slot_courses",
+  // A READ, despite running a mutation internally (#37). It runs it
+  // against a copy and throws the copy away — nothing it does can reach
+  // the student's plan, which is the only thing this classification
+  // decides.
+  "simulate_change",
 ]);
 
 /** THE HOSTED SURFACE, in one place.
@@ -312,6 +318,27 @@ function allTools(): ToolDefinition[] {
       description:
         "What each of the student's programs still requires, against what their plan already contains.",
       inputSchema: obj({}),
+    },
+    {
+      name: "simulate_change",
+      description:
+        "Show what a change WOULD do without doing it. Answers \"what if I studied abroad next fall\", " +
+        "\"what if I dropped this\", \"could I finish in six terms\" — returns the candidate plan, what " +
+        "moved, and any prerequisite it breaks. Nothing is saved. Prefer this before any change the " +
+        "student has not explicitly asked for yet.",
+      inputSchema: obj(
+        {
+          change: str(
+            "The change to try: add_course, remove_course, set_schedule_constraint, optimize_schedule, " +
+              "fill_slot, add_term or skip_term.",
+          ),
+          arguments: {
+            type: "object",
+            description: "The arguments that change would take, exactly as you would pass them to it.",
+          },
+        },
+        ["change", "arguments"],
+      ),
     },
   ];
 }
@@ -545,6 +572,17 @@ export async function executeTool(
 
     case "get_plan":
       return planView(ctx, plan);
+
+    case "simulate_change":
+      // Dispatched here, in the READ half, because that is what it is:
+      // it runs a mutation against a copy and throws the copy away.
+      // `executeMutation` is called inside, so the mutation path above
+      // has already declined this name.
+      return simulateChange(
+        ctx,
+        String(args.change ?? ""),
+        (args.arguments ?? {}) as Record<string, unknown>,
+      );
 
     case "search_catalog": {
       // The 7.8 MB of ranking data, fetched the first time somebody
