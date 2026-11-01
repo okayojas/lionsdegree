@@ -54,6 +54,25 @@ describe("the address students are told to paste", () => {
     expect([...all], "the page offers more than one address").toHaveLength(1);
   });
 
+  it("is the only hostname that serves the connector at all", () => {
+    // ONE DOOR. A Worker gets two more hostnames for free — the
+    // `.workers.dev` one and a preview URL per uploaded version — and
+    // each serves the SAME connector with the same KV namespaces and
+    // the same secrets, from a name nobody vetted.
+    //
+    // The sign-in flow makes the point sharper than the exposure does:
+    // Supabase allows exactly one callback URL, so a student who
+    // reached the connector on any other hostname gets halfway through
+    // signing in and is rejected, with nothing they can do about it. A
+    // working-looking address that cannot work is worse than none.
+    expect(wrangler, "workers.dev is left on, giving the connector a second hostname").toMatch(
+      /workers_dev\s*=\s*false/,
+    );
+    expect(wrangler, "preview URLs are left on, giving it one hostname per deploy").toMatch(
+      /preview_urls\s*=\s*false/,
+    );
+  });
+
   it("is the path the Worker serves", () => {
     // `worker.ts` refuses anything that is not this pathname, in so many
     // words. If the handler's route moves, this fails.

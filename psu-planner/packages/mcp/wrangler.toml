@@ -19,6 +19,35 @@ compatibility_date = "2026-10-01"
 # bundler fails on the import graph rather than at runtime.
 compatibility_flags = ["nodejs_compat"]
 
+# ONE ADDRESS, AND ONLY ONE. Adding the route below makes wrangler ask
+# what should happen to the two other hostnames a Worker gets for free,
+# because it will not change them silently. Both are turned off, and the
+# reason is the same for each: they serve the same connector, with the
+# same KV namespaces and the same secrets, on a hostname nobody vetted.
+#
+# `workers_dev` — lionsdegree-mcp.<account>.workers.dev. A second door
+# to a student's degree plan, and one that cannot complete a sign-in:
+# Supabase allows exactly one callback URL and it is the custom
+# domain's, so a flow started there dies halfway with a rejection the
+# student cannot act on. A working-looking address that cannot work is
+# worse than no address.
+#
+# `preview_urls` — a hostname per uploaded version. Same bindings, same
+# rate-limit counters, same revocation denylist, and no announcement
+# when one appears. For a service whose security model is "one
+# registered redirect URL", an unbounded set of hostnames serving it is
+# not a convenience.
+#
+# The cost is real and accepted: no fallback address while the
+# certificate is issuing, and no per-version preview to click. Nothing
+# is published until the custom domain answers anyway.
+#
+# These are TOP-LEVEL keys and must stay above the first [[routes]]
+# header — inside it, TOML reads them as route fields and wrangler
+# rejects the file.
+workers_dev = false
+preview_urls = false
+
 # THE PUBLISHED ADDRESS (#38). A bare hostname with NO PATH, because
 # /mcp is not the whole connector: discovery, dynamic client
 # registration, /authorize, /callback and /token all live on this host,
@@ -41,6 +70,7 @@ compatibility_flags = ["nodejs_compat"]
 [[routes]]
 pattern = "mcp.lionsdegree.com"
 custom_domain = true
+
 
 [assets]
 directory = "./catalog"
