@@ -33,7 +33,7 @@ const b64url = (b: Uint8Array) =>
  * it. */
 async function studentToken(sub = "test-student"): Promise<string> {
   const enc = (o: unknown) => b64url(new TextEncoder().encode(JSON.stringify(o)));
-  const body = `${enc({ alg: "HS256", typ: "JWT" })}.${enc({ sub, exp: Math.floor(Date.now() / 1000) + 3600 })}`;
+  const body = `${enc({ alg: "HS256", typ: "JWT" })}.${enc({ sub, aud: "authenticated", exp: Math.floor(Date.now() / 1000) + 3600 })}`;
   const key = await crypto.subtle.importKey(
     "raw", new TextEncoder().encode(SECRET), { name: "HMAC", hash: "SHA-256" }, false, ["sign"],
   );
@@ -44,9 +44,33 @@ async function studentToken(sub = "test-student"): Promise<string> {
 let AUTH = "";
 beforeAll(async () => { AUTH = `Bearer ${await studentToken()}`; });
 
+/** KV, which the gate needs as well as the sign-in flow: `isRevoked`
+ * fails closed without it. */
+function memoryKv() {
+  const store = new Map<string, string>();
+  return {
+    async get(k: string, opts?: { cacheTtl?: number }) {
+      // Cloudflare rejects a cache TTL below 30. A stub that ignores the
+      // option certifies a read the real binding throws on.
+      if (opts?.cacheTtl !== undefined && opts.cacheTtl < 30) {
+        throw new Error(`Invalid cache_ttl of ${opts.cacheTtl}. Cache TTL must be at least 30.`);
+      }
+      return store.get(k) ?? null;
+    },
+    async put(k: string, v: string, opts?: { expirationTtl?: number }) {
+      if (opts?.expirationTtl !== undefined && opts.expirationTtl < 60) {
+        throw new Error("Invalid expiration_ttl. Must be at least 60.");
+      }
+      store.set(k, v);
+    },
+    async delete(k: string) { store.delete(k); },
+  };
+}
+
 /** Cloudflare's asset binding, backed by the files that actually ship. */
 const env: Env = {
   SUPABASE_JWT_SECRET: SECRET,
+  OAUTH: memoryKv(),
   CATALOG: {
     async fetch(req: Request): Promise<Response> {
       const rel = decodeURIComponent(new URL(req.url).pathname.replace(/^\//, ""));
@@ -222,6 +246,7 @@ describe("when the request is wrong", () => {
     // goes to the log.
     const broken: Env = {
       SUPABASE_JWT_SECRET: SECRET,
+      OAUTH: memoryKv(),
       CATALOG: { async fetch() { return new Response("nope", { status: 404 }); } },
     } as Env;
     const res = await worker.fetch(POST(INIT), broken);
@@ -248,6 +273,7 @@ describe("a warm isolate", () => {
     let reads = 0;
     const counting: Env = {
       SUPABASE_JWT_SECRET: SECRET,
+      OAUTH: memoryKv(),
       CATALOG: {
         async fetch(req: Request): Promise<Response> {
           reads++;

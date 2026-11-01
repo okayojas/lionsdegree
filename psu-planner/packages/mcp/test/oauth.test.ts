@@ -37,7 +37,14 @@ function memoryKv(): KVLike & { store: Map<string, string> } {
   const store = new Map<string, string>();
   return {
     store,
-    async get(k) { return store.get(k) ?? null; },
+    async get(k, opts) {
+      // Cloudflare rejects a cache TTL below 30. A stub that ignores the
+      // option certifies a read the real binding throws on.
+      if (opts?.cacheTtl !== undefined && opts.cacheTtl < 30) {
+        throw new Error(`Invalid cache_ttl of ${opts.cacheTtl}. Cache TTL must be at least 30.`);
+      }
+      return store.get(k) ?? null;
+    },
     async put(k, v, opts) {
       // CLOUDFLARE'S REAL CONTRACT. A TTL under 60 seconds is rejected
       // outright, and the stub used to ignore `expirationTtl` entirely —

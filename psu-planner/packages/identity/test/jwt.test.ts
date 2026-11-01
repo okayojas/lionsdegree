@@ -43,12 +43,12 @@ const ok = async (t: string): Promise<VerifiedIdentity | null> => verifyJwt(t, {
 
 describe("a token we issued", () => {
   it("is accepted and names exactly one student", async () => {
-    const id = await ok(await sign({ sub: "user-123", exp: inAnHour(), email: "s@psu.edu" }));
+    const id = await ok(await sign({ sub: "user-123", aud: "authenticated", exp: inAnHour(), email: "s@psu.edu" }));
     expect(id?.sub).toBe("user-123");
   });
 
   it("carries the email through, for a log line a human can read", async () => {
-    const id = await ok(await sign({ sub: "user-123", exp: inAnHour(), email: "s@psu.edu" }));
+    const id = await ok(await sign({ sub: "user-123", aud: "authenticated", exp: inAnHour(), email: "s@psu.edu" }));
     expect(id?.email).toBe("s@psu.edu");
   });
 });
@@ -118,11 +118,49 @@ describe("a token we did not issue", () => {
 
 describe("expiry at the boundary", () => {
   it("accepts a token expiring in a moment", async () => {
-    const id = await ok(await sign({ sub: "user-123", exp: Math.floor(Date.now() / 1000) + 5 }));
+    const id = await ok(await sign({ sub: "user-123", aud: "authenticated", exp: Math.floor(Date.now() / 1000) + 5 }));
     expect(id?.sub).toBe("user-123");
   });
 
   it("refuses one that expired a moment ago", async () => {
     expect(await ok(await sign({ sub: "user-123", exp: Math.floor(Date.now() / 1000) - 5 }))).toBeNull();
+  });
+});
+
+describe("tokens that are valid but are not a student", () => {
+  /** A Supabase project signs more than one kind of token with the same
+   * secret. A signature check alone says "this came from the project",
+   * not "this is a student who signed in" — and the gate needs the
+   * second. */
+  it("refuses one issued for a different audience", async () => {
+    // Supabase sets `aud: "authenticated"` on a user session. Anything
+    // else was minted for another purpose and must not pass as a
+    // student.
+    const t = await sign({ sub: "u", aud: "service", exp: inAnHour() });
+    expect(await ok(t)).toBeNull();
+  });
+
+  it("refuses one with no audience at all", async () => {
+    expect(await ok(await sign({ sub: "u", exp: inAnHour() }))).toBeNull();
+  });
+
+  it("accepts an ordinary authenticated session", async () => {
+    const id = await ok(await sign({ sub: "u", aud: "authenticated", exp: inAnHour() }));
+    expect(id?.sub).toBe("u");
+  });
+
+  it("refuses an anonymous sign-in", async () => {
+    // Supabase can mint a session for someone who never signed in.
+    // Each one is a fresh `sub`, so each is a fresh rate-limit budget —
+    // and none of them is a student with a Plan.
+    const t = await sign({ sub: "u", aud: "authenticated", is_anonymous: true, exp: inAnHour() });
+    expect(await ok(t)).toBeNull();
+  });
+
+  it("refuses one that is not valid yet", async () => {
+    // `nbf` in the future. Rare, but a token we are told not to honour
+    // yet is not one to honour.
+    const t = await sign({ sub: "u", aud: "authenticated", nbf: inAnHour(), exp: inAnHour() + 60 });
+    expect(await ok(t)).toBeNull();
   });
 });

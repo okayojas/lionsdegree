@@ -11,21 +11,35 @@
  *
  * NO NEW CREDENTIAL. The token this hands back IS the Supabase access
  * token, verified on every request with the same secret the chat API
- * uses. There is no second identity system to keep in step, no second
- * place a student's session can be stale, and nothing new to rotate.
+ * uses. There is no second identity system to keep in step and nothing
+ * new to rotate.
+ *
+ * TWO PKCE EXCHANGES, NOT ONE, and conflating them is the mistake this
+ * file was first written with. The assistant runs PKCE against US; we
+ * run a SEPARATE PKCE against Supabase. Supabase's GoTrue only mints an
+ * auth code when `code_challenge` is present on the authorize request —
+ * without one it uses the implicit flow and returns tokens in a URL
+ * FRAGMENT, which a server never receives. So the first version could
+ * not have worked in production in two independent ways, and the test
+ * missed it by stubbing `fetch` without looking at what was sent.
  *
  * WHAT IS STORED, and for how long:
  *   client:<id>   a registered assistant's name and redirect URIs.
  *   code:<code>   one authorization code, with the PKCE challenge and
- *                 the Supabase session it stands for. Sixty seconds,
- *                 single use.
- *   pend:<state>  a flow in progress while the student is at Google.
- *                 Ten minutes.
+ *                 the access token it stands for. Sixty seconds, single
+ *                 use.
+ *   pend:<state>  a flow in progress while the student is at Google,
+ *                 including OUR verifier for the Supabase leg and a
+ *                 hash of the cookie that binds it to one browser.
+ *                 Five minutes, matching Supabase's own flow-state
+ *                 expiry — holding it longer only produces a valid
+ *                 record pointing at a dead upstream flow.
+ *   anon:<ip>     unauthenticated write budget. See ANON_WRITES_PER_DAY.
+ *   revoked:<fp>  a token fingerprint the student has disconnected.
  *
- * Nothing here holds a student's Plan, and the session it stores is
- * deleted the moment it is exchanged.
+ * Nothing here holds a student's Plan.
  */
-import type { KVLike } from "@psu-planner/identity";
+import { rateLimit, type KVLike } from "@psu-planner/identity";
 
 export interface OAuthEnv {
   OAUTH?: KVLike;
@@ -54,13 +68,16 @@ const NOT_CONFIGURED = () =>
 function randomId(bytes = 32): string {
   const b = new Uint8Array(bytes);
   crypto.getRandomValues(b);
-  return btoa(String.fromCharCode(...b)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  return b64url(b);
+}
+
+function b64url(bytes: Uint8Array): string {
+  return btoa(String.fromCharCode(...bytes)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
 async function s256(verifier: string): Promise<string> {
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(verifier) as BufferSource);
-  return btoa(String.fromCharCode(...new Uint8Array(digest)))
-    .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  return b64url(new Uint8Array(digest));
 }
 
 /** A redirect we are willing to send an authorization code to.
@@ -87,8 +104,22 @@ interface Client {
 interface Pending {
   client_id: string;
   redirect_uri: string;
+  /** The ASSISTANT's challenge, for the exchange it will make with us. */
   code_challenge: string;
   state?: string;
+  /** OUR verifier, for the exchange WE make with Supabase. A separate
+   * PKCE run; the two must not be confused. */
+  supabase_verifier: string;
+  /** Hash of the cookie set when this flow started.
+   *
+   * THE ACCOUNT TAKEOVER THIS PREVENTS. `state` is minted by us, so an
+   * attacker can start a flow, read the state out of their own 302, and
+   * send a victim a Supabase sign-in link carrying it. The victim signs
+   * in — at Google, on their own machine, nothing visibly wrong — and
+   * our callback hands the resulting code to the ATTACKER's redirect.
+   * Binding the flow to the browser that began it makes step two
+   * useless: the victim's browser does not have the attacker's cookie. */
+  browser: string;
 }
 
 interface IssuedCode {
@@ -97,16 +128,52 @@ interface IssuedCode {
   code_challenge: string;
   access_token: string;
   expires_in: number;
-  refresh_token?: string;
 }
 
 const CODE_TTL = 60;
-const PENDING_TTL = 600;
+/** Matches Supabase's own flow-state expiry. Longer only yields a valid
+ * record of ours pointing at a dead flow of theirs. */
+const PENDING_TTL = 300;
 
-/** Handle an OAuth route, or return null if this is not one.
+/** Unauthenticated writes per address per day.
  *
- * Returning null rather than 404ing lets the Worker keep one router and
- * keeps every "is this an auth path" decision in this file. */
+ * Every route here writes to KV and runs BEFORE the gate — it has to,
+ * since these are how a caller GETS a token. That makes them the one
+ * unmetered write path in the service, and an unmetered write path is
+ * somebody else's bill. `/revoke` was the worst: its key is whatever
+ * the caller sends, so each request wrote a NEW entry lasting 25 hours.
+ *
+ * KEYED BY ADDRESS, which everywhere else in this project is the wrong
+ * answer — a shared campus network means one student throttles a
+ * building. It is right HERE and only here, because there is no
+ * identity yet: that is what these routes exist to establish. Set well
+ * above what a lecture hall signing in together would reach. */
+const ANON_WRITES_PER_DAY = 30;
+
+const COOKIE = "ld_flow";
+
+/** The browser that started a flow, if it says so. */
+function flowCookie(request: Request): string | null {
+  for (const part of (request.headers.get("cookie") ?? "").split(";")) {
+    const [k, ...v] = part.trim().split("=");
+    if (k === COOKIE) return v.join("=") || null;
+  }
+  return null;
+}
+
+/** Refuse an unauthenticated caller who is writing too much. */
+async function throttleAnonymous(request: Request, kv: KVLike): Promise<Response | null> {
+  const ip = request.headers.get("cf-connecting-ip") ?? "unknown";
+  const budget = await rateLimit(kv, `anon:${ip}`, ANON_WRITES_PER_DAY);
+  if (budget.ok) return null;
+  return json(
+    { error: "temporarily_unavailable", error_description: "Too many sign-in attempts. Try again later." },
+    429,
+    { "retry-after": String(budget.resetInSeconds) },
+  );
+}
+
+/** Handle an OAuth route, or return null if this is not one. */
 export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Response | null> {
   const url = new URL(request.url);
   const issuer = `${url.protocol}//${url.host}`;
@@ -114,8 +181,6 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
 
   if (p === "/.well-known/oauth-protected-resource") {
     if (!config(env)) return NOT_CONFIGURED();
-    // What a 401's `WWW-Authenticate` points at: this resource, and who
-    // can issue tokens for it.
     return json({
       resource: `${issuer}/mcp`,
       authorization_servers: [issuer],
@@ -145,16 +210,19 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
   if (p === "/register" && request.method === "POST") {
     const cfg = config(env);
     if (!cfg) return NOT_CONFIGURED();
+    const throttled = await throttleAnonymous(request, cfg.kv);
+    if (throttled) return throttled;
+
     let body: { client_name?: unknown; redirect_uris?: unknown };
     try {
       body = (await request.json()) as typeof body;
     } catch {
       return oauthError("invalid_client_metadata", "The registration body is not JSON.");
     }
-    const uris = Array.isArray(body.redirect_uris) ? body.redirect_uris.filter((u): u is string => typeof u === "string") : [];
-    if (!uris.length) {
-      return oauthError("invalid_redirect_uri", "At least one redirect_uri is required.");
-    }
+    const uris = Array.isArray(body.redirect_uris)
+      ? body.redirect_uris.filter((u): u is string => typeof u === "string")
+      : [];
+    if (!uris.length) return oauthError("invalid_redirect_uri", "At least one redirect_uri is required.");
     if (!uris.every(usableRedirect)) {
       return oauthError("invalid_redirect_uri", "Redirect URIs must be https, or http on loopback.");
     }
@@ -196,17 +264,46 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
       return oauthError("invalid_request", "PKCE with code_challenge_method=S256 is required.");
     }
 
-    // The student goes to Supabase, which takes them to Google or
-    // Microsoft. We never see a password and never ask for one.
+    const throttled = await throttleAnonymous(request, cfg.kv);
+    if (throttled) return throttled;
+
+    // OUR OWN PKCE, for the Supabase leg. Without `code_challenge`
+    // upstream, GoTrue mints no auth code at all and falls back to the
+    // implicit flow, which returns tokens in a URL fragment a server
+    // never sees. Two separate exchanges: the assistant's challenge is
+    // for the code WE issue, this one is for the code SUPABASE issues.
+    const supabaseVerifier = randomId(32);
     const state = randomId(24);
-    const pending: Pending = { client_id: clientId, redirect_uri: redirectUri, code_challenge: challenge, state: q.get("state") ?? undefined };
+    const browserSecret = randomId(24);
+
+    const pending: Pending = {
+      client_id: clientId,
+      redirect_uri: redirectUri,
+      code_challenge: challenge,
+      state: q.get("state") ?? undefined,
+      supabase_verifier: supabaseVerifier,
+      browser: await s256(browserSecret),
+    };
     await cfg.kv.put(`pend:${state}`, JSON.stringify(pending), { expirationTtl: PENDING_TTL });
 
     const provider = q.get("provider") === "azure" ? "azure" : "google";
     const to = new URL(`${cfg.supabase}/auth/v1/authorize`);
     to.searchParams.set("provider", provider);
+    to.searchParams.set("code_challenge", await s256(supabaseVerifier));
+    to.searchParams.set("code_challenge_method", "s256");
     to.searchParams.set("redirect_to", `${issuer}/callback?state=${encodeURIComponent(state)}`);
-    return Response.redirect(to.toString(), 302);
+
+    // `SameSite=Lax` so it comes back on the top-level redirect from
+    // Supabase and on nothing a third-party page initiates. HttpOnly so
+    // no script can read it; Secure so it never crosses plain http.
+    return new Response(null, {
+      status: 302,
+      headers: {
+        location: to.toString(),
+        "set-cookie":
+          `${COOKIE}=${browserSecret}; Path=/callback; Max-Age=${PENDING_TTL}; HttpOnly; Secure; SameSite=Lax`,
+      },
+    });
   }
 
   if (p === "/callback") {
@@ -219,45 +316,61 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
       return new Response("This sign-in link has expired. Start again from your assistant.", { status: 400 });
     }
     const pending = JSON.parse(raw) as Pending;
+
+    // THE BROWSER THAT FINISHES MUST BE THE BROWSER THAT BEGAN.
+    const presented = flowCookie(request);
+    if (!presented || (await s256(presented)) !== pending.browser) {
+      await cfg.kv.delete(`pend:${state}`);
+      return new Response("This sign-in could not be completed. Start again from your assistant.", { status: 400 });
+    }
+
     if (!code) {
       return new Response("Sign-in was cancelled or failed. Start again from your assistant.", { status: 400 });
     }
 
-    // Exchange Supabase's code for the student's session. The anon key
-    // is public by design and ships in the website's bundle.
+    // Both halves, or GoTrue refuses: "both auth code and code verifier
+    // should be non-empty". The first version sent only the code.
     const exchanged = await fetch(`${cfg.supabase}/auth/v1/token?grant_type=pkce`, {
       method: "POST",
       headers: { "content-type": "application/json", apikey: cfg.anon },
-      body: JSON.stringify({ auth_code: code }),
+      body: JSON.stringify({ auth_code: code, code_verifier: pending.supabase_verifier }),
     }).catch(() => null);
-    const session = exchanged?.ok ? ((await exchanged.json()) as { access_token?: string; refresh_token?: string; expires_in?: number }) : null;
+    const session = exchanged?.ok
+      ? ((await exchanged.json()) as { access_token?: string; expires_in?: number })
+      : null;
     if (!session?.access_token) {
       console.error("[mcp] supabase code exchange failed", exchanged?.status);
       return new Response("Could not complete sign-in. Start again from your assistant.", { status: 502 });
     }
 
-    // Our own code, bound to the assistant's PKCE challenge. Sixty
-    // seconds and single use: it is a bearer credential in a URL, which
-    // is where credentials end up in logs and shoulder-surfing range.
+    // NO REFRESH TOKEN IS KEPT OR PASSED ON. One outlives the access
+    // token the denylist holds, so handing one out made revocation
+    // advisory: the holder exchanges it with Supabase directly and
+    // returns with something we have never seen and cannot refuse. An
+    // assistant re-runs the flow instead, which is the cost of
+    // "disconnect" meaning what a student thinks it means.
     const ourCode = randomId(32);
     const issued: IssuedCode = {
       client_id: pending.client_id,
       redirect_uri: pending.redirect_uri,
       code_challenge: pending.code_challenge,
       access_token: session.access_token,
-      refresh_token: session.refresh_token,
       expires_in: session.expires_in ?? 3600,
     };
     await cfg.kv.put(`code:${ourCode}`, JSON.stringify(issued), { expirationTtl: CODE_TTL });
-    // DELETED, not tombstoned. This was `put(key, "", {expirationTtl: 1})`,
-    // and Cloudflare rejects any TTL under 60 seconds — so the call threw,
-    // the flow 500ed, and nothing was consumed.
     await cfg.kv.delete(`pend:${state}`);
 
     const back = new URL(pending.redirect_uri);
     back.searchParams.set("code", ourCode);
     if (pending.state) back.searchParams.set("state", pending.state);
-    return Response.redirect(back.toString(), 302);
+    return new Response(null, {
+      status: 302,
+      headers: {
+        location: back.toString(),
+        // The flow is over; the cookie has nothing left to bind.
+        "set-cookie": `${COOKIE}=; Path=/callback; Max-Age=0; HttpOnly; Secure; SameSite=Lax`,
+      },
+    });
   }
 
   if (p === "/token" && request.method === "POST") {
@@ -271,13 +384,12 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
     const code = form.get("code") ?? "";
     const raw = code ? await cfg.kv.get(`code:${code}`) : null;
     if (!raw) return oauthError("invalid_grant", "That code is not valid. It may already have been used.");
-    // SINGLE USE, deleted before anything else can go wrong. A code that
-    // survives its exchange is a code that can be replayed.
+    // SINGLE USE, deleted before anything else can go wrong.
     //
-    // `delete`, not a one-second tombstone: Cloudflare rejects a TTL
-    // under 60 seconds, so the tombstone THREW — the exchange 500ed and
-    // the code stayed spendable for its full minute. The test stub
-    // ignored `expirationTtl`, which is why nothing caught it.
+    // `delete`, not a short-lived tombstone: Cloudflare rejects a TTL
+    // under 60 seconds, so `put(key, "", {expirationTtl: 1})` THREW —
+    // the exchange 500ed and the code stayed spendable for its full
+    // minute.
     await cfg.kv.delete(`code:${code}`);
 
     const issued = JSON.parse(raw) as IssuedCode;
@@ -299,13 +411,15 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
       access_token: issued.access_token,
       token_type: "Bearer",
       expires_in: issued.expires_in,
-      refresh_token: issued.refresh_token,
     });
   }
 
   if (p === "/revoke" && request.method === "POST") {
     const cfg = config(env);
     if (!cfg) return NOT_CONFIGURED();
+    const throttled = await throttleAnonymous(request, cfg.kv);
+    if (throttled) return throttled;
+
     const form = new URLSearchParams(await request.text());
     const token = form.get("token") ?? "";
 
@@ -317,8 +431,7 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
     //
     // Keyed by the token itself rather than by the student, so revoking
     // one assistant does not sign them out of another. Held only until
-    // the token would have expired anyway — after that the signature
-    // check refuses it and the entry is dead weight.
+    // the token would have expired anyway.
     if (token) {
       await cfg.kv.put(`revoked:${await fingerprint(token)}`, "1", { expirationTtl: 60 * 60 * 25 });
     }
@@ -333,16 +446,18 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
 
 /** A short stable id for a token, so the denylist holds no credentials.
  *
- * Storing the token itself would mean a KV dump is a bag of working
+ * Storing the token itself would make a KV dump a bag of working
  * credentials. A hash answers the only question asked of it. */
 export async function fingerprint(token: string): Promise<string> {
-  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(token) as BufferSource);
-  return btoa(String.fromCharCode(...new Uint8Array(digest)))
-    .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "").slice(0, 32);
+  return (await s256(token)).slice(0, 32);
 }
 
 /** Has this token been revoked? */
 export async function isRevoked(env: OAuthEnv, token: string): Promise<boolean> {
-  if (!env.OAUTH) return false;
+  // FAILS CLOSED. Without the binding we cannot know whether this token
+  // was revoked, and "we cannot tell" must not read as "it was not" —
+  // every other check in this flow refuses when it is unsure, and this
+  // was the one that did not.
+  if (!env.OAUTH) return true;
   return (await env.OAUTH.get(`revoked:${await fingerprint(token)}`)) === "1";
 }

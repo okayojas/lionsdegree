@@ -14,6 +14,8 @@
  */
 
 export interface KVLike {
+  /** `cacheTtl` is in SECONDS with a minimum of 30. Zero is REJECTED —
+   * see the read below for why that matters. */
   get(key: string, opts?: { cacheTtl?: number }): Promise<string | null>;
   /** `expirationTtl` is in SECONDS and Cloudflare enforces a minimum of
    * 60. Anything smaller is rejected outright — which is why deleting is
@@ -58,9 +60,19 @@ export async function rateLimit(
 
   if (kv) {
     const key = `rl:${day}:${identity}`;
-    // `cacheTtl: 0` defeats KV's edge read cache, so a burst does not
-    // all read the same stale number. Still best-effort; see the header.
-    const n = parseInt((await kv.get(key, { cacheTtl: 0 })) ?? "0", 10) || 0;
+    // NO `cacheTtl`. This read used to pass `{ cacheTtl: 0 }`, meaning
+    // "do not serve me a cached value" — and Cloudflare REJECTS any
+    // cache TTL below 30, so every KV-backed read threw: "Invalid
+    // cache_ttl of 0. Cache TTL must be at least 30." The limiter did
+    // not merely run loose, it failed outright, and in the connector it
+    // took the whole request down with it.
+    //
+    // The default edge cache is 60 seconds, so a burst inside that
+    // window can read the same number more than once and over-admit.
+    // That is the honest cost: this limit exists to stop one student
+    // exhausting the service, not to meter anybody, and a Durable
+    // Object is the exact answer when exactness is wanted.
+    const n = parseInt((await kv.get(key)) ?? "0", 10) || 0;
     if (n >= limit) return { ok: false, remaining: 0, resetInSeconds };
     await kv.put(key, String(n + 1), { expirationTtl: 60 * 60 * 26 });
     return { ok: true, remaining: limit - n - 1, resetInSeconds };

@@ -31,7 +31,14 @@ const assets = {
 function memoryKv(): KVLike {
   const store = new Map<string, string>();
   return {
-    async get(k) { return store.get(k) ?? null; },
+    async get(k, opts) {
+      // Cloudflare rejects a cache TTL below 30. A stub that ignores the
+      // option certifies a read the real binding throws on.
+      if (opts?.cacheTtl !== undefined && opts.cacheTtl < 30) {
+        throw new Error(`Invalid cache_ttl of ${opts.cacheTtl}. Cache TTL must be at least 30.`);
+      }
+      return store.get(k) ?? null;
+    },
     async put(k, v, opts) {
       // CLOUDFLARE'S REAL CONTRACT. A TTL under 60 seconds is rejected
       // outright, and the stub used to ignore `expirationTtl` entirely —
@@ -59,6 +66,8 @@ beforeEach(() => {
 });
 
 const get = (p: string) => worker.fetch(new Request(`https://mcp.lionsdegree.com${p}`), env);
+const getWith = (p: string, cookie: string) =>
+  worker.fetch(new Request(`https://mcp.lionsdegree.com${p}`, { headers: { cookie } }), env);
 const postForm = (p: string, form: Record<string, string>) =>
   worker.fetch(
     new Request(`https://mcp.lionsdegree.com${p}`, {
@@ -86,6 +95,7 @@ async function supabaseToken(sub: string): Promise<string> {
   const enc = (o: unknown) => b64url(new TextEncoder().encode(JSON.stringify(o)));
   const body = `${enc({ alg: "HS256", typ: "JWT" })}.${enc({
     sub,
+    aud: "authenticated",
     exp: Math.floor(Date.now() / 1000) + 3600,
     email: "student@psu.edu",
   })}`;
@@ -117,6 +127,12 @@ async function throughSignIn(verifier: string, sub = "student-42"): Promise<{ cl
   const ourState = new URL(toSupabase.searchParams.get("redirect_to")!).searchParams.get("state")!;
   expect(ourState, "no state was carried into the Supabase hop").toBeTruthy();
 
+  // The flow is bound to the browser that started it, so the callback
+  // has to come back with the cookie — the same browser, as it would
+  // be in life. See `oauth-attacks.test.ts` for why.
+  const cookie = (authRes.headers.get("set-cookie") ?? "").split(";")[0];
+  expect(cookie, "no cookie was issued to bind this flow").toBeTruthy();
+
   // Supabase's token endpoint is the one thing stubbed; everything else
   // here is the real code.
   const token = await supabaseToken(sub);
@@ -131,7 +147,7 @@ async function throughSignIn(verifier: string, sub = "student-42"): Promise<{ cl
 
   let back: URL;
   try {
-    const cb = await get(`/callback?state=${encodeURIComponent(ourState)}&code=supabase-code`);
+    const cb = await getWith(`/callback?state=${encodeURIComponent(ourState)}&code=supabase-code`, cookie);
     expect(cb.status, "the callback did not send the student back to their assistant").toBe(302);
     back = new URL(cb.headers.get("location")!);
   } finally {
@@ -243,11 +259,12 @@ describe("when Supabase will not complete the sign-in", () => {
         `&code_challenge=${await challengeFor("x".repeat(43))}&code_challenge_method=S256`,
     );
     const ourState = new URL(new URL(authRes.headers.get("location")!).searchParams.get("redirect_to")!).searchParams.get("state")!;
+    const cookie = (authRes.headers.get("set-cookie") ?? "").split(";")[0];
 
     const realFetch = globalThis.fetch;
     globalThis.fetch = (async () => new Response("no", { status: 400 })) as typeof fetch;
     try {
-      const cb = await get(`/callback?state=${encodeURIComponent(ourState)}&code=whatever`);
+      const cb = await getWith(`/callback?state=${encodeURIComponent(ourState)}&code=whatever`, cookie);
       expect(cb.status).toBe(502);
       const text = await cb.text();
       expect(text).toMatch(/start again/i);

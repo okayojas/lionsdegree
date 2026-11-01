@@ -11,7 +11,7 @@ import { describe, it, expect, beforeEach } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { resetInMemoryCounters } from "@psu-planner/identity";
+import { resetInMemoryCounters, type KVLike } from "@psu-planner/identity";
 import worker, { type Env } from "../src/worker.js";
 
 const CATALOG = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "catalog");
@@ -31,8 +31,32 @@ const assets = {
 /** A Worker with the gate configured. A FRESH object each time: the
  * catalog cache is keyed by the binding, so sharing one across tests
  * would let an earlier test warm a later one's isolate. */
+function memoryKv(): KVLike {
+  const store = new Map<string, string>();
+  return {
+    async get(k, opts) {
+      // Cloudflare rejects a cache TTL below 30. A stub that ignores the
+      // option certifies a read the real binding throws on.
+      if (opts?.cacheTtl !== undefined && opts.cacheTtl < 30) {
+        throw new Error(`Invalid cache_ttl of ${opts.cacheTtl}. Cache TTL must be at least 30.`);
+      }
+      return store.get(k) ?? null;
+    },
+    async put(k, v, opts) {
+      if (opts?.expirationTtl !== undefined && opts.expirationTtl < 60) {
+        throw new Error("Invalid expiration_ttl. Must be at least 60.");
+      }
+      store.set(k, v);
+    },
+    async delete(k) { store.delete(k); },
+  };
+}
+
+/** The OAUTH binding is part of the gate, not just of the sign-in flow:
+ * `isRevoked` fails closed without it, because "we cannot tell whether
+ * this was revoked" must not read as "it was not". */
 const gated = (over: Partial<Env> = {}): Env =>
-  ({ CATALOG: assets, SUPABASE_JWT_SECRET: SECRET, ...over }) as Env;
+  ({ CATALOG: assets, SUPABASE_JWT_SECRET: SECRET, OAUTH: memoryKv(), ...over }) as Env;
 
 const b64url = (b: Uint8Array) =>
   btoa(String.fromCharCode(...b)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
@@ -47,7 +71,7 @@ async function token(payload: Record<string, unknown>, secret = SECRET): Promise
   return `${body}.${b64url(sig)}`;
 }
 
-const valid = (sub = "student-1") => token({ sub, exp: Math.floor(Date.now() / 1000) + 3600, email: "s@psu.edu" });
+const valid = (sub = "student-1") => token({ sub, aud: "authenticated", exp: Math.floor(Date.now() / 1000) + 3600, email: "s@psu.edu" });
 
 const ask = (env: Env, auth?: string, body: unknown = { jsonrpc: "2.0", id: 1, method: "tools/list", params: {} }) =>
   worker.fetch(
@@ -103,7 +127,7 @@ describe("a token that is not ours", () => {
   });
 
   it("expired is refused", async () => {
-    const t = await token({ sub: "student-1", exp: Math.floor(Date.now() / 1000) - 60 });
+    const t = await token({ sub: "student-1", aud: "authenticated", exp: Math.floor(Date.now() / 1000) - 60 });
     expect((await ask(gated(), `Bearer ${t}`)).status).toBe(401);
   });
 
@@ -120,7 +144,7 @@ describe("a token that is not ours", () => {
   it("is refused the same way whatever was wrong with it", async () => {
     // One message for every failure. Telling a caller WHICH part of
     // their forgery was wrong is telling them how to iterate.
-    const expired = await token({ sub: "s", exp: Math.floor(Date.now() / 1000) - 60 });
+    const expired = await token({ sub: "s", aud: "authenticated", exp: Math.floor(Date.now() / 1000) - 60 });
     const forged = await token({ sub: "s", exp: Math.floor(Date.now() / 1000) + 60 }, "wrong");
     const a = await (await ask(gated(), `Bearer ${expired}`)).text();
     const b = await (await ask(gated(), `Bearer ${forged}`)).text();
@@ -152,9 +176,13 @@ describe("the gate when it is not configured", () => {
   it("refuses everything rather than letting everyone in", async () => {
     // FAIL CLOSED. A deploy that forgot the secret must not silently
     // become the open connector #33 shipped.
-    const res = await ask({ CATALOG: assets } as Env, `Bearer ${await valid()}`);
-    expect(res.status).toBe(503);
-    expect(await res.text()).not.toContain("SUPABASE_JWT_SECRET");
+    for (const half of [{ CATALOG: assets }, { CATALOG: assets, SUPABASE_JWT_SECRET: SECRET }]) {
+      const res = await ask(half as Env, `Bearer ${await valid()}`);
+      expect(res.status, "a half-configured deploy did not refuse").toBe(503);
+      const text = await res.text();
+      expect(text, "the caller was told which piece is missing").not.toContain("SUPABASE_JWT_SECRET");
+      expect(text).not.toContain("OAUTH");
+    }
   });
 });
 

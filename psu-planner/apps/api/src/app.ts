@@ -5,6 +5,7 @@
  * student's local plan — this server never sees or stores plan state beyond
  * the messages of the current request. */
 import { Hono } from "hono";
+import { rateLimit, verifyJwt, type KVLike } from "@psu-planner/identity";
 import { cors } from "hono/cors";
 import { secureHeaders } from "hono/secure-headers";
 import { SYSTEM_PROMPT, TOOL_DEFS } from "./tools.js";
@@ -12,10 +13,9 @@ import { SYSTEM_PROMPT, TOOL_DEFS } from "./tools.js";
 /** Minimal structural type for a Cloudflare KV namespace (avoids the
  * workers-types dependency; Node dev doesn't have KV). `get` takes the same
  * options bag Cloudflare KV does so we can force a fresh read (cacheTtl: 0). */
-export interface KVLike {
-  get(key: string, opts?: { cacheTtl?: number }): Promise<string | null>;
-  put(key: string, value: string, opts?: { expirationTtl?: number }): Promise<void>;
-}
+/* `KVLike` is imported from `@psu-planner/identity`, not declared here.
+   The local copy had no `delete`, which is the same drift in miniature
+   as the verifier that stopped requiring an expiry. */
 
 export interface Env {
   OPENAI_API_KEY: string;
@@ -64,72 +64,23 @@ function allowedOrigins(env: Env): string[] {
   return (env.ALLOWED_ORIGINS ?? "").split(",").map((s) => s.trim()).filter(Boolean);
 }
 
-// ---- Identity gate (S1) ---------------------------------------------------
-// Base64url decode without Buffer (works in Workers and Node).
-function b64urlToBytes(s: string): Uint8Array {
-  const pad = s.length % 4 === 0 ? "" : "=".repeat(4 - (s.length % 4));
-  const b64 = s.replace(/-/g, "+").replace(/_/g, "/") + pad;
-  const bin = atob(b64);
-  const out = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
-  return out;
-}
-
-/** Verify a Supabase HS256 JWT and return its `sub`, or null. Signature +
- * expiry are checked; we never trust the payload without a valid signature. */
-async function verifyJwtSub(token: string, secret: string): Promise<string | null> {
-  try {
-    const parts = token.split(".");
-    if (parts.length !== 3) return null;
-    const [h, p, sig] = parts;
-    const header = JSON.parse(new TextDecoder().decode(b64urlToBytes(h))) as { alg?: string };
-    if (header.alg !== "HS256") return null; // only the shared-secret case here
-    const key = await crypto.subtle.importKey(
-      "raw",
-      new TextEncoder().encode(secret) as BufferSource,
-      { name: "HMAC", hash: "SHA-256" },
-      false,
-      ["verify"],
-    );
-    const ok = await crypto.subtle.verify(
-      "HMAC",
-      key,
-      b64urlToBytes(sig) as BufferSource,
-      new TextEncoder().encode(`${h}.${p}`) as BufferSource,
-    );
-    if (!ok) return null;
-    const payload = JSON.parse(new TextDecoder().decode(b64urlToBytes(p))) as { sub?: string; exp?: number };
-    if (payload.exp && payload.exp * 1000 < Date.now()) return null;
-    return payload.sub ?? null;
-  } catch {
-    return null;
-  }
-}
-
-// ---- Rate limiter (S2) ----------------------------------------------------
-// Cloudflare KV in production, per-process Map in dev. Each inbound /v1/chat is
-// exactly one upstream OpenAI call (the client loop makes up to 11 SEPARATE
-// requests per user turn), so counting requests == counting upstream calls.
-const counters = new Map<string, { day: string; n: number }>();
-async function rateLimit(kv: KVLike | undefined, key: string, limit: number): Promise<{ ok: boolean; remaining: number }> {
-  const day = new Date().toISOString().slice(0, 10);
-  if (kv) {
-    const k = `rl:${day}:${key}`;
-    // cacheTtl: 0 defeats KV's ~60s edge read cache so concurrent bursts don't
-    // all read the same stale counter. This is best-effort atomicity; a
-    // Durable Object / native rate-limit binding is the durable answer.
-    const n = parseInt((await kv.get(k, { cacheTtl: 0 })) ?? "0", 10);
-    if (n >= limit) return { ok: false, remaining: 0 };
-    await kv.put(k, String(n + 1), { expirationTtl: 60 * 60 * 26 });
-    return { ok: true, remaining: limit - n - 1 };
-  }
-  if (counters.size > 10_000) counters.clear(); // S9: bound the in-memory map
-  const c = counters.get(key);
-  const n = c?.day === day ? c.n : 0;
-  if (n >= limit) return { ok: false, remaining: 0 };
-  counters.set(key, { day, n: n + 1 });
-  return { ok: true, remaining: limit - n - 1 };
-}
+/* ---- Identity gate (S1) and rate limiter (S2) ----------------------------
+ *
+ * BOTH LIVE IN `@psu-planner/identity` NOW. They were written here and
+ * then copied into the hosted MCP connector, which is how the copy here
+ * quietly diverged: it accepted a token with NO `exp` at all
+ * (`if (payload.exp && ...)`), so a non-expiring token could not be
+ * outlived and could not be revoked by waiting. The connector's copy
+ * required one.
+ *
+ * A second implementation of a security boundary drifts from the first.
+ * The project says so about prose fencing (DECISIONS.md 5.0 S4) and it
+ * was no less true here — it just took two consumers to show it.
+ *
+ * The shared version is stricter than what this file had: an expiry is
+ * required, `aud` must be "authenticated", anonymous sessions are
+ * refused, and `nbf` is honoured.
+ */
 
 /** Runtime-validate a single wire message (S3) — don't trust the TS type. */
 function cleanMessage(m: unknown): ChatMessage | null {
@@ -190,7 +141,7 @@ export function createApp(env: Env) {
     let identity: string | null = null;
     const auth = c.req.header("authorization");
     if (authOn && auth?.startsWith("Bearer ")) {
-      identity = await verifyJwtSub(auth.slice(7), env.SUPABASE_JWT_SECRET!);
+      identity = (await verifyJwt(auth.slice(7), { secret: env.SUPABASE_JWT_SECRET }))?.sub ?? null;
     }
     if (!identity) {
       if (requireAuth) return c.json({ error: "Sign in to use the assistant." }, 401); // fail closed

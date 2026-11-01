@@ -16,7 +16,14 @@ function fakeKv(): KVLike & { store: Map<string, string> } {
   const store = new Map<string, string>();
   return {
     store,
-    async get(k) { return store.get(k) ?? null; },
+    async get(k, opts) {
+      // Cloudflare rejects a cache TTL below 30. A stub that ignores the
+      // option certifies a read the real binding throws on.
+      if (opts?.cacheTtl !== undefined && opts.cacheTtl < 30) {
+        throw new Error(`Invalid cache_ttl of ${opts.cacheTtl}. Cache TTL must be at least 30.`);
+      }
+      return store.get(k) ?? null;
+    },
     async put(k, v, opts) {
       // Cloudflare rejects a TTL under 60 seconds; a stub that ignores
       // it lets a caller ship one that throws in production.

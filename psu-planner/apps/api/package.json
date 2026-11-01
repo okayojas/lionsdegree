@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@hono/node-server": "^2.1.5",
-    "hono": "^4.13.14"
+    "hono": "^4.13.14",
+    "@psu-planner/identity": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

@@ -83,8 +83,22 @@ export async function verifyJwt(token: string, opts: VerifyOptions): Promise<Ver
     const payload = JSON.parse(new TextDecoder().decode(b64urlToBytes(p))) as {
       sub?: unknown;
       exp?: unknown;
+      nbf?: unknown;
+      aud?: unknown;
       email?: unknown;
+      is_anonymous?: unknown;
     };
+
+    // A SIGNATURE SAYS "FROM THIS PROJECT", NOT "A STUDENT WHO SIGNED
+    // IN". One Supabase project signs more than one kind of token with
+    // the same secret, so the audience is what separates a user session
+    // from everything else minted alongside it.
+    if (payload.aud !== "authenticated") return null;
+
+    // Supabase can mint a session for someone who never signed in. Each
+    // is a fresh `sub` — so a fresh rate-limit budget every time — and
+    // none of them is a student with a Plan.
+    if (payload.is_anonymous === true) return null;
 
     // An expiry is REQUIRED, not merely honoured when present. A token
     // with none cannot be outlived, so it cannot be revoked by waiting —
@@ -92,6 +106,9 @@ export async function verifyJwt(token: string, opts: VerifyOptions): Promise<Ver
     // come from where it claims to.
     if (typeof payload.exp !== "number") return null;
     if (payload.exp * 1000 <= Date.now()) return null;
+
+    // A token we have been told not to honour yet is not one to honour.
+    if (typeof payload.nbf === "number" && payload.nbf * 1000 > Date.now()) return null;
 
     // Nothing to be and nothing to rate-limit on.
     if (typeof payload.sub !== "string" || !payload.sub) return null;

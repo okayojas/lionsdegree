@@ -191,11 +191,17 @@ const SIGN_IN = "Sign in to LionsDegree to use this connector. See https://lions
  * Runs BEFORE anything is read or computed. An anonymous request must
  * cost this service nothing. */
 async function identify(request: Request, env: Env, resourceUrl: URL): Promise<VerifiedIdentity | Response> {
-  if (!env.SUPABASE_JWT_SECRET) {
-    // Logged loudly, said quietly: the operator needs to know which
-    // secret is missing, the caller must not be told anything about our
-    // configuration.
-    console.error("[mcp] SUPABASE_JWT_SECRET is not set — refusing every request");
+  // BOTH, stated at the door. The secret verifies a token; the KV
+  // namespace is how a student's revocation is honoured, and
+  // `isRevoked` fails closed without it — so a deploy missing KV would
+  // otherwise refuse every request with a 401 that reads like the
+  // student's fault. Logged loudly, said quietly: the operator needs to
+  // know which piece is missing, the caller must not be told anything
+  // about our configuration.
+  if (!env.SUPABASE_JWT_SECRET || !env.OAUTH) {
+    console.error(
+      `[mcp] refusing every request — missing ${!env.SUPABASE_JWT_SECRET ? "SUPABASE_JWT_SECRET" : "the OAUTH KV binding"}`,
+    );
     return rpcError(503, "This connector is not accepting requests right now.");
   }
 
