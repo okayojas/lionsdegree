@@ -243,6 +243,57 @@ describe("what /health says about it", () => {
   });
 });
 
+describe("/health as something an uptime monitor can watch", () => {
+  /** The status code, which is all a monitor sees. */
+  const status = async (e: Env) =>
+    (await worker.fetch(new Request("https://mcp.lionsdegree.com/health"), e)).status;
+
+  it("is 200 when the connector is actually serving", async () => {
+    expect(await status(env)).toBe(200);
+  });
+
+  it("IS NOT 200 WHEN THE CONNECTOR IS REFUSING EVERY STUDENT", async () => {
+    // THE PRODUCTION BUG, from this morning, in a test. With the JWT
+    // secret unset, /health answered 200 while /mcp returned 503 to
+    // every single request. Cloudflare has no Workers error alert on
+    // any plan and its Health Checks need Pro, so on a free account an
+    // external monitor on this URL is the realistic way to be told —
+    // and a monitor can only see the status code. A health endpoint
+    // that cannot go red is decoration.
+    for (const half of [{ ...env, SUPABASE_JWT_SECRET: undefined }, { ...env, OAUTH: undefined }]) {
+      expect(await status(half as Env), "a connector refusing everyone answered 200").toBe(503);
+    }
+  });
+
+  it("says which way it is broken, without naming the missing piece", async () => {
+    // Enough for the operator to know where to look; not enough to
+    // tell an anonymous caller which secret is absent.
+    const body = (await (
+      await worker.fetch(new Request("https://mcp.lionsdegree.com/health"), {
+        ...env,
+        SUPABASE_JWT_SECRET: undefined,
+      } as Env)
+    ).json()) as Record<string, unknown>;
+    expect(body.ok).toBe(false);
+    expect(String(body.not_serving)).toMatch(/refusing every request/);
+    expect(JSON.stringify(body), "the response names a specific secret").not.toMatch(/SUPABASE_JWT_SECRET|OAUTH/);
+  });
+
+  it("stays 200 when a PAST check failed but the connector works now", async () => {
+    // A failure that has resolved belongs in the body, not in a page
+    // at three in the morning. The status code tracks the live answer.
+    kv.store.set(
+      "health:last",
+      JSON.stringify({ ok: false, at: "2026-11-01T00:00:00.000Z", detail: "it was broken earlier" }),
+    );
+    expect(await status(env), "a resolved failure kept the monitor red").toBe(200);
+    const body = (await (
+      await worker.fetch(new Request("https://mcp.lionsdegree.com/health"), env)
+    ).json()) as { last_self_check?: { ok?: boolean } };
+    expect(body.last_self_check?.ok, "the past failure vanished from the body too").toBe(false);
+  });
+});
+
 describe("the harness itself", () => {
   it("serves assets case-sensitively, the way Cloudflare does", () => {
     // THE STUB'S OWN HONESTY, asserted. If this ever reverts to

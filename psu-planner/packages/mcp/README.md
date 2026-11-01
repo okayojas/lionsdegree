@@ -146,11 +146,28 @@ npm run worker:deploy
    pnpm --filter web run deploy
    ```
 
-7. **Cloudflare → Workers → lionsdegree-mcp → Settings → Alerts** — turn on the
-   error-rate notification. The self-check runs every fifteen minutes and
-   *throws* when the connector cannot answer, which is what makes the
-   invocation visible to that alert. Without the alert switched on, a failing
-   cron is a log nobody reads.
+7. **Point an uptime monitor at `/health`.**
+
+   There is no Workers error alert in Cloudflare's notification catalogue — on
+   any plan — and Standalone Health Checks needs Pro. An earlier version of
+   this file said to switch on a Worker alert under the Worker's own Settings;
+   no such thing exists, which is worth stating rather than quietly deleting.
+
+   So `/health` is built to be watched by something external. **It returns 503
+   when the connector is not actually serving students**, not merely when the
+   process is down — including the case where the gate is refusing everyone
+   because a secret is missing, which is what this connector was doing in
+   production with `/health` answering 200.
+
+   Any free monitor works (UptimeRobot, Better Stack, Healthchecks.io). Point
+   it at `https://mcp.lionsdegree.com/health`, alert on non-200, poll every
+   five minutes.
+
+   The scheduled self-check still earns its place: it runs the same check from
+   inside, records what it found so an outage that started unobserved is
+   discoverable afterwards, and throws so the failure appears in
+   **Workers → lionsdegree-mcp → Observability**. What it cannot do is tell
+   anybody. That is the monitor's job.
 
 ## Licence
 

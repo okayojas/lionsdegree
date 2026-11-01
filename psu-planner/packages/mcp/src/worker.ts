@@ -373,6 +373,19 @@ async function handleRequest(request: Request, env: Env): Promise<Response> {
       // Worker is running — "the process is up" is the least useful
       // thing a health check can report.
       try {
+        // THE SAME CHECK THE CRON RUNS, because this endpoint is the
+        // one an uptime monitor can reach. Cloudflare has no Workers
+        // error alert on any plan and its Health Checks need Pro, so
+        // on a free account the realistic way to be told is an
+        // external monitor watching this URL — and a monitor can only
+        // see what the STATUS CODE says.
+        //
+        // Before this, /health answered 200 while /mcp refused every
+        // student with a 503, which is not a hypothetical: it is what
+        // this connector was doing in production this morning with a
+        // secret unset. A health endpoint that cannot see the service
+        // being down is decoration.
+        const serving = await connectorIsServing(env);
         const data = await catalogFor(env);
 
         // WHAT THE TIMER LAST FOUND, alongside the live check. The two
@@ -380,6 +393,10 @@ async function handleRequest(request: Request, env: Env): Promise<Response> {
         // is answering NOW, the stored report proves it has been. An
         // outage that started and ended while nobody was watching is
         // invisible to a liveness probe and visible here.
+        //
+        // The STATUS CODE tracks the live answer only. A failure that
+        // has since resolved belongs in the body, not in a page at
+        // three in the morning.
         const last = await lastSelfCheck(env);
 
         // The Edition and the course count are already stated on the
@@ -387,7 +404,8 @@ async function handleRequest(request: Request, env: Env): Promise<Response> {
         // have — and both are what makes this check mean "the catalog
         // answers" rather than "the process is up".
         return Response.json({
-          ok: true,
+          ok: serving.ok,
+          ...(serving.ok ? {} : { not_serving: serving.why }),
           edition: data.edition,
           courses: Object.keys(data.catalog).length,
           // STRUCTURED EITHER WAY, never prose standing in for a
@@ -401,7 +419,7 @@ async function handleRequest(request: Request, env: Env): Promise<Response> {
           // write failed, or the report aged out — so this says what
           // it knows and not which one.
           last_self_check: last ? { recorded: true, ok: last.ok, at: last.at } : { recorded: false },
-        });
+        }, { status: serving.ok ? 200 : 503 });
       } catch (e) {
         // The reason is LOGGED, not returned. An internal message can
         // carry a file layout or a build command, and an anonymous
@@ -483,29 +501,8 @@ async function selfCheck(env: Env): Promise<HealthReport> {
   const at = new Date().toISOString();
   let report: HealthReport;
   try {
-    // IS IT CONFIGURED? Checked first, because this is the failure
-    // go-live actually risks and the first version of this check was
-    // blind to it. A deploy missing a secret serves 503 to every
-    // student while the catalog loads perfectly — so a monitor that
-    // only reads the catalog reports a healthy connector that is
-    // answering nobody. Asked the way a student's assistant asks it:
-    // an anonymous request to /mcp must be told to sign in (401), not
-    // told the service is not accepting requests (503).
-    const anon = await handleRequest(
-      new Request("https://mcp.lionsdegree.com/mcp", {
-        method: "POST",
-        headers: { "content-type": "application/json", accept: "application/json, text/event-stream" },
-        body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/list", params: {} }),
-      }),
-      env,
-    );
-    if (anon.status !== 401) {
-      throw new Error(
-        anon.status === 503
-          ? "the connector is refusing every request — a secret or the OAUTH binding is missing"
-          : `an unauthenticated request got ${anon.status}, which should be 401`,
-      );
-    }
+    const serving = await connectorIsServing(env);
+    if (!serving.ok) throw new Error(serving.detail);
 
     const data = await catalogFor(env);
     // A REAL ANSWER, not a count. The catalog can load and still answer
@@ -536,6 +533,55 @@ async function selfCheck(env: Env): Promise<HealthReport> {
     console.error("[mcp] could not record the self-check result", e);
   }
   return report;
+}
+
+/** Is the connector actually serving students?
+ *
+ * IS IT CONFIGURED, asked the way a student's assistant asks it. A
+ * deploy missing a secret or the KV binding refuses every request with
+ * a 503 while the catalog loads perfectly — so "the catalog is fine" is
+ * not the same question, and answering it instead reports a healthy
+ * connector that is answering nobody. That is not hypothetical: it is
+ * what this service was doing in production this morning.
+ *
+ * 401 IS THE PASS. An anonymous caller being told to sign in means the
+ * gate exists and works. 503 means it is refusing everyone; anything
+ * else means something changed that nobody here has thought about.
+ *
+ * Shared by the cron and by `/health` so the two cannot disagree about
+ * what "up" means — and it calls the real handler rather than
+ * reimplementing the check, so it cannot drift from what students get. */
+async function connectorIsServing(
+  env: Env,
+): Promise<{ ok: true } | { ok: false; why: string; detail: string }> {
+  const anon = await handleRequest(
+    new Request("https://mcp.lionsdegree.com/mcp", {
+      method: "POST",
+      headers: { "content-type": "application/json", accept: "application/json, text/event-stream" },
+      body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/list", params: {} }),
+    }),
+    env,
+  );
+  if (anon.status === 401) return { ok: true };
+
+  // TWO AUDIENCES, TWO SENTENCES. `why` is returned by /health, which
+  // takes no authentication — so it says that the connector is down
+  // and nothing about why, the same discipline the gate itself keeps
+  // (DECISIONS.md 5.0 S5/S8/S13: a 503 must not tell a caller which
+  // piece of our configuration is absent). `detail` goes to the log
+  // and to the stored report, which only an operator can read, and it
+  // names the thing to go and fix.
+  return anon.status === 503
+    ? {
+        ok: false,
+        why: "the connector is refusing every request",
+        detail: "the gate is refusing everything: the JWT secret or the KV binding is missing from this deploy",
+      }
+    : {
+        ok: false,
+        why: "the connector answered an anonymous request unexpectedly",
+        detail: `an unauthenticated request got ${anon.status}, which should be 401`,
+      };
 }
 
 async function lastSelfCheck(env: Env): Promise<HealthReport | null> {
