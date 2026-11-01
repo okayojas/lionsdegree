@@ -28,7 +28,8 @@ import { rateLimit, verifyJwt, type KVLike, type VerifiedIdentity } from "@psu-p
 import { loadEdition, type EditionCatalog } from "./catalog.js";
 import { FetchCatalogSource, type Fetcher } from "./source.js";
 import { handleOAuth, isRevoked, type OAuthEnv } from "./oauth.js";
-import { executeTool, listTools, type ToolContext } from "./tools.js";
+import { SupabasePlanStore } from "./planStore.js";
+import { contextFor, executeTool, listTools, needsPlan, READABLE_PLAN_TOOLS, type ToolContext } from "./tools.js";
 
 export interface Env extends OAuthEnv {
   /** Cloudflare's static-asset binding, serving `catalog/`. */
@@ -103,16 +104,26 @@ function cacheFor(env: Env): Warm {
  * student asking what CMPSC 465 requires wants the current Bulletin.
  * Once a Plan is in reach (#35) the Plan's own Edition governs, which is
  * not a default but a rule (ADR 0001). */
-async function catalogFor(env: Env): Promise<EditionCatalog> {
+async function editionsFor(env: Env): Promise<string[]> {
   const cache = cacheFor(env);
   const source = new FetchCatalogSource(env.CATALOG);
-
   cache.list ??= source.editions().catch((e) => {
     cache.list = null;
     throw e;
   });
-  const all = await cache.list;
-  const edition = all[all.length - 1];
+  return cache.list;
+}
+
+async function catalogFor(env: Env, want?: string): Promise<EditionCatalog> {
+  const cache = cacheFor(env);
+  const source = new FetchCatalogSource(env.CATALOG);
+
+  const all = await editionsFor(env);
+  // A Plan's own Edition when it has one (ADR 0001): a student who
+  // entered under 2024-2025 is audited against 2024-2025, not against
+  // whatever was published since. `loadEdition` is what refuses an
+  // Edition this deploy does not carry.
+  const edition = want ?? all[all.length - 1];
   if (!edition) {
     // Do not remember an empty answer: a deploy that lost its assets
     // would otherwise keep reporting the same thing after they returned.
@@ -134,23 +145,111 @@ async function catalogFor(env: Env): Promise<EditionCatalog> {
 
 /** A context with a catalog and no Plan.
  *
- * `executeTool` refuses the Plan-shaped tools by name against this, and
- * `listTools({ catalogOnly: true })` does not advertise them — a model
- * cannot usefully be offered a tool that will always say no. */
+ * Used when the student has none stored, or when their Plan could not
+ * be read. `executeTool` refuses the Plan-shaped tools by name against
+ * this rather than reaching into null. */
 function catalogContext(data: EditionCatalog): ToolContext {
   return { plan: null, planPath: "", data, items: [], sched: {} };
 }
 
-function mcpServer(data: EditionCatalog): Server {
-  const server = new Server({ name: "lionsdegree", version: "0.1.0" }, { capabilities: { tools: {} } });
-  const ctx = catalogContext(data);
+/** The student's Plan, read under THEIR identity, or a reason it is not
+ * here.
+ *
+ * Read lazily — on the first tool call that needs it, not at connect —
+ * because most questions are about the Bulletin and a student with no
+ * Plan should not pay for a database round trip to ask what CMPSC 465
+ * requires.
+ *
+ * A FAILED READ IS NOT AN ABSENT PLAN. Returning the catalog-only
+ * context on an error would answer "what do I still need?" with an
+ * audit of nothing, which reads as "nothing" (iron rule 2). The reason
+ * travels so the tool can say it. */
+async function planContext(
+  env: Env,
+  data: EditionCatalog,
+  accessToken: string,
+): Promise<{ ctx: ToolContext } | { unavailable: string }> {
+  if (!env.SUPABASE_URL || !env.SUPABASE_ANON_KEY) {
+    return { unavailable: "Plan access is not configured on this connector." };
+  }
+  const store = new SupabasePlanStore({
+    url: env.SUPABASE_URL,
+    anonKey: env.SUPABASE_ANON_KEY,
+    // THE STUDENT'S OWN TOKEN. Row-level security is what refuses a
+    // cross-user read; this file never filters by user id, so a policy
+    // failure cannot be masked by an application that happened to be
+    // correct.
+    accessToken,
+  });
 
+  try {
+    const held = await store.read(await editionsFor(env));
+    // NO PLAN IS NOT A FAILURE, and the two must not share a message. A
+    // student who has not built one needs to be sent to the planner; a
+    // student whose Plan would not load needs to know their assistant is
+    // answering from nothing, not to be told they have no degree plan.
+    if (!held) {
+      return {
+        unavailable:
+          "You have not built a plan yet. Start one at https://lionsdegree.com/plan/ — " +
+          "course, prerequisite and program questions work without one.",
+      };
+    }
+    // The Plan's own Edition, through the same warm per-Edition cache
+    // the catalog questions use.
+    const data = await catalogFor(env, held.plan.edition);
+    return { ctx: await contextFor(held, data) };
+  } catch (e) {
+    // The reason is logged; what the model gets is what the student can
+    // act on. An audit must never be answered from a Plan that failed to
+    // load (iron rule 2).
+    console.error("[mcp] plan unavailable", e);
+    return { unavailable: "Your plan could not be read right now. Please try again in a moment." };
+  }
+}
+
+function mcpServer(env: Env, data: EditionCatalog, accessToken: string): Server {
+  const server = new Server({ name: "lionsdegree", version: "0.1.0" }, { capabilities: { tools: {} } });
+
+  // Everything is offered now: the caller is a signed-in student, so
+  // the Plan-shaped reads are answerable. The four mutating tools stay
+  // out until #36 gives them a safe way to write.
   server.setRequestHandler(ListToolsRequestSchema, async () => ({
-    tools: listTools({ catalogOnly: true }),
+    tools: listTools({ catalogOnly: true, plus: READABLE_PLAN_TOOLS }),
   }));
 
   server.setRequestHandler(CallToolRequestSchema, async (req) => {
-    const result = await executeTool(req.params.name, (req.params.arguments ?? {}) as Record<string, unknown>, ctx);
+    const name = req.params.name;
+    const args = (req.params.arguments ?? {}) as Record<string, unknown>;
+
+    // A tool nobody advertised is still a tool somebody can name, and
+    // the honest refusal is "not here yet" — not "this connector has no
+    // plan loaded", which was true before #35 and would now send a
+    // student to build a second plan they already have.
+    if (needsPlan(name) && !READABLE_PLAN_TOOLS.has(name)) {
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify({
+            error:
+              `${name} is not available on the hosted connector yet — it changes your plan, ` +
+              "and changes are made at https://lionsdegree.com/plan/ for now.",
+          }),
+        }],
+      };
+    }
+
+    // Catalog questions never touch the database.
+    if (!READABLE_PLAN_TOOLS.has(name)) {
+      const result = await executeTool(name, args, catalogContext(data));
+      return { content: [{ type: "text", text: JSON.stringify(result) }] };
+    }
+
+    const got = await planContext(env, data, accessToken);
+    if ("unavailable" in got) {
+      return { content: [{ type: "text", text: JSON.stringify({ error: got.unavailable }) }] };
+    }
+    const result = await executeTool(name, args, got.ctx);
     return { content: [{ type: "text", text: JSON.stringify(result) }] };
   });
 
@@ -190,7 +289,17 @@ const SIGN_IN = "Sign in to LionsDegree to use this connector. See https://lions
  *
  * Runs BEFORE anything is read or computed. An anonymous request must
  * cost this service nothing. */
-async function identify(request: Request, env: Env, resourceUrl: URL): Promise<VerifiedIdentity | Response> {
+/** A verified caller, WITH the token they presented.
+ *
+ * The raw token travels because the student's Plan is read with it: the
+ * access token we issue IS their Supabase session, so handing it to
+ * PostgREST is what makes row-level security — rather than a filter in
+ * our code — the thing standing between two students' degrees. The
+ * claims alone could not do that; a `sub` is something this service
+ * could assert about anyone. */
+type Caller = VerifiedIdentity & { token: string };
+
+async function identify(request: Request, env: Env, resourceUrl: URL): Promise<Caller | Response> {
   // BOTH, stated at the door. The secret verifies a token; the KV
   // namespace is how a student's revocation is honoured, and
   // `isRevoked` fails closed without it — so a deploy missing KV would
@@ -224,7 +333,7 @@ async function identify(request: Request, env: Env, resourceUrl: URL): Promise<V
   // token costs a KV read of nothing.
   if (await isRevoked(env, bearer)) return rpcError(401, SIGN_IN, challenge);
 
-  return identity;
+  return { ...identity, token: bearer };
 }
 
 /** Questions per student per day, if nothing says otherwise. Generous on
@@ -293,7 +402,7 @@ export default {
         // saying "no session".
         sessionIdGenerator: undefined,
       });
-      await mcpServer(data).connect(transport);
+      await mcpServer(env, data, who.token).connect(transport);
       return await transport.handleRequest(request);
     } catch (e) {
       // A JSON-RPC error, never a stack trace. The caller is a protocol

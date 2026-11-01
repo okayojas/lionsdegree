@@ -31,6 +31,7 @@ import {
   type Schedule,
 } from "@psu-planner/engine";
 import { loadEdition, type EditionCatalog } from "./catalog.js";
+import { FilePlanStore, type PlanStore, type StoredPlan } from "./planStore.js";
 import { FsCatalogSource, type CatalogSource } from "./source.js";
 import { executeMutation } from "./mutations.js";
 
@@ -43,6 +44,11 @@ export interface ToolContext {
    * refuse by name rather than reaching into it — see CATALOG_ONLY. */
   plan: PlanDoc | null;
   planPath: string;
+  /** The revision and time the Plan was read at, when it came from a
+   * store that knows. Reported by `get_plan`: a model that cannot say
+   * how current its view is will imply it is live. */
+  rev?: number;
+  updatedAt?: string;
   data: EditionCatalog;
   items: PlanItem[];
   sched: Schedule;
@@ -88,13 +94,32 @@ export const CATALOG_ONLY: ReadonlySet<string> = new Set([
 /** Does this tool need a student's Plan? Everything not named above. */
 export const needsPlan = (name: string): boolean => !CATALOG_ONLY.has(name);
 
+/** Plan-shaped tools that only READ.
+ *
+ * The hosted connector can offer these once a student is signed in
+ * (#35). The four that WRITE stay out until #36 gives them a safe way
+ * to do it — a mutation against a Plan the browser is also editing is
+ * a different problem, and it has its own ticket.
+ *
+ * Named explicitly rather than derived as "not a mutation": the same
+ * allowlist reasoning as CATALOG_ONLY. A tool nobody classified should
+ * be unavailable, not quietly writable. */
+export const READABLE_PLAN_TOOLS: ReadonlySet<string> = new Set([
+  "get_plan",
+  "audit_requirements",
+  "check_prerequisites",
+  "suggest_slot_courses",
+]);
+
 /** Every tool this server actually offers, derived from the definitions
  * so a new one cannot be added without becoming callable. */
 const KNOWN_TOOLS: ReadonlySet<string> = new Set(allTools().map((t) => t.name));
 
-export function listTools(opts: { catalogOnly?: boolean } = {}): ToolDefinition[] {
+export function listTools(opts: { catalogOnly?: boolean; plus?: ReadonlySet<string> } = {}): ToolDefinition[] {
   const all = allTools();
-  return opts.catalogOnly ? all.filter((t) => CATALOG_ONLY.has(t.name)) : all;
+  if (!opts.catalogOnly) return all;
+  const extra = opts.plus ?? new Set<string>();
+  return all.filter((t) => CATALOG_ONLY.has(t.name) || extra.has(t.name));
 }
 
 function allTools(): ToolDefinition[] {
@@ -224,18 +249,43 @@ function allTools(): ToolDefinition[] {
  * `source` instead is what lets the hosted connector reuse every line of
  * this without a second implementation. */
 export async function loadContext(opts: {
-  planPath: string;
+  /** Still accepted, and still means a file on disk: the local server
+   * passes one. The hosted connector passes a `store` instead, which is
+   * what lets both share every line below. */
+  planPath?: string;
+  store?: PlanStore;
   catalogRoot?: string;
   source?: CatalogSource;
 }): Promise<ToolContext> {
   const source = opts.source ?? new FsCatalogSource(opts.catalogRoot!);
-  const text = await fs.promises.readFile(opts.planPath, "utf-8");
+  const store = opts.store ?? new FilePlanStore(opts.planPath!);
   const editions = await source.editions();
-  const parsed = parsePlanFile(text, editions);
-  if (!parsed.ok) throw new Error(parsed.reason);
 
-  const data = await loadEdition(source, parsed.plan.edition ?? editions[0]);
+  const held = await store.read(editions);
+  if (!held) {
+    throw new Error(
+      "There is no plan to read. Build one at https://lionsdegree.com/plan/ — " +
+        "course, prerequisite and program questions work without one.",
+    );
+  }
+  const data = await loadEdition(source, held.plan.edition ?? editions[0]);
+  return contextFor(held, data, opts.planPath ?? "");
+}
 
+/** Everything the tools need, from a Plan and the catalog its Edition
+ * governs.
+ *
+ * Split out of `loadContext` so the hosted connector can share it: the
+ * Worker already holds a warm, per-Edition catalog and reads the Plan
+ * itself (so that "you have none" and "it could not be read" can be
+ * answered differently). Without this seam it would have its own copy of
+ * the four lines below, and a student's audit would quietly depend on
+ * which server answered. */
+export async function contextFor(
+  held: StoredPlan,
+  data: EditionCatalog,
+  planPath = "",
+): Promise<ToolContext> {
   // THE LOAD THAT MAKES PREREQUISITES ANSWERABLE. The audit index carries
   // no prerequisite structure, so every Course arrives as `astComplete:
   // false` -- which correctly reports "could not be checked" rather than
@@ -243,10 +293,20 @@ export async function loadContext(opts: {
   // the subject files behind the Plan's own Courses, plus one hop into
   // what their prerequisites name, is what turns that into real answers.
   // It is the Plan's subjects, not the catalog: a dozen files, not 527.
-  await data.ensureCourses(planCodes(parsed.plan));
+  await data.ensureCourses(planCodes(held.plan));
 
-  const items = buildItems(parsed.plan, data.catalog);
-  return { plan: parsed.plan, planPath: opts.planPath, data, items, sched: buildSchedule(parsed.plan, items, data.catalog) };
+  const items = buildItems(held.plan, data.catalog);
+  return {
+    plan: held.plan,
+    planPath,
+    // What the store actually held, carried so `get_plan` can say how
+    // current this view is rather than implying it is live.
+    rev: held.rev,
+    updatedAt: held.updatedAt,
+    data,
+    items,
+    sched: buildSchedule(held.plan, items, data.catalog),
+  };
 }
 
 /** Every Course code a Plan mentions, including ones it has removed or
@@ -404,6 +464,16 @@ export async function executeTool(
     case "get_plan": {
       const prog = progress(plan, items, cat);
       return {
+        // HOW CURRENT THIS IS, said rather than implied. A model with no
+        // way to express staleness will answer as though the view were
+        // live, and a student acting on an hour-old plan has no reason
+        // to doubt it.
+        as_of: ctx.updatedAt || undefined,
+        revision: ctx.rev,
+        freshness_note:
+          ctx.updatedAt
+            ? `This is the plan as it was last saved (${ctx.updatedAt}). If the student has edited it since in another window, say so rather than assuming this is current.`
+            : undefined,
         edition: data.edition,
         edition_note:
           "Requirements come from the bulletin edition in force when the student entered their major. This plan follows " +

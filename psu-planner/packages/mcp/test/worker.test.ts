@@ -163,13 +163,13 @@ describe("what the connector offers", () => {
   });
 
   it("does not advertise a tool that would always refuse", async () => {
-    // Nothing here has a Plan until sign-in exists (#34). Offering
-    // `get_plan` to a model that cannot use it wastes a turn and teaches
-    // it that this connector is unreliable.
+    // The four that CHANGE a Plan. Reads went hosted in #35; writes do
+    // not until #36, and offering a tool that will always say no wastes
+    // a turn and teaches the model this connector is unreliable.
     const res = await worker.fetch(POST(rpc("tools/list")), env);
     const text = await res.text();
-    for (const planShaped of ["get_plan", "audit_requirements", "remove_course", "optimize_schedule"]) {
-      expect(text, `${planShaped} was offered without an account`).not.toMatch(new RegExp(`"${planShaped}"`));
+    for (const writes of ["remove_course", "fill_slot", "add_term", "skip_term"]) {
+      expect(text, `${writes} was offered before hosted writes exist`).not.toMatch(new RegExp(`"${writes}"`));
     }
   });
 });
@@ -220,12 +220,16 @@ describe("answering a question about the Bulletin", () => {
     expect(depth(chain)).toBeGreaterThan(1);
   });
 
-  it("refuses a Plan-shaped question in words, not a crash", async () => {
-    // A model can still name an unlisted tool. It gets an explanation it
-    // can relay, which is the difference between "I can't see your
-    // schedule" and the assistant reporting a server error.
+  it("explains itself when this deploy has no plan storage", async () => {
+    // The env here is catalog-only: no Supabase. A deploy configured
+    // that way must say so in words a model can relay, which is the
+    // difference between "I can't see your schedule" and the assistant
+    // reporting a server error. And it must say nothing about WHICH
+    // binding is missing — that is the operator's business.
     const r = (await callTool("get_plan", {})) as { error?: string };
-    expect(String(r.error ?? ""), "get_plan did not explain itself").toMatch(/not signed in|needs your plan/i);
+    const said = String(r.error ?? "");
+    expect(said, "get_plan did not explain itself").toMatch(/not configured|could not be read/i);
+    expect(said).not.toMatch(/SUPABASE|ANON_KEY/);
   });
 });
 
