@@ -369,11 +369,29 @@ export default {
       // thing a health check can report.
       try {
         const data = await catalogFor(env);
+
+        // WHAT THE TIMER LAST FOUND, alongside the live check. The two
+        // answer different questions: this request proves the service
+        // is answering NOW, the stored report proves it has been. An
+        // outage that started and ended while nobody was watching is
+        // invisible to a liveness probe and visible here.
+        const last = await lastSelfCheck(env);
+
         // The Edition and the course count are already stated on the
         // public site, so this adds nothing a reader could not already
         // have — and both are what makes this check mean "the catalog
         // answers" rather than "the process is up".
-        return Response.json({ ok: true, edition: data.edition, courses: Object.keys(data.catalog).length });
+        return Response.json({
+          ok: true,
+          edition: data.edition,
+          courses: Object.keys(data.catalog).length,
+          // `detail` is stripped: it carries an upstream message, which
+          // is for the log and not for an anonymous caller
+          // (DECISIONS.md 5.0 S5/S8/S13).
+          last_self_check: last
+            ? { ok: last.ok, at: last.at }
+            : "none recorded in the last hour — the scheduled check may not be running",
+        });
       } catch (e) {
         // The reason is LOGGED, not returned. An internal message can
         // carry a file layout or a build command, and an anonymous
@@ -435,4 +453,91 @@ export default {
       );
     }
   },
+
+  /** A SELF-CHECK ON A TIMER, so the first person to notice the
+   * connector is broken is not a student mid-question.
+   *
+   * It does the thing the connector does — reads the catalog and
+   * answers a real Course question — rather than returning 200 to prove
+   * the isolate booted. Every outage this service has had so far was a
+   * dependency refusing something ("expiration_ttl must be at least
+   * 60", "cache_ttl must be at least 30"): the process was fine and the
+   * answers were not, which is exactly what a liveness ping cannot see.
+   *
+   * The result is both LOGGED at error level, where Cloudflare's alert
+   * on Worker errors can reach a human, and recorded in KV so /health
+   * can say when the last check ran and what it found. An outage that
+   * started while nobody was looking should still be discoverable
+   * afterwards. */
+  async scheduled(_event: unknown, env: Env, ctx?: { waitUntil(p: Promise<unknown>): void }): Promise<void> {
+    const run = selfCheck(env);
+    ctx?.waitUntil(run);
+    await run;
+  },
 };
+
+/** Where the last self-check is kept. Short-lived: a report older than
+ * this is not evidence that anything is working, and `/health` says so
+ * rather than showing a stale green. */
+const HEALTH_KEY = "health:last";
+const HEALTH_TTL = 3600;
+
+export interface HealthReport {
+  ok: boolean;
+  at: string;
+  /** What failed, for the operator. Never returned to a caller. */
+  detail?: string;
+  edition?: string;
+  courses?: number;
+}
+
+async function selfCheck(env: Env): Promise<HealthReport> {
+  const at = new Date().toISOString();
+  let report: HealthReport;
+  try {
+    const data = await catalogFor(env);
+    // A REAL ANSWER, not a count. The catalog can load and still answer
+    // nothing — the subject files are fetched lazily, and the bug that
+    // shipped in #31 was exactly this: 0 of 367 subjects resolved while
+    // the index loaded perfectly.
+    const result = (await executeTool(
+      "get_course_details",
+      { code: SELF_CHECK_COURSE },
+      catalogContext(data),
+    )) as { title?: string; error?: string };
+
+    if (!result?.title) {
+      throw new Error(`the connector could not answer for ${SELF_CHECK_COURSE}: ${result?.error ?? "no title"}`);
+    }
+    report = { ok: true, at, edition: data.edition, courses: Object.keys(data.catalog).length };
+  } catch (e) {
+    // LOUD, because this is the whole point of the check. Cloudflare's
+    // alerting watches for exactly this.
+    console.error("[mcp] SELF-CHECK FAILED — the connector is not answering", e);
+    report = { ok: false, at, detail: (e as Error).message };
+  }
+
+  try {
+    await env.OAUTH?.put(HEALTH_KEY, JSON.stringify(report), { expirationTtl: HEALTH_TTL });
+  } catch (e) {
+    // The check itself must not fail because its bookkeeping did.
+    console.error("[mcp] could not record the self-check result", e);
+  }
+  return report;
+}
+
+async function lastSelfCheck(env: Env): Promise<HealthReport | null> {
+  try {
+    const raw = await env.OAUTH?.get(HEALTH_KEY, { cacheTtl: 60 });
+    return raw ? (JSON.parse(raw) as HealthReport) : null;
+  } catch (e) {
+    // Never let the bookkeeping take down the check it reports on.
+    console.error("[mcp] could not read the last self-check", e);
+    return null;
+  }
+}
+
+/** A Course that has existed in every Edition and has prerequisites, so
+ * a self-check that passes means the catalog answered rather than
+ * merely loaded. */
+const SELF_CHECK_COURSE = "MATH 141";

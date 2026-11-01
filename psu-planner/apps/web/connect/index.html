@@ -53,8 +53,9 @@
           about a minute to set up, with nothing to install.
         </p>
         <p class="note">
-          <strong>Being built now.</strong> This page describes how it will
-          work so you know what is coming; the steps below are not live yet.
+          <strong>You will need an account.</strong> Your assistant reads the
+          plan saved to your LionsDegree account, so step one is signing in —
+          and you can disconnect it again at any time.
         </p>
       </div>
     </header>
@@ -75,25 +76,24 @@
 
         <li>
           <h2>Copy your connection link</h2>
-          <!-- The caveat comes BEFORE the address, and there is no Copy
-               button until there is something to copy. It used to sit
-               underneath one, which invites the copy and explains afterwards
-               that it will not work.
+          <!-- The path is /mcp, not /sse. /sse is the older transport and is
+               not what is served here -- advertising it meant a student who
+               saved the link had saved the wrong one, which went unnoticed
+               for months because nothing compared this page to the route the
+               server implements. apps/web/test/connect-address.test.ts is
+               that comparison now.
 
-               The path is /mcp, not /sse. /sse is the older transport and is
-               not what will be served here -- advertising it meant a student
-               who saved the link now would have saved the wrong one. -->
-          <p class="pending">
-            <strong>Not live yet.</strong> The connector is being built — see
-            <a href="https://github.com/okayojas/lionsdegree/issues/30">issue&nbsp;30</a>
-            for where it is up to. Nothing to paste anywhere yet.
-          </p>
+               The Copy button was deliberately withheld while the address
+               did not work: inviting the copy and explaining underneath that
+               it will not work is worse than not offering it. It is back
+               because the address is live. -->
           <p>
-            When it lands, this is the address your assistant will use. It is
-            the same for everyone — signing in is what makes it yours.
+            This is the address your assistant needs. It is the same for
+            everyone — signing in is what makes it yours.
           </p>
-          <div class="copyfield is-pending">
+          <div class="copyfield">
             <span class="copyfield-url" id="connector-url">https://mcp.lionsdegree.com/mcp</span>
+            <button type="button" class="copyfield-btn" data-copy="connector-url">Copy</button>
           </div>
         </li>
 

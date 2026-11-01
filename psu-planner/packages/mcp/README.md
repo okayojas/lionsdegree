@@ -96,6 +96,44 @@ not the newest one. The server reads the edition recorded in your plan file and
 loads only that one. If your plan names an edition this package does not carry,
 it says so and stops rather than answering against a different bulletin.
 
+## Running the hosted connector (maintainers)
+
+`mcp.lionsdegree.com` is a Cloudflare Worker. `wrangler.toml` holds everything
+that can live in version control; four things cannot, and the connector fails
+closed without them — a deploy missing any of these refuses every request
+rather than quietly serving an open one.
+
+```
+npx wrangler secret put SUPABASE_JWT_SECRET   # Supabase → Settings → API → JWT Secret
+npx wrangler secret put SUPABASE_ANON_KEY     # public by design, but it is config, not code
+npx wrangler deploy
+```
+
+Then, outside this repository:
+
+1. **Supabase → Authentication → URL Configuration** — add
+   `https://mcp.lionsdegree.com/callback` to the allowed redirect URLs. Without
+   it the sign-in hop comes back rejected, and the failure looks like the
+   student's assistant misbehaving.
+2. **Apply the migrations** in `supabase/migrations`. `0003` is the one that
+   refuses a plan write whose revision went backwards; without it the
+   compare-and-swap loses its backstop.
+3. **Cloudflare → Workers → lionsdegree-mcp → Settings → Alerts** — turn on the
+   error-rate notification. The Worker runs a self-check every fifteen minutes
+   and logs loudly when it cannot answer; nothing reads that log unless
+   somebody is told.
+
+**Check it worked** by asking the connector itself:
+
+```
+curl https://mcp.lionsdegree.com/health
+```
+
+It answers with the edition, the course count, and when the last scheduled
+self-check ran. `last_self_check` saying *none recorded* means the cron is not
+firing — which is its own thing to fix, because an unmonitored connector looks
+exactly like a monitored one until a student finds the problem for you.
+
 ## Licence
 
 Apache-2.0. Course data is Penn State's; see NOTICE in the repository.

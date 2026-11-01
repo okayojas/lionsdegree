@@ -479,13 +479,13 @@ test.describe("connecting an assistant", () => {
     await expect(steps.nth(1)).toContainText(/copy/i);
   });
 
-  test("says plainly that the connector is not live yet", async ({ page }) => {
-    // Shipping a dead link with no warning sends students to paste something
-    // that silently fails, and they blame their assistant.
+  test("no longer says the connector is not live", async ({ page }) => {
+    // INVERTED AT GO-LIVE (#38). The warning was right while the address
+    // was dead; left up afterwards it turns away the students the whole
+    // thing was built for.
     await page.goto("/connect/");
-    // Scoped to the callout rather than the whole page: the header now also
-    // says the steps are not live yet, and an unscoped match found both.
-    await expect(page.locator(".pending")).toContainText(/not live yet/i);
+    await expect(page.locator(".pending"), "the not-live callout is still here").toHaveCount(0);
+    await expect(page.locator("body")).not.toContainText(/not live yet/i);
   });
 
   test("is reachable from the landing page and the footer", async ({ page }) => {
@@ -500,15 +500,28 @@ test.describe("connecting an assistant, with scripting on", () => {
     await expectNoA11yViolations(page);
   });
 
-  test("offers nothing to copy while the connector does not exist", async ({ page }) => {
-    // There WAS a Copy button, with "not live yet" printed underneath it.
-    // That invites the copy and explains afterwards that it cannot work.
-    // The caveat comes first now and the button is gone until there is a
-    // service behind it -- at which point this assertion inverts, which is
-    // the right moment to have to think about it.
+  test("offers the address to copy, now that there is a service behind it", async ({ page }) => {
+    // THE INVERSION THE OLD TEST ASKED FOR. The button was withheld
+    // while the address was dead, because inviting the copy and
+    // explaining underneath that it will not work is worse than not
+    // offering it. The service exists, so the affordance comes back.
     await page.goto("/connect/");
-    await expect(page.getByRole("button", { name: /^copy$/i })).toHaveCount(0);
-    await expect(page.locator(".pending")).toContainText(/not live yet/i);
+    const copy = page.getByRole("button", { name: /^copy$/i });
+    await expect(copy, "there is nothing to press").toHaveCount(1);
+    await expect(copy).toBeVisible();
+    await expect(page.locator(".copyfield.is-pending"), "the address is still greyed out").toHaveCount(0);
+  });
+
+  test("puts the real address on the clipboard, not the label beside it", async ({ page, context }) => {
+    // The button copies `#connector-url`. A student pastes whatever this
+    // put there into a settings box they cannot easily check, so it has
+    // to be the address and nothing else -- no stray whitespace, no
+    // surrounding prose.
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+    await page.goto("/connect/");
+    await page.getByRole("button", { name: /^copy$/i }).click();
+    const copied = await page.evaluate(() => navigator.clipboard.readText());
+    expect(copied, "the clipboard did not get the connector address").toBe("https://mcp.lionsdegree.com/mcp");
   });
 
   test("advertises the transport path the connector will actually serve", async ({ page }) => {

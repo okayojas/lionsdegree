@@ -19,6 +19,24 @@ compatibility_date = "2026-10-01"
 # bundler fails on the import graph rather than at runtime.
 compatibility_flags = ["nodejs_compat"]
 
+# THE PUBLISHED ADDRESS (#38). `/*`, not `/mcp`, because /mcp is not the
+# whole connector: OAuth discovery, dynamic client registration,
+# /authorize, /callback and /token all live on this host, and a route
+# matching only the endpoint would drop a student at a 404 in the middle
+# of signing in. The handler owns its own 404 for everything else.
+#
+# `custom_domain` makes Cloudflare issue and renew the certificate and
+# create the DNS record, which is why there is no separate CNAME to keep
+# in step with this file.
+#
+# apps/web/test/connect-address.test.ts asserts this hostname against the
+# one /connect/ tells students to paste. That test exists because the
+# page published a hostname that did not resolve, on a transport the
+# server never spoke, for months — with nothing comparing the two.
+[[routes]]
+pattern = "mcp.lionsdegree.com"
+custom_domain = true
+
 [assets]
 directory = "./catalog"
 binding = "CATALOG"
@@ -60,6 +78,16 @@ SUPABASE_URL = "https://bjwjfmqcmbcnnzqnabqm.supabase.co"
 # Questions per student per day. Generous: this stops one person
 # exhausting the service, it does not ration anybody.
 RATE_LIMIT_PER_DAY = "1000"
+
+# THE SELF-CHECK (#38). Every fifteen minutes the Worker answers a real
+# Course question against the real catalog and logs loudly if it cannot
+# — so the first person to notice the connector is broken is not a
+# student mid-question. `/health` reports what the last run found.
+#
+# Fifteen minutes is the gap a student might hit, not a budget: these
+# runs are free at this frequency and the check costs one asset read.
+[triggers]
+crons = ["*/15 * * * *"]
 
 [observability]
 enabled = true
