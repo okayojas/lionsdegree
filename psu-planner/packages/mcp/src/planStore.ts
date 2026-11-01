@@ -16,6 +16,19 @@
  */
 import { PLAN_FILE_FORMAT, PLAN_FILE_VERSION, parsePlanFile, type PlanDoc } from "@psu-planner/engine";
 
+/** The Plan was reached and cannot be opened.
+ *
+ * SEPARATE FROM A FAILED READ, because the two deserve opposite advice.
+ * A database that did not answer is worth retrying; a Plan pinned to a
+ * bulletin we do not carry is not — Editions are forward-only and never
+ * backfilled (ADR 0001), so that year is not coming. Telling a student
+ * to try again in a moment is advice that cannot come true, and it hides
+ * a problem only a human can resolve.
+ *
+ * The message is the engine's own refusal, which is already a sentence
+ * written for a student to read, so it travels verbatim. */
+export class PlanUnopenable extends Error {}
+
 export interface StoredPlan {
   plan: PlanDoc;
   /** The revision the store held when this was read.
@@ -64,7 +77,7 @@ export class FilePlanStore implements PlanStore {
     const { default: fs } = await import("node:fs");
     if (!fs.existsSync(this.path)) return null;
     const parsed = parsePlanFile(fs.readFileSync(this.path, "utf-8"), editions);
-    if (!parsed.ok) throw new Error(parsed.reason);
+    if (!parsed.ok) throw new PlanUnopenable(parsed.reason);
     return { plan: parsed.plan, rev: parsed.plan.rev ?? 0, updatedAt: parsed.plan.updatedAt ?? "" };
   }
 }
@@ -90,6 +103,14 @@ export class SupabasePlanStore implements PlanStore {
     // and the policy decides what they may see; adding a filter here
     // would hide a policy failure behind an application that happened
     // to be correct.
+    //
+    // ONE ROW, the most recently updated. A student can hold more than
+    // one (the table is keyed by user and plan id), and the one they
+    // touched last is the one they mean — the planner writes on every
+    // edit, so "most recently updated" is "the one they are working
+    // on". Reporting `as_of` is what keeps this honest: a student
+    // looking at a different plan in another window can see that the
+    // answer is about a copy saved at some other time.
     const url =
       `${base}/rest/v1/plans?select=doc,rev,updated_at&order=updated_at.desc&limit=1`;
 
@@ -105,7 +126,14 @@ export class SupabasePlanStore implements PlanStore {
       });
     } catch (e) {
       // A read that did not happen is not a student with no Plan.
-      throw new Error(`Your plan could not be read right now (${(e as Error).message}).`);
+      //
+      // The upstream message is LOGGED, not interpolated. A fetch
+      // failure carries a hostname and sometimes a URL with query
+      // parameters, and the student can act on neither (DECISIONS.md
+      // 5.0 S5/S8/S13). The local server prints this message verbatim,
+      // so "the Worker strips it later" would not be enough.
+      console.error("[plan] read failed", e);
+      throw new Error("Your plan could not be read right now.");
     }
 
     if (!res.ok) {
@@ -128,7 +156,7 @@ export class SupabasePlanStore implements PlanStore {
     // the engine's own reader so a malformed one is refused here rather
     // than reasoned about downstream.
     const parsed = parsePlanFile(asPlanFile(row.doc), editions);
-    if (!parsed.ok) throw new Error(parsed.reason);
+    if (!parsed.ok) throw new PlanUnopenable(parsed.reason);
 
     return {
       plan: parsed.plan,

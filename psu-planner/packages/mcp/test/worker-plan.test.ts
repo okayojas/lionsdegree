@@ -15,6 +15,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { resetInMemoryCounters, type KVLike } from "@psu-planner/identity";
 import worker, { type Env } from "../src/worker.js";
+import { MUTATIONS } from "../src/mutations.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const CATALOG = path.resolve(here, "..", "catalog");
@@ -196,10 +197,17 @@ describe("which bulletin a plan is read against", () => {
     expect(result!.edition, "the plan was audited against a bulletin it is not pinned to").toBe("2025-2026");
   });
 
-  it("falls back to the newest only when the plan names none", async () => {
-    db = database(rows(PLAN));
+  it("falls back to the OLDEST when the plan names none, not the newest", async () => {
+    // A Plan with no Edition was made before Plans were pinned, so it
+    // belongs to a continuing student — and ADR 0001 rejected "newest
+    // wins" precisely because it silently re-plans them against
+    // requirements that do not govern them. The local server has always
+    // read it this way; this is the Worker agreeing, because a student's
+    // audit must not depend on which server answered.
+    const { edition: _dropped, ...unpinned } = PLAN;
+    db = database(rows(unpinned));
     const { result } = await call(env(), `Bearer ${await signedIn()}`, "get_plan");
-    expect(result!.edition).toBe("2026-2027");
+    expect(result!.edition, "the hosted connector re-planned an unpinned student").toBe("2025-2026");
   });
 
   it("refuses a plan pinned to a bulletin this connector does not carry", async () => {
@@ -208,7 +216,19 @@ describe("which bulletin a plan is read against", () => {
     // answer (iron rule 2).
     db = database(rows({ ...PLAN, edition: "2019-2020" }));
     const { result } = await call(env(), `Bearer ${await signedIn()}`, "get_plan");
-    expect(result!.error, "a plan was opened against the wrong bulletin").toMatch(/could not be read/i);
+    expect(result!.error, "a plan was opened against the wrong bulletin").toMatch(/doesn't have|does not have/i);
+  });
+
+  it("does not tell them to try again, because that year is never coming", async () => {
+    // THE FOURTH OUTCOME, and it was wearing the transient one's
+    // message. Editions are forward-only and never backfilled (ADR
+    // 0001): "try again in a moment" is advice that cannot come true,
+    // and it hides a problem only a human can resolve.
+    db = database(rows({ ...PLAN, edition: "2019-2020" }));
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "get_plan");
+    expect(result!.error, "a permanent refusal was reported as a transient one").not.toMatch(/try again/i);
+    expect(result!.error, "does not say which bulletin the plan follows").toMatch(/2019-2020/);
+    expect(result!.error, "does not say what this connector does have").toMatch(/2026-2027/);
   });
 });
 
@@ -228,7 +248,7 @@ describe("a student with no plan stored", () => {
   it("is sent to the planner, not told their degree is empty", async () => {
     db = database(() => Response.json([]));
     const { result } = await call(env(), `Bearer ${await signedIn()}`, "audit_requirements", {});
-    expect(result!.error).toMatch(/not built a plan|start one/i);
+    expect(result!.error).toMatch(/no plan to read|build one/i);
     expect(result!.error).toMatch(/lionsdegree\.com\/plan/);
   });
 });
@@ -242,7 +262,7 @@ describe("when the plan cannot be read", () => {
     db = database(() => new Response("down", { status: 503 }));
     const { result } = await call(env(), `Bearer ${await signedIn()}`, "audit_requirements", {});
     expect(result!.error, "a failed read was answered as a finished degree").toMatch(/could not be read/i);
-    expect(result!.error).not.toMatch(/not built a plan/i);
+    expect(result!.error, "a failed read was reported as having no plan").not.toMatch(/build one/i);
     expect(result!.requirements ?? null, "an audit was produced from a plan that never loaded").toBeNull();
   });
 
@@ -268,7 +288,10 @@ describe("what the connector offers", () => {
     // also editing is a different problem with its own ticket, and
     // offering the tool before it is solved invites the model to try.
     const offered = await tools(env(), `Bearer ${await signedIn()}`);
-    for (const writes of ["remove_course", "fill_slot", "add_term", "skip_term"]) {
+    // DERIVED, not typed out. There are seven mutations and the first
+    // draft of this list named four — the same miscount that put three
+    // of them on the unauthenticated surface in #33.
+    for (const writes of MUTATIONS) {
       expect(offered, `${writes} was offered before hosted writes exist`).not.toContain(writes);
     }
   });

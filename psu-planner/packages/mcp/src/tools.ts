@@ -31,7 +31,7 @@ import {
   type Schedule,
 } from "@psu-planner/engine";
 import { loadEdition, type EditionCatalog } from "./catalog.js";
-import { FilePlanStore, type PlanStore, type StoredPlan } from "./planStore.js";
+import { FilePlanStore, type StoredPlan } from "./planStore.js";
 import { FsCatalogSource, type CatalogSource } from "./source.js";
 import { executeMutation } from "./mutations.js";
 
@@ -111,15 +111,23 @@ export const READABLE_PLAN_TOOLS: ReadonlySet<string> = new Set([
   "suggest_slot_courses",
 ]);
 
+/** THE HOSTED SURFACE, in one place.
+ *
+ * What a signed-in student's assistant is offered: every catalog tool,
+ * plus the Plan tools that only read. Declared here rather than assembled
+ * at the call site so there is one answer to "what does the connector
+ * expose?" — and so `mcp-surface.test.ts` can check it against the
+ * mutation list by derivation instead of against a name list somebody
+ * has to remember to update. */
+export const HOSTED_TOOLS: ReadonlySet<string> = new Set([...CATALOG_ONLY, ...READABLE_PLAN_TOOLS]);
+
 /** Every tool this server actually offers, derived from the definitions
  * so a new one cannot be added without becoming callable. */
 const KNOWN_TOOLS: ReadonlySet<string> = new Set(allTools().map((t) => t.name));
 
-export function listTools(opts: { catalogOnly?: boolean; plus?: ReadonlySet<string> } = {}): ToolDefinition[] {
+export function listTools(opts: { offer?: ReadonlySet<string> } = {}): ToolDefinition[] {
   const all = allTools();
-  if (!opts.catalogOnly) return all;
-  const extra = opts.plus ?? new Set<string>();
-  return all.filter((t) => CATALOG_ONLY.has(t.name) || extra.has(t.name));
+  return opts.offer ? all.filter((t) => opts.offer!.has(t.name)) : all;
 }
 
 function allTools(): ToolDefinition[] {
@@ -249,28 +257,34 @@ function allTools(): ToolDefinition[] {
  * `source` instead is what lets the hosted connector reuse every line of
  * this without a second implementation. */
 export async function loadContext(opts: {
-  /** Still accepted, and still means a file on disk: the local server
-   * passes one. The hosted connector passes a `store` instead, which is
-   * what lets both share every line below. */
-  planPath?: string;
-  store?: PlanStore;
+  /** A plan file on disk — what the local server has. The hosted
+   * connector does not come through here: it reads its own store so it
+   * can tell "you have none" apart from "it would not load", and then
+   * calls `contextFor` with the result. Both end up in the same place. */
+  planPath: string;
   catalogRoot?: string;
   source?: CatalogSource;
 }): Promise<ToolContext> {
   const source = opts.source ?? new FsCatalogSource(opts.catalogRoot!);
-  const store = opts.store ?? new FilePlanStore(opts.planPath!);
   const editions = await source.editions();
 
-  const held = await store.read(editions);
-  if (!held) {
-    throw new Error(
-      "There is no plan to read. Build one at https://lionsdegree.com/plan/ — " +
-        "course, prerequisite and program questions work without one.",
-    );
-  }
-  const data = await loadEdition(source, held.plan.edition ?? editions[0]);
-  return contextFor(held, data, opts.planPath ?? "");
+  const held = await new FilePlanStore(opts.planPath).read(editions);
+  if (!held) throw new Error(NO_PLAN);
+  // The engine's reader has already pinned this: an unpinned Plan reads
+  // as the oldest Edition, and one pinned to an Edition we do not carry
+  // was refused above. Restating either rule here is how the two servers
+  // would come to disagree about which requirements govern a student.
+  const data = await loadEdition(source, held.plan.edition!);
+  return contextFor(held, data, opts.planPath);
 }
+
+/** Said in one place, because it is said from two servers and a student
+ * must not get a different story depending on which one answered. */
+export const NO_PLAN =
+  "There is no plan to read. Build one at https://lionsdegree.com/plan/ — " +
+  "course, prerequisite and program questions work without one.";
+
+
 
 /** Everything the tools need, from a Plan and the catalog its Edition
  * governs.

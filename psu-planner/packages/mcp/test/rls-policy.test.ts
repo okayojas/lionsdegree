@@ -8,7 +8,7 @@
  * is therefore circular — it can only show that we asked, never that
  * anyone refused.
  *
- * So this runs the real migration, unmodified, in a real Postgres
+ * So this runs the real migrations, unmodified, in a real Postgres
  * (PGlite — Postgres compiled to WASM, so there is no container to
  * start), and does the asking in SQL. If someone drops a policy or turns
  * row-level security off, nothing in the Worker would notice and this is
@@ -76,12 +76,14 @@ beforeAll(async () => {
     grant usage on schema public to anon, authenticated;
   `);
 
-  // THE REAL MIGRATION, verbatim. A test that restated the policies
-  // would pass against a database that never received them.
-  for (const file of ["0001_plans.sql", "0003_plan_rev_guard.sql"]) {
-    const full = path.join(MIGRATIONS, file);
-    if (fs.existsSync(full)) await db.exec(fs.readFileSync(full, "utf-8"));
-  }
+  // THE REAL MIGRATIONS, verbatim and ALL of them, read from the
+  // directory in the order they are applied. A test that restated the
+  // policies would pass against a database that never received them —
+  // and a hardcoded file list would quietly skip a migration added or
+  // renamed later while this header still claimed otherwise.
+  const files = fs.readdirSync(MIGRATIONS).filter((f) => f.endsWith(".sql")).sort();
+  expect(files.length, "no migrations were found — the path is wrong, not the schema").toBeGreaterThan(2);
+  for (const file of files) await db.exec(fs.readFileSync(path.join(MIGRATIONS, file), "utf-8"));
 
   // PostgREST's roles hold table privileges; RLS then narrows them to
   // rows. Granting everything here is deliberate — it means every
@@ -170,6 +172,7 @@ describe("one student asking for another's plan", () => {
         insert into public.plans (id, user_id, doc)
         values ('planted', '${ANA}', '{"programs":["planted"]}'::jsonb)
       `),
+      "a student stored a plan under another student's name",
     ).rejects.toThrow(/policy/i);
   });
 
@@ -182,6 +185,7 @@ describe("one student asking for another's plan", () => {
     // policy untested behind a trigger that happened to fire.
     await expect(
       asStudent(BEN, `update public.plans set user_id = '${ANA}', rev = rev + 1 where id = 'ben-plan'`),
+      "a student reassigned their own plan to someone else",
     ).rejects.toThrow(/policy/i);
   });
 });
@@ -200,6 +204,7 @@ describe("a request carrying no identity", () => {
         insert into public.plans (id, user_id, doc)
         values ('anon', '${ANA}', '{}'::jsonb)
       `),
+      "an unauthenticated request wrote a plan",
     ).rejects.toThrow(/policy/i);
   });
 });

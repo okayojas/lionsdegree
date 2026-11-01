@@ -28,8 +28,17 @@ import { rateLimit, verifyJwt, type KVLike, type VerifiedIdentity } from "@psu-p
 import { loadEdition, type EditionCatalog } from "./catalog.js";
 import { FetchCatalogSource, type Fetcher } from "./source.js";
 import { handleOAuth, isRevoked, type OAuthEnv } from "./oauth.js";
-import { SupabasePlanStore } from "./planStore.js";
-import { contextFor, executeTool, listTools, needsPlan, READABLE_PLAN_TOOLS, type ToolContext } from "./tools.js";
+import { PlanUnopenable, SupabasePlanStore } from "./planStore.js";
+import {
+  contextFor,
+  executeTool,
+  HOSTED_TOOLS,
+  listTools,
+  needsPlan,
+  NO_PLAN,
+  READABLE_PLAN_TOOLS,
+  type ToolContext,
+} from "./tools.js";
 
 export interface Env extends OAuthEnv {
   /** Cloudflare's static-asset binding, serving `catalog/`. */
@@ -97,13 +106,8 @@ function cacheFor(env: Env): Warm {
   return w;
 }
 
-/** Which Edition a catalog-only question is answered against.
- *
- * The newest published, because without a Plan there is no Edition to be
- * pinned to — nobody's requirements are in play, and a prospective
- * student asking what CMPSC 465 requires wants the current Bulletin.
- * Once a Plan is in reach (#35) the Plan's own Edition governs, which is
- * not a default but a rule (ADR 0001). */
+/** Every Edition this deploy carries, oldest first. Memoised with the
+ * catalog, so asking costs nothing after the first request. */
 async function editionsFor(env: Env): Promise<string[]> {
   const cache = cacheFor(env);
   const source = new FetchCatalogSource(env.CATALOG);
@@ -114,6 +118,13 @@ async function editionsFor(env: Env): Promise<string[]> {
   return cache.list;
 }
 
+/** The catalog a question is answered against.
+ *
+ * `want` is a Plan's own Edition, and when a Plan is in reach it
+ * governs — not as a default but as a rule (ADR 0001). Without one there
+ * is no Edition to be pinned to: nobody's requirements are in play, and
+ * a prospective student asking what CMPSC 465 requires wants the current
+ * Bulletin, so the newest published is right. */
 async function catalogFor(env: Env, want?: string): Promise<EditionCatalog> {
   const cache = cacheFor(env);
   const source = new FetchCatalogSource(env.CATALOG);
@@ -166,7 +177,6 @@ function catalogContext(data: EditionCatalog): ToolContext {
  * travels so the tool can say it. */
 async function planContext(
   env: Env,
-  data: EditionCatalog,
   accessToken: string,
 ): Promise<{ ctx: ToolContext } | { unavailable: string }> {
   if (!env.SUPABASE_URL || !env.SUPABASE_ANON_KEY) {
@@ -188,21 +198,26 @@ async function planContext(
     // student who has not built one needs to be sent to the planner; a
     // student whose Plan would not load needs to know their assistant is
     // answering from nothing, not to be told they have no degree plan.
-    if (!held) {
-      return {
-        unavailable:
-          "You have not built a plan yet. Start one at https://lionsdegree.com/plan/ — " +
-          "course, prerequisite and program questions work without one.",
-      };
-    }
-    // The Plan's own Edition, through the same warm per-Edition cache
-    // the catalog questions use.
-    const data = await catalogFor(env, held.plan.edition);
-    return { ctx: await contextFor(held, data) };
+    if (!held) return { unavailable: NO_PLAN };
+
+    // The Plan's own Edition governs (ADR 0001), through the same warm
+    // per-Edition cache the catalog questions use. `edition` is always
+    // set and always servable by this point: the engine's reader pins an
+    // unpinned Plan to the oldest Edition and REFUSES one pinned to an
+    // Edition we do not carry, which is why neither rule is restated
+    // here. Two servers answering "which bulletin governs you?"
+    // differently is the bug; one reader is the fix.
+    return { ctx: await contextFor(held, await catalogFor(env, held.plan.edition)) };
   } catch (e) {
-    // The reason is logged; what the model gets is what the student can
-    // act on. An audit must never be answered from a Plan that failed to
-    // load (iron rule 2).
+    if (e instanceof PlanUnopenable) {
+      // Permanent, and the engine already wrote it for a student to
+      // read: which bulletin their Plan follows, which ones we have, and
+      // why nothing is being reported instead of the wrong thing.
+      return { unavailable: e.message };
+    }
+    // Transient. The reason is logged; what the model gets is what the
+    // student can act on. An audit must never be answered from a Plan
+    // that failed to load (iron rule 2).
     console.error("[mcp] plan unavailable", e);
     return { unavailable: "Your plan could not be read right now. Please try again in a moment." };
   }
@@ -211,11 +226,11 @@ async function planContext(
 function mcpServer(env: Env, data: EditionCatalog, accessToken: string): Server {
   const server = new Server({ name: "lionsdegree", version: "0.1.0" }, { capabilities: { tools: {} } });
 
-  // Everything is offered now: the caller is a signed-in student, so
-  // the Plan-shaped reads are answerable. The four mutating tools stay
-  // out until #36 gives them a safe way to write.
+  // The caller is a signed-in student, so the Plan-shaped reads are
+  // answerable now. Every tool that WRITES stays out until #36 gives
+  // them a safe way to do it.
   server.setRequestHandler(ListToolsRequestSchema, async () => ({
-    tools: listTools({ catalogOnly: true, plus: READABLE_PLAN_TOOLS }),
+    tools: listTools({ offer: HOSTED_TOOLS }),
   }));
 
   server.setRequestHandler(CallToolRequestSchema, async (req) => {
@@ -245,7 +260,7 @@ function mcpServer(env: Env, data: EditionCatalog, accessToken: string): Server 
       return { content: [{ type: "text", text: JSON.stringify(result) }] };
     }
 
-    const got = await planContext(env, data, accessToken);
+    const got = await planContext(env, accessToken);
     if ("unavailable" in got) {
       return { content: [{ type: "text", text: JSON.stringify({ error: got.unavailable }) }] };
     }

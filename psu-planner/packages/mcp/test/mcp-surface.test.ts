@@ -13,7 +13,8 @@ import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { CATALOG_ONLY, listTools, needsPlan } from "../src/tools.js";
+import { CATALOG_ONLY, HOSTED_TOOLS, listTools, needsPlan, READABLE_PLAN_TOOLS } from "../src/tools.js";
+import { MUTATIONS } from "../src/mutations.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
@@ -44,7 +45,7 @@ describe("the catalog-only surface", () => {
   });
 
   it("does offer the Bulletin questions, or the connector is pointless", () => {
-    const names = listTools({ catalogOnly: true }).map((t) => t.name);
+    const names = listTools({ offer: CATALOG_ONLY }).map((t) => t.name);
     expect(names.sort()).toEqual(
       ["discover_programs", "get_course_details", "get_prereq_chain", "search_catalog", "search_programs"].sort(),
     );
@@ -60,5 +61,48 @@ describe("the catalog-only surface", () => {
     const all = listTools().map((t) => t.name);
     for (const m of mutatingTools()) expect(all, `${m} vanished from the full surface`).toContain(m);
     expect(all.length).toBeGreaterThan(CATALOG_ONLY.size);
+  });
+
+  it("dispatches exactly the mutations it declares", () => {
+    // `executeMutation` returns null for anything outside `MUTATIONS`,
+    // so a case in the switch that nobody added to the set is dead code
+    // that falls through to the read surface — and a name in the set
+    // with no case is a tool that silently does nothing.
+    expect([...MUTATIONS].sort()).toEqual(mutatingTools());
+  });
+});
+
+/** What a SIGNED-IN student is offered (#35).
+ *
+ * The same bug as above, one surface along. The hosted list was first
+ * written as four names typed out by hand — and there are seven
+ * mutations, so three of them were one edit away from being advertised
+ * to a model that could then call them. Derived here, from the server's
+ * own definitions, for exactly the reason the catalog surface is.
+ */
+describe("the hosted surface", () => {
+  it("offers nothing that can change a student's Plan", () => {
+    // THE ASSERTION THAT MATTERS. Reads went hosted in #35; writes wait
+    // for #36, and a write offered before then is a model editing a
+    // degree plan a student is also editing in another window.
+    const leaked = mutatingTools().filter((m) => HOSTED_TOOLS.has(m));
+    expect(leaked, "a tool that writes to a Plan is offered on the hosted connector").toEqual([]);
+  });
+
+  it("offers every Plan tool that only reads", () => {
+    for (const r of READABLE_PLAN_TOOLS) {
+      expect(HOSTED_TOOLS.has(r), `${r} is not offered to a signed-in student`).toBe(true);
+    }
+  });
+
+  it("is the catalog tools plus those reads, and nothing else", () => {
+    // Anything not in one of the two named sets is unclassified, and
+    // unclassified must mean hidden rather than exposed.
+    const names = listTools({ offer: HOSTED_TOOLS }).map((t) => t.name).sort();
+    expect(names).toEqual([...new Set([...CATALOG_ONLY, ...READABLE_PLAN_TOOLS])].sort());
+  });
+
+  it("still answers the Bulletin questions without touching a Plan", () => {
+    for (const c of CATALOG_ONLY) expect(HOSTED_TOOLS.has(c), `${c} was dropped`).toBe(true);
   });
 });

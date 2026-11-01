@@ -17,6 +17,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import worker, { type Env } from "../src/worker.js";
 import type { CatalogSource } from "../src/source.js";
+import { MUTATIONS } from "../src/mutations.js";
 
 const CATALOG = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "catalog");
 
@@ -168,7 +169,9 @@ describe("what the connector offers", () => {
     // a turn and teaches the model this connector is unreliable.
     const res = await worker.fetch(POST(rpc("tools/list")), env);
     const text = await res.text();
-    for (const writes of ["remove_course", "fill_slot", "add_term", "skip_term"]) {
+    // Derived from the dispatch set: there are seven, and a list typed
+    // out here would be wrong the first time an eighth is added.
+    for (const writes of MUTATIONS) {
       expect(text, `${writes} was offered before hosted writes exist`).not.toMatch(new RegExp(`"${writes}"`));
     }
   });
