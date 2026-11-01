@@ -103,10 +103,27 @@
         <li>
           <h2>Paste it into your assistant's settings</h2>
           <p>Every assistant words this slightly differently. Look for whichever of these it uses:</p>
+          <!-- CHECKED AGAINST THE ASSISTANTS' OWN DOCUMENTATION, because
+               both of these had drifted. Claude's is under Customize, not
+               Settings. ChatGPT renamed Connectors to Plugins, AND limits
+               custom servers by plan — which the old copy did not mention
+               at all, so a student on the free tier followed four steps to
+               a dead end and had no way to know it was not their mistake.
+               A page that sends someone somewhere they cannot go is worse
+               than one that says "not here". -->
           <ul class="where">
-            <li><strong>Claude</strong> — Settings, then Connectors, then Add custom connector.</li>
-            <li><strong>ChatGPT</strong> — Settings, then Connectors, then Add.</li>
-            <li><strong>Something else</strong> — look for "Connectors", "Integrations", or "MCP". Paste the link into the address or URL box.</li>
+            <li>
+              <strong>Claude</strong> — Customize, then Connectors, then Add,
+              then Add custom connector. Works on every plan; the free plan
+              allows one connector.
+            </li>
+            <li>
+              <strong>ChatGPT</strong> — Plugins, then the plus button, then
+              Add custom MCP server. This needs a Business, Enterprise or Edu
+              account: on Free and Plus the option is not there, and on Pro
+              it can read your plan but not change it.
+            </li>
+            <li><strong>Something else</strong> — look for "Connectors", "Plugins", "Integrations", or "MCP". Paste the link into the address or URL box.</li>
           </ul>
         </li>
 

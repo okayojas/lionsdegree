@@ -273,3 +273,72 @@ describe("what a revoked connection can still do", () => {
     expect(granted.refresh_token, "a refresh token was issued, so revocation is only advisory").toBeUndefined();
   });
 });
+
+describe("what a failed sign-in leaves behind", () => {
+  /** THE REASON THIS EXISTS. The first report of this connector
+   * refusing people was a human saying "it says you started connecting
+   * but didn't finish" — and nothing anywhere recorded at which step,
+   * because every refusal returns the same deliberately vague message
+   * and logged nothing. `console.error` only helps somebody already
+   * watching a live tail; a student's failed sign-in does not wait for
+   * an audience. */
+  const breadcrumbs = async () => {
+    const raw = kv.store.get("oauth:recent-failures");
+    return raw ? (JSON.parse(raw) as { at: string; stage: string; why: string }[]) : [];
+  };
+
+  it("records which step refused", async () => {
+    await req("/callback?state=never-existed&code=whatever");
+    const [last] = await breadcrumbs();
+    expect(last, "a refused sign-in left no record at all").toBeTruthy();
+    expect(last.stage).toBe("callback");
+    expect(last.why).toMatch(/no pending flow/);
+    expect(Date.parse(last.at)).not.toBeNaN();
+  });
+
+  it("records a refused token exchange too", async () => {
+    await req("/token", {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ grant_type: "authorization_code", code: "nope", client_id: "x" }).toString(),
+    });
+    const [last] = await breadcrumbs();
+    expect(last?.stage).toBe("token");
+    expect(last.why, "the most likely cause is not named").toMatch(/propagated|spent|expired/);
+  });
+
+  it("NEVER writes down a credential", async () => {
+    // The whole point of a breadcrumb is that it can be read later by
+    // whoever is debugging. That is only acceptable while it holds a
+    // stage and a shape — never a code, a verifier, or a token.
+    const secret = "sup3r-secret-verifier-value";
+    await req("/token", {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        grant_type: "authorization_code",
+        code: secret,
+        code_verifier: secret,
+        client_id: "x",
+      }).toString(),
+    });
+    const written = kv.store.get("oauth:recent-failures") ?? "";
+    expect(written, "a credential was written into the failure log").not.toContain(secret);
+    expect(written, "the code length is fine; the code is not").toMatch(/code_len=\d+/);
+  });
+
+  it("keeps the last few, not an unbounded list", async () => {
+    for (let i = 0; i < 14; i++) await req(`/callback?state=missing-${i}&code=c`);
+    expect((await breadcrumbs()).length, "the failure log grows without limit").toBeLessThanOrEqual(10);
+  });
+
+  it("puts the newest first, because that is the one being debugged", async () => {
+    await req("/callback?state=older&code=c");
+    await req("/token", {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ grant_type: "authorization_code", code: "newer", client_id: "x" }).toString(),
+    });
+    expect((await breadcrumbs())[0].stage).toBe("token");
+  });
+});

@@ -135,6 +135,39 @@ const CODE_TTL = 60;
  * record of ours pointing at a dead flow of theirs. */
 const PENDING_TTL = 300;
 
+/** The last few sign-ins that did not finish.
+ *
+ * A BREADCRUMB AN OPERATOR CAN READ LATER. `console.error` only helps
+ * somebody already watching a live tail, and a student's failed sign-in
+ * does not wait for an audience — the first report of this connector
+ * refusing people arrived as "it says you started connecting but didn't
+ * finish", with nothing anywhere saying at which step.
+ *
+ * Read it with:
+ *   npx wrangler kv key get --binding OAUTH oauth:recent-failures --remote
+ *
+ * WHAT GOES IN IS A STAGE AND A SHAPE, never a credential: no codes, no
+ * verifiers, no tokens, no email. Enough to say which check refused and
+ * what it was looking at, and nothing that would matter if the record
+ * leaked. One day's retention, last ten only. */
+const FAILURE_LOG = "oauth:recent-failures";
+const FAILURE_LOG_TTL = 60 * 60 * 24;
+const FAILURE_LOG_KEEP = 10;
+
+async function noteFailure(kv: KVLike, stage: string, why: string): Promise<void> {
+  console.error(`[oauth] ${stage}: ${why}`);
+  try {
+    const held = await kv.get(FAILURE_LOG);
+    const past = held ? (JSON.parse(held) as unknown[]) : [];
+    const next = [{ at: new Date().toISOString(), stage, why }, ...past].slice(0, FAILURE_LOG_KEEP);
+    await kv.put(FAILURE_LOG, JSON.stringify(next), { expirationTtl: FAILURE_LOG_TTL });
+  } catch (e) {
+    // The record is a convenience. A sign-in must not fail differently
+    // because writing a breadcrumb did.
+    console.error("[oauth] could not record the failure", e);
+  }
+}
+
 /** Unauthenticated writes per address per day.
  *
  * Every route here writes to KV and runs BEFORE the gate — it has to,
@@ -313,6 +346,12 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
     const code = url.searchParams.get("code") ?? "";
     const raw = state ? await cfg.kv.get(`pend:${state}`) : null;
     if (!raw) {
+      // LOGGED, BECAUSE NOTHING ELSE RECORDS A FAILED SIGN-IN. Every
+      // refusal below says the same vague thing to the browser on
+      // purpose; without a matching log line the only account of what
+      // went wrong is a student saying "it didn't work". The reason
+      // names the STAGE, never the code or the verifier.
+      await noteFailure(cfg.kv, "callback", `no pending flow for this state (state_present=${!!state}) — expired after 5 minutes, already used, or never started here`);
       return new Response("This sign-in link has expired. Start again from your assistant.", { status: 400 });
     }
     const pending = JSON.parse(raw) as Pending;
@@ -320,11 +359,17 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
     // THE BROWSER THAT FINISHES MUST BE THE BROWSER THAT BEGAN.
     const presented = flowCookie(request);
     if (!presented || (await s256(presented)) !== pending.browser) {
+      await noteFailure(
+        cfg.kv,
+        "callback",
+        `browser binding failed (cookie_present=${!!presented}) — the browser finishing is not the one that started, or the cookie was dropped`,
+      );
       await cfg.kv.delete(`pend:${state}`);
       return new Response("This sign-in could not be completed. Start again from your assistant.", { status: 400 });
     }
 
     if (!code) {
+      await noteFailure(cfg.kv, "callback", "the provider returned no code — cancelled, or sign-in failed upstream");
       return new Response("Sign-in was cancelled or failed. Start again from your assistant.", { status: 400 });
     }
 
@@ -339,7 +384,7 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
       ? ((await exchanged.json()) as { access_token?: string; expires_in?: number })
       : null;
     if (!session?.access_token) {
-      console.error("[mcp] supabase code exchange failed", exchanged?.status);
+      await noteFailure(cfg.kv, "callback", `supabase refused the code exchange (status=${exchanged?.status ?? "no response"})`);
       return new Response("Could not complete sign-in. Start again from your assistant.", { status: 502 });
     }
 
@@ -383,7 +428,19 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
 
     const code = form.get("code") ?? "";
     const raw = code ? await cfg.kv.get(`code:${code}`) : null;
-    if (!raw) return oauthError("invalid_grant", "That code is not valid. It may already have been used.");
+    if (!raw) {
+      // THE ONE MOST LIKELY TO BE OURS RATHER THAN THE CALLER'S. The
+      // code was written to KV by /callback moments earlier, possibly
+      // in a different region from the one serving this request, and
+      // KV writes take time to propagate. A code that was issued and
+      // is already unreadable looks identical here to a replayed one.
+      await noteFailure(
+        cfg.kv,
+        "token",
+        `no record for this code (code_len=${code.length}) — already spent, expired after 60s, or the write has not propagated across regions`,
+      );
+      return oauthError("invalid_grant", "That code is not valid. It may already have been used.");
+    }
     // SINGLE USE, deleted before anything else can go wrong.
     //
     // `delete`, not a short-lived tombstone: Cloudflare rejects a TTL
@@ -394,9 +451,15 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
 
     const issued = JSON.parse(raw) as IssuedCode;
     if (form.get("client_id") !== issued.client_id) {
+      await noteFailure(cfg.kv, "token", "client_id does not match the one the code was issued to");
       return oauthError("invalid_grant", "That code was not issued to this client.");
     }
     if (form.get("redirect_uri") !== issued.redirect_uri) {
+      await noteFailure(
+        cfg.kv,
+        "token",
+        `redirect_uri mismatch (sent=${form.get("redirect_uri")}, issued_for=${issued.redirect_uri})`,
+      );
       return oauthError("invalid_grant", "The redirect_uri does not match the one the code was issued for.");
     }
 
@@ -404,6 +467,7 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
     // the browser is enough to get the token.
     const verifier = form.get("code_verifier") ?? "";
     if (!verifier || (await s256(verifier)) !== issued.code_challenge) {
+      await noteFailure(cfg.kv, "token", `PKCE verifier does not match (verifier_present=${!!verifier})`);
       return oauthError("invalid_grant", "The PKCE verifier does not match.");
     }
 
