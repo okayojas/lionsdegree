@@ -33,6 +33,7 @@ import {
   type ScheduleConstraint,
 } from "@psu-planner/engine";
 import type { ToolContext } from "./tools.js";
+import { MemoryPlanStore } from "./planStore.js";
 import { planView } from "./planView.js";
 
 export interface MutationResult {
@@ -52,7 +53,7 @@ export interface MutationResult {
  * The store's number wins over the document's: the column is what a
  * compare-and-swap is matched against, and the document's copy can lag
  * it when a device coalesced edits before pushing. */
-const heldRev = (ctx: ToolContext): number => ctx.rev ?? ctx.plan?.rev ?? 0;
+export const heldRev = (ctx: ToolContext): number => ctx.rev ?? ctx.plan?.rev ?? 0;
 
 /** What a model is told when its change was computed from a Plan that
  * has since moved on.
@@ -106,6 +107,14 @@ async function commit(
   // is not the guarantee to rely on there.
   if (!ctx.plan) throw new Error("no plan is loaded, so there is nothing to change");
   if (!ctx.store) throw new Error("no plan store is configured, so there is nowhere to write");
+  // THE INVARIANT BEHIND `simulating`. The flag relaxes the consent
+  // gate, which is only acceptable because a sandbox writes nowhere —
+  // so the claim is checked rather than trusted. A flag that reached a
+  // real context fails here, loudly, instead of quietly dropping the
+  // one guard standing between a model and a graduation requirement.
+  if (ctx.simulating && !(ctx.store instanceof MemoryPlanStore)) {
+    throw new Error("a context marked as a simulation is holding a real plan store");
+  }
 
   const next: PlanDoc = JSON.parse(JSON.stringify(ctx.plan));
   if (mutate(next) === false) return null;
@@ -314,7 +323,12 @@ export async function executeMutation(
       // "this was never a requirement" and dropped the claim from the
       // result, exactly where it is supposed to be visible.
       const wasRequired = isRequired(ctx, code);
-      if (wasRequired) {
+      // NOT ASKED OF A PREVIEW. A student asking "what would happen if
+      // I dropped this?" has not agreed to drop it, and requiring the
+      // flag to answer them would teach a model to assert consent on a
+      // read — the exact assertion this gate exists to make expensive.
+      // The simulation reports that consent will be needed instead.
+      if (wasRequired && !ctx.simulating) {
         // The model cannot grant itself this. A catalog description it read
         // is not the student speaking (DECISIONS.md 5.0, S4).
         const refusal = consentProblem(args);

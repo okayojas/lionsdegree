@@ -70,7 +70,7 @@ has already happened.
 29. As an operator, I want the local stdio server to keep working unchanged, so that existing users are not broken by the hosted one shipping.
 30. As an operator, I want to know when the connector is failing, so that I am not told by a student.
 31. As a maintainer, I want the published connector URL to be the one that exists, so that the documentation is not the bug.
-32. As a maintainer, I want the hosted surface to be the same twelve tools, so that there is one tool surface to reason about rather than two.
+32. As a maintainer, I want the hosted surface to be the same tools as the local one, so that there is one tool surface to reason about rather than two. (Twelve when this was written; thirteen since #37 added plan simulation. The count is deliberately not restated here — the invariant is that the two surfaces match, and a number in prose is the part that goes stale.)
 33. As a maintainer, I want mutations to be rejected rather than merged when they are based on a stale read, so that conflicts are loud.
 34. As a security reviewer, I want a token to grant access to exactly one student's Plan, so that a leaked token is bounded.
 35. As a security reviewer, I want the database to refuse cross-user reads independently of application code, so that an application bug is not a breach.

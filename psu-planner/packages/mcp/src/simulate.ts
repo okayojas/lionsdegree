@@ -20,7 +20,7 @@
  * and the two a model would quote back to a student as proof.
  */
 import { buildItems, buildSchedule, checkCourse, type PlanDoc, type PlanItem } from "@psu-planner/engine";
-import { executeMutation, MUTATIONS, type MutationResult } from "./mutations.js";
+import { executeMutation, heldRev, MUTATIONS, type MutationResult } from "./mutations.js";
 import { MemoryPlanStore } from "./planStore.js";
 import { planView } from "./planView.js";
 import type { ToolContext } from "./tools.js";
@@ -57,29 +57,33 @@ function sandbox(ctx: ToolContext): ToolContext {
   const items = buildItems(plan, ctx.data.catalog);
   return {
     ...ctx,
+    simulating: true,
     plan,
     // AT THE REVISION THE REAL STORE REPORTS, not the one written in
     // the document. Hosted they differ, and a sandbox starting from the
-    // wrong one refuses changes the planner would accept.
-    store: new MemoryPlanStore(plan, ctx.rev ?? plan.rev ?? 0),
+    // wrong one refuses changes the planner would accept. Through the
+    // shared accessor, because `mutations.ts` has that comment about
+    // there being exactly one of these and this file had made it three.
+    store: new MemoryPlanStore(plan, heldRev(ctx)),
     items,
     sched: buildSchedule(plan, items, ctx.data.catalog),
   };
 }
 
-/** Courses whose prerequisites stop being satisfied because of this
- * change — and ONLY because of it.
+/** Violations the change CREATES — a Course scheduled before something
+ * it enforces as a prerequisite (CONTEXT.md) — and only the ones it
+ * creates.
  *
  * A requirement that was already unverifiable is not something the
  * student's question broke, and reporting it here would blame their
  * question for a gap that predates it. Comparing before against after
  * is what keeps the list honest.
  *
- * Degradation is conservative in the usual direction (iron rule 2): a
- * Course that moves from "satisfied" to "cannot determine" is listed,
- * because a student acting on this needs to know the answer stopped
- * being checkable, not just that it stopped being yes. */
-function newConflicts(
+ * Degradation is conservative in the usual direction (iron rule 2):
+ * ANY fall counts, including "satisfied" to "cannot be checked" — a
+ * student acting on this needs to know the answer stopped being
+ * checkable, not just that it stopped being yes. */
+function newViolations(
   before: ToolContext,
   after: ToolContext,
 ): { code: string; term: string; was: string; now: string }[] {
@@ -100,7 +104,13 @@ function newConflicts(
     const was = previously
       ? checkCourse(before.data.catalog, i.code, previously.sem, before.sched).value
       : 2;
-    if (was === 2) {
+    // ANY DOWNGRADE, not only a fall from "satisfied". The first
+    // version tested `was === 2`, which silently dropped a Course going
+    // from "cannot be checked" to "not satisfied" — a change turning an
+    // open question into a known blocker, reported as nothing at all.
+    // That is the inverse of iron rule 2, in the file whose comment
+    // claimed to be applying it.
+    if (now < was) {
       out.push({
         code: i.code,
         term: after.plan!.terms[i.sem]?.label ?? `term ${i.sem}`,
@@ -112,7 +122,17 @@ function newConflicts(
   return out;
 }
 
+/** What a simulation answers with.
+ *
+ * `ok` and `revision` are typed as `never` rather than left off, which
+ * is the one thing an index signature can still do here: the two fields
+ * a successful mutation returns are now impossible to set by accident,
+ * including by a future `...spread` of a MutationResult into this
+ * object. That spread is exactly how the candidate plan came to carry a
+ * revision that did not exist. */
 export interface SimulationResult {
+  ok?: never;
+  revision?: never;
   [k: string]: unknown;
 }
 
@@ -131,15 +151,48 @@ export async function simulateChange(
   }
   if (!ctx.plan) return { error: "There is no plan to simulate a change against." };
 
+  // A STATED REVISION IS HONOURED, NOT OVERWRITTEN. The model is told
+  // to pass the change's arguments verbatim, and those may carry the
+  // `based_on_revision` every mutation requires — which this used to
+  // silently replace with the sandbox's own. Nothing could be lost by
+  // that (a simulation writes nothing), but the student would be shown
+  // a preview of a plan that is no longer theirs and told nothing.
+  const held = heldRev(ctx);
+  const stated = changeArgs.based_on_revision;
+  if (typeof stated === "number" && stated !== held) {
+    return {
+      simulated: true,
+      applied: false,
+      possible: false,
+      based_on_revision: held,
+      change: { tool: change, arguments: changeArgs },
+      reason:
+        "That revision is not the one the plan is at now, so a preview built from it would " +
+        "show the student a plan that is no longer theirs.",
+      remedy: "Call get_plan, then simulate against what it returns.",
+      nothing_changed: "The student's plan has not been changed.",
+    };
+  }
+
   const before = ctx;
   const after = sandbox(ctx);
+
+  // Asked of the ORIGINAL plan, before the change removes the Course
+  // and makes the question unanswerable.
+  const removesRequired =
+    change === "remove_course" &&
+    (ctx.plan.terms ?? []).some((t) =>
+      t.items.some(
+        (i) => "code" in i && i.code === String(changeArgs.code ?? "").trim().toUpperCase() && !!i.origin,
+      ),
+    );
 
   // THE REAL MUTATION, with the real optimiser behind it. The sandbox's
   // revision is stated so the guard in `executeMutation` is satisfied
   // by the copy rather than bypassed — a simulation that skipped the
   // concurrency check would be using a different code path from the
   // one it is previewing.
-  const result = (await executeMutation(change, { ...changeArgs, based_on_revision: after.rev ?? 0 }, after)) as
+  const result = (await executeMutation(change, { ...changeArgs, based_on_revision: heldRev(after) }, after)) as
     | MutationResult
     | null;
 
@@ -162,11 +215,26 @@ export async function simulateChange(
   const wasAt = placements(before.plan!, before.items);
   const nowAt = placements(after.plan!, after.items);
 
+  // A CHANGE CAN BREAK A DEGREE WITHOUT BREAKING A PREREQUISITE.
+  // Removing a Course that was filling a requirement, or re-flowing a
+  // Plan so a Slot empties, leaves the student short of graduating with
+  // every prerequisite still perfectly satisfied. Reporting only
+  // prerequisites would call that candidate clean.
+  const openSlots = (c: ToolContext) =>
+    new Set(c.items.filter((i) => i.kind === "slot" && i.id).map((i) => i.id!));
+  const wasOpen = openSlots(before);
+  const unfilled = [...openSlots(after)]
+    .filter((id) => !wasOpen.has(id))
+    .map((id) => {
+      const slot = after.items.find((i) => i.id === id);
+      return { slot_id: id, requirement: slot?.slotLabel ?? slot?.slot ?? "a requirement" };
+    });
+
   const moved = [...nowAt.entries()]
     .filter(([code, to]) => wasAt.has(code) && wasAt.get(code)!.sem !== to.sem)
     .map(([code, to]) => ({ code, from: wasAt.get(code)!.label, to: to.label }));
 
-  const conflicts = newConflicts(before, after);
+  const violations = newViolations(before, after);
 
   return {
     simulated: true,
@@ -189,22 +257,60 @@ export async function simulateChange(
     terms_before: before.plan!.terms.length,
     terms_after: after.plan!.terms.length,
 
-    new_conflicts: conflicts,
-    // A candidate that breaks a prerequisite is not a plan the student
-    // can follow, and saying so is the difference between a preview and
-    // a trap.
-    satisfiable: conflicts.length === 0,
-    ...(conflicts.length
+    new_violations: violations,
+    newly_unfilled_requirements: unfilled,
+
+    // SAID HERE BECAUSE THE PREVIEW DID NOT ASK FOR IT. The consent
+    // gate is relaxed for a simulation — a student asking "what would
+    // happen if I dropped this?" has not agreed to drop it — so the
+    // answer has to carry the condition the real change will impose,
+    // or a model reads "possible: true" and finds out otherwise.
+    ...(removesRequired
       ? {
-          reason:
-            `This change leaves ${conflicts.length} course${conflicts.length === 1 ? "" : "s"} ` +
-            "without a satisfied prerequisite. Tell the student that before they act on it.",
+          requires_consent: true,
+          before_doing_this_for_real:
+            "This course is required by the student's degree. Making this change needs them to " +
+            "ask for it in their own words — show them this preview, and pass what they say back " +
+            "as student_words if they confirm.",
+        }
+      : {}),
+
+    // NOT `satisfiable`. That word claims the candidate works, and this
+    // only knows that the change introduced nothing NEW — the fixture
+    // alone carries two courses whose prerequisites cannot be checked
+    // at all, and a plan with those in it was being reported as
+    // satisfiable. Saying what was actually measured is the whole
+    // discipline here (ADR 0002).
+    introduces_no_problems: violations.length === 0 && unfilled.length === 0,
+    ...(violations.length || unfilled.length
+      ? {
+          reason: [
+            violations.length
+              ? `This change leaves ${violations.length} course${violations.length === 1 ? "" : "s"} ` +
+                "scheduled before a prerequisite it needs"
+              : "",
+            unfilled.length
+              ? `it leaves ${unfilled.length} requirement${unfilled.length === 1 ? "" : "s"} ` +
+                "that was filled now open"
+              : "",
+          ]
+            .filter(Boolean)
+            .join(", and ") + ". Tell the student before they act on it.",
         }
       : {}),
 
     // Pinned to the Plan's own Edition because the sandbox carries the
     // same catalog (ADR 0001) — a candidate audited against a different
     // bulletin is a forecast of somebody else's degree.
-    candidate_plan: planView(after, after.plan!),
+    //
+    // WITH NO REVISION AND NO TIMESTAMP, and this was a live bug. The
+    // sandbox commit sets `rev` and `updatedAt` on the copy, so the
+    // candidate came back carrying `revision: 2` and a freshness note
+    // reading "this is the plan as it was last saved (just now)" — a
+    // revision that does not exist and a save that did not happen. The
+    // top level said `applied: false` while the object nested inside it
+    // described a successful write. A model summarising that tells the
+    // student their plan is saved.
+    candidate_plan: planView({ ...after, rev: undefined, updatedAt: undefined }, after.plan!),
   };
 }

@@ -55,6 +55,20 @@ export interface ToolContext {
    * surfaces will eventually disagree about what a write means. Null on
    * the catalog-only surface, where there is nothing to write to. */
   store: PlanStore | null;
+  /** This context is a sandbox: whatever is written to it goes nowhere.
+   *
+   * Set ONLY by `simulate.ts`, and `commit` refuses to proceed if it is
+   * set on a context whose store is not a `MemoryPlanStore` — so a flag
+   * that reached a real context by accident fails loudly instead of
+   * quietly relaxing a rule.
+   *
+   * It exists because the consent gate on removing a required Course
+   * asks for something a PREVIEW cannot honestly produce. The student
+   * has not agreed to anything yet; they are asking what would happen.
+   * Demanding the flag here would have taught a model to assert consent
+   * on a read, which is precisely the assertion the gate exists to make
+   * expensive. */
+  simulating?: true;
   /** The revision and time the Plan was read at, when it came from a
    * store that knows. Reported by `get_plan`: a model that cannot say
    * how current its view is will imply it is live. */
@@ -324,8 +338,8 @@ function allTools(): ToolDefinition[] {
       description:
         "Show what a change WOULD do without doing it. Answers \"what if I studied abroad next fall\", " +
         "\"what if I dropped this\", \"could I finish in six terms\" — returns the candidate plan, what " +
-        "moved, and any prerequisite it breaks. Nothing is saved. Prefer this before any change the " +
-        "student has not explicitly asked for yet.",
+        "moved, and anything it breaks. Nothing is saved, so this is the right tool when the student " +
+        "is deciding rather than instructing.",
       inputSchema: obj(
         {
           change: str(
