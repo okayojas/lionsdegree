@@ -19,11 +19,16 @@ compatibility_date = "2026-10-01"
 # bundler fails on the import graph rather than at runtime.
 compatibility_flags = ["nodejs_compat"]
 
-# THE PUBLISHED ADDRESS (#38). `/*`, not `/mcp`, because /mcp is not the
-# whole connector: OAuth discovery, dynamic client registration,
-# /authorize, /callback and /token all live on this host, and a route
-# matching only the endpoint would drop a student at a 404 in the middle
-# of signing in. The handler owns its own 404 for everything else.
+# THE PUBLISHED ADDRESS (#38). A bare hostname with NO PATH, because
+# /mcp is not the whole connector: discovery, dynamic client
+# registration, /authorize, /callback and /token all live on this host,
+# and a route matching only the endpoint would drop a student at a 404
+# in the middle of signing in. The handler owns its own 404 for
+# everything else.
+#
+# `custom_domain` takes a hostname and nothing more — a pattern with a
+# path is rejected, and the `host/*` spelling needs a zone id this file
+# does not carry.
 #
 # `custom_domain` makes Cloudflare issue and renew the certificate and
 # create the DNS record, which is why there is no separate CNAME to keep
@@ -53,9 +58,10 @@ binding = "CATALOG"
 # is a 404" was passing only because no asset happened to sit there.
 run_worker_first = true
 
-# Registered assistants, authorization codes, rate-limit counters and
-# the revocation denylist. Everything here is short-lived except a
-# registered client, and nothing is a student's Plan.
+# Registered assistants, authorization codes, the revocation denylist,
+# and the last self-check report. Everything here is short-lived except
+# a registered client, and nothing is a student's Plan. (Rate-limit
+# counters have their own namespace, below.)
 #
 [[kv_namespaces]]
 binding = "OAUTH"
@@ -84,8 +90,12 @@ RATE_LIMIT_PER_DAY = "1000"
 # — so the first person to notice the connector is broken is not a
 # student mid-question. `/health` reports what the last run found.
 #
-# Fifteen minutes is the gap a student might hit, not a budget: these
-# runs are free at this frequency and the check costs one asset read.
+# Fifteen minutes is the gap a student might hit. It is not free: a cron
+# gets a cold isolate, so each run pays a full edition load — six asset
+# reads and a couple of megabytes of parsing, ninety-six times a day.
+# That is the price of a check that proves the connector ANSWERS rather
+# than that it booted, and the failures this service has actually had
+# were all of the first kind.
 [triggers]
 crons = ["*/15 * * * *"]
 

@@ -351,8 +351,13 @@ async function identify(request: Request, env: Env, resourceUrl: URL): Promise<C
  * person exhausting the service rather than to ration anybody. */
 const DEFAULT_DAILY_LIMIT = 1000;
 
-export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
+/** THE WHOLE WORKER, as a plain function.
+ *
+ * Named rather than written inline on the default export so the
+ * scheduled self-check can call the real handler — asking the service
+ * the same question a student's assistant asks, rather than a
+ * reimplementation of it that can drift. */
+async function handleRequest(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
 
     // Discovery, registration and the sign-in flow. Before the gate,
@@ -385,12 +390,17 @@ export default {
           ok: true,
           edition: data.edition,
           courses: Object.keys(data.catalog).length,
-          // `detail` is stripped: it carries an upstream message, which
-          // is for the log and not for an anonymous caller
-          // (DECISIONS.md 5.0 S5/S8/S13).
-          last_self_check: last
-            ? { ok: last.ok, at: last.at }
-            : "none recorded in the last hour — the scheduled check may not be running",
+          // STRUCTURED EITHER WAY, never prose standing in for a
+          // field: a consumer should not have to tell an object from a
+          // sentence. `detail` is stripped — it carries an upstream
+          // message, which is for the log and not for an anonymous
+          // caller (DECISIONS.md 5.0 S5/S8/S13).
+          //
+          // And "no report" is not "the cron is broken". It has three
+          // causes that look identical from here — never run, the
+          // write failed, or the report aged out — so this says what
+          // it knows and not which one.
+          last_self_check: last ? { recorded: true, ok: last.ok, at: last.at } : { recorded: false },
         });
       } catch (e) {
         // The reason is LOGGED, not returned. An internal message can
@@ -452,29 +462,7 @@ export default {
         { status: 500 },
       );
     }
-  },
-
-  /** A SELF-CHECK ON A TIMER, so the first person to notice the
-   * connector is broken is not a student mid-question.
-   *
-   * It does the thing the connector does — reads the catalog and
-   * answers a real Course question — rather than returning 200 to prove
-   * the isolate booted. Every outage this service has had so far was a
-   * dependency refusing something ("expiration_ttl must be at least
-   * 60", "cache_ttl must be at least 30"): the process was fine and the
-   * answers were not, which is exactly what a liveness ping cannot see.
-   *
-   * The result is both LOGGED at error level, where Cloudflare's alert
-   * on Worker errors can reach a human, and recorded in KV so /health
-   * can say when the last check ran and what it found. An outage that
-   * started while nobody was looking should still be discoverable
-   * afterwards. */
-  async scheduled(_event: unknown, env: Env, ctx?: { waitUntil(p: Promise<unknown>): void }): Promise<void> {
-    const run = selfCheck(env);
-    ctx?.waitUntil(run);
-    await run;
-  },
-};
+}
 
 /** Where the last self-check is kept. Short-lived: a report older than
  * this is not evidence that anything is working, and `/health` says so
@@ -495,6 +483,30 @@ async function selfCheck(env: Env): Promise<HealthReport> {
   const at = new Date().toISOString();
   let report: HealthReport;
   try {
+    // IS IT CONFIGURED? Checked first, because this is the failure
+    // go-live actually risks and the first version of this check was
+    // blind to it. A deploy missing a secret serves 503 to every
+    // student while the catalog loads perfectly — so a monitor that
+    // only reads the catalog reports a healthy connector that is
+    // answering nobody. Asked the way a student's assistant asks it:
+    // an anonymous request to /mcp must be told to sign in (401), not
+    // told the service is not accepting requests (503).
+    const anon = await handleRequest(
+      new Request("https://mcp.lionsdegree.com/mcp", {
+        method: "POST",
+        headers: { "content-type": "application/json", accept: "application/json, text/event-stream" },
+        body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/list", params: {} }),
+      }),
+      env,
+    );
+    if (anon.status !== 401) {
+      throw new Error(
+        anon.status === 503
+          ? "the connector is refusing every request — a secret or the OAUTH binding is missing"
+          : `an unauthenticated request got ${anon.status}, which should be 401`,
+      );
+    }
+
     const data = await catalogFor(env);
     // A REAL ANSWER, not a count. The catalog can load and still answer
     // nothing — the subject files are fetched lazily, and the bug that
@@ -541,3 +553,36 @@ async function lastSelfCheck(env: Env): Promise<HealthReport | null> {
  * a self-check that passes means the catalog answered rather than
  * merely loaded. */
 const SELF_CHECK_COURSE = "MATH 141";
+
+export default {
+  fetch: handleRequest,
+
+  /** A SELF-CHECK ON A TIMER, so the first person to notice the
+   * connector is broken is not a student mid-question.
+   *
+   * It does the thing the connector does — reads the catalog and
+   * answers a real Course question — rather than returning 200 to prove
+   * the isolate booted. Every outage this service has had so far was a
+   * dependency refusing something ("expiration_ttl must be at least
+   * 60", "cache_ttl must be at least 30"): the process was fine and the
+   * answers were not, which is exactly what a liveness ping cannot see.
+   *
+   * The result is both LOGGED at error level, where Cloudflare's alert
+   * on Worker errors can reach a human, and recorded in KV so /health
+   * can say when the last check ran and what it found. An outage that
+   * started while nobody was looking should still be discoverable
+   * afterwards. */
+  async scheduled(_event: unknown, env: Env): Promise<void> {
+    const report = await selfCheck(env);
+    // THROWN ON PURPOSE, and this was backwards in the first version.
+    // A cron handler that swallows its failure is a SUCCESSFUL
+    // invocation as far as Cloudflare is concerned — the error-rate
+    // alert the README tells the operator to switch on would never
+    // fire, and the one notification path this ticket asked for would
+    // be a log nobody reads. Recording comes first, so the report is in
+    // KV and /health can show it either way.
+    if (!report.ok) throw new Error(`LionsDegree connector self-check failed: ${report.detail}`);
+  },
+};
+
+

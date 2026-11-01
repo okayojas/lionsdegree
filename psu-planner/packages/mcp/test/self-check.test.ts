@@ -19,11 +19,38 @@ import worker, { type Env } from "../src/worker.js";
 
 const CATALOG = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "catalog");
 
+/** Cloudflare's asset binding, modelled CASE-SENSITIVELY.
+ *
+ * `fs.existsSync` is case-insensitive on Windows and macOS, which is
+ * where this is written, and case-sensitive on Linux, which is where it
+ * runs. The bug this whole check exists to catch was exactly that — 0
+ * of 367 subject files resolving in production because the paths were
+ * built with the wrong case — and a stub using `existsSync` cannot
+ * reproduce it on a dev machine. That is the "stub more permissive than
+ * the real dependency" mistake this repo keeps paying for, so the
+ * lookup compares against the real directory entries instead. */
+function servedFile(rel: string): string | null {
+  const parts = rel.split("/").filter(Boolean);
+  let at = CATALOG;
+  for (const part of parts) {
+    let entries: fs.Dirent[];
+    try {
+      entries = fs.readdirSync(at, { withFileTypes: true });
+    } catch {
+      return null;
+    }
+    const hit = entries.find((e) => e.name === part);
+    if (!hit) return null;
+    at = path.join(at, hit.name);
+  }
+  return fs.statSync(at).isDirectory() ? null : at;
+}
+
 const assets = {
   async fetch(req: Request): Promise<Response> {
     const rel = decodeURIComponent(new URL(req.url).pathname.replace(/^\//, ""));
-    const file = path.join(CATALOG, rel);
-    return fs.existsSync(file) && !fs.statSync(file).isDirectory()
+    const file = servedFile(rel);
+    return file
       ? new Response(fs.readFileSync(file, "utf-8"), { status: 200 })
       : new Response("not found", { status: 404 });
   },
@@ -80,7 +107,7 @@ describe("the scheduled self-check", () => {
 
   it("fails when the catalog is gone", async () => {
     const gone = { ...env, CATALOG: { async fetch() { return new Response("no", { status: 404 }); } } } as Env;
-    await worker.scheduled({}, gone);
+    await expect(worker.scheduled({}, gone)).rejects.toThrow();
     expect(recorded()?.ok, "a connector with no catalog reported itself healthy").toBe(false);
     expect(recorded()?.detail, "nothing was recorded about why").toBeTruthy();
   });
@@ -116,25 +143,69 @@ describe("the scheduled self-check", () => {
       },
     } as Env;
 
-    await worker.scheduled({}, missing);
+    await expect(worker.scheduled({}, missing)).rejects.toThrow();
     expect(recorded()?.ok, "a catalog that cannot answer reported itself healthy").toBe(false);
     expect(recorded()?.detail, "nothing was recorded about what could not be answered").toMatch(/MATH 141/);
   });
 
-  it("does not throw when it fails, because a thrown cron is a silent cron", async () => {
+  it("THROWS when it fails, because a cron that swallows its failure is silent", async () => {
+    // THIS WAS BACKWARDS. A scheduled handler that catches and logs is
+    // a SUCCESSFUL invocation as far as Cloudflare is concerned, so
+    // the error-rate alert the README tells the operator to switch on
+    // would never fire — the one notification path this ticket asked
+    // for was a log nobody reads.
+    //
+    // Recording happens first, so throwing does not cost the report:
+    // /health can still show what failed and when.
     const broken = { ...env, CATALOG: { async fetch() { throw new Error("boom"); } } } as Env;
-    await expect(worker.scheduled({}, broken)).resolves.toBeUndefined();
-    expect(recorded()?.ok).toBe(false);
+    await expect(worker.scheduled({}, broken), "a failing cron reported success to Cloudflare").rejects.toThrow(
+      /self-check failed/i,
+    );
+    expect(recorded()?.ok, "it threw without recording what happened").toBe(false);
   });
 
-  it("still reports when it cannot write its own result down", async () => {
-    // The bookkeeping must not be able to take down the check. A KV
-    // write failing is not the connector failing.
+  it("FAILS WHEN THE CONNECTOR IS REFUSING EVERYONE", async () => {
+    // THE FAILURE GO-LIVE ACTUALLY RISKS, and the first version of this
+    // check was blind to it. With a secret or the KV binding missing,
+    // the gate refuses every student with a 503 while the catalog loads
+    // perfectly — so a monitor that only reads the catalog reports a
+    // healthy connector that is answering nobody.
+    for (const half of [{ ...env, SUPABASE_JWT_SECRET: undefined }, { ...env, OAUTH: undefined }]) {
+      kv.store.clear();
+      await expect(
+        worker.scheduled({}, half as Env),
+        "a connector refusing every request reported itself healthy",
+      ).rejects.toThrow();
+    }
+  });
+
+  it("says which way it is broken, when there is somewhere to write it down", async () => {
+    // Only the missing-secret half can be recorded: with the KV binding
+    // itself gone there is nowhere to put a report, which is exactly
+    // why the THROW matters — in that state the Cloudflare alert is the
+    // only signal that exists.
+    await expect(worker.scheduled({}, { ...env, SUPABASE_JWT_SECRET: undefined } as Env)).rejects.toThrow();
+    expect(recorded()?.detail, "the report does not say what is missing").toMatch(/missing|refusing/i);
+  });
+
+  it("passes only because the gate answers 401, not because it is absent", async () => {
+    // The control for the test above: a configured connector tells an
+    // anonymous caller to sign in, and that is what "healthy" means
+    // here — not that the endpoint returned something.
+    await worker.scheduled({}, env);
+    expect(recorded()?.ok).toBe(true);
+  });
+
+  it("still answers when it cannot write its own result down", async () => {
+    // The bookkeeping must not decide the verdict. A KV write failing
+    // is not the connector failing — but the connector IS still
+    // reachable here, so the run should not report a failure either.
     const noKv = {
       ...env,
       OAUTH: { ...kv, async put() { throw new Error("KV is unavailable"); } },
     } as unknown as Env;
-    await expect(worker.scheduled({}, noKv)).resolves.toBeUndefined();
+    await expect(worker.scheduled({}, noKv), "a KV write failure was read as the connector failing").resolves
+      .toBeUndefined();
   });
 });
 
@@ -142,7 +213,9 @@ describe("what /health says about it", () => {
   it("reports the last check once one has run", async () => {
     await worker.scheduled({}, env);
     const body = await health();
-    expect((body.last_self_check as { ok?: boolean })?.ok).toBe(true);
+    const last = body.last_self_check as { recorded?: boolean; ok?: boolean };
+    expect(last?.recorded, "the check ran and /health does not know").toBe(true);
+    expect(last?.ok).toBe(true);
   });
 
   it("says plainly when no check has run, rather than showing a reassuring blank", async () => {
@@ -150,8 +223,11 @@ describe("what /health says about it", () => {
     // at all — never configured, or disabled on a redeploy — that is
     // itself the thing to notice.
     const body = await health();
-    expect(String(body.last_self_check), "an unmonitored connector looked monitored").toMatch(
-      /none recorded|may not be running/i,
+    // STRUCTURED, not prose: a consumer should not have to tell an
+    // object from a sentence. And it says only what it knows — "no
+    // report" has three causes that look identical from here.
+    expect((body.last_self_check as { recorded?: boolean })?.recorded, "an absent report looked like a passing one").toBe(
+      false,
     );
   });
 
@@ -160,9 +236,20 @@ describe("what /health says about it", () => {
     // file layout or a build command (DECISIONS.md 5.0 S5/S8/S13), and
     // /health takes no authentication.
     const gone = { ...env, CATALOG: { async fetch() { return new Response("no", { status: 404 }); } } } as Env;
-    await worker.scheduled({}, gone);
+    await expect(worker.scheduled({}, gone)).rejects.toThrow();
     // A later request on a working deploy still must not echo it.
     const body = JSON.stringify(await health());
     expect(body, "the failure detail reached an anonymous caller").not.toMatch(/sync-catalog|audit-index|\.ts:/);
+  });
+});
+
+describe("the harness itself", () => {
+  it("serves assets case-sensitively, the way Cloudflare does", () => {
+    // THE STUB'S OWN HONESTY, asserted. If this ever reverts to
+    // `fs.existsSync`, the suite would quietly stop being able to
+    // reproduce the failure the self-check was built for — on the dev
+    // machines where it is written, and nowhere else.
+    expect(servedFile("editions.json"), "the real file is not served").toBeTruthy();
+    expect(servedFile("EDITIONS.JSON"), "the stub is case-insensitive, so it cannot model Linux").toBeNull();
   });
 });

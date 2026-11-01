@@ -24,11 +24,28 @@ const mcp = path.resolve(web, "..", "..", "packages", "mcp");
 
 const page = fs.readFileSync(path.join(web, "connect", "index.html"), "utf-8");
 const worker = fs.readFileSync(path.join(mcp, "src", "worker.ts"), "utf-8");
-const wrangler = fs.readFileSync(path.join(mcp, "wrangler.toml"), "utf-8");
+/** The deploy config WITH ITS COMMENTS STRIPPED.
+ *
+ * Every check below was satisfiable by a comment before this. The file
+ * explains its route at length in prose, so "the hostname appears in
+ * wrangler.toml" proved nothing — the route could be deleted outright
+ * and this suite stayed green. A metric with a blind spot exactly where
+ * it is pointed is not measuring anything (ADR 0002). */
+const wrangler = fs
+  .readFileSync(path.join(mcp, "wrangler.toml"), "utf-8")
+  .split("\n")
+  .map((line) => line.replace(/(^|\s)#.*$/, ""))
+  .join("\n");
 
-/** Every absolute URL the page offers as the thing to paste. */
+/** Every absolute URL the page offers as the thing to paste.
+ *
+ * Trailing sentence punctuation is trimmed: an address at the end of a
+ * sentence would otherwise read as a second, different address, and
+ * `new URL()` would take the full stop as part of the path. */
 function publishedAddresses(): string[] {
-  return [...page.matchAll(/https:\/\/mcp\.lionsdegree\.com[^\s"'<]*/g)].map((m) => m[0]);
+  return [...page.matchAll(/https:\/\/mcp\.lionsdegree\.com[^\s"'<]*/g)].map((m) =>
+    m[0].replace(/[.,;:)]+$/, ""),
+  );
 }
 
 describe("the address students are told to paste", () => {
@@ -76,18 +93,21 @@ describe("the address students are told to paste", () => {
 
     const host = new URL(publishedAddresses()[0]).host;
     const escaped = host.replace(/\./g, "\\.");
-    // Either spelling covers the whole host: a custom domain (Cloudflare
-    // owns the DNS record and the certificate) or an explicit wildcard.
-    const wholeHost =
-      new RegExp(`pattern\\s*=\\s*"${escaped}"[\\s\\S]{0,120}custom_domain\\s*=\\s*true`).test(wrangler) ||
-      new RegExp(`${escaped}/\\*`).test(wrangler);
-    expect(wholeHost, "the route does not cover the whole host, so the sign-in endpoints are unreachable").toBe(
-      true,
-    );
-    expect(
-      new RegExp(`${escaped}/mcp(?!\\w)"`).test(wrangler),
-      "the route is bound to /mcp alone, which leaves sign-in unreachable",
-    ).toBe(false);
+
+    // A CUSTOM DOMAIN, which is a bare hostname with no path. The
+    // other spelling this used to accept — `host/*` — is not
+    // deployable beside `custom_domain`, and without it needs a zone
+    // id this file does not carry. Accepting either meant the test
+    // blessed a config wrangler would reject.
+    const route = new RegExp(`pattern\\s*=\\s*"${escaped}"\\s*\\n\\s*custom_domain\\s*=\\s*true`).test(wrangler);
+    expect(route, "no custom-domain route for this host, so nothing reaches the Worker").toBe(true);
+
+    // And no route may carry a path at all: anything narrower than the
+    // host leaves /authorize, /callback and /token unrouted, which
+    // strands a student mid-sign-in with a working address.
+    for (const p of [...wrangler.matchAll(/pattern\s*=\s*"([^"]+)"/g)].map((m) => m[1])) {
+      expect(p, `the route ${p} is narrower than the whole host`).not.toMatch(/\//);
+    }
   });
 });
 
@@ -97,7 +117,9 @@ describe("what happens to the website if the connector is down", () => {
     for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
       const f = path.join(dir, e.name);
       if (e.isDirectory()) sources(f, out);
-      else if (/\.(ts|tsx|html|css)$/.test(e.name)) out.push(f);
+      // `.js` and `.mjs` too: a plain script reaching the connector
+      // would have walked straight past the first version of this.
+      else if (/\.(ts|tsx|js|mjs|html|css)$/.test(e.name)) out.push(f);
     }
     return out;
   }
@@ -111,7 +133,9 @@ describe("what happens to the website if the connector is down", () => {
     //
     // Asserted by the absence of the hostname anywhere the browser
     // would reach it, rather than by a comment promising independence.
-    const reaching = sources(path.join(web, "src"))
+    const reaching = [path.join(web, "src"), path.join(web, "public")]
+      .filter((d) => fs.existsSync(d))
+      .flatMap((d) => sources(d))
       .filter((f) => /mcp\.lionsdegree\.com/.test(fs.readFileSync(f, "utf-8")))
       .map((f) => path.relative(web, f));
     expect(reaching, "the website makes a request to the connector").toEqual([]);
@@ -160,8 +184,10 @@ describe("the page now that the connector is live", () => {
     // be here; a student who has never opened a terminal cannot act on
     // either, and seeing them says "this is not for you".
     expect(page, "there is a code block on the page").not.toMatch(/<pre|<code/);
+    // Case-insensitive, and the plural counts: "oauth" is as much
+    // jargon as "OAuth", and the first version sailed past "endpoints".
     for (const jargon of ["JSON", "npx", "stdio", "localhost", "OAuth", "endpoint"]) {
-      expect(page, `the page says "${jargon}"`).not.toMatch(new RegExp(`\\b${jargon}\\b`));
+      expect(page, `the page says "${jargon}"`).not.toMatch(new RegExp(`\\b${jargon}s?\\b`, "i"));
     }
   });
 
