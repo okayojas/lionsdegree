@@ -342,3 +342,57 @@ describe("what a failed sign-in leaves behind", () => {
     expect((await breadcrumbs())[0].stage).toBe("token");
   });
 });
+
+describe("a sign-in that dies before the callback", () => {
+  /** THE BLIND SPOT THIS CLOSES. The first real failure report left no
+   * breadcrumb at all, which ruled out /callback and /token and left
+   * /authorize — the one stage that recorded nothing. An assistant
+   * registers from its own servers and sends the student's browser
+   * here seconds later from somewhere else, and KV writes take time to
+   * cross regions. */
+  const breadcrumbs = async () => {
+    const raw = kv.store.get("oauth:recent-failures");
+    return raw ? (JSON.parse(raw) as { stage: string; why: string }[]) : [];
+  };
+
+  it("records an unknown client, naming propagation as a cause", async () => {
+    await req(
+      "/authorize?response_type=code&client_id=never-registered" +
+        "&redirect_uri=https%3A%2F%2Fa.example%2Fcb&code_challenge=YWJj&code_challenge_method=S256",
+    );
+    const [last] = await breadcrumbs();
+    expect(last?.stage, "the stage that refused was not recorded").toBe("authorize");
+    expect(last.why).toMatch(/unknown client/);
+    expect(last.why, "the most likely cause is not named").toMatch(/propagated/);
+  });
+
+  it("records a redirect_uri the client never registered", async () => {
+    const client = await registerClient("https://assistant.example/cb");
+    await req(
+      `/authorize?response_type=code&client_id=${client}` +
+        "&redirect_uri=https%3A%2F%2Fsomewhere-else.example%2Fcb&code_challenge=YWJj&code_challenge_method=S256",
+    );
+    const [last] = await breadcrumbs();
+    expect(last?.stage).toBe("authorize");
+    expect(last.why).toMatch(/not registered/);
+  });
+
+  it("records a client that skipped PKCE", async () => {
+    const client = await registerClient("https://assistant.example/cb");
+    await req(`/authorize?response_type=code&client_id=${client}&redirect_uri=https%3A%2F%2Fassistant.example%2Fcb`);
+    const [last] = await breadcrumbs();
+    expect(last?.stage).toBe("authorize");
+    expect(last.why).toMatch(/PKCE/);
+  });
+
+  it("leaves no breadcrumb when the flow starts cleanly", async () => {
+    // A log that fills up on success tells you nothing on failure.
+    const client = await registerClient("https://assistant.example/cb");
+    const res = await req(
+      `/authorize?response_type=code&client_id=${client}` +
+        "&redirect_uri=https%3A%2F%2Fassistant.example%2Fcb&code_challenge=YWJj&code_challenge_method=S256",
+    );
+    expect(res.status).toBe(302);
+    expect(await breadcrumbs(), "a successful sign-in was recorded as a failure").toHaveLength(0);
+  });
+});

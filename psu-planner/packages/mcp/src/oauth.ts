@@ -286,14 +286,37 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
     // REFUSED IN PLACE, never by redirecting. Anyone can call this with
     // somebody else's client_id; bouncing the error to an unverified
     // redirect is how the next request's code reaches an attacker.
-    if (!client) return oauthError("invalid_client", "Unknown client. Register first.");
+    if (!client) {
+      // THE ONE THAT WOULD BE INVISIBLE. An assistant registers from
+      // its own servers and then sends the student's browser here,
+      // seconds later and from somewhere else entirely. The client
+      // record is in KV, whose writes take time to reach other
+      // regions — so a registration that definitely happened can be
+      // unreadable by the time the browser arrives, and the student
+      // sees a sign-in that refuses them for no reason they can act
+      // on. Measured on this namespace: a write was still unreadable
+      // six seconds later.
+      await noteFailure(cfg.kv, "authorize", `unknown client (client_id_present=${!!clientId}) — never registered, registration expired, or the registration has not propagated across regions`);
+      return oauthError("invalid_client", "Unknown client. Register first.");
+    }
     if (!client.redirect_uris.includes(redirectUri)) {
+      await noteFailure(
+        cfg.kv,
+        "authorize",
+        `redirect_uri not registered to this client (sent=${redirectUri}, registered=${client.redirect_uris.join(" ")})`,
+      );
       return oauthError("invalid_request", "That redirect_uri is not registered to this client.");
     }
     if (q.get("response_type") !== "code") {
+      await noteFailure(cfg.kv, "authorize", `response_type was ${q.get("response_type") ?? "absent"}, not code`);
       return oauthError("unsupported_response_type", "Only the authorization code flow is supported.");
     }
     if (!challenge || method !== "S256") {
+      await noteFailure(
+        cfg.kv,
+        "authorize",
+        `PKCE missing or wrong method (challenge_present=${!!challenge}, method=${method ?? "absent"})`,
+      );
       return oauthError("invalid_request", "PKCE with code_challenge_method=S256 is required.");
     }
 
