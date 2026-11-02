@@ -166,8 +166,8 @@ describe("what the connector offers", () => {
   it("offers the tools that change a Plan, since #36 made them swap-safe", async () => {
     const res = await worker.fetch(POST(rpc("tools/list")), env);
     const text = await res.text();
-    // Derived from the dispatch set: there are seven, and a list typed
-    // out here would be wrong the first time an eighth is added.
+    // Derived from the dispatch set, and this is why: the comment here
+    // used to say "there are seven", and prior credit made it nine.
     for (const writes of MUTATIONS) {
       expect(text, `${writes} is not reachable`).toMatch(new RegExp(`"${writes}"`));
     }

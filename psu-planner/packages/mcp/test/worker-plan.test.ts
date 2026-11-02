@@ -441,6 +441,19 @@ const EVERY_MUTATION: { name: string; args: Record<string, unknown>; changed: (d
     args: { slot_id: "GE-0-0", code: "CMPSC 465" },
     changed: (d) => JSON.stringify(d.slotFills ?? {}).includes("CMPSC 465"),
   },
+  {
+    name: "add_previous_course",
+    // In the catalog, in nobody's template here — so this proves the write
+    // lands without depending on a Program listing the course.
+    args: { codes: ["ART 1"] },
+    changed: (d) => JSON.stringify(d.completed ?? {}).includes("ART 1"),
+  },
+  {
+    name: "remove_previous_course",
+    // The fixture's own completed course, recorded in the planner.
+    args: { codes: ["MATH 140"] },
+    changed: (d) => !((d.completed ?? {}) as Record<string, boolean>)["MATH 140"],
+  },
   { name: "optimize_schedule", args: {}, changed: (d) => Array.isArray(d.terms) },
   { name: "add_term", args: {}, changed: (d) => (d.terms as unknown[]).length === 9 },
   { name: "skip_term", args: { term_index: 3 }, changed: (d) => JSON.stringify(d.terms).includes('"gap":true') },
@@ -624,6 +637,75 @@ describe("showing a student a change before they make it, hosted", () => {
 
   it("is offered to a signed-in student", async () => {
     expect(await tools(env(), `Bearer ${await signedIn()}`)).toContain("simulate_change");
+  });
+});
+
+describe("prior credit, hosted", () => {
+  /** MATH 231 covers the MATH 230 the fixture's Program lists. */
+  const COVERS = "MATH 231";
+  const COVERED = "MATH 230";
+  const scheduled = (doc: Record<string, unknown>): string[] =>
+    (doc.terms as { items: { code?: string }[] }[]).flatMap((t) =>
+      t.items.flatMap((i) => (i.code ? [i.code] : [])),
+    );
+
+  it("records several courses in one call, against the stored plan", async () => {
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_previous_course", {
+      codes: ["ART 1", "CMPSC 465"], based_on_revision: 4,
+    });
+    expect(result!.ok, JSON.stringify(result)).toBe(true);
+    const stored = JSON.stringify((table.stored().doc as { completed: unknown }).completed);
+    expect(stored, "ART 1 was not recorded in the stored plan").toContain("ART 1");
+    expect(stored, "CMPSC 465 was not recorded in the stored plan").toContain("CMPSC 465");
+  });
+
+  it("clears the covered requirement from the stored plan's terms", async () => {
+    // The whole point of the ticket, observed in the database rather than
+    // in a local file: the student took MATH 251-style credit, and the
+    // schedule must stop telling them to take what it covers.
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_previous_course", {
+      codes: [COVERS], based_on_revision: 4,
+    });
+    expect(result!.ok, JSON.stringify(result)).toBe(true);
+    expect(
+      scheduled(table.stored().doc as Record<string, unknown>),
+      `${COVERED} is still scheduled in the stored plan after ${COVERS} was recorded`,
+    ).not.toContain(COVERED);
+  });
+
+  it("puts the covered requirement back when the claim is withdrawn", async () => {
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    await call(env(), `Bearer ${await signedIn()}`, "add_previous_course", {
+      codes: [COVERS], based_on_revision: 4,
+    });
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "remove_previous_course", {
+      codes: [COVERS], based_on_revision: 5,
+    });
+    expect(result!.ok, JSON.stringify(result)).toBe(true);
+    expect(
+      scheduled(table.stored().doc as Record<string, unknown>),
+      `${COVERED} did not come back when ${COVERS} was un-recorded`,
+    ).toContain(COVERED);
+  });
+
+  it("REFUSES a course the bulletin does not carry, and writes nothing", async () => {
+    // Iron rule 2, over a network, against a shared database, with the
+    // student not watching: a course we cannot verify, recorded as passed,
+    // takes a real requirement out of their audit.
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const before = JSON.stringify(table.stored());
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_previous_course", {
+      codes: ["ART 1", "BASKT 999"], based_on_revision: 4,
+    });
+    expect(result!.ok, "an unverifiable course was recorded as passed").not.toBe(true);
+    expect(result!.plan, "a refusal returned a plan as though one had been written").toBeUndefined();
+    expect(JSON.stringify(table.stored()), "a refused recording still wrote").toBe(before);
   });
 });
 

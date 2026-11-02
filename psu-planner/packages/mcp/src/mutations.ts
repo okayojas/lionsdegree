@@ -35,6 +35,13 @@ import {
 import type { ToolContext } from "./tools.js";
 import { MemoryPlanStore } from "./planStore.js";
 import { planView } from "./planView.js";
+import {
+  notInBulletin,
+  notRecorded,
+  priorCourseCodes,
+  recordPriorCredit,
+  unrecordPriorCredit,
+} from "./previousCourses.js";
 
 export interface MutationResult {
   ok?: boolean;
@@ -234,10 +241,12 @@ const isRequired = (ctx: ToolContext, code: string): boolean =>
  * against the real list rather than a second hand-written one. */
 export const MUTATIONS: ReadonlySet<string> = new Set([
   "add_course",
+  "add_previous_course",
   "add_term",
   "fill_slot",
   "optimize_schedule",
   "remove_course",
+  "remove_previous_course",
   "set_schedule_constraint",
   "skip_term",
 ]);
@@ -312,6 +321,115 @@ export async function executeMutation(
       const r = await commit(ctx, name, (p) => { p.added.push({ code, sem: termIndex }); });
       if (refused(r)) return r!;
       return { ...r, added: code, term: plan().terms[termIndex]?.label, plan: planView(ctx, plan()) };
+    }
+
+    // AP, transfer, summer, a term before they started planning. The
+    // behaviour lives in `previousCourses.ts`; what is here is the gate
+    // (iron rule 2) and the account given back to the model.
+    case "add_previous_course": {
+      const codes = priorCourseCodes(args);
+      if (!codes.length) {
+        return {
+          error: "add_previous_course needs the courses the student has already taken.",
+          remedy: 'Pass codes: ["MATH 140", "CHEM 110"] — one call for all of them.',
+        };
+      }
+      const unknown = notInBulletin(codes, cat);
+      if (unknown.length) {
+        // ALL OR NOTHING. Recording the codes that checked out and
+        // refusing the rest would leave the student's schedule half
+        // changed by a call the model was told had failed, which is
+        // harder to notice than a call that did nothing.
+        return {
+          error:
+            `${unknown.join(", ")} ${unknown.length === 1 ? "is" : "are"} not in the ${ctx.data.edition} ` +
+            "catalog, so nothing in this call was recorded.",
+          not_in_the_catalog: unknown,
+          why:
+            "A course we cannot find is a course we cannot verify, and recording it as passed would " +
+            "take a real requirement out of the student's audit on nothing but a spelling.",
+          remedy:
+            "Call search_catalog for the ones that did not match, confirm the codes with the student, " +
+            "then call again with every code — including the ones that were fine.",
+        };
+      }
+
+      let outcome!: ReturnType<typeof recordPriorCredit>;
+      let reflowed = false;
+      const r = await commit(ctx, name, (p) => {
+        outcome = recordPriorCredit(p, codes, ctx.data.coveredBy);
+        // The planner's own rule (store.ts `autoReoptimize`): completion
+        // frees up the schedule, so re-flow it — unless the student has
+        // dragged cards themselves, in which case reshuffling would throw
+        // away an arrangement they made by hand.
+        if (Object.keys(p.moves).length === 0) {
+          reoptimize(ctx, p);
+          reflowed = true;
+        }
+      });
+      if (refused(r)) return r!;
+      return {
+        ...r,
+        recorded: outcome.recorded,
+        ...(outcome.alreadyRecorded.length ? { already_recorded: outcome.alreadyRecorded } : {}),
+        // NAMED, not counted. "3 courses were removed" leaves the model
+        // unable to tell the student that the MATH 250 they were going to
+        // take is covered by the MATH 251 they already passed.
+        no_longer_scheduled: outcome.noLongerScheduled,
+        note:
+          (reflowed
+            ? "The schedule was re-flowed around what they have already done. "
+            : "The schedule was left as the student arranged it — they have moved cards by hand. ") +
+          "Courses the recorded ones cover are no longer scheduled; the audit and credit totals " +
+          "below already reflect this.",
+        plan: planView(ctx, plan()),
+      };
+    }
+
+    case "remove_previous_course": {
+      const codes = priorCourseCodes(args);
+      if (!codes.length) {
+        return {
+          error: "remove_previous_course needs the courses to stop treating as already taken.",
+          remedy: 'Pass codes: ["MATH 140"] — get_plan lists what is currently recorded.',
+        };
+      }
+      const never = notRecorded(plan(), codes);
+      if (never.length) {
+        return {
+          error:
+            `${never.join(", ")} ${never.length === 1 ? "is" : "are"} not recorded as already taken, ` +
+            "so nothing in this call was undone.",
+          not_recorded: never,
+          remedy: "Call get_plan for completed_courses, which is the list this tool removes from.",
+        };
+      }
+
+      let outcome!: ReturnType<typeof unrecordPriorCredit>;
+      const r = await commit(ctx, name, (p) => {
+        outcome = unrecordPriorCredit(p, codes);
+        // Re-flowed under the same rule as recording: a requirement put
+        // back into the term it used to sit in has to find a term its
+        // prerequisites allow, and the optimizer is what does that.
+        if (Object.keys(p.moves).length === 0) reoptimize(ctx, p);
+      });
+      if (refused(r)) return r!;
+      return {
+        ...r,
+        no_longer_recorded: outcome.noLongerRecorded,
+        back_in_the_plan: outcome.restored,
+        ...(outcome.restoredBlind.length
+          ? {
+              put_back_without_a_record: outcome.restoredBlind,
+              caution:
+                "These were recorded somewhere other than this connector — the planner's own " +
+                "checkbox or a spreadsheet import — so what they originally cleared is not known. " +
+                "The course itself is back in the plan; tell the student to check the requirement " +
+                "it was standing in for.",
+            }
+          : {}),
+        plan: planView(ctx, plan()),
+      };
     }
 
     case "remove_course": {
