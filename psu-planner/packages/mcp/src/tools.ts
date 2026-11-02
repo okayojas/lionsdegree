@@ -35,6 +35,7 @@ import { loadEdition, type EditionCatalog } from "./catalog.js";
 import { FilePlanStore, type PlanStore, type StoredPlan } from "./planStore.js";
 import { FsCatalogSource, type CatalogSource } from "./source.js";
 import { executeMutation, MUTATIONS } from "./mutations.js";
+import { programRequirements } from "./programRequirements.js";
 import { simulateChange } from "./simulate.js";
 import { planView } from "./planView.js";
 
@@ -164,6 +165,12 @@ export const READABLE_PLAN_TOOLS: ReadonlySet<string> = new Set([
   // the student's plan, which is the only thing this classification
   // decides.
   "simulate_change",
+  // PLAN-SHAPED even though the answer is about the Bulletin (#40). The
+  // Plan is what pins the Edition, and a student on 2025-2026 asking
+  // what a minor requires must be told what 2025-2026 requires — a
+  // catalog-only classification would answer from the newest published
+  // and silently describe a different degree (ADR 0001).
+  "get_program_requirements",
 ]);
 
 /** THE HOSTED SURFACE, in one place.
@@ -352,6 +359,19 @@ function allTools(): ToolDefinition[] {
           },
         },
         ["change", "arguments"],
+      ),
+    },
+    {
+      name: "get_program_requirements",
+      description:
+        "What any program requires, whether or not the student is in it. Answers \"what would a math " +
+        "minor actually need?\" with the bulletin's own requirement sections, their headings and their " +
+        "credit figures — use this before they declare something, and audit_requirements for what they " +
+        "still need in the programs they are already in. Takes a slug from search_programs or " +
+        "discover_programs.",
+      inputSchema: obj(
+        { slug: str('A program slug, e.g. "eberly-science-mathematics-minor", from search_programs') },
+        ["slug"],
       ),
     },
   ];
@@ -770,6 +790,9 @@ export async function executeTool(
         note: "campuses lists where each program is offered. A program offered only at other campuses IS in the catalog — say which campus offers it rather than that it does not exist.",
       };
     }
+
+    case "get_program_requirements":
+      return programRequirements(args, ctx);
 
     case "audit_requirements": {
       const pool = buildPool(plan, cat);

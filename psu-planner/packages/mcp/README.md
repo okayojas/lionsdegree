@@ -44,6 +44,7 @@ variable.
 | `check_prerequisites` | Whether your plan satisfies a course by a given term |
 | `get_prereq_chain` | The whole prerequisite tree, in one call |
 | `search_programs` | Majors, minors and certificates |
+| `get_program_requirements` | What any program requires, including ones you have not declared |
 | `audit_requirements` | What each of your programs still needs |
 | `discover_programs` | Programs that fit what you have already taken |
 | `simulate_change` | What a change *would* do — see below |
