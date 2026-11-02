@@ -38,9 +38,16 @@ export interface Env {
   NODE_ENV?: string;
   /** Comma-separated production origins allowed to call the API (S1). */
   ALLOWED_ORIGINS?: string;
-  /** Supabase project JWT secret (HS256). When set, a valid `Authorization:
-   * Bearer <jwt>` identifies the user and rate-limiting keys on their `sub`. */
+  /** Supabase project JWT secret, for a project still signing HS256. When
+   * either this or `SUPABASE_URL` is set, a valid `Authorization: Bearer
+   * <jwt>` identifies the user and rate-limiting keys on their `sub`. */
   SUPABASE_JWT_SECRET?: string;
+  /** The Supabase project URL, used to find its published signing keys.
+   *
+   * REQUIRED FOR A PROJECT ON JWT SIGNING KEYS, which sign ES256 and
+   * which the shared secret cannot verify at all. The connector refused
+   * every real sign-in for a day over exactly this. */
+  SUPABASE_URL?: string;
   /** When truthy, requests without a verified identity are REJECTED (fail
    * closed — S1). Leave unset until Supabase auth is wired into the client;
    * the API then still applies CORS + Sec-Fetch-Site + IP rate limiting and
@@ -103,7 +110,8 @@ function cleanMessage(m: unknown): ChatMessage | null {
 export function createApp(env: Env) {
   const app = new Hono();
   const origins = allowedOrigins(env);
-  const authOn = !!env.SUPABASE_JWT_SECRET;
+  // Either kind of configuration turns the gate on.
+  const authOn = !!env.SUPABASE_JWT_SECRET || !!env.SUPABASE_URL;
   const requireAuth = !!env.REQUIRE_AUTH && env.REQUIRE_AUTH !== "0" && env.REQUIRE_AUTH !== "false";
   // Loud startup logging so a misconfigured production is obvious (S2, S1).
   console.log(`[api] rate-limit backend: ${env.RATE_LIMIT ? "cloudflare-kv" : "in-memory-map (dev only — NOT safe in prod)"}`);
@@ -141,7 +149,18 @@ export function createApp(env: Env) {
     let identity: string | null = null;
     const auth = c.req.header("authorization");
     if (authOn && auth?.startsWith("Bearer ")) {
-      identity = (await verifyJwt(auth.slice(7), { secret: env.SUPABASE_JWT_SECRET }))?.sub ?? null;
+      // Same two signing paths as the connector — this gate had the
+      // same blind spot, and would have refused every student the day
+      // the advisor was switched on.
+      identity =
+        (
+          await verifyJwt(auth.slice(7), {
+            secret: env.SUPABASE_JWT_SECRET,
+            jwksUrl: env.SUPABASE_URL
+              ? `${env.SUPABASE_URL.replace(/\/+$/, "")}/auth/v1/.well-known/jwks.json`
+              : undefined,
+          })
+        )?.sub ?? null;
     }
     if (!identity) {
       if (requireAuth) return c.json({ error: "Sign in to use the assistant." }, 401); // fail closed

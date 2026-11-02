@@ -387,7 +387,16 @@ async function identify(request: Request, env: Env, resourceUrl: URL): Promise<C
   const bearer = /^Bearer\s+(.+)$/i.exec(header)?.[1];
   if (!bearer) return rpcError(401, SIGN_IN, challenge);
 
-  const identity = await verifyJwt(bearer, { secret: env.SUPABASE_JWT_SECRET });
+  // BOTH WAYS A SUPABASE PROJECT SIGNS. Legacy projects use the shared
+  // secret; projects on JWT signing keys use ES256 and publish the
+  // public half. This deploy's project had migrated, and the gate
+  // refused every genuine token for a day as a result — a failure that
+  // is indistinguishable from a forgery from in here, which is why it
+  // left no trace anywhere.
+  const identity = await verifyJwt(bearer, {
+    secret: env.SUPABASE_JWT_SECRET,
+    jwksUrl: env.SUPABASE_URL ? `${env.SUPABASE_URL.replace(/\/+$/, "")}/auth/v1/.well-known/jwks.json` : undefined,
+  });
   if (!identity) return rpcError(401, SIGN_IN, challenge);
 
   // A signature says the token was issued; it cannot say the student
