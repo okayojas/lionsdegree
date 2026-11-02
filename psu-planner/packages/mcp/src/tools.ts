@@ -37,6 +37,7 @@ import { FsCatalogSource, type CatalogSource } from "./source.js";
 import { executeMutation, MUTATIONS } from "./mutations.js";
 import { simulateChange } from "./simulate.js";
 import { planView } from "./planView.js";
+import { planDiagram } from "./planDiagram.js";
 
 export interface ToolContext {
   /** Mutable: a write refreshes these so the next call sees the new plan.
@@ -164,6 +165,10 @@ export const READABLE_PLAN_TOOLS: ReadonlySet<string> = new Set([
   // the student's plan, which is the only thing this classification
   // decides.
   "simulate_change",
+  // A READ, including when it is asked to draw a candidate: it goes
+  // through `candidateContext`, which is the same sandbox
+  // `simulate_change` uses and writes nowhere.
+  "plan_diagram",
 ]);
 
 /** THE HOSTED SURFACE, in one place.
@@ -353,6 +358,23 @@ function allTools(): ToolDefinition[] {
         },
         ["change", "arguments"],
       ),
+    },
+    {
+      name: "plan_diagram",
+      description:
+        "Draw the student's plan as a Mermaid flowchart they can see in the chat: a box per term, " +
+        "the courses in it, and an arrow wherever the catalog says one course is a prerequisite " +
+        "of another. Use this when they ask to see or picture their degree rather than read a " +
+        "list of terms. Pass change and arguments to draw what a change WOULD look like instead. " +
+        "Show the diagram field verbatim in a mermaid code block, and give them the planner link " +
+        "it returns — the chart on the website is better than anything a chat window renders.",
+      inputSchema: obj({
+        change: str("Optional: a change to draw the result of, exactly as simulate_change takes it."),
+        arguments: {
+          type: "object",
+          description: "The arguments that change would take. Only read when change is given.",
+        },
+      }),
     },
   ];
 }
@@ -586,6 +608,9 @@ export async function executeTool(
 
     case "get_plan":
       return planView(ctx, plan);
+
+    case "plan_diagram":
+      return planDiagram(ctx, args);
 
     case "simulate_change":
       // Dispatched here, in the READ half, because that is what it is:

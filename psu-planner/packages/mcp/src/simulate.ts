@@ -136,20 +136,38 @@ export interface SimulationResult {
   [k: string]: unknown;
 }
 
-/** Run `change` against a copy and report what it would do. */
-export async function simulateChange(
+/** A sandbox with `change` already applied, or the refusal a student
+ * should be shown instead of a candidate.
+ *
+ * SPLIT OUT SO THERE IS ONE CANDIDATE, NOT TWO. `simulate_change`
+ * describes the candidate in prose and `plan_diagram` draws it, and
+ * both have to be looking at the same plan. A second "build me a
+ * preview" path would drift, and the drift would reach a student as a
+ * picture that disagrees with the summary printed beside it — which is
+ * worse than either being wrong alone, because they would have no way
+ * to tell which half to believe.
+ *
+ * The refusals travel with it for the same reason. "That revision has
+ * moved on" and "that change cannot be applied" are the same events
+ * whichever tool asked, and a student must not get two different
+ * explanations of one refusal. */
+export type Candidate = { after: ToolContext } | { refused: SimulationResult };
+
+export async function candidateContext(
   ctx: ToolContext,
   change: string,
   changeArgs: Record<string, unknown>,
-): Promise<SimulationResult> {
+): Promise<Candidate> {
   if (!MUTATIONS.has(change)) {
     return {
-      error: `${change || "that"} cannot be simulated — only a change to the plan can be.`,
-      can_simulate: [...MUTATIONS].sort(),
-      note: "To see the plan as it stands, call get_plan.",
+      refused: {
+        error: `${change || "that"} cannot be simulated — only a change to the plan can be.`,
+        can_simulate: [...MUTATIONS].sort(),
+        note: "To see the plan as it stands, call get_plan.",
+      },
     };
   }
-  if (!ctx.plan) return { error: "There is no plan to simulate a change against." };
+  if (!ctx.plan) return { refused: { error: "There is no plan to simulate a change against." } };
 
   // A STATED REVISION IS HONOURED, NOT OVERWRITTEN. The model is told
   // to pass the change's arguments verbatim, and those may carry the
@@ -161,31 +179,22 @@ export async function simulateChange(
   const stated = changeArgs.based_on_revision;
   if (typeof stated === "number" && stated !== held) {
     return {
-      simulated: true,
-      applied: false,
-      possible: false,
-      based_on_revision: held,
-      change: { tool: change, arguments: changeArgs },
-      reason:
-        "That revision is not the one the plan is at now, so a preview built from it would " +
-        "show the student a plan that is no longer theirs.",
-      remedy: "Call get_plan, then simulate against what it returns.",
-      nothing_changed: "The student's plan has not been changed.",
+      refused: {
+        simulated: true,
+        applied: false,
+        possible: false,
+        based_on_revision: held,
+        change: { tool: change, arguments: changeArgs },
+        reason:
+          "That revision is not the one the plan is at now, so a preview built from it would " +
+          "show the student a plan that is no longer theirs.",
+        remedy: "Call get_plan, then simulate against what it returns.",
+        nothing_changed: "The student's plan has not been changed.",
+      },
     };
   }
 
-  const before = ctx;
   const after = sandbox(ctx);
-
-  // Asked of the ORIGINAL plan, before the change removes the Course
-  // and makes the question unanswerable.
-  const removesRequired =
-    change === "remove_course" &&
-    (ctx.plan.terms ?? []).some((t) =>
-      t.items.some(
-        (i) => "code" in i && i.code === String(changeArgs.code ?? "").trim().toUpperCase() && !!i.origin,
-      ),
-    );
 
   // THE REAL MUTATION, with the real optimiser behind it. The sandbox's
   // revision is stated so the guard in `executeMutation` is satisfied
@@ -201,16 +210,44 @@ export async function simulateChange(
     // lacks the thing the student asked for would be read as "here is
     // your plan with that change" — they would not notice the omission.
     return {
-      simulated: true,
-      applied: false,
-      possible: false,
-      based_on_revision: ctx.rev,
-      change: { tool: change, arguments: changeArgs },
-      reason: String(result?.error ?? `${change} could not be applied to this plan.`),
-      ...(result?.suggestion ? { suggestion: result.suggestion } : {}),
-      nothing_changed: "The student's plan has not been changed, and this change cannot be made as asked.",
+      refused: {
+        simulated: true,
+        applied: false,
+        possible: false,
+        based_on_revision: ctx.rev,
+        change: { tool: change, arguments: changeArgs },
+        reason: String(result?.error ?? `${change} could not be applied to this plan.`),
+        ...(result?.suggestion ? { suggestion: result.suggestion } : {}),
+        nothing_changed: "The student's plan has not been changed, and this change cannot be made as asked.",
+      },
     };
   }
+
+  return { after };
+}
+
+/** Run `change` against a copy and report what it would do. */
+export async function simulateChange(
+  ctx: ToolContext,
+  change: string,
+  changeArgs: Record<string, unknown>,
+): Promise<SimulationResult> {
+  const candidate = await candidateContext(ctx, change, changeArgs);
+  if ("refused" in candidate) return candidate.refused;
+
+  const before = ctx;
+  const after = candidate.after;
+
+  // Asked of the ORIGINAL plan, which the sandbox deep-copied rather
+  // than edited — so this still sees the Course the change removes, and
+  // the question stays answerable.
+  const removesRequired =
+    change === "remove_course" &&
+    (ctx.plan!.terms ?? []).some((t) =>
+      t.items.some(
+        (i) => "code" in i && i.code === String(changeArgs.code ?? "").trim().toUpperCase() && !!i.origin,
+      ),
+    );
 
   const wasAt = placements(before.plan!, before.items);
   const nowAt = placements(after.plan!, after.items);
