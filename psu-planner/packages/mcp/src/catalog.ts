@@ -61,6 +61,14 @@ export interface ProgramIndexEntry {
 
 export interface EditionCatalog {
   edition: string;
+  /** Every Edition this catalog can serve, oldest first.
+   *
+   * Carried here because a REFUSAL needs it and the tools have a catalog
+   * in hand but no source. A Program or a Plan absent from this Edition
+   * is routinely present in another (ADR 0001), so "we do not have that"
+   * without "here is what we do have" reads as "that does not exist" —
+   * which for a forward-only catalog is the wrong story entirely. */
+  editions: string[];
   /** Every Course in the Edition.
    *
    * Entries start as audit rows — `astComplete: false`, no prerequisite
@@ -250,6 +258,11 @@ export async function loadEdition(source: CatalogSource, edition: string): Promi
 
   return {
     edition,
+    // One extra read of a tiny index, once per Edition per isolate. The
+    // alternative was threading a `CatalogSource` through every tool so
+    // a refusal could name the Editions we hold, which would put a
+    // loader on the context of code that only answers questions.
+    editions: await source.editions(),
     catalog,
     programs,
     programsIndex,
