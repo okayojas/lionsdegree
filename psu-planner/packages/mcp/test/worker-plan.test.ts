@@ -441,6 +441,15 @@ const EVERY_MUTATION: { name: string; args: Record<string, unknown>; changed: (d
     args: { slot_id: "GE-0-0", code: "CMPSC 465" },
     changed: (d) => JSON.stringify(d.slotFills ?? {}).includes("CMPSC 465"),
   },
+  {
+    // The fixture is an Engineering Science B.S. and this is the IUG
+    // the Edition publishes against that exact slug (#48). `detach_iug`
+    // is NOT in this table: it needs a plan that already carries one,
+    // so it has its own block below where the attach comes first.
+    name: "attach_iug",
+    args: { slug: "esm-esc-bs-ms" },
+    changed: (d) => (d.iug as { slug?: string } | undefined)?.slug === "esm-esc-bs-ms",
+  },
   { name: "optimize_schedule", args: {}, changed: (d) => Array.isArray(d.terms) },
   { name: "add_term", args: {}, changed: (d) => (d.terms as unknown[]).length === 9 },
   { name: "skip_term", args: { term_index: 3 }, changed: (d) => JSON.stringify(d.terms).includes('"gap":true') },
@@ -624,6 +633,99 @@ describe("showing a student a change before they make it, hosted", () => {
 
   it("is offered to a signed-in student", async () => {
     expect(await tools(env(), `Bearer ${await signedIn()}`)).toContain("simulate_change");
+  });
+});
+
+/** The integrated undergraduate-graduate surface, hosted (#48).
+ *
+ * The local half of this is `iug.test.ts`. What is only testable here
+ * is the round trip: the IUG files have to reach the Worker through the
+ * ASSET BINDING, not off a filesystem, and the connector shipped no
+ * `iug/` at all until `scripts/sync-catalog.mjs` started copying it. A
+ * tool that works locally and finds no programmes hosted is exactly the
+ * failure this block catches.
+ */
+describe("integrated degrees, hosted", () => {
+  const ESM = "esm-esc-bs-ms";
+  /** Attach first, then act on the plan that results — the stub table
+   * keeps the row between calls, so this is one student doing two
+   * things rather than a fixture with a master's pre-baked into it. */
+  const withIug = async (table: ReturnType<typeof plansTable>) => {
+    const r = await call(env(), `Bearer ${await signedIn()}`, "attach_iug", { slug: ESM, based_on_revision: 4 });
+    expect(r.result!.ok, `the attach this test is built on failed: ${JSON.stringify(r.result)}`).toBe(true);
+    return r.result!;
+  };
+
+  it("lists the programme published against the student's own major", async () => {
+    db = withTable(plansTable(PLAN));
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "list_iug_programs");
+    expect(
+      (result!.pairs_with_this_plan as { slug: string }[] | undefined)?.map((p) => p.slug),
+      "the hosted connector found no IUG for a major one is published against — the asset binding is serving no iug/",
+    ).toContain(ESM);
+  });
+
+  it("quotes the Graduate Bulletin verbatim over the wire", async () => {
+    // Served through the asset binding and then back out as JSON. A
+    // student checking this citation against the Graduate Bulletin has
+    // to find the same words, so it is compared against the shipped
+    // file rather than against a string typed into this test.
+    const spec = JSON.parse(
+      fs.readFileSync(path.join(CATALOG, PLAN.edition as string, "iug", `${ESM}.json`), "utf-8"),
+    ) as { applyText: string };
+    db = withTable(plansTable(PLAN));
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "list_iug_programs");
+    const mine = (result!.pairs_with_this_plan as { slug: string; admission_requirements: string }[])
+      .find((p) => p.slug === ESM)!;
+    expect(
+      mine.admission_requirements,
+      "the admission text changed on the way through the Worker; the citation no longer matches the Bulletin",
+    ).toContain(spec.applyText);
+  });
+
+  it("detaches, and the stored plan goes back to a plain bachelor's", async () => {
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    await withIug(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "detach_iug", { based_on_revision: 5 });
+    expect(result!.ok, JSON.stringify(result)).toBe(true);
+    const doc = table.stored().doc as { iug?: unknown; terms: { phase?: string }[] };
+    expect(doc.iug, "the stored plan still claims to carry a master's").toBeFalsy();
+    expect(
+      doc.terms.some((t) => t.phase === "grad"),
+      "graduate terms were left in the stored plan after detaching",
+    ).toBe(false);
+  });
+
+  it("refuses a detach computed from a plan the student has since edited, and writes nothing", async () => {
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    await withIug(table);
+    table.editedInThePlanner();
+    const before = JSON.stringify(table.stored());
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "detach_iug", { based_on_revision: 5 });
+    expect(result!.ok, "a stale detach landed").not.toBe(true);
+    expect(result!.stale_read, "the refusal was not reported as a stale read").toBe(true);
+    expect(JSON.stringify(table.stored()), "a refused detach still wrote").toBe(before);
+  });
+
+  it("refuses a detach that names no revision at all", async () => {
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    await withIug(table);
+    const before = JSON.stringify(table.stored());
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "detach_iug", {});
+    expect(String(result!.error), "a detach landed without naming the revision it came from").toMatch(
+      /based_on_revision/,
+    );
+    expect(JSON.stringify(table.stored()), "a refused detach still wrote").toBe(before);
+  });
+
+  it("is all three offered to a signed-in student, and none of them without an account", async () => {
+    const offered = await tools(env(), `Bearer ${await signedIn()}`);
+    for (const n of ["list_iug_programs", "attach_iug", "detach_iug"]) {
+      expect(offered, `${n} is not reachable hosted`).toContain(n);
+    }
   });
 });
 

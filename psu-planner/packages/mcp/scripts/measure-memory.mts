@@ -51,6 +51,52 @@ console.log(`  audit index + programs (${Object.keys(ed.catalog).length} courses
 await ed.ensureCourses(["MATH 141", "PHYS 212", "CMPSC 465", "ESC 261", "EE 210"]);
 console.log(`  + a plan's subjects and their one hop        ${mb(heap() - base)} MB`);
 
+// An IUG attach, measured on the SAME heap as the plan above it, because
+// that is the situation: a student attaching a master's already has a
+// bachelor's plan loaded. #48 was allowed to ship on this line — the
+// question it answers is whether shipping `iug/` can push a Worker that is
+// already near 128 MB over it, and the honest comparison is the delta from
+// the line above, not a fresh process.
+//
+// The index is the only EAGER read; a program spec and its graduate
+// subjects load on demand, so the second figure is the worst case of one
+// attach rather than a standing cost.
+const iugIndex = await source.read<{ slug: string }[]>(`${edition}/iug/index.json`);
+if (!iugIndex?.length) {
+  console.log(`  + IUG: this edition ships none — re-run scripts/sync-catalog.mjs`);
+} else {
+  const beforeIug = heap() - base;
+  // EVERY program, cumulatively, in one isolate. Not one attach: an isolate
+  // serves many students, so the figure that matters is what it holds once
+  // it has seen all of them. Measuring a single attach would report a
+  // ceiling the real server never lives under.
+  let worst = { slug: "", cost: -1 };
+  for (const { slug } of iugIndex) {
+    const spec = await source.read<{
+      doubleCount: { eligible: string[] };
+      gradTracks: { sections: { rules: Record<string, unknown>[] }[] }[];
+    }>(`${edition}/iug/${slug}.json`);
+    if (!spec) continue;
+    // Exactly the codes `attachIugNow` resolves before it folds the grad
+    // half on; anything less would under-report the subject files pulled in.
+    const codes = [
+      ...spec.doubleCount.eligible,
+      ...spec.gradTracks.flatMap((t) =>
+        t.sections.flatMap((s) =>
+          s.rules.flatMap((r) =>
+            r.type === "course" ? [r.code as string] : Array.isArray(r.options) ? (r.options as string[]) : [],
+          ),
+        ),
+      ),
+    ];
+    await ed.ensureCourses(codes);
+    const cost = heap() - base;
+    if (cost > worst.cost) worst = { slug, cost };
+  }
+  console.log(`  + all ${iugIndex.length} IUG specs and their grad subjects   ${mb(worst.cost)} MB  (last: ${worst.slug})`);
+  console.log(`    ...a delta of ${mb(worst.cost - beforeIug)} MB over the plan above it`);
+}
+
 await ed.ensureSearchRanking();
 console.log(`  + search ranking (only if somebody searches) ${mb(heap() - base)} MB`);
 console.log(`  process RSS, for context only                ${mb(process.memoryUsage().rss)} MB`);

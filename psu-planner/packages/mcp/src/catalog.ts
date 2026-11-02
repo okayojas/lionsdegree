@@ -41,6 +41,7 @@ import {
   subjectOf,
   type AuditIndexFile,
   type Catalog,
+  type IugSpec,
   type SearchRanking,
   type Course,
   type ProgramRequirements,
@@ -57,6 +58,23 @@ export interface ProgramIndexEntry {
   type: string;
   campuses: string[];
   college: string | null;
+}
+
+/** One row of `iug/index.json`: enough to list an Integrated
+ * Undergraduate-Graduate program and say which bachelor's it pairs with,
+ * without reading the program itself.
+ *
+ * A subset of `IugSpec` rather than the whole thing, because the whole
+ * thing is the graduate requirement tree and a student choosing between
+ * three programs does not need three requirement trees. */
+export interface IugIndexEntry {
+  slug: string;
+  name: string;
+  gradDegree: string;
+  college: string;
+  campus: string;
+  /** Slugs of the bachelor's Programs this IUG is published against. */
+  pairsWith: string[];
 }
 
 export interface EditionCatalog {
@@ -90,6 +108,22 @@ export interface EditionCatalog {
    * smuggled them through `ensureCourses` as synthetic codes like
    * `"MATH 0"`. A fake Course code is a lie the next reader has to decode. */
   ensureSubjects(subjects: readonly string[]): Promise<void>;
+
+  /** The Integrated Undergraduate-Graduate programs this Edition
+   * publishes, or an empty list if it publishes none.
+   *
+   * EMPTY IS A REAL ANSWER HERE, and a failed read is not. Editions
+   * accumulate forward (ADR 0001) and the IUG scrape is newer than the
+   * oldest of them, so "this Edition has none" is a fact a student can
+   * be told. "We could not read the file" is not the same fact, and
+   * answering it as `[]` would tell a student Penn State offers no
+   * integrated degree — a confident wrong answer (iron rule 2). The
+   * distinction is kept by not memoising a miss. */
+  iugPrograms(): Promise<IugIndexEntry[]>;
+
+  /** One IUG program in full, or null if this Edition does not publish
+   * it under that slug. */
+  iug(slug: string): Promise<IugSpec | null>;
 
   /** Load the ranking data that search scores descriptions with.
    *
@@ -188,6 +222,42 @@ export async function loadEdition(source: CatalogSource, edition: string): Promi
   const loadedSubjects = new Map<string, Promise<Course[]>>();
   let rankingLoaded: Promise<void> | null = null;
   let ranking: SearchRanking = NO_RANKING;
+  // Both memoised on the PROMISE for the same reason `loadSubject` is:
+  // two tool calls arriving together would otherwise each fetch the
+  // file. Neither is read at startup — an isolate that is never asked
+  // about an IUG pays nothing for one (measured: 927 bytes for the
+  // index, 0.3 MB for all three programs and every graduate subject
+  // they name, see scripts/measure-memory.mts).
+  let iugIndexLoaded: Promise<IugIndexEntry[]> | null = null;
+  const loadedIug = new Map<string, Promise<IugSpec | null>>();
+
+  /** The Edition's IUG index, read once. A local function rather than a
+   * method so `iug` below can call it without going through `this` --
+   * the returned object gets destructured by callers, and a `this`
+   * reference would be undefined by the time it mattered. */
+  async function iugPrograms(): Promise<IugIndexEntry[]> {
+    // HELD IN A LOCAL. The body below clears `iugIndexLoaded` on a miss,
+    // and that happens BEFORE this function returns -- so returning the
+    // variable handed the caller `null` instead of the list on the very
+    // first successful-then-cleared interleaving. The `??=` expression
+    // yields the promise, which is the thing to await.
+    const inFlight = (iugIndexLoaded ??= (async () => {
+      const rows = await source.read<IugIndexEntry[]>(`${edition}/iug/index.json`);
+      if (!Array.isArray(rows)) {
+        // NOT REMEMBERED. A source returns null for absent, broken and
+        // unreachable alike, so this branch covers an Edition that
+        // genuinely ships no IUG data AND a transient failure. Keeping
+        // either as "there are none" would make one bad fetch tell every
+        // later student in this isolate that Penn State offers no
+        // integrated degree. Dropping the memo means the next question
+        // retries instead of being served the same silence.
+        iugIndexLoaded = null;
+        return [];
+      }
+      return rows;
+    })());
+    return inFlight;
+  }
 
   /** Read one subject's files and fold them into the catalog. Returns the
    * Courses added, so the caller can look at their prerequisites. */
@@ -287,6 +357,31 @@ export async function loadEdition(source: CatalogSource, edition: string): Promi
         }
       }
       for (const s of hop) await loadSubject(s);
+    },
+
+    iugPrograms,
+
+    async iug(slug) {
+      // CHECKED AGAINST THE INDEX BEFORE IT BECOMES A PATH. The slug
+      // arrives from a MODEL, and `assertInsideCatalog` would already
+      // refuse a traversal -- but refusing is a thrown error where the
+      // honest answer is "this Edition does not publish that program".
+      // Resolving only slugs the Edition itself lists means a made-up
+      // one is answered rather than raised, and the path builder below
+      // never sees a string we did not publish.
+      if (!(await iugPrograms()).some((p) => p.slug === slug)) return null;
+
+      const inFlight = loadedIug.get(slug);
+      if (inFlight) return inFlight;
+      const work = (async () => {
+        const spec = await source.read<IugSpec>(`${edition}/iug/${slug}.json`);
+        // The index named it and we could not read it. Same rule as the
+        // index itself: a miss is not an answer, so it is not kept.
+        if (!spec) loadedIug.delete(slug);
+        return spec;
+      })();
+      loadedIug.set(slug, work);
+      return work;
     },
 
     async ensureSubjects(wanted) {

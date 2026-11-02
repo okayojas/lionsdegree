@@ -46,6 +46,7 @@ variable.
 | `search_programs` | Majors, minors and certificates |
 | `audit_requirements` | What each of your programs still needs |
 | `discover_programs` | Programs that fit what you have already taken |
+| `list_iug_programs` | Integrated bachelor's-and-master's degrees that pair with your major |
 | `simulate_change` | What a change *would* do — see below |
 
 **`simulate_change` is the one worth knowing about.** "What would my plan
@@ -54,7 +55,7 @@ hands back the candidate plan, what moved, and any prerequisite it breaks.
 Your stored plan is not touched. It is the real optimiser, not a preview of
 one, so what you are shown is what you would get.
 
-And seven that change your plan:
+And nine that change your plan:
 
 | Tool | Does |
 |---|---|
@@ -65,6 +66,15 @@ And seven that change your plan:
 | `fill_slot` | Chooses a course for an open requirement |
 | `add_term` | Appends an empty term |
 | `skip_term` | Marks a term as a gap year, co-op or leave |
+| `attach_iug` | Folds an integrated master's on after your bachelor's |
+| `detach_iug` | Takes it back off |
+
+**An IUG is a bachelor's and a master's taken as one programme**, with some
+coursework counting toward both under the Graduate Bulletin's GCAC-210. The
+double-count cap and the eligible courses come from the programme's own
+published figures, and its admission requirements are quoted word for word
+with a link to the page they came from — so you can check the citation.
+Attaching one here plans it; it does not apply for it.
 
 **Every change says which revision it was computed from.** Each of these takes
 `based_on_revision` — the `revision` you last read. If you have edited your

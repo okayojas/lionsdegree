@@ -21,6 +21,7 @@ import {
   parsePlanFile,
   progress,
   majorDeptPrefixes,
+  pickTrack,
   rankSlotPicks,
   resolveSlotPool,
   subjectOf,
@@ -35,6 +36,7 @@ import { loadEdition, type EditionCatalog } from "./catalog.js";
 import { FilePlanStore, type PlanStore, type StoredPlan } from "./planStore.js";
 import { FsCatalogSource, type CatalogSource } from "./source.js";
 import { executeMutation, MUTATIONS } from "./mutations.js";
+import { detail, GCAC_210_GATE, listing, pairsWithPlan } from "./iug.js";
 import { simulateChange } from "./simulate.js";
 import { planView } from "./planView.js";
 
@@ -164,6 +166,12 @@ export const READABLE_PLAN_TOOLS: ReadonlySet<string> = new Set([
   // the student's plan, which is the only thing this classification
   // decides.
   "simulate_change",
+  // PLAN-SHAPED, not catalog-only, even though the list itself comes
+  // from the Bulletin. The answer is "which integrated degrees pair
+  // with YOUR major", which needs the student's Programs — and a
+  // version that answered without them would list all 41 and leave the
+  // model to guess which one applies.
+  "list_iug_programs",
 ]);
 
 /** THE HOSTED SURFACE, in one place.
@@ -326,6 +334,27 @@ function allTools(): ToolDefinition[] {
         { term_index: num("0-based term"), based_on_revision: basedOn },
         ["term_index", "based_on_revision"],
       ),
+    },
+    {
+      name: "list_iug_programs",
+      description:
+        "Integrated Undergraduate-Graduate (IUG) programs: a bachelor's and a master's taken together, with some coursework counting toward both. Says which ones pair with the student's own major and which bachelor's each of the others is published against. Call this before attach_iug — the slug comes from here, and a program invented from memory does not exist.",
+      inputSchema: obj({}),
+    },
+    {
+      name: "attach_iug",
+      description:
+        "Add an IUG master's to the plan: the graduate requirements are folded on as terms after the bachelor's, and coursework eligible to count toward both degrees is double-counted under the program's own cap. Use the slug from list_iug_programs.",
+      inputSchema: obj(
+        { slug: str("An IUG slug from list_iug_programs"), based_on_revision: basedOn },
+        ["slug", "based_on_revision"],
+      ),
+    },
+    {
+      name: "detach_iug",
+      description:
+        "Remove the IUG master's, returning the student to a plain bachelor's. The undergraduate half is untouched — only the graduate terms go.",
+      inputSchema: obj({ based_on_revision: basedOn }, ["based_on_revision"]),
     },
     {
       name: "audit_requirements",
@@ -768,6 +797,57 @@ export async function executeTool(
       return {
         matches,
         note: "campuses lists where each program is offered. A program offered only at other campuses IS in the catalog — say which campus offers it rather than that it does not exist.",
+      };
+    }
+
+    case "list_iug_programs": {
+      const all = await data.iugPrograms();
+      // AN EDITION CAN HONESTLY HAVE NONE (ADR 0001: Editions accumulate
+      // forward, and the IUG scrape is newer than the oldest of them).
+      // Said as its own sentence rather than as an empty list, because an
+      // empty list reads as "Penn State offers no integrated degrees",
+      // which is false of the University even when it is true of this
+      // Edition.
+      if (!all.length) {
+        return {
+          edition: data.edition,
+          programs: [],
+          note:
+            `The ${data.edition} catalog carries no integrated undergraduate-graduate programs. ` +
+            "That is a gap in what we hold for this edition, not a statement that Penn State has none — " +
+            "send the student to their adviser rather than saying none exist.",
+        };
+      }
+
+      const pairing = all.filter((e) => pairsWithPlan(e, plan));
+      const others = all.filter((e) => !pairsWithPlan(e, plan));
+      const detailed = await Promise.all(
+        pairing.map(async (e) => {
+          const spec = await data.iug(e.slug);
+          // Listed either way. The index named it, so dropping it on a
+          // failed read would tell the student their major pairs with
+          // nothing — the index is the evidence that it does.
+          return spec
+            ? { ...listing(e), ...detail(spec, pickTrack(spec)) }
+            : { ...listing(e), note: "Listed in this edition, but its requirements could not be read just now." };
+        }),
+      );
+
+      return {
+        edition: data.edition,
+        attached: plan.iug
+          ? { slug: plan.iug.slug, double_counted: plan.iug.doubleCounted }
+          : null,
+        pairs_with_this_plan: detailed,
+        // Named, not hidden. A student whose major pairs with nothing is
+        // still entitled to know what exists, and a model told only
+        // "none for you" will invent an explanation for why.
+        for_other_majors: others.map(listing),
+        admission: GCAC_210_GATE,
+        note:
+          "pairs_with lists the bachelor's programs each IUG is published against. Attaching one " +
+          "published against a different bachelor's plans a degree the student may not be eligible " +
+          "for — say which major it belongs to rather than attaching it quietly.",
       };
     }
 
