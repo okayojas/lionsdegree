@@ -1,6 +1,6 @@
 /** The tools a student's assistant can call.
  *
- * The reads live here; `mutations.ts` holds the seven that write, and
+ * The reads live here; `mutations.ts` holds the ones that write, and
  * every one of those states the revision it was computed from so a
  * change based on a Plan the student has since edited is refused rather
  * than allowed to overwrite them (ADR 0003).
@@ -255,6 +255,42 @@ function allTools(): ToolDefinition[] {
       inputSchema: obj(
         { code: str("Course code"), term_index: num("0-based term"), based_on_revision: basedOn },
         ["code", "term_index", "based_on_revision"],
+      ),
+    },
+    {
+      name: "add_previous_course",
+      description:
+        "Record courses the student has ALREADY passed — AP or IB credit, a transfer course, a summer course, anything from a term before this plan. Pass every one of them in a SINGLE call. They leave the scheduled terms, they count toward the audit and the credit totals, and a course that covers another satisfies it (MATH 251 answers a MATH 250 requirement). Use this the moment a student mentions prior credit: until it is recorded, every \"what do I still need\" answer tells them to retake things they have passed. A code this bulletin does not carry is refused, not recorded.",
+      inputSchema: obj(
+        {
+          codes: {
+            type: "array",
+            items: { type: "string" },
+            description:
+              'Course codes the student has already passed, e.g. ["MATH 140", "CHEM 110"]. ' +
+              "One call for all of them, not one call each.",
+          },
+          code: str("A single course code, if that is all there is. `codes` does the same job."),
+          based_on_revision: basedOn,
+        },
+        ["based_on_revision"],
+      ),
+    },
+    {
+      name: "remove_previous_course",
+      description:
+        "Undo a recorded previously-taken course — the student misspoke, or you misheard a code. Whatever recording it took off the schedule comes back, so a wrong code costs one message rather than a graduation requirement. It does not remove a course from the degree; that is remove_course.",
+      inputSchema: obj(
+        {
+          codes: {
+            type: "array",
+            items: { type: "string" },
+            description: "Course codes to stop treating as already taken. get_plan lists what is recorded.",
+          },
+          code: str("A single course code, if that is all there is."),
+          based_on_revision: basedOn,
+        },
+        ["based_on_revision"],
       ),
     },
     {

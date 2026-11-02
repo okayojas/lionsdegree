@@ -89,6 +89,25 @@ export interface PlanTerm {
   gap?: boolean;
 }
 
+/** Everything one recorded prior-credit Course removed from a Plan.
+ *
+ * Whole specs rather than codes: a card carries its `origin` (which Program
+ * placed it, and where in that Program's Template), and restoring a bare code
+ * would put back a course the optimizer no longer knows is required — it
+ * would drift to the end of the plan instead of back to its Template
+ * position. A Slot is restored for the same reason: a requirement the student
+ * had not chosen a Course for yet must come back open, not vanish. */
+export interface ClearedByPriorCredit {
+  /** Items taken out of Terms, with the Term index each sat in. */
+  items: { term: number; spec: PlanItemSpec }[];
+  /** `added` entries dropped (a Course the student had added by hand). */
+  added: { code: string; sem: number }[];
+  /** slotFills cleared: slot id -> the Course code that filled it. */
+  slotFills: Record<string, string>;
+  /** `moves` cleared: item id -> the term index the student had dragged it to. */
+  moves: Record<string, number>;
+}
+
 /** The user's plan document — the unit of persistence and sync.
  * Mirrors the demo's DATA.plan + state so the ported engine logic maps 1:1. */
 export interface PlanDoc {
@@ -117,6 +136,20 @@ export interface PlanDoc {
    * even after a re-optimize rebuilds the term list without it — otherwise the
    * spec would be gone and Restore would clear a flag pointing at nothing. */
   removedSpecs?: Record<string, CourseSpec>;
+  /** What recording a previously-taken Course took OFF the chart, keyed by
+   * that Course's code.
+   *
+   * Prior credit (AP, transfer, an earlier term) is completion, and completion
+   * clears the cards it satisfies — including the card it merely COVERS, so
+   * "I took MATH 251" removes the MATH 250 the Program listed. Nothing in this
+   * tree can rebuild that card afterwards: terms are generated once from the
+   * Program's published grid and the connector does not carry the grids. So a
+   * student who mistyped one code would lose a graduation requirement
+   * permanently, and the audit would never mention it again.
+   *
+   * This is the note that makes un-recording possible: put back exactly what
+   * recording took, and the typo costs one message. */
+  clearedByPriorCredit?: Record<string, ClearedByPriorCredit>;
   /** Course codes the student has confirmed a prerequisite OVERRIDE for (they
    * talked to their adviser and were cleared to take it despite the flag).
    * Purely a display attestation — the prereq evaluator stays truthful — but a
