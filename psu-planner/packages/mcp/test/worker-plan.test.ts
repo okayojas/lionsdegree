@@ -627,6 +627,129 @@ describe("showing a student a change before they make it, hosted", () => {
   });
 });
 
+/** SEVERAL CHANGES AT ONCE, HOSTED (#44).
+ *
+ * The lesson from #36 applies unchanged: proving one tool works hosted
+ * proves nothing about the next, because the hosted path has its own
+ * store, its own context construction and its own refusal handling. A
+ * preview that wrote would be worse here than anywhere — the store is a
+ * shared database, and the student is not watching.
+ */
+describe("previewing several changes together, hosted", () => {
+  /** Append a term, then put a course in THAT term. The second change
+   * names an index the stored plan does not have, so it only works if
+   * both changes met the same sandbox. */
+  const appendThenFill = [
+    { tool: "add_term", arguments: {} },
+    { tool: "add_course", arguments: { code: "CMPSC 465", term_index: (PLAN.terms as unknown[]).length } },
+  ];
+
+  it("answers with one candidate plan and writes NOTHING", async () => {
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const before = JSON.stringify(table.stored());
+
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "simulate_changes", {
+      changes: appendThenFill,
+    });
+
+    expect(result!.possible, JSON.stringify(result)).toBe(true);
+    expect(result!.applied).toBe(false);
+    const candidate = result!.candidate_plan as { terms?: unknown[] };
+    expect(candidate?.terms, "no candidate came back").toBeTruthy();
+    expect(candidate.terms!.length).toBe((PLAN.terms as unknown[]).length + 1);
+    expect(result!.added_courses, "the second change did not see the first one's term").toContain("CMPSC 465");
+    expect(JSON.stringify(table.stored()), "a preview changed the stored plan").toBe(before);
+    expect(table.asked.some((a) => a.method === "PATCH"), "a preview sent a write").toBe(false);
+  });
+
+  it("stops at the change that cannot be made, and returns no partial candidate", async () => {
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const before = JSON.stringify(table.stored());
+
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "simulate_changes", {
+      changes: [
+        { tool: "add_term", arguments: {} },
+        { tool: "add_course", arguments: { code: "FAKE 999", term_index: 0 } },
+      ],
+    });
+
+    expect(result!.possible).toBe(false);
+    expect((result!.stopped_at as { tool?: string })?.tool).toBe("add_course");
+    expect(result!.candidate_plan, "a plan with one of two changes was returned").toBeUndefined();
+    expect(JSON.stringify(table.stored()), "a failed preview wrote").toBe(before);
+    expect(table.asked.some((a) => a.method === "PATCH"), "a failed preview sent a write").toBe(false);
+  });
+
+  it("refuses a list computed from a revision the plan has moved past", async () => {
+    // Hosted is where this is real: the other writer is the student's
+    // own planner tab. A candidate built on a plan that is no longer
+    // theirs is one they would act on.
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const before = JSON.stringify(table.stored());
+
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "simulate_changes", {
+      changes: [
+        { tool: "add_term", arguments: { based_on_revision: 4 } },
+        { tool: "skip_term", arguments: { term_index: 2, based_on_revision: 3 } },
+      ],
+    });
+
+    expect(result!.possible, "a stale list was previewed").toBe(false);
+    expect(result!.candidate_plan).toBeUndefined();
+    expect(String(result!.reason ?? "")).toMatch(/revision/i);
+    expect(JSON.stringify(table.stored())).toBe(before);
+  });
+
+  it("is honoured when every change names the revision the stored plan is at", async () => {
+    // The revision lives in the COLUMN hosted, and the document's copy
+    // can lag it — so a sandbox that believed the document would refuse
+    // a change the planner accepts. That bug was caught by the first
+    // hosted test written for #37 and this is its list-shaped twin.
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "simulate_changes", {
+      changes: [
+        { tool: "add_term", arguments: { based_on_revision: 4 } },
+        { tool: "skip_term", arguments: { term_index: 2, based_on_revision: 4 } },
+      ],
+    });
+    expect(result!.possible, JSON.stringify(result)).toBe(true);
+    expect(result!.based_on_revision).toBe(4);
+  });
+
+  it("pins the candidate to the plan's own Edition", async () => {
+    const table = plansTable({ ...PLAN, edition: "2025-2026" });
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "simulate_changes", {
+      changes: [
+        { tool: "skip_term", arguments: { term_index: 2 } },
+        { tool: "optimize_schedule", arguments: { target_terms: 7 } },
+      ],
+    });
+    expect((result!.candidate_plan as { edition?: string }).edition).toBe("2025-2026");
+  });
+
+  it("says nothing a model could read as applied", async () => {
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "simulate_changes", {
+      changes: appendThenFill,
+    });
+    expect(result!.ok).toBeUndefined();
+    expect(result!.revision).toBeUndefined();
+    expect((result!.candidate_plan as Record<string, unknown>).revision).toBeUndefined();
+    expect((result!.candidate_plan as Record<string, unknown>).as_of).toBeUndefined();
+    expect(JSON.stringify(result)).not.toMatch(/"ok":true/);
+  });
+
+  it("is offered to a signed-in student", async () => {
+    expect(await tools(env(), `Bearer ${await signedIn()}`)).toContain("simulate_changes");
+  });
+});
+
 describe("removing a required course, hosted", () => {
   /** A Course the program's template placed, not one the student added. */
   const required = (): string => {
