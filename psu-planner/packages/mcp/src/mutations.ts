@@ -29,7 +29,9 @@ import {
   parseTermLabel,
   resolveSlotPool,
   termSequence,
+  type CourseSpec,
   type PlanDoc,
+  type PlanItem,
   type ScheduleConstraint,
 } from "@psu-planner/engine";
 import type { ToolContext } from "./tools.js";
@@ -235,12 +237,57 @@ const isRequired = (ctx: ToolContext, code: string): boolean =>
 export const MUTATIONS: ReadonlySet<string> = new Set([
   "add_course",
   "add_term",
+  "clear_schedule_constraint",
+  "delete_term",
   "fill_slot",
+  "move_course",
   "optimize_schedule",
   "remove_course",
+  "restore_course",
+  "restore_term",
   "set_schedule_constraint",
   "skip_term",
+  "swap_alternative",
 ]);
+
+/** The Plan item a Course CODE names, or undefined.
+ *
+ * THE MAPPING THIS TICKET TURNS ON, and getting it wrong is silent. The
+ * planner's own reversibility works on ITEM IDS — `store.ts` removeItem,
+ * restoreItem and the chat's move_course all key `plan.moves` and
+ * `plan.removed` by `item.id` — while every tool here takes a Course
+ * code, because a code is what the student says and what a model has.
+ *
+ * The two coincide for exactly one of the three kinds of Course in a
+ * Plan. `buildItems` ids a Template-placed Course by its code, a Course
+ * the student added as `add-<code>`, and a Course filling a Slot by the
+ * SLOT's id (`EL-5-4`) — the code never appears in that last id at all.
+ *
+ * So `p.moves[code] = 3` is correct one time in three and does NOTHING
+ * the other two: the override is written under a key `semOf` never
+ * reads, the tool answers "moved to Fall 2028", and the Course has not
+ * budged. Asking `buildItems` — through `ctx.items`, which is rebuilt
+ * after every commit — is what makes one answer true for all three. */
+const itemFor = (ctx: ToolContext, code: string): PlanItem | undefined =>
+  ctx.items.find((i) => i.kind === "course" && i.code === code);
+
+/** Relabel every Term from the academic sequence.
+ *
+ * Labels are POSITIONAL (`terms.ts`), so splicing a Term out of the
+ * middle and leaving the rest alone produces a calendar that does not
+ * exist — Fall 2026, Spring 2027, Spring 2028 — which a student reads as
+ * a lost year rather than as a renumbering. The optimizer relabels this
+ * way at the end of every run and `add_term` derives its one label the
+ * same way; this is that rule applied to a deletion. */
+function relabel(p: PlanDoc): void {
+  const first = parseTermLabel(p.terms[0]?.label ?? "");
+  const start =
+    first && first.kind !== "Summer"
+      ? { term: first.kind as "Fall" | "Spring", year: first.year }
+      : { term: "Fall" as const, year: new Date().getFullYear() };
+  const labels = termSequence(start, p.terms.length, p.summerYears ?? []);
+  p.terms = p.terms.map((t, i) => ({ ...t, label: labels[i]?.label ?? `Term ${i + 1}` }));
+}
 
 export async function executeMutation(
   name: string,
@@ -483,6 +530,330 @@ export async function executeMutation(
         ...r,
         skipped: plan().terms[termIndex]?.label,
         note: "Coursework was re-flowed around the gap; nothing was removed and graduation moves back one term.",
+        plan: planView(ctx, plan()),
+      };
+    }
+
+    // ---- Rearranging, and taking it back (#42) ----------------------------
+    // Six changes the planner has always been able to make. The thread
+    // through them is REVERSIBILITY: an assistant that can set a
+    // Constraint and never clear it, remove a Course and never restore
+    // it, skip a Term and never un-skip it, is one a student cannot
+    // safely let near their degree.
+
+    case "move_course": {
+      // NOT remove-then-add. The Course stays the same spec in the same
+      // `terms[].items` array and only its POSITION is overridden, which
+      // is what keeps two things a re-add would destroy: its `origin`
+      // (the Template entry it came from, and so the thing that makes a
+      // double major's shared requirement count once rather than twice)
+      // and its `alternatives` (the other codes the Program already
+      // allows, which `swap_alternative` below needs to still be there).
+      // `add_course` writes a bare `{code, sem}` into `added` — same
+      // Course on the chart, a requirement nothing is attached to.
+      const item = itemFor(ctx, code);
+      if (!item) return { error: `${code || args.code} is not in the plan` };
+      if (!Number.isInteger(termIndex) || termIndex < 0 || termIndex >= plan().terms.length) {
+        return { error: `term_index must be between 0 and ${plan().terms.length - 1}` };
+      }
+      const target = plan().terms[termIndex];
+      if (target.gap) {
+        // A Gap Term is INTENTIONALLY empty (CONTEXT.md). Dropping a
+        // Course into one silently cancels a leave the student declared,
+        // and the only trace would be a course card in a term they are
+        // not enrolled for.
+        return {
+          error: `${target.label} is a gap term — the student has said they are not studying then.`,
+          suggestion: `Call restore_term for term ${termIndex} if they want to use it after all, then move the course.`,
+        };
+      }
+      const from = plan().terms[item.sem]?.label;
+      const r = await commit(ctx, name, (p) => { p.moves[item.id] = termIndex; });
+      if (refused(r)) return r!;
+      return {
+        ...r,
+        moved: code,
+        from,
+        to: plan().terms[termIndex]?.label,
+        // SAID, BECAUSE IT IS SURPRISING. `optimizeSchedule` clears
+        // `plan.moves` wholesale ("positions were re-derived"), so a hand
+        // move is undone by the next optimize. A student told "I moved it"
+        // and then shown it back where it was has been misled twice.
+        note:
+          "A manual move is wiped by the next optimize_schedule. If this placement needs to " +
+          "survive, set_schedule_constraint with rule \"pin\" is the durable form of it.",
+        plan: planView(ctx, plan()),
+      };
+    }
+
+    case "swap_alternative": {
+      // "CAS 100A or CAS 100B" is the Template offering a choice, not the
+      // student adding a course. Only the codes the Template already
+      // lists are reachable here, which is the whole difference between
+      // this and add_course.
+      const to = typeof args.alternative === "string" ? args.alternative.trim().toUpperCase() : "";
+      const item = itemFor(ctx, code);
+      if (!item) return { error: `${code || args.code} is not in the plan` };
+      if (!to) return { error: "alternative is required: the course code to put in its place." };
+      const offered = item.alternatives ?? [];
+      if (!offered.includes(to)) {
+        return {
+          // NAMES WHAT IS ON OFFER. "Not an alternative" alone invites a
+          // model to try another guess, and the list is three strings.
+          error: `${to} is not one of the alternatives the program lists for ${code}.`,
+          alternatives: offered,
+          suggestion: offered.length
+            ? "Swap for one of those, or use fill_slot / add_course if the student wants a course the program did not offer here."
+            : `${code} is a fixed requirement — the program offers no alternative to it.`,
+        };
+      }
+      // The alternative often lives in a subject nobody has read yet
+      // (ESL 15 for ENGL 15), and an unloaded Course has no title — the
+      // resulting plan would show "(not in this edition's catalog)" for
+      // a course that is in it. `swapAlternative` in the planner calls
+      // refreshCatalog for the same reason.
+      await ctx.data.ensureCourses([to]);
+      if (!cat[to]) {
+        return { error: `${to} is listed as an alternative but is not in the ${ctx.data.edition} catalog` };
+      }
+      const r = await commit(ctx, name, (p) => {
+        for (const t of p.terms) {
+          for (const it of t.items) {
+            if ("code" in it && it.code === code) {
+              // REVERSIBLE BY CONSTRUCTION: the outgoing code becomes an
+              // alternative of the incoming one, so the student can swap
+              // back with the same tool. `origin` is deliberately not
+              // touched — this is still the same Template entry, and
+              // dropping it would uncount a shared requirement.
+              const alts = new Set(it.alternatives ?? []);
+              alts.delete(to);
+              alts.add(code);
+              it.code = to;
+              it.alternatives = [...alts];
+              it.unverified = undefined;
+              // The item id of a Template Course IS its code, so a manual
+              // move recorded against the old code would be orphaned —
+              // the Course would snap back to its template term.
+              if (code in p.moves) {
+                p.moves[to] = p.moves[code];
+                delete p.moves[code];
+              }
+              return;
+            }
+          }
+        }
+      });
+      if (refused(r)) return r!;
+      return {
+        ...r,
+        swapped: code,
+        for: to,
+        term: plan().terms[item.sem]?.label,
+        note: `${code} is now listed as an alternative to ${to}, so this can be swapped back.`,
+        plan: planView(ctx, plan()),
+      };
+    }
+
+    case "restore_course": {
+      // KEYED BY CODE, AND THAT IS NOT AN ACCIDENT OF NAMING. `remove_course`
+      // stashes the spec under `removedSpecs[code]` because a CourseSpec
+      // carries no id of its own; the planner stashes it under the ITEM
+      // id, which for a Template Course is the same string. The two agree
+      // for every Course either surface can actually remove, and this
+      // reads back exactly what remove_course wrote rather than guessing
+      // an id.
+      const held = plan();
+      const spec = held.removedSpecs?.[code];
+      const flagged = !!held.removed?.[code];
+      if (!spec && !flagged) {
+        return {
+          error: `${code || args.code} was not removed from this plan, so there is nothing to restore.`,
+          suggestion:
+            "Call get_plan to see what is in the plan. A course the student ADDED and then removed " +
+            "leaves no record to restore — put it back with add_course.",
+        };
+      }
+      let reflowed = false;
+      const r = await commit(ctx, name, (p) => {
+        if (p.removed) delete p.removed[code];
+        const present = p.terms.some((t) => t.items.some((i) => ("code" in i ? i.code : i.id) === code));
+        const saved = p.removedSpecs?.[code];
+        if (!present && saved) {
+          // A re-optimize since the removal rebuilt the terms without it,
+          // so clearing the flag alone would point at nothing. The
+          // preserved spec goes back carrying its `origin`, and the
+          // optimizer below is what puts it where the Program had it —
+          // term 0 is a staging position, not the answer.
+          if (!p.terms.length) p.terms.push({ label: "", items: [] });
+          p.terms[0].items.push(JSON.parse(JSON.stringify(saved)) as CourseSpec);
+          reflowed = true;
+        }
+        if (p.removedSpecs) delete p.removedSpecs[code];
+        if (reflowed) reoptimize(ctx, p);
+      });
+      if (refused(r)) return r!;
+      // Asked of the REBUILT items — `commit` replaces `ctx.items`, and
+      // reading the restored Course's term off the pre-commit list would
+      // report where it used to be.
+      const back = itemFor(ctx, code);
+      return {
+        ...r,
+        restored: code,
+        term: back ? plan().terms[back.sem]?.label : undefined,
+        note: reflowed
+          ? "The course was put back with the program's own placement and the schedule re-flowed around it."
+          : "The course was already on the chart and is no longer hidden.",
+        plan: planView(ctx, plan()),
+      };
+    }
+
+    case "restore_term": {
+      if (!Number.isInteger(termIndex) || termIndex < 0 || termIndex >= plan().terms.length) {
+        return { error: `term_index must be between 0 and ${plan().terms.length - 1}` };
+      }
+      if (!plan().terms[termIndex].gap) {
+        return {
+          error: `${plan().terms[termIndex].label} is not a gap term, so there is nothing to un-skip.`,
+          suggestion: "Call get_plan: a gap term is one the student has deliberately left empty.",
+        };
+      }
+      const label = plan().terms[termIndex].label;
+      const r = await commit(ctx, name, (p) => {
+        delete p.terms[termIndex].gap;
+        // THE RE-FLOW IS THE POINT, and it is why this cannot just clear
+        // the flag. The optimizer splices an empty term in at each gap
+        // position; with the flag gone it packs coursework into this term
+        // instead, which is what "using the term again" means. Without
+        // this the term stays empty and graduation stays a term late —
+        // the student would have un-skipped nothing.
+        reoptimize(ctx, p);
+      });
+      if (refused(r)) return r!;
+      return {
+        ...r,
+        restored: label,
+        note: "Coursework re-flowed into the term; graduation usually moves earlier by one term.",
+        plan: planView(ctx, plan()),
+      };
+    }
+
+    case "delete_term": {
+      if (!Number.isInteger(termIndex) || termIndex < 0 || termIndex >= plan().terms.length) {
+        return { error: `term_index must be between 0 and ${plan().terms.length - 1}` };
+      }
+      if (plan().terms.length <= 1) {
+        return { error: "a plan needs at least one term, so the last one cannot be deleted" };
+      }
+      // THE CRITERION FROM THE TICKET: a Term with coursework in it
+      // cannot be SILENTLY emptied. Slots count — an unfilled requirement
+      // is a requirement, and deleting the term it sits in would drop a
+      // graduation requirement while reporting that a term was tidied up.
+      const occupants = ctx.items.filter((i) => i.sem === termIndex);
+      if (occupants.length) {
+        return {
+          error:
+            `${plan().terms[termIndex].label} still holds ${occupants.length} ` +
+            `item${occupants.length === 1 ? "" : "s"}, so deleting it would take them with it.`,
+          holds: occupants.map((i) => i.code ?? i.slotLabel ?? i.slot ?? i.id),
+          suggestion:
+            "skip_term keeps the term and re-flows its coursework into later terms, which is almost " +
+            "always what was meant. move_course moves one course out at a time.",
+        };
+      }
+      const label = plan().terms[termIndex].label;
+      const wasGap = !!plan().terms[termIndex].gap;
+      let droppedConstraints: { code: string; rule: string; term: string }[] = [];
+      const r = await commit(ctx, name, (p) => {
+        const [gone] = p.terms.splice(termIndex, 1);
+        // A deleted SUMMER term gives up its opted-in year as well.
+        // `summerYears` is what puts a summer into the term sequence, so
+        // leaving it set re-inserts the summer at the next relabel and
+        // the term the student deleted comes back under its own name.
+        const ref = parseTermLabel(gone?.label ?? "");
+        if (ref?.kind === "Summer") {
+          p.summerYears = (p.summerYears ?? []).filter((y) => y !== ref.year);
+        }
+        // EVERY INDEX-KEYED REFERENCE AFTER THE HOLE MOVES DOWN ONE, the
+        // mirror of what `addSummerSession` does when it inserts one. A
+        // constraint left pointing at its old number would silently come
+        // to mean a different term, which is a rule the student never set.
+        droppedConstraints = (p.constraints ?? [])
+          .filter((c) => c.termIndex === termIndex)
+          .map((c) => ({ code: c.code, rule: c.type, term: label }));
+        p.constraints = (p.constraints ?? [])
+          // A constraint naming the DELETED term is dropped rather than
+          // re-pointed, and reported below. Re-pointing it would attach
+          // the student's "not in Spring 2029" to whatever term slid into
+          // that slot; keeping it silently would do the same thing later.
+          .filter((c) => c.termIndex !== termIndex)
+          .map((c) => (c.termIndex > termIndex ? { ...c, termIndex: c.termIndex - 1 } : c));
+        for (const a of p.added) if (a.sem >= termIndex) a.sem = Math.max(0, a.sem - 1);
+        for (const k of Object.keys(p.moves)) {
+          if (p.moves[k] >= termIndex) p.moves[k] = Math.max(0, p.moves[k] - 1);
+        }
+        relabel(p);
+      });
+      if (refused(r)) return r!;
+      return {
+        ...r,
+        deleted: label,
+        was_a_gap_term: wasGap || undefined,
+        terms: plan().terms.length,
+        // Reported rather than dropped quietly: a Constraint is something
+        // the student said, and losing one without a word is how a plan
+        // starts scheduling around nothing.
+        constraints_dropped: droppedConstraints.length ? droppedConstraints : undefined,
+        note: "Later terms were renumbered and relabelled, so term indices from an earlier get_plan are stale.",
+        plan: planView(ctx, plan()),
+      };
+    }
+
+    case "clear_schedule_constraint": {
+      // The other half of set_schedule_constraint. Without it the
+      // assistant can impose a rule on a student's own plan and never
+      // lift it — "I can take AI 100 in the fall after all" had no
+      // answer, and the Constraint outlives every optimize by design.
+      const rule = args.rule === undefined || args.rule === null ? null : String(args.rule);
+      if (rule !== null && !["not-in", "not-before", "pin"].includes(rule)) {
+        return { error: `rule must be one of: not-in, not-before, pin — or omitted to clear every constraint on the course` };
+      }
+      if (!code) return { error: "code is required: the course whose constraint should be lifted." };
+      const matches = (c: ScheduleConstraint) => c.code === code && (rule === null || c.type === rule);
+      const held = plan().constraints ?? [];
+      // LABELS READ BEFORE THE COMMIT. The re-flow below relabels every
+      // term, so asking afterwards which term the lifted constraint named
+      // can answer with a different term's name.
+      const clearing = held.filter(matches).map((c) => ({
+        code: c.code,
+        rule: c.type,
+        term: plan().terms[c.termIndex]?.label ?? `term ${c.termIndex}`,
+      }));
+      if (!clearing.length) {
+        return {
+          error: rule
+            ? `there is no ${rule} constraint on ${code || args.code} to clear`
+            : `there are no scheduling constraints on ${code || args.code} to clear`,
+          constraints: held.map((c) => ({
+            code: c.code,
+            rule: c.type,
+            term: plan().terms[c.termIndex]?.label ?? `term ${c.termIndex}`,
+          })),
+        };
+      }
+      const r = await commit(ctx, name, (p) => {
+        p.constraints = (p.constraints ?? []).filter((c) => !matches(c));
+        // SYMMETRIC WITH SETTING ONE, which the ticket asks for in those
+        // words. Setting a constraint re-flows the schedule around it;
+        // clearing one without re-flowing leaves the course sitting where
+        // the lifted rule pushed it, so the student is told the rule is
+        // gone and shown a plan still shaped by it.
+        reoptimize(ctx, p);
+      });
+      if (refused(r)) return r!;
+      return {
+        ...r,
+        cleared: clearing,
+        note: "The schedule was re-flowed without the constraint, the same way setting one re-flows it.",
         plan: planView(ctx, plan()),
       };
     }

@@ -285,9 +285,9 @@ describe("what the connector offers", () => {
 
   it("offers every tool that writes, since each is now a compare-and-swap", async () => {
     const offered = await tools(env(), `Bearer ${await signedIn()}`);
-    // DERIVED, not typed out. There are seven mutations and an earlier
-    // draft of this list named four — the same miscount that put three
-    // of them on the unauthenticated surface in #33.
+    // DERIVED, not typed out. An earlier draft of this list named four
+    // of the then-seven mutations — the same miscount that put three of
+    // them on the unauthenticated surface in #33.
     for (const writes of MUTATIONS) {
       expect(offered, `${writes} is not reachable`).toContain(writes);
     }
@@ -405,18 +405,71 @@ describe("a change the assistant makes", () => {
   });
 });
 
-/** EVERY ONE OF THE SEVEN, through the Worker.
+const clone = <T,>(x: T): T => JSON.parse(JSON.stringify(x));
+
+/** The fixture with `code` already removed the way `remove_course`
+ * removes it — the flag plus the preserved spec `restore_course` reads
+ * back. Without this there is nothing hosted for a restore to restore. */
+function alreadyRemoved(code: string): Record<string, unknown> {
+  const p = clone(PLAN) as {
+    terms: { items: { code?: string }[] }[];
+    removed?: Record<string, boolean>;
+    removedSpecs?: Record<string, unknown>;
+  };
+  const spec = p.terms.flatMap((t) => t.items).find((i) => i.code === code);
+  if (!spec) throw new Error(`fixture has no ${code} to pre-remove`);
+  p.removed = { [code]: true };
+  p.removedSpecs = { [code]: clone(spec) };
+  for (const t of p.terms) t.items = t.items.filter((i) => i.code !== code);
+  return p as unknown as Record<string, unknown>;
+}
+
+/** The fixture with term `i` already a Gap Term, for `restore_term`. */
+function alreadySkipped(i: number): Record<string, unknown> {
+  const p = clone(PLAN) as { terms: { gap?: boolean }[] };
+  p.terms[i].gap = true;
+  return p as unknown as Record<string, unknown>;
+}
+
+/** The fixture plus one empty term on the end, for `delete_term` —
+ * which refuses a term with anything in it, so the fixture as shipped
+ * has nowhere it can legitimately act. */
+function withSpareTerm(): Record<string, unknown> {
+  const p = clone(PLAN) as { terms: { label: string; items: unknown[] }[] };
+  p.terms.push({ label: "Fall 2030", items: [] });
+  return p as unknown as Record<string, unknown>;
+}
+
+/** The fixture with a constraint already set, for the tool that lifts one. */
+function withConstraint(): Record<string, unknown> {
+  const p = clone(PLAN) as { constraints?: unknown[] };
+  p.constraints = [{ code: "CHEM 110", type: "not-in", termIndex: 0 }];
+  return p as unknown as Record<string, unknown>;
+}
+
+/** EVERY ONE OF THEM, through the Worker.
  *
  * The first draft of this file proved the hosted write path with
- * `add_term` alone and left the other six to the local tests — which
- * is `add_term` wearing seven hats. The hosted path has its own store,
- * its own context construction and its own refusal handling, and
+ * `add_term` alone and left the rest to the local tests — which is
+ * `add_term` wearing everyone else's hat. The hosted path has its own
+ * store, its own context construction and its own refusal handling, and
  * "the local one works" has never been evidence about any of those.
  *
  * Each case is a real call with real arguments, so a tool that is
  * reachable but broken hosted fails here rather than in production.
+ *
+ * `doc` is the stored Plan the case needs to start from. Most work
+ * against the fixture as shipped; the six reversibility tools of #42
+ * mostly undo something, so several of them need that something to have
+ * happened first — a Plan with nothing removed gives `restore_course`
+ * nothing to prove.
  */
-const EVERY_MUTATION: { name: string; args: Record<string, unknown>; changed: (doc: Record<string, unknown>) => boolean }[] = [
+const EVERY_MUTATION: {
+  name: string;
+  args: Record<string, unknown>;
+  changed: (doc: Record<string, unknown>) => boolean;
+  doc?: () => Record<string, unknown>;
+}[] = [
   {
     name: "add_course",
     args: { code: "CMPSC 465", term_index: 5 },
@@ -444,11 +497,54 @@ const EVERY_MUTATION: { name: string; args: Record<string, unknown>; changed: (d
   { name: "optimize_schedule", args: {}, changed: (d) => Array.isArray(d.terms) },
   { name: "add_term", args: {}, changed: (d) => (d.terms as unknown[]).length === 9 },
   { name: "skip_term", args: { term_index: 3 }, changed: (d) => JSON.stringify(d.terms).includes('"gap":true') },
+
+  // ---- Rearranging, and taking it back (#42) ---------------------------
+  {
+    name: "move_course",
+    args: { code: "CHEM 110", term_index: 2 },
+    // Keyed by the ITEM id, which for a Template-placed Course is its
+    // code. The other two kinds of id are exercised locally in
+    // `reversibility.test.ts`; what is under test here is that the
+    // hosted path writes the override at all.
+    changed: (d) => (d.moves as Record<string, number>)?.["CHEM 110"] === 2,
+  },
+  {
+    name: "swap_alternative",
+    args: { code: "ECON 102", alternative: "ECON 104" },
+    changed: (d) => JSON.stringify(d.terms).includes("ECON 104"),
+  },
+  {
+    name: "restore_course",
+    doc: () => alreadyRemoved("ECON 102"),
+    args: { code: "ECON 102" },
+    changed: (d) => !JSON.stringify(d.removed ?? {}).includes("ECON 102"),
+  },
+  {
+    name: "restore_term",
+    doc: () => alreadySkipped(3),
+    args: { term_index: 3 },
+    changed: (d) => !JSON.stringify(d.terms).includes('"gap":true'),
+  },
+  {
+    name: "delete_term",
+    doc: withSpareTerm,
+    args: { term_index: 8 },
+    changed: (d) => (d.terms as unknown[]).length === 8,
+  },
+  {
+    name: "clear_schedule_constraint",
+    doc: withConstraint,
+    args: { code: "CHEM 110" },
+    changed: (d) => ((d.constraints as unknown[]) ?? []).length === 0,
+  },
 ];
 
-describe.each(EVERY_MUTATION)("$name, hosted", ({ name, args, changed }) => {
+describe.each(EVERY_MUTATION)("$name, hosted", ({ name, args, changed, doc }) => {
+  /** The stored Plan this case starts from. */
+  const startingPlan = () => doc?.() ?? PLAN;
+
   it("lands against the stored plan", async () => {
-    const table = plansTable(PLAN);
+    const table = plansTable(startingPlan());
     db = withTable(table);
     const { result } = await call(env(), `Bearer ${await signedIn()}`, name, { ...args, based_on_revision: 4 });
     expect(result!.ok, JSON.stringify(result)).toBe(true);
@@ -456,7 +552,7 @@ describe.each(EVERY_MUTATION)("$name, hosted", ({ name, args, changed }) => {
   });
 
   it("returns the resulting plan and the revisions", async () => {
-    const table = plansTable(PLAN);
+    const table = plansTable(startingPlan());
     db = withTable(table);
     const { result } = await call(env(), `Bearer ${await signedIn()}`, name, { ...args, based_on_revision: 4 });
     expect((result!.plan as { terms?: unknown[] })?.terms, `${name} returned no plan`).toBeTruthy();
@@ -465,7 +561,7 @@ describe.each(EVERY_MUTATION)("$name, hosted", ({ name, args, changed }) => {
   });
 
   it("is refused when the plan has moved on, and writes nothing", async () => {
-    const table = plansTable(PLAN);
+    const table = plansTable(startingPlan());
     db = withTable(table);
     table.editedInThePlanner();
     const before = JSON.stringify(table.stored());
@@ -474,12 +570,28 @@ describe.each(EVERY_MUTATION)("$name, hosted", ({ name, args, changed }) => {
     expect(JSON.stringify(table.stored()), `${name} wrote despite being refused`).toBe(before);
   });
 
+  it("says nothing that reads as success when it is refused", async () => {
+    // A refusal carrying the fields a success carries is a sentence a
+    // model summarises as "done". Asserted for EVERY tool rather than
+    // for `add_term` alone: each one returns its own shape, so each one
+    // has its own way of leaking a success word past the error.
+    const table = plansTable(startingPlan());
+    db = withTable(table);
+    table.editedInThePlanner();
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, name, { ...args, based_on_revision: 4 });
+    expect(result!.ok, `${name} reported ok on a refusal`).toBeUndefined();
+    expect(result!.plan, `${name} returned a plan as though one had been written`).toBeUndefined();
+    expect(result!.revision, `${name} reported a new revision for a write that did not happen`).toBeUndefined();
+    expect(result!.stale_read, `${name} did not say why it was refused`).toBe(true);
+  });
+
   it("keeps the plan pinned to its Edition", async () => {
-    // ADR 0001, and the ones that matter most are the three that re-run
-    // the OPTIMIZER — `optimize_schedule`, `set_schedule_constraint`
-    // and `skip_term` rebuild the terms, which is where a pin would be
-    // dropped if anything were going to drop it.
-    const table = plansTable({ ...PLAN, edition: "2025-2026" });
+    // ADR 0001, and the ones that matter most are those that re-run the
+    // OPTIMIZER — `optimize_schedule`, `set_schedule_constraint`,
+    // `skip_term`, `restore_term`, `restore_course` and
+    // `clear_schedule_constraint` all rebuild the terms, which is where
+    // a pin would be dropped if anything were going to drop it.
+    const table = plansTable({ ...startingPlan(), edition: "2025-2026" });
     db = withTable(table);
     const { result } = await call(env(), `Bearer ${await signedIn()}`, name, { ...args, based_on_revision: 4 });
     expect(result!.ok, JSON.stringify(result)).toBe(true);
@@ -490,7 +602,7 @@ describe.each(EVERY_MUTATION)("$name, hosted", ({ name, args, changed }) => {
   });
 
   it("requires the revision it was computed from", async () => {
-    const table = plansTable(PLAN);
+    const table = plansTable(startingPlan());
     db = withTable(table);
     const before = JSON.stringify(table.stored());
     const { result } = await call(env(), `Bearer ${await signedIn()}`, name, args);
