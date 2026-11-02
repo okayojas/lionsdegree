@@ -65,7 +65,7 @@ beforeEach(() => {
 const req = (p: string, init: RequestInit = {}) =>
   worker.fetch(new Request(`https://mcp.lionsdegree.com${p}`, init), env);
 
-async function startFlow(): Promise<{ to: URL; cookie: string; state: string }> {
+async function startFlow(): Promise<{ to: URL; cookie: string }> {
   const clientId = ((await (await req("/register", {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -79,8 +79,7 @@ async function startFlow(): Promise<{ to: URL; cookie: string; state: string }> 
   );
   const to = new URL(res.headers.get("location")!);
   const cookie = (res.headers.get("set-cookie") ?? "").split(";")[0];
-  const state = new URL(to.searchParams.get("redirect_to")!).searchParams.get("state")!;
-  return { to, cookie, state };
+  return { to, cookie };
 }
 
 describe("the authorize hop", () => {
@@ -111,7 +110,7 @@ describe("the authorize hop", () => {
 describe("the token exchange", () => {
   it("sends BOTH the auth code and the verifier", async () => {
     // GoTrue: "both auth code and code verifier should be non-empty".
-    const { cookie, state } = await startFlow();
+    const { cookie } = await startFlow();
 
     let sentTo = "";
     let sentBody: Record<string, unknown> = {};
@@ -122,7 +121,7 @@ describe("the token exchange", () => {
       return Response.json({ access_token: "x", expires_in: 3600 });
     }) as typeof fetch;
     try {
-      await req(`/callback?state=${encodeURIComponent(state)}&code=supabase-code`, { headers: { cookie } });
+      await req("/callback?code=supabase-code", { headers: { cookie } });
     } finally {
       globalThis.fetch = realFetch;
     }
@@ -136,7 +135,7 @@ describe("the token exchange", () => {
     // The two halves of one PKCE run have to be the same run. Storing
     // the verifier in the pending record is what keeps them together
     // across the trip to Google.
-    const { to, cookie, state } = await startFlow();
+    const { to, cookie } = await startFlow();
     const sentChallenge = to.searchParams.get("code_challenge")!;
 
     let verifier = "";
@@ -146,7 +145,7 @@ describe("the token exchange", () => {
       return Response.json({ access_token: "x", expires_in: 3600 });
     }) as typeof fetch;
     try {
-      await req(`/callback?state=${encodeURIComponent(state)}&code=c`, { headers: { cookie } });
+      await req("/callback?code=c", { headers: { cookie } });
     } finally {
       globalThis.fetch = realFetch;
     }

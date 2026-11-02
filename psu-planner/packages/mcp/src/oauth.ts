@@ -28,12 +28,18 @@
  *   code:<code>   one authorization code, with the PKCE challenge and
  *                 the access token it stands for. Sixty seconds, single
  *                 use.
- *   pend:<state>  a flow in progress while the student is at Google,
- *                 including OUR verifier for the Supabase leg and a
- *                 hash of the cookie that binds it to one browser.
- *                 Five minutes, matching Supabase's own flow-state
- *                 expiry — holding it longer only produces a valid
- *                 record pointing at a dead upstream flow.
+ *   pend:<hash>   a flow in progress while the student is at Google,
+ *                 including OUR verifier for the Supabase leg. KEYED BY
+ *                 A HASH OF THE COOKIE, not by a state in the URL:
+ *                 Supabase matches `redirect_to` against its allow list
+ *                 INCLUDING the query string, and does not report a
+ *                 mismatch — it silently sends the student to the
+ *                 project's Site URL. A real sign-in ended on the
+ *                 landing page that way, with the connector never
+ *                 hearing about it. Five minutes, matching Supabase's
+ *                 own flow-state expiry — holding it longer only
+ *                 produces a valid record pointing at a dead upstream
+ *                 flow.
  *   anon:<ip>     unauthenticated write budget. See ANON_WRITES_PER_DAY.
  *   revoked:<fp>  a token fingerprint the student has disconnected.
  *
@@ -423,8 +429,28 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
     // never sees. Two separate exchanges: the assistant's challenge is
     // for the code WE issue, this one is for the code SUPABASE issues.
     const supabaseVerifier = randomId(32);
-    const state = randomId(24);
+    // THE FLOW IS KEYED BY THE BROWSER, NOT BY A STATE IN THE URL.
+    //
+    // The redirect we hand Supabase must carry NO query string.
+    // Supabase matches `redirect_to` against its allow list including
+    // the query, so `.../callback?state=xyz` does not match an entry
+    // of `.../callback` — and GoTrue does not report that, it
+    // silently sends the student to the project's Site URL instead.
+    // Which is exactly what a real sign-in did: Google, then the
+    // LandING PAGE, with the connector never hearing about it.
+    //
+    // Asking the operator to add a wildcard would work and would be a
+    // trap: the next person to add a redirect would have to know. So
+    // the state leaves the URL entirely and the flow is looked up by
+    // the cookie we already set.
+    //
+    // This also makes the browser binding STRONGER rather than weaker.
+    // It used to be a second check against a flow anyone could name;
+    // now the flow cannot be addressed at all without the cookie, so
+    // the account-takeover this guards against is not merely detected,
+    // it is unaddressable.
     const browserSecret = randomId(24);
+    const flowKey = await s256(browserSecret);
 
     const pending: Pending = {
       client_id: clientId,
@@ -432,16 +458,16 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
       code_challenge: challenge,
       state: q.get("state") ?? undefined,
       supabase_verifier: supabaseVerifier,
-      browser: await s256(browserSecret),
+      browser: flowKey,
     };
-    await cfg.kv.put(`pend:${state}`, JSON.stringify(pending), { expirationTtl: PENDING_TTL });
+    await cfg.kv.put(`pend:${flowKey}`, JSON.stringify(pending), { expirationTtl: PENDING_TTL });
 
     const provider = q.get("provider") === "azure" ? "azure" : "google";
     const to = new URL(`${cfg.supabase}/auth/v1/authorize`);
     to.searchParams.set("provider", provider);
     to.searchParams.set("code_challenge", await s256(supabaseVerifier));
     to.searchParams.set("code_challenge_method", "s256");
-    to.searchParams.set("redirect_to", `${issuer}/callback?state=${encodeURIComponent(state)}`);
+    to.searchParams.set("redirect_to", `${issuer}/callback`);
 
     // `SameSite=Lax` so it comes back on the top-level redirect from
     // Supabase and on nothing a third-party page initiates. HttpOnly so
@@ -459,31 +485,30 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
   if (p === "/callback") {
     const cfg = config(env);
     if (!cfg) return NOT_CONFIGURED();
-    const state = url.searchParams.get("state") ?? "";
     const code = url.searchParams.get("code") ?? "";
-    const raw = state ? await cfg.kv.get(`pend:${state}`) : null;
+
+    // THE COOKIE IS THE FLOW. It identifies which sign-in this is AND
+    // proves the browser finishing is the one that began — see the
+    // note in /authorize. Nothing is read from the query but the
+    // provider's code, because `redirect_to` must stay bare for
+    // Supabase's allow list to match it.
+    const presented = flowCookie(request);
+    const raw = presented ? await cfg.kv.get(`pend:${await s256(presented)}`) : null;
     if (!raw) {
       // LOGGED, BECAUSE NOTHING ELSE RECORDS A FAILED SIGN-IN. Every
       // refusal below says the same vague thing to the browser on
       // purpose; without a matching log line the only account of what
       // went wrong is a student saying "it didn't work". The reason
       // names the STAGE, never the code or the verifier.
-      await noteFailure(cfg.kv, "callback", `no pending flow for this state (state_present=${!!state}) — expired after 5 minutes, already used, or never started here`);
-      return new Response("This sign-in link has expired. Start again from your assistant.", { status: 400 });
-    }
-    const pending = JSON.parse(raw) as Pending;
-
-    // THE BROWSER THAT FINISHES MUST BE THE BROWSER THAT BEGAN.
-    const presented = flowCookie(request);
-    if (!presented || (await s256(presented)) !== pending.browser) {
       await noteFailure(
         cfg.kv,
         "callback",
-        `browser binding failed (cookie_present=${!!presented}) — the browser finishing is not the one that started, or the cookie was dropped`,
+        `no pending flow for this browser (cookie_present=${!!presented}) — expired after 5 minutes, already used, the cookie was dropped, or the student arrived here without starting`,
       );
-      await cfg.kv.delete(`pend:${state}`);
-      return new Response("This sign-in could not be completed. Start again from your assistant.", { status: 400 });
+      return new Response("This sign-in link has expired. Start again from your assistant.", { status: 400 });
     }
+    const pending = JSON.parse(raw) as Pending;
+    const flowKey = await s256(presented!);
 
     if (!code) {
       await noteFailure(cfg.kv, "callback", "the provider returned no code — cancelled, or sign-in failed upstream");
@@ -520,7 +545,7 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
       expires_in: session.expires_in ?? 3600,
     };
     await cfg.kv.put(`code:${ourCode}`, JSON.stringify(issued), { expirationTtl: CODE_TTL });
-    await cfg.kv.delete(`pend:${state}`);
+    await cfg.kv.delete(`pend:${flowKey}`);
 
     const back = new URL(pending.redirect_uri);
     back.searchParams.set("code", ourCode);

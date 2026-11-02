@@ -124,8 +124,16 @@ async function throughSignIn(verifier: string, sub = "student-42"): Promise<{ cl
   );
   expect(authRes.status, "the student was not sent anywhere to sign in").toBe(302);
   const toSupabase = new URL(authRes.headers.get("location")!);
-  const ourState = new URL(toSupabase.searchParams.get("redirect_to")!).searchParams.get("state")!;
-  expect(ourState, "no state was carried into the Supabase hop").toBeTruthy();
+
+  // THE REDIRECT HANDED TO SUPABASE CARRIES NO QUERY AT ALL. Supabase
+  // matches `redirect_to` against its allow list including the query
+  // string, and does not report a mismatch — it silently sends the
+  // student to the project's Site URL instead, which is how a real
+  // sign-in ended on the landing page with the connector never
+  // hearing about it. The flow is identified by the cookie now.
+  const handed = new URL(toSupabase.searchParams.get("redirect_to")!);
+  expect(handed.search, "a query string here will not match the allow list").toBe("");
+  expect(handed.pathname).toBe("/callback");
 
   // The flow is bound to the browser that started it, so the callback
   // has to come back with the cookie — the same browser, as it would
@@ -147,7 +155,7 @@ async function throughSignIn(verifier: string, sub = "student-42"): Promise<{ cl
 
   let back: URL;
   try {
-    const cb = await getWith(`/callback?state=${encodeURIComponent(ourState)}&code=supabase-code`, cookie);
+    const cb = await getWith("/callback?code=supabase-code", cookie);
     expect(cb.status, "the callback did not send the student back to their assistant").toBe(302);
     back = new URL(cb.headers.get("location")!);
   } finally {
@@ -258,13 +266,12 @@ describe("when Supabase will not complete the sign-in", () => {
         `&redirect_uri=${encodeURIComponent("https://assistant.example/cb")}` +
         `&code_challenge=${await challengeFor("x".repeat(43))}&code_challenge_method=S256`,
     );
-    const ourState = new URL(new URL(authRes.headers.get("location")!).searchParams.get("redirect_to")!).searchParams.get("state")!;
     const cookie = (authRes.headers.get("set-cookie") ?? "").split(";")[0];
 
     const realFetch = globalThis.fetch;
     globalThis.fetch = (async () => new Response("no", { status: 400 })) as typeof fetch;
     try {
-      const cb = await getWith(`/callback?state=${encodeURIComponent(ourState)}&code=whatever`, cookie);
+      const cb = await getWith("/callback?code=whatever", cookie);
       expect(cb.status).toBe(502);
       const text = await cb.text();
       expect(text).toMatch(/start again/i);

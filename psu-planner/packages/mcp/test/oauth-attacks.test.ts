@@ -114,9 +114,19 @@ describe("authorization code injection", () => {
         `&redirect_uri=${encodeURIComponent("https://attacker.example/cb")}` +
         `&code_challenge=YWJj&code_challenge_method=S256`,
     );
-    const state = new URL(new URL(started.headers.get("location")!).searchParams.get("redirect_to")!)
-      .searchParams.get("state")!;
-    expect(state).toBeTruthy();
+    // THE ATTACK NO LONGER HAS A HANDLE TO GRAB. `state` used to
+    // travel in `redirect_to`, so an attacker could read it out of
+    // their own 302 and send a victim a link carrying it. The flow is
+    // keyed by the cookie now, so there is nothing in the URL to copy
+    // — asserted here, because this is the step the attack starts
+    // with.
+    const handedToSupabase = new URL(
+      new URL(started.headers.get("location")!).searchParams.get("redirect_to")!,
+    );
+    expect(
+      handedToSupabase.search,
+      "the redirect carries a query a third party could copy and replay",
+    ).toBe("");
 
     // 3-4. The VICTIM's browser completes it. It has none of the
     //      attacker's cookies, because it is a different browser.
@@ -125,7 +135,7 @@ describe("authorization code injection", () => {
     globalThis.fetch = (async () => Response.json({ access_token: token, expires_in: 3600 })) as typeof fetch;
     let victimCallback: Response;
     try {
-      victimCallback = await req(`/callback?state=${encodeURIComponent(state)}&code=victims-code`);
+      victimCallback = await req("/callback?code=victims-code");
     } finally {
       globalThis.fetch = realFetch;
     }
@@ -151,14 +161,11 @@ describe("authorization code injection", () => {
     const setCookie = started.headers.get("set-cookie");
     expect(setCookie, "no cookie was set to bind the flow to this browser").toBeTruthy();
     const cookie = setCookie!.split(";")[0];
-    const state = new URL(new URL(started.headers.get("location")!).searchParams.get("redirect_to")!)
-      .searchParams.get("state")!;
-
     const token = await victimToken();
     const realFetch = globalThis.fetch;
     globalThis.fetch = (async () => Response.json({ access_token: token, expires_in: 3600 })) as typeof fetch;
     try {
-      const done = await req(`/callback?state=${encodeURIComponent(state)}&code=c`, { headers: { cookie } });
+      const done = await req("/callback?code=c", { headers: { cookie } });
       expect(done.status, "the browser that started the flow could not finish it").toBe(302);
       expect(done.headers.get("location")).toContain("assistant.example");
     } finally {
@@ -245,8 +252,6 @@ describe("what a revoked connection can still do", () => {
         `&code_challenge_method=S256`,
     );
     const cookie = (started.headers.get("set-cookie") ?? "").split(";")[0];
-    const state = new URL(new URL(started.headers.get("location")!).searchParams.get("redirect_to")!)
-      .searchParams.get("state")!;
 
     const token = await victimToken();
     const realFetch = globalThis.fetch;
@@ -254,7 +259,7 @@ describe("what a revoked connection can still do", () => {
       Response.json({ access_token: token, refresh_token: "a-refresh-token", expires_in: 3600 })) as typeof fetch;
     let code: string;
     try {
-      const cb = await req(`/callback?state=${encodeURIComponent(state)}&code=c`, { headers: { cookie } });
+      const cb = await req("/callback?code=c", { headers: { cookie } });
       code = new URL(cb.headers.get("location")!).searchParams.get("code")!;
     } finally {
       globalThis.fetch = realFetch;
@@ -288,7 +293,7 @@ describe("what a failed sign-in leaves behind", () => {
   };
 
   it("records which step refused", async () => {
-    await req("/callback?state=never-existed&code=whatever");
+    await req("/callback?code=whatever");
     const [last] = await breadcrumbs();
     expect(last, "a refused sign-in left no record at all").toBeTruthy();
     expect(last.stage).toBe("callback");
@@ -328,12 +333,12 @@ describe("what a failed sign-in leaves behind", () => {
   });
 
   it("keeps the last few, not an unbounded list", async () => {
-    for (let i = 0; i < 14; i++) await req(`/callback?state=missing-${i}&code=c`);
+    for (let i = 0; i < 14; i++) await req(`/callback?code=c-${i}`);
     expect((await breadcrumbs()).length, "the failure log grows without limit").toBeLessThanOrEqual(10);
   });
 
   it("puts the newest first, because that is the one being debugged", async () => {
-    await req("/callback?state=older&code=c");
+    await req("/callback?code=older");
     await req("/token", {
       method: "POST",
       headers: { "content-type": "application/x-www-form-urlencoded" },
