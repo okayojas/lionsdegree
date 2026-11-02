@@ -7,6 +7,7 @@ export * from "./schedule.js";
 export * from "./layout.js";
 export * from "./search.js";
 export * from "./planGen.js";
+export * from "./programMerge.js";
 export * from "./requirements.js";
 export * from "./coverageStat.js";
 export * from "./slotPicks.js";

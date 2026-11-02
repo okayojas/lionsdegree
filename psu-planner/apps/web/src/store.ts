@@ -1,11 +1,52 @@
 import { create } from "zustand";
 import {
-  applyHonorsUpgrades, attachIug, auditHonors, buildItems, buildSchedule, detachIug,
-  optimizeSchedule, parseTermLabel, refineGenEdSlots, repairPrereqOrdering, termSequence,
-  type Catalog, type CourseSpec, type PlanDoc, type PlanItem, type Schedule,
+  addProgram, applyHonorsUpgrades, attachIug, auditHonors, buildItems, buildSchedule, detachIug,
+  optimizeSchedule, parseTermLabel, previewRemoveProgram, refineGenEdSlots, removeProgram,
+  repairPrereqOrdering, termSequence,
+  type Catalog, type CourseSpec, type PlanDoc, type PlanItem, type ProgramTemplate,
+  type RemoveProgramPreview, type ReqSection, type Schedule,
 } from "@psu-planner/engine";
-import { loadCatalogFor, loadCoverage, loadEditions, loadFlowchartPatterns, loadIug, setCatalogEdition } from "./data/catalogClient";
+import { loadCatalogFor, loadCoverage, loadEditions, loadFlowchartPatterns, loadIug, loadProgramBySlug, setCatalogEdition } from "./data/catalogClient";
 import { schedulePush } from "./data/sync";
+
+/** A program file as the pipeline writes it. Only the parts the merge reads. */
+interface PipelineProgramFile {
+  slug: string;
+  name: string;
+  requirementSections?: ReqSection[];
+  suggestedPlans?: { campusLabel: string; semesters: ProgramTemplate["semesters"] }[];
+}
+
+/** Load a Program as the engine wants it.
+ *
+ * The catalog client is already pinned to THIS Plan's Edition by `setPlan`, so
+ * the Template a late-declared minor merges in comes from the bulletin that
+ * governs the student rather than from whichever one is newest. Re-basing a
+ * continuing student is precisely what ADR 0001 forbids, and it would happen
+ * here silently if this read the current Edition instead. */
+async function templateFor(slug: string): Promise<ProgramTemplate | null> {
+  const prog = await loadProgramBySlug<PipelineProgramFile>(slug);
+  if (!prog) return null;
+  // The first published grid. Onboarding asks which campus plan to use; this
+  // does not, because most late-declared Programs are minors and certificates,
+  // which publish no grid at all and contribute only requirements. A second
+  // MAJOR added here takes the catalog's own first plan — the ordering it gives
+  // is a starting shape, and the optimizer re-flows it against this Plan
+  // anyway. Worth a campus picker the first time someone asks for one.
+  const grid = (prog.suggestedPlans ?? [])[0];
+  return {
+    slug: prog.slug,
+    name: prog.name,
+    campusLabel: grid?.campusLabel ?? "",
+    semesters: grid?.semesters ?? [],
+    requirements: prog.requirementSections ?? [],
+  };
+}
+
+async function templatesFor(slugs: string[]): Promise<ProgramTemplate[]> {
+  const loaded = await Promise.all(slugs.map((s) => templateFor(s).catch(() => null)));
+  return loaded.filter((t): t is ProgramTemplate => !!t);
+}
 
 const LS_KEY = "psu-planner-plan-v1";
 
@@ -77,6 +118,20 @@ interface PlannerState {
   deleteTerm: (index: number) => Promise<string>;
   /** Un-skip a previously gapped term and re-optimize back into it. */
   restoreTerm: (index: number) => Promise<string>;
+  /** Declare a Program on the Plan the student already has.
+   *
+   * The gap this closes: plan generation ran once, during onboarding, so a
+   * student who declared a minor in October could only start over and lose
+   * every completed Course, every Course they had added, every Slot they had
+   * filled and every Constraint they had set. Returns a human summary. */
+  addProgramNow: (slug: string) => Promise<string>;
+  /** What dropping a Program would do, WITHOUT doing it. Dropping a Program
+   * has a larger blast radius than removing one Course, so the student sees
+   * the whole of it — what leaves, what stays, what is left unfilled — before
+   * they decide. */
+  previewDropProgram: (slug: string) => Promise<RemoveProgramPreview | null>;
+  /** Drop a Program, removing the Courses it placed that nothing else needs. */
+  removeProgramNow: (slug: string) => Promise<string>;
   /** Attach an IUG master's (by slug) to the current plan: loads the grad
    * program + grad courses, folds them on as graduate terms with double-count,
    * re-optimizes the undergrad half. Returns a human summary. */
@@ -489,6 +544,66 @@ export const usePlanner = create<PlannerState>((set, get) => ({
     const full = `Using ${label} again — ${msg}`;
     set({ repairNote: full });
     return full;
+  },
+
+  addProgramNow: async (slug) => {
+    const plan = get().plan;
+    if (!plan) return "No plan yet.";
+    if (plan.programs.includes(slug)) return "That program is already on your plan.";
+    const template = await templateFor(slug);
+    if (!template) return "Couldn't load that program from the catalog.";
+    // A COPY. The engine mutates in place, and handing it the live object
+    // would leave the UI rendering a half-merged Plan if the catalog fetch
+    // below threw — the student would see courses with no titles and no way
+    // back. Nothing is committed until the merge and the re-flow both finish.
+    const next = structuredClone(plan);
+    const res = addProgram(next, template, { coveredBy: await loadCoverage() });
+    // The merged Program brings subjects the loaded catalog has never seen.
+    const catalog = { ...get().catalog, ...(await loadCatalogFor(planCodes(next))) };
+    // Gen-ed refinement re-reads the university framework against the WHOLE
+    // merged plan, so a second program's own courses can cover a bucket the
+    // first program had a slot for. Then the optimizer is the last word on
+    // where everything sits, exactly as it is after any other plan change.
+    refineGenEdSlots(next, catalog);
+    const patterns = await loadFlowchartPatterns();
+    optimizeSchedule(next, catalog, { maxCredits: 19, patterns });
+    if (next.honors) applyHonorsUpgrades(next, catalog);
+    next.rev = plan.rev + 1;
+    next.updatedAt = new Date().toISOString();
+    persist(next, `add program ${slug}`);
+    set({ plan: next, catalog, ...recompute(next, catalog) });
+    return res.note;
+  },
+
+  previewDropProgram: async (slug) => {
+    const plan = get().plan;
+    if (!plan) return null;
+    // The Programs being KEPT, so the preview can say which of their
+    // requirements this leaves with nothing standing for them. Without them
+    // the report would be quietly incomplete, which is the reassuring-wrong
+    // answer this project exists to avoid.
+    const remaining = await templatesFor(plan.programs.filter((p) => p !== slug));
+    return previewRemoveProgram(plan, slug, { remaining, catalog: get().catalog });
+  },
+
+  removeProgramNow: async (slug) => {
+    const plan = get().plan;
+    if (!plan) return "No plan yet.";
+    const remaining = await templatesFor(plan.programs.filter((p) => p !== slug));
+    const next = structuredClone(plan);
+    const res = removeProgram(next, slug, { remaining, catalog: get().catalog });
+    // Refused — the stored plan was never touched, because the engine was
+    // handed a copy.
+    if (res.refusal) return res.refusal;
+    const catalog = get().catalog;
+    refineGenEdSlots(next, catalog);
+    const patterns = await loadFlowchartPatterns();
+    optimizeSchedule(next, catalog, { maxCredits: 19, patterns });
+    next.rev = plan.rev + 1;
+    next.updatedAt = new Date().toISOString();
+    persist(next, `remove program ${slug}`);
+    set({ plan: next, ...recompute(next, catalog) });
+    return res.note;
   },
 
   attachIugNow: async (slug) => {

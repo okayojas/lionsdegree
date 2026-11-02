@@ -50,6 +50,15 @@ export function buildCatalog(courses: Course[]): Catalog {
 export interface ItemOrigin {
   program: string;
   templateSem: number;
+  /** The OTHER Programs whose Template also requires this item.
+   *
+   * `program` answers "who put this card here"; withdrawing a Program needs
+   * "who still needs it". Without this list a Course both a major and a
+   * late-declared minor require is either scheduled twice — inflating the
+   * credit total and showing the same course in two Terms — or dropped the
+   * moment either Program is withdrawn. Recorded by `addProgram`; read by
+   * `removeProgram` through `originPrograms`. */
+  alsoPrograms?: string[];
 }
 
 /** A slot is an unfilled requirement card (gen-ed, elective...). */

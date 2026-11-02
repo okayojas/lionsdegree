@@ -74,8 +74,12 @@ function termLabels(start: GenPlanOptions["startTerm"], count: number): string[]
 /** Slot dedupe key: gen-ed slots collapse by domain, electives by normalized
  * label — parenthetical qualifiers, hyphens, and plurals are ignored so
  * "Technical Elective (400-level)" and "Technical Electives" share one set
- * across a double major. */
-function normSlotLabel(label: string): string {
+ * across a double major.
+ *
+ * Exported because `programMerge` budgets Slots the same way. Two spellings of
+ * this rule would mean generating a double major and merging the second
+ * Program into an existing Plan disagree about how many electives are owed. */
+export function normSlotLabel(label: string): string {
   return label
     .toLowerCase()
     .replace(/\(.*?\)/g, " ")

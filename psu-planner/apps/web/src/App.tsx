@@ -13,6 +13,7 @@ import { SearchBox } from "./components/SearchBox";
 import { SidePanel } from "./components/SidePanel";
 import { ImportModal } from "./components/ImportModal";
 import { PlanListView } from "./components/PlanListView";
+import { ProgramsModal } from "./components/ProgramsModal";
 import { LegalModal } from "./components/LegalModal";
 import { AccountMenu } from "./components/AccountMenu";
 import { PlanSkeleton } from "./components/PlanSkeleton";
@@ -22,6 +23,7 @@ export default function App() {
   const { plan, catalog, items, setPlan, mutatePlan, markCompleted, restoreItem, refreshCatalog, loading, loadError, servedEdition, repairNote, clearRepairNote } = usePlanner();
   const [showRemoved, setShowRemoved] = useState(false);
   const [showImport, setShowImport] = useState(false);
+  const [showPrograms, setShowPrograms] = useState(false);
   const [showLegal, setShowLegal] = useState(false);
   const [historyOpen, setHistoryOpen] = useState<PlanHistoryEntry[] | null>(null);
   const [iugOpen, setIugOpen] = useState<IugIndexEntry[] | null>(null);
@@ -242,6 +244,12 @@ export default function App() {
               >
                 Optimize schedule
               </button>
+              {/* Adding a minor used to mean "Start over", which deletes the
+                  plan. This is the same engine call the assistant will make,
+                  so the two can never disagree about what a plan is. */}
+              <button role="menuitem" onClick={() => setShowPrograms(true)}>
+                Your programs ({plan.programs.length})
+              </button>
               <button role="menuitem" onClick={() => setShowImport(true)}>Import courses / AP credit</button>
               <button role="menuitem" onClick={() => downloadPlan(plan)}>Save plan to a file</button>
               <button role="menuitem" onClick={() => void openPlanFile(setPlan, setToast)}>Open a plan file</button>
@@ -456,6 +464,7 @@ export default function App() {
           onDone={(msg) => setToast(`Import: ${msg}.`)}
         />
       )}
+      {showPrograms && <ProgramsModal onClose={() => setShowPrograms(false)} onToast={setToast} />}
       {showLegal && <LegalModal onClose={() => setShowLegal(false)} />}
       {conflict && (
         <div className="conflict-bar" role="alert">
