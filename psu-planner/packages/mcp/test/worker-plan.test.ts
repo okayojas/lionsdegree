@@ -709,6 +709,134 @@ describe("prior credit, hosted", () => {
   });
 });
 
+/** Adding a summer session, hosted — the one mutation that INSERTS a Term
+ * in the middle and renumbers every Term after it (#43).
+ *
+ * It gets its own block rather than a row in the table above because the
+ * table's fixture has nothing to renumber: no Constraints, no manual
+ * moves, no student-added Courses. A pass on that Plan would say nothing
+ * about the only thing that can go wrong here — a Constraint quietly
+ * applying to the wrong Term, which surfaces a year later at
+ * registration. The local suite proves the remapping in detail
+ * (`summer-session.test.ts`); this proves it survives the hosted path,
+ * which has its own store, its own context construction and its own
+ * refusal handling.
+ */
+describe("adding a summer session, hosted", () => {
+  /** The stored Plan with work already done to it: a Constraint, a manual
+   * move and a student-added Course on BOTH sides of where Summer 2027
+   * lands (index 2, between Spring 2027 and Fall 2027). */
+  const planWithWork = () => ({
+    ...PLAN,
+    constraints: [
+      { code: "CHEM 110", type: "pin", termIndex: 0 },
+      { code: "MATH 230", type: "not-in", termIndex: 3 },
+    ],
+    moves: { "EDSGN 100": 1, "MATH 251": 5 },
+    added: [{ code: "CMPSC 465", sem: 6 }],
+  });
+
+  /** What each piece of index-keyed state points at, BY LABEL. The
+   * indexes are supposed to change; the Terms they name are not. */
+  const pointsAt = (doc: Record<string, unknown>) => {
+    const terms = doc.terms as { label: string }[];
+    const label = (i: number) => terms[i]?.label ?? `NO TERM AT INDEX ${i}`;
+    return {
+      constraints: (doc.constraints as { code: string; termIndex: number }[]).map(
+        (c) => `${c.code} -> ${label(c.termIndex)}`,
+      ),
+      moves: Object.entries(doc.moves as Record<string, number>).map(([id, i]) => `${id} -> ${label(i)}`),
+      added: (doc.added as { code: string; sem: number }[]).map((a) => `${a.code} -> ${label(a.sem)}`),
+    };
+  };
+
+  it("lands, and every constraint, move and addition still points at the same term", async () => {
+    // THE ASSERTION THIS TICKET IS ABOUT, through `fetch(Request, Env)`.
+    const table = plansTable(planWithWork());
+    db = withTable(table);
+    const before = pointsAt(table.stored().doc as Record<string, unknown>);
+
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_summer_session", {
+      year: 2027, based_on_revision: 4,
+    });
+    expect(result!.ok, JSON.stringify(result)).toBe(true);
+
+    const doc = table.stored().doc as Record<string, unknown>;
+    expect((doc.terms as { label: string }[]).map((t) => t.label)[2], "the summer did not land after Spring 2027")
+      .toBe("Summer 2027");
+    expect(pointsAt(doc), "a term insertion moved a constraint, a manual move or an addition onto a different term")
+      .toEqual(before);
+  });
+
+  it("tells the model the indexes it is holding have moved", async () => {
+    // Every other tool on this surface takes a 0-based term index, and
+    // the model is holding ones from earlier calls in the same turn.
+    const table = plansTable(planWithWork());
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_summer_session", {
+      year: 2027, based_on_revision: 4,
+    });
+    expect((result!.term_indexes_shifted as { at?: number })?.at, "the answer does not say where indexes shifted")
+      .toBe(2);
+    expect(result!.renumbering_note, "nothing warns that held indexes are now stale").toMatch(/out of date|stale/i);
+    expect((result!.plan as { terms: { label: string }[] }).terms.map((t) => t.label))
+      .toContain("Summer 2027");
+  });
+
+  it("is idempotent against the stored plan", async () => {
+    // A retried call must not add a second Summer 2027 and — far worse —
+    // must not run the remap twice, which walks every constraint two
+    // terms forward instead of one.
+    const table = plansTable(planWithWork());
+    db = withTable(table);
+    await call(env(), `Bearer ${await signedIn()}`, "add_summer_session", { year: 2027, based_on_revision: 4 });
+    const afterFirst = JSON.stringify(table.stored());
+
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_summer_session", {
+      year: 2027, based_on_revision: 5,
+    });
+    expect(result!.ok, JSON.stringify(result)).toBe(true);
+    expect(result!.unchanged, "a repeat call did not say that nothing changed").toBe(true);
+    expect(JSON.stringify(table.stored()), "a repeat call wrote to the stored plan").toBe(afterFirst);
+  });
+
+  it("is refused when the plan has moved on, and writes nothing", async () => {
+    const table = plansTable(planWithWork());
+    db = withTable(table);
+    table.editedInThePlanner();
+    const before = JSON.stringify(table.stored());
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_summer_session", {
+      year: 2027, based_on_revision: 4,
+    });
+    expect(result!.ok, "a stale summer insertion landed").not.toBe(true);
+    expect(result!.stale_read).toBe(true);
+    expect(JSON.stringify(table.stored()), "a refused change still wrote").toBe(before);
+  });
+
+  it("requires the revision it was computed from", async () => {
+    const table = plansTable(planWithWork());
+    db = withTable(table);
+    const before = JSON.stringify(table.stored());
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_summer_session", { year: 2027 });
+    expect(result!.error, "a term was inserted without naming a revision").toMatch(/based_on_revision/);
+    expect(JSON.stringify(table.stored())).toBe(before);
+  });
+
+  it("keeps the plan pinned to its Edition", async () => {
+    // ADR 0001. Inserting a term must not re-base the student onto a
+    // different bulletin.
+    const table = plansTable({ ...planWithWork(), edition: "2025-2026" });
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "add_summer_session", {
+      year: 2027, based_on_revision: 4,
+    });
+    expect(result!.ok, JSON.stringify(result)).toBe(true);
+    expect((table.stored().doc as { edition?: string }).edition, "a summer insertion changed which bulletin governs")
+      .toBe("2025-2026");
+  });
+});
+
+
 describe("removing a required course, hosted", () => {
   /** A Course the program's template placed, not one the student added. */
   const required = (): string => {

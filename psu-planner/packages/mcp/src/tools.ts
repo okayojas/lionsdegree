@@ -362,6 +362,23 @@ function allTools(): ToolDefinition[] {
       inputSchema: obj({ based_on_revision: basedOn }, ["based_on_revision"]),
     },
     {
+      name: "add_summer_session",
+      description:
+        "Opt the student into a summer session — \"I'm taking summer 2027\" — inserted between that " +
+        "year's spring and fall. WARNING, AND IT IS THE REASON THIS TOOL IS NOT add_term: inserting " +
+        "a term RENUMBERS EVERY TERM AFTER IT, so any 0-based term index you are holding from an " +
+        "earlier call means a different term once this returns. Read the indexes back out of the " +
+        "plan in the answer before you use one again. Asking for a summer the plan already has " +
+        "changes nothing and is safe to repeat.",
+      inputSchema: obj(
+        {
+          year: num('The calendar year of the summer, e.g. 2027 for "Summer 2027"'),
+          based_on_revision: basedOn,
+        },
+        ["year", "based_on_revision"],
+      ),
+    },
+    {
       name: "skip_term",
       description:
         "Mark a term as intentionally empty — a gap year, co-op or leave. Coursework re-flows around it and graduation moves back; nothing is removed.",

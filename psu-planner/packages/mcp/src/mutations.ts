@@ -242,6 +242,7 @@ const isRequired = (ctx: ToolContext, code: string): boolean =>
 export const MUTATIONS: ReadonlySet<string> = new Set([
   "add_course",
   "add_previous_course",
+  "add_summer_session",
   "add_term",
   "fill_slot",
   "optimize_schedule",
@@ -584,6 +585,115 @@ export async function executeMutation(
       });
       if (refused(r)) return r!;
       return { ...r, terms: plan().terms.length, plan: planView(ctx, plan()) };
+    }
+
+    case "add_summer_session": {
+      // THE ONLY TOOL HERE THAT INSERTS A TERM IN THE MIDDLE, which is
+      // why it is its own tool and not a flavour of `add_term`.
+      //
+      // Three kinds of state are keyed by TERM INDEX — a Constraint's
+      // `termIndex`, a student-added Course's `sem`, and every manual
+      // move in `moves` — and every other tool on this surface addresses
+      // Terms by index too. Insert a Term at index 3 and term 3 becomes
+      // term 4, so a Constraint reading "not in term 3" now names a Term
+      // the student never ruled out. The concrete failure: a student who
+      // said "no CHEM 110 in spring 2028", takes a summer, and finds
+      // CHEM 110 scheduled in spring 2028 anyway with the refusal silently
+      // transferred to the following fall. Nothing errors, nothing looks
+      // wrong, and it surfaces a year later at registration.
+      //
+      // The remap below is the whole job, and it is deliberately a mirror
+      // of `addSummerSession` in `apps/web/src/store.ts`: two surfaces
+      // writing the same Plan must renumber it the same way, or the
+      // planner and the assistant disagree about which Term a Constraint
+      // belongs to.
+      const year = Math.round(Number(args.year));
+      // Bounded rather than merely finite: `Number("2027!")` is NaN but
+      // `Number(true)` is 1, and "Summer 1" is a label no sequence can
+      // place. A model mis-reading "summer after my junior year" as a
+      // term index (3) must not create one.
+      if (!Number.isFinite(year) || year < 2020 || year > 2040) {
+        return { error: "year must be a calendar year, e.g. 2027 for Summer 2027" };
+      }
+      const label = `Summer ${year}`;
+
+      // IDEMPOTENT, AND CHECKED BEFORE ANYTHING IS WRITTEN. A model that
+      // retries this call (a timeout, a re-read, a student repeating
+      // themselves) must not get a second Summer 2027 — and far worse,
+      // must not run the remap twice, which would walk every Constraint
+      // two Terms forward instead of one. Nothing is committed here, so
+      // the revision does not move; it is reported unchanged so the
+      // model's next call still names a revision that exists.
+      const already = plan().terms.findIndex((t) => t.label === label);
+      const optedIn = (plan().summerYears ?? []).includes(year);
+      if (already >= 0 || optedIn) {
+        return {
+          ok: true,
+          unchanged: true,
+          already_present: true,
+          summer: label,
+          // Null, not -1 or 0, when the Plan carries the opt-in but does
+          // not run as far as that summer. A term index is a position in
+          // a list, and inventing one here is how a later `add_course`
+          // would land in the wrong Term.
+          term_index: already >= 0 ? already : null,
+          based_on_revision: stated,
+          revision: heldRev(ctx),
+          note:
+            already >= 0
+              ? `${label} is already in the plan, so nothing changed and no term indexes moved.`
+              : `The student has already opted into ${label}, but the plan does not run that far yet. ` +
+                "Nothing changed. Call optimize_schedule or add_term to extend it.",
+          plan: planView(ctx, plan()),
+        };
+      }
+
+      // After that year's spring, which is where a summer session sits
+      // (Summer 2027 follows Spring 2027 and precedes Fall 2027), so every
+      // label after the insertion stays correct without being rewritten.
+      const springIdx = plan().terms.findIndex((t) => t.label === `Spring ${year}`);
+      const insertAt = springIdx >= 0 ? springIdx + 1 : plan().terms.length;
+      const termsBefore = plan().terms.length;
+
+      const r = await commit(ctx, name, (p) => {
+        // Year-keyed, not index-keyed, so the choice survives every future
+        // re-optimize — which rebuilds the term list from this list.
+        p.summerYears = [...(p.summerYears ?? []), year].sort((a, b) => a - b);
+        p.terms.splice(insertAt, 0, { label, items: [] });
+        // ALL THREE, IN ONE PLACE. Remapping some and not the rest is the
+        // failure this tool exists to avoid: a Constraint that applies to
+        // the wrong Term is indistinguishable from a Plan the student
+        // asked for.
+        for (const c of p.constraints ?? []) if (c.termIndex >= insertAt) c.termIndex++;
+        for (const a of p.added) if (a.sem >= insertAt) a.sem++;
+        for (const k of Object.keys(p.moves)) if (p.moves[k] >= insertAt) p.moves[k]++;
+      });
+      if (refused(r)) return r!;
+      return {
+        ...r,
+        summer: label,
+        term_index: insertAt,
+        // SAID OUT LOUD, because the model is holding indexes from earlier
+        // calls and nothing else in the answer would tell it they moved.
+        // An index silently reinterpreted is the same wrong Term as an
+        // unremapped Constraint, arriving by the other route.
+        term_indexes_shifted: { at: insertAt, by: 1, terms_before: termsBefore, terms_after: plan().terms.length },
+        renumbering_note:
+          `${label} was inserted at index ${insertAt}, so every term from that index on is now one ` +
+          "higher than it was. Any term index you were holding from an earlier call is out of date — " +
+          "use the indexes in the plan below. Constraints, manual moves and courses the student added " +
+          "were moved with their terms and still point at the same terms they did before.",
+        note:
+          "A summer term holds at most 9 credits and is exempt from the full-time floor" +
+          (springIdx >= 0
+            ? "."
+            : `. The plan has no Spring ${year}, so ${label} was appended at the end; optimize_schedule ` +
+              "will resequence it into place."),
+        next_step:
+          "Call optimize_schedule to let the plan use the new summer capacity, or set_schedule_constraint " +
+          `with rule "pin" to put a particular course in it. Nothing has moved into ${label} yet.`,
+        plan: planView(ctx, plan()),
+      };
     }
 
     case "skip_term": {
