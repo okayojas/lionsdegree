@@ -1,6 +1,5 @@
 /** The tools a student's assistant can call.
  *
- * The reads live here; `mutations.ts` holds the ones that write, and
  * The reads live here; `mutations.ts` holds every one that writes, and
  * every one of those states the revision it was computed from so a
  * change based on a Plan the student has since edited is refused rather
@@ -41,6 +40,7 @@ import { programRequirements } from "./programRequirements.js";
 import { detail, GCAC_210_GATE, listing, pairsWithPlan } from "./iug.js";
 import { simulateChange, simulateChanges } from "./simulate.js";
 import { planView } from "./planView.js";
+import { planDiagram } from "./planDiagram.js";
 
 export interface ToolContext {
   /** Mutable: a write refreshes these so the next call sees the new plan.
@@ -184,6 +184,10 @@ export const READABLE_PLAN_TOOLS: ReadonlySet<string> = new Set([
   // copy and throws that copy away; running more of them does not make
   // it any closer to a write.
   "simulate_changes",
+  // A READ, including when it is asked to draw a candidate: it goes
+  // through `candidateContext`, which is the same sandbox
+  // `simulate_change` uses and writes nowhere.
+  "plan_diagram",
 ]);
 
 /** THE HOSTED SURFACE, in one place.
@@ -550,6 +554,23 @@ function allTools(): ToolDefinition[] {
         ["changes"],
       ),
     },
+    {
+      name: "plan_diagram",
+      description:
+        "Draw the student's plan as a Mermaid flowchart they can see in the chat: a box per term, " +
+        "the courses in it, and an arrow wherever the catalog says one course is a prerequisite " +
+        "of another. Use this when they ask to see or picture their degree rather than read a " +
+        "list of terms. Pass change and arguments to draw what a change WOULD look like instead. " +
+        "Show the diagram field verbatim in a mermaid code block, and give them the planner link " +
+        "it returns — the chart on the website is better than anything a chat window renders.",
+      inputSchema: obj({
+        change: str("Optional: a change to draw the result of, exactly as simulate_change takes it."),
+        arguments: {
+          type: "object",
+          description: "The arguments that change would take. Only read when change is given.",
+        },
+      }),
+    },
   ];
 }
 
@@ -782,6 +803,9 @@ export async function executeTool(
 
     case "get_plan":
       return planView(ctx, plan);
+
+    case "plan_diagram":
+      return planDiagram(ctx, args);
 
     case "simulate_change":
       // Dispatched here, in the READ half, because that is what it is:
