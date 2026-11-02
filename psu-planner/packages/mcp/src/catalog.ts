@@ -45,6 +45,8 @@ import {
   type SearchRanking,
   type Course,
   type ProgramRequirements,
+  type ProgramTemplate,
+  type TemplateSemester,
 } from "@psu-planner/engine";
 import type { CatalogSource } from "./source.js";
 
@@ -132,6 +134,23 @@ export interface EditionCatalog {
   /** One IUG program in full, or null if this Edition does not publish
    * it under that slug. */
   iug(slug: string): Promise<IugSpec | null>;
+
+  /** A Program as the engine's merge wants it: requirements plus the
+   * suggested-plan grid (#47).
+   *
+   * ASSEMBLED FROM TWO FILES, which is why it is a method rather than a
+   * field. The requirements are in the always-resident
+   * `program-requirements.json`; the grid is one 7 KB file per Program,
+   * read on demand, because a session that never declares a Program
+   * should not pay for 1.6 MB of them.
+   *
+   * `null` only when this Edition does not publish the Program at all. A
+   * Program that publishes requirements and NO grid -- most minors and
+   * certificates -- returns a Template with no semesters, exactly as the
+   * planner's own `templateFor` does: contributing requirements and
+   * placing no courses is what those Programs actually do, not a failure
+   * to read them. */
+  programTemplate(slug: string): Promise<ProgramTemplate | null>;
 
   /** Load the ranking data that search scores descriptions with.
    *
@@ -238,6 +257,10 @@ export async function loadEdition(source: CatalogSource, edition: string): Promi
   // they name, see scripts/measure-memory.mts).
   let iugIndexLoaded: Promise<IugIndexEntry[]> | null = null;
   const loadedIug = new Map<string, Promise<IugSpec | null>>();
+  /** The same, for suggested-plan grids (#47). One file per Program, read
+   * only when a student declares one: 1.6 MB of grids per Edition that a
+   * session which never declares a Program never touches. */
+  const loadedGrid = new Map<string, Promise<{ campusLabel?: string; semesters?: TemplateSemester[] } | null>>();
 
   /** The Edition's IUG index, read once. A local function rather than a
    * method so `iug` below can call it without going through `this` --
@@ -395,6 +418,47 @@ export async function loadEdition(source: CatalogSource, edition: string): Promi
       })();
       loadedIug.set(slug, work);
       return work;
+    },
+
+    async programTemplate(slug) {
+      // THE REQUIREMENTS DECIDE WHETHER THIS EDITION HAS THE PROGRAM, not
+      // the grid: 376 of the 759 Programs publish requirements and no
+      // grid, so keying existence on the grid would tell a student their
+      // Edition does not offer half the minors in it.
+      const reqs = programs[slug];
+      if (!reqs) return null;
+
+      // The slug came from a MODEL. It is checked against the Edition's own
+      // requirements above before it becomes a path, like `iug` -- so a
+      // made-up slug is answered rather than raised, and the path builder
+      // never sees a string we did not publish.
+      const inFlight = loadedGrid.get(slug);
+      const grid = await (inFlight ??
+        (() => {
+          const work = source
+            .read<{ campusLabel?: string; semesters?: TemplateSemester[] }>(`${edition}/plans/${slug}.json`)
+            .then((g) => {
+              // A MISS IS NOT MEMOISED when it might be transient. An absent
+              // grid for a minor is a permanent fact, and an unreadable one
+              // for a major is not -- and nothing here can tell them apart,
+              // so neither is kept. The cost of re-reading is one 7 KB file.
+              if (!g) loadedGrid.delete(slug);
+              return g;
+            });
+          loadedGrid.set(slug, work);
+          return work;
+        })());
+
+      return {
+        slug,
+        name: reqs.name,
+        campusLabel: grid?.campusLabel ?? "",
+        // NO GRID IS AN EMPTY GRID, matching the planner's `templateFor`.
+        // `addProgram` then derives placement from the requirement sections,
+        // which is exactly what it does in the browser for a minor.
+        semesters: grid?.semesters ?? [],
+        requirements: reqs.requirementSections ?? [],
+      };
     },
 
     async ensureSubjects(wanted) {

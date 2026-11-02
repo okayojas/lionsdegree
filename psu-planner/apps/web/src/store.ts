@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import {
-  addProgram, applyHonorsUpgrades, attachIug, auditHonors, buildItems, buildSchedule, detachIug,
-  optimizeSchedule, parseTermLabel, previewRemoveProgram, refineGenEdSlots, removeProgram,
-  carryCourseRefs, repairPrereqOrdering, termSequence, unrecordPriorCredit,
+  applyHonorsUpgrades, attachIug, auditHonors, buildItems, buildSchedule, declareProgram, detachIug,
+  optimizeSchedule, parseTermLabel, previewRemoveProgram, refineGenEdSlots, templateCourseCodes,
+  withdrawProgram, carryCourseRefs, repairPrereqOrdering, termSequence, unrecordPriorCredit,
   type Catalog, type CourseSpec, type PlanDoc, type PlanItem, type ProgramTemplate,
   type RemoveProgramPreview, type ReqSection, type Schedule,
 } from "@psu-planner/engine";
@@ -565,17 +565,25 @@ export const usePlanner = create<PlannerState>((set, get) => ({
     // below threw — the student would see courses with no titles and no way
     // back. Nothing is committed until the merge and the re-flow both finish.
     const next = structuredClone(plan);
-    const res = addProgram(next, template, { coveredBy: await loadCoverage() });
-    // The merged Program brings subjects the loaded catalog has never seen.
-    const catalog = { ...get().catalog, ...(await loadCatalogFor(planCodes(next))) };
-    // Gen-ed refinement re-reads the university framework against the WHOLE
-    // merged plan, so a second program's own courses can cover a bucket the
-    // first program had a slot for. Then the optimizer is the last word on
-    // where everything sits, exactly as it is after any other plan change.
-    refineGenEdSlots(next, catalog);
-    const patterns = await loadFlowchartPatterns();
-    optimizeSchedule(next, catalog, { maxCredits: 19, patterns });
-    if (next.honors) applyHonorsUpgrades(next, catalog);
+    // THE SUBJECTS FIRST, which used to happen after the merge so the
+    // merged plan could be read for codes. `declareProgram` optimizes
+    // against the catalog it is handed, so the catalog has to be wide
+    // enough BEFORE it runs — and the template's own codes say what it
+    // will bring without having to merge to find out.
+    const catalog = {
+      ...get().catalog,
+      ...(await loadCatalogFor([...planCodes(plan), ...templateCourseCodes(template)])),
+    };
+    // ONE SEQUENCE, SHARED WITH THE CONNECTOR (#47). Merge, refine the
+    // gen-eds against the whole merged plan, optimize last, then honors.
+    // It used to be written out here and again in the connector, which is
+    // two copies of an ordering — the divergence #39 exists to prevent.
+    const res = declareProgram(next, template, {
+      coveredBy: await loadCoverage(),
+      catalog,
+      maxCredits: 19,
+      patterns: await loadFlowchartPatterns(),
+    });
     next.rev = plan.rev + 1;
     next.updatedAt = new Date().toISOString();
     persist(next, `add program ${slug}`);
@@ -599,14 +607,18 @@ export const usePlanner = create<PlannerState>((set, get) => ({
     if (!plan) return "No plan yet.";
     const remaining = await templatesFor(plan.programs.filter((p) => p !== slug));
     const next = structuredClone(plan);
-    const res = removeProgram(next, slug, { remaining, catalog: get().catalog });
+    const catalog = get().catalog;
+    // The same shared sequence as declaring, pointed the other way (#47):
+    // withdraw, refine the gen-eds against what is left, optimize last.
+    const res = withdrawProgram(next, slug, {
+      remaining,
+      catalog,
+      maxCredits: 19,
+      patterns: await loadFlowchartPatterns(),
+    });
     // Refused — the stored plan was never touched, because the engine was
     // handed a copy.
     if (res.refusal) return res.refusal;
-    const catalog = get().catalog;
-    refineGenEdSlots(next, catalog);
-    const patterns = await loadFlowchartPatterns();
-    optimizeSchedule(next, catalog, { maxCredits: 19, patterns });
     next.rev = plan.rev + 1;
     next.updatedAt = new Date().toISOString();
     persist(next, `remove program ${slug}`);

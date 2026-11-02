@@ -46,6 +46,44 @@
  * graduate COURSES an attach needs were already shipping inside `courses/`,
  * which `loadSubject` has resolved as `PREFIX:grad` since #31. Only the
  * programs themselves were missing, and a program is a page of JSON.
+ *
+ * WHAT CHANGED IN #47. "Not the suggested-plan grids, which describe a
+ * schedule the student already has" was true for as long as the connector
+ * could only read a Plan that already existed. #47 lets a student declare a
+ * NEW Program from the chat, and `addProgram` folds that Program's grid into
+ * their existing Terms -- so without the grids the connector would add a
+ * major and place none of its courses, which is a different answer from the
+ * planner's for the same action. The grid is what a Program's first two
+ * years actually look like; dropping it would leave the two surfaces
+ * disagreeing about what "add a minor" means, which is the one thing #39
+ * exists to prevent.
+ *
+ * DERIVED, NOT COPIED, and this is the only derivation in this script.
+ * Copying `programs/` whole would be 12.6 MB per Edition, almost all of it
+ * `requirementSections` that `program-requirements.json` already ships --
+ * the same requirements twice, free to drift. So `plans/<slug>.json` carries
+ * the grid and nothing else, and the loader pairs it with the requirements
+ * already here. MEASURED, before it was added (ADR 0002), 2026-11-02:
+ *
+ *   programs/ copied whole           12.56 MB per Edition
+ *   all suggestedPlans, grids only    4.56 MB per Edition
+ *   plans/ as shipped                 1.62 MB raw / 0.26 MB gzipped,
+ *                                     383 files (381 for 2025-2026)
+ *   largest single file               7 KB (arts-architecture-music-
+ *                                     education-bme)
+ *   resident cost per declaration     one file, so 7 KB at the worst
+ *
+ * Only the FIRST published grid, which is the one `templateFor` in the
+ * planner uses: onboarding asks which campus plan to start from, a Program
+ * declared later does not, and the optimizer re-flows whatever it gets
+ * against the Plan it is joining. Shipping every campus variant would be
+ * 2.8x the bytes for a choice neither surface offers.
+ *
+ * 376 of the 759 Programs publish no grid at all -- most minors and
+ * certificates contribute requirements only -- and they get no file. An
+ * absent `plans/` entry means "this Program publishes no grid", which is
+ * what the planner already does with `semesters: []`, NOT "we could not
+ * read it".
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -146,8 +184,67 @@ function assertNoDescriptions(dir, edition) {
   }
 }
 
+/** The grid half of every Program that publishes one, written to
+ * `plans/<slug>.json` (#47).
+ *
+ * WHY THE INDEX RATHER THAN A DIRECTORY WALK: `programs_index.json` is what
+ * says whether a slug is a major, a minor or a certificate, and that is the
+ * subdirectory the file is in. Deriving the path from the slug is not
+ * possible, which is the same reason `subjects_index.json` ships.
+ *
+ * A Program the index names but whose file is missing or unreadable is
+ * SKIPPED, not failed: the connector reads an absent grid as "this Program
+ * publishes none", the same thing the planner does, and one unreadable
+ * program must not stop an Edition shipping. It is counted and reported so
+ * a number that starts climbing is visible. */
+function writePlanGrids(srcEdition, dstEdition) {
+  const indexPath = path.join(srcEdition, "programs_index.json");
+  if (!fs.existsSync(indexPath)) return { files: 0, bytes: 0, unreadable: 0, noGrid: 0 };
+  const index = JSON.parse(fs.readFileSync(indexPath, "utf-8"));
+  const DIR = { major: "majors", minor: "minors", certificate: "certificates" };
+
+  const out = path.join(dstEdition, "plans");
+  let files = 0;
+  let bytes = 0;
+  let unreadable = 0;
+  let noGrid = 0;
+
+  for (const entry of index) {
+    const sub = DIR[entry?.type];
+    if (!sub || typeof entry.slug !== "string") continue;
+    const from = path.join(srcEdition, "programs", sub, `${entry.slug}.json`);
+    let program;
+    try {
+      program = JSON.parse(fs.readFileSync(from, "utf-8"));
+    } catch {
+      unreadable++;
+      continue;
+    }
+    const grid = (program.suggestedPlans ?? []).find((s) => (s.semesters ?? []).length);
+    if (!grid) {
+      noGrid++;
+      continue;
+    }
+    // THE GRID AND NOTHING ELSE. `footnotes` is Bulletin prose and the
+    // engine's ProgramTemplate has no field for it; `totalCredits` and the
+    // name are already in `program-requirements.json`. Writing a field
+    // nobody reads is a field that eventually gets read.
+    const body = JSON.stringify({
+      slug: program.slug,
+      campusLabel: grid.campusLabel ?? "",
+      semesters: grid.semesters,
+    });
+    if (!files) fs.mkdirSync(out, { recursive: true });
+    fs.writeFileSync(path.join(out, `${entry.slug}.json`), body);
+    files++;
+    bytes += body.length;
+  }
+  return { files, bytes, unreadable, noGrid };
+}
+
 let total = 0;
 const usable = [];
+const grids = { files: 0, bytes: 0, unreadable: 0 };
 
 for (const ed of editions) {
   const missing = REQUIRED.filter((f) => !fs.existsSync(path.join(SRC, ed, f)));
@@ -162,6 +259,22 @@ for (const ed of editions) {
     if (!fs.existsSync(from)) continue;
     fs.copyFileSync(from, path.join(DST, ed, f));
     total += fs.statSync(from).size;
+  }
+
+  // Written before the prose guard runs, so the derived grids are checked
+  // by it like everything else. They carry course CODES and no text, but
+  // "it cannot contain prose" is a claim about upstream, and upstream is
+  // the thing this guard exists not to trust.
+  const g = writePlanGrids(path.join(SRC, ed), path.join(DST, ed));
+  grids.files += g.files;
+  grids.bytes += g.bytes;
+  grids.unreadable += g.unreadable;
+  total += g.bytes;
+  if (g.unreadable) {
+    console.warn(
+      `${ed}: ${g.unreadable} program(s) named by the index could not be read, so they ship no ` +
+        `suggested-plan grid — the connector will add them as requirements only`,
+    );
   }
 
   // Checked across the WHOLE Edition, flat files included -- the guard
@@ -195,4 +308,8 @@ fs.writeFileSync(
 
 console.log(
   `catalog: ${usable.length} edition(s) [${usable.join(", ")}], ${(total / 1048576).toFixed(1)} MB on disk`,
+);
+console.log(
+  `suggested-plan grids: ${grids.files} file(s), ${(grids.bytes / 1048576).toFixed(2)} MB across ` +
+    `${usable.length} edition(s)`,
 );

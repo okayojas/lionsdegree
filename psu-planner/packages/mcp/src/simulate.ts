@@ -250,6 +250,15 @@ function readChanges(raw: unknown): { changes: PlannedChange[] } | { refusal: Si
  * at that moment IS the original, so the single-change answer is
  * unchanged. */
 function removesRequiredCourse(ctx: ToolContext, change: PlannedChange): string | null {
+  // DROPPING A PROGRAM IS ALWAYS THIS (#47), with no question to ask of
+  // the Plan: the whole point of a Program is that it requires things, so
+  // there is no version of the change that is not the removal of
+  // requirements. Named by slug rather than by code because that is what
+  // the student is being asked to agree to.
+  if (change.tool === "remove_program") {
+    const slug = String(change.arguments.slug ?? "").trim();
+    return slug && (ctx.plan?.programs ?? []).includes(slug) ? slug : null;
+  }
   if (change.tool !== "remove_course") return null;
   const code = String(change.arguments.code ?? "").trim().toUpperCase();
   if (!code) return null;
@@ -560,10 +569,14 @@ export async function simulateChanges(ctx: ToolContext, raw: unknown): Promise<S
       ? {
           requires_consent: true,
           consent_needed_for: needsConsent,
+          // PHRASED TO COVER BOTH, since #47 added a Program to the list.
+          // "math-minor is required by the student's degree" is not a
+          // sentence about anything, and a model reading it back to a
+          // student would be saying something false about their own plan.
           before_doing_this_for_real:
-            `${andList(needsConsent)} ${needsConsent.length === 1 ? "is" : "are"} required by the ` +
-            "student's degree. Making this change needs them to ask for it in their own words — " +
-            "show them this preview, and pass what they say back as student_words if they confirm.",
+            `Taking ${andList(needsConsent)} out of this student's degree needs them to ask for it ` +
+            "in their own words — show them this preview, and pass what they say back as " +
+            "student_words if they confirm.",
         }
       : {}),
 

@@ -457,6 +457,52 @@ function allTools(): ToolDefinition[] {
       ),
     },
     {
+      name: "add_program",
+      description:
+        "Declare a program — a second major, a minor, a certificate — on the plan the student already " +
+        "has. Nothing they have done is lost: completed courses stay completed, courses they added " +
+        "stay, and a course both programs require counts once rather than twice. The new program's " +
+        "requirements are folded into their existing terms and the whole plan is re-flowed, so the " +
+        "result is a schedule they could actually follow. Use get_program_requirements first if they " +
+        "are still deciding, and simulate_changes to show them the result before it is real.",
+      inputSchema: obj(
+        {
+          slug: str('A program slug, e.g. "eberly-science-mathematics-minor", from search_programs'),
+          based_on_revision: basedOn,
+        },
+        ["slug", "based_on_revision"],
+      ),
+    },
+    {
+      name: "remove_program",
+      description:
+        "Drop a program from the plan. This removes a whole set of requirements at once, so it is " +
+        "refused unless the student has asked for it in their own words — quote them in student_words. " +
+        "Courses another program still requires stay; the rest are named in the answer, along with " +
+        "anything it leaves unfilled. Simulate it first: the student should see what it takes away " +
+        "before they agree to it.",
+      inputSchema: obj(
+        {
+          slug: str("Which of the plan's programs to drop. get_plan lists them."),
+          user_explicitly_asked: {
+            type: "boolean",
+            description:
+              "Only true when the student has said, in their own words, that they want this program " +
+              "off their degree. Never infer it from a question about what dropping it would do.",
+          },
+          student_words: {
+            type: "string",
+            description:
+              "The student's own sentence asking for this, quoted. Not your summary of it, not your " +
+              "question to them, and not something you decided on their behalf. It is returned in the " +
+              "answer, so repeat it to them when you confirm what you did.",
+          },
+          based_on_revision: basedOn,
+        },
+        ["slug", "based_on_revision"],
+      ),
+    },
+    {
       name: "list_iug_programs",
       description:
         "Integrated Undergraduate-Graduate (IUG) programs: a bachelor's and a master's taken together, with some coursework counting toward both. Says which ones pair with the student's own major and which bachelor's each of the others is published against. Call this before attach_iug — the slug comes from here, and a program invented from memory does not exist.",
@@ -493,9 +539,9 @@ function allTools(): ToolDefinition[] {
       inputSchema: obj(
         {
           change: str(
-            "The change to try: add_course, remove_course, move_course, swap_alternative, " +
-              "restore_course, set_schedule_constraint, clear_schedule_constraint, optimize_schedule, " +
-              "fill_slot, add_term, skip_term, restore_term or delete_term.",
+            "The change to try: add_program, remove_program, add_course, remove_course, move_course, " +
+              "swap_alternative, restore_course, set_schedule_constraint, clear_schedule_constraint, " +
+              "optimize_schedule, fill_slot, add_term, skip_term, restore_term or delete_term.",
           ),
           arguments: {
             type: "object",

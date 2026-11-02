@@ -27,20 +27,28 @@ import {
   exportPlanFile,
   optimizeSchedule,
   poolHasMembership,
+  previewRemoveProgram,
   rankSlotPicks,
   parseTermLabel,
   resolveSlotPool,
+  templateCourseCodes,
   termSequence,
   carryCourseRefs,
+  declareProgram,
   describeCarry,
+  withdrawProgram,
+  type AddProgramResult,
   type AttachResult,
   type CourseSpec,
+  type ProgramTemplate,
+  type RemoveProgramPreview,
   type SwapCarry,
   type PlanDoc,
   type PlanItem,
   type ScheduleConstraint,
 } from "@psu-planner/engine";
 import type { ToolContext } from "./tools.js";
+import { refuse as refuseUnknownProgram } from "./programRequirements.js";
 import { admissionText, attachCodes, GCAC_210_GATE } from "./iug.js";
 import { MemoryPlanStore } from "./planStore.js";
 import { planView } from "./planView.js";
@@ -251,6 +259,7 @@ const isRequired = (ctx: ToolContext, code: string): boolean =>
 export const MUTATIONS: ReadonlySet<string> = new Set([
   "add_course",
   "add_previous_course",
+  "add_program",
   "add_summer_session",
   "add_term",
   "attach_iug",
@@ -262,6 +271,7 @@ export const MUTATIONS: ReadonlySet<string> = new Set([
   "optimize_schedule",
   "remove_course",
   "remove_previous_course",
+  "remove_program",
   "restore_course",
   "restore_term",
   "set_schedule_constraint",
@@ -806,6 +816,195 @@ export async function executeMutation(
         ...r,
         skipped: plan().terms[termIndex]?.label,
         note: "Coursework was re-flowed around the gap; nothing was removed and graduation moves back one term.",
+        plan: planView(ctx, plan()),
+      };
+    }
+
+    // ---- Declaring a Program (#47) ---------------------------------------
+    // A student says "add a math minor" and it happens. Through exactly
+    // the engine path the planner's own menu uses, because a connector
+    // that merged Programs its own website could not would be writing
+    // Plans nobody can reproduce or undo in the browser.
+
+    case "add_program": {
+      const slug = String(args.slug ?? "").trim();
+      if (!slug) {
+        return {
+          error: "slug is required: the program's catalog slug, as search_programs returns it.",
+          remedy: "Call search_programs or get_program_requirements first. Do not guess a slug from memory.",
+        };
+      }
+      // ALREADY THEIRS IS NOT AN ERROR, and it is said before anything is
+      // loaded. `addProgram` reports it too, but reaching it would mean
+      // reading a 7 KB grid and taking out a revision for a change that
+      // cannot happen.
+      if (plan().programs.includes(slug)) {
+        return {
+          error: `${slug} is already one of this plan's programs, so there was nothing to add.`,
+          programs: plan().programs,
+        };
+      }
+      const template = await ctx.data.programTemplate(slug);
+      // The Edition does not publish it. Answered with the Editions this
+      // connector carries rather than a bare miss, through the same
+      // refusal `get_program_requirements` gives — ADR 0001 is
+      // forward-only, so "not in your bulletin" and "does not exist" are
+      // different facts and only one of them is true.
+      if (!template) return refuseUnknownProgram(slug, ctx.data);
+
+      // READ THE PROGRAM'S SUBJECTS BEFORE FOLDING THEM IN, for the same
+      // reason `attach_iug` does: a Course whose subject file has never
+      // loaded carries no prerequisite structure, so the plan this tool
+      // hands back would report "cannot be checked" against every course
+      // the new Program brought — understated rather than wrong, and
+      // most of the point of declaring it here.
+      await ctx.data.ensureCourses(templateCourseCodes(template));
+
+      let added: AddProgramResult | null = null;
+      const r = await commit(ctx, name, (p) => {
+        // ONE SEQUENCE, SHARED WITH THE PLANNER (#47). Merge, refine the
+        // gen-eds against the whole merged plan, optimize last (iron rule
+        // 5), then honors. Written out in both places before this ticket,
+        // which is two copies of an ordering and the exact divergence #39
+        // exists to prevent.
+        added = declareProgram(p, template, {
+          coveredBy: ctx.data.coveredBy,
+          edition: ctx.data.edition,
+          catalog: ctx.data.catalog,
+          maxCredits: 19,
+          // No patterns: the Worker ships no copy of them, so the
+          // optimizer uses its own defaults — the same thing every other
+          // hosted mutation already does.
+        });
+      });
+      if (refused(r)) return r!;
+      return {
+        ...r,
+        added_program: slug,
+        program_name: template.name,
+        programs: plan().programs,
+        courses_added: added!.coursesAdded,
+        // THE DOUBLE MAJOR'S HONESTY, in one list. A Course both Programs
+        // require counts ONCE with both on its Origin, so a student is
+        // not told to take it twice and the requirement is not
+        // double-counted against them.
+        courses_already_in_plan: added!.coursesShared,
+        courses_restored: added!.coursesRestored,
+        // Reported rather than scheduled. Declaring a minor must not put
+        // a course the student passed two years ago back on the chart.
+        already_completed: added!.alreadyCompleted,
+        requirements_added: added!.slotsAdded,
+        requirements_already_covered: added!.slotsCovered,
+        // SAID when the Program publishes no term-by-term grid. Most
+        // minors and certificates do not, and a student told "added" who
+        // then sees no new courses in their first two years would
+        // reasonably think it had not worked.
+        ...(template.semesters.length
+          ? {}
+          : {
+              placement:
+                `${template.name} publishes no suggested-plan grid, so it contributes requirements ` +
+                "rather than a term-by-term sequence. The courses it needs show up as requirements " +
+                "to fill, and the optimizer places whatever is chosen for them.",
+            }),
+        note: added!.note,
+        plan: planView(ctx, plan()),
+      };
+    }
+
+    case "remove_program": {
+      const slug = String(args.slug ?? "").trim();
+      if (!slug) return { error: "slug is required: which of this plan's programs to drop." };
+      if (!plan().programs.includes(slug)) {
+        return {
+          error: `${slug} is not one of this plan's programs, so there is nothing to drop.`,
+          programs: plan().programs,
+          note: "Dropping a program the plan does not have would be a change the student would not recognise.",
+        };
+      }
+
+      // CONSENT, AND A WIDER BLAST RADIUS THAN A COURSE. `remove_course`
+      // asks for the student's own words before dropping ONE required
+      // Course; this drops a whole set of requirements at once, so the
+      // same gate applies a fortiori. Not asked of a preview, for the
+      // same reason it is not there: a student asking "what would
+      // happen if I dropped my minor?" has not agreed to drop it, and
+      // requiring the flag to answer them would teach a model to assert
+      // consent on a read.
+      if (!ctx.simulating) {
+        const refusal = consentProblem(args);
+        if (refusal) {
+          return {
+            error:
+              `Dropping ${slug} removes a whole set of requirements from this student's degree, so it ` +
+              `cannot happen on your say-so. ${refusal}`,
+            needs_confirmation: true,
+            suggestion:
+              "Call simulate_changes with this same change to show them exactly what it would remove and " +
+              "what it would leave unfilled. If they then ask for it, call again with " +
+              "user_explicitly_asked: true and student_words set to what they actually said.",
+          };
+        }
+      }
+
+      // THE PROGRAMS BEING KEPT, loaded so the unfilled report is a fact
+      // rather than a guess. A Plan generated before Origin recorded two
+      // Programs attributes a shared Course to whichever Program placed
+      // it first, so without the remaining Templates the engine cannot
+      // tell that the departing Program's Course is still needed — and
+      // guessing in the reassuring direction is the failure this whole
+      // codebase is written against.
+      const remaining = (
+        await Promise.all(
+          plan()
+            .programs.filter((p) => p !== slug)
+            .map((p) => ctx.data.programTemplate(p).catch(() => null)),
+        )
+      ).filter((t): t is ProgramTemplate => !!t);
+
+      let dropped: RemoveProgramPreview | null = null;
+      // COMPUTED BEFORE THE COMMIT, so a refusal costs no revision. The
+      // engine runs the same preview inside `removeProgram`, which is
+      // what keeps the two from drifting; this one only answers "can it
+      // happen at all".
+      const check = previewRemoveProgram(plan(), slug, { remaining, catalog: cat });
+      if (check.refusal) return { error: check.refusal, programs: plan().programs };
+
+      const r = await commit(ctx, name, (p) => {
+        // The same shared sequence as declaring, pointed the other way.
+        dropped = withdrawProgram(p, slug, {
+          remaining,
+          catalog: ctx.data.catalog,
+          maxCredits: 19,
+        });
+      });
+      if (refused(r)) return r!;
+      return {
+        ...r,
+        removed_program: slug,
+        programs: plan().programs,
+        // NAMED, not counted. A student told "12 courses were removed"
+        // cannot check the claim; a student given the list can.
+        courses_removed: dropped!.coursesRemoved,
+        courses_kept: dropped!.coursesKept,
+        requirements_removed: dropped!.slotsRemoved.map((s) => s.label),
+        // A decision the student made, lost. Worth more words than an
+        // empty card, so it is reported separately with the course they
+        // had chosen.
+        choices_cleared: dropped!.filledSlotsCleared.map((s) => ({ requirement: s.label, was: s.code })),
+        leaves_unfilled: dropped!.unfilled,
+        // WHICH PROGRAMS WE COULD CHECK AGAINST. Anything not in this
+        // list was NOT checked, and a clean report over an incomplete
+        // check is the reassuring wrong answer (iron rule 2).
+        remaining_programs_checked: dropped!.remainingChecked,
+        credits_removed: dropped!.creditsRemoved,
+        // ECHOED BACK, so the claim is visible. Nothing here can verify
+        // that a student said this — every field arrives from the model,
+        // including the quote. What is real is that a fabricated one now
+        // sits in the transcript beside a dropped degree, where the
+        // student can find it.
+        on_the_strength_of: String(args.student_words ?? ""),
+        note: dropped!.note,
         plan: planView(ctx, plan()),
       };
     }

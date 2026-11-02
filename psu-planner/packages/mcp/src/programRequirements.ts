@@ -214,8 +214,13 @@ function nearMisses(asked: string, index: readonly ProgramIndexEntry[]): Program
  * be in another, and a bare "not found" invites two wrong answers — that
  * the Program does not exist at Penn State, or that it is fine to look it
  * up somewhere else. Naming the Edition searched and the Editions held
- * closes both. */
-function refuse(asked: string, data: EditionCatalog): Record<string, unknown> {
+ * closes both.
+ *
+ * EXPORTED since #47, where `add_program` and `remove_program` are given
+ * a slug by the same model and miss for the same reasons. A second
+ * not-found refusal would be a second set of words about the same fact,
+ * and the two would drift the first time either was improved. */
+export function refuse(asked: string, data: EditionCatalog): Record<string, unknown> {
   const carried = data.editions.length ? data.editions : [data.edition];
   return {
     error:
