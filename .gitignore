@@ -62,3 +62,6 @@ psu-planner/packages/mcp/catalog/
 psu-planner/packages/mcp/dist/
 psu-planner/apps/web/playwright-report/
 psu-planner/apps/web/test-results/
+
+# Agent worktrees: scratch checkouts, never part of a commit.
+.claude/worktrees/

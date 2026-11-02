@@ -23,6 +23,29 @@
  *
  * Bigger on disk, a fraction of it resident. Not the suggested-plan grids,
  * which describe a schedule the student already has.
+ *
+ * WHAT CHANGED IN #48, and what it cost. The connector could not attach an
+ * Integrated Undergraduate-Graduate degree because no `iug/` ever reached
+ * this tree -- the planner read it from the web catalog and the Worker had
+ * no equivalent. MEASURED before it was added, because a Cloudflare isolate
+ * has 128 MB and this script is the only place that decides what has to fit
+ * in it (ADR 0002). Measured by `npm run measure-memory`, 2026-11-02:
+ *
+ *   iug/ on disk, per Edition      24,766 bytes raw / 5,202 gzipped, 4 files
+ *                                  (49,532 / 10,404 across both Editions)
+ *   iug/index.json                 927 bytes, the only read an isolate makes
+ *                                  before a student asks for an IUG
+ *   all 3 specs + every graduate
+ *     subject they name, resident  14.1 MB, against 13.8 MB for the same
+ *                                  Plan without one. A delta of 0.3 MB.
+ *   same isolate having searched   44.2 MB, so 83.8 MB of headroom remains.
+ *
+ * The data this ticket adds is 0.02% of the Edition on disk and 2% of one
+ * Plan's resident footprint. The reason it is that cheap is worth writing
+ * down, because the ticket was costed as though it were expensive: the
+ * graduate COURSES an attach needs were already shipping inside `courses/`,
+ * which `loadSubject` has resolved as `PREFIX:grad` since #31. Only the
+ * programs themselves were missing, and a program is a page of JSON.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -45,8 +68,24 @@ const FILES = [
   "coverage.json",
 ];
 
-/** Directories copied whole, one file per subject. */
-const DIRS = ["courses"];
+/** Directories copied whole, one file per subject.
+ *
+ * `iug/` is NOT a subject directory and is here for a different reason: it
+ * is `index.json` plus one file per Integrated Undergraduate-Graduate
+ * program, and without it the connector can only tell a student that no IUG
+ * exists -- which is false, and the kind of confident wrong answer this
+ * package refuses (iron rule 2).
+ *
+ * IT CARRIES BULLETIN PROSE ON PURPOSE, which is the one place this script's
+ * other rule does not apply. `assertNoDescriptions` strips Penn State's
+ * COURSE descriptions (DECISIONS.md 5.1) and still runs over these files; it
+ * passes because an IUG spec is an object rather than a course list. The
+ * `applyText` it carries is graduate POLICY text, and policy text is quoted
+ * verbatim by deliberate decision (CONTEXT.md, GCAC-210): a student checking
+ * a citation against the Graduate Bulletin has to find the same words.
+ * Paraphrasing it here would silently break every citation the connector
+ * makes. It is fenced where it reaches a model, not rewritten. */
+const DIRS = ["courses", "iug"];
 
 /** An Edition is unusable without these. Listing it in editions.json anyway
  * shipped a server that started fine and then told every student their

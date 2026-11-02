@@ -18,8 +18,10 @@
  * rejected one. */
 import {
   GENED_BUCKETS,
+  attachIug,
   bucketAccepts,
   buildItems,
+  detachIug,
   buildSchedule,
   codeMatchesPool,
   exportPlanFile,
@@ -29,10 +31,12 @@ import {
   parseTermLabel,
   resolveSlotPool,
   termSequence,
+  type AttachResult,
   type PlanDoc,
   type ScheduleConstraint,
 } from "@psu-planner/engine";
 import type { ToolContext } from "./tools.js";
+import { admissionText, attachCodes, GCAC_210_GATE } from "./iug.js";
 import { MemoryPlanStore } from "./planStore.js";
 import { planView } from "./planView.js";
 import {
@@ -244,6 +248,8 @@ export const MUTATIONS: ReadonlySet<string> = new Set([
   "add_previous_course",
   "add_summer_session",
   "add_term",
+  "attach_iug",
+  "detach_iug",
   "fill_slot",
   "optimize_schedule",
   "remove_course",
@@ -711,6 +717,102 @@ export async function executeMutation(
         ...r,
         skipped: plan().terms[termIndex]?.label,
         note: "Coursework was re-flowed around the gap; nothing was removed and graduation moves back one term.",
+        plan: planView(ctx, plan()),
+      };
+    }
+
+    case "attach_iug": {
+      const slug = String(args.slug ?? "").trim();
+      // Only slugs this Edition publishes resolve; `iug()` checks the
+      // index before it builds a path, so an invented one is answered
+      // rather than raised.
+      const spec = slug ? await ctx.data.iug(slug) : null;
+      if (!spec) {
+        return {
+          error: `${slug || "that"} is not an integrated program in the ${ctx.data.edition} catalog.`,
+          remedy: "Call list_iug_programs and use a slug from it. Do not guess one from memory.",
+        };
+      }
+      // READ THE GRADUATE SUBJECTS BEFORE FOLDING THEM IN.
+      //
+      // NOT FOR THE CREDITS -- that was the first comment here and it
+      // was wrong, measured: the audit index is always loaded and
+      // already carries `creditsParsed` for every graduate course, so
+      // `attachIug`'s 3-credit fallback never fires and the terms pack
+      // correctly either way.
+      //
+      // It is for the PREREQUISITES. The audit index carries no
+      // prerequisite structure, so an unread graduate course evaluates
+      // as "cannot be checked" and the plan this tool hands back reports
+      // `"check"` against every single graduate course. Loading them
+      // turns that into real answers -- measured on the Accounting IUG
+      // against an engineering plan, whose ACCTG and BA subjects the
+      // Plan itself never pulls in: four of six graduate courses go
+      // from "check" to "satisfied". Understated rather than wrong, so
+      // it is a quality failure, not a correctness one -- but a
+      // graduate half nobody can say anything about is most of the
+      // reason to attach it here rather than in the planner.
+      await ctx.data.ensureCourses(attachCodes(spec));
+
+      // Warned, not refused, and the planner's menu behaves the same
+      // way. A student can be admitted to an IUG the Bulletin publishes
+      // against a major they are adding next term, and refusing would
+      // make the connector stricter than the planner about something
+      // neither of them can actually verify. What is NOT acceptable is
+      // doing it silently.
+      const mismatch = !spec.pairsWith.some((p) => ctx.plan!.programs.includes(p));
+
+      let attached: AttachResult | null = null;
+      const r = await commit(ctx, name, (p) => {
+        attached = attachIug(p, spec, cat);
+        // Re-flow the UNDERGRADUATE half only. `optimizeSchedule`
+        // preserves phase:"grad" terms and re-appends them, which is
+        // what keeps a re-optimize from throwing the master's away.
+        reoptimize(ctx, p);
+      });
+      if (refused(r)) return r!;
+      return {
+        ...r,
+        attached: spec.gradDegree,
+        slug: spec.slug,
+        double_counted: attached!.doubleCounted,
+        grad_terms_added: attached!.gradTermsAdded,
+        note: attached!.note,
+        // VERBATIM. A student checking this against the Graduate
+        // Bulletin has to find the same words, so it is quoted whole
+        // and the page it came from travels with it (CONTEXT.md).
+        admission_requirements: admissionText(spec),
+        bulletin_url: spec.sourceUrl,
+        admission: GCAC_210_GATE,
+        ...(mismatch
+          ? {
+              warning:
+                `This IUG is published against ${spec.pairsWith.join(", ") || "another bachelor's program"}, ` +
+                `not ${ctx.plan!.programs.join(", ")}. Tell the student that before they rely on this plan.`,
+            }
+          : {}),
+        plan: planView(ctx, plan()),
+      };
+    }
+
+    case "detach_iug": {
+      // Said before anything is computed. "Removed it" on a plan that
+      // never had one is a confident wrong answer about a change that
+      // did not happen, and a model will repeat it to the student.
+      if (!plan().iug) return { error: "This plan has no integrated master's attached, so there is nothing to remove." };
+      const was = plan().iug!.slug;
+      const r = await commit(ctx, name, (p) => {
+        detachIug(p);
+        reoptimize(ctx, p);
+      });
+      if (refused(r)) return r!;
+      return {
+        ...r,
+        detached: was,
+        note:
+          "The graduate terms are gone and the bachelor's is back to its own schedule. Nothing " +
+          "undergraduate was removed — courses that had been counting toward both degrees now " +
+          "count toward the bachelor's only.",
         plan: planView(ctx, plan()),
       };
     }
