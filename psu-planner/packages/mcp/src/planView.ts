@@ -28,6 +28,15 @@ export interface PlanView {
   terms: unknown[];
 }
 
+/** What a student is told about one Course's prerequisites.
+ *
+ * Shared so the wording cannot drift between the Plan view and
+ * `check_prerequisites`, and so the `known` rule is applied once. */
+export function prereqWord(chk: { value: number; known?: boolean }): string {
+  if (chk.known === false) return "cannot be checked — this course is not in the edition's catalog";
+  return chk.value === 2 ? "satisfied" : "check";
+}
+
 export function planView(ctx: ToolContext, plan: PlanDoc): PlanView {
   const { items, sched } = ctx;
   const cat = ctx.data.catalog;
@@ -58,7 +67,13 @@ export function planView(ctx: ToolContext, plan: PlanDoc): PlanView {
         .map((it) => ({
           code: it.code,
           title: cat[it.code!]?.title ?? "(not in this edition's catalog — unverified)",
-          prerequisites: checkCourse(cat, it.code!, it.sem, sched).value === 2 ? "satisfied" : "check",
+          // THREE STATES, NOT TWO (#49). `value === 2` alone reported
+          // "satisfied" for a Course the catalog does not have at all,
+          // right beside a title saying it is not in this edition — one
+          // answer contradicting itself. An absence is the least
+          // knowable case there is and must never read better than an
+          // unparseable one.
+          prerequisites: prereqWord(checkCourse(cat, it.code!, it.sem, sched)),
         })),
       open_slots: items
         .filter((it) => it.sem === i && it.kind === "slot")

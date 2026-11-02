@@ -236,6 +236,62 @@ describe("swapping a course for an alternative the program lists", () => {
     expect(await whereIs("ESL 15"), "the swapped-in course is not where the student had moved the old one").toBe(4);
   });
 
+  it("carries the student's scheduling constraint across, so it still applies (#54)", async () => {
+    // WORSE THAN THE ORPHANED MOVE ABOVE, because the optimiser acts on
+    // it. A constraint left naming the outgoing code applies to nothing,
+    // so the term the student said they could not do is free again and
+    // the replacement can land in exactly it. Silently.
+    await call("set_schedule_constraint", { code: "ECON 102", rule: "not-in", term_index: 1 });
+    expect(
+      (onDisk().constraints ?? []).map((c) => c.code),
+      "the fixture's constraint was never set, so this test cannot detect losing it",
+    ).toEqual(["ECON 102"]);
+
+    const r = (await call("swap_alternative", { code: "ECON 102", alternative: "ECON 104" })) as {
+      ok?: boolean; carried_over?: string;
+    };
+    expect(r.ok, `swap_alternative did not report success: ${JSON.stringify(r)}`).toBe(true);
+
+    expect(
+      (onDisk().constraints ?? []).map((c) => `${c.code} ${c.type} ${c.termIndex}`),
+      "the constraint still names the course that left the plan, so it constrains nothing",
+    ).toEqual(["ECON 104 not-in 1"]);
+    // Said out loud: a constraint moving is a decision about what the
+    // student meant, and they have to be able to disagree with it.
+    expect(r.carried_over, "the student was not told their constraint now applies to the new course").toMatch(/ECON 104/);
+
+    await call("optimize_schedule");
+    expect(
+      await whereIs("ECON 104"),
+      "the optimizer put the swapped-in course in the very term the student ruled out",
+    ).not.toBe(1);
+  });
+
+  it("carries a prior-credit completion across", async () => {
+    // Same shape, different field. A Course marked passed by code and
+    // then swapped leaves the flag pointing at something absent, so the
+    // student loses credit for a course they actually took.
+    await open((p) => {
+      p.completed = { ...(p.completed ?? {}), "ECON 102": true };
+    });
+    const r = (await call("swap_alternative", { code: "ECON 102", alternative: "ECON 104" })) as {
+      ok?: boolean; carried_over?: string;
+    };
+    expect(r.ok, `swap_alternative did not report success: ${JSON.stringify(r)}`).toBe(true);
+    expect(onDisk().completed["ECON 104"], "the student lost the credit they had for this requirement").toBe(true);
+    expect(onDisk().completed["ECON 102"], "a course no longer in the plan is still marked complete").toBeUndefined();
+    expect(r.carried_over, "the answer did not mention the completion that followed").toMatch(/already taken/i);
+  });
+
+  it("says nothing about carrying when nothing followed the swap", async () => {
+    // A note that always appears is a note nobody reads.
+    const r = (await call("swap_alternative", { code: "ECON 102", alternative: "ECON 104" })) as {
+      ok?: boolean; carried_over?: string;
+    };
+    expect(r.ok, `swap_alternative did not report success: ${JSON.stringify(r)}`).toBe(true);
+    expect(r.carried_over, "a plain swap claimed something was carried over").toBeUndefined();
+  });
+
   it("refuses a course that is not in the plan, and writes nothing", async () => {
     const before = file();
     const r = (await call("swap_alternative", { code: "ART 1", alternative: "ART 10" })) as { ok?: boolean; error?: string };

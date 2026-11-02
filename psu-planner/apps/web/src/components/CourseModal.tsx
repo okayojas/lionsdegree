@@ -207,14 +207,23 @@ export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => 
     [catalog, item.kind, item.code, item.sem, sched, plan, done, overridden],
   );
 
-  const stCls = overridden ? "ok" : chk!.value === SAT ? "ok" : chk!.value === UNK ? "warn" : "bad";
+  // A Course with no catalog entry scores SAT — no entry, no
+  // requirements to fail — which the optimiser needs so it can still
+  // place it, and which must never be shown to a student as a tick
+  // (#49). This panel sits next to a title reading "not in catalog";
+  // claiming all prerequisites are satisfied beside that is one answer
+  // disagreeing with itself.
+  const unknownCourse = chk!.known === false;
+  const stCls = overridden ? "ok" : unknownCourse ? "warn" : chk!.value === SAT ? "ok" : chk!.value === UNK ? "warn" : "bad";
   const stTxt = overridden
     ? "✓ Prerequisite override confirmed with your adviser."
-    : chk!.value === SAT
-      ? "✓ All prerequisites are satisfied by your plan."
-      : chk!.value === UNK
-        ? "⚠ Depends on requirements outside this plan — verify below."
-        : "✗ Prerequisite problem in your plan.";
+    : unknownCourse
+      ? "⚠ This course is not in the bulletin for your edition, so its prerequisites cannot be checked."
+      : chk!.value === SAT
+        ? "✓ All prerequisites are satisfied by your plan."
+        : chk!.value === UNK
+          ? "⚠ Depends on requirements outside this plan — verify below."
+          : "✗ Prerequisite problem in your plan.";
 
   const leaves = chk!.leaves;
   const seen = new Set<string>();

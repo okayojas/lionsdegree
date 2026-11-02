@@ -236,4 +236,23 @@ export type Leaf =
 export interface CheckResult {
   value: EvalValue;
   leaves: Leaf[];
+  /** False when the catalog has no entry for the Course at all (#49).
+   *
+   * THE VALUE IS `SAT` IN THAT CASE, AND THAT IS NOT A JUDGEMENT. No
+   * entry means no requirements to evaluate, which is the right answer
+   * for the OPTIMISER — a Course the catalog does not describe must
+   * stay placeable, or a Plan carrying a renumbered or withdrawn
+   * Course could not be laid out at all.
+   *
+   * It is the wrong answer to show a STUDENT. "Prerequisites:
+   * satisfied" about a Course we cannot find is a confident claim
+   * built on an absence, and it was being rendered next to a title
+   * reading "(not in this edition's catalog — unverified)" — the two
+   * halves of one answer contradicting each other.
+   *
+   * So the verdict stays and the reason travels with it. Anything that
+   * reports to a person reads this and says "cannot be checked"; the
+   * placement machinery ignores it and keeps the behaviour it needs
+   * (iron rule 2: never satisfied when we cannot tell). */
+  known?: boolean;
 }

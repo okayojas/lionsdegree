@@ -114,16 +114,23 @@ function newViolations(
   const out: { code: string; term: string; was: string; now: string }[] = [];
   for (const i of after.items) {
     if (i.kind !== "course" || !i.code) continue;
-    const now = checkCourse(cat, i.code, i.sem, after.sched).value;
+    // A Course the catalog has no entry for scores SAT, which the
+    // optimiser needs and a diff must not repeat (#49): it would mean a
+    // change that moves an unknown Course anywhere is reported as
+    // breaking nothing, which is a claim about requirements nobody has
+    // read. Unknown degrades to "cannot be checked" here.
+    const chkNow = checkCourse(cat, i.code, i.sem, after.sched);
+    const now = chkNow.known === false ? 1 : chkNow.value;
     if (now === 2) continue;
 
     const previously = wasAt.get(i.code);
     // A Course the change ADDED has no "before" to compare against, so
     // an unsatisfied prerequisite on it is caused by the change by
     // definition.
-    const was = previously
-      ? checkCourse(before.data.catalog, i.code, previously.sem, before.sched).value
-      : 2;
+    const wasChk = previously
+      ? checkCourse(before.data.catalog, i.code, previously.sem, before.sched)
+      : null;
+    const was = wasChk ? (wasChk.known === false ? 1 : wasChk.value) : 2;
     // ANY DOWNGRADE, not only a fall from "satisfied". The first
     // version tested `was === 2`, which silently dropped a Course going
     // from "cannot be checked" to "not satisfied" — a change turning an

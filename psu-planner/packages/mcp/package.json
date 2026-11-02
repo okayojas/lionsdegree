@@ -14,6 +14,7 @@
   "scripts": {
     "build": "esbuild src/server.ts --bundle --platform=node --format=esm --target=node20 --external:@modelcontextprotocol/sdk --outfile=dist/server.js",
     "typecheck": "tsc --noEmit",
+    "pretest": "node scripts/ensure-catalog.mjs",
     "test": "vitest run",
     "sync-catalog": "node scripts/sync-catalog.mjs",
     "prepublishOnly": "npm run sync-catalog && npm run build",

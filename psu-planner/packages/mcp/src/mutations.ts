@@ -31,8 +31,11 @@ import {
   parseTermLabel,
   resolveSlotPool,
   termSequence,
+  carryCourseRefs,
+  describeCarry,
   type AttachResult,
   type CourseSpec,
+  type SwapCarry,
   type PlanDoc,
   type PlanItem,
   type ScheduleConstraint,
@@ -516,8 +519,35 @@ export async function executeMutation(
           };
         }
       }
+      // WHICH ITEM THIS CODE ACTUALLY IS (#50). The guard above asks
+      // `ctx.items`, the built view, where a Course filling a Slot
+      // appears as an ordinary Course with that code. The loop below
+      // walks `terms[].items`, where that same Course is a SlotSpec
+      // carrying a Slot id and NO code — so the filter matched nothing,
+      // removed nothing, and the commit still landed because nothing
+      // had errored. The student was told their degree changed, the
+      // Revision moved, and the Course was still there.
+      //
+      // Through the same helper the reversibility tools use, because
+      // this is the identical code-versus-item-id question pointed the
+      // other way, and answering it twice is how the two answers drift.
+      const item = itemFor(ctx, code);
+      const filledSlot = item && item.kind === "course" && item.id && !!ctx.plan.slotFills?.[item.id]
+        ? item.id
+        : null;
+
       const r = await commit(ctx, name, (p) => {
         p.removed = { ...(p.removed ?? {}) };
+
+        // A Course chosen for a Slot is removed by UNCHOOSING it. The
+        // requirement itself is not the student's to delete — it comes
+        // from their Program — so it goes back to being open rather
+        // than disappearing, which is what the planner does too.
+        if (filledSlot) {
+          p.slotFills = { ...(p.slotFills ?? {}) };
+          delete p.slotFills[filledSlot];
+        }
+
         for (const t of p.terms) {
           for (const i of t.items) {
             if ("code" in i && i.code === code) {
@@ -536,6 +566,18 @@ export async function executeMutation(
       return {
         ...r,
         removed: code,
+        // Said plainly, because "removed" alone would let a model tell
+        // the student their requirement is gone when what actually
+        // happened is that it is open again and waiting for a choice.
+        ...(filledSlot
+          ? {
+              freed_requirement: filledSlot,
+              note:
+                "That course was filling a requirement, so the requirement is open again rather " +
+                "than gone — their degree still needs something there. Use suggest_slot_courses " +
+                "to see what else counts.",
+            }
+          : {}),
         restorable: true,
         // ECHOED BACK, so the claim is visible. Nothing here can verify
         // that a student said this — but a fabricated quote sitting in
@@ -946,6 +988,7 @@ export async function executeMutation(
       if (!cat[to]) {
         return { error: `${to} is listed as an alternative but is not in the ${ctx.data.edition} catalog` };
       }
+      let carried: SwapCarry | null = null;
       const r = await commit(ctx, name, (p) => {
         for (const t of p.terms) {
           for (const it of t.items) {
@@ -961,13 +1004,14 @@ export async function executeMutation(
               it.code = to;
               it.alternatives = [...alts];
               it.unverified = undefined;
-              // The item id of a Template Course IS its code, so a manual
-              // move recorded against the old code would be orphaned —
-              // the Course would snap back to its template term.
-              if (code in p.moves) {
-                p.moves[to] = p.moves[code];
-                delete p.moves[code];
-              }
+              // EVERYTHING THAT NAMED THE OLD CODE (#54). The item id of
+              // a Template Course IS its code, so a manual move recorded
+              // against it would be orphaned — and so would a Constraint
+              // the student set, which is worse: it would apply to
+              // nothing and the optimiser would be free to put the
+              // replacement exactly where they said they could not go.
+              // Shared with the planner so both carry the same things.
+              carried = carryCourseRefs(p, code, to);
               return;
             }
           }
@@ -979,6 +1023,14 @@ export async function executeMutation(
         swapped: code,
         for: to,
         term: plan().terms[item.sem]?.label,
+        // SAID OUT LOUD when something followed the swap (#54). Moving a
+        // Constraint is a decision about what the student meant — that
+        // "not that term" was about their week, not about a course
+        // number — and a decision made on their behalf is one they have
+        // to be able to disagree with.
+        ...(carried && describeCarry(carried, code, to)
+          ? { carried_over: describeCarry(carried, code, to) }
+          : {}),
         note: `${code} is now listed as an alternative to ${to}, so this can be swapped back.`,
         plan: planView(ctx, plan()),
       };

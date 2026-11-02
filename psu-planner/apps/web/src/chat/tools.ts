@@ -67,7 +67,11 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
             return {
               code: it.code,
               title: catalog[it.code!]?.title ?? "(not in catalog — unverified)",
-              status: chk.value === 2 ? "ok" : chk.value === 1 ? "warn" : "bad",
+              // A Course with no catalog entry scores SAT so the
+              // optimiser can still place it, which must not be
+              // repeated to a student as "ok" (#49) — the title on the
+              // line above already says we cannot see it.
+              status: chk.known === false ? "warn" : chk.value === 2 ? "ok" : chk.value === 1 ? "warn" : "bad",
               alternatives: it.alternatives?.length ? it.alternatives : undefined,
             };
           }),

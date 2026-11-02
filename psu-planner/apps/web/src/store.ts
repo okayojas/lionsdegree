@@ -2,7 +2,7 @@ import { create } from "zustand";
 import {
   addProgram, applyHonorsUpgrades, attachIug, auditHonors, buildItems, buildSchedule, detachIug,
   optimizeSchedule, parseTermLabel, previewRemoveProgram, refineGenEdSlots, removeProgram,
-  repairPrereqOrdering, termSequence,
+  carryCourseRefs, repairPrereqOrdering, termSequence, unrecordPriorCredit,
   type Catalog, type CourseSpec, type PlanDoc, type PlanItem, type ProgramTemplate,
   type RemoveProgramPreview, type ReqSection, type Schedule,
 } from "@psu-planner/engine";
@@ -397,10 +397,18 @@ export const usePlanner = create<PlannerState>((set, get) => ({
         clearSatisfiedCards(p, code, coverage);
         queueMicrotask(() => get().autoReoptimize());
       } else {
-        delete p.completed[code];
-        // Re-add so the requirement is visible again.
-        const scheduled = p.terms.some((t) => t.items.some((it) => "code" in it && it.code === code));
-        if (!scheduled && !p.added.some((a) => a.code === code)) p.added.push({ code, sem: 0 });
+        // PUT BACK WHAT THE CLAIM ACTUALLY TOOK (#53), through the same
+        // engine function the connector uses. This used to re-add the
+        // bare code, which the optimiser then placed wherever it fitted
+        // — losing Origin, so a requirement two Programs share stopped
+        // counting once, and landing the card somewhere the student's
+        // Program never put it.
+        //
+        // A Course marked complete some other way — this checkbox
+        // before today, a spreadsheet import — has no record of what it
+        // cleared, and `unrecordPriorCredit` falls back to the old
+        // blind re-add for exactly those. Same function, both cases.
+        unrecordPriorCredit(p, [code]);
       }
     });
   },
@@ -652,11 +660,13 @@ export const usePlanner = create<PlannerState>((set, get) => ({
             it.code = newCode;
             it.alternatives = [...alts];
             it.unverified = undefined;
-            // Item ids are the course code; carry any manual move along.
-            if (oldCode in p.moves) {
-              p.moves[newCode] = p.moves[oldCode];
-              delete p.moves[oldCode];
-            }
+            // EVERYTHING THAT NAMED THE OLD CODE, not just the move
+            // (#54). A Constraint left pointing at a Course no longer in
+            // the plan applies to nothing, so a student who said "not
+            // that term" and then swapped lost the preference silently.
+            // Shared with the connector so both surfaces carry the same
+            // things.
+            carryCourseRefs(p, oldCode, newCode);
             return;
           }
         }

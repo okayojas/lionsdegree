@@ -25,3 +25,5 @@ export { fenceCatalogText, FENCE_TAG } from "./fence.js";
 export { encodePostings, decodePostings, prefixRange, MAX_COUNT, type SearchIndexFile } from "./postings.js";
 export { earliestLegalTerm, type LegalTerm } from "./earliestLegal.js";
 export { discover, sharedCredits, programSearchText, type Combination, type ProgramHit, type Overlap, type DiscoverOptions } from "./discover.js";
+export { unrecordPriorCredit, type UnrecordResult } from "./priorCredit.js";
+export { carryCourseRefs, describeCarry, type SwapCarry } from "./swapRefs.js";

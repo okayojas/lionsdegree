@@ -46,8 +46,13 @@ export function evalNode(n: AstNode, sched: Schedule, mySem: number, concurrent:
 
 export function checkCourse(catalog: Catalog, code: string, mySem: number, sched: Schedule): CheckResult {
   const c = catalog[code];
-  const res: CheckResult = { value: SAT, leaves: [] };
-  if (!c) return res;
+  const res: CheckResult = { value: SAT, leaves: [], known: true };
+  // NO ENTRY IS NOT A PASS, it is an absence — and the two have to be
+  // told apart by anyone reporting to a student (#49). The verdict
+  // stays SAT because the optimiser needs a Course it cannot describe
+  // to remain placeable; `known: false` is how a reader learns not to
+  // repeat it as a finding. See the note on `CheckResult.known`.
+  if (!c) return { ...res, known: false };
 
   // A Course whose prerequisite structure was never READ cannot be
   // reported satisfied.
