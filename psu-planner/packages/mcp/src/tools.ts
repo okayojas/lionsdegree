@@ -39,7 +39,7 @@ import { FsCatalogSource, type CatalogSource } from "./source.js";
 import { executeMutation, MUTATIONS } from "./mutations.js";
 import { programRequirements } from "./programRequirements.js";
 import { detail, GCAC_210_GATE, listing, pairsWithPlan } from "./iug.js";
-import { simulateChange } from "./simulate.js";
+import { simulateChange, simulateChanges } from "./simulate.js";
 import { planView } from "./planView.js";
 
 export interface ToolContext {
@@ -180,6 +180,10 @@ export const READABLE_PLAN_TOOLS: ReadonlySet<string> = new Set([
   // version that answered without them would list all 41 and leave the
   // model to guess which one applies.
   "list_iug_programs",
+  // The same, with a list (#44). It runs several mutations against one
+  // copy and throws that copy away; running more of them does not make
+  // it any closer to a write.
+  "simulate_changes",
 ]);
 
 /** THE HOSTED SURFACE, in one place.
@@ -510,6 +514,42 @@ function allTools(): ToolDefinition[] {
         ["slug"],
       ),
     },
+    {
+      name: "simulate_changes",
+      description:
+        "Show what SEVERAL changes would do together, as one candidate plan. Use this whenever the " +
+        "student describes more than one thing at once — \"out in seven terms, I've got AP calc, and " +
+        "abroad junior spring\". Previewing them one at a time does not answer that question: the " +
+        "optimiser re-flows the whole plan on every change, so five separate previews are five " +
+        "different futures. Turn what they said into a list of named changes with explicit arguments " +
+        "— that part is your job, not the server's. Nothing is saved. If one change cannot be made, " +
+        "the whole preview stops and says which: you never get a plan with some of them in it.",
+      inputSchema: obj(
+        {
+          changes: {
+            type: "array",
+            description:
+              "The changes to try, in the order they should happen. Each is { tool, arguments } with " +
+              "the same arguments that tool takes. They are all computed from one reading of the " +
+              "plan, so if you state based_on_revision, state the SAME revision on each.",
+            items: obj(
+              {
+                tool: str(
+                  "add_course, remove_course, set_schedule_constraint, optimize_schedule, " +
+                    "fill_slot, add_term or skip_term.",
+                ),
+                arguments: {
+                  type: "object",
+                  description: "The arguments that tool would take, exactly as you would pass them to it.",
+                },
+              },
+              ["tool"],
+            ),
+          },
+        },
+        ["changes"],
+      ),
+    },
   ];
 }
 
@@ -753,6 +793,12 @@ export async function executeTool(
         String(args.change ?? ""),
         (args.arguments ?? {}) as Record<string, unknown>,
       );
+
+    case "simulate_changes":
+      // The same seam, and the same module — `simulate_change` is the
+      // one-element call of this one. The raw value is handed over
+      // unchecked so the shape of a bad list is explained in one place.
+      return simulateChanges(ctx, args.changes);
 
     case "search_catalog": {
       // The 7.8 MB of ranking data, fetched the first time somebody

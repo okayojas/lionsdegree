@@ -1,15 +1,29 @@
-/** What a change would do, without doing it.
+/** What a change — or a whole list of them — would do, without doing it.
  *
- * "What would my plan look like if I studied abroad in fall 2027?" The
- * student gets a complete candidate plan, an account of what moved, and
- * anything the change breaks — and their stored plan is untouched.
+ * "I want out in seven terms, I've got AP calc and transfer stats, and
+ * I'd like to study abroad junior spring" is one sentence a student
+ * would actually say. The assistant turns it into five explicit changes
+ * and previews them TOGETHER, as one candidate plan.
  *
- * THE WHOLE DESIGN IS ONE DECISION: this does not simulate anything. It
- * runs the REAL mutation, through the real optimiser, against a sandbox
- * copy of the plan. A second scheduling implementation written "just
- * for previews" would drift from the first, and the drift would show up
- * as a student being shown a plan the planner then refuses to produce —
- * a forecast of a system that does not exist.
+ * TOGETHER IS THE WHOLE POINT. Five separate previews are not an answer
+ * to a question about a combination, because the optimiser re-flows the
+ * entire plan on every change: the term the third one moved a course
+ * into is a term the fourth one may empty. A student handed five
+ * previews has to simulate the interaction in their head, which is the
+ * work they asked for help with.
+ *
+ * THE GOVERNING PRINCIPLE (#39): the model interprets, the engine
+ * computes. What arrives here is a list of NAMED changes with explicit
+ * arguments, never a sentence describing a preference. Turning a
+ * rambling into that list is the assistant's job and it is good at it;
+ * deciding what a student meant is not something this server may do.
+ *
+ * THE SECOND DECISION: this does not simulate anything. It runs the REAL
+ * mutations, through the real optimiser, against a sandbox copy of the
+ * plan. A second scheduling implementation written "just for previews"
+ * would drift from the first, and the drift would show up as a student
+ * being shown a plan the planner then refuses to produce — a forecast of
+ * a system that does not exist.
  *
  * So the only thing this module owns is the sandbox and the diff. The
  * sandbox is a deep copy plus a store that writes nowhere; the diff is
@@ -51,7 +65,13 @@ function placements(plan: PlanDoc, items: PlanItem[]): Placement {
  * reference into the live session — a change nobody applied, quietly
  * true for every later answer — and it would not fail a test, it would
  * just be wrong. Copying costs microseconds on a path that already runs
- * the optimiser. */
+ * the optimiser.
+ *
+ * ONE SANDBOX FOR THE WHOLE LIST, which is what makes a list mean
+ * anything: each change is applied to the plan the one before it left
+ * behind, exactly as it would be if the student made them in order. A
+ * sandbox per change would produce five previews of five different
+ * futures and call them one candidate. */
 function sandbox(ctx: ToolContext): ToolContext {
   const plan: PlanDoc = JSON.parse(JSON.stringify(ctx.plan));
   const items = buildItems(plan, ctx.data.catalog);
@@ -136,40 +156,184 @@ export interface SimulationResult {
   [k: string]: unknown;
 }
 
-/** Run `change` against a copy and report what it would do. */
-export async function simulateChange(
-  ctx: ToolContext,
-  change: string,
-  changeArgs: Record<string, unknown>,
-): Promise<SimulationResult> {
-  if (!MUTATIONS.has(change)) {
+/** One named change with its arguments — the only thing this server
+ * accepts. Not a description of a preference; see the header. */
+export interface PlannedChange {
+  tool: string;
+  arguments: Record<string, unknown>;
+}
+
+/** How many changes one preview may carry.
+ *
+ * EVERY CHANGE RE-RUNS THE OPTIMISER over the whole plan, so the cost of
+ * a list is linear in its length and paid inside a single request. The
+ * hosted connector is a Worker isolate with a CPU budget, and an
+ * unbounded list is a way for one call to spend all of it — which would
+ * fail as a timeout with nothing to say, the symptom #39 names as the
+ * hardest kind to chase. Twenty is far past anything a student's
+ * rambling turns into; the ticket's own worked example is five. */
+const MAX_CHANGES = 20;
+
+/** Read the list a model sent, or say exactly what is wrong with it.
+ *
+ * REJECTED, NEVER REPAIRED. Guessing that a bare string meant
+ * `{ tool: it, arguments: {} }`, or that a missing list meant an empty
+ * one, is this server deciding what the model meant — the same mistake
+ * as deciding what a student meant, one layer in. */
+function readChanges(raw: unknown): { changes: PlannedChange[] } | { refusal: SimulationResult } {
+  const note = {
+    can_simulate: [...MUTATIONS].sort(),
+    note: "Pass changes as a list of { tool, arguments } objects, in the order they should happen.",
+  };
+  if (!Array.isArray(raw)) {
+    return { refusal: { error: "changes must be a list of changes to try.", ...note } };
+  }
+  if (raw.length === 0) {
     return {
-      error: `${change || "that"} cannot be simulated — only a change to the plan can be.`,
+      refusal: {
+        error: "changes was empty, and a list with nothing in it previews nothing.",
+        ...note,
+      },
+    };
+  }
+  if (raw.length > MAX_CHANGES) {
+    return {
+      refusal: {
+        error:
+          `That is ${raw.length} changes, and this previews at most ${MAX_CHANGES} at once — ` +
+          "each one re-runs the optimiser over the whole plan.",
+        note: "Preview the ones the student is actually deciding between, then preview the rest.",
+      },
+    };
+  }
+
+  const changes: PlannedChange[] = [];
+  for (let i = 0; i < raw.length; i++) {
+    const entry = raw[i] as Record<string, unknown> | null;
+    const where = `change ${i + 1} of ${raw.length}`;
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+      return { refusal: { error: `${where} is not a { tool, arguments } object.`, ...note } };
+    }
+    // A MISSING OR EMPTY NAME FALLS THROUGH to the name check below
+    // rather than being refused here, so a nameless change is answered
+    // with the same sentence as an unrecognised one — "that cannot be
+    // simulated". Two refusals for one mistake is two messages a model
+    // has to learn to read.
+    const tool = typeof entry.tool === "string" ? entry.tool.trim() : "";
+    // An ABSENT `arguments` is read as none, because `optimize_schedule`
+    // genuinely takes none and a model that omitted the empty object
+    // meant the change it named. Anything present but not an object is
+    // refused: that is a model having meant something we cannot see.
+    const args = entry.arguments;
+    if (args !== undefined && (typeof args !== "object" || args === null || Array.isArray(args))) {
+      return { refusal: { error: `${where} has arguments that are not an object.`, ...note } };
+    }
+    changes.push({ tool, arguments: (args ?? {}) as Record<string, unknown> });
+  }
+  return { changes };
+}
+
+/** Is this change the removal of a Course the student's degree requires?
+ *
+ * `origin` is what makes a Course a requirement rather than something
+ * the student added. ASKED OF THE PLAN AS IT STANDS when the change is
+ * about to run, not of the original: in a list, change four may remove a
+ * Course that change two put there, and only the plan at that moment
+ * knows whether a Program required it. For a one-element list the plan
+ * at that moment IS the original, so the single-change answer is
+ * unchanged. */
+function removesRequiredCourse(ctx: ToolContext, change: PlannedChange): string | null {
+  if (change.tool !== "remove_course") return null;
+  const code = String(change.arguments.code ?? "").trim().toUpperCase();
+  if (!code) return null;
+  const required = (ctx.plan?.terms ?? []).some((t) =>
+    t.items.some((i) => "code" in i && i.code === code && !!i.origin),
+  );
+  return required ? code : null;
+}
+
+/** The English list a model reads back to a student: "a, b and c". */
+const andList = (parts: string[]): string =>
+  parts.length <= 1
+    ? parts.join("")
+    : `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
+
+/** Which change this was, for a refusal that has to name one.
+ *
+ * `index` is 0-based so it indexes the list the model sent; the prose
+ * counts from one because that is how a person reads a list. Both,
+ * because a refusal nobody can locate in their own request is a refusal
+ * nobody can act on. */
+const at = (changes: PlannedChange[], i: number) => ({
+  index: i,
+  position: `change ${i + 1} of ${changes.length}`,
+  tool: changes[i].tool,
+  arguments: changes[i].arguments,
+});
+
+/** Run an ordered list of changes against one copy of the plan and
+ * report what the lot of them would do.
+ *
+ * `simulateChange` is the one-element case of this and nothing else —
+ * there is deliberately no second implementation, because the single
+ * and multiple paths would otherwise disagree about what a preview
+ * reports and a bug fixed in one would survive in the other. */
+export async function simulateChanges(ctx: ToolContext, raw: unknown): Promise<SimulationResult> {
+  const read = readChanges(raw);
+  if ("refusal" in read) return read.refusal;
+  const changes = read.changes;
+  const one = changes.length === 1;
+
+  // NAMES FIRST, BEFORE ANY WORK. A list whose fifth entry is not a
+  // change at all is refused before the first four touch a sandbox, so
+  // there is never a half-built candidate to be tempted into returning.
+  for (let i = 0; i < changes.length; i++) {
+    if (MUTATIONS.has(changes[i].tool)) continue;
+    const named = changes[i].tool || "that";
+    return {
+      error:
+        `${named} cannot be simulated — only a change to the plan can be.` +
+        (one ? "" : ` (${at(changes, i).position})`),
       can_simulate: [...MUTATIONS].sort(),
       note: "To see the plan as it stands, call get_plan.",
     };
   }
+
   if (!ctx.plan) return { error: "There is no plan to simulate a change against." };
 
   // A STATED REVISION IS HONOURED, NOT OVERWRITTEN. The model is told
-  // to pass the change's arguments verbatim, and those may carry the
+  // to pass each change's arguments verbatim, and those may carry the
   // `based_on_revision` every mutation requires — which this used to
   // silently replace with the sandbox's own. Nothing could be lost by
   // that (a simulation writes nothing), but the student would be shown
   // a preview of a plan that is no longer theirs and told nothing.
+  //
+  // EVERY CHANGE IN A LIST IS CHECKED AGAINST THE SAME NUMBER, because
+  // every change in a list was computed from the same reading of the
+  // plan. The chain a model might expect — R, then R+1, then R+2 — is
+  // the sandbox's internal bookkeeping, and a student's preview must
+  // not depend on a model guessing it right.
   const held = heldRev(ctx);
-  const stated = changeArgs.based_on_revision;
-  if (typeof stated === "number" && stated !== held) {
+  for (let i = 0; i < changes.length; i++) {
+    const stated = changes[i].arguments.based_on_revision;
+    if (typeof stated !== "number" || stated === held) continue;
     return {
       simulated: true,
       applied: false,
       possible: false,
       based_on_revision: held,
-      change: { tool: change, arguments: changeArgs },
+      changes,
+      ...(one ? { change: changes[0] } : {}),
+      stopped_at: at(changes, i),
       reason:
         "That revision is not the one the plan is at now, so a preview built from it would " +
         "show the student a plan that is no longer theirs.",
-      remedy: "Call get_plan, then simulate against what it returns.",
+      remedy:
+        "Call get_plan, then simulate against what it returns." +
+        (one
+          ? ""
+          : " Every change in one list is computed from the same reading of the plan, so they all " +
+            "state that same revision — not one revision per change."),
       nothing_changed: "The student's plan has not been changed.",
     };
   }
@@ -177,38 +341,53 @@ export async function simulateChange(
   const before = ctx;
   const after = sandbox(ctx);
 
-  // Asked of the ORIGINAL plan, before the change removes the Course
-  // and makes the question unanswerable.
-  const removesRequired =
-    change === "remove_course" &&
-    (ctx.plan.terms ?? []).some((t) =>
-      t.items.some(
-        (i) => "code" in i && i.code === String(changeArgs.code ?? "").trim().toUpperCase() && !!i.origin,
-      ),
-    );
+  // THE REAL MUTATIONS, in order, against the one sandbox — with the
+  // real optimiser behind each. The sandbox's revision is stated so the
+  // guard in `executeMutation` is satisfied by the copy rather than
+  // bypassed: a simulation that skipped the concurrency check would be
+  // using a different code path from the one it is previewing. It is
+  // re-read each time round because a change that lands advances it.
+  const needsConsent: string[] = [];
+  for (let i = 0; i < changes.length; i++) {
+    const change = changes[i];
 
-  // THE REAL MUTATION, with the real optimiser behind it. The sandbox's
-  // revision is stated so the guard in `executeMutation` is satisfied
-  // by the copy rather than bypassed — a simulation that skipped the
-  // concurrency check would be using a different code path from the
-  // one it is previewing.
-  const result = (await executeMutation(change, { ...changeArgs, based_on_revision: heldRev(after) }, after)) as
-    | MutationResult
-    | null;
+    // Asked of the sandbox BEFORE this change runs, because afterwards
+    // the Course is gone and the question is unanswerable.
+    const required = removesRequiredCourse(after, change);
+    if (required && !needsConsent.includes(required)) needsConsent.push(required);
 
-  if (!result || result.error || result.ok !== true) {
-    // IMPOSSIBLE IS AN ANSWER. Returning a candidate plan that quietly
-    // lacks the thing the student asked for would be read as "here is
-    // your plan with that change" — they would not notice the omission.
+    const result = (await executeMutation(
+      change.tool,
+      { ...change.arguments, based_on_revision: heldRev(after) },
+      after,
+    )) as MutationResult | null;
+
+    if (result && !result.error && result.ok === true) continue;
+
+    // IMPOSSIBLE IS AN ANSWER, AND A PARTIAL CANDIDATE IS NOT. Returning
+    // the plan as it stood after three of five changes would be a plan
+    // nobody asked for, handed to a student as the answer to a question
+    // about five. Returning a candidate that quietly lacks the thing
+    // they asked for is the same failure one step smaller: they would
+    // read "here is your plan with that change" and not notice the
+    // omission. So the run stops, the sandbox is dropped unread, and
+    // the answer names which change failed and why.
     return {
       simulated: true,
       applied: false,
       possible: false,
       based_on_revision: ctx.rev,
-      change: { tool: change, arguments: changeArgs },
-      reason: String(result?.error ?? `${change} could not be applied to this plan.`),
+      changes,
+      ...(one ? { change: changes[0] } : {}),
+      stopped_at: at(changes, i),
+      reason: String(result?.error ?? `${change.tool} could not be applied to this plan.`),
       ...(result?.suggestion ? { suggestion: result.suggestion } : {}),
-      nothing_changed: "The student's plan has not been changed, and this change cannot be made as asked.",
+      nothing_changed:
+        "The student's plan has not been changed, and this change cannot be made as asked." +
+        (one
+          ? ""
+          : " No candidate plan is returned: the changes before this one ran only inside a sandbox " +
+            "that has been discarded, so none of them is in a plan anybody can see."),
     };
   }
 
@@ -235,6 +414,7 @@ export async function simulateChange(
     .map(([code, to]) => ({ code, from: wasAt.get(code)!.label, to: to.label }));
 
   const violations = newViolations(before, after);
+  const names = changes.map((c) => c.tool);
 
   return {
     simulated: true,
@@ -246,10 +426,32 @@ export async function simulateChange(
     applied: false,
     nothing_changed:
       "This is a preview. The student's stored plan has not been changed. " +
-      "To make this change for real, call " + change + ", or tell them to do it in the planner.",
+      (one
+        ? `To make this change for real, call ${names[0]}, `
+        : `To make these ${names.length} changes for real, call ${andList(names)} in that order, `) +
+      "or tell them to do it in the planner.",
     possible: true,
     based_on_revision: ctx.rev,
-    change: { tool: change, arguments: changeArgs },
+    changes,
+    // THE SINGLE-CHANGE ANSWER KEEPS ITS FIELD. A list of one is still a
+    // list, so `changes` is always there — but dropping `change` would
+    // quietly take a field away from a tool whose callers did nothing
+    // wrong.
+    ...(one ? { change: changes[0] } : {}),
+
+    // HOW THIS BECOMES REAL, named rather than implied, because the
+    // alternative a model reaches for is an id to apply later — and
+    // applying a stored candidate is applying a decision made against a
+    // plan that may have moved since (#39, out of scope). Re-running
+    // the calls against the revision the plan is at THEN is what makes
+    // the compare-and-swap mean anything.
+    to_make_this_real: {
+      in_order: names,
+      note:
+        "There is no preview to apply later and no id to quote. Call get_plan, then make these " +
+        "calls in this order, each stating the revision get_plan returned — so if the student " +
+        "edited their plan in the meantime the change is refused rather than overwriting them.",
+    },
 
     moved,
     added_courses: [...nowAt.keys()].filter((c) => !wasAt.has(c)),
@@ -265,18 +467,19 @@ export async function simulateChange(
     // happen if I dropped this?" has not agreed to drop it — so the
     // answer has to carry the condition the real change will impose,
     // or a model reads "possible: true" and finds out otherwise.
-    ...(removesRequired
+    ...(needsConsent.length
       ? {
           requires_consent: true,
+          consent_needed_for: needsConsent,
           before_doing_this_for_real:
-            "This course is required by the student's degree. Making this change needs them to " +
-            "ask for it in their own words — show them this preview, and pass what they say back " +
-            "as student_words if they confirm.",
+            `${andList(needsConsent)} ${needsConsent.length === 1 ? "is" : "are"} required by the ` +
+            "student's degree. Making this change needs them to ask for it in their own words — " +
+            "show them this preview, and pass what they say back as student_words if they confirm.",
         }
       : {}),
 
     // NOT `satisfiable`. That word claims the candidate works, and this
-    // only knows that the change introduced nothing NEW — the fixture
+    // only knows that the changes introduced nothing NEW — the fixture
     // alone carries two courses whose prerequisites cannot be checked
     // at all, and a plan with those in it was being reported as
     // satisfiable. Saying what was actually measured is the whole
@@ -310,7 +513,22 @@ export async function simulateChange(
     // revision that does not exist and a save that did not happen. The
     // top level said `applied: false` while the object nested inside it
     // described a successful write. A model summarising that tells the
-    // student their plan is saved.
+    // student their plan is saved. A list makes it worse, not better:
+    // the copy has been committed to once per change by then.
     candidate_plan: planView({ ...after, rev: undefined, updatedAt: undefined }, after.plan!),
   };
+}
+
+/** Run `change` against a copy and report what it would do.
+ *
+ * ONE ELEMENT, THEN THE SAME CODE. This is the whole of the
+ * single-change tool: a second implementation would drift from the
+ * list's, and the drift would be two tools disagreeing about what a
+ * preview of the same change reports. */
+export async function simulateChange(
+  ctx: ToolContext,
+  change: string,
+  changeArgs: Record<string, unknown>,
+): Promise<SimulationResult> {
+  return simulateChanges(ctx, [{ tool: change, arguments: changeArgs }]);
 }

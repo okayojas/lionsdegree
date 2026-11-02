@@ -38,6 +38,12 @@ beforeEach(async () => {
 const simulate = (change: string, args: Record<string, unknown> = {}) =>
   executeTool("simulate_change", { change, arguments: args }, ctx) as Promise<Record<string, unknown>>;
 
+/** The list tool. `changes` is passed through unchecked on purpose, so
+ * the shapes a confused model sends can be driven through the real
+ * entry point rather than a typed stand-in for it. */
+const simulateAll = (changes: unknown) =>
+  executeTool("simulate_changes", { changes }, ctx) as Promise<Record<string, unknown>>;
+
 const onDisk = () => fs.readFileSync(planPath, "utf-8");
 
 describe("asking what a change would do", () => {
@@ -349,5 +355,359 @@ describe("the tool itself", () => {
       (r.candidate_plan as { edition?: string }).edition,
       "the candidate was audited against a different bulletin",
     ).toBe(ctx.data.edition);
+  });
+});
+
+/** SEVERAL CHANGES, ONE CANDIDATE (#44).
+ *
+ * "I want out in seven terms, I've got AP calc and transfer stats, and
+ * I'd like to study abroad junior spring" is one sentence, and it is
+ * five changes. The reason it cannot be five previews is that the
+ * optimiser re-flows the whole plan on each one: the term the third
+ * change moved a course into is a term the fourth may empty. Five
+ * previews are five different futures, and the student is left to work
+ * out the interaction — which is the work they asked for help with.
+ */
+describe("previewing several changes together", () => {
+  /** Appending a term, then putting a course in THAT term.
+   *
+   * THE PROOF THAT THERE IS ONE SANDBOX. The second change names a term
+   * index that does not exist in the stored plan and only exists
+   * because the first change ran. Against a fresh copy per change — or
+   * against the stored plan — it is out of range. */
+  const appendThenFill = () => [
+    { tool: "add_term", arguments: {} },
+    { tool: "add_course", arguments: { code: "CMPSC 465", term_index: ctx.plan!.terms.length } },
+  ];
+
+  it("applies them in order to ONE copy, so each sees the one before it", async () => {
+    const r = await simulateAll(appendThenFill());
+    expect(r.possible, JSON.stringify(r)).toBe(true);
+    expect(r.added_courses, "the second change did not see the term the first one added").toContain("CMPSC 465");
+    expect(r.terms_after).toBe((r.terms_before as number) + 1);
+  });
+
+  it("is order-sensitive, which is what makes the list a list", async () => {
+    // The same two changes the other way round. If this passed, the
+    // order the student described would not be the order previewed,
+    // and the test above would be proving nothing.
+    const r = await simulateAll([...appendThenFill()].reverse());
+    expect(r.possible, "a course landed in a term that did not exist yet").toBe(false);
+    expect(String(r.reason ?? "")).toMatch(/term_index/);
+  });
+
+  it("returns ONE candidate plan, not one per change", async () => {
+    const r = await simulateAll(appendThenFill());
+    const candidate = r.candidate_plan as { terms?: { label: string; courses: unknown[] }[] };
+    expect(candidate?.terms, "no candidate plan came back").toBeTruthy();
+    expect(Array.isArray(r.candidate_plans), "a list of candidates came back instead of one").toBe(false);
+    expect(candidate.terms!.length).toBe(ctx.plan!.terms.length + 1);
+  });
+
+  it("reports everything the single-change preview reports", async () => {
+    // The acceptance criterion, field by field. A list that answered
+    // with less than one change does would make the useful tool the
+    // worse-informed one.
+    const r = await simulateAll([
+      { tool: "skip_term", arguments: { term_index: 2 } },
+      { tool: "add_course", arguments: { code: "CMPSC 465", term_index: 5 } },
+    ]);
+    expect(r.possible, JSON.stringify(r)).toBe(true);
+    expect(Array.isArray(r.moved), "no account of what moved").toBe(true);
+    expect((r.moved as unknown[]).length, "skipping a term moved nothing at all").toBeGreaterThan(0);
+    expect(r.added_courses, "the added course was not named").toContain("CMPSC 465");
+    expect(Array.isArray(r.removed_courses), "no account of what was removed").toBe(true);
+    expect(r.terms_before).toBe(ctx.plan!.terms.length);
+    expect(typeof r.terms_after, "no term count after the changes").toBe("number");
+    expect(Array.isArray(r.new_violations), "no account of what it breaks").toBe(true);
+    expect(Array.isArray(r.newly_unfilled_requirements), "no account of what it leaves unfilled").toBe(true);
+    expect(typeof r.introduces_no_problems).toBe("boolean");
+    expect(r.based_on_revision, "the preview did not say what it was computed from").toBe(ctx.rev);
+  });
+
+  it("keeps the candidate on the plan's own Edition", async () => {
+    // ADR 0001, and a list is where a re-base would be easiest to
+    // smuggle in: several mutations, each rebuilding the terms.
+    const r = await simulateAll([
+      { tool: "skip_term", arguments: { term_index: 2 } },
+      { tool: "optimize_schedule", arguments: { target_terms: 7 } },
+    ]);
+    expect(
+      (r.candidate_plan as { edition?: string }).edition,
+      "the candidate was audited against a different bulletin",
+    ).toBe(ctx.data.edition);
+  });
+
+  it("says plainly, and everywhere, that nothing was applied", async () => {
+    const r = await simulateAll(appendThenFill());
+    expect(r.applied, "a preview of several changes did not say it was unapplied").toBe(false);
+    expect(r.simulated, "a preview did not say it was one").toBe(true);
+    expect(r.ok, "a preview answered with the shape of an applied change").toBeUndefined();
+    expect(r.revision, "a preview reported a new revision").toBeUndefined();
+    expect(String(r.nothing_changed ?? "")).toMatch(/not been|nothing|unchanged/i);
+
+    // INCLUDING INSIDE THE CANDIDATE, which was a live bug for one
+    // change and is worse for several: the sandbox has been committed
+    // to once per change by the time the view is built.
+    const candidate = r.candidate_plan as Record<string, unknown>;
+    expect(candidate.revision, "the candidate claimed a revision").toBeUndefined();
+    expect(candidate.as_of, "the candidate claimed a save time").toBeUndefined();
+    expect(String(candidate.freshness_note ?? ""), "the candidate said it had been saved").not.toMatch(/last saved/i);
+    expect(JSON.stringify(r)).not.toMatch(/"ok":true/);
+  });
+
+  it("names the calls that would make it real, in order", async () => {
+    // There is deliberately no preview to apply later (#39): applying a
+    // stored candidate is applying a decision made against a plan that
+    // may have moved. So the answer has to say what re-running it looks
+    // like, or a model invents an apply step that does not exist.
+    const r = await simulateAll(appendThenFill());
+    const real = r.to_make_this_real as { in_order?: string[]; note?: string };
+    expect(real?.in_order, "the preview did not name the calls that would make it real").toEqual([
+      "add_term",
+      "add_course",
+    ]);
+    expect(String(real.note ?? ""), "does not say to re-read the plan first").toMatch(/get_plan/);
+    expect(String(real.note ?? ""), "does not tie applying to the current revision").toMatch(/revision/i);
+    expect(String(r.nothing_changed ?? ""), "the summary line names no tool to call").toMatch(/add_term/);
+  });
+
+  it("leaves the stored plan BYTE-IDENTICAL, for every list it is given", async () => {
+    // THE ASSERTION THE WHOLE FEATURE RESTS ON, across every shape:
+    // lists that work, lists that fail at the first change, lists that
+    // fail at the last, and lists that are not lists.
+    const before = onDisk();
+    const required = (() => {
+      for (const t of ctx.plan!.terms) for (const i of t.items) if ("code" in i && i.code && i.origin) return i.code;
+      throw new Error("fixture has no template-placed course");
+    })();
+
+    for (const changes of [
+      appendThenFill(),
+      [{ tool: "skip_term", arguments: { term_index: 2 } }, { tool: "optimize_schedule", arguments: { target_terms: 6 } }],
+      [{ tool: "remove_course", arguments: { code: required } }, { tool: "add_term", arguments: {} }],
+      [
+        { tool: "set_schedule_constraint", arguments: { code: "CHEM 110", rule: "not-in", term_index: 0 } },
+        { tool: "fill_slot", arguments: { slot_id: "GE-0-0", code: "CMPSC 465" } },
+        { tool: "add_term", arguments: {} },
+      ],
+      // Fails at the first change, so nothing after it runs.
+      [{ tool: "add_course", arguments: { code: "FAKE 999", term_index: 0 } }, { tool: "add_term", arguments: {} }],
+      // Fails at the last, so the sandbox has been committed to twice.
+      [
+        { tool: "add_term", arguments: {} },
+        { tool: "skip_term", arguments: { term_index: 2 } },
+        { tool: "add_course", arguments: { code: "FAKE 999", term_index: 0 } },
+      ],
+      // A stated revision that has moved on.
+      [{ tool: "add_term", arguments: { based_on_revision: 9999 } }],
+      // Not a change at all.
+      [{ tool: "drop_out", arguments: {} }],
+      // Not a list at all.
+      "skip_term",
+      [],
+    ] as unknown[]) {
+      await simulateAll(changes);
+      expect(onDisk(), `simulating ${JSON.stringify(changes)} changed the student's plan`).toBe(before);
+    }
+  });
+
+  it("leaves the live context alone, so the next call sees what it should", async () => {
+    const before = JSON.stringify(ctx.plan);
+    const rev = ctx.rev;
+    await simulateAll(appendThenFill());
+    expect(JSON.stringify(ctx.plan), "the live plan was mutated by a preview").toBe(before);
+    expect(ctx.rev, "the live revision was advanced by a preview").toBe(rev);
+  });
+});
+
+describe("a list with a change in it that cannot be made", () => {
+  const stoppingList = () => [
+    { tool: "skip_term", arguments: { term_index: 2 } },
+    { tool: "add_course", arguments: { code: "FAKE 999", term_index: 0 } },
+    { tool: "add_term", arguments: {} },
+  ];
+
+  it("stops, and names which change failed and why", async () => {
+    const r = await simulateAll(stoppingList());
+    expect(r.possible, "a list with an impossible change in it came back as a plan").toBe(false);
+    const stopped = r.stopped_at as { index?: number; position?: string; tool?: string };
+    expect(stopped?.tool, "the answer did not name the change that failed").toBe("add_course");
+    expect(stopped.index, "the answer did not say where in the list it failed").toBe(1);
+    expect(String(stopped.position ?? ""), "a student cannot find change 1 in their own request").toMatch(/2 of 3/);
+    expect(String(r.reason ?? ""), "the answer did not say why").toMatch(/not in/i);
+  });
+
+  it("returns NO candidate, because a plan with two of three changes is one nobody asked for", async () => {
+    const r = await simulateAll(stoppingList());
+    expect(r.candidate_plan, "a partial candidate was returned").toBeUndefined();
+    expect(r.moved, "a partial account of movement was returned").toBeUndefined();
+    expect(r.terms_after, "a partial plan was described").toBeUndefined();
+  });
+
+  it("does not let the changes before it read as having happened", async () => {
+    const r = await simulateAll(stoppingList());
+    expect(r.applied).toBe(false);
+    expect(r.ok).toBeUndefined();
+    expect(r.revision).toBeUndefined();
+    expect(String(r.nothing_changed ?? ""), "does not say the earlier changes went nowhere either").toMatch(
+      /discarded|not been changed/i,
+    );
+  });
+
+  it("refuses the whole list when one entry is not a change at all", async () => {
+    const r = await simulateAll([{ tool: "add_term", arguments: {} }, { tool: "drop_out", arguments: {} }]);
+    expect(String(r.error ?? "")).toMatch(/cannot be simulated/i);
+    expect(String(r.error ?? ""), "the refusal did not say which entry was wrong").toMatch(/2 of 2/);
+    expect(r.candidate_plan, "a candidate was built for a list containing a non-change").toBeUndefined();
+  });
+
+  it("refuses a list that is not a list, is empty, or is absurdly long", async () => {
+    expect(String((await simulateAll("skip_term")).error ?? "")).toMatch(/must be a list/i);
+    expect(String((await simulateAll([])).error ?? "")).toMatch(/empty|nothing/i);
+    const many = Array.from({ length: 21 }, () => ({ tool: "add_term", arguments: {} }));
+    expect(String((await simulateAll(many)).error ?? ""), "an unbounded list was accepted").toMatch(/at most/i);
+  });
+
+  it("refuses an entry whose arguments are not arguments", async () => {
+    // Not repaired into something plausible. Guessing what a malformed
+    // entry meant is this server deciding what the model meant, which
+    // is the same mistake as deciding what a student meant.
+    const r = await simulateAll([{ tool: "add_term", arguments: "all of them" }]);
+    expect(String(r.error ?? "")).toMatch(/not an object/i);
+  });
+});
+
+describe("a list computed from a plan that has moved on", () => {
+  it("is refused rather than previewed", async () => {
+    // A student must never be shown a candidate built on a plan that is
+    // no longer theirs. The preview writes nothing, so nothing is lost
+    // — but they would act on it.
+    const r = await simulateAll([
+      { tool: "add_term", arguments: { based_on_revision: ctx.rev } },
+      { tool: "skip_term", arguments: { term_index: 2, based_on_revision: 9999 } },
+    ]);
+    expect(r.possible, "a preview was built from a revision the plan is not at").toBe(false);
+    expect(r.candidate_plan).toBeUndefined();
+    expect((r.stopped_at as { index?: number })?.index, "the refusal did not name the stale entry").toBe(1);
+    expect(String(r.reason ?? "")).toMatch(/revision/i);
+    expect(String(r.remedy ?? "")).toMatch(/get_plan/);
+  });
+
+  it("says the whole list shares one revision, so a model stops chaining them", async () => {
+    // A model that has learned to chain mutations will pass rev, rev+1,
+    // rev+2 — which are the sandbox's own bookkeeping and nothing a
+    // student's plan was ever at. Refusing without explaining that
+    // produces a model that retries the same wrong numbers.
+    const r = await simulateAll([
+      { tool: "add_term", arguments: { based_on_revision: ctx.rev } },
+      { tool: "add_term", arguments: { based_on_revision: (ctx.rev ?? 0) + 1 } },
+    ]);
+    expect(r.possible).toBe(false);
+    expect(String(r.remedy ?? ""), "the refusal did not explain the one-revision rule").toMatch(
+      /same reading|same revision/i,
+    );
+  });
+
+  it("previews happily when every change states the revision the plan IS at", async () => {
+    const r = await simulateAll([
+      { tool: "add_term", arguments: { based_on_revision: ctx.rev } },
+      { tool: "skip_term", arguments: { term_index: 2, based_on_revision: ctx.rev } },
+    ]);
+    expect(r.possible, JSON.stringify(r)).toBe(true);
+  });
+});
+
+describe("removing a required course somewhere in a list", () => {
+  const requiredCode = (): string => {
+    for (const t of ctx.plan!.terms) {
+      for (const i of t.items) if ("code" in i && i.code && i.origin) return i.code;
+    }
+    throw new Error("fixture has no template-placed course");
+  };
+
+  it("is previewable without the model asserting the student's consent", async () => {
+    const r = await simulateAll([
+      { tool: "add_term", arguments: {} },
+      { tool: "remove_course", arguments: { code: requiredCode() } },
+    ]);
+    expect(r.possible, JSON.stringify(r)).toBe(true);
+    expect(r.removed_courses).toContain(requiredCode());
+  });
+
+  it("still warns that the real change needs their words, even when it is not the first change", async () => {
+    // The single-change version asked this of the ORIGINAL plan and of
+    // the one change it had. A list has to ask it of the plan as it
+    // stands when that change is reached, or the warning goes missing
+    // on exactly the request most likely to contain it.
+    const r = await simulateAll([
+      { tool: "add_term", arguments: {} },
+      { tool: "remove_course", arguments: { code: requiredCode() } },
+    ]);
+    expect(r.requires_consent, "the preview hid the consent requirement").toBe(true);
+    expect(r.consent_needed_for, "the preview did not say which course needs consent").toContain(requiredCode());
+    expect(String(r.before_doing_this_for_real ?? "")).toMatch(/own words|student_words/);
+  });
+
+  it("says nothing about consent when nothing required is being removed", async () => {
+    const r = await simulateAll([{ tool: "add_term", arguments: {} }]);
+    expect(r.requires_consent, "a harmless list demanded consent").toBeUndefined();
+  });
+});
+
+describe("the single-change tool is the one-element case", () => {
+  it("answers identically to a list of one", async () => {
+    // NOT A SECOND IMPLEMENTATION. Two preview paths would eventually
+    // disagree about what the same change does, and a bug fixed in one
+    // would survive in the other.
+    const asOne = await simulate("skip_term", { term_index: 2 });
+    const asList = await simulateAll([{ tool: "skip_term", arguments: { term_index: 2 } }]);
+    expect(JSON.stringify(asList), "the two tools describe the same change differently").toBe(
+      JSON.stringify(asOne),
+    );
+  });
+
+  it("answers identically when the change cannot be made", async () => {
+    const asOne = await simulate("add_course", { code: "FAKE 999", term_index: 0 });
+    const asList = await simulateAll([{ tool: "add_course", arguments: { code: "FAKE 999", term_index: 0 } }]);
+    expect(JSON.stringify(asList), "the two tools refuse the same change differently").toBe(JSON.stringify(asOne));
+  });
+
+  it("keeps the field a single-change caller already reads", async () => {
+    // `changes` is always there, because a list of one is still a list.
+    // Dropping `change` would take a field away from callers who did
+    // nothing wrong.
+    const r = await simulate("add_term", {});
+    expect(r.change, "the single-change answer lost its own field").toEqual({ tool: "add_term", arguments: {} });
+    expect(r.changes).toEqual([{ tool: "add_term", arguments: {} }]);
+  });
+
+  it("does not claim a single change is several", async () => {
+    const r = await simulate("add_term", {});
+    expect(String(r.nothing_changed ?? ""), "a one-change preview talked about changes").not.toMatch(/these \d+/);
+  });
+});
+
+describe("the list tool itself", () => {
+  it("is offered, and counts as a read", async () => {
+    expect(listTools().map((t) => t.name)).toContain("simulate_changes");
+    expect(READABLE_PLAN_TOOLS.has("simulate_changes"), "a pure read was classified as a write").toBe(true);
+  });
+
+  it("takes named changes with explicit arguments, never a sentence", async () => {
+    // THE GOVERNING PRINCIPLE (#39), asserted against the advertised
+    // schema: the model interprets, the engine computes. A field here
+    // that took free text would be this server deciding what a student
+    // meant, and the first version of it would look harmless.
+    const def = listTools().find((t) => t.name === "simulate_changes")!;
+    const schema = def.inputSchema as {
+      properties: { changes: { items: { properties: Record<string, unknown>; required?: string[] } } };
+    };
+    const fields = Object.keys(schema.properties.changes.items.properties).sort();
+    expect(fields, "a change carries something other than a tool and its arguments").toEqual([
+      "arguments",
+      "tool",
+    ]);
+    expect(schema.properties.changes.items.required).toContain("tool");
   });
 });

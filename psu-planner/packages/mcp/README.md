@@ -49,8 +49,9 @@ variable.
 | `discover_programs` | Programs that fit what you have already taken |
 | `list_iug_programs` | Integrated bachelor's-and-master's degrees that pair with your major |
 | `simulate_change` | What a change *would* do — see below |
+| `simulate_changes` | What several changes would do *together* — see below |
 
-**`simulate_change` is the one worth knowing about.** "What would my plan
+**The two simulations are the ones worth knowing about.** "What would my plan
 look like if I studied abroad next fall?" runs the change against a copy and
 hands back the candidate plan, what moved, and any prerequisite it breaks.
 Your stored plan is not touched. It is the real optimiser, not a preview of
@@ -58,6 +59,14 @@ one, so what you are shown is what you would get.
 
 And nine that change your plan:
 And the ones that change your plan:
+`simulate_changes` takes a list and previews the lot as one candidate, which
+is the honest answer to "out in seven terms, I've got AP calc, and abroad
+junior spring". Previewing those one at a time does not answer it: the
+optimiser re-flows the whole plan on every change, so separate previews are
+separate futures. If one change in the list cannot be made, the whole preview
+stops and says which — you never get a plan with some of them in it.
+
+And seven that change your plan:
 
 | Tool | Does |
 |---|---|
