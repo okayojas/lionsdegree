@@ -62,19 +62,18 @@ test("pre-selects the programs an assistant chose", async ({ page, baseURL }) =>
   }
 });
 
-test("generating from a link draws the real flowchart", async ({ page, baseURL }, testInfo) => {
-  // Desktop only, and NOT because the feature is desktop-only — the link
-  // works on a phone profile too; a 390px context without touch generates
-  // all 38 courses. On the Pixel 7 profile Playwright cannot complete the
-  // click on the generate button and I have not pinned down why: it is
-  // stable, unobstructed, and `elementFromPoint` returns the button itself,
-  // yet the click times out even at two minutes. Whether that is a harness
-  // quirk or a real touch-device problem is okayojas/lionsdegree#23.
+test("generating from a link draws the real flowchart", async ({ page, baseURL }) => {
+  // RUNS ON THE PHONE PROFILES TOO, since #23. It was desktop-only because
+  // the click on the generate button timed out on the Pixel 7 profile and
+  // the cause was not pinned down — the button was stable, unobstructed,
+  // and `elementFromPoint` returned the button itself.
   //
-  // Scoped rather than deleted, and scoped rather than forced: a `force:
-  // true` click would make this green while leaving the question open, which
-  // is the worse outcome of the two.
-  test.skip(testInfo.project.name !== "desktop", "see #23 — click unreachable on the touch profile");
+  // It turned out not to be a harness quirk. One un-wrappable row in the
+  // prior-credit step overflowed 412px horizontally, Chrome answered that
+  // on a touch device by widening the layout viewport to the content and
+  // scaling the page down, and the button ended up 827px below the
+  // furthest a student could scroll. Playwright was right and the page was
+  // wrong: a student could not create a plan on a phone.
   test.setTimeout(120_000);
   const slugs = await realSlugs(baseURL!, 1);
   await page.goto(`/plan/?programs=${slugs[0]}`);

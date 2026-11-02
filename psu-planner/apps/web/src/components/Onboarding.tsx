@@ -456,7 +456,15 @@ export function Onboarding() {
               </div>
               <div className="grid">
                 {group.entries.map((e) => (
-                  <span key={e.code} style={{ display: "inline-flex", alignItems: "center", gap: 4 }}>
+                  // WRAPS (#23). ACCTG 410 lists ten same-credit alternatives,
+                  // and an inline-flex row that could not wrap laid them out
+                  // 865px wide on a 412px phone. Chrome answers a horizontal
+                  // overflow on a touch device by widening the layout viewport
+                  // to the content and scaling the page down — the whole of
+                  // onboarding then rendered at 907px, and "Build my flowchart"
+                  // ended up 827px below the furthest a student could scroll.
+                  // One un-wrappable row made the page impossible to use.
+                  <span key={e.code} style={{ display: "inline-flex", flexWrap: "wrap", alignItems: "center", gap: 4, minWidth: 0 }}>
                     <label className="check">
                       <input
                         type="checkbox"
