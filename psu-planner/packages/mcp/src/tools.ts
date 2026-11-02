@@ -1,6 +1,7 @@
 /** The tools a student's assistant can call.
  *
  * The reads live here; `mutations.ts` holds the ones that write, and
+ * The reads live here; `mutations.ts` holds every one that writes, and
  * every one of those states the revision it was computed from so a
  * change based on a Plan the student has since edited is refused rather
  * than allowed to overwrite them (ADR 0003).
@@ -149,7 +150,7 @@ export const needsPlan = (name: string): boolean => !CATALOG_ONLY.has(name);
 /** Plan-shaped tools that only READ.
  *
  * Named because the two halves of the hosted surface arrived at
- * different times: these in #35, the seven that write in #36 once each
+ * different times: these in #35, the ones that write in #36 once each
  * one became a compare-and-swap against the revision it was computed
  * from. The distinction still earns its keep — a read costs a student
  * nothing if the model is confused, and a write costs them their plan.
@@ -395,6 +396,58 @@ function allTools(): ToolDefinition[] {
         ["term_index", "based_on_revision"],
       ),
     },
+    // ---- Rearranging, and taking it back (#42) ---------------------------
+    // Every one of these is the inverse of something the assistant could
+    // already do, or the thing that makes an existing tool reversible.
+    {
+      name: "move_course",
+      description:
+        "Move a course the plan already has to a different term, keeping everything the program attached to it. Use this rather than remove_course followed by add_course: that pair loses the course's origin (which is what lets a double major's shared requirement count once) and the alternatives the program offered for it. A manual move is wiped by the next optimize_schedule — use set_schedule_constraint with \"pin\" when the placement has to survive.",
+      inputSchema: obj(
+        { code: str("Course code, as it appears in get_plan"), term_index: num("0-based term to move it to"), based_on_revision: basedOn },
+        ["code", "term_index", "based_on_revision"],
+      ),
+    },
+    {
+      name: "swap_alternative",
+      description:
+        "Swap a course for one the program itself lists as an alternative to it (\"CAS 100A or CAS 100B\"). Only the listed alternatives are accepted; get_plan does not show them, so read the refusal — it names what is on offer. The swap is reversible: the outgoing course becomes an alternative of the incoming one.",
+      inputSchema: obj(
+        { code: str("The course currently in the plan"), alternative: str("The course code to put in its place"), based_on_revision: basedOn },
+        ["code", "alternative", "based_on_revision"],
+      ),
+    },
+    {
+      name: "restore_course",
+      description:
+        "Put back a course that was removed from the plan, with the program's own placement for it. Answers \"undo that\" and \"actually I do need it\". A course the student ADDED and then removed leaves no record to restore — use add_course for that.",
+      inputSchema: obj({ code: str("Course code"), based_on_revision: basedOn }, ["code", "based_on_revision"]),
+    },
+    {
+      name: "restore_term",
+      description:
+        "Un-skip a term the student had marked as a gap — a co-op or leave they are no longer taking. Coursework re-flows back into it and graduation usually moves earlier. The inverse of skip_term.",
+      inputSchema: obj({ term_index: num("0-based term"), based_on_revision: basedOn }, ["term_index", "based_on_revision"]),
+    },
+    {
+      name: "delete_term",
+      description:
+        "Delete an EMPTY term from the plan. A term with coursework or open requirement slots in it is refused — use skip_term to empty a term, which re-flows its coursework into later terms instead of taking it with the term. Later terms are renumbered, so term indices from an earlier get_plan go stale.",
+      inputSchema: obj({ term_index: num("0-based term"), based_on_revision: basedOn }, ["term_index", "based_on_revision"]),
+    },
+    {
+      name: "clear_schedule_constraint",
+      description:
+        "Lift a scheduling constraint the student no longer wants (\"I can take AI 100 in the fall after all\"). The inverse of set_schedule_constraint, and it re-flows the schedule the same way setting one does. Omit rule to clear every constraint on the course.",
+      inputSchema: obj(
+        {
+          code: str("Course code"),
+          rule: str('Optional: "not-in", "not-before" or "pin" — omit to clear all of them for this course'),
+          based_on_revision: basedOn,
+        },
+        ["code", "based_on_revision"],
+      ),
+    },
     {
       name: "list_iug_programs",
       description:
@@ -432,8 +485,9 @@ function allTools(): ToolDefinition[] {
       inputSchema: obj(
         {
           change: str(
-            "The change to try: add_course, remove_course, set_schedule_constraint, optimize_schedule, " +
-              "fill_slot, add_term or skip_term.",
+            "The change to try: add_course, remove_course, move_course, swap_alternative, " +
+              "restore_course, set_schedule_constraint, clear_schedule_constraint, optimize_schedule, " +
+              "fill_slot, add_term, skip_term, restore_term or delete_term.",
           ),
           arguments: {
             type: "object",

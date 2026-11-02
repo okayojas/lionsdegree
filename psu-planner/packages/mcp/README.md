@@ -57,12 +57,17 @@ Your stored plan is not touched. It is the real optimiser, not a preview of
 one, so what you are shown is what you would get.
 
 And nine that change your plan:
+And the ones that change your plan:
 
 | Tool | Does |
 |---|---|
 | `add_course` | Puts a course in a term |
 | `remove_course` | Takes one out — see below |
+| `move_course` | Moves one to another term, keeping what the program attached to it |
+| `swap_alternative` | Takes the alternative your program already offers ("CAS 100A or CAS 100B") |
+| `restore_course` | Puts a removed course back where your program had it |
 | `set_schedule_constraint` | "Not that term", "no earlier than", "exactly there" |
+| `clear_schedule_constraint` | Lifts one again, and re-flows the schedule |
 | `optimize_schedule` | Repacks the whole plan in one call |
 | `fill_slot` | Chooses a course for an open requirement |
 | `add_term` | Appends an empty term |
@@ -76,6 +81,18 @@ double-count cap and the eligible courses come from the programme's own
 published figures, and its admission requirements are quoted word for word
 with a link to the page they came from — so you can check the citation.
 Attaching one here plans it; it does not apply for it.
+| `restore_term` | Un-skips one, and lets coursework flow back into it |
+| `delete_term` | Removes an empty term — refused if anything is in it |
+
+**Everything it can do, it can undo.** Setting a constraint has a tool that
+lifts it, removing a course has one that restores it, skipping a term has one
+that un-skips it. An assistant whose every action is one-way is not one to let
+near your degree.
+
+**Moving is not remove-then-add.** A course carries where your program put it
+(which is what lets a double major's shared requirement count once) and the
+alternatives your program offered for it. `move_course` keeps both; removing
+and re-adding keeps neither.
 
 **Every change says which revision it was computed from.** Each of these takes
 `based_on_revision` — the `revision` you last read. If you have edited your
