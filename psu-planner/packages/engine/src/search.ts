@@ -9,8 +9,34 @@ const STOP = new Set("a an the and or of in to for with on by is are as its this
 export function stem(t: string): string {
   return t.length > 3 ? t.replace(/(ies|es|s)$/, (m) => (m === "ies" ? "y" : "")) : t;
 }
+/** The query, as terms to score against.
+ *
+ * A ONE-CHARACTER TOKEN IS DROPPED UNLESS IT IS A DIGIT, and the
+ * exception is the whole point. The length filter is there for the stray
+ * letters a person types around a phrase — "a", "i", the "s" left behind
+ * by a possessive — and dropping those is right. A DIGIT is never that:
+ * it is a course number, and dropping it turns "MUSIC 4" into "music".
+ *
+ * That was not a ranking problem, it was a disappearance. 176 courses in
+ * the 2026-2027 bulletin are numbered with one digit, and searching any
+ * of them by code returned every OTHER course in the subject instead:
+ * "MUSIC 4" answered MUSIC 101, 106, 109, 11, 110, 113, 114, 119 — the
+ * search box has eight slots and MUSIC 4 was not in them. Typing the
+ * number alone returned nothing at all, because a query of no terms
+ * short-circuits to an empty list.
+ *
+ * Who that hurt is the part worth writing down: single-digit numbers are
+ * where Penn State puts FIRST-YEAR SEMINARS and introductory gen-eds —
+ * AA 1, AERSP 1, ANTH 1, ART 1, PSU 1, MUSIC 4 — so the courses nobody
+ * could find were disproportionately the ones a first-year student has
+ * actually taken and is trying to record. 91 of the 176 carry a gen-ed
+ * designation. */
 export function qterms(q: string): string[] {
-  return q.toLowerCase().split(/[^a-z0-9]+/).filter((t) => t.length > 1 && !STOP.has(t)).map(stem);
+  return q
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter((t) => (t.length > 1 || /^[0-9]$/.test(t)) && !STOP.has(t))
+    .map(stem);
 }
 function toks(s: string): string[] {
   return s.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w && !STOP.has(w));
@@ -111,6 +137,10 @@ export function searchCatalog(
 ): string[] {
   const stems = qterms(q);
   if (!stems.length) return [];
+  // The query as a bare code, for the exact-match bonus below. "music 4",
+  // "MUSIC  4" and "music4" all normalise to the same thing a Course's own
+  // code does.
+  const asCode = q.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
   const memo = new Map<string, number[]>();
   const res: { key: string; score: number }[] = [];
   const visited = new Set<string>();
@@ -120,12 +150,19 @@ export function searchCatalog(
     visited.add(c.code);
     const code = (c.code + " " + (c.display || "")).toLowerCase();
     const title = (c.title || "").toLowerCase();
+    const number = (c.number || "").toLowerCase();
     let score = 0;
     let ok = true;
     let inTitleAll = true;
     for (const t of stems) {
       let s = 0;
       if (code.includes(t)) s += 8;
+      // THE COURSE'S OWN NUMBER, not a digit sitting inside a longer one.
+      // `code.includes` cannot tell "MUSIC 4" from "MUSIC 114", so once
+      // single digits became searchable at all, every course whose number
+      // merely CONTAINS the digit scored identically — and there are far
+      // more of those, so the course the student actually named came last.
+      if (number && number === t) s += 20;
       if (title.includes(t)) s += 6;
       else inTitleAll = false;
       s += Math.min(descCount(ranking, memo, c, t), 5);
@@ -134,6 +171,12 @@ export function searchCatalog(
     }
     if (!ok) continue;
     if (inTitleAll) score += 8;
+    // THE WHOLE QUERY IS THIS COURSE'S CODE. Typing a code in full is the
+    // most specific thing a student can do and the commonest query in the
+    // "courses I have taken" box — there is no reading of "MUSIC 50" that
+    // wants MUSIC 462W above MUSIC 50. Large enough that no amount of
+    // title or description signal can displace it.
+    if (asCode === c.code.toLowerCase() || asCode === (c.display || "").toLowerCase()) score += 100;
     const tTok = toks(title);
     // Phrase matching survives only on the TITLE. The description's +7 run
     // bonus needed word order, and word order is the one part of an index that
