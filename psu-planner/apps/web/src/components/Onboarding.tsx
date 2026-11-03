@@ -2,9 +2,9 @@
  * course from the major's track you've already taken (works for
  * major-switchers) -> AP / transfer / other credit -> generate. */
 import { useEffect, useMemo, useRef, useState } from "react";
-import { generatePlan, type ProgramTemplate, type ReqSection } from "@psu-planner/engine";
+import { generatePlan, RCL_SEQUENCE, type Catalog, type ProgramTemplate, type ReqSection } from "@psu-planner/engine";
 import { parseProgramLink } from "../data/deepLink";
-import { currentEdition, loadCoverage, loadEditions, loadProgram, loadProgramsIndex, loadSubject, setCatalogEdition } from "../data/catalogClient";
+import { currentEdition, loadAuditIndex, loadCoverage, loadEditions, loadProgram, loadProgramsIndex, loadSubject, setCatalogEdition } from "../data/catalogClient";
 import type { ProgramIndexEntry } from "../data/catalogClient";
 import { extractCodesFromFile, extractCodesFromText } from "../data/importSchedule";
 import { ApCreditPicker, CourseSearchPicker } from "./CreditPickers";
@@ -17,6 +17,69 @@ function defaultStartTerm(): { term: "Fall" | "Spring"; year: number } {
   const now = new Date();
   const m = now.getMonth(); // 0-based
   return m <= 6 ? { term: "Fall", year: now.getFullYear() } : { term: "Spring", year: now.getFullYear() + 1 };
+}
+
+/** One checkbox in the "which have you already taken" list.
+ *
+ * `note` is set only when the entry is not the one the program's grid
+ * names — a Scholar's RCL substitution. Said out loud because a student
+ * looking for ENGL 15 and finding ENGL 137H deserves to know why, and
+ * because a silent substitution is indistinguishable from a bug. */
+export interface TrackEntry {
+  code: string;
+  alternatives: string[];
+  note?: string;
+}
+
+/** The entry as this particular student actually took it.
+ *
+ * TWO DIFFERENT KINDS OF HONORS SUBSTITUTION, and they are offered
+ * differently on purpose.
+ *
+ * The RCL pair is a REPLACEMENT. A first-year Scholar takes ENGL 137H
+ * and CAS 138T in place of ENGL 15 and CAS 100 — the honors college
+ * requires exactly that sequence, in the first two semesters — so there
+ * is no version of their first year that contains the standard pair. The
+ * checklist shows what they took. The original stays on as an
+ * alternative anyway, for the student who switched into Schreyer after
+ * already passing it.
+ *
+ * An H twin is an OFFER. Whether a Scholar took MATH 140 or MATH 140H
+ * depends on what fitted their schedule, and only they know. The
+ * optimizer will upgrade courses later if their honors credits fall
+ * short, but that is a forecast about the future, not a claim about the
+ * past. So the twin appears as a second chip beside the plain course and
+ * the student says which one they sat. Assuming it would be inventing a
+ * transcript.
+ *
+ * Both are no-ops for a student who is not a Scholar. */
+export function forScholar(
+  entry: TrackEntry,
+  honors: 1 | 2 | 3 | null,
+  catalog: Catalog | null,
+): TrackEntry {
+  if (!honors) return entry;
+
+  if (honors === 1) {
+    for (const r of RCL_SEQUENCE) {
+      if (!r.requirement.test(entry.code)) continue;
+      return {
+        code: r.honors[0],
+        // The code the grid named, plus the cross-listing. Either is the
+        // same course and either should tick the box.
+        alternatives: [...r.honors.slice(1), entry.code, ...entry.alternatives],
+        note: `Schreyer: you take this instead of ${entry.code}`,
+      };
+    }
+  }
+
+  // The twin has to be in the bulletin. Offering a chip for a course that
+  // does not exist would be the fabricated-course failure in miniature,
+  // so an unloaded catalog offers nothing rather than guessing.
+  const twin = catalog?.[`${entry.code}H`] ? `${entry.code}H` : null;
+  return twin && !entry.alternatives.includes(twin)
+    ? { ...entry, alternatives: [...entry.alternatives, twin] }
+    : entry;
 }
 
 interface PipelineProgram {
@@ -60,6 +123,15 @@ export function Onboarding() {
   const [legal, setLegal] = useState(false);
   /** Schreyer Honors College admit cohort (null = not a Scholar). */
   const [honors, setHonors] = useState<1 | 2 | 3 | null>(null);
+  /** Every course in the edition, slim — but ONLY once a student says they
+   * are a Scholar.
+   *
+   * It is 2.1 MB, and #24 is about not spending that before a student can
+   * do anything. The one thing it is needed for here is knowing whether
+   * MATH 140H exists before offering it as a chip, which matters to the
+   * ~5% of students in Schreyer and to nobody else. So the cost lands
+   * after they have told us, and the chips appear when it arrives. */
+  const [honorsCatalog, setHonorsCatalog] = useState<Catalog | null>(null);
   /** Programs named in `?programs=` that the catalog does not have. Shown
    * rather than dropped: a student told "here is your plan" is owed the fact
    * that one of the three credentials they were promised is missing. */
@@ -78,6 +150,19 @@ export function Onboarding() {
       })
       .catch(() => setError("Could not load the bulletin editions — is the catalog data deployed?"));
   }, []);
+
+  // Fetched once, and only for a Scholar. A failure is swallowed on
+  // purpose: the H-twin chips are a convenience, the RCL substitution
+  // above does not need the catalog, and a student who cannot reach a
+  // 2.1 MB index should still be able to finish onboarding.
+  useEffect(() => {
+    if (!honors || honorsCatalog) return;
+    let live = true;
+    void loadAuditIndex()
+      .then((c) => { if (live) setHonorsCatalog(c); })
+      .catch(() => {});
+    return () => { live = false; };
+  }, [honors, honorsCatalog]);
 
   /** The edition actually served. A student who started before our oldest
    * bulletin gets the closest one we have, and is told so. */
@@ -191,19 +276,30 @@ export function Onboarding() {
 
   /** The full track: every course in the selected majors' suggested plans,
    * grouped by template term — the student checks off what they've taken,
-   * which works even if those courses came from a different major. */
+   * which works even if those courses came from a different major.
+   *
+   * HONORS-AWARE, and that is why the Schreyer question is asked ABOVE this
+   * step rather than below it. A Scholar admitted as a first-year does not
+   * take ENGL 15 and CAS 100A; they take ENGL 137H and CAS 138T, which the
+   * honors college requires in their first two semesters. The grid this is
+   * built from lists the standard pair, so the checklist was offering them
+   * two courses they had never taken and no way to record the two they
+   * had. Then the plan scheduled requirements they had already met. */
   const track = useMemo(() => {
-    const groups: { label: string; entries: { code: string; alternatives: string[] }[] }[] = [];
+    const groups: { label: string; entries: TrackEntry[] }[] = [];
     const seen = new Set<string>();
     for (const prog of loaded) {
       const plan = (prog.suggestedPlans ?? [])[campusChoice[prog.slug] ?? 0];
       if (!plan) continue;
       plan.semesters.forEach((sem, si) => {
-        const entries: { code: string; alternatives: string[] }[] = [];
+        const entries: TrackEntry[] = [];
         for (const e of sem.entries) {
           if (e.type === "course" && e.code && !seen.has(e.code)) {
+            // KEYED ON THE GRID'S CODE even when the entry is rewritten
+            // below, so a substituted course is still de-duplicated against
+            // the requirement it stands for.
             seen.add(e.code);
-            entries.push({ code: e.code, alternatives: e.alternatives ?? [] });
+            entries.push(forScholar({ code: e.code, alternatives: e.alternatives ?? [] }, honors, honorsCatalog));
           }
         }
         if (!entries.length) return;
@@ -212,7 +308,7 @@ export function Onboarding() {
       });
     }
     return groups;
-  }, [loaded, campusChoice]);
+  }, [loaded, campusChoice, honors, honorsCatalog]);
 
   /** How many columns the overlay should draw. `track` is the selected
    * programs' own suggested terms, so this is the real shape of the chart
@@ -400,8 +496,43 @@ export function Onboarding() {
         </div>
       )}
 
+      {/* ABOVE THE CHECKLIST, because it decides what the checklist should
+          say. This used to be step 7, three steps BELOW the courses it
+          governs: a Schreyer first-year was shown ENGL 15 and CAS 100A —
+          two courses they never took, with no way to record the ENGL 137H
+          and CAS 138T they did — and only afterwards asked whether they
+          were a Scholar at all. The plan then scheduled requirements they
+          had already met. */}
       <div className="step">
-        <h3>4 · Which of these have you already taken?</h3>
+        <h3>4 · Schreyer Honors College (optional)</h3>
+        <p style={{ fontSize: 12.5, color: "var(--muted)", margin: "0 0 8px" }}>
+          Scholars take the honors Rhetoric &amp; Civic Life sequence instead of ENGL 15 and CAS 100, and get
+          honors sections scheduled automatically so the per-year honors-credit requirement is met. Asked
+          before the course list below, because it changes what that list should show you.
+        </p>
+        <div className="grid">
+          {([
+            [null, "Not in Schreyer"],
+            [1, "Admitted as a first-year (21 cr yrs 1–2 + 14 cr yrs 3–4)"],
+            [2, "Gateway: second-year admit (9 cr yr 2 + 14 cr yrs 3–4)"],
+            [3, "Gateway: third-year admit (14 cr yrs 3–4)"],
+          ] as const).map(([val, label]) => (
+            <label className="check" key={String(val)} style={honors === val ? { outline: "2px solid var(--blue)" } : undefined}>
+              <input
+                type="radio"
+                name="schreyer"
+                checked={honors === val}
+                onChange={() => setHonors(val)}
+                style={{ marginRight: 6 }}
+              />
+              {label}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div className="step">
+        <h3>5 · Which of these have you already taken?</h3>
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center", marginBottom: 8 }}>
           <label>Your next term{" "}
             <select value={startTerm} onChange={(e) => setStartTerm(e.target.value as "Fall" | "Spring")}>
@@ -465,7 +596,7 @@ export function Onboarding() {
                   // ended up 827px below the furthest a student could scroll.
                   // One un-wrappable row made the page impossible to use.
                   <span key={e.code} style={{ display: "inline-flex", flexWrap: "wrap", alignItems: "center", gap: 4, minWidth: 0 }}>
-                    <label className="check">
+                    <label className="check" title={e.note}>
                       <input
                         type="checkbox"
                         checked={completed.has(e.code)}
@@ -473,6 +604,11 @@ export function Onboarding() {
                       />
                       {e.code}
                     </label>
+                    {/* SAID, NOT JUST DONE. A student scanning for ENGL 15 and
+                        finding ENGL 137H needs to know the list changed on
+                        purpose — a silent substitution looks exactly like a
+                        bug, and this one is a claim about what they took. */}
+                    {e.note && <span className="track-note">{e.note}</span>}
                     {e.alternatives.map((alt) => (
                       <label className="check" key={alt} title={`same-credit alternative to ${e.code}`} style={{ borderStyle: "dashed" }}>
                         <input
@@ -492,7 +628,7 @@ export function Onboarding() {
       </div>
 
       <div className="step">
-        <h3>5 · AP credit & other courses you've taken</h3>
+        <h3>6 · AP credit & other courses you've taken</h3>
         <p style={{ fontSize: 12.5, color: "var(--muted)", margin: "0 0 8px" }}>
           These count toward prerequisites, gen eds, and electives automatically.
         </p>
@@ -516,7 +652,7 @@ export function Onboarding() {
       </div>
 
       <div className="step">
-        <h3>6 · Already have a schedule? (optional)</h3>
+        <h3>7 · Already have a schedule? (optional)</h3>
         <div className="import-zone">
           Upload your existing plan or transcript export — Excel, CSV, or plain text. Every PSU course
           code found in it is marked as completed.
@@ -579,32 +715,6 @@ export function Onboarding() {
         )}
       </div>
 
-      <div className="step">
-        <h3>7 · Schreyer Honors College (optional)</h3>
-        <p style={{ fontSize: 12.5, color: "var(--muted)", margin: "0 0 8px" }}>
-          Scholars get honors sections scheduled automatically (MATH 140H, ENGL/CAS 137H–138T, …) so the
-          per-year honors-credit requirement is met. Pick when you were admitted:
-        </p>
-        <div className="grid">
-          {([
-            [null, "Not in Schreyer"],
-            [1, "Admitted as a first-year (21 cr yrs 1–2 + 14 cr yrs 3–4)"],
-            [2, "Gateway: second-year admit (9 cr yr 2 + 14 cr yrs 3–4)"],
-            [3, "Gateway: third-year admit (14 cr yrs 3–4)"],
-          ] as const).map(([val, label]) => (
-            <label className="check" key={String(val)} style={honors === val ? { outline: "2px solid var(--blue)" } : undefined}>
-              <input
-                type="radio"
-                name="schreyer"
-                checked={honors === val}
-                onChange={() => setHonors(val)}
-                style={{ marginRight: 6 }}
-              />
-              {label}
-            </label>
-          ))}
-        </div>
-      </div>
 
       {linkMissing.length > 0 && (
         /* An assistant named something the catalog does not have. Said out

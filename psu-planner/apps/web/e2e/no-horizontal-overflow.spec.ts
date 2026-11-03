@@ -98,15 +98,28 @@ test("the button that generates the plan is reachable by scrolling", async ({ pa
   const generate = page.getByRole("button", { name: /build my flowchart/i }).first();
   await expect(generate).toBeVisible({ timeout: 30_000 });
 
-  await page.evaluate(() => window.scrollTo(0, 999999));
-  await page.waitForTimeout(400);
-  const y = await page.evaluate(() => {
-    const b = [...document.querySelectorAll("button")].find((x) => /build my flowchart/i.test(x.textContent ?? ""))!;
-    return b.getBoundingClientRect().y;
-  });
-  expect(
-    y,
-    `at maximum scroll the generate button sits ${Math.round(y - screen.height)}px below the bottom of a ${screen.height}px screen, so a student cannot reach it`,
-  ).toBeLessThanOrEqual(screen.height);
-  expect(y, "the generate button scrolled off the top instead of into view").toBeGreaterThan(-1);
+  // RE-SCROLLED EACH TIME, because the page is still growing. The button
+  // renders before the programs finish loading, so a single
+  // `scrollTo(0, 999999)` pins to a maximum that is already stale by the
+  // time the deep link's courses arrive — and the button ends up below
+  // the viewport for a reason that has nothing to do with the bug. A
+  // fixed sleep would paper over that; this waits for the thing it is
+  // actually about.
+  //
+  // It still catches #23. When the layout viewport is scaled, the button
+  // sits ~800px below the screen at a maximum scroll that never moves,
+  // so re-scrolling changes nothing and this times out red.
+  const whereIsIt = async () =>
+    page.evaluate(() => {
+      window.scrollTo(0, 999999);
+      const b = [...document.querySelectorAll("button")].find((x) => /build my flowchart/i.test(x.textContent ?? ""))!;
+      return b.getBoundingClientRect().y;
+    });
+  await expect
+    .poll(whereIsIt, {
+      timeout: 15_000,
+      message: `the generate button never came within a ${screen.height}px screen at maximum scroll — a student cannot reach it`,
+    })
+    .toBeLessThanOrEqual(screen.height);
+  expect(await whereIsIt(), "the generate button scrolled off the top instead of into view").toBeGreaterThan(-1);
 });

@@ -28,6 +28,51 @@ import type { Catalog, Course, CourseSpec, PlanDoc } from "./types.js";
 
 export const HONORS_ATTR = "Honors";
 
+/** The Rhetoric & Civic Life pair, and what it stands in for.
+ *
+ * ONE DEFINITION, because there are two readers. `applyHonorsUpgrades`
+ * below SWAPS a Scholar's plan onto these courses; `generatePlan` has to
+ * recognise that a student who already took one has already satisfied the
+ * requirement it replaces. Written out twice, those two would eventually
+ * disagree about which courses are the RCL sequence — and the shape of
+ * that bug is a Scholar being told to take ENGL 15 after passing ENGL
+ * 137H.
+ *
+ * GROUNDED IN THE SHIPPED CATALOG, not asserted. All four honors codes
+ * carry GWS in the 2026-2027 bulletin, exactly as ENGL 15 and CAS
+ * 100A/B/C do, which is why substituting one for the other leaves the
+ * gen-ed audit intact. The sequence is cross-listed, so ENGL 137H and
+ * CAS 137H are the same course under two codes and either satisfies.
+ *
+ * DIRECTIONAL, and that direction is not symmetric (iron rule 4). Taking
+ * ENGL 137H satisfies the ENGL 15 requirement. Taking ENGL 15 does NOT
+ * satisfy a Scholar's RCL requirement — the honors college asks for the
+ * honors sequence specifically (shc.psu.edu/academics/requirements/,
+ * retrieved 2026-07-16) — so this is never read the other way round.
+ *
+ * `pinTerm` is where the upgrade places it: the rule is "during your
+ * first two semesters". */
+export const RCL_SEQUENCE: { requirement: RegExp; honors: string[]; pinTerm: number }[] = [
+  { requirement: /^ENGL (15|30)$/, honors: ["ENGL 137H", "CAS 137H"], pinTerm: 0 },
+  { requirement: /^CAS 100[A-C]?$/, honors: ["CAS 138T", "ENGL 138T"], pinTerm: 1 },
+];
+
+/** Has the student already taken the honors course that stands in for this
+ * requirement?
+ *
+ * `taken` is asked rather than handed a Set so the caller can answer from
+ * whatever it holds — a completed map, a Set, the courses already placed.
+ *
+ * ONE WAY ONLY: this answers "is ENGL 15 covered?", never "is ENGL 137H
+ * covered?". A Scholar who took the standard sequence still owes the
+ * honors one. */
+export function rclSatisfied(requirement: string, taken: (code: string) => boolean): boolean {
+  for (const r of RCL_SEQUENCE) {
+    if (r.requirement.test(requirement) && r.honors.some(taken)) return true;
+  }
+  return false;
+}
+
 export function isHonorsCourse(c: Course): boolean {
   return c.attributes.includes(HONORS_ATTR) || /[HM]$/.test(c.number);
 }
@@ -209,10 +254,10 @@ export function applyHonorsUpgrades(plan: PlanDoc, catalog: Catalog): HonorsUpgr
   // moved into term 0/1 and given a first-year template origin so the
   // flow-rank optimizer keeps it early on every future re-pack.
   if (plan.honors.admit === 1) {
-    const rclSwaps: [RegExp, string, number][] = [
-      [/^ENGL (15|30)$/, "ENGL 137H", 0],
-      [/^CAS 100[A-C]?$/, "CAS 138T", 1],
-    ];
+    // FROM THE SHARED DEFINITION, so the courses this swaps ONTO and the
+    // courses `generatePlan` accepts as already satisfying them cannot
+    // drift apart.
+    const rclSwaps: [RegExp, string, number][] = RCL_SEQUENCE.map((r) => [r.requirement, r.honors[0], r.pinTerm]);
     const findTerm = (codes: string[]): number => {
       for (let i = 0; i < plan.terms.length; i++) {
         if (plan.terms[i].items.some((it) => !("slot" in it) && codes.includes(it.code))) return i;

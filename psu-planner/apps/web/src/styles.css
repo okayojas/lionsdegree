@@ -493,6 +493,14 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 .onboard .ed-warn strong { color: var(--warning); font-weight: 700; }
 .onboard .grid { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
 .onboard label.check { display: flex; gap: var(--sp-2); align-items: center; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 6px 10px; cursor: pointer; font-size: var(--fs-sm); }
+/* Why a course in the checklist is not the one the program's grid names —
+   a Schreyer substitution. Quiet, because it is an explanation rather
+   than a warning, and it sits inside a wrapping row so it must be able
+   to drop to its own line (#23). */
+.onboard .track-note {
+  font-size: var(--fs-xs); color: var(--text-muted); font-style: italic;
+  min-width: 0; flex-basis: 100%;
+}
 .onboard .prog-list { max-height: 300px; overflow: auto; display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
 .onboard .prog-item { text-align: left; padding: 9px 12px; font-weight: 500; }
 .onboard .prog-item .meta { font-size: var(--fs-xs); color: var(--text-muted); display: block; font-weight: 400; }

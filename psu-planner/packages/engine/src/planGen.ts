@@ -2,6 +2,7 @@
  * Merging rule for multi-program: union by term index, dedupe shared courses
  * (first program wins the card; both get credit via sourcePrograms tags). */
 import { codeMatchesPool, poolHasMembership, resolveSlotPool, type Registry, type ReqSection } from "./requirements.js";
+import { rclSatisfied } from "./honors.js";
 import type { PlanDoc, PlanItemSpec, PlanTerm } from "./types.js";
 
 export interface TemplateEntry {
@@ -111,9 +112,19 @@ export function generatePlan(programs: ProgramTemplate[], opts: GenPlanOptions, 
     (opts.coveredBy?.[code] ?? []).some((sup) => completedSet.has(sup));
   const honorsTwinDone = (code: string): boolean =>
     completedSet.has(code + "H") || completedSet.has(code + "M");
+  // THE RCL PAIR IS NOT A SUFFIX TWIN, which is why `honorsTwinDone` above
+  // never caught it: ENGL 137H is not "ENGL 15" + "H". A Schreyer first-year
+  // takes ENGL 137H and CAS 138T INSTEAD of ENGL 15 and CAS 100 — the honors
+  // college requires exactly that — and before this a Scholar who recorded
+  // the courses they actually passed was still told to go and take ENGL 15.
+  // One definition, shared with the upgrade pass that swaps a plan onto
+  // these same courses.
+  const rclDone = (code: string): boolean => rclSatisfied(code, (c) => completedSet.has(c));
   const entrySatisfied = (e: TemplateEntry): boolean => {
     const codes = [e.code!, ...(e.alternatives ?? [])];
-    return codes.some((c) => completedSet.has(c) || seenCourses.has(c) || coverSatisfied(c) || honorsTwinDone(c));
+    return codes.some(
+      (c) => completedSet.has(c) || seenCourses.has(c) || coverSatisfied(c) || honorsTwinDone(c) || rclDone(c),
+    );
   };
 
   // ---- Cross-program requirement fulfillment ------------------------------
