@@ -290,13 +290,42 @@ async function throttleAnonymous(request: Request, kv: KVLike): Promise<Response
   );
 }
 
+/** Is this a request for one of our discovery documents?
+ *
+ * BOTH FORMS, because the specs put the document somewhere a bare
+ * equality check does not find it. RFC 9728 §3.1 and RFC 8414 §3.1 both
+ * build the URL by INSERTING `/.well-known/<name>` between the host and
+ * the resource's own path — so the metadata for a resource at
+ * `https://mcp.lionsdegree.com/mcp` lives at
+ * `https://mcp.lionsdegree.com/.well-known/oauth-protected-resource/mcp`,
+ * not at the bare `/.well-known/oauth-protected-resource` this used to
+ * match. We only ever served the bare one.
+ *
+ * It worked anyway for as long as every client followed the
+ * `resource_metadata` parameter we put in the 401's `WWW-Authenticate`
+ * header, which points straight at the bare URL. A client that instead
+ * derives the canonical path-aware URL — which the MCP authorization
+ * spec tells it to — got a 404 and no way to discover the authorization
+ * server at all. That is "cannot connect" with nothing in our logs,
+ * because a 404 on a well-known path is not an error anybody records.
+ *
+ * ANY SUFFIX, not just `/mcp`. The resource path is the client's
+ * business, not ours, and a connector reached at a different path should
+ * not have to wait for a deploy. The documents are identical whichever
+ * way they are asked for: there is one resource here and one
+ * authorization server. */
+function wellKnown(pathname: string, name: string): boolean {
+  const base = `/.well-known/${name}`;
+  return pathname === base || pathname === `${base}/` || pathname.startsWith(`${base}/`);
+}
+
 /** Handle an OAuth route, or return null if this is not one. */
 export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Response | null> {
   const url = new URL(request.url);
   const issuer = `${url.protocol}//${url.host}`;
   const p = url.pathname;
 
-  if (p === "/.well-known/oauth-protected-resource") {
+  if (wellKnown(p, "oauth-protected-resource")) {
     if (!config(env)) return NOT_CONFIGURED();
     return json({
       resource: `${issuer}/mcp`,
@@ -306,7 +335,7 @@ export async function handleOAuth(request: Request, env: OAuthEnv): Promise<Resp
     });
   }
 
-  if (p === "/.well-known/oauth-authorization-server") {
+  if (wellKnown(p, "oauth-authorization-server")) {
     if (!config(env)) return NOT_CONFIGURED();
     return json({
       issuer,

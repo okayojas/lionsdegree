@@ -115,6 +115,45 @@ describe("discovery", () => {
     expect(m.registration_endpoint, "no DCR endpoint, so a new client cannot register").toMatch(/\/register$/);
   });
 
+  it("serves both documents where the SPEC puts them, not only where our header points", async () => {
+    // THE GAP THAT MADE A CLIENT UNABLE TO CONNECT AT ALL, with nothing
+    // in our logs to show for it.
+    //
+    // RFC 9728 §3.1 and RFC 8414 §3.1 build the metadata URL by
+    // INSERTING `/.well-known/<name>` between the host and the
+    // resource's own path. For a resource at `https://host/mcp` the
+    // canonical document is at `/.well-known/oauth-protected-resource/mcp`
+    // — and we matched the bare path with `===`, so that 404'd.
+    //
+    // It worked for as long as every client followed the
+    // `resource_metadata` parameter in our 401, which names the bare
+    // URL. One that derives the canonical path-aware URL instead, which
+    // the MCP authorization spec tells it to, found nothing and could
+    // not discover the authorization server.
+    //
+    // A 404 on a well-known path is not an error anybody logs, which is
+    // why this looked like silence rather than a failure.
+    for (const base of ["/.well-known/oauth-protected-resource", "/.well-known/oauth-authorization-server"]) {
+      const bare = await get(base);
+      const pathAware = await get(`${base}/mcp`);
+      expect(bare.status, `${base} is not served`).toBe(200);
+      expect(pathAware.status, `${base}/mcp is not served — the canonical location for a resource at /mcp`).toBe(200);
+      // The same document either way: there is one resource here and one
+      // authorization server, so a client must not get a different
+      // answer depending on which spelling it tried.
+      expect(await pathAware.json(), `${base} answers differently at its path-aware URL`).toEqual(await bare.json());
+    }
+  });
+
+  it("does not answer for a well-known name it does not implement", async () => {
+    // The suffix match must not turn into "any /.well-known/* is ours".
+    // Claiming to be an OpenID provider we are not would send a client
+    // down a flow nothing here can complete.
+    for (const p of ["/.well-known/openid-configuration", "/.well-known/oauth-protected-resourceX", "/.well-known/"]) {
+      expect((await get(p)).status, `${p} was answered by the OAuth router`).not.toBe(200);
+    }
+  });
+
   it("advertises PKCE, and only S256", async () => {
     // OAuth 2.1 requires PKCE. `plain` is not a challenge, it is the
     // verifier sent twice.
