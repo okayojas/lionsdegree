@@ -168,6 +168,19 @@ export function getPlanHistory(): PlanHistoryEntry[] {
     return [];
   }
 }
+
+/** Put a Plan into history WITHOUT making it the current one.
+ *
+ * For a Plan that arrives from somewhere else and is not being adopted —
+ * today that means the Plan found in a student's account when they chose
+ * to carry on with the one on this device. It is still in Postgres, but
+ * the sign-in read takes the newest row and this device's Plan is about
+ * to be that, so nothing in the interface would ever show it again.
+ * History is the door the rest of the app already points students at. */
+export function recordInPlanHistory(plan: PlanDoc, cause: string): void {
+  pushHistory(plan, cause);
+}
+
 function pushHistory(plan: PlanDoc, cause: string) {
   try {
     const log = getPlanHistory();

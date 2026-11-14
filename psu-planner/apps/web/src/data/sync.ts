@@ -153,14 +153,36 @@ export function conflictMessage(): string {
  * write lands only if the server is still there. */
 const SYNCED_REV_KEY = "lionsdegree-synced-rev";
 
-function syncedRev(planId: string): number | null {
+function agreementMap(): Record<string, number> {
   try {
-    const all = JSON.parse(localStorage.getItem(SYNCED_REV_KEY) ?? "{}") as Record<string, number>;
-    return typeof all[planId] === "number" ? all[planId] : null;
+    return JSON.parse(localStorage.getItem(SYNCED_REV_KEY) ?? "{}") as Record<string, number>;
   } catch {
-    return null;
+    return {};
   }
 }
+
+function syncedRev(planId: string): number | null {
+  const all = agreementMap();
+  return typeof all[planId] === "number" ? all[planId] : null;
+}
+
+/** The agreement this device had WHEN THE PAGE LOADED.
+ *
+ * A snapshot, and it has to be one. "A Plan the account has never seen"
+ * is a fact about the student, not about this millisecond: loading a Plan
+ * persists it, persisting it schedules a push 2.5 seconds later, and that
+ * push records agreement. Ask the live map any later than that and a Plan
+ * built while signed out looks like one the account always had — so the
+ * question that should be put to the student silently stops being a
+ * question, and they are left exactly where this ticket found them.
+ *
+ * Measured: the browser test for that question passed on every profile at
+ * normal speed, and missed it on one profile under full-suite load, where
+ * the planner takes longer than the debounce to render its toolbar.
+ *
+ * Nothing in this page can push before this module is imported, so this
+ * is the earliest honest answer there is. */
+const agreedAtLoad: Record<string, number> = agreementMap();
 
 export function rememberSyncedRev(planId: string, rev: number): void {
   try {
@@ -247,6 +269,18 @@ export async function pushPlan(plan: PlanDoc): Promise<"pushed" | "stale" | "off
  * recorded, so the next push is a clean compare-and-swap rather than an
  * immediate second refusal. */
 export async function pullNewerPlan(local: PlanDoc | null, force = false): Promise<PlanDoc | null> {
+  const newest = await newestRemotePlan();
+  if (!newest) return null;
+  const { remote, remoteRev } = newest;
+  return takesRemote(local, remote, remoteRev, force) ? remember(remote, remoteRev, local) : null;
+}
+
+/** The newest Plan this account holds, or null when there is none to read.
+ *
+ * Split out because sign-in needs the same row for a different question
+ * (`findPlansAtSignIn`), and reading it twice would mean two answers from
+ * two moments — the read-then-decide gap this file already paid for once. */
+async function newestRemotePlan(): Promise<{ remote: PlanDoc; remoteRev: number } | null> {
   const sb = supabase();
   const user = await currentUser();
   if (!sb || !user) return null;
@@ -259,22 +293,26 @@ export async function pullNewerPlan(local: PlanDoc | null, force = false): Promi
     .maybeSingle();
   if (!data) return null;
   const remote = data.doc as PlanDoc;
-  const remoteRev = (data.rev as number) ?? remote.rev;
+  return { remote, remoteRev: (data.rev as number) ?? remote.rev };
+}
 
-  // AGREEMENT FIRST, CLOCKS ONLY AS A FALLBACK.
-  //
-  // When this device has no unsynced edits — its revision is exactly the
-  // one it last agreed with the server on — a different revision over
-  // there is unambiguously somebody else's change, and it must be taken
-  // whatever the timestamps say. That case used to fail: since #36 the
-  // other writer can be the student's assistant, whose `updated_at`
-  // comes from a SERVER, so a browser clock a few minutes fast made the
-  // local copy look newer than a change made after it. The student asks
-  // their assistant to add a course, watches it confirmed, opens the
-  // planner, and it is not there.
-  //
-  // ADR 0003 replaced clocks with `rev` for writes because two devices'
-  // clocks disagree quietly. This is the same rule applied to reads.
+/** Should this device take the copy the server is holding?
+ *
+ * AGREEMENT FIRST, CLOCKS ONLY AS A FALLBACK.
+ *
+ * When this device has no unsynced edits — its revision is exactly the
+ * one it last agreed with the server on — a different revision over
+ * there is unambiguously somebody else's change, and it must be taken
+ * whatever the timestamps say. That case used to fail: since #36 the
+ * other writer can be the student's assistant, whose `updated_at`
+ * comes from a SERVER, so a browser clock a few minutes fast made the
+ * local copy look newer than a change made after it. The student asks
+ * their assistant to add a course, watches it confirmed, opens the
+ * planner, and it is not there.
+ *
+ * ADR 0003 replaced clocks with `rev` for writes because two devices'
+ * clocks disagree quietly. This is the same rule applied to reads. */
+function takesRemote(local: PlanDoc | null, remote: PlanDoc, remoteRev: number, force: boolean): boolean {
   const agreed = syncedRev(remote.id);
   if (!force && local && agreed !== null) {
     // The server is exactly where we left it, so there is nothing over
@@ -283,17 +321,17 @@ export async function pullNewerPlan(local: PlanDoc | null, force = false): Promi
     // SLOW local clock made the remote look newer and pulled, replacing
     // unsynced local edits with a copy the server already had. ADR
     // 0003: clock skew stops mattering.
-    if (remoteRev === agreed) return null;
+    if (remoteRev === agreed) return false;
     // We have no unsynced edits and the server has moved: unambiguously
     // somebody else's change — their other device, or their assistant.
-    if (local.rev === agreed) return remember(remote, remoteRev, local);
+    if (local.rev === agreed) return true;
   }
   if (!force && local && new Date(local.updatedAt) >= new Date(remote.updatedAt)) {
     // Both sides moved. A pull here would replace unsynced local work
     // without saying so; the refused push is what raises that properly.
-    return null;
+    return false;
   }
-  return remember(remote, remoteRev, local);
+  return true;
 }
 
 /** Take the remote copy: back up what it replaces, and record that we
@@ -309,6 +347,112 @@ function remember(remote: PlanDoc, rev: number, replacing: PlanDoc | null): Plan
   }
   rememberSyncedRev(remote.id, rev);
   return remote;
+}
+
+/** What signing in found.
+ *
+ * `kept` and `collision` are the two answers `pullNewerPlan` could not
+ * give, and both exist because of the same student: somebody who built a
+ * Plan on this device while signed out.
+ *
+ * `nothing`  — nothing to do. No Plan here, or the account is already
+ *              holding the copy this device has.
+ * `kept`     — the account had no Plan, so the one on this device is now
+ *              in it. The offer that got them here said the Plan would
+ *              follow them to their phone, and this is the moment that
+ *              becomes true: waiting for the next edit to push would make
+ *              the promise false for anyone who signs in and closes the tab.
+ * `unsaved`  — the same case, and the write did not land. Said plainly
+ *              rather than reported as success (iron rule 2).
+ * `adopted`  — the account's Plan is now this device's. The local copy is
+ *              backed up on the way through, as it always was.
+ * `collision`— a Plan on this device the account has never seen, AND a
+ *              different Plan already in the account. ASKED, NOT ANSWERED.
+ *              `pullNewerPlan` resolved this by comparing clocks, and the
+ *              Plan that lost became unreachable: it is still in Postgres,
+ *              but that read is newest-first and would never surface it
+ *              again. Indistinguishable, from the student's side, from
+ *              having lost it. ADR 0003 took clocks out of writes for the
+ *              same reason they are wrong here. */
+export type SignInFinding =
+  | { kind: "nothing" }
+  | { kind: "kept" }
+  | { kind: "unsaved" }
+  | { kind: "adopted"; plan: PlanDoc }
+  | { kind: "collision"; local: PlanDoc; remote: PlanDoc; remoteRev: number };
+
+/** The collision, as the two things the student is choosing between. */
+export type PlanCollision = Extract<SignInFinding, { kind: "collision" }>;
+
+/** What to do about the Plans in play, the moment a student signs in.
+ *
+ * One read of the account, one answer. Every sign-in goes through here —
+ * from the offer on the chart, from the account menu, or from the landing
+ * page's link — so the careful path is not only the one through the
+ * prompt. */
+export async function findPlansAtSignIn(local: PlanDoc | null): Promise<SignInFinding> {
+  // THE SNAPSHOT, not the live map — see `agreedAtLoad`. This page's own
+  // debounced push must not be able to answer the question before it is
+  // asked.
+  const neverSynced = !!local && agreedAtLoad[local.id] === undefined;
+
+  const newest = await newestRemotePlan();
+
+  if (!newest) {
+    if (!local) return { kind: "nothing" };
+    return (await pushNowInsteadOfLater(local)) === "pushed" ? { kind: "kept" } : { kind: "unsaved" };
+  }
+
+  const { remote, remoteRev } = newest;
+  // THE COLLISION, and the narrowest definition of it that is still the
+  // whole problem: a Plan this device had never got onto the server
+  // (`syncedRev` is the record of ever having agreed with it) and a
+  // DIFFERENT Plan already in the account. Same id is not this question —
+  // that is one Plan in two places, which is what `takesRemote` is for and
+  // what two long-standing bugs were fixed inside.
+  if (local && remote.id !== local.id && neverSynced) {
+    return { kind: "collision", local, remote, remoteRev };
+  }
+  if (!takesRemote(local, remote, remoteRev, false)) return { kind: "nothing" };
+  return { kind: "adopted", plan: remember(remote, remoteRev, local) };
+}
+
+/** Keep the account's Plan. The one on this device is backed up on the way
+ * through, exactly as an ordinary pull does it. */
+export function takeTheAccountsPlan(c: PlanCollision): PlanDoc {
+  return remember(c.remote, c.remoteRev, c.local);
+}
+
+/** Keep the Plan on this device, and leave the account's where it is.
+ *
+ * BOTH SURVIVE. The account's row is never written here — this device's
+ * Plan has its own id, so the push below inserts beside it rather than
+ * over it. What it does record is AGREEMENT with the account's Plan at
+ * the revision just read, so that a student who restores it later (the
+ * caller puts it in Plan history) writes a clean compare-and-swap instead
+ * of an insert the database correctly refuses. */
+export async function keepThisDevicesPlan(c: PlanCollision): Promise<"pushed" | "stale" | "off" | "failed"> {
+  rememberSyncedRev(c.remote.id, c.remoteRev);
+  return pushNowInsteadOfLater(c.local);
+}
+
+/** Push this Plan now, TAKING OVER the push that was already waiting.
+ *
+ * Both callers above are reached a moment after the app has loaded a Plan,
+ * and loading a Plan persists it, and persisting it schedules a debounced
+ * push. So pushing again from here is two writes of a Plan the server has
+ * never seen — two INSERTs, and the second one collides. The database is
+ * right to refuse it, and the student would be shown a conflict notice
+ * about a Plan nobody else has touched. Crying wolf about data loss is its
+ * own kind of harm; it is why `pending` exists at all.
+ *
+ * So the waiting push is cancelled and its Plan is the one sent, because
+ * `pending` is this same Plan or a newer edit of it — never an older one. */
+async function pushNowInsteadOfLater(plan: PlanDoc): Promise<"pushed" | "stale" | "off" | "failed"> {
+  const owed = pending ?? plan;
+  clearTimeout(timer);
+  pending = null;
+  return pushPlan(owed);
 }
 
 /** Told when a background push was refused because the Plan moved on.

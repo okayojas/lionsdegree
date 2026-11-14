@@ -354,7 +354,13 @@ test.describe("two writers, racing", () => {
     // is what makes what follows a race rather than two unrelated writes.
     const server = makeServer();
     server.rev = 7;
-    server.doc = serverPlan("shared", 7, true);
+    // THE SAME PLAN ID ON BOTH SIDES. Two writers racing is two devices
+    // editing ONE plan, and the id is what makes it one. A different id in
+    // the account is a different question entirely — a plan this device
+    // built that the server has never seen, beside a plan the account
+    // already had — and the device now stops and asks which to keep rather
+    // than adopting either, so nothing would ever reach the race below.
+    server.doc = serverPlan((SEEDED_PLAN as { id: string }).id, 7, true);
     server.updatedAt = (server.doc as { updatedAt: string }).updatedAt;
 
     // SEPARATE CONTEXTS, not two pages in one. Pages in a context share
