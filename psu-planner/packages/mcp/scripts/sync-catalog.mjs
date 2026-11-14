@@ -88,6 +88,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+// The bound the web app's extractor enforces, imported rather than repeated:
+// two copies of a limit is one copy that stops matching.
+import { MAX_SUMMARY } from "../../../apps/web/scripts/firstSentence.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const SRC = path.resolve(here, "../../../apps/web/public/catalog");
@@ -123,7 +126,12 @@ const FILES = [
  * a citation against the Graduate Bulletin has to find the same words.
  * Paraphrasing it here would silently break every citation the connector
  * makes. It is fenced where it reaches a model, not rewritten. */
-const DIRS = ["courses", "iug"];
+// `summaries/` is one map per subject of the Bulletin's OPENING SENTENCE,
+// written by the web app's sync-catalog. It is a separate directory rather
+// than a field on each course for a measured reason: inlining the sentences
+// put +145 KB gzipped on the planner's 689 KB boot payload for text only a
+// course modal reads. The connector reads it the same way, on demand.
+const DIRS = ["courses", "iug", "summaries"];
 
 /** An Edition is unusable without these. Listing it in editions.json anyway
  * shipped a server that started fine and then told every student their
@@ -170,6 +178,42 @@ function assertNoDescriptions(dir, edition) {
     // Both shapes. A bare array is a subject file; `{courses: [...]}` is
     // the audit index. Skipping the second meant the guard did not cover
     // the one file every Edition is required to ship.
+    // ONE SENTENCE IS ALLOWED, and it lives in its own file.
+    //
+    // `summaries/<subject>.json` is a map of course code to the Bulletin's
+    // OPENING SENTENCE, published on purpose -- so the description check
+    // above must not reject it. But "one sentence" is a claim about a
+    // parser, and a parser regression would turn it into a paragraph
+    // silently, in a file nobody reads. The bound is asserted here, at the
+    // last point before it leaves the build, for the same reason the
+    // description check is.
+    //
+    // The shape is an OBJECT, not the array of courses above, which is why
+    // this is its own branch: `rows` is null for these files and the loop
+    // would otherwise skip them entirely.
+    //
+    // SCOPED TO `summaries/` BY PATH, and that scoping is load-bearing. The
+    // first version checked every object-shaped file and refused to ship
+    // over an IUG spec, whose `applyText` is 1,200 characters of graduate
+    // POLICY quoted verbatim by deliberate decision (CONTEXT.md, GCAC-210)
+    // — a rule about course summaries firing on admissions policy is a
+    // guard that teaches people to disable guards.
+    const isSummaryFile = p.split(path.sep).includes("summaries");
+    if (isSummaryFile && !Array.isArray(parsed) && parsed && typeof parsed === "object") {
+      const overlong = Object.entries(parsed).filter(
+        ([, v]) => typeof v === "string" && v.length > MAX_SUMMARY,
+      );
+      if (overlong.length) {
+        const worst = Math.max(...overlong.map(([, v]) => v.length));
+        console.error(
+          `refusing to ship ${edition}: ${path.basename(p)} carries ${overlong.length} summaries longer ` +
+            `than ${MAX_SUMMARY} characters (worst: ${worst}, ${overlong[0][0]}). A summary is ONE sentence ` +
+            `of Penn State's prose; a paragraph is the description, which must not leave the build. ` +
+            `Check firstSentence.mjs in the web app's scripts.`,
+        );
+        process.exit(1);
+      }
+    }
     const rows = Array.isArray(parsed) ? parsed : Array.isArray(parsed?.courses) ? parsed.courses : null;
     if (!rows) continue;
     const leaked = rows.filter((c) => typeof c?.description === "string" && c.description.length);
@@ -181,6 +225,7 @@ function assertNoDescriptions(dir, edition) {
       );
       process.exit(1);
     }
+
   }
 }
 

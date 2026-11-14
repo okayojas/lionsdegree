@@ -8,7 +8,7 @@ import {
   countableCourses, majorDeptPrefixes, parseTermLabel, rankSlotPicks, resolveSlotPool,
   type Catalog, type PlanItem, type Pool, type ReqSection, type SlotSuggestions as SlotSuggestionsResult,
 } from "@psu-planner/engine";
-import { loadAuditIndex, loadProgramBySlug } from "../data/catalogClient";
+import { loadAuditIndex, loadProgramBySlug, loadSummary } from "../data/catalogClient";
 import { usePlanner } from "../store";
 import { Dialog } from "./Dialog";
 
@@ -153,6 +153,20 @@ export function CourseModal({ item, onClose }: { item: PlanItem; onClose: () => 
 
 
   const c = item.code ? catalog[item.code] : undefined;
+  /* The Bulletin's opening sentence, fetched when the modal opens rather
+     than carried in the subject file the planner already loads. Inlining
+     it cost +145 KB gzipped on a 689 KB boot payload for text nobody sees
+     until they open a course (#24, ADR 0002). Null until it arrives and
+     null when there is none, which is the same thing to the render
+     below: keywords show instead. */
+  const [summary, setSummary] = useState<string | null>(null);
+  useEffect(() => {
+    setSummary(null);
+    if (!item.code) return;
+    let live = true;
+    void loadSummary(item.code).then((s) => { if (live) setSummary(s); });
+    return () => { live = false; };
+  }, [item.code]);
   const chk = useMemo(
     () => (item.kind === "course" && item.code ? checkCourse(catalog, item.code, item.sem, sched) : null),
     [item, catalog, sched],
@@ -349,21 +363,35 @@ That is the earliest term where ${fix.blockedBy.join(" and ")} will be behind it
             <span style={{ display: "block", marginTop: 4 }}>Every optimization honors these — the course is scheduled around them.</span>
           </div>
         )}
-        {/* What the course is about, before the prose. The keywords are
-            extracted from the bulletin's description by the pipeline, so a
-            student can tell at a glance what a course covers without reading
-            a paragraph -- and without us republishing one in full. The
-            bulletin link is the authority for the rest. */}
-        {c?.keywords?.length ? (
+        {/* WHAT THE COURSE IS, in the Bulletin's own opening sentence.
+            Quoted and attributed, because it is Penn State's writing and
+            not ours; the rest of the description still never leaves the
+            build (DECISIONS.md 5.1, narrowed deliberately).
+
+            This replaced a list of extracted keywords, which read badly:
+            MUSIC 4 came out as "hollywood, narrative, eras, scene, extent,
+            premier, functions, musical" -- three of those are extraction
+            noise and none of it is a sentence. */}
+        {summary ? (
+          <blockquote className="course-summary">
+            <p>{summary}</p>
+            <cite>Penn State Bulletin</cite>
+          </blockquote>
+        ) : c?.keywords?.length ? (
+          /* FALLBACK, for the 4.4% of courses whose opening sentence is not
+             usable -- too short to describe anything ("Life is social."),
+             or long enough that quoting it would be republishing the
+             description. The keywords are a worse answer than a sentence
+             and a better one than nothing, and the pipeline declines rather
+             than quoting a fragment under the University's name. */
           <ul className="kw" aria-label={`What ${c.code} covers`}>
             {c.keywords.map((k) => (
               <li key={k}>{k}</li>
             ))}
           </ul>
         ) : null}
-        {/* The Bulletin's own prose is not published here (DECISIONS.md
-            5.1); the keywords above say what the course covers and this is
-            the link to the text itself. */}
+        {/* The Bulletin remains the authority: one sentence is not the
+            whole entry, and a student acting on this should read it. */}
         {c?.url && (
           <p className="desc">
             <a href={c.url} target="_blank" rel="noopener noreferrer">

@@ -15,6 +15,21 @@ export interface Course {
    * without republishing the University's prose (DECISIONS.md 5.1). Absent
    * when nothing could be derived. */
   keywords?: string[];
+  /** The Bulletin's OPENING SENTENCE, and only that.
+   *
+   * The one piece of Penn State's prose the published catalog carries, and
+   * a deliberate narrowing of DECISIONS.md 5.1 rather than an exception
+   * that crept in: `keywords` alone read badly (a bag of eight words, some
+   * of them extraction noise) where the Bulletin's first line almost
+   * always says what the course is. Shown in quotes, attributed, beside
+   * the link to the full entry.
+   *
+   * Absent when the pipeline could not produce a usable one — under 40
+   * characters is a sentence that describes nothing ("Life is social."),
+   * over 400 is not one sentence. The caller falls back to `keywords`
+   * rather than quoting a fragment: a mis-split sentence published under
+   * the University's name is a wrong answer wearing a citation. */
+  summary?: string;
   enforced: string | null;
   concurrent: string | null;
   prereqAdvisory: string | null;

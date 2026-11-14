@@ -243,6 +243,49 @@ export async function loadSubject(prefix: string): Promise<Course[]> {
   return courses;
 }
 
+/** The Bulletin's opening sentence for one course, or null.
+ *
+ * OFF THE BOOT PATH ON PURPOSE. These could have ridden along inside the
+ * subject files `loadSubject` already fetches, and the first version did
+ * exactly that — measured at +145 KB gzipped on a 689 KB boot payload,
+ * 21%, for text that is only ever read inside a course modal. #24 exists
+ * to drive that number down, and ADR 0002 says fix the metric rather than
+ * move it, so the sentences live in their own per-subject file and are
+ * fetched when a student actually opens a course. A typical subject map
+ * is ~6 KB gzipped and is cached for the session after the first open.
+ *
+ * Returns null rather than throwing on a miss: ~5% of courses have no
+ * usable opening sentence, an edition may predate the file entirely, and
+ * neither is a reason for a course modal to fail. The caller falls back
+ * to keywords. */
+const loadedSummaries = new Map<string, Promise<Record<string, string>>>();
+
+export async function loadSummary(code: string): Promise<string | null> {
+  const prefix = code.split(" ")[0];
+  if (!prefix) return null;
+  let inFlight = loadedSummaries.get(prefix);
+  if (!inFlight) {
+    inFlight = (async () => {
+      const idx = await loadSubjectsIndex();
+      // `summaries/<same name as the subject file>`, so one index serves
+      // both and a slugged subject (AI -> a-i.json) needs no second rule.
+      const files = [idx[prefix], idx[`${prefix}:grad`]].filter(Boolean) as string[];
+      const merged: Record<string, string> = {};
+      for (const file of files) {
+        try {
+          Object.assign(merged, await getJson<Record<string, string>>(`summaries/${file.replace(/^courses\//, "")}`));
+        } catch {
+          // An edition published before summaries existed, or a subject
+          // whose descriptions all declined. Neither is an error here.
+        }
+      }
+      return merged;
+    })();
+    loadedSummaries.set(prefix, inFlight);
+  }
+  return (await inFlight)[code] ?? null;
+}
+
 /** One course, with its FULL description, from its subject file.
  *
  * The search index carries a shortened description -- enough to find a course,

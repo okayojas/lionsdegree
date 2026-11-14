@@ -135,6 +135,20 @@ export interface EditionCatalog {
    * it under that slug. */
   iug(slug: string): Promise<IugSpec | null>;
 
+  /** The Bulletin's opening sentence for one Course, or null.
+   *
+   * READ ON DEMAND, from `summaries/<subject>.json`, for the same reason
+   * the planner fetches it that way: inlining the sentences into the
+   * subject files put +145 KB gzipped on the planner's boot payload for
+   * text only a course lookup reads. An isolate that answers a question
+   * about prerequisites should not pay for prose nobody asked for.
+   *
+   * Null when this Edition has no usable sentence for the Course (~5% of
+   * them), and null when the file is absent — an Edition published before
+   * summaries existed is not an error, and `get_course_details` falls
+   * back to keywords. */
+  summary(code: string): Promise<string | null>;
+
   /** A Program as the engine's merge wants it: requirements plus the
    * suggested-plan grid (#47).
    *
@@ -261,6 +275,8 @@ export async function loadEdition(source: CatalogSource, edition: string): Promi
    * only when a student declares one: 1.6 MB of grids per Edition that a
    * session which never declares a Program never touches. */
   const loadedGrid = new Map<string, Promise<{ campusLabel?: string; semesters?: TemplateSemester[] } | null>>();
+  /** One map per subject, read the first time a Course in it is looked up. */
+  const loadedSummaries = new Map<string, Promise<Record<string, string>>>();
 
   /** The Edition's IUG index, read once. A local function rather than a
    * method so `iug` below can call it without going through `this` --
@@ -418,6 +434,29 @@ export async function loadEdition(source: CatalogSource, edition: string): Promi
       })();
       loadedIug.set(slug, work);
       return work;
+    },
+
+    async summary(code) {
+      const prefix = subjectOf(code);
+      if (!prefix) return null;
+      let inFlight = loadedSummaries.get(prefix);
+      if (!inFlight) {
+        inFlight = (async () => {
+          // Same name as the subject file, so `subjects_index.json` serves
+          // both and a slugged subject (AI -> a-i.json) needs no second rule.
+          const files = [subjects[prefix], subjects[`${prefix}:grad`]].filter(Boolean) as string[];
+          const merged: Record<string, string> = {};
+          for (const file of files) {
+            const got = await source.read<Record<string, string>>(
+              `${edition}/summaries/${file.replace(/^courses\//, "")}`,
+            );
+            if (got) Object.assign(merged, got);
+          }
+          return merged;
+        })();
+        loadedSummaries.set(prefix, inFlight);
+      }
+      return (await inFlight)[code] ?? null;
     },
 
     async programTemplate(slug) {

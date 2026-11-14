@@ -17,6 +17,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { firstSentence } from "./firstSentence.mjs";
 import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -96,6 +97,7 @@ for (const edition of editions) {
  */
 function stripDescriptions(editionDir) {
   let bytes = 0;
+  let summaryBytes = 0;
   for (const sub of [["courses"], ["courses", "grad"]]) {
     const dir = path.join(editionDir, ...sub);
     if (!fs.existsSync(dir)) continue;
@@ -103,18 +105,49 @@ function stripDescriptions(editionDir) {
       const file = path.join(dir, f);
       const courses = JSON.parse(fs.readFileSync(file, "utf-8"));
       if (!Array.isArray(courses)) continue;
+      // One map per subject file, written beside it under `summaries/`.
+      // Fetched only when a student opens a course, so the boot payload
+      // does not carry it.
+      const summaries = {};
       let touched = false;
       for (const c of courses) {
         if (typeof c?.description === "string" && c.description) {
-          bytes += c.description.length;
+          // ONE SENTENCE SURVIVES, the rest does not. Keeping the opening
+          // sentence is a deliberate narrowing of DECISIONS.md 5.1: the
+          // keywords that replaced the description read badly ("extent",
+          // "premier", "discipline" are extraction noise) while the
+          // Bulletin's own first line almost always says what the course
+          // is. It is published in quotes, attributed, beside the link to
+          // the full entry.
+          //
+          // IT DOES NOT GO IN THIS FILE, and that is the whole point of
+          // the collection below. Subject files are on the BOOT path --
+          // the planner pulls one per subject in the student's plan before
+          // the chart is usable -- and inlining the sentences measured at
+          // +145 KB gzipped on a 689 KB payload, 21%, for text that is
+          // only ever read inside a course modal. #24 exists to drive that
+          // number down; adding a fifth of it back for a field nobody sees
+          // during boot is the shape of change ADR 0002 is about.
+          const summary = firstSentence(c.description);
+          if (summary) summaries[c.code] = summary;
+          bytes += c.description.length - (summary?.length ?? 0);
           delete c.description;
           touched = true;
         }
       }
       if (touched) fs.writeFileSync(file, JSON.stringify(courses, null, 1), "utf-8");
+      if (Object.keys(summaries).length) {
+        const out = path.join(editionDir, "summaries", ...sub.slice(1), f);
+        fs.mkdirSync(path.dirname(out), { recursive: true });
+        // No pretty-printing: this one is fetched, not read by a person,
+        // and the indentation was 18% of it.
+        const body = JSON.stringify(summaries);
+        fs.writeFileSync(out, body, "utf-8");
+        summaryBytes += body.length;
+      }
     }
   }
-  return bytes / 1048576;
+  return { withheld: bytes / 1048576, summaries: summaryBytes / 1048576 };
 }
 
 fs.mkdirSync(DST, { recursive: true });
@@ -135,7 +168,10 @@ for (const edition of editions) {
     fs.rmSync(path.join(dst, mcpOnly), { force: true });
   }
   const stripped = stripDescriptions(dst);
-  console.log(`synced ${edition} (${countFiles(dst)} files, ${stripped.toFixed(1)} MB of description prose withheld)`);
+  console.log(
+    `synced ${edition} (${countFiles(dst)} files, ${stripped.withheld.toFixed(1)} MB of description prose withheld, ` +
+      `${stripped.summaries.toFixed(2)} MB of opening sentences in summaries/)`,
+  );
 }
 
 // Every edition now published, newest last. The app reads this to populate the

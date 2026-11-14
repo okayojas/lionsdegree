@@ -493,6 +493,31 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 .onboard .ed-warn strong { color: var(--warning); font-weight: 700; }
 .onboard .grid { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
 .onboard label.check { display: flex; gap: var(--sp-2); align-items: center; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 6px 10px; cursor: pointer; font-size: var(--fs-sm); }
+/* The Bulletin's opening sentence, quoted.
+   Set apart from our own words by a rule and the serif-less quotation it
+   already is: a student has to be able to tell what Penn State wrote from
+   what we did, which is the whole reason it carries a citation. */
+.course-summary {
+  margin: var(--sp-3) 0 0;
+  padding: 0 0 0 var(--sp-3);
+  border-left: 2px solid var(--border-strong);
+  display: flex; flex-direction: column; gap: 2px;
+}
+.course-summary p {
+  margin: 0;
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: var(--text);
+}
+.course-summary cite {
+  font-style: normal;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
 /* The account control above onboarding.
    Trailing edge, which is the corner the planner's toolbar, the landing
    page and every static page already put it -- one position across every

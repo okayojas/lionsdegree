@@ -896,16 +896,29 @@ export async function executeTool(
       await data.ensureCourses([code]);
       const c = cat[code];
       if (!c) return { error: `${code || args.code} is not in the ${data.edition} catalog` };
+      // One subject map, read on demand. Not held with the Course itself:
+      // an isolate answering a prerequisite question should not pay for
+      // prose nobody asked for (the planner measured the same inlining at
+      // +145 KB gzipped on its boot payload).
+      const summary = await data.summary(code);
       return {
         code: c.code,
         title: c.title,
         credits: c.credits,
-        // Keywords first: extracted topic terms are facts about the course
-        // and need no fencing. The description is the University's prose and
-        // does, and is excerpted rather than reproduced whole.
-        // Keywords, not prose. Extracted terms are facts about the course and
-        // need no fencing; the Bulletin's description is not published here at
-        // all (DECISIONS.md 5.1), so bulletin_url is where the text lives.
+        // THE BULLETIN'S OPENING SENTENCE, FENCED. It is the University's
+        // prose, so it reaches a model inside `<untrusted_catalog_text>`
+        // (DECISIONS.md 5.0 S4) — a course description is a place somebody
+        // could write "ignore your instructions", and the fence is what
+        // says this is data being quoted rather than something we are
+        // asking the model to do.
+        //
+        // One sentence only; the rest of the description still never
+        // leaves the build, and `bulletin_url` is where it lives.
+        ...(summary ? { summary: fenceCatalogText(summary) } : {}),
+        // Extracted topic terms are facts ABOUT the text rather than the
+        // text, so they need no fence. Kept alongside the sentence, and
+        // the only thing a student gets for the ~5% of courses whose
+        // opening sentence was not usable.
         keywords: c.keywords ?? [],
         enforced_prerequisites: c.enforced,
         enforced_concurrent: c.concurrent,
