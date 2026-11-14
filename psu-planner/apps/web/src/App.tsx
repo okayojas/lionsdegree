@@ -206,7 +206,17 @@ export default function App() {
     <div className="app">
       <a href="#main" className="skip-link">Skip to plan</a>
       <div className="toolbar" role="banner">
-        <h1><b>Lions</b>Degree</h1>
+        {/* THE WAY BACK. The wordmark is a link on the landing page and on
+            every static page; in the planner it was the one place it was
+            not, so a student who got here had no way home short of editing
+            the URL. Clicking a logo is the convention they already expect.
+
+            Still an <h1> wrapping an <a>, not an <a> replacing it: the
+            heading is what names this page for a screen reader, and
+            `harness.spec.ts` finds the planner by it. */}
+        <h1>
+          <a href="/" title="Back to the LionsDegree home page"><b>Lions</b>Degree</a>
+        </h1>
         <SearchBox onPick={openFromSearch} />
         {view === "canvas" && (
           <div className="legend" aria-hidden="true">

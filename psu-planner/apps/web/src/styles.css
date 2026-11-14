@@ -238,6 +238,21 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
      word in both trees. */
   color: var(--navy); letter-spacing: var(--track-tight); line-height: 1;
 }
+/* The wordmark is the way home.
+   Inherits rather than looks like a link: a blue underlined "LionsDegree"
+   in the corner would read as navigation chrome instead of the product's
+   own mark, and the convention it relies on is that a logo is clickable,
+   not that it is styled as a link. The hover and the focus ring are what
+   say so — a target with no visible state is one a keyboard user cannot
+   find. */
+.toolbar h1 a {
+  color: inherit; text-decoration: none;
+  border-radius: var(--r-sm);
+}
+.toolbar h1 a:hover { color: var(--primary); }
+.toolbar h1 a:focus-visible {
+  outline: 2px solid var(--focus-ring); outline-offset: 3px;
+}
 .toolbar h1::before {  /* wordmark station-dot */
   content: ""; display: inline-block; vertical-align: middle;
   width: 12px; height: 12px; border-radius: 50%; margin-right: 8px;

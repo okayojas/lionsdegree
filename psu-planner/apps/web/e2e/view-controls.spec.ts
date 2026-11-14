@@ -113,6 +113,58 @@ test.describe("the chart's view controls", () => {
   });
 });
 
+test.describe("the wordmark", () => {
+  test("takes a student back to the home page", async ({ page }) => {
+    // It is a link on the landing page and on all three static pages. In
+    // the planner it was the one place it was not, so a student who got
+    // here had no way home short of editing the URL — and clicking a logo
+    // is the convention they arrive already expecting.
+    await page.addInitScript(
+      ([k, p]) => window.localStorage.setItem(k as string, p as string),
+      ["psu-planner-plan-v1", JSON.stringify(SEEDED_PLAN)] as const,
+    );
+    await page.goto("/plan/");
+    await page.locator(".card").first().waitFor({ timeout: 60_000 });
+
+    const mark = page.locator(".toolbar h1 a");
+    await expect(mark, "the wordmark is not a link").toHaveCount(1);
+    await expect(mark).toHaveAttribute("href", "/");
+
+    await mark.click();
+    await expect(page, "clicking the wordmark did not reach the home page").toHaveURL(/\/$/);
+    await expect(page.getByRole("heading", { level: 1 })).toContainText(/LionsDegree/);
+  });
+
+  test("is still the heading that names this page", async ({ page }) => {
+    // Wrapping the text in an <a> must not move the accessible name onto
+    // the link and off the heading: `harness.spec.ts` finds the planner by
+    // that heading, and a screen reader announces the page by it.
+    await page.addInitScript(
+      ([k, p]) => window.localStorage.setItem(k as string, p as string),
+      ["psu-planner-plan-v1", JSON.stringify(SEEDED_PLAN)] as const,
+    );
+    await page.goto("/plan/");
+    await page.locator(".card").first().waitFor({ timeout: 60_000 });
+    await expect(page.getByRole("heading", { name: "LionsDegree" })).toBeVisible();
+  });
+
+  test("shows a focus ring when reached by keyboard", async ({ page }) => {
+    // A click target with no visible state is one a keyboard user cannot
+    // find. The link deliberately does not look like a link otherwise.
+    await page.addInitScript(
+      ([k, p]) => window.localStorage.setItem(k as string, p as string),
+      ["psu-planner-plan-v1", JSON.stringify(SEEDED_PLAN)] as const,
+    );
+    await page.goto("/plan/");
+    await page.locator(".card").first().waitFor({ timeout: 60_000 });
+    await page.locator(".toolbar h1 a").focus();
+    const outline = await page.locator(".toolbar h1 a").evaluate(
+      (el) => getComputedStyle(el).outlineStyle + " " + getComputedStyle(el).outlineWidth,
+    );
+    expect(outline, `focused wordmark has no outline: ${outline}`).not.toMatch(/^none/);
+  });
+});
+
 test.describe("the menu", () => {
   test("is in the same corner on the planner as on every other page", async ({ page }) => {
     // Not a style assertion -- a consistency one. The landing page, the
