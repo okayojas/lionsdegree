@@ -83,6 +83,21 @@
         <a href="/privacy/">Privacy</a>
         <a href="/terms/">Terms</a>
         <a class="menu-go" href="/plan/">Open the planner &rarr;</a>
+        <!-- A returning student's way back to a plan they already saved.
+             It was reachable only from inside the planner, and only once a
+             plan existed on THIS device -- so somebody who built a plan on
+             their laptop and opened the site on their phone was shown the
+             onboarding form with no sign-in anywhere on the page.
+
+             AFTER the call to action, not before. Putting it above pushed
+             "Open the planner" one tab stop further from the top of the
+             page, which the keyboard test caught: the primary action keeps
+             its position, and signing in is the returning student's path
+             rather than the common one.
+
+             Links rather than signing in here: this page ships no Supabase
+             client, and a second auth implementation is one that drifts. -->
+        <a class="menu-signin" href="/plan/?signin=1">Already have a plan? Sign in</a>
       </nav>
     </div>
 

@@ -133,6 +133,17 @@
 .menu nav { display: grid; gap: var(--sp-4); text-align: center; }
 .menu a { font-size: clamp(1.5rem, 7vw, 2.4rem); font-weight: 700; letter-spacing: -0.03em; color: var(--text); text-decoration: none; }
 .menu a:hover, .menu .menu-go { color: var(--primary); }
+/* Smaller than the navigation above it and the call to action below.
+   Signing in is what a RETURNING student wants; it must be findable
+   without competing with "Open the planner", which is what everyone else
+   came for. */
+.menu .menu-signin {
+  font-size: clamp(1rem, 3.4vw, 1.25rem);
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.menu .menu-signin:hover { color: var(--primary); }
 .menu.is-open a { animation: menu-in .3s var(--ease-out) both; }
 .menu.is-open a:nth-child(2) { animation-delay: .04s; }
 .menu.is-open a:nth-child(3) { animation-delay: .08s; }

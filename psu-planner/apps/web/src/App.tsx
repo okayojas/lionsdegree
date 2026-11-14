@@ -16,6 +16,7 @@ import { PlanListView } from "./components/PlanListView";
 import { ProgramsModal } from "./components/ProgramsModal";
 import { LegalModal } from "./components/LegalModal";
 import { AccountMenu } from "./components/AccountMenu";
+import { wantsSignIn } from "./data/deepLink";
 import { PlanSkeleton } from "./components/PlanSkeleton";
 import { chatConfigured } from "./chat/config";
 
@@ -141,7 +142,26 @@ export default function App() {
       </div>
     );
   }
-  if (!plan) return <Onboarding />;
+  // THE ACCOUNT CONTROL EXISTS BEFORE A PLAN DOES.
+  //
+  // It used to live only in the planner's toolbar, which only renders once
+  // a plan exists on THIS device — so a student who built a plan on their
+  // laptop and opened the site on their phone was shown the onboarding form
+  // with no way to sign in anywhere on the page. The one thing that would
+  // have got their plan back was the one thing the screen did not offer.
+  //
+  // Nothing else from the toolbar comes with it: a student who has not
+  // built a plan has nothing to view, optimize or export.
+  if (!plan) {
+    return (
+      <>
+        <div className="onboard-account">
+          <AccountMenu onToast={setToast} openOnMount={wantsSignIn(window.location.search)} />
+        </div>
+        <Onboarding />
+      </>
+    );
+  }
 
   const { done, total } = progress(plan, items, catalog);
   const openFromSearch = (c: Course) => {

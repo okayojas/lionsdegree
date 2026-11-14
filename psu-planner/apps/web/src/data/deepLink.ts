@@ -40,6 +40,24 @@ export interface DeepLinkRequest {
  * — a student opening the planner normally must not be routed through any of
  * this.
  */
+/** Did this visitor arrive asking to sign in?
+ *
+ * The landing page is static HTML with no Supabase client in it, so its
+ * "Sign in" menu item cannot start the flow itself — it links here, and
+ * the planner opens the sign-in menu on arrival.
+ *
+ * A LINK RATHER THAN A SECOND AUTH IMPLEMENTATION, deliberately. Pulling
+ * the Supabase SDK into the marketing page to save one navigation would
+ * mean two places that know how to sign a student in, and the one that
+ * gets fixed is never both.
+ */
+export function wantsSignIn(search: string): boolean {
+  const v = new URLSearchParams(search).get("signin");
+  // Present-but-empty counts: `?signin` is what a hand-written link looks
+  // like, and refusing it would make a working-looking URL do nothing.
+  return v !== null && v !== "0" && v !== "false";
+}
+
 export function parseProgramLink(search: string, known: ReadonlySet<string>): DeepLinkRequest | null {
   const raw = new URLSearchParams(search).get("programs");
   if (!raw?.trim()) return null;

@@ -18,9 +18,19 @@ import { chatConfigured } from "../chat/config";
  * come" is information a student can use and silence is not. */
 const PSU_MICROSOFT_WORKS = false;
 
-export function AccountMenu({ onToast }: { onToast: (msg: string) => void }) {
+export function AccountMenu({
+  onToast,
+  openOnMount = false,
+}: {
+  onToast: (msg: string) => void;
+  /** Arrived from the landing page's "Sign in" (`/plan/?signin=1`), so the
+   * menu opens itself rather than making the student hunt for the control
+   * they just asked for. Ignored once they are signed in — the same link
+   * then lands them on their plan, which is what they wanted anyway. */
+  openOnMount?: boolean;
+}) {
   const [user, setUser] = useState<User | null>(null);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(openOnMount && syncConfigured);
   const setPlan = usePlanner((s) => s.setPlan);
   const wrap = useRef<HTMLDivElement>(null);
 
