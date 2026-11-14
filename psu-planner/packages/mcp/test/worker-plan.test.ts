@@ -1085,6 +1085,34 @@ describe("previewing several changes together, hosted", () => {
     expect(table.asked.some((a) => a.method === "PATCH"), "a preview sent a write").toBe(false);
   });
 
+  it("comes back with the candidate DRAWN, over the wire", async () => {
+    // The local tests drive `executeTool`. That is the seam, but it is
+    // not the deploy: the Worker builds its own context and serialises
+    // the result through the MCP transport, and "the local one works"
+    // has never been evidence about this path in this project.
+    //
+    // The multi-change preview is the one that could not be drawn at all
+    // before — `plan_diagram` takes a single change — so it is the one
+    // worth proving arrives.
+    const table = plansTable(PLAN);
+    db = withTable(table);
+
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "simulate_changes", {
+      changes: appendThenFill,
+    });
+
+    expect(result!.possible, JSON.stringify(result).slice(0, 300)).toBe(true);
+    expect(result!.diagram, "a hosted preview came back with no picture of itself").toBeTruthy();
+    expect(String(result!.diagram), "the diagram is not a flowchart").toMatch(/flowchart/);
+    // The legend, without which a model renders the source rather than
+    // the picture and reads "cannot be checked" back as "fine".
+    expect(String(result!.how_to_show_this), "nothing tells the model to use a mermaid fence").toMatch(/mermaid/i);
+    expect(String(result!.what_the_colours_mean)).toMatch(/cannot be checked/i);
+    // Still unmistakably not a change that happened.
+    expect(result!.applied).toBe(false);
+    expect(result!.revision, "a preview carries a revision, which a model reads as saved").toBeUndefined();
+  });
+
   it("stops at the change that cannot be made, and returns no partial candidate", async () => {
     const table = plansTable(PLAN);
     db = withTable(table);
