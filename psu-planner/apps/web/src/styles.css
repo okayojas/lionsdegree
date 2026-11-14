@@ -1076,3 +1076,35 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   .conflict-bar { flex-direction: column; align-items: stretch; bottom: 10px; }
   .cb-actions { justify-content: flex-end; }
 }
+
+/* ---------- the offer to keep a plan that is only in this browser ----------
+   IN THE LAYOUT, not fixed over it, which is the whole difference between
+   this and the conflict bar above. A refused save is urgent and floating
+   over the chart is the point; this is an offer, and at 412px a floating
+   bar covers the plan the student came to look at. It takes a row between
+   the chart and the disclaimer, and `.main-row` (flex: 1) gives up the
+   height: measured on a 412x915 screen it is 118px with a mouse and 126px
+   with a thumb (the taller tap targets), and the chart keeps 412-439px.
+   #23 is the precedent for what a phone cannot afford.
+   `flex-wrap` plus `min-width: 0` on the sentence is what keeps it inside
+   a 320px screen rather than forcing the document wider. */
+.keep-plan-bar {
+  flex: 0 0 auto;
+  display: flex; align-items: center; flex-wrap: wrap; gap: var(--sp-2) var(--sp-4);
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--surface); color: var(--text);
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-sm); line-height: 1.45;
+}
+.keep-plan-bar p { margin: 0; flex: 1 1 18rem; min-width: 0; }
+.kp-actions { display: flex; gap: 8px; flex: 0 0 auto; margin-left: auto; }
+
+/* The two plans a student chooses between after signing in. Spacing comes
+   from `.modal .row`, which every dialog's action rows already use; only
+   the alignment differs, because each row here is two lines of facts
+   beside a button rather than a line of buttons.
+   The facts sit UNDER the label rather than beside it: "Mathematics +
+   Statistics · 9 terms · last changed 13/11/2026, 21:07" is longer than a
+   phone is wide, and it has to wrap somewhere that is not inside a date. */
+.pc-choice { align-items: center; }
+.pc-facts { display: block; color: var(--text-muted); font-size: var(--fs-xs); margin-top: 2px; }

@@ -16,6 +16,7 @@ import { PlanListView } from "./components/PlanListView";
 import { ProgramsModal } from "./components/ProgramsModal";
 import { LegalModal } from "./components/LegalModal";
 import { AccountMenu } from "./components/AccountMenu";
+import { KeepPlanBar } from "./components/KeepPlanBar";
 import { wantsSignIn } from "./data/deepLink";
 import { PlanSkeleton } from "./components/PlanSkeleton";
 import { chatConfigured } from "./chat/config";
@@ -313,6 +314,13 @@ export default function App() {
         />
         <SidePanel width={chatWidth} />
       </div>
+      {/* IN THE LAYOUT, NOT OVER IT. The conflict bar above is fixed and
+          floats, because a refused save is urgent and interrupting is the
+          point. This is an offer, and on a 412px screen a floating bar
+          would cover the plan the student came to look at — so it takes a
+          row of its own between the chart and the disclaimer and the chart
+          shrinks to fit. Nothing is obscured and nothing is unreachable. */}
+      <KeepPlanBar hasPlan={!!plan} />
       <footer className="app-disclaimer" role="contentinfo">
         {/* The edition is the first thing an adviser needs to know, because it
             decides which requirements apply at all. It lives beside the

@@ -2,9 +2,13 @@
  * isn't configured — the app stays fully local-first. */
 import { useEffect, useRef, useState } from "react";
 import type { User } from "@supabase/supabase-js";
-import { currentUser, pullNewerPlan, signIn, signOut, supabase, syncConfigured } from "../data/sync";
-import { usePlanner, loadSavedPlan } from "../store";
+import {
+  currentUser, findPlansAtSignIn, keepThisDevicesPlan, signIn, signOut, supabase, syncConfigured,
+  takeTheAccountsPlan, type PlanCollision,
+} from "../data/sync";
+import { usePlanner, loadSavedPlan, recordInPlanHistory } from "../store";
 import { chatConfigured } from "../chat/config";
+import { PlanCollisionDialog } from "./PlanCollisionDialog";
 
 /** Penn State accounts do not work yet.
  *
@@ -31,8 +35,16 @@ export function AccountMenu({
 }) {
   const [user, setUser] = useState<User | null>(null);
   const [open, setOpen] = useState(openOnMount && syncConfigured);
+  /** Two plans and a question. Held here because this is where sign-in is
+   * noticed, and sign-in is noticed here whichever control started it —
+   * the offer on the chart, this menu, or the landing page's link. One
+   * listener means the safe path is not only the one through the prompt. */
+  const [collision, setCollision] = useState<PlanCollision | null>(null);
   const setPlan = usePlanner((s) => s.setPlan);
   const wrap = useRef<HTMLDivElement>(null);
+  /** The account whose sign-in has already been dealt with. See the guard
+   * in the listener below. */
+  const handled = useRef<string | null>(null);
 
   useEffect(() => {
     if (!syncConfigured) return;
@@ -41,18 +53,63 @@ export function AccountMenu({
     const { data } = sb!.auth.onAuthStateChange(async (_evt, session) => {
       const u = session?.user ?? null;
       setUser(u);
-      if (u) {
-        // Newly signed in: adopt the newest device's plan (LWW; local backed up).
-        const remote = await pullNewerPlan(loadSavedPlan());
-        if (remote) {
-          await setPlan(remote);
-          onToast("Loaded your most recent plan from another device (this device's copy was backed up).");
-        }
+      if (!u) {
+        handled.current = null;
+        return;
+      }
+      // ONCE PER SIGN-IN, not once per event. Supabase announces an
+      // existing session on load and again on every token refresh, and
+      // what follows now WRITES: a second run inserts a plan the first run
+      // has just inserted, which the database refuses and the student is
+      // shown a conflict notice about a plan nobody else has touched. It
+      // would also re-open the choice between two plans, hours later, over
+      // a question they have already answered.
+      if (handled.current === u.id) return;
+      handled.current = u.id;
+      // WHAT SIGNING IN FOUND, not what a clock thinks. This used to be
+      // `pullNewerPlan`, which answered the two-plans case by timestamp and
+      // left the loser unreachable through the UI for ever.
+      const found = await findPlansAtSignIn(loadSavedPlan());
+      if (found.kind === "adopted") {
+        await setPlan(found.plan);
+        onToast("Loaded your most recent plan from another device (this device's copy was backed up).");
+      } else if (found.kind === "kept") {
+        onToast("Saved this plan to your account — open the site on another device and it will be there.");
+      } else if (found.kind === "unsaved") {
+        // Said plainly. "Signed in" on its own would read as a promise we
+        // have not yet kept, which is the failure this ticket exists to end.
+        onToast("Signed in, but this plan has not reached your account yet. It is safe on this device, and the next change you make will try again.");
+      } else if (found.kind === "collision") {
+        setCollision(found);
       }
     });
     return () => data.subscription.unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  /** Act on the student's choice. BOTH PLANS SURVIVE EITHER BRANCH: the
+   * one that is not adopted goes into Plan history, which is the recovery
+   * door the rest of the app already points at, and the account's row is
+   * never written over — this device's plan has its own id and inserts
+   * beside it. */
+  const keep = async (c: PlanCollision, which: "device" | "account") => {
+    setCollision(null);
+    if (which === "account") {
+      await setPlan(takeTheAccountsPlan(c));
+      onToast("Carrying on with the plan from your account. The one this device had is in Menu → Plan history.");
+      return;
+    }
+    // The account's plan would otherwise exist only in Postgres, where
+    // nothing in this interface can reach it: the sign-in read takes the
+    // newest row, and this device's plan is about to become that.
+    recordInPlanHistory(c.remote, "found in your account");
+    const pushed = await keepThisDevicesPlan(c);
+    onToast(
+      pushed === "pushed"
+        ? "Carrying on with the plan from this device, now saved to your account. The other one is in Menu → Plan history."
+        : "Carrying on with the plan from this device. It has not reached your account yet — the next change you make will try again. The other one is in Menu → Plan history.",
+    );
+  };
 
   // Close on a click anywhere else, and on Escape. A menu that can only
   // be dismissed by choosing something from it is a trap.
@@ -92,9 +149,23 @@ export function AccountMenu({
   };
   const note: React.CSSProperties = { fontSize: 10.5, color: "var(--muted)", margin: "2px 4px" };
 
+  /** Rendered from BOTH branches below. The sign-in that raises it is also
+   * what flips this component from signed-out to signed-in, and a question
+   * that disappeared because the button next to it changed shape would
+   * leave the student with a silently chosen plan — the exact outcome this
+   * dialog exists to prevent. */
+  const askWhichPlan = collision && (
+    <PlanCollisionDialog
+      local={collision.local}
+      remote={collision.remote}
+      onKeep={(which) => void keep(collision, which)}
+    />
+  );
+
   if (!user) {
     return (
       <div ref={wrap} style={{ position: "relative" }}>
+        {askWhichPlan}
         <button className="btn-signin" aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen(!open)}>
           Sign in
         </button>
@@ -131,6 +202,7 @@ export function AccountMenu({
   const who = user.email?.split("@")[0] ?? "account";
   return (
     <div ref={wrap} style={{ position: "relative" }}>
+      {askWhichPlan}
       {/* NOT "SYNCING". That read as a spinner that never finished — a
           student who had signed in successfully asked why it was stuck,
           because a present participle describes something in progress.
