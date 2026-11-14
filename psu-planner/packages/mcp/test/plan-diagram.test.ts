@@ -181,6 +181,21 @@ describe("a student asking to see their degree", () => {
 
   it("gets Mermaid that parses", () => {
     expect(result.format, "the model is not told what the text is").toBe("mermaid");
+  });
+
+  it("tells the model to put it in an ARTIFACT, not just a code fence", () => {
+    // THE DIFFERENCE BETWEEN A CHART AND A WALL OF GRAPH SYNTAX. A
+    // ```mermaid block in an ordinary reply is shown as SOURCE; Mermaid
+    // is drawn where the client renders it, which in Claude is an
+    // artifact. The first version of this instruction said "fenced code
+    // block" and was followed exactly — the diagram parsed and rendered
+    // to 105 KB of valid SVG in a headless check, and still reached the
+    // student as text.
+    expect(result.how_to_show_this, "nothing tells the model to use an artifact").toMatch(/artifact/i);
+    // The fence stays as the FALLBACK, not as the instruction: ChatGPT
+    // and the local stdio server have no artifacts.
+    expect(String(result.how_to_show_this), "the fallback for clients without artifacts is gone").toMatch(/fall back|fallback/i);
+    expect(String(result.how_to_show_this), "the verbatim rule was lost").toMatch(/verbatim/i);
     expect(String(result.diagram).startsWith("flowchart "), "this is not a Mermaid flowchart").toBe(true);
     expect(chart.nodes.size, "a diagram of a plan with courses in it drew nothing").toBeGreaterThan(10);
   });

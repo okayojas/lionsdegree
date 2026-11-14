@@ -218,11 +218,32 @@ function refusal(message: string): DiagramResult {
   return { ...emptyShell(), error: message };
 }
 
+/** How to put the picture on the student's screen.
+ *
+ * AN ARTIFACT, NOT A CODE FENCE, and the distinction is the whole
+ * difference between a chart and a wall of graph syntax. A ```mermaid
+ * block in an ordinary chat reply is shown as SOURCE; Mermaid is
+ * rendered where a client draws it, which in Claude is an artifact. The
+ * first version of this said "fenced code block" and was followed
+ * exactly — the diagram parsed, rendered to 105 KB of valid SVG in a
+ * headless check, and still reached the student as text.
+ *
+ * The fence is kept as the fallback rather than dropped: ChatGPT and the
+ * local stdio server have no artifacts, and a fence there is the best
+ * available. Saying both, in that order, is what makes this work on the
+ * surface the student is actually using without failing on the others.
+ *
+ * The verbatim rule survives unchanged, and matters more in an artifact
+ * than in a fence: a model building a document is far more tempted to
+ * "improve" a diagram than one pasting a block. */
 const HOW =
-  "Reproduce `diagram` verbatim inside a fenced code block tagged `mermaid`, as the whole of " +
-  "your answer's picture. Do not redraw it, do not add courses or arrows to it, and do not " +
-  "describe edges it does not contain — every line in it is a prerequisite relation the catalog " +
-  "actually states, and an added one is a wrong answer about what the student must take first.";
+  "Put `diagram` in an ARTIFACT so the student sees a chart rather than code — a markdown " +
+  "artifact whose body is the diagram inside a ```mermaid fence is enough. A fenced block in an " +
+  "ordinary reply is shown as source, not drawn. If this client has no artifacts, fall back to " +
+  "the fenced block. Either way reproduce it VERBATIM: do not redraw it, do not add courses or " +
+  "arrows to it, and do not describe edges it does not contain — every line in it is a " +
+  "prerequisite relation the catalog actually states, and an added one is a wrong answer about " +
+  "what the student must take first.";
 
 const COLOURS =
   "Every course box also spells its state out in words, so the colours are a second channel and " +
