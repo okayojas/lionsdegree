@@ -33,10 +33,11 @@
  * `ok`, no new revision — the two fields a successful mutation returns
  * and the two a model would quote back to a student as proof.
  */
-import { buildItems, buildSchedule, checkCourse, type PlanDoc, type PlanItem } from "@psu-planner/engine";
+import { checkCourse, type PlanDoc, type PlanItem } from "@psu-planner/engine";
 import { executeMutation, heldRev, MUTATIONS, type MutationResult } from "./mutations.js";
-import { MemoryPlanStore } from "./planStore.js";
 import { planView } from "./planView.js";
+import { sandbox, candidateContext } from "./sandbox.js";
+import { drawPlan } from "./planDiagram.js";
 import type { ToolContext } from "./tools.js";
 
 /** Where a Course sits, by term label, in one schedule. */
@@ -51,44 +52,6 @@ function placements(plan: PlanDoc, items: PlanItem[]): Placement {
   return at;
 }
 
-/** A context the mutation can write to and nobody can read from.
- *
- * WHAT ACTUALLY ISOLATES THIS is the separate context object: `commit`
- * ASSIGNS `plan`, `items` and `sched` onto whatever it is handed, so
- * assigning them here leaves the caller's context alone. Every mutation
- * today also builds its own copy before editing, so sharing the
- * document would happen to work.
- *
- * The deep copy is here anyway, and the distinction is worth stating
- * rather than overclaiming: it is insurance against a future mutation
- * that edits a Plan IN PLACE. That one would reach through a shared
- * reference into the live session — a change nobody applied, quietly
- * true for every later answer — and it would not fail a test, it would
- * just be wrong. Copying costs microseconds on a path that already runs
- * the optimiser.
- *
- * ONE SANDBOX FOR THE WHOLE LIST, which is what makes a list mean
- * anything: each change is applied to the plan the one before it left
- * behind, exactly as it would be if the student made them in order. A
- * sandbox per change would produce five previews of five different
- * futures and call them one candidate. */
-function sandbox(ctx: ToolContext): ToolContext {
-  const plan: PlanDoc = JSON.parse(JSON.stringify(ctx.plan));
-  const items = buildItems(plan, ctx.data.catalog);
-  return {
-    ...ctx,
-    simulating: true,
-    plan,
-    // AT THE REVISION THE REAL STORE REPORTS, not the one written in
-    // the document. Hosted they differ, and a sandbox starting from the
-    // wrong one refuses changes the planner would accept. Through the
-    // shared accessor, because `mutations.ts` has that comment about
-    // there being exactly one of these and this file had made it three.
-    store: new MemoryPlanStore(plan, heldRev(ctx)),
-    items,
-    sched: buildSchedule(plan, items, ctx.data.catalog),
-  };
-}
 
 /** Violations the change CREATES — a Course scheduled before something
  * it enforces as a prerequisite (CONTEXT.md) — and only the ones it
@@ -294,87 +257,6 @@ const at = (changes: PlannedChange[], i: number) => ({
  * there is deliberately no second implementation, because the single
  * and multiple paths would otherwise disagree about what a preview
  * reports and a bug fixed in one would survive in the other. */
-/** A sandbox with one change already applied, or the refusal a student
- * would have been given.
- *
- * WHY IT IS SEPARATE FROM `simulateChanges`. `plan_diagram` draws the
- * plan a change would leave behind; it needs the CONTEXT — items and
- * schedule — not the report of what moved. Both go through the same
- * `sandbox()` and the same `executeMutation`, so the candidate a
- * student is shown and the candidate they are told about are produced
- * by one code path. A second preview implementation would drift, and
- * the drift would be a picture of a plan the planner then refuses to
- * produce.
- *
- * The sandbox's `rev` and `updatedAt` are left as the mutation set
- * them: the copy genuinely did advance and is entitled to know it.
- * Stripping them is the reporting caller's job, at the point of
- * handing something outward — see where `planView` is called. */
-export async function candidateContext(
-  ctx: ToolContext,
-  change: string,
-  changeArgs: Record<string, unknown>,
-): Promise<{ after: ToolContext } | { refused: SimulationResult }> {
-  if (!MUTATIONS.has(change)) {
-    return {
-      refused: {
-        error: `${change || "that"} cannot be simulated — only a change to the plan can be.`,
-        can_simulate: [...MUTATIONS].sort(),
-        note: "To see the plan as it stands, call get_plan.",
-      },
-    };
-  }
-  if (!ctx.plan) return { refused: { error: "There is no plan to simulate a change against." } };
-
-  // A STATED REVISION IS HONOURED, NOT OVERWRITTEN — the same rule
-  // `simulateChanges` applies, and for the same reason: a preview
-  // built from a revision the plan has moved past shows a student a
-  // plan that is no longer theirs. Replacing it with the sandbox's own
-  // would make the check silently unreachable, which is what the first
-  // version of this function did until its test said so.
-  const held = heldRev(ctx);
-  const stated = changeArgs.based_on_revision;
-  if (typeof stated === "number" && stated !== held) {
-    return {
-      refused: {
-        simulated: true,
-        applied: false,
-        possible: false,
-        based_on_revision: held,
-        change: { tool: change, arguments: changeArgs },
-        reason:
-          "That revision is not the one the plan is at now, so a preview built from it would " +
-          "show the student a plan that is no longer theirs.",
-        remedy: "Call get_plan, then simulate against what it returns.",
-        nothing_changed: "The student's plan has not been changed.",
-      },
-    };
-  }
-
-  const after = sandbox(ctx);
-  const result = (await executeMutation(
-    change,
-    { ...changeArgs, based_on_revision: heldRev(after) },
-    after,
-  )) as MutationResult | null;
-
-  if (!result || result.error || result.ok !== true) {
-    return {
-      refused: {
-        simulated: true,
-        applied: false,
-        possible: false,
-        based_on_revision: ctx.rev,
-        change: { tool: change, arguments: changeArgs },
-        reason: String(result?.error ?? `${change} could not be applied to this plan.`),
-        ...(result?.suggestion ? { suggestion: result.suggestion } : {}),
-        nothing_changed:
-          "The student's plan has not been changed, and this change cannot be made as asked.",
-      },
-    };
-  }
-  return { after };
-}
 
 export async function simulateChanges(ctx: ToolContext, raw: unknown): Promise<SimulationResult> {
   const read = readChanges(raw);
@@ -550,6 +432,48 @@ export async function simulateChanges(ctx: ToolContext, raw: unknown): Promise<S
         "calls in this order, each stating the revision get_plan returned — so if the student " +
         "edited their plan in the meantime the change is refused rather than overwriting them.",
     },
+
+    // THE CANDIDATE, DRAWN. A student asking "what would happen if I did
+    // these five things" is asking about a SHAPE — which term got heavy,
+    // what moved next to what — and five sentences about moves is the
+    // work they wanted help avoiding.
+    //
+    // RETURNED FROM THE SIMULATION ITSELF rather than left to a second
+    // `plan_diagram` call, for two reasons. The multi-change case could
+    // not be drawn at all: `plan_diagram` takes ONE change, so the very
+    // preview that most needs a picture was the one that could not have
+    // one. And a separate call re-runs the changes against whatever the
+    // plan is by then — two futures, shown as one. This draws the exact
+    // sandbox the report above describes.
+    //
+    // Mermaid, not an image: it renders in the clients students use and
+    // degrades to legible text where it does not, and a rasteriser has
+    // no business in a 128 MB isolate holding the catalog.
+    //
+    // The revision and timestamp are stripped for the same reason
+    // `planDiagram` strips them — the sandbox genuinely advanced, and
+    // reporting that outward would tell a student their plan was saved.
+    ...(() => {
+      const picture = drawPlan(
+        { ...after, rev: undefined, updatedAt: undefined },
+        { of: one ? "the plan as this change would leave it" : "the plan as these changes would leave it" },
+      );
+      // THE LEGEND TRAVELS WITH IT. `how_to_show_this` is what tells a
+      // model to put the text in a mermaid fence — without it the
+      // picture arrives as a wall of graph syntax in the chat — and the
+      // colour and edge keys are what stop "cannot be checked" being
+      // read back to a student as "fine". Carrying `diagram` alone was
+      // the first version, and it rendered as source.
+      return picture.diagram
+        ? {
+            diagram: picture.diagram,
+            diagram_format: picture.format,
+            how_to_show_this: picture.how_to_show_this,
+            what_the_colours_mean: picture.what_the_colours_mean,
+            what_an_edge_means: picture.what_an_edge_means,
+          }
+        : {};
+    })(),
 
     moved,
     added_courses: [...nowAt.keys()].filter((c) => !wasAt.has(c)),

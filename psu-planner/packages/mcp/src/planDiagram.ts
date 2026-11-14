@@ -41,7 +41,7 @@ import {
   type PlanItem,
   type Schedule,
 } from "@psu-planner/engine";
-import { candidateContext } from "./simulate.js";
+import { candidateContext } from "./sandbox.js";
 // TYPE ONLY, so there is no runtime import back into `tools.ts` — which
 // imports this module. A value import here would be a cycle.
 import type { ToolContext } from "./tools.js";
@@ -170,7 +170,7 @@ export async function planDiagram(
   if (!ctx.plan) return refusal("There is no plan to draw.");
 
   const change = typeof args.change === "string" ? args.change.trim() : "";
-  if (!change) return draw(ctx, {});
+  if (!change) return drawPlan(ctx, {});
 
   const changeArgs = (args.arguments ?? {}) as Record<string, unknown>;
   const candidate = await candidateContext(ctx, change, changeArgs);
@@ -190,7 +190,7 @@ export async function planDiagram(
     // saved. Stripped here rather than in `candidateContext`, because
     // the mutation genuinely did advance the sandbox and the sandbox is
     // entitled to know it — the lie is only in reporting it outward.
-    ...draw(
+    ...drawPlan(
       { ...candidate.after, rev: undefined, updatedAt: undefined },
       { of: "the plan as this change would leave it" },
     ),
@@ -264,7 +264,7 @@ function overridden(plan: PlanDoc, code: string): boolean {
   return !!plan.prereqOverrides?.[code];
 }
 
-function draw(ctx: ToolContext, opts: { of?: string }): DiagramResult {
+export function drawPlan(ctx: ToolContext, opts: { of?: string } = {}): DiagramResult {
   const plan = ctx.plan!;
   const cat: Catalog = ctx.data.catalog;
   const { items, sched } = ctx;

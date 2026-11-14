@@ -573,7 +573,9 @@ function allTools(): ToolDefinition[] {
         "optimiser re-flows the whole plan on every change, so five separate previews are five " +
         "different futures. Turn what they said into a list of named changes with explicit arguments " +
         "— that part is your job, not the server's. Nothing is saved. If one change cannot be made, " +
-        "the whole preview stops and says which: you never get a plan with some of them in it.",
+        "the whole preview stops and says which: you never get a plan with some of them in it. " +
+        "The answer carries a `diagram` of the candidate plan — show it to them in a mermaid code " +
+        "block, because the shape of the result is most of what they were asking about.",
       inputSchema: obj(
         {
           changes: {
