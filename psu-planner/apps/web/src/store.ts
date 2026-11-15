@@ -6,6 +6,7 @@ import {
   type Catalog, type CourseSpec, type PlanDoc, type PlanItem, type ProgramTemplate,
   type RemoveProgramPreview, type ReqSection, type Schedule,
 } from "@psu-planner/engine";
+import type { CandidateDrawing, CandidateRefusal } from "./data/candidateRun";
 import { loadCatalogFor, loadCoverage, loadEditions, loadFlowchartPatterns, loadIug, loadProgramBySlug, setCatalogEdition } from "./data/catalogClient";
 import { schedulePush } from "./data/sync";
 
@@ -81,6 +82,34 @@ interface PlannerState {
   /** One-shot note about generation-time prereq repairs, shown as a toast. */
   repairNote: string | null;
   clearRepairNote: () => void;
+
+  /* ── Candidates: what-ifs the student can look at ──────────────────────
+     A Candidate lives on `plan.candidates` as a list of CHANGES. What is
+     here is the one the student has open and the plan those changes leave
+     behind — recomputed every time the tab is opened, never kept on disk.
+     Storing the drawn plan is the mistake the whole design avoids: it
+     would go stale against the real Plan without saying so. */
+
+  /** Which Candidate's tab is open, or null for the student's own Plan. */
+  candidateId: string | null;
+  /** The plan that Candidate's changes leave behind, ready for the chart. */
+  candidateView: CandidateDrawing | null;
+  /** Why the open Candidate cannot be drawn, in the connector's own words.
+   *
+   * A tab whose change has stopped being possible says so and draws
+   * NOTHING. Half a what-if rendered as a plan is the confident wrong
+   * answer this project exists to refuse. */
+  candidateRefusal: CandidateRefusal | null;
+  /** A Candidate is being recomputed. Every open costs a re-run of the
+   * whole plan, so the rail has to be able to say it is working. */
+  candidateBusy: boolean;
+  /** Open a Candidate's tab, or pass null to go back to the real Plan. */
+  showCandidate: (id: string | null) => Promise<void>;
+  /** Make the open Candidate the student's real Plan, by REPLAYING its
+   * changes through the ordinary mutation path. Returns what to tell them. */
+  keepCandidate: (id: string) => Promise<string>;
+  /** Throw a Candidate away. Touches nothing else on the Plan. */
+  deleteCandidate: (id: string) => void;
   setPlan: (plan: PlanDoc | null, opts?: { repairOrdering?: boolean; optimize?: boolean }) => Promise<void>;
   /** Repack the current plan into the fewest <=19-credit terms, keeping the
    * flowchart's difficulty order and capstone at the end. Pass a term
@@ -243,7 +272,133 @@ export const usePlanner = create<PlannerState>((set, get) => ({
   repairNote: null,
   clearRepairNote: () => set({ repairNote: null }),
 
+  candidateId: null,
+  candidateView: null,
+  candidateRefusal: null,
+  candidateBusy: false,
+
+  showCandidate: async (id) => {
+    if (id === null) {
+      set({ candidateId: null, candidateView: null, candidateRefusal: null, candidateBusy: false });
+      return;
+    }
+    const s = get();
+    const candidate = (s.plan?.candidates ?? []).find((c) => c.id === id);
+    if (!s.plan || !candidate) {
+      // Gone — deleted on another device, or kept there. The id is KEPT
+      // so the message is reachable: the refusal panel is shown only for
+      // an open tab, and clearing the id here left the student silently
+      // looking at their own plan under a tab they had just clicked.
+      set({ candidateId: id, candidateView: null, candidateBusy: false,
+        candidateRefusal: {
+          reason: "That what-if is no longer on this plan.",
+          nothingChanged: "Your plan has not been changed.",
+          position: null,
+        } });
+      return;
+    }
+    set({ candidateId: id, candidateBusy: true, candidateRefusal: null });
+    // RECOMPUTED, NOT REPLAYED. The changes run against the Plan as it
+    // stands at this moment, so a student who edited their plan after
+    // saving the what-if is comparing against the plan they actually have.
+    const { drawCandidate } = await import("./data/candidateRun");
+    const snap = { plan: s.plan, catalog: s.catalog, items: s.items, sched: s.sched };
+    try {
+      const out = await drawCandidate(snap, candidate);
+      // The student may have clicked another tab while this ran. Dropping a
+      // stale answer is the difference between a slow tab and the wrong one.
+      if (get().candidateId !== id) return;
+      if ("refused" in out) {
+        set({ candidateView: null, candidateRefusal: out.refused, candidateBusy: false });
+      } else {
+        set({ candidateView: out.drawn, candidateRefusal: null, candidateBusy: false });
+      }
+    } catch {
+      if (get().candidateId !== id) return;
+      // A failed catalog fetch is not a verdict about the what-if. It says
+      // so rather than reporting the changes impossible.
+      set({
+        candidateView: null,
+        candidateBusy: false,
+        candidateRefusal: {
+          reason: "This what-if couldn't be worked out just now — the course catalog didn't load.",
+          nothingChanged: "Your plan has not been changed. Try the tab again in a moment.",
+          position: null,
+        },
+      });
+    }
+  },
+
+  keepCandidate: async (id) => {
+    const s = get();
+    const plan = s.plan;
+    const candidate = (plan?.candidates ?? []).find((c) => c.id === id);
+    if (!plan || !candidate) return "That what-if is no longer on this plan.";
+
+    const { keepCandidate: replay } = await import("./data/candidateRun");
+    /* THE COMPARE-AND-SWAP, against the LIVE plan rather than the copy this
+       started from (ADR 0003). Each change names the revision it was
+       computed from; if the assistant or another tab moved the plan in
+       between, the write is refused and nothing is overwritten. This is why
+       a Candidate stores changes and not a document: installing the drawn
+       plan would have no revision to name. */
+    const write = async (next: PlanDoc, baseRev: number): Promise<"written" | "stale"> => {
+      const live = get().plan;
+      if (!live || live.rev !== baseRev) return "stale";
+      persist(next, `kept the what-if "${candidate.name}"`);
+      set({ plan: next, ...recompute(next, get().catalog) });
+      return "written";
+    };
+
+    const result = await replay(
+      { plan, catalog: s.catalog, items: s.items, sched: s.sched },
+      candidate,
+      write,
+    );
+
+    if (result.refused) {
+      if (result.applied === 0) {
+        return `${result.refused.reason} ${result.refused.nothingChanged}`;
+      }
+      // A PARTIAL APPLY IS SAID OUT LOUD. It takes a genuine race to get
+      // here — the changes were run in a sandbox first — and rounding it to
+      // "done" or to "nothing happened" would both be false about a plan
+      // the student is about to act on. Plan history holds the version from
+      // before, which is where the recovery is.
+      await get().showCandidate(id);
+      return (
+        `${result.applied} of ${result.of} changes were made before this stopped: ` +
+        `${result.refused.reason} The rest were not made. Menu → Plan history has your plan ` +
+        "from before, if you would rather go back."
+      );
+    }
+
+    // Kept. The what-if is the plan now, so its tab goes: leaving it would
+    // be a tab showing the plan it is beside.
+    set({ candidateId: null, candidateView: null, candidateRefusal: null });
+    get().mutatePlan((p) => {
+      p.candidates = (p.candidates ?? []).filter((c) => c.id !== id);
+    });
+    return `Kept "${candidate.name}" — it's your plan now. The other what-ifs are still here.`;
+  },
+
+  deleteCandidate: (id) => {
+    // NOTHING ELSE IS TOUCHED. Tidying up the rail must never be a risk to
+    // the plan itself, which is what `plan-candidates.test.ts` asserts on
+    // the stored document rather than on what the screen shows.
+    if (get().candidateId === id) {
+      set({ candidateId: null, candidateView: null, candidateRefusal: null, candidateBusy: false });
+    }
+    get().mutatePlan((p) => {
+      p.candidates = (p.candidates ?? []).filter((c) => c.id !== id);
+    });
+  },
+
   setPlan: async (plan, opts) => {
+    // A DIFFERENT PLAN HAS DIFFERENT WHAT-IFS. Carrying the open tab across
+    // would leave a Candidate id pointing at nothing, or worse at a
+    // same-named one belonging to another plan.
+    set({ candidateId: null, candidateView: null, candidateRefusal: null, candidateBusy: false });
     persist(plan, opts?.optimize ? "generated" : "set plan");
     if (!plan) {
       // Starting over: drop the previous plan's edition pin too. Without this
@@ -398,6 +553,12 @@ export const usePlanner = create<PlannerState>((set, get) => ({
     next.updatedAt = new Date().toISOString();
     persist(next);
     set({ plan: next, ...recompute(next, get().catalog) });
+    // AN OPEN WHAT-IF FOLLOWS THE PLAN IT IS A WHAT-IF ABOUT. The student
+    // or their assistant can edit the real Plan while a tab is open, and a
+    // tab still showing the old comparison is the stale-into-a-lie case the
+    // stored-changes design exists to rule out.
+    const open = get().candidateId;
+    if (open) void get().showCandidate(open);
   },
 
   markCompleted: (code, done) => {

@@ -25,7 +25,18 @@ const STATUS_TEXT: Record<string, string> = {
 };
 
 export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => void }) {
-  const { plan, catalog, items, sched, mutatePlan, addTerm, deleteTerm, restoreTerm } = usePlanner();
+  const {
+    plan: myPlan, catalog, items: myItems, sched: mySched, candidateView,
+    mutatePlan, addTerm, deleteTerm, restoreTerm,
+  } = usePlanner();
+  /* A what-if is readable here too, or the feature would be mouse-only for
+     the one view that is not. The controls go, not the content: every one
+     of them edits the student's REAL plan, so a "later →" under a what-if's
+     tab would move a course in the plan they are comparing against. */
+  const readOnly = !!candidateView;
+  const plan = candidateView?.plan ?? myPlan;
+  const items = candidateView?.items ?? myItems;
+  const sched = candidateView?.sched ?? mySched;
 
   /** Which move control was last activated, so focus can be put back on it.
    *
@@ -72,7 +83,15 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
   const termOf = (it: PlanItem) => Math.max(0, Math.min(last, it.sem));
 
   return (
-    <div className="listview" role="region" aria-label="Degree plan, list view">
+    <div
+      className="listview"
+      role="region"
+      aria-label={
+        candidateView
+          ? `What-if "${candidateView.name}", list view — read-only`
+          : "Degree plan, list view"
+      }
+    >
       {plan.terms.map((term, ti) => {
         const termItems = items.filter((it) => termOf(it) === ti);
         const credits = termItems.reduce((s, it) => s + credOf(it, catalog), 0);
@@ -127,7 +146,13 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
                     <div className="lv-actions">
                       {/* Details carries everything the canvas shows on a card that
                           is too long for a row: the prerequisite leaves and which
-                          course each one refers to, concurrency, and the override. */}
+                          course each one refers to, concurrency, and the override.
+                          It is absent on a what-if because the card it opens
+                          carries Remove and Mark complete, which act on the real
+                          plan — a destructive control reached from a read-only
+                          view is worse than a missing one. */}
+                      {!readOnly && (
+                        <>
                       <button onClick={() => onOpenItem(it)} aria-label={`Details for ${label}`}>Details</button>
                       <button
                         data-move={`${it.id}:-1`}
@@ -145,6 +170,8 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
                       >
                         later →
                       </button>
+                        </>
+                      )}
                     </div>
                   </li>
                 );
@@ -159,7 +186,7 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
                 header. Without it here, "everything in the Plan is reachable"
                 is only true of what the Plan SAYS, not of what can be done. */}
             <div className="lv-term-actions">
-              {term.gap ? (
+              {readOnly ? null : term.gap ? (
                 <button onClick={() => void restoreTerm(ti)} aria-label={`Use ${term.label} instead of leaving it empty`}>
                   Use this term
                 </button>
@@ -172,11 +199,13 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
           </section>
         );
       })}
-      <div className="lv-term-actions">
-        <button onClick={() => addTerm()} aria-label="Add another term to the end of the plan">
-          Add a term
-        </button>
-      </div>
+      {!readOnly && (
+        <div className="lv-term-actions">
+          <button onClick={() => addTerm()} aria-label="Add another term to the end of the plan">
+            Add a term
+          </button>
+        </div>
+      )}
     </div>
   );
 }

@@ -19,10 +19,11 @@ import { AccountMenu } from "./components/AccountMenu";
 import { KeepPlanBar } from "./components/KeepPlanBar";
 import { wantsSignIn } from "./data/deepLink";
 import { PlanSkeleton } from "./components/PlanSkeleton";
+import { CandidateRail } from "./components/CandidateRail";
 import { chatConfigured } from "./chat/config";
 
 export default function App() {
-  const { plan, catalog, items, setPlan, mutatePlan, markCompleted, restoreItem, refreshCatalog, loading, loadError, servedEdition, repairNote, clearRepairNote } = usePlanner();
+  const { plan, catalog, items, setPlan, mutatePlan, markCompleted, restoreItem, refreshCatalog, loading, loadError, servedEdition, repairNote, clearRepairNote, candidateId, candidateRefusal, showCandidate } = usePlanner();
   const [showRemoved, setShowRemoved] = useState(false);
   const [showImport, setShowImport] = useState(false);
   const [showPrograms, setShowPrograms] = useState(false);
@@ -314,7 +315,35 @@ export default function App() {
         </div>
       </div>
       <div className="main-row" id="main" role="main">
-        {view === "canvas" ? <PlanCanvas onOpenItem={setOpenItem} /> : <PlanListView onOpenItem={setOpenItem} />}
+        {/* THE RAIL GOES ON THE LEFT. The side panel is on the right with
+            a load-bearing resizer between it and the chart; the left edge
+            is free, and it is the side a left-to-right reader scans first,
+            which suits a list you pick from. It renders nothing at all
+            until there is a what-if to compare against. */}
+        <CandidateRail onToast={setToast} />
+        {/* A WHAT-IF THAT CANNOT BE WORKED OUT DRAWS NOTHING. Falling back
+            to the real plan here would show the student their own chart
+            under a what-if's tab — the confident wrong answer, with their
+            own degree as the lie. */}
+        {candidateRefusal && candidateId ? (
+          <div className="candidate-refused" role="region" aria-label="This what-if cannot be shown">
+            <h2>This what-if can't be worked out from your plan as it stands</h2>
+            <p>
+              {candidateRefusal.position ? `${candidateRefusal.position}: ` : ""}
+              {candidateRefusal.reason}
+            </p>
+            <p className="muted">{candidateRefusal.nothingChanged}</p>
+            <p className="muted">
+              Nothing is drawn here on purpose: a chart missing one of the changes you asked
+              about would look like a plan you could have.
+            </p>
+            <button type="button" onClick={() => void showCandidate(null)}>Back to your plan</button>
+          </div>
+        ) : view === "canvas" ? (
+          <PlanCanvas onOpenItem={setOpenItem} />
+        ) : (
+          <PlanListView onOpenItem={setOpenItem} />
+        )}
         <div
           className="panel-resizer"
           role="separator"

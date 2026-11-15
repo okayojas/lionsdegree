@@ -43,11 +43,21 @@ import {
   type ProgramTemplate,
   type RemoveProgramPreview,
   type SwapCarry,
+  type Candidate,
+  MAX_CANDIDATES,
   type PlanDoc,
   type PlanItem,
   type ScheduleConstraint,
 } from "@psu-planner/engine";
 import type { ToolContext } from "./tools.js";
+// A CYCLE, AND A DELIBERATE ONE. `sandbox.ts` imports this file for
+// `executeMutation`; this file imports it back for the change runner that
+// `save_candidate` uses to check a what-if is computable before storing
+// it. Nothing is read at module-evaluation time on either side, so the
+// cycle is inert — and the alternative is a second implementation of
+// running a list of changes, which is the one thing #56 exists to
+// prevent.
+import { readChanges, runChanges, sandbox } from "./sandbox.js";
 import { refuse as refuseUnknownProgram } from "./programRequirements.js";
 import { admissionText, attachCodes, GCAC_210_GATE } from "./iug.js";
 import { MemoryPlanStore } from "./planStore.js";
@@ -59,6 +69,16 @@ import {
   recordPriorCredit,
   unrecordPriorCredit,
 } from "./previousCourses.js";
+
+/** The English list a model reads back to a student: "a, b and c".
+ *
+ * Here rather than in `simulate.ts`, which is where it started, because
+ * `save_candidate` needs the same sentence shape and two spellings of
+ * "a, b and c" in one server is two voices. */
+export const andList = (parts: string[]): string =>
+  parts.length <= 1
+    ? parts.join("")
+    : `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
 
 export interface MutationResult {
   ok?: boolean;
@@ -258,6 +278,7 @@ const isRequired = (ctx: ToolContext, code: string): boolean =>
  * against the real list rather than a second hand-written one. */
 export const MUTATIONS: ReadonlySet<string> = new Set([
   "add_course",
+  "save_candidate",
   "add_previous_course",
   "add_program",
   "add_summer_session",
@@ -278,6 +299,22 @@ export const MUTATIONS: ReadonlySet<string> = new Set([
   "skip_term",
   "swap_alternative",
 ]);
+
+/** The changes a preview or a Candidate may be made of.
+ *
+ * EVERY MUTATION EXCEPT `save_candidate`. A Candidate whose changes
+ * include saving a Candidate is a branch from a branch — explicitly out
+ * of scope in #56, and it multiplies every rule here: which plan is the
+ * inner one recomputed against, what does keeping the outer one do to
+ * it, and how deep may it go. One guard, in the one place a list of
+ * changes is read, answers all three questions by refusing the
+ * question.
+ *
+ * Also what `can_simulate` names, so a model is never offered a change
+ * it will then be refused for making. */
+export const PLANNABLE_CHANGES: ReadonlySet<string> = new Set(
+  [...MUTATIONS].filter((m) => m !== "save_candidate"),
+);
 
 /** The Plan item a Course CODE names, or undefined.
  *
@@ -388,6 +425,162 @@ export async function executeMutation(
       const r = await commit(ctx, name, (p) => { p.added.push({ code, sem: termIndex }); });
       if (refused(r)) return r!;
       return { ...r, added: code, term: plan().terms[termIndex]?.label, plan: planView(ctx, plan()) };
+    }
+
+    /* A what-if the student can LOOK AT, in the chart they already know
+     * how to read (#56).
+     *
+     * WHAT IS SAVED IS THE LIST OF CHANGES, never the plan they would
+     * produce. Storing the resulting document would mean keeping a
+     * Candidate installs a decision made against a plan that may have
+     * moved since, which is exactly what ADR 0003 refuses — and it is
+     * the objection `simulate_changes` raises when it says there is no
+     * preview to apply later. Storing the changes answers that objection
+     * rather than overriding it: the planner re-runs them against the
+     * plan as it stands to draw the tab, and "keep this one" replays the
+     * calls through the ordinary mutation path with the revision check
+     * intact.
+     *
+     * So the narrowing is specific. A preview may now be stored and
+     * re-shown. It may still never be APPLIED from storage.
+     *
+     * NOTHING IS DRAWN HERE. The answer says what was created and where
+     * the student will find it; the picture is the planner's job, which
+     * is the whole point of the ticket. */
+    case "save_candidate": {
+      const candidateName = typeof args.name === "string" ? args.name.trim() : "";
+      if (!candidateName) {
+        return {
+          error: "save_candidate needs a name for the what-if.",
+          why:
+            "The student picks between these by reading the tabs, so an unnamed one is a tab " +
+            "they have to open to identify.",
+          remedy: 'Name it after what it is — "finish in 7 terms", "abroad junior spring".',
+        };
+      }
+      // Long enough to be a sentence fragment, short enough to be a tab.
+      // MEASURED against the rail: 200px at the planner's label size fits
+      // roughly 40 characters before it wraps to a third line.
+      if (candidateName.length > 40) {
+        return {
+          error: `That name is ${candidateName.length} characters, and a tab shows about 40.`,
+          remedy: "Name it after what it is, not what it does to each term.",
+        };
+      }
+
+      const read = readChanges(args.changes);
+      if ("refusal" in read) return read.refusal as MutationResult;
+      const changes = read.changes;
+
+      const already = plan().candidates ?? [];
+      if (already.some((c) => c.name.toLowerCase() === candidateName.toLowerCase())) {
+        return {
+          error: `The student already has a what-if called "${candidateName}".`,
+          remedy: "Give this one a different name, or say which of the two they want to keep.",
+          candidates: already.map((c) => c.name),
+        };
+      }
+      // REFUSED AT THE LIMIT, and the refusal names what is there. The
+      // alternative — dropping the oldest — deletes a comparison the
+      // student is in the middle of making, and nothing tells them which
+      // one went.
+      if (already.length >= MAX_CANDIDATES) {
+        return {
+          error:
+            `The student already has ${already.length} what-ifs, which is the most a plan holds — ` +
+            "each open tab re-runs the whole plan, and a rail nobody can read is not a comparison.",
+          candidates: already.map((c) => c.name),
+          remedy:
+            "Ask them which of these they have finished with, and tell them to close it on the " +
+            "tab before saving another.",
+        };
+      }
+
+      // COMPUTABLE NOW, OR NOT SAVED. A Candidate that cannot be run
+      // against the plan it is being saved against is a tab that would
+      // open on an error the moment it was made — and the student would
+      // have been told their option was saved. The same sandbox and the
+      // same runner the planner will use to draw it, so the answer here
+      // and the answer there cannot differ.
+      const trial = await runChanges(sandbox(ctx), changes);
+      if ("refused" in trial) {
+        return {
+          ...(trial.refused as MutationResult),
+          // THE REFUSAL'S OWN WORDS FIRST. A list that is not a list of
+          // changes at all refuses with `error` and no `reason`, and
+          // replacing it with a generic sentence threw away the one
+          // thing that said what was wrong.
+          error: String(
+            trial.refused.reason ?? trial.refused.error ?? "That what-if cannot be computed from this plan.",
+          ),
+          not_saved: "No what-if was saved, because this one could not be worked out at all.",
+        };
+      }
+
+      const candidate: Candidate = {
+        // Short and local: there are at most MAX_CANDIDATES of these on
+        // one plan and they are never referenced from anywhere else, so a
+        // UUID would be ceremony. Time-ordered so the rail's order is
+        // stable without a sort key.
+        id: `c${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`,
+        name: candidateName,
+        // STRIPPED OF `based_on_revision`. Every mutation requires it over
+        // the wire, but freezing one into storage would make this what-if
+        // refuse itself the moment the student edited anything — and a
+        // Candidate is recomputed against the plan as it stands, which is
+        // the entire reason it stores changes at all.
+        changes: changes.map((c) => {
+          const { based_on_revision: _computedFrom, ...rest } = c.arguments;
+          return { tool: c.tool, arguments: rest };
+        }),
+        basedOnRev: heldRev(ctx),
+        createdAt: new Date().toISOString(),
+      };
+
+      const saved = await commit(ctx, name, (p) => {
+        p.candidates = [...(p.candidates ?? []), candidate];
+      });
+      if (refused(saved)) return saved!;
+      return {
+        ...saved,
+        // THE STUDENT'S OWN PLAN, unchanged apart from now carrying this
+        // what-if — the same thing every other write returns, so a model
+        // reading one mutation's answer can read them all. It is NOT the
+        // candidate: drawing that is the planner's job, which is the
+        // whole point of the tab.
+        plan: planView(ctx, plan()),
+        candidate: {
+          id: candidate.id,
+          name: candidate.name,
+          changes: candidate.changes.length,
+          computed_from_revision: candidate.basedOnRev,
+        },
+        // SAID RATHER THAN IMPLIED. `ok: true` on a tool whose name
+        // starts with "save" is the one thing a model could read as "the
+        // plan now has these changes in it".
+        applied: false,
+        nothing_changed:
+          "The student's plan is unchanged. This saved the what-if as a tab beside it; the " +
+          "changes happen only if they choose to keep it.",
+        where_to_find_it:
+          `It is on the left of the planner as a tab called "${candidate.name}". Tell them to ` +
+          "click it to see their plan with these changes in it — do not describe the plan or " +
+          "draw it yourself, the chart there is the one they already know how to read.",
+        ...(trial.needsConsent.length
+          ? {
+              // A Candidate may be SAVED without consent — nothing has
+              // been removed from anyone's degree by looking at a what-if
+              // — but keeping it is a real removal, and the student will
+              // be stopped there. Saying so now is the difference between
+              // an option and a dead end they discover at the last step.
+              keeping_it_needs_consent_for: trial.needsConsent,
+              before_they_keep_it:
+                `Keeping this takes ${andList(trial.needsConsent)} out of their degree, which the ` +
+                "planner will not do from a tab. Tell them that now, so they are not choosing " +
+                "between options one of which cannot be taken.",
+            }
+          : {}),
+      };
     }
 
     // AP, transfer, summer, a term before they started planning. The

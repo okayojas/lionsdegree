@@ -55,6 +55,22 @@ Course. Survives rescheduling, which is what separates it from a manual move.
 The culminating course or sequence a Program ends with. Identified by what it
 is called, not merely by where it falls.
 
+**Candidate**:
+A what-if the student is holding beside their Plan: a named list of CHANGES,
+never the Plan those changes would produce. The planner re-runs it against the
+Plan as it stands to draw it, so a Candidate cannot go stale into a lie, and
+keeping one replays its calls through the ordinary mutation path with the
+Revision check intact. A change that has stopped being possible is reported on
+its tab; no partial Plan is ever drawn.
+_Avoid_: scenario, draft, branch — the first says nothing about what is
+stored, and the other two imply something editable. A Candidate is a thing to
+compare and then keep or discard.
+
+Lives on the Plan beside `constraints` and `slotFills`, and must never be a
+row in `plans`: that table is read newest-first with a limit of one, so a
+Candidate written there would be adopted as the student's real Plan on their
+next device.
+
 ### What fills a term
 
 **Course**:
