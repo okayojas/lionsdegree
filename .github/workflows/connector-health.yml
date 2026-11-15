@@ -1,0 +1,91 @@
+# Watch the hosted connector and fail loudly when it stops answering (#58).
+#
+# WHY THIS EXISTS: the Worker checks itself every fifteen minutes — a cron
+# answers a real Course question against the real catalog and records the
+# outcome, which /health reports — and until now nothing read the report. It
+# sat in KV until somebody curled it. This connector has been silently broken
+# twice (a CORS preflight rejected before the handler ran, logging nothing;
+# a 404 on a well-known OAuth path, which nobody records) and both times the
+# way the maintainer found out was a student saying "it doesn't work".
+#
+# WHY A GITHUB ACTION AND NOT A MONITORING SERVICE: Cloudflare's Standalone
+# Health Checks need a Pro plan and this project is on Free, and there is no
+# Workers error alert in Cloudflare's notification catalogue on any plan. An
+# external poller was the remaining option. A scheduled workflow costs
+# nothing, needs no third-party account, and puts the alert where this
+# repository already sends notifications. The price is that GitHub's cron is
+# approximate and scheduled runs are delayed or dropped under load — which
+# only delays detection. It cannot produce a false pass: the staleness
+# threshold is measured against the Worker's own timestamp, not against when
+# this happened to run.
+#
+# THE CHECK IS NOT IN THIS FILE, on purpose. `curl | jq` in a `run:` block is
+# untestable, and the thing this ticket is about is failures that nothing was
+# watching. The decision lives in psu-planner/packages/mcp/scripts/
+# check-connector-health.mjs and is driven by the tests in
+# packages/mcp/test/connector-health-monitor.test.ts, including every case a
+# status-code check cannot see. This file is the caller.
+#
+# HOW THE ALERT REACHES A HUMAN: GitHub emails the account whose credentials
+# run a scheduled workflow — the last person to modify the cron — when a
+# scheduled run fails, provided "Actions" notifications are enabled for that
+# account. That setting is the one part of this nobody can commit to the
+# repository. See packages/mcp/README.md, "Watching the connector".
+name: Connector health
+
+on:
+  schedule:
+    # Every fifteen minutes, matching the Worker's own self-check cadence.
+    # A tighter schedule would not detect anything sooner: the thing being
+    # read is a report that is only rewritten four times an hour.
+    - cron: "*/15 * * * *"
+  # ON DEMAND TOO, and this is how the alert gets PROVEN rather than
+  # trusted. Dispatch with a URL that cannot be healthy — a path that does
+  # not exist, or a hostname that does not resolve — and watch the run go
+  # red and the notification arrive. Leave it blank for the real endpoint.
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Health endpoint to check. Blank = the live connector."
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+# A delayed run must not stack up behind the one before it. The newest
+# answer is the only one worth having, and the older run is checking a
+# state that has already been superseded.
+concurrency:
+  group: connector-health
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    # The live endpoint answers in well under a second; the script gives up
+    # on the fetch after ten. Anything near a minute here is the runner or
+    # the checkout, not the connector.
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # NO INSTALL STEP. The script has no dependencies — Node 22 has fetch
+      # — so there is no lockfile to drift and no registry outage that can
+      # make the monitor itself the thing that fails. A monitor with a
+      # flaky dependency teaches the maintainer to ignore it.
+      - name: Ask the connector whether it is answering
+        working-directory: psu-planner/packages/mcp
+        # THROUGH AN ENV VAR, not interpolated into the script. `${{ }}` is
+        # substituted into the shell before it runs, so a dispatch input
+        # pasted straight into a `run:` line is a command-injection hole —
+        # and the whole point of this workflow is that it is a thing
+        # nobody is watching closely. Unquoted on purpose so that a blank
+        # input passes no argument at all and the script uses its default.
+        env:
+          HEALTH_URL: ${{ inputs.url }}
+        run: node scripts/check-connector-health.mjs $HEALTH_URL

@@ -183,28 +183,100 @@ npm run worker:deploy
    pnpm --filter web run deploy
    ```
 
-7. **Point an uptime monitor at `/health`.**
+7. **Turn on Actions notifications**, so the monitor below can reach you. See
+   "Watching the connector".
 
-   There is no Workers error alert in Cloudflare's notification catalogue — on
-   any plan — and Standalone Health Checks needs Pro. An earlier version of
-   this file said to switch on a Worker alert under the Worker's own Settings;
-   no such thing exists, which is worth stating rather than quietly deleting.
+## Watching the connector
 
-   So `/health` is built to be watched by something external. **It returns 503
-   when the connector is not actually serving students**, not merely when the
-   process is down — including the case where the gate is refusing everyone
-   because a secret is missing, which is what this connector was doing in
-   production with `/health` answering 200.
+There is no Workers error alert in Cloudflare's notification catalogue — on
+any plan — and Standalone Health Checks needs Pro. An earlier version of this
+file said to switch on a Worker alert under the Worker's own Settings; no such
+thing exists, which is worth stating rather than quietly deleting.
 
-   Any free monitor works (UptimeRobot, Better Stack, Healthchecks.io). Point
-   it at `https://mcp.lionsdegree.com/health`, alert on non-200, poll every
-   five minutes.
+So `/health` is built to be watched by something external, and the thing
+watching it is **a scheduled GitHub Action in this repository** (#58). No
+third-party account, nothing to pay for, and the alert arrives where the
+repository already sends notifications.
 
-   The scheduled self-check still earns its place: it runs the same check from
-   inside, records what it found so an outage that started unobserved is
-   discoverable afterwards, and throws so the failure appears in
-   **Workers → lionsdegree-mcp → Observability**. What it cannot do is tell
-   anybody. That is the monitor's job.
+### Where it lives
+
+| What | Where |
+| --- | --- |
+| The schedule and the caller | `.github/workflows/connector-health.yml` |
+| The decision — what counts as broken | `psu-planner/packages/mcp/scripts/check-connector-health.mjs` |
+| The tests for that decision | `psu-planner/packages/mcp/test/connector-health-monitor.test.ts` |
+
+The decision is a script and not a `curl` line in the YAML because it has to
+be testable: the failures this connector has actually had were silent by
+construction, and a check nothing verifies is the same class of thing. Run it
+yourself with `node scripts/check-connector-health.mjs` from
+`psu-planner/packages/mcp`; it prints one line and exits non-zero when the
+connector is not answering. Pass a URL as the first argument to point it
+somewhere else.
+
+### What it fails on, and why each one matters
+
+- **A non-200.** `/health` answers 503 when the connector is not serving
+  students, not merely when the process is down — including the case where
+  the gate is refusing everyone because a secret is missing, which is what
+  this connector was doing in production with `/health` answering 200.
+- **`ok: false` on a 200.** The status code tracks the *live* probe only, so a
+  self-check that has failed on every run for the last hour arrives as a 200.
+  A monitor that reads the status code and stops cannot see it.
+- **A `last_self_check.at` older than 45 minutes.** Three cron periods. The
+  self-check runs every fifteen minutes and Cloudflare does not promise every
+  tick, so one missed run must not page; three is not weather. The threshold
+  has to stay under an hour because `HEALTH_TTL` drops the report from KV at
+  3600 seconds, after which `/health` says `recorded: false` instead — which
+  also fails, but says less.
+- **Anything it cannot read**: a body that is not JSON, a missing
+  `last_self_check`, a timestamp that will not parse or is dated in the
+  future. Iron rule 2 (`DECISIONS.md`): unparseable degrades to "cannot be
+  checked", never to "fine".
+
+It names which of those happened — `unreachable`, `unreadable`, `unhealthy`,
+`stale` — because they send you to different places: the first is the network
+between GitHub and Cloudflare, the second is something answering that is not
+the Worker, the last two are the Worker.
+
+### How the alert reaches you, and how to prove it does
+
+GitHub emails the account whose credentials run a scheduled workflow — the
+last person to modify the cron — when a scheduled run fails, **if that account
+has Actions notifications enabled**. Check it at
+<https://github.com/settings/notifications> under "Actions", and set it to
+notify on failed workflows only.
+
+That setting is the one part of this that cannot be committed to the
+repository, so it is the one part that needs proving rather than trusting.
+Prove it: **Actions → Connector health → Run workflow**, and put a URL that
+cannot be healthy in the `url` box — `https://mcp.lionsdegree.com/healthz`
+is a 404 and will do. The run goes red. If no mail arrives, the monitor is
+not a monitor.
+
+Note that a manual dispatch is not a *scheduled* run, and GitHub's
+notification rules differ between the two: a dispatch you started notifies
+you because you started it. To prove the scheduled path specifically, change
+the URL default in the workflow on a branch, let one scheduled run fire, and
+change it back.
+
+### Changing it
+
+- **Cadence**: the `cron:` line in the workflow. Fifteen minutes matches the
+  Worker's self-check; polling faster reads the same report more often and
+  detects nothing sooner.
+- **Staleness threshold**: `MAX_REPORT_AGE_MS` in the script. If you move it,
+  move the tests at 44 and 46 minutes with it, and keep it under the hour
+  that `HEALTH_TTL` allows.
+- **GitHub disables scheduled workflows in repositories with no activity for
+  60 days.** A quiet repository switches its own monitor off. If this project
+  goes quiet, check that the workflow is still enabled.
+
+The scheduled self-check inside the Worker still earns its place: it runs the
+same check from inside, records what it found so an outage that started
+unobserved is discoverable afterwards, and throws so the failure appears in
+**Workers → lionsdegree-mcp → Observability**. What it cannot do is tell
+anybody. That is the monitor's job.
 
 ## Licence
 
