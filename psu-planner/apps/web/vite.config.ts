@@ -84,6 +84,25 @@ const siteUrl = () => ({
 });
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      // THE CONNECTOR'S SANDBOX, REACHED FROM THE BROWSER.
+      //
+      // A candidate tab is the plan the planner would have after a list of
+      // changes, and the planner must not be a second implementation of
+      // applying them: a tab and a `simulate_changes` preview of the same
+      // changes that disagree is a picture of a degree nobody can have.
+      // So the browser runs the SAME `sandbox.ts` the connector runs.
+      //
+      // An alias rather than a workspace dependency because
+      // `lionsdegree-mcp` is published to npm with only `dist/` in its
+      // files; giving it an `exports` entry pointing into `src/` would
+      // publish a path that is not there. Mirrored in tsconfig paths and
+      // vitest.config.ts — three places, which is two too many, but each
+      // one is a different resolver.
+      "@connector": resolve(__dirname, "../../packages/mcp/src"),
+    },
+  },
   server: {
     proxy: { "/v1": "http://localhost:8788" },
   },

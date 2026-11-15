@@ -15,7 +15,8 @@ import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { FilePlanStore, SupabasePlanStore, type PlanStore } from "../src/planStore.js";
+import { SupabasePlanStore, type PlanStore } from "../src/planStore.js";
+import { FilePlanStore } from "../src/filePlanStore.js";
 
 /** A Plan as the planner exports one. Minimal but real: the store
  * parses it, so a shape it cannot read is a failing test rather than a

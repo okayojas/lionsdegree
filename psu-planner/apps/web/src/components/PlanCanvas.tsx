@@ -19,7 +19,24 @@ interface DragState {
 }
 
 export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void }) {
-  const { plan, catalog, items, sched, mutatePlan, addTerm, deleteTerm, restoreTerm } = usePlanner();
+  const {
+    plan: myPlan, catalog, items: myItems, sched: mySched, candidateView,
+    mutatePlan, addTerm, deleteTerm, restoreTerm,
+  } = usePlanner();
+  /* THE SAME CHART, DRAWING A DIFFERENT PLAN. A Candidate tab is not a
+     second renderer — it is this one, handed the plan its changes leave
+     behind. That is the whole point of #56: the student looks at a what-if
+     in the chart they already know how to read.
+
+     READ-ONLY WHILE ONE IS OPEN, and not merely by convention. Every edit
+     below writes to the student's REAL plan, so a draggable card under a
+     what-if's tab would move a course in a plan that is not the one on
+     screen — a change they did not make, to the plan they were comparing
+     against. The affordances go away rather than being ignored. */
+  const readOnly = !!candidateView;
+  const plan = candidateView?.plan ?? myPlan;
+  const items = candidateView?.items ?? myItems;
+  const sched = candidateView?.sched ?? mySched;
   const vpRef = useRef<HTMLDivElement>(null);
   const [view, setView] = useState(plan?.view ?? { x: 0, y: 0, k: 0.86 });
   const [drag, setDrag] = useState<DragState | null>(null);
@@ -67,6 +84,9 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
   }, [items.length > 0]);
 
   const persistView = (v: typeof view) => {
+    // The pan and zoom belong to the student's plan, and a what-if is not
+    // it. Panning around a tab must not write to the document underneath.
+    if (readOnly) return;
     mutatePlan((p) => { p.view = v; });
   };
 
@@ -108,7 +128,10 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
 
   const onPointerDown = (e: React.PointerEvent) => {
     (e.target as Element).setPointerCapture?.(e.pointerId);
-    const cardEl = (e.target as Element).closest?.(".card") as HTMLElement | null;
+    // A card under a what-if's tab is not draggable and does not open: the
+    // detail card carries Remove and Mark complete, which act on the real
+    // plan. Panning still works, because looking around is a read.
+    const cardEl = readOnly ? null : ((e.target as Element).closest?.(".card") as HTMLElement | null);
     if (cardEl) {
       const id = cardEl.dataset.id!;
       const p = positions[id];
@@ -187,7 +210,7 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
   return (
     <div
       ref={vpRef}
-      className={`viewport${drag?.type === "pan" ? " panning" : ""}`}
+      className={`viewport${drag?.type === "pan" ? " panning" : ""}${readOnly ? " readonly" : ""}`}
       onWheel={onWheel}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
@@ -235,7 +258,15 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
           return (
             <div key={ci} className={`col-header${term.gap ? " gap" : ""}`} style={{ left: LEFT + ci * (COLW + GAP), top: TOP, width: COLW }}>
               {term.label}
-              {term.gap ? (
+              {readOnly ? (
+                // No term controls on a what-if: every one of them edits
+                // the student's real plan.
+                <span className="cr">
+                  {term.gap
+                    ? "Gap term — intentionally left empty"
+                    : `${cr.toFixed(1).replace(/\.0$/, "")} credits planned`}
+                </span>
+              ) : term.gap ? (
                 <>
                   {/* A Gap Term is INTENTIONALLY empty -- that is what makes it
                       a Gap Term rather than a term you have not filled in yet,

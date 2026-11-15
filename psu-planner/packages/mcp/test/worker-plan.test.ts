@@ -557,6 +557,16 @@ const EVERY_MUTATION: {
     args: { code: "CHEM 110" },
     changed: (d) => ((d.constraints as unknown[]) ?? []).length === 0,
   },
+  {
+    // A what-if the student can look at in the planner (#56). It writes
+    // to the same row as every other change — on the Plan document,
+    // beside `constraints` — which is the whole reason it belongs in
+    // this list: the hosted half gets the same compare-and-swap, the
+    // same refusal on a stale read and the same Edition pin as the rest.
+    name: "save_candidate",
+    args: { name: "a term off", changes: [{ tool: "skip_term", arguments: { term_index: 3 } }] },
+    changed: (d) => JSON.stringify(d.candidates ?? []).includes("a term off"),
+  },
 ];
 
 describe.each(EVERY_MUTATION)("$name, hosted", ({ name, args, changed, doc }) => {
@@ -1234,5 +1244,65 @@ describe("removing a required course, hosted", () => {
     });
     expect(result!.ok, JSON.stringify(result)).toBe(true);
     expect(result!.on_the_strength_of).toMatch(/take it out/);
+  });
+});
+
+describe("a what-if saved by a hosted assistant", () => {
+  it("goes into the student's own plan row and creates no second one", async () => {
+    // THE TRAP #56 NAMES AND #55 PAID FOR. `pullNewerPlan` reads the
+    // plans table `order by updated_at desc limit 1`, so a what-if
+    // written as its own row would be adopted as the student's REAL plan
+    // the next time they signed in on another device. Asserted on the
+    // requests that reached PostgREST, not on the shape of the answer: a
+    // second row is something only the wire shows.
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "save_candidate", {
+      name: "finish in 7 terms",
+      changes: [{ tool: "optimize_schedule", arguments: { target_terms: 7 } }],
+      based_on_revision: 4,
+    });
+
+    expect(result!.ok, JSON.stringify(result)).toBe(true);
+    expect(table.asked.some((a) => a.method === "POST"), "a what-if was inserted as a new plan row")
+      .toBe(false);
+    const writes = table.asked.filter((a) => a.method === "PATCH");
+    expect(writes.length, "a what-if took more than one write to save").toBe(1);
+    expect(writes[0].url, "the write did not name the student's own plan").toContain("id=eq.fixture-plan");
+
+    const doc = table.stored().doc as Record<string, unknown>;
+    const saved = doc.candidates as { name: string; changes: unknown[] }[];
+    expect(saved?.length, "the what-if never reached the stored plan").toBe(1);
+    expect(saved[0].name).toBe("finish in 7 terms");
+  });
+
+  it("is refused hosted when the planner moved the plan first, and nothing is stored", async () => {
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    table.editedInThePlanner();
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "save_candidate", {
+      name: "too late",
+      changes: [{ tool: "add_term", arguments: {} }],
+      based_on_revision: 4,
+    });
+    expect(result!.stale_read, "a stale what-if landed hosted").toBe(true);
+    expect((table.stored().doc as { candidates?: unknown[] }).candidates, "a refused save still wrote")
+      .toBeUndefined();
+  });
+
+  it("carries no drawing of the plan over the wire", async () => {
+    // The planner draws it. A diagram here would be the second
+    // implementation of the chart, authored fresh on every request.
+    const table = plansTable(PLAN);
+    db = withTable(table);
+    const { result } = await call(env(), `Bearer ${await signedIn()}`, "save_candidate", {
+      name: "a term off",
+      changes: [{ tool: "skip_term", arguments: { term_index: 3 } }],
+      based_on_revision: 4,
+    });
+    expect(result!.diagram, "the hosted connector drew the candidate").toBeUndefined();
+    expect(result!.candidate_plan, "the hosted connector returned the candidate as a document")
+      .toBeUndefined();
+    expect(result!.applied, "a model could read this as the changes having happened").toBe(false);
   });
 });

@@ -10,7 +10,13 @@
     "noEmit": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      // The connector's sandbox, which the planner runs to draw a Candidate
+      // tab. See the comment on the matching alias in vite.config.ts: the
+      // planner must not own a second way of applying a list of changes.
+      "@connector/*": ["../../packages/mcp/src/*"]
+    }
   },
   "include": ["src"]
 }

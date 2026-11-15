@@ -200,8 +200,78 @@ export interface PlanDoc {
    * undergraduate courses applied to both degrees (GCAC-210: ≤15cr / ≤40% of
    * the master's, ≥50% at 500/800). Grad coursework lives in phase:"grad" terms. */
   iug?: { slug: string; track: number; doubleCounted: string[] };
+  /** The what-ifs the student is holding beside this Plan.
+   *
+   * ON THE PLAN, beside `constraints` and `slotFills`, because that is what
+   * a Candidate is: the student's own working state. It rides the existing
+   * sync, the existing compare-and-swap and the existing row-level security,
+   * costs no migration, and works signed-out because localStorage carries it
+   * like everything else.
+   *
+   * It must NOT become rows in `plans`. That table is read
+   * `order by updated_at desc limit 1`, so a Candidate written there would
+   * be adopted as the student's REAL plan the next time they signed in on
+   * another device — a second plan-shaped row nobody decided how to reach. */
+  candidates?: Candidate[];
   view: { x: number; y: number; k: number } | null;
 }
+
+/** One change a Candidate proposes: a named plan tool and its arguments.
+ *
+ * The same shape `simulate_changes` takes, deliberately — a Candidate is a
+ * preview the student kept, so the two cannot be allowed to describe a
+ * change differently. */
+export interface CandidateChange {
+  tool: string;
+  arguments: Record<string, unknown>;
+}
+
+/** A what-if: a named list of CHANGES, never the plan they would produce.
+ *
+ * THE DECISION THE WHOLE FEATURE TURNS ON. Storing the resulting document
+ * would mean "keep this one" installs a decision made against a plan that
+ * has since moved, which is exactly what the compare-and-swap in ADR 0003
+ * exists to refuse. Storing the changes answers that objection instead of
+ * overriding it: the Candidate is re-run against the Plan as it stands to
+ * draw it, and keeping it replays the calls through the ordinary mutation
+ * path with the revision check intact.
+ *
+ * So a Candidate cannot go stale into a lie. A change that has stopped
+ * being possible is reported on its tab rather than drawn as a partial
+ * plan — the rule `simulate_changes` already holds: no partial candidate,
+ * ever. */
+export interface Candidate {
+  /** Stable across re-sorts and renames, so a tab the student has open
+   * does not become a different tab when another one is deleted. */
+  id: string;
+  /** What it is — "finish in 7 terms", "abroad junior spring" — so the
+   * student can tell two of them apart without opening each one. */
+  name: string;
+  changes: CandidateChange[];
+  /** The Revision the changes were computed from.
+   *
+   * PROVENANCE, NOT A GATE. It is shown so a student can see the Candidate
+   * was worked out against an older reading of their plan; it never refuses
+   * anything, because the Candidate is recomputed against the current Plan
+   * rather than replayed against that one. A rule written against this
+   * number would make every Candidate refuse itself the moment the student
+   * edited anything. */
+  basedOnRev: number;
+  createdAt: string;
+}
+
+/** How many Candidates one Plan may hold.
+ *
+ * The rail is for comparing options a person can hold in their head, and
+ * every open tab costs a re-simulation of the whole plan. An unbounded list
+ * is also a way for an assistant to fill a student's screen with what-ifs
+ * nobody asked for.
+ *
+ * AT THE LIMIT THE NEW ONE IS REFUSED, and the refusal names what is
+ * already there. Dropping the oldest silently would delete a comparison the
+ * student was in the middle of making, and they would have no way to know
+ * which one went. */
+export const MAX_CANDIDATES = 4;
 
 /** One per-course placement constraint. termIndex is the 0-based plan term
  * (Fall 2026 = 0 for a Fall-2026 start — labels derive from position, so the

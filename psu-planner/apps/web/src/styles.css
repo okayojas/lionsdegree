@@ -563,6 +563,106 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 .onboard .picked { border-color: var(--primary); background: var(--primary-tint); color: var(--accent-text); }
 .onboard .import-zone { border: 2px dashed var(--border-strong); border-radius: var(--r); padding: 14px; text-align: center; color: var(--text-muted); font-size: var(--fs-sm); }
 
+/* ---------- the candidate rail (what-if tabs) ----------
+   LEFT of the chart, because the side panel and its resizer own the right
+   edge and because a list you pick from belongs on the side a left-to-right
+   reader scans first.
+
+   It is only in the DOM when the plan has a what-if on it, so a student
+   who has never asked for one loses no width at all.
+
+   NOTHING HERE MAY BE WIDER THAN THE SCREEN (#23). The names come from an
+   assistant, so they can be long; `min-width: 0` plus `overflow-wrap` is
+   what stops one of them widening the flex row and scaling the whole page
+   down on a phone. */
+.rail {
+  flex: 0 0 200px;
+  min-width: 0;
+  max-width: 24vw;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-2);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: var(--sp-2);
+  gap: var(--sp-2);
+}
+.rail-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-2); min-width: 0; }
+/* `display: flex` above beats the user-agent rule for [hidden], so the
+   collapsed rail on a phone stayed fully visible and the toggle did
+   nothing. A `hidden` attribute that does not hide is worse than none:
+   it reads as handled. */
+.rail-list[hidden] { display: none; }
+.rail-item {
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: var(--surface);
+  min-width: 0;
+  overflow: hidden;
+}
+/* THE REAL PLAN IS NOT STYLED LIKE THE WHAT-IFS. A tab that cannot be
+   edited must not look like the one that can -- the failure to avoid is a
+   student editing what they believe is their plan. */
+.rail-item.mine { border-color: var(--border-strong); background: var(--surface); }
+.rail-item.on { border-color: var(--primary); box-shadow: inset 2px 0 0 var(--primary); }
+.rail-pick {
+  width: 100%;
+  min-width: 0;
+  display: block;
+  text-align: left;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding: var(--sp-2) var(--sp-3);
+}
+.rail-kind {
+  display: block;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.rail-item.mine .rail-kind { color: var(--primary); }
+.rail-name { display: block; font-size: var(--fs-sm); font-weight: 600; overflow-wrap: anywhere; }
+.rail-meta { display: block; font-size: var(--fs-xs); color: var(--text-muted); overflow-wrap: anywhere; }
+.rail-problem {
+  margin: 0;
+  padding: 0 var(--sp-3) var(--sp-2);
+  font-size: var(--fs-xs);
+  color: var(--warning);
+  overflow-wrap: anywhere;
+}
+.rail-acts { display: flex; flex-wrap: wrap; gap: var(--sp-1); padding: 0 var(--sp-2) var(--sp-2); }
+.rail-acts button { font-size: var(--fs-xs); padding: 4px 9px; }
+.rail-toggle { width: 100%; }
+/* A what-if is read-only, and the cursor says so before the student
+   discovers it by trying. Panning still works, so grab stays. */
+.viewport.readonly .card { cursor: default; }
+.candidate-refused {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  padding: var(--sp-6);
+  background: var(--bg);
+}
+.candidate-refused h2 { font-size: var(--fs-md); margin: 0 0 var(--sp-3); }
+.candidate-refused p { max-width: 60ch; margin: 0 0 var(--sp-3); }
+@media (max-width: 760px) {
+  /* ON A PHONE THE RAIL IS NOT A RAIL. 200px beside a 412px chart is not
+     available, so it becomes one control at the top that opens the list,
+     and the chart keeps the screen. */
+  .rail {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    max-height: 45vh;
+  }
+  .rail.collapsed { max-height: none; }
+}
+
 /* ---------- side panel (chat + audit) ---------- */
 .main-row { display: flex; flex: 1; min-height: 0; }
 .main-row .viewport { flex: 1; }

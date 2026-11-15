@@ -33,7 +33,8 @@ import {
   type Schedule,
 } from "@psu-planner/engine";
 import { loadEdition, type EditionCatalog } from "./catalog.js";
-import { FilePlanStore, type PlanStore, type StoredPlan } from "./planStore.js";
+import { type PlanStore, type StoredPlan } from "./planStore.js";
+import { FilePlanStore } from "./filePlanStore.js";
 import { FsCatalogSource, type CatalogSource } from "./source.js";
 import { executeMutation, MUTATIONS } from "./mutations.js";
 import { programRequirements } from "./programRequirements.js";
@@ -575,7 +576,9 @@ function allTools(): ToolDefinition[] {
         "— that part is your job, not the server's. Nothing is saved. If one change cannot be made, " +
         "the whole preview stops and says which: you never get a plan with some of them in it. " +
         "The answer carries a `diagram` of the candidate plan — show it to them in a mermaid code " +
-        "block, because the shape of the result is most of what they were asking about.",
+        "block, because the shape of the result is most of what they were asking about. " +
+        "If they have the planner open, prefer save_candidate: it puts the same changes on their " +
+        "own chart as a tab they can flip to, which beats any diagram a chat window renders.",
       inputSchema: obj(
         {
           changes: {
@@ -600,6 +603,52 @@ function allTools(): ToolDefinition[] {
           },
         },
         ["changes"],
+      ),
+    },
+    {
+      name: "save_candidate",
+      description:
+        "Put a what-if on the student's planner as a named tab they can click and LOOK at, drawn " +
+        "with the planner's own chart. Use this instead of describing a preview whenever they are " +
+        "weighing options — \"seven terms, or study abroad, or both?\" — because comparing is " +
+        "flipping between tabs, not re-reading two answers. Takes the same changes list as " +
+        "simulate_changes plus a short name saying what it is (\"finish in 7 terms\", \"abroad " +
+        "junior spring\"), and saves the CHANGES, not a plan: the planner re-runs them against " +
+        "their plan as it stands, so the tab cannot go stale, and keeping it makes the changes for " +
+        "real with the revision check intact. Their plan is NOT changed by this. It returns no " +
+        "picture on purpose — tell them to look at the tab; anything you draw will be worse than " +
+        "the chart they already have.",
+      inputSchema: obj(
+        {
+          name: str(
+            'What this option IS, in a few words — "finish in 7 terms", "abroad junior spring". ' +
+              "It is the label on the tab, so it has to tell them which option this is without " +
+              "opening it. About 40 characters.",
+          ),
+          changes: {
+            type: "array",
+            description:
+              "The changes this what-if makes, in the order they should happen. Each is " +
+              "{ tool, arguments }, exactly as simulate_changes takes them. Do not state " +
+              "based_on_revision inside them: a what-if is recomputed against the plan as it " +
+              "stands each time it is opened.",
+            items: obj(
+              {
+                tool: str(
+                  "add_course, remove_course, set_schedule_constraint, optimize_schedule, " +
+                    "fill_slot, add_term or skip_term.",
+                ),
+                arguments: {
+                  type: "object",
+                  description: "The arguments that tool would take, exactly as you would pass them to it.",
+                },
+              },
+              ["tool"],
+            ),
+          },
+          based_on_revision: basedOn,
+        },
+        ["name", "changes", "based_on_revision"],
       ),
     },
     {
