@@ -162,11 +162,45 @@ test("keeping this device's plan does not write over the account's", async ({ pa
   await expect(page.getByRole("dialog")).toHaveCount(0);
 
   expect(await storedPlanId(page), "the student's own plan was swapped out anyway").toBe("built-on-this-device");
-  expect(account.doc?.id, "the account's plan was overwritten").toBe("already-in-the-account");
+
+  // POLLED, AND POLLED FIRST, and both halves of that matter.
+  //
+  // The dialog closes before the push finishes — `keep` clears it, then
+  // awaits `keepThisDevicesPlan` — so asserting the write synchronously
+  // after the dialog disappears is a race. It passed locally and failed
+  // twice under full-suite load, which is the only condition slow enough
+  // to lose it.
+  //
+  // And it has to come BEFORE the "was not overwritten" check below, or
+  // that check passes for the wrong reason: asserting the account's row
+  // is untouched while the write is still in flight proves nothing about
+  // where the write lands. Waiting for it to land first is what makes
+  // the next line an assertion rather than a coin toss.
+  await expect
+    .poll(() => account.writes.map((w) => w.id), {
+      timeout: 10_000,
+      message: "the plan on this device never reached the account",
+    })
+    .toContain("built-on-this-device");
+
+  // THE PROPERTY, stated the way the stub states it: no write may be
+  // AIMED at the account's row. `account.doc.id` below is a weaker
+  // claim — a push targeting that row while carrying this device's plan
+  // would leave the id looking untouched — so both are asserted.
+  //
+  // HONEST NOTE ON WHAT THIS HAS BEEN PROVEN AGAINST. The obvious
+  // sabotage (make `keepThisDevicesPlan` push under `c.remote.id`) does
+  // NOT exercise it: that push is refused before it reaches the network,
+  // because `rememberSyncedRev` has just recorded agreement at the
+  // remote revision and the doctored plan no longer matches it. Instrumented,
+  // the run produced exactly one write — the ordinary debounced autosave —
+  // so nothing could have failed. This line is a cheap guard on the real
+  // property, not a line with a demonstrated failing mutation behind it.
   expect(
     account.writes.map((w) => w.id),
-    "the plan on this device never reached the account",
-  ).toContain("built-on-this-device");
+    "a write was aimed at the account's own row — its plan is reachable only there",
+  ).not.toContain("already-in-the-account");
+  expect(account.doc?.id, "the account's plan was overwritten").toBe("already-in-the-account");
   // The one that was not chosen is reachable, not merely undestroyed: it
   // is in Plan history, which is a door the student can open.
   await expect
