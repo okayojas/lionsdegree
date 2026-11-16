@@ -568,16 +568,17 @@ export async function executeMutation(
           "draw it yourself, the chart there is the one they already know how to read.",
         ...(trial.needsConsent.length
           ? {
-              // A Candidate may be SAVED without consent — nothing has
-              // been removed from anyone's degree by looking at a what-if
-              // — but keeping it is a real removal, and the student will
-              // be stopped there. Saying so now is the difference between
-              // an option and a dead end they discover at the last step.
-              keeping_it_needs_consent_for: trial.needsConsent,
+              // SAID, NOT REFUSED (#59). Nothing is removed from anyone's
+              // degree by looking at a what-if, and the student MAY keep
+              // this one — it is their own plan and their own click, the
+              // same one the planner already takes on a course card. What
+              // they must not do is find that out afterwards, so the tab
+              // states what keeping takes out before they choose.
+              keeping_it_removes: trial.needsConsent,
               before_they_keep_it:
-                `Keeping this takes ${andList(trial.needsConsent)} out of their degree, which the ` +
-                "planner will not do from a tab. Tell them that now, so they are not choosing " +
-                "between options one of which cannot be taken.",
+                `Keeping this takes ${andList(trial.needsConsent)} out of their degree. Tell them ` +
+                "that now, so they are choosing with the cost in front of them. The planner says " +
+                "the same thing on the tab, and removing stays reversible.",
             }
           : {}),
       };
@@ -706,7 +707,13 @@ export async function executeMutation(
       // flag to answer them would teach a model to assert consent on a
       // read — the exact assertion this gate exists to make expensive.
       // The simulation reports that consent will be needed instead.
-      if (wasRequired && !ctx.simulating) {
+      // NOT ASKED OF THE STUDENT THEMSELVES (#59). `byTheStudent` is set
+      // only by the planner in the student's own browser, where the caller
+      // IS the person whose degree this is — the same click `removeItem`
+      // already takes with no quote at all. The gate exists against a
+      // model asserting consent on their behalf, and that is still the
+      // only path it stands in.
+      if (wasRequired && !ctx.simulating && !ctx.byTheStudent) {
         // The model cannot grant itself this. A catalog description it read
         // is not the student speaking (DECISIONS.md 5.0, S4).
         const refusal = consentProblem(args);
@@ -786,7 +793,14 @@ export async function executeMutation(
         // that a student said this — but a fabricated quote sitting in
         // the transcript beside a dropped requirement is something they
         // can find, and an unverifiable claim nobody ever sees is not.
-        on_the_strength_of: wasRequired ? String(args.student_words ?? "") : undefined,
+        // A STUDENT'S OWN CLICK IS REPORTED AS WHAT IT WAS, not as an
+        // empty quote. `String(undefined ?? "")` is "", which reads in a
+        // transcript as a removal justified by nothing said at all.
+        on_the_strength_of: wasRequired
+          ? ctx.byTheStudent
+            ? "the student kept a what-if containing this removal, in their own planner"
+            : String(args.student_words ?? "")
+          : undefined,
         plan: planView(ctx, plan()),
       };
     }
@@ -1124,7 +1138,10 @@ export async function executeMutation(
       // happen if I dropped my minor?" has not agreed to drop it, and
       // requiring the flag to answer them would teach a model to assert
       // consent on a read.
-      if (!ctx.simulating) {
+      // Not asked of the student themselves either (#59): `byTheStudent`
+      // is the planner in their own browser, which is the same one-click
+      // drop `removeProgramNow` already offers on the Programs panel.
+      if (!ctx.simulating && !ctx.byTheStudent) {
         const refusal = consentProblem(args);
         if (refusal) {
           return {
@@ -1196,7 +1213,9 @@ export async function executeMutation(
         // including the quote. What is real is that a fabricated one now
         // sits in the transcript beside a dropped degree, where the
         // student can find it.
-        on_the_strength_of: String(args.student_words ?? ""),
+        on_the_strength_of: ctx.byTheStudent
+          ? "the student kept a what-if containing this removal, in their own planner"
+          : String(args.student_words ?? ""),
         note: dropped!.note,
         plan: planView(ctx, plan()),
       };

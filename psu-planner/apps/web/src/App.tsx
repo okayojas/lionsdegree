@@ -23,7 +23,7 @@ import { CandidateRail } from "./components/CandidateRail";
 import { chatConfigured } from "./chat/config";
 
 export default function App() {
-  const { plan, catalog, items, setPlan, mutatePlan, markCompleted, restoreItem, refreshCatalog, loading, loadError, servedEdition, repairNote, clearRepairNote, candidateId, candidateRefusal, showCandidate } = usePlanner();
+  const { plan, catalog, items, setPlan, markCompleted, restoreItem, loading, loadError, servedEdition, repairNote, clearRepairNote, candidateId, candidateRefusal, showCandidate } = usePlanner();
   const [showRemoved, setShowRemoved] = useState(false);
   const [showImport, setShowImport] = useState(false);
   const [showPrograms, setShowPrograms] = useState(false);
@@ -186,20 +186,22 @@ export default function App() {
       .catch(() => {});
   };
 
+  /* THROUGH THE STORE, WHICH KNOWS WHICH PLAN IS BEING EDITED (#59).
+     These used to write the real Plan directly and then announce it —
+     which with a what-if open would have added the course to the plan the
+     student was comparing against, and told them it had worked. The store
+     routes it to the open what-if's change list and hands back the
+     sentence to show either way. */
   const addPicked = async (sem: number) => {
     const c = pickedCourse!;
     setPickedCourse(null);
-    mutatePlan((p) => { p.added.push({ code: c.code, sem }); });
-    await refreshCatalog();
-    setToast(`Added ${c.display} to ${plan.terms[sem]?.label ?? "your plan"}.`);
+    setToast(await usePlanner.getState().addCourseAt(c.code, sem));
   };
 
   const fillPickedSlot = async (slotId: string, label: string) => {
     const c = pickedCourse!;
     setPickedCourse(null);
-    mutatePlan((p) => { p.slotFills[slotId] = c.code; });
-    await refreshCatalog();
-    setToast(`Filled your ${label} slot with ${c.display}.`);
+    setToast(await usePlanner.getState().fillSlotWith(slotId, c.code, label));
   };
 
   const removedCount = Object.keys(plan.removed ?? {}).length;

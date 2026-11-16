@@ -231,6 +231,101 @@ describe("a what-if and a preview of the same changes", () => {
   });
 });
 
+describe("a what-if the student wrote and one their assistant wrote", () => {
+  it("leave the same plan behind when they hold the same changes", async () => {
+    // TWO AUTHORS, ONE APPLIER (#59). The planner can now build a change
+    // list itself — the `+` makes an empty one and each edit appends to
+    // it — and the thing that stops the two authors drifting is that
+    // neither of them applies anything: both lists go through
+    // `runChanges`. If a student-authored list could produce a different
+    // plan from an identical assistant-authored one, "keep this one"
+    // would mean two different things depending on who typed it.
+    const changes = [
+      { tool: "skip_term", arguments: { term_index: 3 } },
+      { tool: "optimize_schedule", arguments: {} },
+    ];
+    // The assistant's: sent over the wire, each change stating the
+    // revision it was computed from, and stored by `save_candidate`.
+    await save({
+      name: "theirs",
+      changes: changes.map((c) => ({ ...c, arguments: { ...c.arguments, based_on_revision: rev() } })),
+    });
+    const assistants = stored()[0].changes;
+    // The student's: what the planner appends, which never carries a
+    // revision at all.
+    const students = changes;
+    expect(assistants, "the two authors do not even store the same list").toEqual(students);
+
+    const a = await runChanges(sandbox(ctx), assistants);
+    const b = await runChanges(sandbox(ctx), students);
+    if ("refused" in a) throw new Error(`the assistant's what-if refused: ${String(a.refused.reason)}`);
+    if ("refused" in b) throw new Error(`the student's what-if refused: ${String(b.refused.reason)}`);
+    expect(JSON.stringify(b.after.plan!.terms), "the same changes left two different plans")
+      .toBe(JSON.stringify(a.after.plan!.terms));
+  });
+});
+
+describe("keeping a what-if that takes a required course out", () => {
+  /** A Course the student's Program requires — the one kind of removal
+   * the consent gate stands in front of. */
+  const required = (): string => {
+    const code = ctx
+      .plan!.terms.flatMap((t) => t.items.flatMap((i) => ("code" in i && i.origin ? [i.code] : [])))[0];
+    if (!code) throw new Error("the fixture plan has no required course to remove");
+    return code;
+  };
+
+  it("is still refused when a model asks for it without the student's words", async () => {
+    // THE HOSTED GATE, UNMOVED. Everything #59 changed is on the
+    // planner's side; over the wire this is exactly as it was.
+    const r = (await executeTool(
+      "remove_course",
+      { code: required(), based_on_revision: rev() },
+      ctx,
+    )) as Record<string, unknown>;
+    expect(r.ok, "a required course came out on a model's say-so").toBeUndefined();
+    expect(r.needs_confirmation).toBe(true);
+    expect(String(r.error)).toMatch(/student/i);
+  });
+
+  it("goes through when the student themselves is the one keeping it", async () => {
+    // THE OWNER'S DECISION (#59). `byTheStudent` is set only by the
+    // planner in the student's own browser, where the caller IS the
+    // person whose degree this is — the same one-click removal the
+    // course card already offers.
+    const code = required();
+    const r = (await executeTool(
+      "remove_course",
+      { code, based_on_revision: rev() },
+      { ...ctx, byTheStudent: true },
+    )) as Record<string, unknown>;
+    expect(r.error, String(r.error)).toBeUndefined();
+    expect(r.removed).toBe(code);
+    // AND IT SAYS WHAT IT WAS DONE ON THE STRENGTH OF. An empty quote
+    // beside a dropped requirement reads as a removal justified by
+    // nothing said at all.
+    expect(String(r.on_the_strength_of), "the transcript does not say who took it out")
+      .toMatch(/student kept a what-if/i);
+  });
+
+  it("is never something a request over the wire can switch on", async () => {
+    // THE FLAG'S WHOLE SAFETY PROPERTY is that the hosted connector does
+    // not set it. Nothing in this package may assign it: the moment a
+    // worker did, `user_explicitly_asked` would be optional for any model
+    // that knew the field name.
+    const src = path.resolve(here, "..", "src");
+    const offenders: string[] = [];
+    for (const f of fs.readdirSync(src)) {
+      if (!f.endsWith(".ts")) continue;
+      const text = fs.readFileSync(path.join(src, f), "utf-8");
+      // An assignment, not a read: `ctx.byTheStudent` in the gate is the
+      // point of the field.
+      if (/byTheStudent\s*[:=]\s*(true|!)/.test(text)) offenders.push(f);
+    }
+    expect(offenders, `the connector itself sets byTheStudent in ${offenders.join(", ")}`).toEqual([]);
+  });
+});
+
 describe("the tool a student's assistant is offered", () => {
   it("is on the surface, requires a name and the changes, and states a revision", () => {
     const def = listTools().find((t) => t.name === "save_candidate");
