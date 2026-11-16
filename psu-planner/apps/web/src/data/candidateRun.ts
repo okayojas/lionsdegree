@@ -67,10 +67,12 @@ export interface CandidateDrawing {
   sched: Schedule;
   /** Courses or Programs this what-if takes out of the degree.
    *
-   * Saving a what-if needs no consent — looking at an option is not taking
-   * it — but KEEPING one is a real removal, and the planner will not do
-   * that from a tab. Surfaced so the student is told before they choose,
-   * rather than at the last step. */
+   * TOLD, NOT REFUSED (#59). Keeping this is the student's own click on
+   * their own plan — the same one the course card already takes — so it
+   * is allowed. What they must not do is discover the cost afterwards,
+   * so the rail states it before they choose. The name is the connector's
+   * own (`runChanges` computes it); what changed is what the planner does
+   * with the answer. */
   needsConsent: string[];
 }
 
@@ -294,6 +296,48 @@ export async function drawCandidate(
   };
 }
 
+/** One more change on the end of a Candidate's list — tried first, and
+ * only handed back if the what-if still draws.
+ *
+ * THE EDIT PATH (#59). A student editing inside a what-if is adding to
+ * ITS change list, never mutating a copy of the Plan: that is what keeps
+ * a Candidate recomputable, small, and keepable through the ordinary
+ * mutation path with the revision check intact. Storing the mutated
+ * document instead would reintroduce exactly what #56 refused.
+ *
+ * TRIED BEFORE IT IS STORED, because one impossible edit must not brick
+ * the tab. The change runs against the plan the what-if currently leaves
+ * behind; if the connector refuses it, nothing is appended and the
+ * student is told in the connector's own words — the same sentence their
+ * assistant would have read.
+ *
+ * The caller does the storing: this module does not reach into the
+ * store, for the same reason `keepCandidate` does not. */
+export async function appendChange(
+  snap: PlannerSnapshot,
+  candidate: Candidate,
+  change: CandidateChange,
+): Promise<{ drawn: CandidateDrawing } | { refused: CandidateRefusal }> {
+  const { MAX_CHANGES } = await import("@connector/sandbox.js");
+  if (candidate.changes.length >= MAX_CHANGES) {
+    // The connector's own ceiling, read from the connector rather than
+    // written down twice: every change re-runs the optimiser over the
+    // whole plan, and a list past this is a tab that takes longer to draw
+    // than the student will wait.
+    return {
+      refused: {
+        reason:
+          `This what-if already has ${candidate.changes.length} changes, which is as many as one ` +
+          "holds — each change re-runs your whole plan.",
+        nothingChanged:
+          "Your plan has not been changed. Keep this what-if, or start another one for the rest.",
+        position: null,
+      },
+    };
+  }
+  return drawCandidate(snap, { ...candidate, changes: [...candidate.changes, change] });
+}
+
 /** What happened when a Candidate was kept. */
 export interface KeptResult {
   /** How many of the changes landed. Reported even on a refusal, because a
@@ -335,31 +379,28 @@ export async function keepCandidate(
   if ("refused" in dry) {
     return { applied: 0, of: total, refused: refusalFrom(dry.refused as Record<string, unknown>) };
   }
-  if (dry.needsConsent.length) {
-    // THE ONE THING A TAB MAY NOT DO. Taking a required Course or a whole
-    // Program out of a degree needs the student to ask for it in their own
-    // words — a button on a what-if is not that, and relaxing the gate for
-    // a tab would relax it for everything.
-    return {
-      applied: 0,
-      of: total,
-      refused: {
-        reason:
-          `Keeping this would take ${dry.needsConsent.join(", ")} out of your degree, and a ` +
-          "what-if tab cannot do that.",
-        nothingChanged:
-          "Your plan has not been changed. Remove it from the course itself if that is what you want.",
-        position: null,
-      },
-    };
-  }
 
-  // THE REAL PATH, with a real store behind it. The context is NOT marked
-  // `simulating`, so the consent gate stands exactly as it does for any
-  // other write — which is why the check above had to come first.
+  // THE REAL PATH, with a real store behind it.
+  //
+  // A WHAT-IF THAT REMOVES A COURSE MAY BE KEPT (#59), and this flag is
+  // where that decision lives. The consent gate demands the student's own
+  // words because a MODEL can claim they asked; the caller here is the
+  // student, pressing "keep this one" in their own browser, and the
+  // planner already lets them drop a Course with one click on its card.
+  // Refusing it from a tab was inherited from the hosted path, not
+  // decided — and a product that refuses from one tab what it permits on
+  // the next erodes trust in the refusal itself.
+  //
+  // NOTHING ABOUT THE HOSTED GATE MOVES. `byTheStudent` is set here, in
+  // the browser, and nowhere in the connector; over the wire
+  // `remove_course` still requires `user_explicitly_asked` and
+  // `student_words`, still rejects model narration, and still echoes the
+  // quote. What the student is told BEFORE this — `needsConsent` on the
+  // tab — is the warning, and it stays.
   let applied = 0;
   const live: ToolContext = {
     ...ctx,
+    byTheStudent: true,
     store: {
       read: async () => ({ plan: live.plan!, rev: live.rev ?? 0, updatedAt: live.updatedAt ?? "" }),
       write: async (next: PlanDoc, baseRev: number) => {

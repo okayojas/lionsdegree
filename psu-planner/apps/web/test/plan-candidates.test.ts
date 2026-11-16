@@ -196,24 +196,32 @@ describe("a what-if kept beside the student's plan", () => {
       .toBe(false);
   });
 
-  it("follows the real plan when the student edits it", async () => {
+  it("is recomputed when the plan document is written underneath it", async () => {
     // A tab left showing the comparison the student had an hour ago is
     // the stale-into-a-lie case the stored-changes design rules out.
-    seed([candidate()]);
+    //
+    // DELETING ANOTHER WHAT-IF is the write used here, and it is the only
+    // kind left: since #59 the student cannot edit their real plan while
+    // a tab is open — those edits are routed into the what-if instead,
+    // which is what the next describe is about. What this still proves is
+    // that a write to the plan document re-runs the open tab rather than
+    // leaving the drawing it had.
+    seed([candidate(), candidate({ id: "c2", name: "abroad junior spring" })]);
     await usePlanner.getState().showCandidate("c1");
-    expect(
-      usePlanner.getState().candidateView!.plan.completed["PHYS 211"],
-      "the course was already recorded, so this proves nothing",
-    ).toBeUndefined();
+    const drawn = usePlanner.getState().candidateView;
+    expect(drawn, "nothing was drawn to begin with").toBeTruthy();
 
-    usePlanner.getState().mutatePlan((p) => { p.completed["PHYS 211"] = true; });
-    // The recompute is kicked off from `mutatePlan`; wait for it to land.
+    usePlanner.getState().deleteCandidate("c2");
     await vi.waitFor(() => {
       expect(
-        usePlanner.getState().candidateView!.plan.completed["PHYS 211"],
-        "the tab is still showing the comparison from before the edit",
-      ).toBe(true);
+        usePlanner.getState().candidateView,
+        "the open tab was not re-run after the plan was written",
+      ).not.toBe(drawn);
     });
+    expect(
+      usePlanner.getState().candidateView!.plan.terms.some((t) => t.gap),
+      "the re-run lost the what-if's own change",
+    ).toBe(true);
   });
 });
 
@@ -260,6 +268,35 @@ describe("keeping a what-if", () => {
       .toBeNull();
   });
 
+  it("takes a required course out when that is what it says, and names it first", async () => {
+    /* THE OWNER'S CALL ON #59. Keeping a what-if that removes a required
+       Course is allowed: it is the student's own plan and their own
+       click, and the planner already drops a Course from the course card
+       with no quote at all. What the gate is for is a MODEL claiming a
+       student asked — unchanged, and still enforced over the wire.
+
+       The warning is not what went. `needsConsent` is still computed and
+       still shown on the tab BEFORE the student chooses; it stopped being
+       a wall and became a sentence. */
+    const first = seed([]);
+    const code = first.terms
+      .flatMap((t) => t.items.flatMap((i) => ("code" in i && i.origin ? [i.code] : [])))[0];
+    expect(code, "the seeded plan has no required course, so this proves nothing").toBeTruthy();
+    seed([candidate({ changes: [{ tool: "remove_course", arguments: { code } }] })]);
+    await usePlanner.getState().showCandidate("c1");
+
+    const view = usePlanner.getState().candidateView;
+    expect(view, `the what-if refused itself: ${usePlanner.getState().candidateRefusal?.reason}`).toBeTruthy();
+    expect(view!.needsConsent, "the student is not told what keeping takes out").toContain(code);
+
+    const said = await usePlanner.getState().keepCandidate("c1");
+
+    expect(said, `keeping was refused: ${said}`).toMatch(/Kept/);
+    expect(codesIn(usePlanner.getState().plan!), "the course the what-if removes is still in the plan")
+      .not.toContain(code);
+    expect(codesIn(storedPlan())).not.toContain(code);
+  });
+
   it("is refused when the plan moved underneath it, and nothing is overwritten", async () => {
     // ADR 0003 through the planner's own path. The revision each change
     // names is checked against the LIVE plan, which is the entire reason
@@ -285,6 +322,301 @@ describe("keeping a what-if", () => {
     expect(usePlanner.getState().plan!.terms.some((t) => t.gap), "a refused keep still changed the plan")
       .toBe(false);
   });
+});
+
+/** The student's degree, with the what-ifs taken off.
+ *
+ * WHAT "THE REAL PLAN IS UNTOUCHED" HAS TO MEAN, and it is asserted as
+ * bytes rather than as a field or two: every part of the document that is
+ * the student's degree is identical. `candidates` is excluded because
+ * that is precisely where a what-if's changes are stored, and `rev` and
+ * `updatedAt` because storing one advances them — the test would then be
+ * asserting that nothing was saved, which is a different and wrong claim.
+ */
+const degree = (p: PlanDoc): string => {
+  const { candidates: _c, rev: _r, updatedAt: _u, ...rest } = p;
+  return JSON.stringify(rest);
+};
+
+/** Make a what-if and open it, the way the `+` does. */
+async function plusButton(): Promise<string> {
+  const said = await usePlanner.getState().newCandidate();
+  const id = usePlanner.getState().candidateId;
+  if (!id) throw new Error(`the + did not open a what-if: ${said}`);
+  return id;
+}
+
+const openChanges = () => {
+  const s = usePlanner.getState();
+  return (s.plan!.candidates ?? []).find((c) => c.id === s.candidateId)!.changes;
+};
+
+describe("a what-if the student makes themselves", () => {
+  it("starts as the plan as it stands, with nothing in it", async () => {
+    // AN EMPTY CHANGE LIST, not a copy of the document. A frozen PlanDoc
+    // is exactly what #56 refused: it would go stale against the real
+    // plan without saying so, and keeping it would have no revision to
+    // name (ADR 0003).
+    seed([]);
+    const before = degree(usePlanner.getState().plan!);
+
+    const said = await usePlanner.getState().newCandidate();
+    const s = usePlanner.getState();
+    const made = s.plan!.candidates![0];
+    expect(s.candidateId, "the what-if was made but not opened").toBe(made.id);
+
+    expect(made.changes, "the new what-if was not empty").toEqual([]);
+    expect(made.name, "the student was made to name it before drawing").toBe("What-if 1");
+    expect(made.basedOnRev, "it does not record which plan it was made from").toBe(9);
+    expect(degree(s.plan!), "making a what-if changed the plan it was made from").toBe(before);
+    expect(degree(storedPlan()), "the stored plan was changed").toBe(before);
+    expect(said).toMatch(/What-if 1/);
+  });
+
+  it("opens, and draws the plan exactly as it stands", async () => {
+    seed([]);
+    await plusButton();
+    const s = usePlanner.getState();
+    expect(s.candidateRefusal, `the empty what-if refused itself: ${s.candidateRefusal?.reason}`).toBeNull();
+    expect(s.candidateView, "nothing was drawn").toBeTruthy();
+    // The same terms and the same courses: no changes means no changes.
+    expect(s.candidateView!.plan.terms.map((t) => t.label)).toEqual(s.plan!.terms.map((t) => t.label));
+    expect(codesIn(s.candidateView!.plan)).toEqual(codesIn(s.plan!));
+  });
+
+  it("numbers the next one past the ones already there", async () => {
+    seed([candidate({ name: "What-if 1" })]);
+    await plusButton();
+    expect(usePlanner.getState().plan!.candidates![1].name).toBe("What-if 2");
+  });
+
+  it("refuses past the cap and names which ones are in the way", async () => {
+    // NOT A SILENT FAILURE AND NOT A SILENT DROP. Deleting the oldest
+    // would take away a comparison the student is in the middle of
+    // making, with nothing to say which one went.
+    seed([
+      candidate({ id: "a", name: "seven terms" }),
+      candidate({ id: "b", name: "abroad" }),
+      candidate({ id: "c", name: "co-op" }),
+      candidate({ id: "d", name: "summer" }),
+    ]);
+    const before = degree(usePlanner.getState().plan!);
+
+    const said = await usePlanner.getState().newCandidate();
+
+    expect(usePlanner.getState().plan!.candidates, "a fifth what-if was made past the cap")
+      .toHaveLength(4);
+    for (const name of ["seven terms", "abroad", "co-op", "summer"]) {
+      expect(said, "the refusal does not say which what-ifs are in the way").toContain(name);
+    }
+    expect(degree(usePlanner.getState().plan!)).toBe(before);
+  });
+
+  it("can be renamed, and will not take a name another one has", async () => {
+    seed([candidate({ id: "c1", name: "abroad" })]);
+    await plusButton();
+    const id = usePlanner.getState().candidateId!;
+
+    expect(usePlanner.getState().renameCandidate(id, "abroad")).toMatch(/already have/i);
+    expect(usePlanner.getState().plan!.candidates![1].name, "a duplicate name was taken anyway")
+      .toBe("What-if 1");
+
+    expect(usePlanner.getState().renameCandidate(id, "  finish in 7 terms  ")).toMatch(/finish in 7 terms/);
+    expect(usePlanner.getState().plan!.candidates![1].name).toBe("finish in 7 terms");
+    expect(storedPlan().candidates![1].name, "the new name was not saved").toBe("finish in 7 terms");
+    expect(
+      usePlanner.getState().candidateView!.name,
+      "the view still carries the old name, so the list view would say the wrong one",
+    ).toBe("finish in 7 terms");
+  });
+});
+
+describe("editing inside a what-if", () => {
+  /* THE PROPERTY THIS TICKET TURNS ON. Every edit the planner accepts
+     while a tab is open must land on THAT what-if's change list and not
+     on the student's plan — a mutation that forgot the routing would
+     change the degree they believe they are experimenting away from.
+     Asserted for every mutation the what-if accepts, on the STORED
+     document as well as the one in memory, because the stored one is
+     what their other devices read. */
+
+  const courseOnChart = () => {
+    const it = usePlanner.getState().candidateView!.items.find((i) => i.kind === "course" && !!i.code);
+    if (!it) throw new Error("the what-if drew no courses to move");
+    return it;
+  };
+
+  it("records a move as a change, and moves nothing in the plan", async () => {
+    seed([]);
+    await plusButton();
+    const before = degree(usePlanner.getState().plan!);
+    const it = courseOnChart();
+    const to = it.sem === 2 ? 3 : 2;
+
+    await usePlanner.getState().moveItem(it.id, to);
+
+    expect(openChanges(), "the move is not on the what-if's change list").toEqual([
+      { tool: "move_course", arguments: { code: it.code, term_index: to } },
+    ]);
+    expect(degree(usePlanner.getState().plan!), "moving a course inside a what-if moved it in the real plan")
+      .toBe(before);
+    expect(degree(storedPlan()), "the stored plan was changed").toBe(before);
+    expect(
+      usePlanner.getState().candidateView!.items.find((i) => i.code === it.code)!.sem,
+      "the what-if does not show the move",
+    ).toBe(to);
+  });
+
+  it("records an added term as a change, and adds none to the plan", async () => {
+    seed([]);
+    await plusButton();
+    const before = degree(usePlanner.getState().plan!);
+    const terms = usePlanner.getState().plan!.terms.length;
+
+    const idx = await usePlanner.getState().addTerm();
+
+    expect(openChanges()).toEqual([{ tool: "add_term", arguments: {} }]);
+    expect(idx, "the new term's index is not the one the what-if now has").toBe(terms);
+    expect(usePlanner.getState().candidateView!.plan.terms.length).toBe(terms + 1);
+    expect(usePlanner.getState().plan!.terms.length, "a term was added to the real plan").toBe(terms);
+    expect(degree(storedPlan()), "the stored plan was changed").toBe(before);
+  });
+
+  it("records a skipped term as a change, and skips none in the plan", async () => {
+    seed([]);
+    await plusButton();
+    const before = degree(usePlanner.getState().plan!);
+
+    await usePlanner.getState().deleteTerm(3);
+
+    expect(openChanges()).toEqual([{ tool: "skip_term", arguments: { term_index: 3 } }]);
+    expect(usePlanner.getState().candidateView!.plan.terms.some((t) => t.gap)).toBe(true);
+    expect(usePlanner.getState().plan!.terms.some((t) => t.gap), "a term was skipped in the real plan")
+      .toBe(false);
+    expect(degree(storedPlan()), "the stored plan was changed").toBe(before);
+  });
+
+  it("records un-skipping a term as a change, and the plan never had one", async () => {
+    seed([]);
+    await plusButton();
+    const before = degree(usePlanner.getState().plan!);
+
+    await usePlanner.getState().deleteTerm(3);
+    await usePlanner.getState().restoreTerm(3);
+
+    expect(openChanges()).toEqual([
+      { tool: "skip_term", arguments: { term_index: 3 } },
+      { tool: "restore_term", arguments: { term_index: 3 } },
+    ]);
+    expect(usePlanner.getState().candidateView!.plan.terms.some((t) => t.gap), "the un-skip did not take")
+      .toBe(false);
+    expect(degree(usePlanner.getState().plan!)).toBe(before);
+    expect(degree(storedPlan())).toBe(before);
+  });
+
+  it("records an optimize as a change, and leaves the plan's own schedule alone", async () => {
+    seed([]);
+    await plusButton();
+    const before = degree(usePlanner.getState().plan!);
+
+    const said = await usePlanner.getState().optimizeNow();
+
+    expect(openChanges()).toEqual([{ tool: "optimize_schedule", arguments: {} }]);
+    expect(said, "the student is not told which plan the optimize went to").toMatch(/What-if 1/);
+    expect(degree(usePlanner.getState().plan!), "optimizing inside a what-if repacked the real plan")
+      .toBe(before);
+    expect(degree(storedPlan())).toBe(before);
+  });
+
+  it("records an added course as a change, and adds it to no plan", async () => {
+    seed([]);
+    await plusButton();
+    const before = degree(usePlanner.getState().plan!);
+    const code = "CHEM 112";
+    expect(
+      usePlanner.getState().items.some((i) => i.code === code),
+      "the course is already on the plan, so this proves nothing",
+    ).toBe(false);
+
+    const said = await usePlanner.getState().addCourseAt(code, 1);
+
+    expect(openChanges()).toEqual([
+      { tool: "add_course", arguments: { code, term_index: 1 } },
+    ]);
+    expect(said).toMatch(/What-if 1/);
+    expect(
+      usePlanner.getState().candidateView!.items.some((i) => i.code === code),
+      "the what-if does not show the course it recorded",
+    ).toBe(true);
+    expect(degree(usePlanner.getState().plan!), "a course added inside a what-if landed on the real plan")
+      .toBe(before);
+    expect(degree(storedPlan())).toBe(before);
+  });
+
+  it("keeps one impossible edit out of the list rather than bricking the tab", async () => {
+    // A change that cannot be made is not appended, so the what-if still
+    // draws and the student can try something else. A list with a
+    // refusal in it would be a tab that opens on an error from then on,
+    // with their work behind it.
+    seed([]);
+    await plusButton();
+    await usePlanner.getState().deleteTerm(3);
+
+    const said = await usePlanner.getState().addCourseAt("NOPE 999", 0);
+
+    expect(said, "the connector's own words about the refusal are not shown").toMatch(/NOPE 999/);
+    expect(openChanges(), "the impossible change was written into the what-if").toHaveLength(1);
+    expect(usePlanner.getState().candidateView, "the tab stopped drawing").toBeTruthy();
+    expect(usePlanner.getState().candidateRefusal).toBeNull();
+  });
+});
+
+describe("what a what-if cannot hold", () => {
+  /* THE BACKSTOP. An edit that is not routed must be refused, never
+     applied to the plan the student is comparing against — so a mutation
+     added later and forgotten here fails loudly rather than silently
+     writing the degree. */
+
+  it("refuses a plain plan edit and says which plan is open", async () => {
+    seed([]);
+    await plusButton();
+    const before = degree(usePlanner.getState().plan!);
+
+    const wrote = usePlanner.getState().mutatePlan((p) => { p.completed["PHYS 211"] = true; });
+
+    expect(wrote, "an unrouted edit reported success").toBe(false);
+    expect(degree(usePlanner.getState().plan!), "an unrouted edit wrote the student's real plan")
+      .toBe(before);
+    expect(degree(storedPlan())).toBe(before);
+    expect(usePlanner.getState().repairNote, "nothing was said about it").toMatch(/What-if 1/);
+  });
+
+  for (const [what, run] of [
+    ["marking a course complete", () => usePlanner.getState().markCompleted("PHYS 211", true)],
+    ["a bulk completion", () => usePlanner.getState().bulkComplete(["PHYS 211"])],
+    ["removing an item", () => usePlanner.getState().removeItem("CHEM 110")],
+    ["restoring an item", () => usePlanner.getState().restoreItem("CHEM 110")],
+    ["swapping an alternative", () => usePlanner.getState().swapAlternative("CMPSC 121", "CMPSC 131")],
+    ["adding a summer", () => usePlanner.getState().addSummerSession(2028)],
+    ["declaring a program", () => usePlanner.getState().addProgramNow("physics-bs")],
+    ["dropping a program", () => usePlanner.getState().removeProgramNow(ESC)],
+    ["attaching a master's", () => usePlanner.getState().attachIugNow("anything")],
+    ["detaching a master's", () => usePlanner.getState().detachIugNow()],
+    ["an import", () => usePlanner.getState().applyImport(["PHYS 211"], [])],
+  ] as const) {
+    it(`leaves the real plan alone when ${what} is tried inside one`, async () => {
+      seed([]);
+      await plusButton();
+      const before = degree(usePlanner.getState().plan!);
+
+      await run();
+
+      expect(degree(usePlanner.getState().plan!), `${what} inside a what-if edited the real plan`)
+        .toBe(before);
+      expect(degree(storedPlan()), `${what} inside a what-if wrote the stored plan`).toBe(before);
+      expect(openChanges(), `${what} was recorded as a change it cannot be`).toEqual([]);
+    });
+  }
 });
 
 describe("deleting a what-if", () => {

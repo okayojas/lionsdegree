@@ -21,19 +21,24 @@ interface DragState {
 export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void }) {
   const {
     plan: myPlan, catalog, items: myItems, sched: mySched, candidateView,
-    mutatePlan, addTerm, deleteTerm, restoreTerm,
+    mutatePlan, moveItem, addTerm, deleteTerm, restoreTerm,
   } = usePlanner();
   /* THE SAME CHART, DRAWING A DIFFERENT PLAN. A Candidate tab is not a
      second renderer — it is this one, handed the plan its changes leave
      behind. That is the whole point of #56: the student looks at a what-if
      in the chart they already know how to read.
 
-     READ-ONLY WHILE ONE IS OPEN, and not merely by convention. Every edit
-     below writes to the student's REAL plan, so a draggable card under a
-     what-if's tab would move a course in a plan that is not the one on
-     screen — a change they did not make, to the plan they were comparing
-     against. The affordances go away rather than being ignored. */
-  const readOnly = !!candidateView;
+     AND EDITABLE (#59). A tab the student made to experiment in is the
+     wrong place for read-only: #56 chose it when an assistant was the
+     only author, and the result was a chart you could look at and not
+     think in. What makes it safe is not the affordances being gone, it
+     is the STORE knowing which plan is being edited — every control
+     below goes through an action that appends to the what-if's change
+     list and does not write the real plan. Two things stay out: the
+     course detail card, which carries edits no single change expresses
+     (a prerequisite override has no tool at all), and the pan/zoom
+     below, which is a preference belonging to the student's own plan. */
+  const inCandidate = !!candidateView;
   const plan = candidateView?.plan ?? myPlan;
   const items = candidateView?.items ?? myItems;
   const sched = candidateView?.sched ?? mySched;
@@ -85,8 +90,10 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
 
   const persistView = (v: typeof view) => {
     // The pan and zoom belong to the student's plan, and a what-if is not
-    // it. Panning around a tab must not write to the document underneath.
-    if (readOnly) return;
+    // it. Panning around a tab must not write to the document underneath
+    // — and there is no change that says "I scrolled", so this is not
+    // something the what-if can hold either. Looking around stays free.
+    if (inCandidate) return;
     mutatePlan((p) => { p.view = v; });
   };
 
@@ -128,10 +135,10 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
 
   const onPointerDown = (e: React.PointerEvent) => {
     (e.target as Element).setPointerCapture?.(e.pointerId);
-    // A card under a what-if's tab is not draggable and does not open: the
-    // detail card carries Remove and Mark complete, which act on the real
-    // plan. Panning still works, because looking around is a read.
-    const cardEl = readOnly ? null : ((e.target as Element).closest?.(".card") as HTMLElement | null);
+    // Draggable under a what-if's tab too — the drag is routed to its
+    // change list. What a card does NOT do there is open: the detail card
+    // carries edits that act on the real plan.
+    const cardEl = (e.target as Element).closest?.(".card") as HTMLElement | null;
     if (cardEl) {
       const id = cardEl.dataset.id!;
       const p = positions[id];
@@ -164,20 +171,22 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
     const it = items.find((x) => x.id === d.id);
     setCardOffset(null);
     if (!d.moved) {
-      if (it) onOpenItem(it);
+      // A tap inside a what-if opens nothing: the detail card's controls
+      // are the real plan's. Moving the card is the edit a what-if takes.
+      if (it && !inCandidate) onOpenItem(it);
       return;
     }
     if (it && cardOffset) {
       const worldX = d.ox + cardOffset.dx;
       // Dropped in the space past the last term → make a new term and
-      // place the card there.
+      // place the card there. Both halves are routed: inside a what-if
+      // this is `add_term` then `move_course` on its change list.
       const rawCol = Math.round((worldX - LAYOUT.LEFT) / (LAYOUT.COLW + LAYOUT.GAP));
       if (rawCol >= numTerms) {
-        const newIdx = addTerm();
-        if (newIdx >= 0) mutatePlan((p) => { p.moves[it.id] = newIdx; });
+        void addTerm().then((newIdx) => { if (newIdx >= 0) void moveItem(it.id, newIdx); });
       } else {
         const ci = columnFromX(worldX, numTerms);
-        if (ci !== it.sem) mutatePlan((p) => { p.moves[it.id] = ci; });
+        if (ci !== it.sem) void moveItem(it.id, ci);
       }
     }
   };
@@ -210,7 +219,9 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
   return (
     <div
       ref={vpRef}
-      className={`viewport${drag?.type === "pan" ? " panning" : ""}${readOnly ? " readonly" : ""}`}
+      className={`viewport${drag?.type === "pan" ? " panning" : ""}${inCandidate ? " candidate" : ""}`}
+      aria-label={candidateView ? `What-if "${candidateView.name}" — editing the what-if, not your plan` : undefined}
+      role={candidateView ? "region" : undefined}
       onWheel={onWheel}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
@@ -258,15 +269,7 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
           return (
             <div key={ci} className={`col-header${term.gap ? " gap" : ""}`} style={{ left: LEFT + ci * (COLW + GAP), top: TOP, width: COLW }}>
               {term.label}
-              {readOnly ? (
-                // No term controls on a what-if: every one of them edits
-                // the student's real plan.
-                <span className="cr">
-                  {term.gap
-                    ? "Gap term — intentionally left empty"
-                    : `${cr.toFixed(1).replace(/\.0$/, "")} credits planned`}
-                </span>
-              ) : term.gap ? (
+              {term.gap ? (
                 <>
                   {/* A Gap Term is INTENTIONALLY empty -- that is what makes it
                       a Gap Term rather than a term you have not filled in yet,

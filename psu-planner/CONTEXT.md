@@ -63,8 +63,18 @@ keeping one replays its calls through the ordinary mutation path with the
 Revision check intact. A change that has stopped being possible is reported on
 its tab; no partial Plan is ever drawn.
 _Avoid_: scenario, draft, branch — the first says nothing about what is
-stored, and the other two imply something editable. A Candidate is a thing to
-compare and then keep or discard.
+stored, and the third implies a merge, which there is none of. A Candidate is
+a thing to compare and then keep or discard.
+
+Either author may write one: an assistant with `save_candidate`, or the
+student with the `+` on the rail, which makes one with an EMPTY change list —
+"my Plan as it stands". Editing inside a Candidate APPENDS TO ITS CHANGE LIST
+and does not touch the Plan; the store routes every edit it accepts by which
+tab is open, and refuses the ones it cannot express rather than letting them
+fall through to the real Plan. Keeping one is the student's own click, so it
+may take a Course or a Program out of the degree — the tab says what will go
+before they choose. The gate on the connector is unmoved: a model removing a
+required Course still needs the student's words and still echoes them.
 
 Lives on the Plan beside `constraints` and `slotFills`, and must never be a
 row in `plans`: that table is read newest-first with a limit of one, so a

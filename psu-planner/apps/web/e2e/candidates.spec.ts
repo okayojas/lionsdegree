@@ -58,10 +58,18 @@ async function openRail(page: Page): Promise<void> {
 }
 
 test.describe("the rail of what-ifs", () => {
-  test("is not there at all until there is something to compare", async ({ planner }) => {
-    // A rail holding one tab is not a comparison, and it would take width
-    // off the chart for nothing.
-    await expect(rail(planner)).toHaveCount(0);
+  test("offers the + with no assistant connected, and nothing else", async ({ planner }) => {
+    // THE WHOLE POINT OF #59. This fixture has no connector and no
+    // what-ifs — which is every student on a first visit — and the rail
+    // used to render nothing at all, so the feature was invisible to
+    // them. A rail holding one tab is still not a comparison, so what is
+    // here is the `+` and no tabs.
+    await expect(
+      rail(planner).getByRole("button", { name: /Make a new what-if/i }),
+      "a student with no assistant has no way to make a what-if",
+    ).toBeVisible();
+    await expect(rail(planner).getByRole("button", { name: /^Show / })).toHaveCount(0);
+    await expectNoA11yViolations(planner, "the planner with the what-if + and no what-ifs");
   });
 
   test("puts the student's own plan first and says which one is theirs", async ({ planner }) => {
@@ -110,10 +118,11 @@ test.describe("the rail of what-ifs", () => {
       "the tab drew a plan with the change missing from it",
     ).toBeVisible();
 
-    // READ-ONLY. Every control in this view edits the student's REAL
-    // plan, so a "later →" under a what-if's tab would move a course in
-    // the plan they are comparing against.
-    await expect(planner.getByRole("button", { name: /one term later/i })).toHaveCount(0);
+    // EDITABLE (#59), and the view says which plan the edits are for.
+    // The move controls are routed to the what-if's change list; Details
+    // is not, because the card it opens carries edits no change
+    // expresses, so it stays out.
+    await expect(planner.getByRole("button", { name: /one term later/i }).first()).toBeVisible();
     await expect(planner.getByRole("button", { name: /^Details for/ })).toHaveCount(0);
 
     await openRail(planner);
@@ -163,6 +172,37 @@ test.describe("the rail of what-ifs", () => {
     expect(now.completed, "deleting a what-if lost a completed course").toEqual(was.completed);
   });
 
+  test("says what keeping takes out of the degree, and lets them keep it", async ({ planner }) => {
+    /* THE OWNER'S DECISION ON #59, in the browser. This tab used to
+       refuse: dropping a required course wants the student's own words,
+       and a button is not a quote. The gate is against a MODEL claiming
+       they asked — the student pressing Keep is the same person making
+       the same one-click removal the course card already takes. So the
+       rail stops refusing and starts telling, and the telling is what is
+       asserted here: the cost is on screen BEFORE they choose. */
+    await withCandidates(planner, [
+      candidate("c1", "drop ECON 102", [{ tool: "remove_course", arguments: { code: "ECON 102" } }]),
+    ]);
+    await openRail(planner);
+    await rail(planner).getByRole("button", { name: /Show the what-if "drop ECON 102"/ }).click();
+
+    await openRail(planner);
+    const keep = rail(planner).getByRole("button", { name: /Keep "drop ECON 102" as your plan/ });
+    await expect(keep, "keeping a what-if that removes a course is still refused").toBeEnabled({ timeout: 30_000 });
+    await expect(
+      rail(planner).getByText(/takes ECON 102 out of your degree/i),
+      "the student is not told what keeping takes out",
+    ).toBeVisible();
+
+    await keep.click();
+    await expect(rail(planner).getByRole("button", { name: /^Show the what-if/ }))
+      .toHaveCount(0, { timeout: 30_000 });
+    const now = JSON.parse((await planner.evaluate((k) => window.localStorage.getItem(k), PLAN_KEY))!);
+    const codes = now.terms.flatMap((t: { items: { code?: string }[] }) =>
+      t.items.flatMap((i) => (i.code ? [i.code] : [])));
+    expect(codes, "the course the what-if removes is still in the plan").not.toContain("ECON 102");
+  });
+
   test("becomes the real plan when it is kept", async ({ planner }) => {
     await withCandidates(planner, [candidate("c1", "a term off", SKIP_A_TERM)]);
     await openRail(planner);
@@ -173,12 +213,117 @@ test.describe("the rail of what-ifs", () => {
     await expect(keep).toBeEnabled({ timeout: 30_000 });
     await keep.click();
 
-    // The tab goes, because it is the plan now.
-    await expect(rail(planner)).toHaveCount(0);
+    // The tab goes, because it is the plan now. The `+` stays.
+    await expect(rail(planner).getByRole("button", { name: /^Show the what-if/ })).toHaveCount(0);
     const now = JSON.parse((await planner.evaluate((k) => window.localStorage.getItem(k), PLAN_KEY))!);
     expect(now.terms.some((t: { gap?: boolean }) => t.gap), "keeping did not make the change").toBe(true);
     expect(now.rev, "the revision did not advance").toBeGreaterThan(SEEDED_PLAN.rev);
     expect(now.candidates, "the kept what-if is still a tab").toEqual([]);
+  });
+});
+
+test.describe("a what-if the student makes with the +", () => {
+  /** The plan document as it is stored, which is the copy their other
+   * devices read. */
+  const stored = async (page: Page) =>
+    JSON.parse((await page.evaluate((k) => window.localStorage.getItem(k), PLAN_KEY))!);
+
+  test("can be made, edited, and kept, without typing a tool name", async ({ planner }) => {
+    // THE WHOLE JOURNEY A STUDENT WITH NO ASSISTANT HAS. No
+    // `save_candidate`, no connector: a button, a chart they can edit,
+    // and one action to keep what they made.
+    const before = await stored(planner);
+
+    await openRail(planner);
+    await rail(planner).getByRole("button", { name: /Make a new what-if/i }).click();
+    await expect(
+      planner.getByRole("region", { name: /What-if "What-if 1"/ }).first(),
+      "the + made nothing to look at",
+    ).toBeVisible({ timeout: 30_000 });
+
+    // Edit it in the list view, where the controls are words rather than
+    // a drag — the same edit the chart's term header makes.
+    await planner.getByRole("button", { name: /List view/i }).click();
+    const list = planner.getByRole("region", { name: /What-if "What-if 1", list view/ });
+    await expect(list).toBeVisible();
+    await expect(list.getByText(/gap term/i)).toHaveCount(0);
+    await list.getByRole("button", { name: /Skip Fall 2027/i }).click();
+    await expect(
+      list.getByText(/gap term/i).first(),
+      "the edit did not reach the what-if",
+    ).toBeVisible({ timeout: 30_000 });
+
+    // THE REAL PLAN IS UNTOUCHED, read off the stored document rather
+    // than off the screen: the screen is showing the what-if.
+    const mid = await stored(planner);
+    expect(mid.terms, "editing a what-if rescheduled the student's own plan").toEqual(before.terms);
+    expect(mid.completed).toEqual(before.completed);
+    expect(mid.candidates[0].changes, "the edit was not recorded on the what-if").toEqual([
+      { tool: "skip_term", arguments: { term_index: 2 } },
+    ]);
+
+    await openRail(planner);
+    const keep = rail(planner).getByRole("button", { name: /Keep "What-if 1" as your plan/ });
+    await expect(keep).toBeEnabled({ timeout: 30_000 });
+    await keep.click();
+    // The tab going is what says the replay finished; reading storage
+    // before that is reading it mid-keep.
+    await expect(rail(planner).getByRole("button", { name: /^Show the what-if/ }))
+      .toHaveCount(0, { timeout: 30_000 });
+
+    const after = await stored(planner);
+    expect(after.terms.some((t: { gap?: boolean }) => t.gap), "keeping did not make the change").toBe(true);
+    expect(after.candidates, "the kept what-if is still a tab").toEqual([]);
+  });
+
+  test("is thrown away in one click, with nothing to read first", async ({ planner }) => {
+    const before = await stored(planner);
+    await openRail(planner);
+    await rail(planner).getByRole("button", { name: /Make a new what-if/i }).click();
+    // THE CHART IS THE SIGNAL, not the rail: the what-if is drawn when
+    // its changes have been run, and on a phone the rail has closed
+    // itself by then to keep the chart on the screen. Reaching for a tab
+    // before this raced the render that creates it.
+    await expect(planner.getByRole("region", { name: /What-if "What-if 1"/ }).first())
+      .toBeVisible({ timeout: 30_000 });
+    await openRail(planner);
+    await expect(rail(planner).getByRole("button", { name: /Show the what-if "What-if 1"/ }))
+      .toBeVisible({ timeout: 30_000 });
+
+    await openRail(planner);
+    // No confirmation dialogue: throwing away a sketch has to be cheap.
+    await rail(planner).getByRole("button", { name: /Delete the what-if "What-if 1"/ }).click();
+
+    await expect(rail(planner).getByRole("button", { name: /^Show the what-if/ })).toHaveCount(0);
+    const after = await stored(planner);
+    expect(after.candidates, "the what-if was not deleted").toEqual([]);
+    expect(after.terms, "deleting a what-if rescheduled the plan").toEqual(before.terms);
+  });
+
+  test("can be renamed so three of them are tellable apart", async ({ planner }) => {
+    await openRail(planner);
+    await rail(planner).getByRole("button", { name: /Make a new what-if/i }).click();
+    // THE CHART IS THE SIGNAL, not the rail: the what-if is drawn when
+    // its changes have been run, and on a phone the rail has closed
+    // itself by then to keep the chart on the screen. Reaching for a tab
+    // before this raced the render that creates it.
+    await expect(planner.getByRole("region", { name: /What-if "What-if 1"/ }).first())
+      .toBeVisible({ timeout: 30_000 });
+    await openRail(planner);
+    await expect(rail(planner).getByRole("button", { name: /Show the what-if "What-if 1"/ }))
+      .toBeVisible({ timeout: 30_000 });
+
+    await openRail(planner);
+    await rail(planner).getByRole("button", { name: /Rename the what-if "What-if 1"/ }).click();
+    const box = rail(planner).getByLabel("Name this what-if");
+    await box.fill("abroad junior spring");
+    await box.press("Enter");
+
+    await openRail(planner);
+    await expect(rail(planner).getByRole("button", { name: /Show the what-if "abroad junior spring"/ }))
+      .toBeVisible();
+    const after = await stored(planner);
+    expect(after.candidates[0].name, "the new name was not saved").toBe("abroad junior spring");
   });
 });
 
@@ -240,10 +385,10 @@ test.describe("reaching the rail without a mouse", () => {
     ).toBeTruthy();
 
     await planner.keyboard.press("Enter");
-    // The flowchart has no accessible name of its own, so the read-only
-    // state of the canvas is what says a what-if is the thing being drawn.
+    // The flowchart carries the what-if's name once one is open, which is
+    // what says a what-if is the thing being drawn.
     await expect(
-      planner.locator(".viewport.readonly"),
+      planner.locator(".viewport.candidate"),
       "pressing Enter on the tab did not draw the what-if",
     ).toBeVisible({ timeout: 30_000 });
 
@@ -258,7 +403,12 @@ test.describe("reaching the rail without a mouse", () => {
     // And delete it, still without touching the mouse.
     await tabTo(planner, /Delete the what-if "a term off"/);
     await planner.keyboard.press("Enter");
-    await expect(rail(planner)).toHaveCount(0);
+    await expect(rail(planner).getByRole("button", { name: /^Show the what-if/ })).toHaveCount(0);
+    // The `+` stays, and is reachable by keyboard too — it is the only
+    // door a student without an assistant has.
+    await openRailByKeyboard(planner);
+    const toPlus = await tabTo(planner, /Make a new what-if/);
+    expect(toPlus, "the + is a long way down the tab order").toBeLessThanOrEqual(30);
   });
 });
 

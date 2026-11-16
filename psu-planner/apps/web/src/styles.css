@@ -568,8 +568,10 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
    edge and because a list you pick from belongs on the side a left-to-right
    reader scans first.
 
-   It is only in the DOM when the plan has a what-if on it, so a student
-   who has never asked for one loses no width at all.
+   WITH NO WHAT-IFS IT IS JUST THE `+` (#59), and it shrinks to fit that
+   one control: a student who never makes one gives up a button's width,
+   not a 200px column. The rail used to be absent entirely, which is why
+   the feature was invisible to everyone without an assistant.
 
    NOTHING HERE MAY BE WIDER THAN THE SCREEN (#23). The names come from an
    assistant, so they can be long; `min-width: 0` plus `overflow-wrap` is
@@ -587,6 +589,8 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   padding: var(--sp-2);
   gap: var(--sp-2);
 }
+/* The `+`-only rail: no fixed column, just the control. */
+.rail.empty { flex: 0 0 auto; width: auto; max-width: 40vw; }
 .rail-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-2); min-width: 0; }
 /* `display: flex` above beats the user-agent rule for [hidden], so the
    collapsed rail on a phone stayed fully visible and the toggle did
@@ -636,9 +640,22 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 .rail-acts { display: flex; flex-wrap: wrap; gap: var(--sp-1); padding: 0 var(--sp-2) var(--sp-2); }
 .rail-acts button { font-size: var(--fs-xs); padding: 4px 9px; }
 .rail-toggle { width: 100%; }
-/* A what-if is read-only, and the cursor says so before the student
-   discovers it by trying. Panning still works, so grab stays. */
-.viewport.readonly .card { cursor: default; }
+/* SAID, NOT IMPLIED. A what-if is editable and its chart looks exactly
+   like the student's plan, so the open tab carries the sentence that
+   says which one the edits are going to. */
+.rail-editing {
+  margin: 0;
+  padding: 0 var(--sp-3) var(--sp-2);
+  font-size: var(--fs-xs);
+  color: var(--primary);
+  overflow-wrap: anywhere;
+}
+.rail-item.new { border: none; background: none; }
+.rail-new { width: 100%; font-size: var(--fs-sm); white-space: nowrap; }
+.rail-rename { padding: 0 var(--sp-2) var(--sp-2); min-width: 0; }
+.rail-rename label { display: block; font-size: var(--fs-xs); color: var(--text-muted); }
+.rail-rename input { width: 100%; min-width: 0; font-size: var(--fs-sm); }
+.rail-rename .rail-acts { padding: var(--sp-1) 0 0; }
 .candidate-refused {
   flex: 1;
   min-width: 0;

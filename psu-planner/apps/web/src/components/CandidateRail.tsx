@@ -7,17 +7,22 @@
  * what-if with the planner's own chart, because it is the planner's own
  * chart. Nothing draws a degree plan twice.
  *
+ * AND WHY IT IS ALWAYS HERE NOW (#59). It used to render nothing until a
+ * what-if existed, and the only thing that could make one was a connector
+ * tool — so for every student without an AI assistant, which is all of
+ * them on a first visit, the feature was invisible. The `+` is the door on
+ * the student's side. With no what-ifs it is the ONLY thing here: a rail
+ * holding one tab is not a comparison, and the strip stays narrow enough
+ * that the chart loses nothing worth noticing.
+ *
  * ON THE LEFT, because the side panel is already on the right with a
  * load-bearing resizer between it and the chart, and because a list you
  * pick from belongs on the side a left-to-right reader scans first.
  *
  * THE REAL PLAN IS THE FIRST TAB AND SAYS SO. The failure worth ruling out
  * is a student editing what they believe is their plan while a what-if is
- * open: a tab that cannot be edited must not look like one that can.
- *
- * NOT RENDERED AT ALL WITH NO WHAT-IFS. A rail holding one tab is not a
- * comparison, and taking width off the chart to show it would be a cost
- * with nothing bought.
+ * open — which matters MORE now that a what-if can be edited, so the open
+ * tab says in words that edits are going to the what-if.
  *
  * Buttons, not an ARIA tablist. A tab in a tablist may not contain
  * focusable children, and each of these carries its own Keep and Close —
@@ -33,26 +38,35 @@ import { PHONE_QUERY, useMediaQuery } from "../hooks/useMediaQuery";
 export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
   const {
     plan, candidateId, candidateBusy, candidateRefusal, candidateView,
-    showCandidate, keepCandidate, deleteCandidate,
+    showCandidate, keepCandidate, deleteCandidate, newCandidate, renameCandidate,
   } = usePlanner();
   const phone = useMediaQuery(PHONE_QUERY);
   // ON A PHONE THE RAIL IS NOT A RAIL. At 412px the planner has no 200px
   // to give away, so it starts as one control that opens the list — and
   // nothing may push the chart off the screen (#23).
   const [open, setOpen] = useState(false);
+  /** Which what-if is being renamed, and what has been typed so far. */
+  const [renaming, setRenaming] = useState<{ id: string; text: string } | null>(null);
 
   const candidates = plan?.candidates ?? [];
-  if (!plan || candidates.length === 0) return null;
+  if (!plan) return null;
 
-  const expanded = !phone || open;
+  const none = candidates.length === 0;
+  const expanded = none || !phone || open;
   const pick = (id: string | null) => {
     void showCandidate(id);
     if (phone) setOpen(false);
   };
 
+  const makeOne = async () => {
+    const said = await newCandidate();
+    onToast(said);
+    if (phone) setOpen(false);
+  };
+
   return (
-    <nav className={`rail${expanded ? "" : " collapsed"}`} aria-label="Your plan and your what-ifs">
-      {phone && (
+    <nav className={`rail${none ? " empty" : ""}${expanded ? "" : " collapsed"}`} aria-label="Your plan and your what-ifs">
+      {phone && !none && (
         <button
           type="button"
           className="rail-toggle"
@@ -66,26 +80,32 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
         </button>
       )}
       <ul id="rail-list" className="rail-list" hidden={!expanded}>
-        <li className={`rail-item mine${candidateId === null ? " on" : ""}`}>
-          <button
-            type="button"
-            className="rail-pick"
-            aria-pressed={candidateId === null}
-            aria-label="Show your own plan"
-            onClick={() => pick(null)}
-          >
-            <span className="rail-kind">Your plan</span>
-            <span className="rail-name">The one that is saved</span>
-          </button>
-        </li>
+        {!none && (
+          <li className={`rail-item mine${candidateId === null ? " on" : ""}`}>
+            <button
+              type="button"
+              className="rail-pick"
+              aria-pressed={candidateId === null}
+              aria-label="Show your own plan"
+              onClick={() => pick(null)}
+            >
+              <span className="rail-kind">Your plan</span>
+              <span className="rail-name">The one that is saved</span>
+            </button>
+          </li>
+        )}
         {candidates.map((c) => {
           const on = candidateId === c.id;
-          /* WHY KEEPING CAN BE REFUSED BEFORE IT IS TRIED. Taking a required
-             Course or a whole Program out of a degree needs the student to
-             ask for it in their own words; a button on a what-if is not
-             that. Saying so on the tab is the difference between an option
-             and a dead end they find at the last step. */
-          const blocked = on ? (candidateView?.needsConsent ?? []) : [];
+          /* WHAT KEEPING TAKES OUT, SAID BEFORE THEY CHOOSE (#59).
+             This used to be a refusal: keeping a what-if that drops a
+             required Course or a Program was blocked, because that
+             removal wants the student's own words and a button is not a
+             quote. The gate is against a MODEL claiming a student asked;
+             the student pressing this is the same person making the same
+             one-click removal the course card already allows, so the
+             planner stops refusing and starts telling. Removing is still
+             reversible — Menu → Removed items, and plan history. */
+          const removes = on ? (candidateView?.needsConsent ?? []) : [];
           return (
             <li key={c.id} className={`rail-item${on ? " on" : ""}`}>
               <button
@@ -103,6 +123,15 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
                   {on && candidateRefusal ? " · can't be worked out" : ""}
                 </span>
               </button>
+              {on && candidateView && (
+                /* SAID IN WORDS, because a what-if is editable now and the
+                   chart under it looks exactly like the student's plan.
+                   The one outcome worth ruling out is an edit they believe
+                   is going to their degree. */
+                <p className="rail-editing" role="status">
+                  Editing this what-if. Your plan is untouched.
+                </p>
+              )}
               {on && candidateRefusal && (
                 /* SAID ON THE TAB, AND NOTHING IS DRAWN. A what-if whose
                    change has stopped being possible must not be rendered as
@@ -114,37 +143,85 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
                   {candidateRefusal.reason} {candidateRefusal.nothingChanged}
                 </p>
               )}
-              {on && blocked.length > 0 && (
+              {on && removes.length > 0 && (
                 <p className="rail-problem" role="status">
-                  Keeping this would take {blocked.join(", ")} out of your degree, which a what-if
-                  tab cannot do. Remove it from the course itself if that is what you want.
+                  Keeping this takes {removes.join(", ")} out of your degree. You can put a course
+                  back from Menu → Removed items.
                 </p>
               )}
-              <div className="rail-acts">
-                {on && (
-                  <button
-                    type="button"
-                    disabled={!candidateView || blocked.length > 0}
-                    aria-label={`Keep "${c.name}" as your plan`}
-                    onClick={async () => onToast(await keepCandidate(c.id))}
-                  >
-                    Keep this one
-                  </button>
-                )}
-                <button
-                  type="button"
-                  aria-label={`Delete the what-if "${c.name}"`}
-                  onClick={() => {
-                    deleteCandidate(c.id);
-                    onToast(`Deleted the what-if "${c.name}". Your plan is untouched.`);
+              {renaming?.id === c.id ? (
+                <form
+                  className="rail-rename"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    onToast(renameCandidate(c.id, renaming.text));
+                    setRenaming(null);
                   }}
                 >
-                  Delete
-                </button>
-              </div>
+                  {/* A label, not a placeholder: a placeholder disappears
+                      the moment there is text in the box, which is exactly
+                      when a screen reader reaches it. */}
+                  <label htmlFor={`rename-${c.id}`}>Name this what-if</label>
+                  <input
+                    id={`rename-${c.id}`}
+                    type="text"
+                    value={renaming.text}
+                    maxLength={40}
+                    autoFocus
+                    onChange={(e) => setRenaming({ id: c.id, text: e.target.value })}
+                    onKeyDown={(e) => { if (e.key === "Escape") setRenaming(null); }}
+                  />
+                  <div className="rail-acts">
+                    <button type="submit">Save</button>
+                    <button type="button" onClick={() => setRenaming(null)}>Cancel</button>
+                  </div>
+                </form>
+              ) : (
+                <div className="rail-acts">
+                  {on && (
+                    <button
+                      type="button"
+                      disabled={!candidateView}
+                      aria-label={`Keep "${c.name}" as your plan`}
+                      onClick={async () => onToast(await keepCandidate(c.id))}
+                    >
+                      Keep this one
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    aria-label={`Rename the what-if "${c.name}"`}
+                    onClick={() => setRenaming({ id: c.id, text: c.name })}
+                  >
+                    Rename
+                  </button>
+                  {/* NO CONFIRMATION. Throwing away a sketch has to be
+                      cheap, and nothing in the plan goes with it. */}
+                  <button
+                    type="button"
+                    aria-label={`Delete the what-if "${c.name}"`}
+                    onClick={() => {
+                      deleteCandidate(c.id);
+                      onToast(`Deleted the what-if "${c.name}". Your plan is untouched.`);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
             </li>
           );
         })}
+        <li className="rail-item new">
+          <button
+            type="button"
+            className="rail-new"
+            aria-label="Make a new what-if, starting as your plan"
+            onClick={() => void makeOne()}
+          >
+            + What-if
+          </button>
+        </li>
       </ul>
     </nav>
   );

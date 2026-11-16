@@ -74,6 +74,25 @@ export interface ToolContext {
    * on a read, which is precisely the assertion the gate exists to make
    * expensive. */
   simulating?: true;
+  /** These calls were made by the STUDENT, in their own planner, by
+   * pressing a button — not by a model asserting what they asked for.
+   *
+   * SET ONLY IN THE BROWSER (`apps/web/src/data/candidateRun.ts`, where a
+   * what-if is kept). Nothing in this package assigns it, and
+   * `candidate-consent.test.ts` fails if anything ever does: the moment a
+   * hosted request could set it, the consent gate below would be a flag a
+   * model can send.
+   *
+   * WHAT IT IS FOR (#59). Removing a required Course needs the student's
+   * own words BECAUSE A MODEL CAN CLAIM THEY ASKED. A student clicking
+   * "keep this one" in their own browser is not that threat — it is the
+   * same person, the same plan and the same click that `removeItem`
+   * already permits on the next tab along, and refusing it there while
+   * allowing it here left the planner stricter in one place than the
+   * other for no safety bought. The hosted gate is untouched: over the
+   * wire this is never set, so `user_explicitly_asked` and
+   * `student_words` are still required and still echoed. */
+  byTheStudent?: true;
   /** The revision and time the Plan was read at, when it came from a
    * store that knows. Reported by `get_plan`: a model that cannot say
    * how current its view is will imply it is live. */

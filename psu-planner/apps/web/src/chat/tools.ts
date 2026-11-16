@@ -47,10 +47,41 @@ function requireCode(code: unknown): string {
   return code.trim().toUpperCase();
 }
 
+/** The tools here that WRITE the student's plan.
+ *
+ * Listed so the what-if guard below can be scoped to them: reading the
+ * plan while a what-if is open is fine, and answering questions is most
+ * of what the advisor does. */
+const WRITES = new Set([
+  "add_course", "move_course", "remove_course", "set_schedule_constraint",
+  "clear_schedule_constraint", "add_summer_session", "add_term", "skip_term",
+  "restore_term", "attach_iug", "detach_iug", "fill_slot", "mark_complete",
+  "optimize_schedule",
+]);
+
 export async function executeTool(name: string, args: Record<string, unknown>): Promise<ToolResult> {
   const s = state();
   const plan = s.plan;
   if (!plan) return { error: "no plan exists yet — the student must complete onboarding first" };
+
+  /* NOT WHILE A WHAT-IF IS OPEN (#59). With a tab open the planner routes
+     the student's OWN edits into that what-if's change list, and these
+     tools write the real plan — so a model editing here would change the
+     plan the student is comparing against while they watch a different
+     one. Refused by name rather than quietly redirected: a change the
+     model believes it made to the degree, made somewhere else instead, is
+     a worse answer than "not now". */
+  if (s.candidateId && WRITES.has(name)) {
+    const open = (plan.candidates ?? []).find((c) => c.id === s.candidateId);
+    return {
+      error:
+        `The student is looking at a what-if${open ? ` ("${open.name}")` : ""}, and changes to their ` +
+        "real plan are not made from there.",
+      remedy:
+        "Tell them to click Your plan in the rail on the left if they want this change on their " +
+        "degree, then call again. Nothing has been changed.",
+    };
+  }
 
   switch (name) {
     case "get_plan": {
@@ -284,7 +315,7 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
 
     case "add_term": {
       const rev = plan.rev;
-      const idx = s.addTerm();
+      const idx = await s.addTerm();
       if (idx < 0) return { error: "no plan to add a term to" };
       record("add_term", `added an empty term at index ${idx}`, rev);
       return {

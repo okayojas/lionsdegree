@@ -27,13 +27,15 @@ const STATUS_TEXT: Record<string, string> = {
 export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => void }) {
   const {
     plan: myPlan, catalog, items: myItems, sched: mySched, candidateView,
-    mutatePlan, addTerm, deleteTerm, restoreTerm,
+    moveItem, addTerm, deleteTerm, restoreTerm,
   } = usePlanner();
   /* A what-if is readable here too, or the feature would be mouse-only for
-     the one view that is not. The controls go, not the content: every one
-     of them edits the student's REAL plan, so a "later →" under a what-if's
-     tab would move a course in the plan they are comparing against. */
-  const readOnly = !!candidateView;
+     the one view that is not — and EDITABLE here too (#59), or making one
+     would be. The controls that stay out are the ones that edit the real
+     plan: Details opens a card carrying Remove, Mark complete and a
+     prerequisite override, none of which a change list can hold. The
+     moves and the term controls are routed to the what-if's own list. */
+  const inCandidate = !!candidateView;
   const plan = candidateView?.plan ?? myPlan;
   const items = candidateView?.items ?? myItems;
   const sched = candidateView?.sched ?? mySched;
@@ -69,7 +71,7 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
     const target = Math.max(0, Math.min(last, it.sem + delta));
     if (target === it.sem) return;
     refocus.current = `${it.id}:${delta}`;
-    mutatePlan((p) => { p.moves[it.id] = target; });
+    void moveItem(it.id, target);
   };
 
   /** Which Term an item is listed under.
@@ -88,7 +90,7 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
       role="region"
       aria-label={
         candidateView
-          ? `What-if "${candidateView.name}", list view — read-only`
+          ? `What-if "${candidateView.name}", list view — editing the what-if, not your plan`
           : "Degree plan, list view"
       }
     >
@@ -148,12 +150,14 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
                           is too long for a row: the prerequisite leaves and which
                           course each one refers to, concurrency, and the override.
                           It is absent on a what-if because the card it opens
-                          carries Remove and Mark complete, which act on the real
-                          plan — a destructive control reached from a read-only
-                          view is worse than a missing one. */}
-                      {!readOnly && (
-                        <>
-                      <button onClick={() => onOpenItem(it)} aria-label={`Details for ${label}`}>Details</button>
+                          carries Remove, Mark complete and a prerequisite
+                          override, which act on the real plan — a destructive
+                          control that silently edits the other plan is worse
+                          than a missing one. The moves below are routed to the
+                          what-if and stay. */}
+                      {!inCandidate && (
+                        <button onClick={() => onOpenItem(it)} aria-label={`Details for ${label}`}>Details</button>
+                      )}
                       <button
                         data-move={`${it.id}:-1`}
                         onClick={() => move(it, -1)}
@@ -170,8 +174,6 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
                       >
                         later →
                       </button>
-                        </>
-                      )}
                     </div>
                   </li>
                 );
@@ -186,7 +188,7 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
                 header. Without it here, "everything in the Plan is reachable"
                 is only true of what the Plan SAYS, not of what can be done. */}
             <div className="lv-term-actions">
-              {readOnly ? null : term.gap ? (
+              {term.gap ? (
                 <button onClick={() => void restoreTerm(ti)} aria-label={`Use ${term.label} instead of leaving it empty`}>
                   Use this term
                 </button>
@@ -199,13 +201,11 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
           </section>
         );
       })}
-      {!readOnly && (
-        <div className="lv-term-actions">
-          <button onClick={() => addTerm()} aria-label="Add another term to the end of the plan">
-            Add a term
-          </button>
-        </div>
-      )}
+      <div className="lv-term-actions">
+        <button onClick={() => void addTerm()} aria-label="Add another term to the end of the plan">
+          Add a term
+        </button>
+      </div>
     </div>
   );
 }
