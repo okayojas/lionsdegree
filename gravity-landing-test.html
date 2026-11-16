@@ -394,13 +394,13 @@ footer { position: relative; z-index: 10; background: #043246; color: #f8f4ea; b
   <!-- 03 — assembled and connected -->
   <section class="sec form" id="plan">
     <div class="pin">
-      <p class="sr">A sample eight-term plan for Computer Science, B.S. is drawn here as a grid: one column for each term from the first fall to the last spring, and each course in the term it is taken.</p>
+      <p class="sr">A sample eight-term plan for Computer Science, B.S. is drawn here as a grid: one column for each term from the first fall to the last spring, and each course in the term it is taken. The other courses on the page are not part of this plan and fall away.</p>
       <div class="form-top" id="form-top">
         <div class="txt">
           <p class="label rv">[ 03 — The plan ]</p>
           <h2 class="h2 rv" style="--d:.1s">Chaos, then a plan.</h2>
         </div>
-        <p class="body form-note txt rv" style="--d:.15s">Out of free-fall, every course finds its term: eight of them, in the order a degree takes them.<span class="wide-only"> Sweep your cursor through it and watch the order ripple, scatter and recover.</span></p>
+        <p class="body form-note txt rv" style="--d:.15s">Everything falls. The courses your degree needs are caught, each in its term, in the order a degree takes them. The rest fall away.<span class="wide-only"> Sweep your cursor through it and watch the order ripple and recover.</span></p>
       </div>
       <div class="form-bottom txt rv" id="form-bottom" style="--d:.28s">
         <span class="sample">Sample plan · Computer Science, B.S.</span>
@@ -525,6 +525,17 @@ const PLAN = {
     ['ENGR 100', 'GEOG 30N', 'THEA 100', 'KINES 77', 'ASIA 100', 'COMM 150N', 'NUTR 100', 'EARTH 100'],
   ],
 };
+/* THE REST OF THE CATALOG. Real courses that are NOT in this plan: they
+   float and fall with everything else, and when the plan assembles they
+   are the ones that do not stick. A phone shows the first six. */
+const OTHERS = [
+  'MATH 110', 'SCM 200', 'ACCTG 211', 'SCM 301', 'MIS 301', 'FIN 413', 'BA 411', 'IB 303',
+  'ECON 102', 'ECON 104', 'ECON 302', 'FIN 301', 'FIN 305W', 'FIN 407', 'FIN 405', 'FIN 414',
+  'PSU 6', 'MGMT 301', 'MKTG 301', 'MIS 250', 'FIN 408', 'FIN 406', 'FIN 410', 'FIN 415',
+  'ENGL 137H', 'CAS 138T', 'ECON 304', 'HIST 20', 'ENGL 202D', 'BA 342', 'BLAW 441', 'MKTG 330',
+  'SPAN 1', 'SPAN 2', 'SPAN 3', 'SPAN 131', 'BLAW 341', 'RM 302', 'ECON 451', 'MGMT 326',
+  'ART 20', 'IST 110', 'METEO 3', 'KINES 61', 'RLST 1', 'BISC 3', 'DANCE 100', 'GEOSC 10',
+];
 const TERMS = 8;
 const LANES = 6;
 const PER_PLAN = TERMS * LANES;
@@ -734,9 +745,11 @@ function createField(THREE, container, ballColor, onReady, getBand) {
   };
   updateFrustumBounds();
 
-  // One sphere per course in the plan.
+  // 96 spheres on a wide screen, 54 on a phone. The first 48 are the plan;
+  // the rest are the rest of the catalog.
+  const isMobile = window.innerWidth < 768;
   const plans = [PLAN];
-  const ballCount = PER_PLAN;
+  const ballCount = isMobile ? 54 : 96;
 
   // ---- palette ----
   const getDynamicColors = (baseColor) => {
@@ -855,11 +868,10 @@ function createField(THREE, container, ballColor, onReady, getBand) {
     scene.add(group);
 
     // Which course this sphere is, and where it sits in its plan.
-    const plan = Math.floor(i / PER_PLAN);
-    const k = i % PER_PLAN;
-    const lane = Math.floor(k / TERMS);
-    const term = k % TERMS;
-    const code = plans[plan].lanes[lane][term];
+    const inPlan = i < PER_PLAN;
+    const lane = inPlan ? Math.floor(i / TERMS) : 0;
+    const term = inPlan ? i % TERMS : 0;
+    const code = inPlan ? PLAN.lanes[lane][term] : OTHERS[(i - PER_PLAN) % OTHERS.length];
 
     balls.push({
       id: i, radius, mass,
@@ -868,7 +880,11 @@ function createField(THREE, container, ballColor, onReady, getBand) {
       meshGroup: group, sphere: sphereMesh, material: sphereMat, role, isGlass,
       visualScale: radius, color,
       shapeTarget: new THREE.Vector3(),
-      code, plan, lane, term,
+      code, inPlan, plan: 0, lane, term, travelling: false,
+      // 'pile' — the floor holds it. 'out' — the floor has opened and it is
+      // falling off the bottom. 'rain' — it has come back in from the top.
+      phase: 'pile',
+      gone: false,
       label: makeLabel(code),
     });
   }
@@ -953,6 +969,7 @@ function createField(THREE, container, ballColor, onReady, getBand) {
 
     const v = { x: 0, y: 0 };
     for (const b of balls) {
+      if (!b.inPlan) continue;
       cell(b.plan, b.term, b.lane, v);
       b.shapeTarget.set(v.x, v.y, 0);
     }
@@ -1075,7 +1092,15 @@ function createField(THREE, container, ballColor, onReady, getBand) {
     // The plan section is pinned for an extra 0.6 of a screen, so the
     // rectangle holds from 2.05 to 2.6 before it lets go.
     const flyF = smoothstep(2.78, 3.55, progress);
-    const shapeF = smoothstep(1.40, 2.05, progress) * (1 - smoothstep(2.62, 3.05, progress));
+    const stickF = smoothstep(1.40, 2.05, progress); // how firmly a plan course is caught
+    const shapeF = stickF * (1 - smoothstep(2.62, 3.05, progress));
+    // THE SIEVE. Past 1.30 the floor is gone: the whole pile falls off the
+    // bottom of the screen and comes back in from the top. A course that is
+    // in the plan is caught above its own cell and drops into it; one that
+    // is not keeps falling, and after 1.80 does not come back.
+    const floorOpen = progress > 1.30;
+    const backToPile = progress < 1.22; // scrolled back up: the floor returns
+    const rainSeason = progress < 1.80;
     const dropF = dropRaw * (1 - smoothstep(1.25, 1.75, progress));
 
     // --- scroll-driven palette morph: opening → sky → green ---
@@ -1107,9 +1132,29 @@ function createField(THREE, container, ballColor, onReady, getBand) {
     const homeX = viewportWidth * (viewportWidth > viewportHeight ? 0.055 : 0);
     const homeY = viewportHeight * (viewportWidth > viewportHeight ? 0.075 : 0.13);
 
+    const topY = viewportHeight / 2 - 0.05;
+    const floorY = -viewportHeight / 2 + 0.05;
+
     // 1. ACCELERATIONS
     for (let i = 0; i < balls.length; i++) {
       const b = balls[i];
+
+      if (b.phase === 'pile' && floorOpen) {
+        b.phase = 'out';
+      } else if (b.phase !== 'pile' && backToPile) {
+        // Back up the page. Whatever had left returns from above and lands
+        // on the floor with the rest.
+        if (b.gone || b.position.y < floorY - b.radius || b.position.y > topY + b.radius) {
+          b.position.set((Math.random() - 0.5) * viewportWidth * 0.8, topY + b.radius + Math.random() * 3, (Math.random() - 0.5) * 2);
+          b.velocity.set(0, 0, 0);
+          b.meshGroup.position.copy(b.position);
+        }
+        b.gone = false;
+        b.meshGroup.visible = true;
+        b.phase = 'pile';
+      }
+      if (b.gone) continue;
+      const falling = b.phase !== 'pile';
 
       if (heroF > 0.01) {
         b.velocity.x += Math.sin(time * 0.4 + b.id * 1.5) * 0.0004 * b.radius * heroF;
@@ -1124,11 +1169,30 @@ function createField(THREE, container, ballColor, onReady, getBand) {
         b.velocity.z += (0 - b.position.z) * clusterStrength * 1.8;
       }
 
-      if (dropF > 0.001) {
-        b.velocity.y -= 0.011 * dropF;
+      // Gravity. On the floor it is the drop stage's. With the floor open it
+      // is constant, except for a plan course that has come back in: that
+      // one is let down more gently the more firmly it is caught.
+      // ON ITS WAY, OR HOME. A plan course still travelling to its cell goes
+      // through the others rather than round them. It has to: they arrive
+      // from directly above, and a course bound for the bottom row cannot
+      // get past one already seated in the top row — measured, about half
+      // of them never reached their cell.
+      let toCell = 0;
+      if (b.inPlan && b.phase === 'rain') {
+        const dx = b.shapeTarget.x - b.position.x, dy = b.shapeTarget.y - b.position.y;
+        b.travelling = dx * dx + dy * dy > layout.s * layout.s * 0.6;
+        toCell = Math.sqrt(dx * dx + dy * dy + b.position.z * b.position.z);
+      } else {
+        b.travelling = false;
       }
 
-      if (shapeF > 0.001) {
+      const g = !falling ? 0.011 * dropF : b.phase === 'rain' && b.inPlan ? 0.011 * (1 - stickF) : 0.011;
+      if (g > 0.00001) b.velocity.y -= g;
+
+      // Only a plan course that has come back in is drawn to its cell. One
+      // still in the pile has to fall out first, or it would simply rise
+      // into place and nothing would have been sorted.
+      if (b.inPlan && b.phase === 'rain' && shapeF > 0.001) {
         const k = 0.06 * shapeF;
         b.velocity.x += (b.shapeTarget.x - b.position.x) * k;
         b.velocity.y += (b.shapeTarget.y - b.position.y) * k;
@@ -1161,8 +1225,55 @@ function createField(THREE, container, ballColor, onReady, getBand) {
         }
       }
 
-      b.velocity.multiplyScalar(damping);
+      // PARKED ONCE IT IS WELL PAST THE LENS. The flight's push grows with
+      // distance, so without this a course left alone on the footer for a
+      // minute is billions of units away and heading for Infinity — and a
+      // position that has overflowed does not come back.
+      if (flyF > 0.001 && b.position.z > 60) b.velocity.set(0, 0, 0);
+
+      const damp = !falling ? damping : b.inPlan && b.phase === 'rain' ? lerp(0.992, damping, stickF) : 0.992;
+      b.velocity.multiplyScalar(damp);
+
+      // EASED IN, NOT FIRED IN. The pull toward a cell grows with distance,
+      // and from above the screen it is strong enough to carry a course
+      // straight through its cell and off the bottom — where the sieve sent
+      // it round again, forever (measured: a third of the plan never
+      // arrived). A caught course may approach no faster than a fraction of
+      // the distance left, so it slows as it lands. Loosely caught, the cap
+      // is high and it still falls like everything else. Not in flight:
+      // that is supposed to accelerate.
+      if (toCell > 0 && flyF < 0.001) {
+        const cap = lerp(1.6, 0.08 * toCell + 0.04, stickF);
+        const speed = b.velocity.length();
+        if (speed > cap) b.velocity.multiplyScalar(cap / speed);
+      }
       b.position.addScaledVector(b.velocity, 1);
+
+      if (falling && b.position.y < floorY - b.visualScale - 0.6 && !(b.inPlan && b.phase === 'rain' && stickF > 0.6)) {
+        const above = topY + b.visualScale + 0.4 + Math.random() * 3.2;
+        if (b.inPlan) {
+          // Back in from the top, directly above its own cell, and queued so
+          // the bottom of each column arrives first and the rest land on it
+          // in order, like beads let down a string.
+          const row = layout.wide ? b.lane : b.term;
+          const rows = layout.wide ? LANES : TERMS;
+          b.position.set(b.shapeTarget.x, topY + b.visualScale + 0.4 + (rows - 1 - row) * 1.25 + Math.random() * 0.5, 0);
+        } else if (rainSeason) {
+          // Back in from the top, anywhere, and in front of or behind the
+          // plan so it falls past the rectangle rather than through it.
+          const side = Math.random() < 0.5 ? -1 : 1;
+          b.position.set((Math.random() - 0.5) * (viewportWidth - 1), above, side * (1.1 + Math.random() * 0.7));
+        } else {
+          // Not in the plan, and the plan is made: it does not come back.
+          b.gone = true;
+          b.meshGroup.visible = false;
+          b.label.sprite.visible = false;
+          continue;
+        }
+        b.velocity.set(0, -0.04, 0);
+        b.phase = 'rain';
+        b.meshGroup.position.copy(b.position); // a jump is not a roll
+      }
 
       const c = b.isGlass ? curPal.glass : curPal[b.role];
       b.material.color.copy(c);
@@ -1174,7 +1285,7 @@ function createField(THREE, container, ballColor, onReady, getBand) {
 
       // Scrambled, a course is whatever size it happened to be. Assembled,
       // every course is the same size, because a plan is a grid.
-      const targetVis = lerp(b.radius, layout.nodeR, shapeF);
+      const targetVis = b.inPlan ? lerp(b.radius, layout.nodeR, shapeF) : b.radius;
       b.visualScale += (targetVis - b.visualScale) * 0.12;
       b.sphere.scale.setScalar(b.visualScale);
     }
@@ -1187,6 +1298,10 @@ function createField(THREE, container, ballColor, onReady, getBand) {
         for (let j = i + 1; j < balls.length; j++) {
           const b1 = balls[i];
           const b2 = balls[j];
+          if (b1.gone || b2.gone) continue;
+          if ((b1.travelling || b2.travelling) && b1.inPlan && b2.inPlan) continue;
+          // A course falling past the plan does not knock the plan about.
+          if (b1.inPlan !== b2.inPlan && (b1.phase === 'rain' || b2.phase === 'rain')) continue;
           collideDiff.subVectors(b2.position, b1.position);
           const dist = collideDiff.length();
           const minDist = b1.visualScale + b2.visualScale;
@@ -1214,8 +1329,6 @@ function createField(THREE, container, ballColor, onReady, getBand) {
     // 3. VIEWPORT WALLS + BOUNCY FLOOR
     const borderPad = 0.2;
     const xBound = viewportWidth / 2 - borderPad;
-    const topY = viewportHeight / 2 - 0.05;
-    const floorY = -viewportHeight / 2 + 0.05;
     const zBound = 2.0;
     const restitution = 0.30 + 0.35 * dropF;
 
@@ -1225,18 +1338,19 @@ function createField(THREE, container, ballColor, onReady, getBand) {
 
     for (let i = 0; i < balls.length; i++) {
       const b = balls[i];
+      if (b.gone) continue;
       const r = b.visualScale;
 
       if (contain) {
         if (b.position.x < -xBound - r) { b.position.x = -xBound - r; b.velocity.x *= params.rebound; }
         else if (b.position.x > xBound + r) { b.position.x = xBound + r; b.velocity.x *= params.rebound; }
 
-        if (b.position.y - r < floorY) {
+        if (b.phase === 'pile' && b.position.y - r < floorY) {
           b.position.y = floorY + r;
           if (b.velocity.y < 0) b.velocity.y = -b.velocity.y * restitution;
           if (dropF > 0.3) { b.velocity.x *= 0.86; b.velocity.z *= 0.86; }
         }
-        if (b.position.y + r > topY) {
+        if (b.phase === 'pile' && b.position.y + r > topY) {
           b.position.y = topY - r;
           if (b.velocity.y > 0) b.velocity.y *= params.rebound;
         }
@@ -1270,6 +1384,9 @@ function createField(THREE, container, ballColor, onReady, getBand) {
   };
 
   simulateAndRender();
+
+  // Read-only, for looking at the field from outside (a test, a console).
+  window.__field = { balls, layout };
 
   const handleResize = () => {
     const width = container.clientWidth;
