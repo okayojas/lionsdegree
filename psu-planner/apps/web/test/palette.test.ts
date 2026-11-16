@@ -162,23 +162,17 @@ describe("the outgoing accent is gone", () => {
   });
 
   it("uses one sign-up blue across the planner and the landing page", () => {
-    // `--cta-blue` is declared in styles.css and `--cta` in landing.css,
-    // because neither file imports the other and both render the button.
-    // Two hex literals for one colour is exactly the duplication that drifts
-    // silently -- the landing page and the chart would end up a shade apart,
-    // which reads as a rendering bug rather than a decision.
+    // The old landing page had a stylesheet of its own and restated the
+    // colour as `--cta`, so two hex literals had to be compared here. The
+    // page that replaced it imports the app's stylesheet and uses
+    // `--cta-blue` itself, which is the same guarantee by construction. What
+    // is left to hold is that nobody restates it.
     const landing = fs.readFileSync(
       path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "src", "landing.css"),
       "utf-8",
     );
-    // String.raw: in a plain template literal `\s` collapses to a bare `s`,
-    // so the pattern silently became `--cta-blues*:s*` and matched nothing.
-    const pick = (src: string, name: string) =>
-      src.match(new RegExp(String.raw`${name}\s*:\s*(#[0-9a-f]{6})`, "i"))?.[1]?.toLowerCase();
-    expect(pick(css, "--cta-blue"), "styles.css does not declare --cta-blue").toBeTruthy();
-    expect(pick(css, "--cta-blue")).toBe(pick(landing, "--cta"));
-    expect(pick(css, "--cta-blue-hover")).toBe(pick(landing, "--cta-hover"));
-    expect(pick(css, "--cta-blue-fg")).toBe(pick(landing, "--cta-fg"));
+    expect(landing, "the landing page does not use the sign-up blue at all").toMatch(/var\(--cta-blue\)/);
+    expect(landing, "the landing page declares a sign-up colour of its own").not.toMatch(/--cta(-blue)?[\w-]*\s*:/);
   });
 
   it("keeps the sign-up button legible", () => {

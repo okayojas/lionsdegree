@@ -1,5 +1,7 @@
 # LionsDegree: Landing Page — Canvas Spec
 
+> **Superseded (2026-11-16) by [#60](https://github.com/okayojas/lionsdegree/issues/60), the gravity landing page.** This describes the warm-dark, one-canvas landing page, which was removed in #64 along with the tests that encoded it. It is kept for the record of how the page got here; nothing should be built against it. What the landing page is now is in #60 and in `DECISIONS.md` §5.2.
+
 **The definitive landing page spec.** Supersedes `Landing-Page-Spec.md` and `Landing-Page-UI-Spec.md`.
 
 **Date:** October 2026

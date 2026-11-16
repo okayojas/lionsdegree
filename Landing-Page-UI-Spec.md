@@ -1,5 +1,7 @@
 # LionsDegree: Landing Page UI Spec
 
+> **Superseded (2026-11-16) by [#60](https://github.com/okayojas/lionsdegree/issues/60), the gravity landing page.** This describes the module-and-canvas landing page, which was replaced by the page in `Landing-Page-Canvas-Spec.md` and then by #60. It is kept for the record of how the page got here; nothing should be built against it. What the landing page is now is in #60 and in `DECISIONS.md` §5.2.
+
 **Supersedes** `Landing-Page-Spec.md`. Keep that file for the theme audit in section 0.
 
 **Date:** October 2026 · **Revision 2** — canvas and module architecture

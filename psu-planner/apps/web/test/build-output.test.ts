@@ -45,18 +45,20 @@ beforeAll(() => {
  * Do not round either up to make a build pass. Re-measure, and put the figure
  * in the commit message — that is the discipline the ADR exists to impose. */
 
-/** Script that runs before the page is interactive. Measured at 2.5 KB
- * (4.2 before the feedback form left for the About page in #62, and 2.9
- * before the discovery prompt took the copy script with it to Connect in
- * #63). The ceiling was 12 through all of that, which is not what ADR 0002
- * says: it is the measurement plus a fifth now, like the others. */
-const LANDING_EAGER_CEILING_KB = 3;
+/** What has to arrive before the landing page can paint: the document, its
+ * stylesheet, and every script in the static graph. Measured at 20.1 KB
+ * (document 4.6, stylesheet 14.9, script 0.5), on the page that replaced the
+ * old landing in #64. Fonts are not in it: they are swapped in when they
+ * land, and the text is readable before they do. */
+const LANDING_FIRST_PAINT_CEILING_KB = 24;
 
-/** Everything reachable, lazy chunks included. Measured at 135.2 KB, all but
- * 2.5 of it Three.js, deferred. It was 190.7 with a ceiling of 230 while the
- * feedback form lived here and brought the Supabase client with it; the
- * ceiling came down with the weight, keeping the same fifth of headroom. */
-const LANDING_SCRIPT_CEILING_KB = 165;
+/** Every script the landing page can load, lazy chunks included. Measured
+ * at 0.54 KB: one script, which sends old `/#about` links on, and the
+ * bundler's preload shim. The old landing page measured 135.2 KB here, all
+ * but 2.5 of it Three.js for the journey this page replaced. The scene that
+ * comes back in #65 arrives as a chunk with a ceiling of its own; until
+ * then nothing lazy is loaded at all, and this says so. */
+const LANDING_SCRIPT_CEILING_KB = 0.7;
 
 /** The About page, which has the feedback form now. Measured at 2.6 KB before
  * anyone presses Send, and 65.4 KB once the Supabase client has been fetched
@@ -140,13 +142,20 @@ describe("the landing document", () => {
     expect(scripts.some((s) => /\/assets\/plan-.*\.js$/.test(s))).toBe(false);
   });
 
-  it("keeps the first paint light: what loads before anyone scrolls", () => {
-    // THE NUMBER THAT PROTECTS THE PHONE READER. Static import graph only --
-    // the bytes a student waits for when the page opens, before any lazy
-    // chunk is asked for. The measured figure is beside the ceiling.
-    const kb = scriptKb(entryScripts(), "static");
-    expect(kb, `${kb.toFixed(1)} KB of script runs before the page is interactive`).toBeLessThan(
-      LANDING_EAGER_CEILING_KB,
+  it("keeps the first paint light: the document, its stylesheet, its script", () => {
+    // THE NUMBER THAT PROTECTS THE PHONE READER. Everything the browser has
+    // to have before it can draw the page: the document itself, the
+    // stylesheet that blocks rendering, and the static import graph. It
+    // used to count script alone, which is how a page could be "light"
+    // while its stylesheet doubled. The measured figure is beside the
+    // ceiling.
+    const html = read("index.html");
+    const sheets = [...html.matchAll(/<link rel="stylesheet"[^>]*href="\/(assets\/[^"]+\.css)"/g)].map((m) => m[1]);
+    expect(sheets.length, "the landing page links no stylesheet").toBeGreaterThan(0);
+    const gz = (rel: string) => zlib.gzipSync(fs.readFileSync(path.join(dist, rel))).length / 1024;
+    const kb = gz("index.html") + sheets.reduce((n, s) => n + gz(s), 0) + scriptKb(entryScripts(), "static");
+    expect(kb, `${kb.toFixed(1)} KB has to arrive before the landing page can paint`).toBeLessThan(
+      LANDING_FIRST_PAINT_CEILING_KB,
     );
   });
 
@@ -191,7 +200,8 @@ describe("the landing document", () => {
     // that does not exist.
     const markup = read("index.html").replace(/<!--[\s\S]*?-->/g, "");
     const srcs = [...markup.matchAll(/<img\b[^>]*\bsrc="(\/[^"]+)"/g)].map((m) => m[1]);
-    expect(srcs, "no brand mark in the built page").toContain("/mark.png");
+    // The header's mark, with the paper cut out of it (#61).
+    expect(srcs, "no brand mark in the built page").toContain("/mark-clear.png");
     // The product screenshot assertion was removed with the screenshots. The
     // page's imagery is now the live prerequisite scene and the static chain
     // behind it -- a screenshot of the planner alongside that would be two
@@ -252,11 +262,10 @@ describe("the icons", () => {
   });
 
   it("sets one theme colour, because the landing page has one", () => {
-    // It was a light/dark pair while the page was cream-led. The canvas
-    // design pins the landing dark whatever the system preference says, so a
-    // scheme-scoped pair would hand the chrome a cream the document never
-    // paints -- the exact mismatch the pair existed to prevent. One canvas,
-    // one value; the toggle still governs /plan/.
+    // The page is cream whatever the system preference says (it carries
+    // `data-theme="light"`), so a scheme-scoped pair would hand the chrome
+    // a dark the document never paints. One surface, one value; the toggle
+    // still governs /plan/.
     const html = read("index.html");
     const tags = [...html.matchAll(/<meta\s+name="theme-color"[^>]*content="([^"]+)"/g)].map((m) => m[1]);
     expect(tags, "expected exactly one theme-color on a page with one canvas").toHaveLength(1);
@@ -424,14 +433,16 @@ describe("the landing page's content", () => {
     expect(html()).toMatch(/prerequisite/i);
   });
 
-  it("claims it is unofficial exactly once", () => {
-    // It was said three times: an eyebrow, a line under the hero, and the
-    // footer. Repeating a disclaimer does not make it more binding, it makes
-    // the page read as nervous about itself -- and the footer is where a
-    // reader looks for it. One statement, in the place it belongs.
-    const hits = html().match(/unofficial/gi) ?? [];
-    expect(hits.length, `"unofficial" appears ${hits.length} times on the landing page`).toBe(1);
-    expect(html()).toMatch(/not affiliated with/i);
+  it("makes the disclaimer once, in full", () => {
+    // It was once said three times over: an eyebrow, a line under the
+    // hero, and the footer. Repeating a disclaimer does not make it more
+    // binding, it makes the page read as nervous about itself, and the
+    // footer is where a reader looks for it. The hero's "Free · Open
+    // source · Unofficial" is three facts about the thing and is the
+    // owner's (#60); the STATEMENT is made once.
+    const body = html().slice(html().indexOf("<body")).replace(/<!--[\s\S]*?-->/g, "");
+    expect(body.match(/not affiliated with/gi) ?? []).toHaveLength(1);
+    expect(body.match(/unofficial/gi) ?? [], "the word, in the hero's credit line and the disclaimer").toHaveLength(2);
   });
 
   it("sends people to a walkthrough instead of showing them code", () => {

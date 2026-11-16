@@ -580,6 +580,42 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
     same site. Self-hosted like the other two (`@fontsource-variable/raleway`, imported by
     `site.css` only), so the CSP's `font-src 'self'` does not move; `site-surface.test.ts` pins the
     whole policy line so that adding a face can never quietly become allowlisting a font host.
+- **The landing page is a document, with a scene laid over it (2026-11-16, #60, #64).** A change
+  of direction, and the third landing page. The one it replaces was warm dark, one canvas, a 3D
+  journey along a real prerequisite chain to a real scheduling conflict
+  (`Landing-Page-Canvas-Spec.md`, `docs/landing-3d-journey.md`; both now marked superseded, with
+  the two specs before them). It explained the product well and showed the wrong thing: a
+  conflict, when what the product is for is the whole of a degree falling into order. The owner
+  prototyped that instead (`gravity-landing-test.html`): the courses of one sample Plan as a pile
+  that becomes a rectangle, eight Terms of six.
+  - **The page is complete with no script.** The prototype hid its hero until a script ran, put
+    the page behind a loader, and asked two other hosts for its fonts and its renderer. None of
+    that shipped. `/` is four short sections and a footer in the markup; the scene (#65) replaces
+    the sample Plan for the eye and for nothing else, and a visitor it cannot reach (scripts
+    off, no WebGL, reduced motion, a screen reader) is given the same Plan as a list.
+  - **So the words have to be true without the scene.** The prototype's copy narrated the
+    animation ("Keep scrolling and the field gives in to gravity", "The whole plan lifts off
+    the page and rushes past you"). Text that describes motion a reader is not being shown is
+    false for exactly the readers the static page is for, so those two sentences went: the
+    catalog section keeps the rest of its paragraph, and the last section says what the product
+    does. The headline and the line beside it are the owner's, unchanged.
+  - **The sample Plan is data, checked against the Edition.** `src/landing/sample-plan.ts`: a
+    Program, 48 Courses in eight Terms, and 48 more that the scene lets fall away. The core is
+    the Bulletin's suggested plan; the Slots it leaves open are filled with real Courses chosen
+    for the page, and the page says it is a sample twice, beside it and in the disclaimer.
+    `npm run build` checks every code against the latest Edition first and stops if one is
+    missing (`scripts/sample-plan.mts`). The figures on the page (Courses, Programs, the
+    coverage percentage with its qualifier) are written in by the build as before.
+  - **Nothing on it moves by itself.** The prototype's footer ticker stands still: a line of
+    type that scrolls for ever needs a control to stop it (WCAG 2.2.2), and the page has no
+    script to give it one. The hero's rise and the sections' fade-in are gone for the same
+    reason the loader is.
+  - **Section labels are in the sans, not the mono.** The prototype sets them in JetBrains
+    Mono; the type rule above keeps the mono for course codes, which on this page is exactly
+    the 48 discs of the Plan.
+  - **What the first paint weighs** is held by a ceiling: document, stylesheet and script,
+    20.1 KB gzipped when this landed. The old page's Three.js chunk (135 KB) is gone until the
+    scene brings it back as a chunk of its own.
 - **The pages outside the planner are cream, and say so (2026-11-16, #61).** Connect your AI, Privacy
   and Terms used to wear the old landing page's dark canvas. They now sit on the app's light tokens
   with petrol as the only accent (`site.css`), and each carries `data-theme="light"`: merely dropping

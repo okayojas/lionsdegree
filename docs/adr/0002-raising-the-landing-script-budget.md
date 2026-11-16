@@ -1,5 +1,7 @@
 # Raising the landing page script budget
 
+> **Note (2026-11-16, #64).** The 3D prerequisite journey this budget was raised for has been removed with the landing page that carried it, and the ceiling it set went with it: the landing page's script is measured at 0.5 KB. The rule this ADR set has not changed and is how every ceiling in `apps/web/test/build-output.test.ts` is still kept: count what a visitor actually downloads, set the ceiling at the measurement plus about a fifth, and put the measured figure in the commit. The gravity scene (#65) brings Three.js back as a chunk of its own, under a ceiling set the same way.
+
 `test/build-output.test.ts` holds the landing page to two weight limits: images under 260 KB total, and scripts referenced from `index.html` under 20 KB. Both were written against a page whose job was to describe the planner in text and three screenshots. The 20 KB script limit carries the comment *"whatever it does load stays tiny; the planner bundle is ~500 KB"*, and a companion assertion proves `/assets/plan-*.js` never leaks onto the page.
 
 The landing page is becoming a scroll-driven 3D prerequisite graph: the visitor travels a real chain of thirteen Penn State courses and arrives at a real scheduling conflict the engine caught. That needs Three.js, which is roughly 140 KB gzipped after tree-shaking — seven times the script ceiling.

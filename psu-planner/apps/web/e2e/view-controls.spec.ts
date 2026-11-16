@@ -132,7 +132,11 @@ test.describe("the wordmark", () => {
 
     await mark.click();
     await expect(page, "clicking the wordmark did not reach the home page").toHaveURL(/\/$/);
-    await expect(page.getByRole("heading", { level: 1 })).toContainText(/LionsDegree/);
+    // The home page: its headline, under the same wordmark in its header.
+    // (The old landing page's h1 WAS the wordmark, which is what this used
+    // to look for.)
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("One degree plan.");
+    await expect(page.getByRole("banner").getByRole("link", { name: "LionsDegree", exact: true })).toBeVisible();
   });
 
   test("is still the heading that names this page", async ({ page }) => {

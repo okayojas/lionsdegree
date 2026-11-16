@@ -1,5 +1,7 @@
 # Landing page — 3D prerequisite journey
 
+> **Superseded (2026-11-16) by [#60](https://github.com/okayojas/lionsdegree/issues/60), the gravity landing page.** This describes the 3D prerequisite journey that the dark landing page carried. The journey, its course data and its Three.js chunk were removed in #64. It is kept for the record of how the page got here; nothing should be built against it. What the landing page is now is in #60 and in `DECISIONS.md` §5.2.
+
 **Build spec: tools, prompts, and the one decision that has to be made first.**
 
 Adds a scroll-driven 3D prerequisite graph to the landing page. Companion to `Landing-Page-Canvas-Spec.md` (the identity) and `docs/media-brief.md` (the assets). Where this disagrees with the Canvas Spec, this is newer — the Canvas Spec was written before the page existed.

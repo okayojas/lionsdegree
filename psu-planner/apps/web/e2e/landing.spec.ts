@@ -1,542 +1,301 @@
-/** The front door (#14).
+/** The front door (#60, #64).
  *
  * This page's job is to survive being shared. A student sends the link to a
  * group chat, and what arrives is a preview card rendered by something that
- * does not run JavaScript, followed — if they tap it — by a page that has to
- * load fast on a phone on campus wifi. Everything here is about that path.
- */
-
-/** Scroll until the scene containing `selector` is the active one.
+ * does not run JavaScript, followed, if they tap it, by a page that has to
+ * load fast on a phone on campus wifi.
  *
- * The scenes do not scroll past the viewport — the stage is pinned and they
- * cross-fade in place — so `scrollIntoViewIfNeeded` has nothing to move and
- * reports success while the element is still at `opacity: 0`. Progress
- * through the scroller is the thing that selects a scene, so that is what
- * this drives. With the 3D inactive the scenes simply stack and this is a
- * harmless no-op. */
-async function showScene(page: Page, selector: string): Promise<void> {
-  // Wait for the journey to pin itself first. It arrives on a dynamic
-  // import behind an IntersectionObserver, so a scroll computed before that
-  // reads a scroller with no height yet, skips, and leaves scene 0 showing
-  // — which looks exactly like the scene never activating.
-  await page
-    .waitForFunction(() => document.querySelector(".journey-stage.is-pinned") !== null, undefined, {
-      timeout: 4000,
-    })
-    .catch(() => {
-      /* no 3D here (no WebGL, reduced motion, save-data): scenes stack and
-         are all visible, so there is nothing to drive. */
-    });
-  await page.evaluate((sel) => {
-    const el = document.querySelector(sel)?.closest(".scene");
-    const scenes = [...document.querySelectorAll("#scenes .scene")];
-    const scroller = document.getElementById("journey-scroll");
-    if (!el || !scroller || !scenes.length) return;
-    const i = scenes.indexOf(el as HTMLElement);
-    const span = scroller.getBoundingClientRect().height - window.innerHeight;
-    if (span <= 0) return;
-    window.scrollTo(0, scroller.offsetTop + span * ((i + 0.5) / scenes.length));
-  }, selector);
-  await page.waitForTimeout(800);
+ * So the landing page is a document: four short sections and a footer,
+ * complete with no script at all. A scene of labelled spheres is laid over
+ * it where a browser can run one (#65), and replaces the sample Plan for the
+ * eye and for nothing else. Everything here is about the document, which is
+ * the page anyone the scene does not reach is given.
+ *
+ * What is NOT repeated here: that the page sits on cream, wears the shared
+ * header, asks no other host for anything, fits a phone and passes axe. `/`
+ * is in the list site-pages.spec.ts holds to all of that. That the old
+ * `#about`, `#contact` and `#discovery` addresses still arrive somewhere is
+ * in about.spec.ts and connect.spec.ts.
+ */
+import type { Locator, Page } from "@playwright/test";
+import { test, expect, expectNoA11yViolations } from "./fixtures";
+
+/** The sample Plan, written out as a reader meets it. A literal on purpose:
+ * a test that read the Plan from the file the page is built from would agree
+ * with whatever that file said. */
+const TERMS = [
+  ["Fall 1", ["MATH 140", "PSYCH 100", "CMPSC 131", "CMPSC 150N", "ENGL 15", "ENGR 100"]],
+  ["Spring 1", ["MATH 141", "PHYS 211", "CMPSC 132", "SOC 1", "MUSIC 4", "GEOG 30N"]],
+  ["Fall 2", ["MATH 230", "PHYS 212", "CMPSC 221", "MATH 220", "CAS 100A", "THEA 100"]],
+  ["Spring 2", ["ASTRO 5", "CMPEN 270", "CMPSC 222", "CMPSC 360", "PHIL 10", "KINES 77"]],
+  ["Fall 3", ["STAT 318", "CMPSC 315", "CMPSC 465", "CMPSC 320", "HIST 21", "ASIA 100"]],
+  ["Spring 3", ["STAT 319", "CMPSC 316", "CMPSC 461", "CMPSC 442", "ENGL 202C", "COMM 150N"]],
+  ["Fall 4", ["CMPSC 448", "CMPSC 464", "CMPSC 483W", "CMPSC 471", "CMPSC 431W", "NUTR 100"]],
+  ["Spring 4", ["CMPSC 455", "CMPSC 467", "CMPSC 410", "ARTH 100", "CMLIT 153", "EARTH 100"]],
+] as const;
+
+/** The Plan's list, found the way assistive technology finds it. */
+const plan = (page: Page): Locator => page.getByRole("list", { name: /a sample plan for Computer Science, B\.S\./i });
+
+/** What an element says, as a reader takes it in: one line, single spaces.
+ * The markup wraps its sentences, and a pattern anchored at either end does
+ * not survive the line breaks. */
+const said = async (el: Locator): Promise<string> => (await el.innerText()).replace(/\s+/g, " ").trim();
+
+/** Contrast of an element's text against the first opaque thing behind it. */
+async function contrast(el: Locator): Promise<number> {
+  return el.evaluate((node) => {
+    const lum = (c: number) => {
+      const s = c / 255;
+      return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+    };
+    const rgba = (css: string) => {
+      // Everything on this page computes to rgb()/rgba() or color(srgb …).
+      const n = css.match(/[\d.]+/g)!.map(Number);
+      const unit = css.startsWith("color(") ? 255 : 1;
+      return { r: n[0] * unit, g: n[1] * unit, b: n[2] * unit, a: n[3] ?? 1 };
+    };
+    const L = (c: { r: number; g: number; b: number }) => 0.2126 * lum(c.r) + 0.7152 * lum(c.g) + 0.0722 * lum(c.b);
+    let ground = { r: 255, g: 255, b: 255 };
+    for (let up: Element | null = node; up; up = up.parentElement) {
+      const bg = rgba(getComputedStyle(up).backgroundColor);
+      if (bg.a === 1) { ground = bg; break; }
+    }
+    const ink = rgba(getComputedStyle(node).color);
+    // The ink may itself be translucent: lay it over the ground first.
+    const laid = { r: ink.r * ink.a + ground.r * (1 - ink.a), g: ink.g * ink.a + ground.g * (1 - ink.a), b: ink.b * ink.a + ground.b * (1 - ink.a) };
+    const [a, b] = [L(laid), L(ground)];
+    return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+  });
 }
 
 test.describe("with JavaScript turned off", () => {
-  // The one script on this page sheds a stale service worker and nothing
-  // else; the page must read completely without it. A previewer, a crawler
-  // and a student on a locked-down machine all land here.
+  // A previewer, a crawler and a student on a locked-down machine all land
+  // here. So does anyone the scene cannot reach.
   test.use({ javaScriptEnabled: false });
 
-  test("the page still explains what this is", async ({ page }) => {
+  test("the page says what LionsDegree is", async ({ page }) => {
     await page.goto("/");
-    // The h1 is the wordmark now, so the EXPLAINING moved to the line under
-    // it. Both are checked: a logotype alone tells a first-time reader
-    // nothing, and a description with no name attached is not a landing
-    // page either.
-    await expect(page.getByRole("heading", { level: 1 })).toContainText(/LionsDegree/);
-    await expect(page.getByText(/degree planner/i).first()).toBeVisible();
-    await expect(page.getByText(/prerequisite/i).first()).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("One degree plan.Optimized for you.");
+    await expect(page.getByText("The days of shuffling tabs to schedule classes are over.")).toBeVisible();
+    // The headline is a promise, not a description. What the thing IS has to
+    // be said as well: a degree planner, for Penn State, that knows
+    // prerequisites, and what you do with it.
+    await expect(page.getByText(/Penn State degree planner/i)).toBeVisible();
+    await expect(page.getByText(/each with its own prerequisites/i)).toBeVisible();
+    await expect(page.getByText("Pick your majors, minors and certificates. LionsDegree lays out every term")).toBeVisible();
   });
 
-  test("every scene is there", async ({ page }) => {
-    // The page is now one journey with a scene per feature. With no script
-    // the scenes do not cross-fade -- they simply stack -- so every one of
-    // them has to be readable in the markup.
+  test("there is a way into the planner at the top, in the hero and at the bottom", async ({ page }) => {
     await page.goto("/");
-    for (const heading of [
-      /straight from the Bulletin/i,
-      /Fewest terms, nothing out of sequence/i,
-      /catches what you would not/i,
-      /Bring your own AI/i,
-    ]) {
-      await expect(page.getByRole("heading", { name: heading })).toBeVisible();
+    const ways = [
+      page.getByRole("banner").getByRole("link", { name: "Start my plan" }),
+      page.getByRole("main").getByRole("link", { name: "Start my plan" }),
+      page.getByRole("contentinfo").getByRole("link", { name: "Open the planner" }),
+    ];
+    for (const way of ways) {
+      await expect(way).toBeVisible();
+      await expect(way).toHaveAttribute("href", "/plan/");
     }
-    // The "what this isn't" section was removed by request — the page is
-    // about the product. What it carried that MATTERS is still asserted:
-    // the unaffiliated disclaimer below, and the coverage breakdown that
-    // `build-output.test.ts` scopes to `#coverage`. Its replacement heading
-    // is checked here so the section cannot quietly disappear with it.
+    // The hero's is on the first screen of a phone, not somewhere below it.
+    await page.setViewportSize({ width: 390, height: 760 });
+    await expect(ways[1]).toBeInViewport();
   });
 
-  test("the way into the planner works", async ({ page }) => {
+  test("a returning student can get back to a plan they already have", async ({ page }) => {
+    // Somebody who built a plan on a laptop and opens the site on a phone
+    // would otherwise be offered only a way to start another.
     await page.goto("/");
-    const cta = page.getByRole("link", { name: /Open the planner/i }).first();
-    await expect(cta).toBeVisible();
-    await expect(cta).toHaveAttribute("href", "/plan/");
+    await expect(page.getByRole("link", { name: /already have a plan\? sign in/i })).toHaveAttribute("href", "/plan/?signin=1");
+  });
+
+  test("nothing is hidden waiting for a script", async ({ page }) => {
+    // The prototype kept the hero invisible until a script revealed it and
+    // put the whole page behind a loader. With no script, that is a blank
+    // page. Every heading, paragraph and link here is simply on the page.
+    await page.goto("/");
+    const unseen = await page.locator("main, footer").locator("h1, h2, h3, p, a, li, figcaption").evaluateAll((all) =>
+      all
+        .filter((el) => !el.closest("[aria-hidden='true']"))
+        .filter((el) => {
+          const box = el.getBoundingClientRect();
+          let opacity = 1;
+          for (let up: Element | null = el; up; up = up.parentElement) opacity *= Number(getComputedStyle(up).opacity);
+          return box.width === 0 || box.height === 0 || opacity < 1 || getComputedStyle(el).visibility !== "visible";
+        })
+        .map((el) => (el.textContent ?? "").trim().slice(0, 40)),
+    );
+    expect(unseen, "on the page, but not there to be read").toEqual([]);
+    // And nothing stands in front of it.
+    await expect(page.getByRole("progressbar")).toHaveCount(0);
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+  });
+
+  test("the sample Plan is there as a list: eight Terms of six Courses, in order", async ({ page }) => {
+    await page.goto("/");
+    const terms = plan(page).locator(":scope > li");
+    await expect(terms).toHaveCount(8);
+    for (const [i, [name, courses]] of TERMS.entries()) {
+      const term = terms.nth(i);
+      await expect(term.getByRole("heading")).toHaveText(name);
+      // One code, with its space: how it is read out, copied and found.
+      const listed = (await term.getByRole("listitem").allInnerTexts()).map((t) => t.replace(/\s+/g, " ").trim());
+      expect(listed, name).toEqual([...courses]);
+    }
+  });
+
+  test("the page says the Plan is a sample, beside it and in the disclaimer", async ({ page }) => {
+    await page.goto("/");
+    const caption = page.getByRole("figure").locator("figcaption");
+    await expect(caption).toBeVisible();
+    expect(await said(caption)).toMatch(/^Sample plan · Computer Science, B\.S\. .* Yours will differ\.$/);
+    await expect(page.getByRole("contentinfo").getByText(/The plan drawn above is a sample/i)).toBeVisible();
+  });
+
+  test("the figures are numbers, with the coverage figure's qualifier", async ({ page }) => {
+    // Written in by the build from the latest Edition. What a visitor can
+    // check is that they arrived as numbers; that they are the RIGHT numbers
+    // is recomputed from the catalog in the unit suite.
+    await page.goto("/");
+    await expect(page.getByText(/^\d{1,3}(,\d{3})+ courses$/)).toBeVisible();
+    await expect(page.getByText(/^\d{3,} programs$/)).toBeVisible();
+    await expect(page.getByText(/^The 20\d\d–\d\d Bulletin, read whole$/)).toBeVisible();
+    const claim = page.getByText(/resolve to real, named courses/i);
+    // A bare percentage reads as a guarantee. The clause is what makes it a
+    // measurement, and the number does not travel without it.
+    expect(await said(claim)).toMatch(
+      /^\d{1,3}% of requirements across \d+ programs resolve to real, named courses\. The rest are flagged for you, never guessed at\.$/,
+    );
+    await expect(page.locator("body")).not.toContainText(/%[A-Z_]{3,}%/);
+  });
+
+  test("the disclaimer is there, in text meant to be read", async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 760 });
+    await page.goto("/");
+    const claim = page.getByText(/not affiliated with/i);
+    await expect(claim, "the landing page says it is unofficial once, in full").toHaveCount(1);
+    await expect(claim).toBeVisible();
+    expect(await said(claim)).toMatch(/Verify everything with your academic adviser and LionPATH before you register\.$/);
+    // "Legible" is not a feeling. Body size, not a footnote's, and enough
+    // contrast to read on the footer's dark ground.
+    const size = await claim.evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
+    expect(size, `the disclaimer renders at ${size}px`).toBeGreaterThanOrEqual(14);
+    const ratio = await contrast(claim);
+    expect(ratio, `the disclaimer measures ${ratio.toFixed(2)}:1`).toBeGreaterThanOrEqual(4.5);
   });
 
   test("connecting an assistant is a link, not a code block", async ({ page }) => {
-    // The page is for students, not developers. There was an npx command and a
-    // JSON config block here; a student who has never opened a terminal has no
-    // way to act on either, and seeing them says "this is not for you".
+    // The page is for students, not developers.
     await page.goto("/");
     await expect(page.locator("pre, code"), "the landing page is showing code").toHaveCount(0);
-    const cta = page.getByRole("link", { name: /how to connect it/i }).first();
-    await expect(cta).toBeVisible();
-    await expect(cta).toHaveAttribute("href", "/connect/");
-  });
-
-  test("the disclaimer is there and is not hidden in small print", async ({ page }) => {
-    await page.goto("/");
-    const disclaim = page.getByText(/not affiliated with/i).first();
-    await expect(disclaim).toBeVisible();
-    // "Prominent" is not a feeling: it has to be at least the body size the
-    // rest of the page uses, not shrunk into a footnote.
-    const size = await disclaim.evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
-    expect(size, `the disclaimer renders at ${size}px`).toBeGreaterThanOrEqual(13);
-  });
-
-  test("the disclaimer is on the page and readable", async ({ page }) => {
-    // THIS USED TO REQUIRE THE DISCLAIMER ABOVE THE FOLD, and the reason it
-    // gave was that the page wore Penn State's own colours, so the denial
-    // had to arrive before the association did. That premise no longer
-    // holds: `--primary` was deliberately moved 20 degrees off Beaver Blue
-    // for exactly this reason (styles.css), so the page no longer trades on
-    // the University's colour at all.
-    //
-    // What replaced it: the statement appears ONCE, in the footer, where a
-    // reader looks for it -- it had grown to three separate claims on one
-    // page, which reads as a product nervous about itself rather than a
-    // candid one. The planner carries the same line in its own footer on
-    // every screen, so nobody reaches a plan without passing it.
-    //
-    // Still asserted here, because an unofficial tool that stops saying so
-    // is a different and much worse problem than one that says it quietly.
-    await page.setViewportSize({ width: 375, height: 760 });
-    await page.goto("/");
-    const claim = page.getByText(/not affiliated with/i).first();
-    await expect(claim, "the landing page no longer says it is unofficial").toBeVisible();
-    const size = await claim.evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
-    expect(size, `the disclaimer renders at ${size}px`).toBeGreaterThanOrEqual(13);
-  });
-});
-
-test.describe("the prerequisite journey", () => {
-  // docs/landing-3d-journey.md §7. The 3D is an enhancement over a module
-  // that must already be complete, so these test the page WITHOUT it: the
-  // guards, and what is left when they say no.
-  test("the static chain is the whole story on its own, with no JavaScript", async ({ page, context }) => {
-    await context.route("**/*.js", (r) => r.abort());
-    await page.goto("/");
-    const journey = page.locator("#journey");
-    await expect(journey).toBeVisible();
-    // Real course codes in the markup, not drawn by a script.
-    await expect(journey).toContainText("EE 456");
-    await expect(journey).toContainText("AI 410");
-    // And the conflict is stated, not just coloured — colour alone carries
-    // nothing to a reader who cannot see it.
-    await expect(journey).toContainText(/enforced prerequisite/i);
-    await expect(journey.locator("canvas"), "a canvas with scripting off").toHaveCount(0);
-  });
-
-  test("the chain keeps an accessible description even when the 3D takes over", async ({ page }) => {
-    // The scene replaces the DIAGRAM, not the description. When WebGL is
-    // available the SVG is hidden from sight but stays in the accessibility
-    // tree, and the written verdict stays visible to everyone — an earlier
-    // `display: none` removed both and nothing failed.
-    await page.goto("/");
-    await expect(page.getByRole("img", { name: /prerequisite chain/i })).toHaveCount(1);
-    await expect(page.locator(".journey-verdict")).toBeVisible();
-    await expect(page.locator(".journey-verdict")).toContainText(/EE 456/);
-  });
-
-  test.describe("under reduced motion", () => {
-    test.use({ reducedMotion: "reduce" });
-
-    test("never loads the 3D at all", async ({ page }) => {
-      // Not "loads it and holds it still" — the guard returns before the
-      // dynamic import, so Three.js is never fetched.
-      const requested: string[] = [];
-      page.on("request", (r) => requested.push(r.url()));
-      await page.goto("/");
-      await page.locator("#journey").scrollIntoViewIfNeeded();
-      await page.waitForTimeout(1200);
-      expect(requested.filter((u) => /journey-.*\.js/.test(u)), "the 3D chunk was fetched anyway").toEqual([]);
-      await expect(page.locator("#journey canvas")).toHaveCount(0);
-      // And what remains still looks finished.
-      await expect(page.locator("#journey .journey-static")).toBeVisible();
-    });
-  });
-});
-
-test.describe("the static chain", () => {
-  // The small decorative route diagram that used to sit mid-page is gone --
-  // the journey's own chain is the page's diagram now, and two drawings of
-  // the same idea was one too many.
-  test("is drawn, not left half-finished", async ({ page }) => {
-    await page.goto("/");
-    const stops = page.locator(".journey-static .route-stop");
-    await expect(stops).toHaveCount(8);
-    for (let i = 0; i < 8; i++) {
-      await expect(stops.nth(i)).toHaveCSS("opacity", "1", { timeout: 5000 });
-    }
-  });
-
-  test("names each station with a course code", async ({ page }) => {
-    await page.goto("/");
-    const names = await page.locator(".journey-static .lp-stn").allTextContents();
-    expect(names.length).toBeGreaterThan(4);
-    for (const n of names) expect(n.trim()).toMatch(/^[A-Z]{2,8} \d/);
-  });
-});
-
-/** The front door (#14).
- *
- * This page's job is to survive being shared. A student sends the link to a
- * group chat, and what arrives is a preview card rendered by something that
- * does not run JavaScript, followed — if they tap it — by a page that has to
- * load fast on a phone on campus wifi. Everything here is about that path.
- */
-import { test, expect, expectNoA11yViolations } from "./fixtures.js";
-
-/** Scroll the whole page and let it settle before an accessibility scan.
- *
- * Scroll reveals start at `opacity: 0`, and axe computes contrast against
- * whatever is actually painted -- so an element mid-reveal measures as a
- * washed-out blend and the scan reports a contrast failure that no reader
- * ever sees. Worse, whether it fires depends on timing, so the result was
- * nondeterministic. Scanning the settled page is also simply more honest:
- * it is the page a student ends up looking at. */
-async function settle(page: Page): Promise<void> {
-  await page.evaluate(async () => {
-    for (let y = 0; y < document.body.scrollHeight; y += 400) {
-      window.scrollTo(0, y);
-      await new Promise((r) => setTimeout(r, 50));
-    }
-    window.scrollTo(0, 0);
-  });
-  await page.waitForTimeout(800);
-}
-
-test.describe("under reduced motion", () => {
-  test.use({ reducedMotion: "reduce" });
-
-  test("the hero route is complete and still, not animating", async ({ page }) => {
-    await page.goto("/");
-    // Complete: a student who asked for less motion still gets the whole
-    // diagram, rather than a line frozen at the first frame of its draw.
-    const state = await page.evaluate(() => {
-      const line = document.querySelector<SVGPathElement>(".journey-static .route-line")!;
-      const stop = document.querySelector<SVGCircleElement>(".journey-static .route-stop")!;
-      return {
-        offset: getComputedStyle(line).strokeDashoffset,
-        stopOpacity: getComputedStyle(stop).opacity,
-        lineAnim: getComputedStyle(line).animationName,
-      };
-    });
-    expect(state.stopOpacity, "a station is invisible under reduced motion").toBe("1");
-    expect(parseFloat(state.offset), "the route is still part-drawn under reduced motion").toBe(0);
-    expect(state.lineAnim, "the draw animation still runs under reduced motion").toBe("none");
-  });
-
-  test("nothing on the page transitions", async ({ page }) => {
-    await page.goto("/");
-    const moving = await page.evaluate(() => {
-      const bad: string[] = [];
-      for (const el of document.querySelectorAll<HTMLElement>("body *")) {
-        const s = getComputedStyle(el);
-        // `<source>` inside the hero video generates no box, so its computed
-        // style resolves to empty strings rather than "0s". Named rather than
-        // skipping everything that resolves empty, which would quietly exempt
-        // any element the browser decided not to render.
-        if (el.tagName === "SOURCE") continue;
-        if (s.transitionDuration !== "0s" && s.transitionProperty !== "none") {
-          bad.push(`${el.tagName.toLowerCase()}.${el.className}: ${s.transitionDuration}`);
-        }
-      }
-      return bad.slice(0, 5);
-    });
-    expect(moving, `still transitioning:\n  ${moving.join("\n  ")}`).toEqual([]);
+    await expect(page.getByRole("contentinfo").getByRole("link", { name: "Connect your AI" })).toHaveAttribute("href", "/connect/");
   });
 });
 
 test.describe("the landing page is usable", () => {
   test("has no mechanically detectable accessibility violations", async ({ page }) => {
     await page.goto("/");
-    await settle(page);
     await expectNoA11yViolations(page, "the landing page");
   });
 
-  test("the chain is described for a screen reader", async ({ page }) => {
-    // It carries the page's thesis. An unlabelled svg conveys none of it.
+  test("every Course in the Plan can be read on its disc", async ({ page }) => {
+    // axe measures contrast, but skips what it cannot be sure of. The codes
+    // are the page's picture, so each is measured: both tones of disc.
     await page.goto("/");
-    await expect(page.getByRole("img", { name: /prerequisite chain/i })).toHaveCount(1);
+    const courses = plan(page).locator("li li");
+    await expect(courses).toHaveCount(48);
+    const worst = Math.min(...(await Promise.all((await courses.all()).map((c) => contrast(c)))));
+    expect(worst, `the least legible Course code measures ${worst.toFixed(2)}:1`).toBeGreaterThanOrEqual(4.5);
   });
 
-  test("reaches the planner by keyboard, without hunting", async ({ page }) => {
+  test("everything in it can be reached by keyboard, and seen when it is", async ({ page }) => {
     await page.goto("/");
-    await page.keyboard.press("Tab");
-    // First stop is the skip link, and it has to say so.
-    const skip = await page.evaluate(() => (document.activeElement as HTMLElement)?.textContent?.trim());
-    expect(skip).toMatch(/skip/i);
-
-    // Then the planner, within a couple of stops. It used to be asserted as
-    // the literal second stop, which stopped being true the moment the page
-    // grew a header -- a brand link before the nav is ordinary, and reordering
-    // the header to satisfy a test would be the tail wagging the dog. What
-    // matters is that it is right there, not that it is at index 2.
-    const seen: string[] = [];
-    for (let i = 0; i < 6; i++) {
+    const links = await page.locator("main a, footer a").count();
+    expect(links, "found no links to reach").toBeGreaterThan(10);
+    const reached = new Set<string>();
+    const unringed: string[] = [];
+    // The skip link and the header's five come first; then every link on
+    // the page, in order.
+    for (let i = 0; i < links + 8; i++) {
       await page.keyboard.press("Tab");
-      const href = await page.evaluate(() => (document.activeElement as HTMLAnchorElement)?.getAttribute("href"));
-      if (href) seen.push(href);
-      if (href === "/plan/") return;
+      const at = await page.evaluate(() => {
+        const el = document.activeElement as HTMLElement | null;
+        if (!el || el === document.body) return null;
+        const style = getComputedStyle(el);
+        return {
+          name: `${(el.textContent ?? "").replace(/\s+/g, " ").trim()} -> ${el.getAttribute("href")}`,
+          inPage: Boolean(el.closest("main, footer")),
+          ring: style.outlineStyle !== "none" && parseFloat(style.outlineWidth) > 0,
+        };
+      });
+      if (!at?.inPage) continue;
+      reached.add(at.name);
+      if (!at.ring) unringed.push(at.name);
     }
-    throw new Error(`the planner is not among the first stops: ${JSON.stringify(seen)}`);
+    expect(reached.size, "some links cannot be reached with Tab").toBe(links);
+    expect(unringed, "focused, with nothing to show it").toEqual([]);
   });
-});
 
-test.describe("the coverage figure", () => {
-  test("states the number with its qualifier, and reads with JavaScript off", async ({ page, context }) => {
-    // The breakdown section is gone; the qualifier moved into the sentence
-    // so the number never appears bare. With no script the scenes stack and
-    // every one of them is readable.
-    await context.route("**/*.js", (r) => r.abort());
+  test("the palette drawer from the prototype is not on the page", async ({ page }) => {
+    // Nor any other control: the page has links, and nothing to operate.
     await page.goto("/");
-    const claim = page.getByText(/resolve to real, named courses/i);
-    await expect(claim).toBeVisible();
-    await expect(claim).toContainText(/flagged for you, never guessed at/i);
+    await expect(page.getByRole("button")).toHaveCount(0);
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+    await expect(page.getByText(/field controls|opening palette/i)).toHaveCount(0);
   });
 
-  test("the figure meets AA against what is behind it", async ({ page }) => {
-    await page.goto("/");
-    await showScene(page, "#journey-scroll");
-    const ratio = await page.locator(".scene strong").first().evaluate((el) => {
-      const lum = (c: number) => {
-        const s = c / 255;
-        return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
-      };
-      const L = (css: string) => {
-        const [r, g, b] = css.match(/\d+/g)!.map(Number);
-        return 0.2126 * lum(r) + 0.7152 * lum(g) + 0.0722 * lum(b);
-      };
-      let bg: Element | null = el;
-      let bgColor = "";
-      while (bg) {
-        const c = getComputedStyle(bg).backgroundColor;
-        if (c && !/rgba?\([^)]*,\s*0\)/.test(c) && c !== "transparent") { bgColor = c; break; }
-        bg = bg.parentElement;
-      }
-      const a = L(getComputedStyle(el).color);
-      const b = L(bgColor || getComputedStyle(document.body).backgroundColor);
-      return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
-    });
-    expect(ratio, `the coverage figure measures ${ratio.toFixed(2)}:1`).toBeGreaterThanOrEqual(4.5);
-  });
-});
-
-test.describe("the legal documents", () => {
-  // These are the pages an OAuth reviewer at Google or Microsoft opens to
-  // verify the app, and neither reviewer's crawler runs React. They are also
-  // the only place a visitor who never opens the planner can read a policy at
-  // all, which is why they are documents and not a modal.
-  test.use({ javaScriptEnabled: false });
-
-  for (const [path, heading] of [
-    ["/privacy/", /privacy policy/i],
-    ["/terms/", /terms of use/i],
-  ] as const) {
-    test(`${path} is a real document with JavaScript off`, async ({ page }) => {
-      const res = await page.goto(path);
-      expect(res?.status(), `${path} did not serve`).toBe(200);
-      await expect(page.getByRole("heading", { level: 1 })).toHaveText(heading);
-      // Substance, not just a title: the body has to actually render.
-      expect((await page.locator("main").innerText()).length).toBeGreaterThan(600);
-      // Reachable in both directions — a reviewer landing on one needs the other.
-      await expect(page.getByRole("link", { name: /^privacy$/i })).toBeVisible();
-      await expect(page.getByRole("link", { name: /^terms$/i })).toBeVisible();
-      await expect(page.getByRole("link", { name: /home/i })).toBeVisible();
-    });
-
-  }
-
-  test("the landing page links to both", async ({ page }) => {
-    await page.goto("/");
-    await expect(page.getByRole("link", { name: /^privacy$/i })).toBeVisible();
-    await expect(page.getByRole("link", { name: /^terms$/i })).toBeVisible();
-  });
-
-  test("a data request has a private route, not a public tracker", async ({ page }) => {
-    // Filing a deletion request as a GitHub issue means publishing it.
-    await page.goto("/privacy/");
-    await expect(page.getByRole("link", { name: /ovk5113@psu\.edu/i })).toBeVisible();
-  });
-});
-
-test.describe("the legal documents, with scripting on", () => {
-  // axe injects and runs IN the page, so these cannot live in the block above
-  // that turns JavaScript off -- there, the injection simply times out and the
-  // failure reads like a violation.
-  for (const path of ["/privacy/", "/terms/"] as const) {
-    test(`${path} has no accessibility violations`, async ({ page }) => {
-      await page.goto(path);
-      await expectNoA11yViolations(page);
-    });
-  }
-});
-
-test.describe("the page's own controls", () => {
-  test("every button is readable against its own fill", async ({ page }) => {
-    // A bare `.band-deep a` is two classes and beat `.btn-go`, so the hero's
-    // primary button rendered in link blue on its own cream fill. axe did not
-    // flag it -- it reads the computed pair and both were "light" rather than
-    // identical -- and it is the one control the page most needs read.
-    await page.goto("/");
-    const bad = await page.evaluate(() => {
-      const lum = (c: number) => {
-        const s = c / 255;
-        return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
-      };
-      const L = (css: string) => {
-        const [r, g, b] = css.match(/[\d.]+/g)!.map(Number);
-        return 0.2126 * lum(r) + 0.7152 * lum(g) + 0.0722 * lum(b);
-      };
-      /** Walk up for the first ancestor that actually paints a background. */
-      const behind = (el: Element): string => {
-        for (let n: Element | null = el; n; n = n.parentElement) {
-          const bg = getComputedStyle(n).backgroundColor;
-          if (bg && !/rgba?\([^)]*,\s*0\s*\)/.test(bg) && bg !== "transparent") return bg;
-        }
-        return "rgb(255,255,255)";
-      };
-      const out: string[] = [];
-      for (const el of document.querySelectorAll(".btn")) {
-        const fg = L(getComputedStyle(el).color);
-        const bg = L(behind(el));
-        const ratio = (Math.max(fg, bg) + 0.05) / (Math.min(fg, bg) + 0.05);
-        if (ratio < 4.5) out.push(`${el.textContent?.trim()}: ${ratio.toFixed(2)}:1`);
-      }
-      return out;
-    });
-    expect(bad, "a button's label does not meet AA against its own fill").toEqual([]);
-  });
-});
-
-test.describe("entering and re-entering the page", () => {
-  /** The journey's scroller has its NATURAL height until the 3D chunk lands,
-   * at which point journey.ts sets it to one screen per scene. Anything that
-   * restores a scroll offset across that growth lands in the wrong place --
-   * measured before the fix: a reload from deep in the page came back at
-   * scrollY 2334 of a document that was still only 3234px tall, i.e. near
-   * the bottom, and scrolling back up ran the camera through every scene in
-   * reverse. That is what "it starts me at the bottom and breaks the
-   * animation" was. */
-  const settle = async (page: import("@playwright/test").Page) => {
-    await page.waitForTimeout(1800);
-  };
-
-  test("opens at the top, even after a reload from deep in the journey", async ({ page }) => {
-    await page.goto("/");
-    await settle(page);
-    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight - 1200));
-    await page.waitForTimeout(600);
-    expect(await page.evaluate(() => window.scrollY), "setup: never got down the page").toBeGreaterThan(500);
-
-    await page.reload();
-    await settle(page);
-    expect(
-      await page.evaluate(() => window.scrollY),
-      "the page restored a scroll offset taken against a shorter document",
-    ).toBe(0);
-  });
-
-  test("comes back from a sibling page with the journey still alive", async ({ page }) => {
-    // The scene used to be disposed on `pagehide`, which fires on a bfcache
-    // suspend too. Nothing remounted it: the observer had disconnected and
-    // its `started` flag was still set, so the reader returned to a dead
-    // canvas inside a stage that was still pinned.
-    await page.goto("/");
-    await settle(page);
-    const tall = await page.evaluate(() => document.documentElement.scrollHeight);
-    test.skip(tall < 3000, "the 3D never mounted in this profile, so there is nothing to restore");
-
-    await page.goto("/connect/");
-    await page.goBack();
-    await settle(page);
-
-    expect(await page.evaluate(() => document.documentElement.scrollHeight), "the page came back short")
-      .toBeGreaterThan(3000);
-    expect(
-      await page.evaluate(() => !!document.querySelector("#journey.is-live")),
-      "the journey did not survive the back navigation",
-    ).toBe(true);
-  });
-});
-
-test.describe("the first second of the page", () => {
-  /** THE GRAPHIC GLITCH ON LOAD. The static SVG chain is the no-JavaScript
-   * fallback, so it is in the markup and paints immediately, carrying its
-   * own 1.6s line-draw. The 3D chunk lands around 700ms later and clips it
-   * away -- so the reader watched a flat transit diagram start drawing
-   * itself and then vanish mid-stroke.
-   *
-   * It is now held back from the moment the guards say the scene is
-   * coming, and released again by every path that gives up on it. The
-   * release half is the one that matters: holding it forever would mean a
-   * reader with no WebGL sees an empty page where the illustration is. */
-  test("never shows the static chain when the 3D is coming", async ({ page }) => {
-    await page.goto("/");
-    // Sampled across the window the flash used to live in.
-    const seen: string[] = [];
-    for (let i = 0; i < 10; i++) {
-      // OPACITY, not `visibility`: the chain has to stay in the
-      // accessibility tree the whole time (see "keeps an accessible
-      // description" above), so invisibility here can only ever mean
-      // opacity 0. Asserting on `visibility` would pass for an
-      // implementation that broke the screen-reader description.
-      seen.push(
-        await page.evaluate(() => {
-          const el = document.querySelector(".journey-static");
-          return el ? getComputedStyle(el).opacity : "absent";
-        }),
+  test("the Plan is one rectangle on a wide screen, and Terms down on a narrow one", async ({ page }) => {
+    const boxes = async () =>
+      Promise.all(
+        (await plan(page).locator(":scope > li").all()).map(async (term) => ({
+          term: (await term.boundingBox())!,
+          courses: (await Promise.all((await term.getByRole("listitem").all()).map((c) => c.boundingBox()))).map((b) => b!),
+        })),
       );
-      await page.waitForTimeout(120);
-    }
-    const mounted = await page.evaluate(() => !!document.querySelector(".journey-canvas"));
-    test.skip(!mounted, "the 3D never mounted in this profile, so there was nothing to hide for");
-    expect(seen.filter((v) => v !== "0"), "the static chain was visible before the scene arrived").toEqual([]);
-    // And it is still announced, invisible or not.
-    await expect(page.getByRole("img", { name: /prerequisite chain/i })).toHaveCount(1);
-  });
+    const near = (a: number, b: number) => Math.abs(a - b) < 1.5;
 
-  test("shows the static chain when the 3D chunk cannot be fetched", async ({ page }) => {
-    // Offline, blocked by an extension, or a chunk that never shipped. The
-    // page is complete without the scene and has to look it.
-    await page.route("**/*journey*.js", (r) => r.abort());
+    await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto("/");
-    await page.waitForTimeout(2200);
-    const el = page.locator(".journey-static");
-    await expect(el, "the fallback illustration stayed hidden after the 3D failed").toBeVisible();
-    expect(await page.evaluate(() => !!document.querySelector(".journey-canvas"))).toBe(false);
+    const wide = await boxes();
+    // Eight columns, left to right in Term order, six rows shared across
+    // them: reading one row across is reading one lane.
+    for (let t = 1; t < wide.length; t++) expect(wide[t].term.x, "the Terms are not side by side, in order").toBeGreaterThan(wide[t - 1].term.x);
+    for (let lane = 0; lane < 6; lane++) {
+      for (const { courses } of wide) expect(near(courses[lane].y, wide[0].courses[lane].y), `lane ${lane + 1} is not one row`).toBe(true);
+    }
+    const size = wide[0].courses[0].width;
+    for (const { courses } of wide) for (const c of courses) expect(near(c.width, size) && near(c.height, size), "the discs are not one size").toBe(true);
+
+    await page.setViewportSize({ width: 390, height: 844 });
+    const narrow = await boxes();
+    for (let t = 1; t < narrow.length; t++) {
+      expect(near(narrow[t].term.x, narrow[0].term.x), "the Terms are not stacked").toBe(true);
+      expect(narrow[t].term.y, "the Terms are not in order down the page").toBeGreaterThan(narrow[t - 1].term.y);
+    }
+  });
+});
+
+test.describe("motion", () => {
+  test("nothing on the page moves on its own", async ({ page }) => {
+    // The prototype's hero rose into place, its sections faded up and its
+    // footer carried a ticker that never stopped. A page that is complete as
+    // a document does none of that; what moves, moves because the scene is
+    // running (#65).
+    await page.goto("/");
+    await page.waitForTimeout(600);
+    expect(await page.evaluate(() => document.getAnimations().length)).toBe(0);
   });
 
-  test("shows the static chain for a reader who asked for no motion", async ({ page }) => {
+  test("under reduced motion, nothing moves when it is touched either", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
-    await page.waitForTimeout(1500);
-    await expect(page.locator(".journey-static")).toBeVisible();
-    expect(
-      await page.evaluate(() => !!document.querySelector(".journey-canvas")),
-      "the 3D mounted for a reader who asked for reduced motion",
-    ).toBe(false);
+    for (const link of [
+      page.getByRole("banner").getByRole("link", { name: "Start my plan" }),
+      page.getByRole("contentinfo").getByRole("link", { name: "Open the planner" }),
+    ]) {
+      await link.scrollIntoViewIfNeeded();
+      await link.hover();
+      expect(await page.evaluate(() => document.getAnimations().length), "a transition ran under reduced motion").toBe(0);
+    }
   });
 });

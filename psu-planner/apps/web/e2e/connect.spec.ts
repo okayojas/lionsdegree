@@ -180,8 +180,8 @@ test.describe("the discovery prompt", () => {
 });
 
 test.describe("the discovery prompt, with JavaScript turned off", () => {
-  // With no script the landing page's scenes simply stack, so its link to the
-  // prompt is on the page to be read and pressed like any other.
+  // The landing page's link to the prompt is in its footer, on the page to be
+  // read and pressed like any other.
   test.use({ javaScriptEnabled: false });
 
   test("still reads, and offers no button that cannot work", async ({ page }) => {
@@ -198,7 +198,7 @@ test.describe("the discovery prompt, with JavaScript turned off", () => {
   test("the landing page links to it, and no longer repeats it", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByText("Use LionsDegree to find programs")).toHaveCount(0);
-    const link = page.getByRole("link", { name: /a prompt for finding a major/i });
+    const link = page.getByRole("link", { name: /a prompt for finding your programs/i });
     await expect(link).toBeVisible();
     await link.click();
     await page.waitForURL(/\/connect\/#discovery$/);
@@ -208,7 +208,7 @@ test.describe("the discovery prompt, with JavaScript turned off", () => {
   test("an old link to #discovery lands on the link to where it went", async ({ page }) => {
     // Nothing can redirect here, so the id is on the link (as with #about).
     await page.goto("/#discovery");
-    const link = page.getByRole("link", { name: /a prompt for finding a major/i });
+    const link = page.getByRole("link", { name: /a prompt for finding your programs/i });
     await expect(link).toBeInViewport();
     await expect(link).toHaveAttribute("href", "/connect/#discovery");
   });

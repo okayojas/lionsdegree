@@ -15,9 +15,14 @@ import { SITE_HEADER_SLOT, SITE_PAGES, pageName, siteHeader } from "../src/site/
 const web = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const source = (rel: string) => fs.readFileSync(path.join(web, rel), "utf-8");
 
-/** "/connect/" -> "connect/index.html" */
-const fileOf = (page: string) => `${pageName(page)}/index.html`;
-const FILES = SITE_PAGES.map(fileOf);
+/** Every page outside the planner. The landing page is the root, not a
+ * folder, so the header's own list does not carry it; it wears the same
+ * header on the same paper all the same (#64). */
+const PAGES = ["/", ...SITE_PAGES];
+
+/** "/connect/" -> "connect/index.html", "/" -> "index.html" */
+const fileOf = (page: string) => (page === "/" ? "index.html" : `${pageName(page)}/index.html`);
+const FILES = PAGES.map(fileOf);
 
 describe("the shared header", () => {
   it("is the planner's wordmark, from the planner's markup", () => {
@@ -34,7 +39,7 @@ describe("the shared header", () => {
     expect(siteHeader("/privacy/")).not.toContain("aria-current");
   });
 
-  it.each(SITE_PAGES)("%s gets it from the one place, exactly once", (page) => {
+  it.each(PAGES)("%s gets it from the one place, exactly once", (page) => {
     // Two ways in, and a page uses one of them. A generated document has
     // the header written into it by the generator; a hand-written one
     // leaves the slot and the build fills it. What no page may have is a
@@ -59,7 +64,7 @@ describe("a page of its own", () => {
   /** Every document the site serves, the landing page and the planner
    * included: a title or a description shared between two of them is one
    * search result standing in for both. */
-  const DOCUMENTS = ["index.html", "plan/index.html", ...FILES];
+  const DOCUMENTS = ["plan/index.html", ...FILES];
   const head = (file: string) => {
     const html = source(file);
     return {
@@ -156,7 +161,7 @@ describe("the two marks", () => {
   it("social cards and icons never point at the transparent one", () => {
     // A previewer composites onto whatever colour it likes; a transparent
     // mark on a dark chat bubble is a navy shape on near-black.
-    for (const file of ["index.html", ...FILES, "plan/index.html"]) {
+    for (const file of [...FILES, "plan/index.html"]) {
       const meta = [...source(file).matchAll(/<(?:meta|link)\b[^>]*>/g)].map((m) => m[0]);
       expect(meta.filter((t) => t.includes("mark-clear")), `${file} uses the transparent mark in its <head>`).toEqual([]);
     }

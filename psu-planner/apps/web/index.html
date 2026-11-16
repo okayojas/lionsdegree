@@ -1,20 +1,19 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LionsDegree: prerequisite-aware degree planning for Penn State</title>
+    <title>LionsDegree: one degree plan, optimized for you</title>
     <meta
       name="description"
-      content="An AI-augmented, dynamic, optimized Penn State degree planner. Pick your majors, minors and certificates; LionsDegree builds a term-by-term plan that respects every prerequisite."
+      content="A free, unofficial degree planner for Penn State. Pick your majors, minors and certificates and get a term-by-term plan that holds every prerequisite."
     />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <!-- One value, not a light/dark pair: the landing page is dark whatever
-         the system preference says (Canvas spec 1.4). It is a designed
-         marketing surface, like a poster; the theme toggle governs /plan/.
-         A decision, not an oversight — do not file it as a bug. -->
-    <meta name="theme-color" content="#2b2a27" />
+    <!-- Cream, like every page outside the planner (DECISIONS 5.2). The page
+         says `data-theme="light"` so the system preference cannot hand it a
+         dark version that does not exist. -->
+    <meta name="theme-color" content="#f1ebdf" />
     <link rel="canonical" href="%SITE_URL%/" />
 
     <!-- A student shares this in a group chat, and the previewer does not run
@@ -43,203 +42,186 @@
 
     <link rel="stylesheet" href="/src/landing.css" />
   </head>
-  <body class="landing">
-    <a href="#hero" class="skip-link">Skip to what this is</a>
+  <body class="site landing">
+    <a href="#main" class="skip-link">Skip to the page</a>
 
-    <!-- The canvas. Two dot grids at 12px and 24px give depth with no moving
-         pixels, no parallax and no image file; the vignette dims the edges
-         about 8% so the centre reads as lit and modules feel placed rather
-         than pasted. Inert, and invisible to assistive tech — it is texture,
-         not content. -->
-    <div class="canvas" aria-hidden="true">
-      <div class="canvas-fine"></div>
-      <div class="canvas-coarse"></div>
-      <div class="canvas-vignette"></div>
-    </div>
+    <!-- THE WHOLE PAGE IS HERE, AND NONE OF IT WAITS FOR A SCRIPT (#60, #64).
+         This document is the landing page. A scene of labelled spheres is
+         laid over it where a browser can run one, and replaces the sample
+         Plan below for the eye and for nothing else. With scripts off, with
+         no WebGL, or for a student who asked for less motion, this is what
+         there is, so it has to be complete: what LionsDegree is, the Plan,
+         the disclaimer, and three ways into the planner.
 
-    <header class="bar">
-      <a class="brand" href="/">
-        <img src="/mark.png" width="420" height="327" alt="" />
-        <span><b>Lions</b>Degree</span>
-      </a>
-      <!-- Menu on the trailing edge, the same corner it occupies in the
-           planner and on the static pages. One position across every
-           surface is the point; which edge it is matters less than that it
-           never moves between them. -->
-      <p class="bar-right">
-        <a class="btn btn-cta btn-sm bar-cta" href="/plan/">Start my plan</a>
-        <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu">
-          <span class="menu-btn-label">Menu</span>
-          <span class="menu-btn-bars" aria-hidden="true"><i></i><i></i></span>
-        </button>
-      </p>
-    </header>
+         The header is not written here. Every page outside the planner
+         wears the same one, from src/site/header.ts, and the build puts it
+         where the next comment is (vite.config.ts). -->
+    <!-- site-header -->
 
-    <div class="menu" id="menu" hidden>
-      <nav aria-label="All pages">
-        <a href="/about/">About</a>
-        <a href="/about/#contact">Contact</a>
-        <a href="/connect/">Connect your AI</a>
-        <a href="/privacy/">Privacy</a>
-        <a href="/terms/">Terms</a>
-        <a class="menu-go" href="/plan/">Open the planner &rarr;</a>
-        <!-- A returning student's way back to a plan they already saved.
-             It was reachable only from inside the planner, and only once a
-             plan existed on THIS device -- so somebody who built a plan on
-             their laptop and opened the site on their phone was shown the
-             onboarding form with no sign-in anywhere on the page.
-
-             AFTER the call to action, not before. Putting it above pushed
-             "Open the planner" one tab stop further from the top of the
-             page, which the keyboard test caught: the primary action keeps
-             its position, and signing in is the returning student's path
-             rather than the common one.
-
-             Links rather than signing in here: this page ships no Supabase
-             client, and a second auth implementation is one that drifts. -->
-        <a class="menu-signin" href="/plan/?signin=1">Already have a plan? Sign in</a>
-      </nav>
-    </div>
-
-    <main>
-      <!-- ══ ONE JOURNEY ══════════════════════════════════════════════════
-           The page is a single scroll through a real prerequisite chain.
-           Each stop along the way states one thing the product does: a bold
-           line and a sentence under it, nothing else. No screenshots, no
-           feature grid, no stack of cards — the scene IS the argument, and
-           the copy only names what the reader is looking at.
-
-           Everything here is static markup and reads top to bottom as an
-           ordinary document. Where the guards in reveal.ts allow it, a WebGL
-           scene mounts behind and the scenes cross-fade as the camera
-           travels; where they do not, the chain below is the illustration
-           and the scenes simply stack. The page must never need the 3D
-           (docs/landing-3d-journey.md §8). -->
-      <div class="journey-scroll" id="journey-scroll">
-        <div class="journey-stage">
-          <div class="journey" id="journey" aria-hidden="false">
-            <figure class="journey-static">
-              <svg viewBox="0 0 960 260" role="img"
-                   aria-label="A prerequisite chain of seven courses from MATH 141 to AI 410. EE 456, an enforced prerequisite of AI 410, is flagged amber because it is scheduled in the same term as the course it is supposed to come before.">
-                <path class="route-line" d="M60 200 H170 Q215 200 215 160 H330 Q375 160 375 120 H520 Q565 120 565 84 H780" />
-                <path class="route-branch" d="M640 206 Q700 206 735 150 Q760 110 780 88" />
-                <g class="route-stop" style="--i:0"><circle cx="60"  cy="200" r="10" /><text class="lp-stn" x="60"  y="236">MATH 141</text></g>
-                <g class="route-stop" style="--i:1"><circle cx="215" cy="160" r="10" /><text class="lp-stn" x="215" y="196">PHYS 214</text></g>
-                <g class="route-stop" style="--i:2"><circle cx="375" cy="120" r="10" /><text class="lp-stn" x="375" y="156">ESC 312</text></g>
-                <g class="route-stop" style="--i:3"><circle cx="520" cy="120" r="10" /><text class="lp-stn" x="520" y="156">CMPSC 360</text></g>
-                <g class="route-stop" style="--i:4"><circle cx="565" cy="84"  r="10" /><text class="lp-stn" x="565" y="58">AI 100</text></g>
-                <g class="route-stop" style="--i:5"><circle cx="680" cy="84"  r="10" /><text class="lp-stn" x="680" y="58">AI 341W</text></g>
-                <g class="route-stop is-conflict" style="--i:6"><circle cx="640" cy="206" r="10" /><text class="lp-stn" x="640" y="242">EE 456</text></g>
-                <g class="route-stop" style="--i:7"><circle cx="780" cy="84"  r="10" /><text class="lp-stn" x="780" y="58">AI 410</text></g>
-              </svg>
-            </figure>
-            <p class="note journey-verdict">
-              <strong class="journey-flag">EE 456 is scheduled too late.</strong>
-              The Bulletin makes it an enforced prerequisite of AI 410, and the
-              plan puts both in the same term.
+    <main id="main">
+      <!-- 01. The words are the owner's (#60): the headline, and one line
+           beside it. The way into the planner is here as well as in the
+           header and the footer, so nobody has to hunt for it. -->
+      <section class="hero" id="top">
+        <div class="land hero-row">
+          <div class="hero-main">
+            <p class="eyebrow">[ Penn State degree planner ]</p>
+            <h1>One degree plan.<br />Optimized for you.</h1>
+            <p class="hero-actions">
+              <a class="btn btn-go" href="/plan/">Start my plan</a>
+              <!-- A returning student's way back to a plan they already
+                   saved. Somebody who built one on a laptop and opens the
+                   site on a phone would otherwise meet only "start". A link
+                   into the planner, not a sign-in here: this page ships no
+                   account client, and a second implementation of signing in
+                   is one that drifts. -->
+              <a class="hero-signin" href="/plan/?signin=1">Already have a plan? Sign in</a>
             </p>
           </div>
-
-          <div class="scenes" id="scenes">
-            <section class="scene is-first" id="hero">
-              <!-- The wordmark IS the hero. Two words, two colours: Lions in
-                   the logo's blue, Degree in the cream the whole page is set
-                   in. The split is the identity, so it is marked up rather
-                   than painted on -- `<b>` keeps it one readable word for a
-                   screen reader and for anyone copying the text. -->
-              <h1 class="wordmark"><b>Lions</b>Degree</h1>
-              <p class="lede">AI&#8209;augmented, dynamic, optimized degree planner.</p>
-              <p class="actions">
-                <a class="btn btn-cta" href="/plan/">Start my plan &mdash; free</a>
-              </p>
-            </section>
-
-            <section class="scene">
-              <h2>Every prerequisite, straight from the Bulletin.</h2>
-              <!-- The qualifier is not padding. The breakdown section that
-                   used to carry it is gone by request, so the clause travels
-                   with the number instead: a bare "95%" reads as a guarantee,
-                   and what makes it a measurement is saying what the other 5%
-                   does. Shortest honest form of the same promise. -->
-              <p>Parsed from Penn State's own text, never hand-entered.
-                <strong>%COVERAGE_PERCENT%%</strong> of requirements across
-                %COVERAGE_PROGRAMS% programs resolve to real, named courses —
-                the rest are flagged for you, never guessed at.</p>
-            </section>
-
-            <section class="scene">
-              <h2>Fewest terms, nothing out of sequence.</h2>
-              <p>The optimizer balances your load, keeps the core early, and
-                never schedules a course before what it depends on.</p>
-            </section>
-
-            <section class="scene">
-              <h2>It catches what you would not.</h2>
-              <p>The amber stop is real: a required course sitting in the same
-                term as the one it unlocks. Found before you register, not after.</p>
-            </section>
-
-            <section class="scene" id="ai">
-              <h2>Bring your own AI.</h2>
-              <!-- The prompt that finds a major, minors and certificates
-                   used to be printed here, in a box with the id
-                   `discovery`. It is on the Connect page now, in one place
-                   (#63), and this links to it. The link keeps the old id,
-                   for the reason the footer's About link does: with no
-                   script, `/#discovery` scrolls to the way there. With one,
-                   src/moved.ts goes straight to it. -->
-              <p>Connect Claude or ChatGPT and ask it about your actual degree —
-                or let it pick the degree: <a id="discovery" href="/connect/#discovery">there is
-                a prompt for finding a major, minors and certificates that
-                share credits</a>.</p>
-              <p class="actions">
-                <a class="btn btn-cta" href="/connect/">How to connect it</a>
-              </p>
-            </section>
-
-            <section class="scene is-last">
-              <h2>Start at the first stop.</h2>
-              <p>No account needed. Free and open source.</p>
-              <p class="actions">
-                <a class="btn btn-cta btn-lg" href="/plan/">Open the planner</a>
-              </p>
-            </section>
+          <div class="hero-side">
+            <p class="hero-line">The days of shuffling tabs to schedule classes are over.</p>
+            <p class="hero-credit">Free · Open source · Unofficial</p>
           </div>
         </div>
-      </div>
+      </section>
+
+      <!-- 02. Every number in the three cards is written in by the build
+           from the latest Edition (vite.config.ts); none is typed here. -->
+      <section class="catalog" id="catalog">
+        <div class="land catalog-grid">
+          <div class="catalog-lead">
+            <p class="eyebrow">[ 02 — The catalog ]</p>
+            <h2>Left alone,<br />it's a pile.</h2>
+            <p class="body">This is the Bulletin as most of us meet it: thousands of courses,
+              each with its own prerequisites, and nothing that says which one
+              comes first.</p>
+          </div>
+          <ul class="facts">
+            <li class="fact">
+              <p class="fact-head"><span>01</span> Catalog</p>
+              <p class="fact-val">%COVERAGE_COURSES% courses</p>
+              <p class="fact-desc">The %COVERAGE_EDITION_LABEL% Bulletin, read whole</p>
+            </li>
+            <li class="fact">
+              <p class="fact-head"><span>02</span> Programs</p>
+              <p class="fact-val">%COVERAGE_PROGRAMS% programs</p>
+              <p class="fact-desc">Majors, minors and certificates</p>
+            </li>
+            <!-- THE QUALIFIER IS NOT PADDING. A bare percentage reads as a
+                 guarantee; what makes it a measurement is saying what
+                 happens to the rest. The number does not travel without the
+                 clause. -->
+            <li class="fact" id="coverage">
+              <p class="fact-head"><span>03</span> Prerequisites</p>
+              <p class="fact-val">Parsed, never hand-entered</p>
+              <p class="fact-desc"><strong>%COVERAGE_PERCENT%%</strong> of requirements across
+                %COVERAGE_PROGRAMS% programs resolve to real, named courses.
+                The rest are flagged for you, never guessed at.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 03. The sample Plan. It is data (src/landing/sample-plan.ts) and
+           the build writes it in where the comment is: eight Terms of six
+           Courses, as a real list, with a caption saying it is a sample. -->
+      <section class="plan" id="plan">
+        <div class="land">
+          <div class="plan-top">
+            <div>
+              <p class="eyebrow">[ 03 — The plan ]</p>
+              <h2>Chaos, then a plan.</h2>
+            </div>
+            <p class="body plan-note">Everything falls. The courses your degree needs are caught,
+              each in its term, in the order a degree takes them. The rest fall
+              away.</p>
+          </div>
+          <!-- sample-plan -->
+        </div>
+      </section>
+
+      <!-- 04. -->
+      <section class="release" id="go">
+        <div class="land">
+          <p class="eyebrow">[ 04 — Yours ]</p>
+          <h2>And then,<br />it's yours.</h2>
+          <p class="body">Pick your majors, minors and certificates. LionsDegree lays out
+            every term, with each course after the ones it depends on. Less
+            guesswork.</p>
+        </div>
+      </section>
     </main>
 
-    <footer class="foot">
-      <div class="foot-in">
+    <footer class="land-foot">
+      <!-- The prototype's ticker, standing still. A line of type that scrolls
+           for ever needs a way to stop it, and this page has no script to
+           give it one. Decoration: the same four phrases mean nothing to a
+           screen reader that the page has not already said. -->
+      <p class="strip" aria-hidden="true">
+        <span>Less guesswork</span><i></i><span>More degree</span><i></i><span>Every prerequisite, in order</span><i></i><span>Start at the first stop</span><i></i>
+      </p>
+      <div class="land foot-in">
+        <div class="foot-grid">
+          <div class="foot-cta">
+            <p class="eyebrow">[ Start your plan ]</p>
+            <h2>Ready to see<br />your four years?</h2>
+            <a class="cta-link" href="/plan/">Open the planner<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></a>
+          </div>
+          <nav class="foot-cols" aria-label="All pages">
+            <div>
+              <h3>Product</h3>
+              <ul>
+                <li><a href="/plan/">Planner</a></li>
+                <li><a href="/connect/">Connect your AI</a></li>
+                <!-- THE OLD ANCHORS, KEPT AS THE LINKS THEMSELVES. This page
+                     used to carry the discovery prompt at `#discovery`, and
+                     About and Contact at `#about` and `#contact`. Those
+                     addresses are out in the world. With scripts on,
+                     src/moved.ts sends a visitor straight to the page. With
+                     them off the browser scrolls to whatever carries the id,
+                     so each id is on the link that goes there. -->
+                <li><a id="discovery" href="/connect/#discovery">A prompt for finding your programs</a></li>
+                <li><a href="https://github.com/okayojas/lionsdegree">Source</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3>Project</h3>
+              <ul>
+                <li><a id="about" href="/about/">About</a></li>
+                <li><a id="contact" href="/about/#contact">Contact</a></li>
+                <li><a href="/privacy/">Privacy</a></li>
+                <li><a href="/terms/">Terms</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3>Elsewhere</h3>
+              <ul>
+                <li><a href="https://bulletins.psu.edu/">Penn State Bulletin</a></li>
+                <li><a href="https://github.com/okayojas/lionsdegree/issues">Report a wrong requirement</a></li>
+                <li><a href="/.well-known/security.txt">Security</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <!-- Said once, in full, where a reader looks for it, and at a size
+             meant to be read. An unofficial tool that stops saying so is a
+             different and much worse problem than one that says it quietly. -->
         <p class="disclaim">
           <strong>Unofficial.</strong> LionsDegree is not affiliated with,
           endorsed by, or an official product of The Pennsylvania State
           University. Course data comes from the public Bulletin and may be out
-          of date or wrong. Verify everything with your academic adviser and
-          LionPATH before you register.
+          of date or wrong. The plan drawn above is a sample. Verify everything
+          with your academic adviser and LionPATH before you register.
         </p>
-        <p class="small">
-          <a href="/plan/">Open the planner</a> ·
-          <a href="/connect/">Connect your AI</a> ·
-          <!-- THE OLD ANCHORS, KEPT AS THE LINKS THEMSELVES. About and
-               Contact were sections of this page at `#about` and
-               `#contact`, and those addresses are out in the world. With
-               scripts on, src/moved.ts sends a visitor straight to the
-               page. Without them the browser scrolls to whatever carries
-               the id, so the id is on the link that goes there. -->
-          <a id="about" href="/about/">About</a> ·
-          <a id="contact" href="/about/#contact">Contact</a> ·
-          <a href="/privacy/">Privacy</a> ·
-          <a href="/terms/">Terms</a> ·
-          <a href="https://bulletins.psu.edu/">Penn State Bulletin</a> ·
-          <a href="https://github.com/okayojas/lionsdegree">Source</a> ·
-          <a href="/.well-known/security.txt">Security</a>
+        <p class="foot-bar">
+          <span class="foot-wm"><b>Lions</b>Degree</span>
+          <span>Open source, Apache 2.0. Built by a Penn State student.</span>
         </p>
-        <p class="small built">Open source. Built by a Penn State student.</p>
       </div>
     </footer>
 
+    <!-- The page's one script, and it draws nothing: it sends old links to
+         where their sections went. -->
     <script type="module" src="/src/moved.ts"></script>
-    <script type="module" src="/src/reveal.ts"></script>
   </body>
 </html>

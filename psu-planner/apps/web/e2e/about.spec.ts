@@ -215,11 +215,7 @@ test.describe("the landing page, now that About has moved out", () => {
     await expect(page.locator("#feedback-form")).toHaveCount(0);
     // Nothing on the page still points at an anchor that is not there.
     await expect(page.locator('a[href="#about"], a[href="/#about"], a[href="#contact"], a[href="/#contact"]')).toHaveCount(0);
-    // The menu's two, which are in the document whether or not it is open...
-    await expect(page.locator('#menu a[href="/about/"]')).toHaveText("About");
-    await expect(page.locator('#menu a[href="/about/#contact"]')).toHaveText("Contact");
-    // ...and the footer's, reachable at every width: the bar keeps only the
-    // brand and the primary action on a phone.
+    // In the footer, at every width. (About is in the header as well.)
     const foot = page.getByRole("contentinfo");
     await expect(foot.getByRole("link", { name: "About", exact: true })).toHaveAttribute("href", "/about/");
     await expect(foot.getByRole("link", { name: "Contact", exact: true })).toHaveAttribute("href", "/about/#contact");
@@ -249,7 +245,7 @@ test.describe("the landing page, now that About has moved out", () => {
   });
 
   test("a link to any other part of the landing page is left alone", async ({ page }) => {
-    await page.goto("/#hero");
+    await page.goto("/#plan");
     await page.waitForTimeout(500);
     expect(new URL(page.url()).pathname).toBe("/");
   });

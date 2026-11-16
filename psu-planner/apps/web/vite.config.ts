@@ -4,6 +4,7 @@ import { resolve } from "node:path";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 import { SITE_HEADER_SLOT, SITE_PAGES, pageName, siteHeader } from "./src/site/header";
+import { SAMPLE_PLAN, SAMPLE_PLAN_SLOT, samplePlanHtml } from "./src/landing/sample-plan";
 
 /** TWO ENTRY POINTS. The root is a static document; the planner is the SPA,
  * served from /plan/.
@@ -67,6 +68,8 @@ function coverageFacts(): Record<string, string> {
     "%COVERAGE_COURSES%": String(f.courses),
     "%COVERAGE_COURSES_RAW%": String(f.coursesRaw),
     "%COVERAGE_EDITION%": String(f.edition),
+    // "2026-2027" as a reader says it: "2026–27".
+    "%COVERAGE_EDITION_LABEL%": String(f.edition).replace(/^(\d{4})-\d{2}(\d{2})$/, "$1–$2"),
   };
 }
 
@@ -99,6 +102,19 @@ const siteHeaderSlot = () => ({
     html.includes(SITE_HEADER_SLOT)
       ? html.replaceAll(SITE_HEADER_SLOT, siteHeader(ctx.path.replace(/index\.html$/, "")))
       : html,
+});
+
+/** Writes the sample Plan into the landing page as a list.
+ *
+ * The Plan is data (src/landing/sample-plan.ts), checked against the latest
+ * Edition before the build starts (scripts/sample-plan.mts). The page leaves
+ * a comment where it goes, so no Course code is ever typed into the markup,
+ * and what a visitor reads with scripts off is the same list the scene
+ * draws. */
+const samplePlanSlot = () => ({
+  name: "sample-plan",
+  transformIndexHtml: (html: string) =>
+    html.includes(SAMPLE_PLAN_SLOT) ? html.replaceAll(SAMPLE_PLAN_SLOT, samplePlanHtml(SAMPLE_PLAN)) : html,
 });
 
 export default defineConfig({
@@ -144,6 +160,7 @@ export default defineConfig({
   plugins: [
     siteUrl(),
     siteHeaderSlot(),
+    samplePlanSlot(),
     react(),
     VitePWA({
       registerType: "autoUpdate",
@@ -182,10 +199,12 @@ export default defineConfig({
         // Everything outside /plan/ is outside this worker's scope, so
         // precaching it would store bytes the worker can never serve. That
         // is the landing page and every page that wears the site header,
-        // with the stylesheet, script and 3D chunk only they load. The list
-        // had only ever named the landing page's own files, so a student
-        // installing the planner was also handed the three documents and
-        // the landing page's copy of three.js.
+        // with the stylesheets and scripts only they load. The list had once
+        // named the landing page's own files and nothing else, so a student
+        // installing the planner was also handed three documents and the old
+        // landing page's copy of three.js. Whatever this list forgets, the
+        // built-output tests catch from both sides: nothing is precached that
+        // the planner never loads, and everything it loads is.
         globIgnores: [
           "index.html",
           // "/about/" -> the document, "about/**", and the script that is
@@ -193,7 +212,6 @@ export default defineConfig({
           ...SITE_PAGES.flatMap((page) => [`${pageName(page)}/**`, `assets/${pageName(page)}-*.js`]),
           "assets/landing-*.js",
           "assets/landing-*.css",
-          "assets/journey-*.js",
           "assets/site-*.css",
           "og.png",
         ],

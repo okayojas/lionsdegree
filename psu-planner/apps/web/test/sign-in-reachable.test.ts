@@ -22,17 +22,20 @@ const WEB = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (rel: string) => fs.readFileSync(path.join(WEB, rel), "utf-8");
 
 describe("the landing page offers a way in", () => {
-  it("has a sign-in item in its menu", () => {
+  it("has a sign-in link in its hero, beside the way to start", () => {
+    // Not in a menu (the page has none) and not only in the footer: a
+    // returning student should not have to scroll past a pitch for
+    // something they already use.
     const html = read("index.html");
-    const menu = html.slice(html.indexOf('<div class="menu"'), html.indexOf("</nav>"));
-    expect(menu, "the landing menu has no sign-in link, so a returning student has no way back").toMatch(
-      /class="menu-signin"/,
+    const hero = html.slice(html.indexOf('<section class="hero"'), html.indexOf("</section>"));
+    expect(hero, "the landing hero has no sign-in link, so a returning student has no way back").toMatch(
+      /class="hero-signin"/,
     );
   });
 
   it("points it at the planner, carrying the intent", () => {
     const html = read("index.html");
-    const href = /<a class="menu-signin" href="([^"]+)"/.exec(html)?.[1];
+    const href = /<a class="hero-signin" href="([^"]+)"/.exec(html)?.[1];
     expect(href, "the sign-in link has no href").toBeTruthy();
     expect(href!, "the sign-in link does not reach the planner").toMatch(/^\/plan\//);
     expect(
@@ -61,9 +64,12 @@ describe("the landing page offers a way in", () => {
   it("keeps it quieter than the call to action everyone else came for", () => {
     // Findable, not competing. Signing in is what a RETURNING student
     // wants; "Open the planner" is what the rest of the page is for.
+    // It is a text link beside a filled button, and set a size down.
+    const html = read("index.html");
+    expect(html, "the sign-in link is dressed as a button").not.toMatch(/class="[^"]*\bbtn\b[^"]*hero-signin|hero-signin[^"]*\bbtn\b/);
     const css = read("src/landing.css");
-    const rule = css.slice(css.indexOf(".menu .menu-signin {"));
-    expect(rule.slice(0, 200), "the sign-in link is not sized below the menu's other items").toMatch(/font-size:\s*clamp\(1rem/);
+    const rule = css.slice(css.indexOf(".hero-signin {"));
+    expect(rule.slice(0, 200), "the sign-in link is not sized below the button beside it").toMatch(/font-size:\s*var\(--fs-base\)/);
   });
 });
 

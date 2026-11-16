@@ -15,7 +15,13 @@
 import type { Page } from "@playwright/test";
 import sharp from "sharp";
 import { test, expect, expectNoA11yViolations } from "./fixtures";
-import { SITE_PAGES as PAGES } from "../src/site/header";
+import { SITE_PAGES } from "../src/site/header";
+
+/** Every page outside the planner. The landing page is not in the header's
+ * own list (it is the root, not a folder, and the build handles it apart),
+ * but it wears the same header on the same paper (#64), so it is held to
+ * the same things. */
+const PAGES = ["/", ...SITE_PAGES];
 
 /** What the header offers, in the order it offers it. Written out here, not
  * read from the header's own list: a test that asked the code what the code
