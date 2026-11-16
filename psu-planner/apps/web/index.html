@@ -224,8 +224,12 @@
       </div>
     </footer>
 
-    <!-- The page's one script, and it draws nothing: it sends old links to
-         where their sections went. -->
+    <!-- Two small scripts. The first draws nothing: it sends old links to
+         where their sections went. The second decides whether this browser
+         gets the scene, and if so asks for it AFTER the page has painted;
+         the scene and three.js are a chunk of their own, never on the way
+         to the first paint. With neither script the page is complete. -->
     <script type="module" src="/src/moved.ts"></script>
+    <script type="module" src="/src/gravity.ts"></script>
   </body>
 </html>

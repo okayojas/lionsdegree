@@ -26,10 +26,20 @@ the page: the document, every stylesheet it links, and the static script graph, 
 Measured at 20.2 KB when this was written (document 4.7, stylesheet 15.0, script 0.54); ceiling
 24.
 
-The second ceiling is unchanged in meaning: every script the page can load, lazy chunks
-included. It is 0.65 KB today because there are none. When the gravity scene arrives (#65) its
-chunk gets a ceiling of its own, set the same way, and this one keeps holding the page's own
-script.
+The second ceiling held every script the page can load, lazy chunks included, and was 0.65 KB
+when this was written because there were none.
+
+**Since #65 (same day) there are three numbers**, each the measurement plus about a fifth:
+
+| What | Measured | Ceiling |
+| --- | --- | --- |
+| First paint: document, stylesheet, static script | 23.2 KB | 28 |
+| The page's own script, which loads with it | 3.1 KB | 3.7 |
+| The scene: three.js and the simulation, one lazy chunk | 134.8 KB | 162 |
+
+The first paint grew by 3 KB with the scene: the script that decides whether a browser gets
+one, and the layout rules for when it does. The scene itself is asked for after the page has
+painted and is not in the first number, which is what having three numbers is for.
 
 Fonts and images are not in the first-paint figure. Fonts are swapped in when they land and the
 text is readable before they do; the page's one image is the header's mark, which has its own

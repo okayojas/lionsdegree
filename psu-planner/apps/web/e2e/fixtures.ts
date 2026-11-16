@@ -96,3 +96,19 @@ export async function contrast(el: Locator): Promise<number> {
     return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
   });
 }
+
+/** Makes the page's browser one that cannot draw WebGL, before it loads.
+ *
+ * The landing page lays a scene over itself where it can (#65). A good many
+ * tests are about the page UNDER the scene, which is the page a visitor with
+ * no WebGL is given, so this is how they ask for it. Not reduced motion: that
+ * is a second reason for the same page, and it changes other things too. */
+export async function withoutWebGL(page: Page): Promise<void> {
+  await page.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (this: HTMLCanvasElement, kind: string, ...rest: unknown[]) {
+      if (/webgl/i.test(kind)) return null;
+      return (original as (...args: unknown[]) => unknown).call(this, kind, ...rest);
+    } as typeof HTMLCanvasElement.prototype.getContext;
+  });
+}

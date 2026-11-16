@@ -46,19 +46,24 @@ beforeAll(() => {
  * in the commit message — that is the discipline the ADR exists to impose. */
 
 /** What has to arrive before the landing page can paint: the document, its
- * stylesheet, and every script in the static graph. Measured at 20.2 KB
- * (document 4.7, stylesheet 15.0, script 0.5), on the page that replaced the
- * old landing in #64. Fonts are not in it: they are swapped in when they
- * land, and the text is readable before they do. */
-const LANDING_FIRST_PAINT_CEILING_KB = 24;
+ * stylesheet, and every script in the static graph. Measured at 23.2 KB
+ * (document 4.9, stylesheet 15.3, script 3.1). It was 20.2 before the scene
+ * (#65): the difference is the script that decides whether this browser
+ * gets one, and the rules for the page when it does. The scene itself is
+ * not in this number, which is the point of the next one. Fonts are not in
+ * it either: they are swapped in when they land, and the text is readable
+ * before they do. (ADR 0005.) */
+const LANDING_FIRST_PAINT_CEILING_KB = 28;
 
-/** Every script the landing page can load, lazy chunks included. Measured
- * at 0.54 KB: one script, which sends old `/#about` links on, and the
- * bundler's preload shim. The old landing page measured 135.2 KB here, all
- * but 2.5 of it Three.js for the journey this page replaced. The scene that
- * comes back in #65 arrives as a chunk with a ceiling of its own; until
- * then nothing lazy is loaded at all, and this says so. */
-const LANDING_SCRIPT_CEILING_KB = 0.65;
+/** The landing page's own script: what loads with the page. Measured at
+ * 3.1 KB. It was 0.54 before it had a scene to start. */
+const LANDING_SCRIPT_CEILING_KB = 3.7;
+
+/** The scene: three.js and the simulation, as the one chunk the page asks
+ * for after it has painted. Measured at 134.8 KB. (The old landing page's
+ * 3D journey, which this replaces, was 132.7.) Deferred is not free, so it
+ * has a ceiling of its own. */
+const LANDING_SCENE_CEILING_KB = 162;
 
 /** The About page, which has the feedback form now. Measured at 2.6 KB before
  * anyone presses Send, and 65.4 KB once the Supabase client has been fetched
@@ -159,6 +164,23 @@ describe("the landing document", () => {
     );
   });
 
+  it("weighs the script that loads with the page", () => {
+    const kb = scriptKb(entryScripts(), "static");
+    expect(kb, `${kb.toFixed(2)} KB of script loads with the landing page`).toBeLessThan(LANDING_SCRIPT_CEILING_KB);
+  });
+
+  it("keeps the scene off the way to the first paint", () => {
+    // The scene is the page's one heavy thing, and the page is complete
+    // without it. It is asked for by a script, after the page has painted
+    // (the browser suite times that); what the build can show is that
+    // nothing the page loads up front reaches three.js.
+    const eager = [...reachableScripts(entryScripts(), "static")];
+    expect(eager.filter((f) => /^assets\/scene-/.test(f)), "the scene is in the static import graph").toEqual([]);
+    for (const f of eager) expect(read(f), `${f} carries three.js`).not.toMatch(/WebGLRenderer|THREE\.REVISION/);
+    const html = read("index.html");
+    expect(html, "the document preloads the scene").not.toMatch(/<link[^>]+href="\/assets\/scene-/);
+  });
+
   it("weighs every script a visitor downloads, including lazy chunks", () => {
     // ADR 0002. This assertion used to read `<script src>` out of the markup
     // and stop there -- so a chunk fetched by a runtime `import()` appeared in
@@ -171,10 +193,13 @@ describe("the landing document", () => {
     // deferring it does not make it free.
     const entries = entryScripts();
     expect(entries.length, "no entry scripts on the landing page").toBeGreaterThan(0);
-    const kb = scriptKb(entries, "all");
-    expect(kb, `landing scripts total ${kb.toFixed(1)} KB across the whole import graph`).toBeLessThan(
-      LANDING_SCRIPT_CEILING_KB,
-    );
+    const eager = reachableScripts(entries, "static");
+    const lazy = [...reachableScripts(entries, "all")].filter((f) => !eager.has(f));
+    // One lazy chunk, the scene. A second would be something the page
+    // fetches that nobody decided it should.
+    expect(lazy.map((f) => f.replace(/-[^-.]+\.js$/, ".js")), "what the landing page fetches after it has painted").toEqual(["assets/scene.js"]);
+    const kb = lazy.reduce((n, f) => n + zlib.gzipSync(fs.readFileSync(path.join(dist, f))).length, 0) / 1024;
+    expect(kb, `the scene's chunk is ${kb.toFixed(1)} KB`).toBeLessThan(LANDING_SCENE_CEILING_KB);
   });
 
   it("still never reaches the planner through a lazy import either", () => {

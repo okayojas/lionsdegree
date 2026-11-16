@@ -9,7 +9,8 @@
  * complete with no script at all. A scene of labelled spheres is laid over
  * it where a browser can run one (#65), and replaces the sample Plan for the
  * eye and for nothing else. Everything here is about the document, which is
- * the page anyone the scene does not reach is given.
+ * the page anyone the scene does not reach is given: these tests run with
+ * scripts off, or in a browser with no WebGL. The scene has scene.spec.ts.
  *
  * What is NOT repeated here: that the page sits on cream, wears the shared
  * header, asks no other host for anything, fits a phone and passes axe. `/`
@@ -18,21 +19,8 @@
  * in about.spec.ts and connect.spec.ts.
  */
 import type { Locator, Page } from "@playwright/test";
-import { test, expect, contrast } from "./fixtures";
-
-/** The sample Plan, written out as a reader meets it. A literal on purpose:
- * a test that read the Plan from the file the page is built from would agree
- * with whatever that file said. */
-const PLAN = [
-  ["Fall 1", ["MATH 140", "PSYCH 100", "CMPSC 131", "CMPSC 150N", "ENGL 15", "ENGR 100"]],
-  ["Spring 1", ["MATH 141", "PHYS 211", "CMPSC 132", "SOC 1", "MUSIC 4", "GEOG 30N"]],
-  ["Fall 2", ["MATH 230", "PHYS 212", "CMPSC 221", "MATH 220", "CAS 100A", "THEA 100"]],
-  ["Spring 2", ["ASTRO 5", "CMPEN 270", "CMPSC 222", "CMPSC 360", "PHIL 10", "KINES 77"]],
-  ["Fall 3", ["STAT 318", "CMPSC 315", "CMPSC 465", "CMPSC 320", "HIST 21", "ASIA 100"]],
-  ["Spring 3", ["STAT 319", "CMPSC 316", "CMPSC 461", "CMPSC 442", "ENGL 202C", "COMM 150N"]],
-  ["Fall 4", ["CMPSC 448", "CMPSC 464", "CMPSC 483W", "CMPSC 471", "CMPSC 431W", "NUTR 100"]],
-  ["Spring 4", ["CMPSC 455", "CMPSC 467", "CMPSC 410", "ARTH 100", "CMLIT 153", "EARTH 100"]],
-] as const;
+import { test, expect, contrast, withoutWebGL } from "./fixtures";
+import { PLAN } from "./the-sample-plan";
 
 /** The Plan's list, found the way assistive technology finds it. */
 const plan = (page: Page): Locator => page.getByRole("list", { name: /a sample plan for Computer Science, B\.S\./i });
@@ -182,6 +170,9 @@ test.describe("with JavaScript turned off", () => {
 });
 
 test.describe("the landing page is usable", () => {
+  // The document, with scripts on: a browser that cannot draw the scene.
+  test.beforeEach(async ({ page }) => withoutWebGL(page));
+
   test("every way into the planner can be read, at rest and under the pointer", async ({ page }) => {
     // axe reads the computed pair and has passed a button whose label was
     // the wrong blue on its own fill. These are the controls the page most
@@ -290,11 +281,13 @@ test.describe("the landing page is usable", () => {
 });
 
 test.describe("motion", () => {
+  test.beforeEach(async ({ page }) => withoutWebGL(page));
+
   test("nothing on the page moves on its own", async ({ page }) => {
     // The prototype's hero rose into place, its sections faded up and its
     // footer carried a ticker that never stopped. A page that is complete as
-    // a document does none of that; what moves, moves because the scene is
-    // running (#65).
+    // a document does none of that. What moves on this page is the scene,
+    // where there is one (#65), and here there is not.
     await page.goto("/");
     await page.waitForTimeout(600);
     expect(await page.evaluate(() => document.getAnimations().length)).toBe(0);

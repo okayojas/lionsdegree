@@ -24,6 +24,14 @@ export default defineConfig({
     // writing a video for every green run.
     trace: "on-first-retry",
     screenshot: "only-on-failure",
+    // THE LANDING PAGE'S SCENE IS WEBGL, and headless Chromium draws WebGL in
+    // software unless told otherwise. The page refuses a scene it could
+    // only draw in software (three frames a second, measured), so in a
+    // default headless browser `/` is the static page and scene.spec.ts
+    // skips itself. On Windows the browser can be pointed at the real GPU,
+    // and is: that is where the scene's tests run. Even there they step the
+    // simulation themselves (`advance`) and never wait on the frame rate.
+    launchOptions: process.platform === "win32" ? { args: ["--use-angle=d3d11", "--enable-gpu", "--ignore-gpu-blocklist"] } : {},
   },
   projects: [
     // Every other project runs against the DEFAULT build, which has no

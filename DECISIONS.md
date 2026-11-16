@@ -640,6 +640,45 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
     20.2 KB gzipped when this landed (ADR 0005 for why the document and stylesheet are counted
     now). The old page's journey chunk, 132.7 KB of Three.js and the code that drove it, is gone
     until the scene brings Three.js back as a chunk of its own.
+- **The landing page's scene (2026-11-16, #65).** The field of spheres from the owner's
+  prototype, laid over the landing document: `src/landing/scene.ts`, with three.js, as one
+  chunk the page asks for after it has painted. Its materials, lights, physics constants,
+  entrance and label treatment are the prototype's and are the design; `field-math.ts` holds
+  the stage values and the grid, where they can be read against #65 and tested with no canvas.
+  - **One class decides everything.** `src/gravity.ts` puts `has-scene` on `<html>` where a
+    scene can run, and the stylesheet's last section is the page laid out for one (a screen per
+    section, the plan section pinned, the list out of sight but still in the page). No reduced
+    motion, no save-data, and a WebGL context the browser can draw on a GPU, or it does nothing:
+    in software the scene measured three frames a second, and that is worse than the page. If
+    the chunk does not arrive or the renderer will not start, the class comes off and the page
+    is exactly the static one.
+  - **Sixty steps a second, whatever the screen does.** The prototype advanced once per frame,
+    so it ran twice as fast on a 120 Hz display and at a quarter speed in a software renderer.
+    The constants are unchanged; they are now per sixtieth of a second and not per frame.
+  - **The stages follow the sections, not the scroll offset alone.** #65 gives progress as
+    the scroll distance in screens, which assumes each section is one screen tall. On a phone
+    the catalog section is taller, and the Plan would assemble while its cards were still on
+    screen. Progress is 1 at the top of the catalog section, 2 at the top of the plan section
+    and 3.6 at the top of the last, and linear between; where the sections are as tall as the
+    design draws them the two are the same number.
+  - **The scene reports itself, and can be stepped.** `window.__lionsdegreeScene.report()`
+    is where every Course is, whether it is showing and where its cell is; the browser suite
+    asserts the rectangle from that and not from pixels. `advance(steps)` moves the simulation
+    on without waiting for the screen. #60 allowed a read-only hook; this one is not strictly
+    read-only, and the reason is that a test which waits for frames passes or fails on how
+    fast the machine under it draws. The scene's tests run where the test browser has a GPU
+    (Windows, as configured) and skip themselves where it does not.
+  - **Not carried over from the prototype:** the push away from the pointer (the owner's
+    call); the tint at the edges of the page, which changed with the stage and took the muted
+    labels near the edges under AA contrast; the loader; the palette drawer. The Term names
+    over the rectangle are in the sans, like the page's other labels, where the prototype used
+    the mono. A sphere's label is the prototype's: subject in the mono, number in the sans.
+  - **What it weighs:** 134.8 KB gzipped for the chunk (the old journey's was 132.7), under a
+    ceiling of its own. The page's first paint went from 20.2 KB to 23.2 KB, which is the
+    script that decides and the layout rules; the scene itself is not on that path, and the
+    browser suite times the request against the first paint.
+  - **Not known:** how it runs on a real phone, in Safari or in Firefox. Everything measured
+    is Chromium on one laptop. That is #66, and it needs a person holding the devices.
 - **The pages outside the planner are cream, and say so (2026-11-16, #61).** Connect your AI, Privacy
   and Terms used to wear the old landing page's dark canvas. They now sit on the app's light tokens
   with petrol as the only accent (`site.css`), and each carries `data-theme="light"`: merely dropping

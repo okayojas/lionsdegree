@@ -263,3 +263,69 @@
 /* Nothing on this page moves on its own. What does move, moves because a
    pointer is over it, and `site.css` already stills those transitions for
    anyone who asked. */
+
+/* ── With the scene ─────────────────────────────────────────────────────
+   Everything above is the page. This is the same page with a field of
+   spheres behind it (src/gravity.ts puts `has-scene` on <html> where one can
+   run, and takes it off again if it cannot after all). Only layout changes:
+   the sections become a screen each, so that how far down the page a reader
+   is says which stage the spheres are in, and the plan section holds still
+   while its rectangle is on screen.
+
+   The sample Plan's list is taken out of sight here and NOT out of the page:
+   the spheres draw it for the eye, and it is still what a screen reader
+   reads. */
+.field { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.field canvas { display: block; width: 100%; height: 100%; }
+.has-scene main, .has-scene .land-foot { position: relative; z-index: 1; }
+
+/* The header rides over the scene, and steps aside when the footer slides
+   under it: navy type on a navy ground is no header at all. */
+.has-scene .site-head {
+  position: fixed; inset: 0 0 auto; z-index: 30;
+  transition: opacity .5s var(--ease-out), transform .5s var(--ease-out), visibility 0s;
+}
+.has-scene .site-head.is-away {
+  opacity: 0; transform: translateY(-16px); visibility: hidden;
+  transition: opacity .5s var(--ease-out), transform .5s var(--ease-out), visibility 0s .5s;
+}
+
+/* 01. The cluster has the screen; the words sit under it. */
+.has-scene .hero { min-height: 100svh; display: flex; align-items: flex-end; padding-block: 8rem clamp(2.5rem, 6vh, 3.5rem); }
+/* 02. A screen, at least. */
+.has-scene .catalog { min-height: 100svh; padding-block: clamp(7rem, 15vh, 8.5rem) 10rem; }
+/* The paragraph is read over falling spheres, so it gets paper behind it. */
+.has-scene .catalog .body {
+  padding: var(--sp-4) clamp(1rem, 2vw, 1.25rem); margin-left: calc(-1 * clamp(1rem, 2vw, 1.25rem));
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+}
+.has-scene .fact { background: color-mix(in srgb, var(--surface) 78%, transparent); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); }
+
+/* 03. Taller than the screen with a pinned inner, so the rectangle finishes
+   assembling as the section arrives and then HOLDS, before the page moves
+   on. The heading stays at the top and the caption at the bottom; the
+   rectangle is drawn in the band between them, which the scene measures. */
+.has-scene .plan { min-height: 160svh; padding-block: 0; }
+.has-scene .plan > .land-wrap {
+  position: sticky; top: 0; height: 100svh;
+  display: flex; flex-direction: column;
+  padding-block: clamp(6rem, 13vh, 7rem) clamp(1.5rem, 4vh, 2.25rem);
+}
+.has-scene .plan-top { margin-bottom: 0; }
+.has-scene .plan-figure { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: flex-end; }
+.has-scene .plan-terms {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+.has-scene .plan-figure figcaption { margin-top: 0; }
+
+/* On a narrow screen the header is two rows deep, and it is fixed over the
+   pinned section: the heading starts below it, not under it. */
+@media (max-width: 47.99rem) {
+  .has-scene .plan > .land-wrap { padding-top: 8.5rem; }
+}
+
+/* 04. The flight happens over this. */
+.has-scene .release { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-block: 9rem; }

@@ -211,6 +211,8 @@ export default defineConfig({
           // its entry and no other page's, "assets/about-*.js".
           ...SITE_PAGES.flatMap((page) => [`${pageName(page)}/**`, `assets/${pageName(page)}-*.js`]),
           "assets/landing-*.js",
+          // The landing page's scene and three.js, fetched after it paints.
+          "assets/scene-*.js",
           "assets/landing-*.css",
           "assets/site-*.css",
           "og.png",
