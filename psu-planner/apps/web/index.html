@@ -63,7 +63,7 @@
            beside it. The way into the planner is here as well as in the
            header and the footer, so nobody has to hunt for it. -->
       <section class="hero" id="top">
-        <div class="land hero-row">
+        <div class="land-wrap hero-row">
           <div class="hero-main">
             <p class="eyebrow">[ Penn State degree planner ]</p>
             <h1>One degree plan.<br />Optimized for you.</h1>
@@ -88,7 +88,7 @@
       <!-- 02. Every number in the three cards is written in by the build
            from the latest Edition (vite.config.ts); none is typed here. -->
       <section class="catalog" id="catalog">
-        <div class="land catalog-grid">
+        <div class="land-wrap catalog-grid">
           <div class="catalog-lead">
             <p class="eyebrow">[ 02 — The catalog ]</p>
             <h2>Left alone,<br />it's a pile.</h2>
@@ -126,15 +126,18 @@
            the build writes it in where the comment is: eight Terms of six
            Courses, as a real list, with a caption saying it is a sample. -->
       <section class="plan" id="plan">
-        <div class="land">
+        <div class="land-wrap">
           <div class="plan-top">
             <div>
               <p class="eyebrow">[ 03 — The plan ]</p>
               <h2>Chaos, then a plan.</h2>
             </div>
-            <p class="body plan-note">Everything falls. The courses your degree needs are caught,
-              each in its term, in the order a degree takes them. The rest fall
-              away.</p>
+            <!-- The prototype's line began "Everything falls" and ended "The
+                 rest fall away". On this page nothing falls and there is no
+                 rest: both are the scene's, and the words here have to be
+                 true without it. -->
+            <p class="body plan-note">The courses your degree needs are caught, each in its
+              term, in the order a degree takes them.</p>
           </div>
           <!-- sample-plan -->
         </div>
@@ -142,7 +145,7 @@
 
       <!-- 04. -->
       <section class="release" id="go">
-        <div class="land">
+        <div class="land-wrap">
           <p class="eyebrow">[ 04 — Yours ]</p>
           <h2>And then,<br />it's yours.</h2>
           <p class="body">Pick your majors, minors and certificates. LionsDegree lays out
@@ -153,14 +156,15 @@
     </main>
 
     <footer class="land-foot">
-      <!-- The prototype's ticker, standing still. A line of type that scrolls
-           for ever needs a way to stop it, and this page has no script to
-           give it one. Decoration: the same four phrases mean nothing to a
-           screen reader that the page has not already said. -->
+      <!-- The prototype's ticker, standing still: its four phrases, set as a
+           band and all there to be read. A line of type that scrolls for
+           ever needs a way to stop it, and this page has no script to give
+           it one. Decoration: the phrases tell a screen reader nothing the
+           page has not already said. -->
       <p class="strip" aria-hidden="true">
         <span>Less guesswork</span><i></i><span>More degree</span><i></i><span>Every prerequisite, in order</span><i></i><span>Start at the first stop</span><i></i>
       </p>
-      <div class="land foot-in">
+      <div class="land-wrap foot-in">
         <div class="foot-grid">
           <div class="foot-cta">
             <p class="eyebrow">[ Start your plan ]</p>

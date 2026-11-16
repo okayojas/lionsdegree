@@ -94,13 +94,13 @@
   --success: #3d6848; --success-solid: #5a8c69; --success-bg: #e9efe4; --success-border: #c3d4bf;
   --warning: #8a5f28; --warning-solid: #a2722f; --warning-bg: #f4ecdb; --warning-border: #e2cfa8;
   --danger: #9c4a46;  --danger-solid: #bf6360;  --danger-bg: #f3e5e2;  --danger-border: #e0bcb7;
-  /* The sign-up blue, shared with the landing page's `--cta`.
+  /* The sign-up blue.
      NOT --primary. Petrol is the structural accent and is deliberately
      quiet; this is the one colour reserved for the action we are actually
-     asking for, and it is bright on purpose. Declared here as well as in
-     landing.css because the planner's chart carries the same button and
-     the two files do not import each other -- palette.test.ts asserts the
-     values stay identical, so this is duplication that cannot drift. */
+     asking for, and it is bright on purpose. Declared here and nowhere
+     else: the landing page imports this file and uses it for the way in
+     at the foot of the page (palette.test.ts holds that it is not
+     restated there). */
   --cta-blue: #3aa9f0; --cta-blue-hover: #5dbbf5; --cta-blue-fg: #10243a;
   --focus-ring: #1d627f;
   --shadow-color: 35 25% 30%;
@@ -1179,16 +1179,16 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   .bo-node { animation: none; opacity: .6; }
 }
 
-/* The menu sits at the trailing edge of the toolbar, which is where the
-   landing page and the static pages put theirs too. */
+/* The menu sits at the trailing edge of the toolbar. (The pages outside
+   the planner have no menu: their links are always on the page.) */
 .toolbar-menu-wrap { position: relative; }
 /* `Lions` in the accent, `Degree` in the body colour -- the same split the
-   landing page carries, from the same markup, so the wordmark reads as one
+   site header carries, from the same markup, so the wordmark reads as one
    thing across both surfaces. */
 .toolbar h1 b { color: var(--primary); font-weight: inherit; }
 
-/* Sign in, in the same bright blue as the landing page's Start button and
-   the chart's Connect button. Those three are the only places the product
+/* Sign in, in the same bright blue as the roundel on the landing page's
+   last way in and the chart's Connect button. Those three are the only places the product
    asks for something, so they are the only places that get the colour --
    everything else in the toolbar is a tool, and a toolbar where every
    control shouts has no emphasis left to spend. */

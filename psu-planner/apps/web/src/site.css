@@ -1,5 +1,6 @@
 /* =====================================================================
-   The pages outside the planner: Connect your AI, About, Privacy, Terms.
+   The pages outside the planner: the landing page, Connect your AI, About,
+   Privacy, Terms.
 
    CREAM, AND PINNED TO IT. These used to wear the old landing page's dark
    canvas. They are documents a student reads on the way into or out of the
@@ -13,10 +14,10 @@
    stylesheet imported below, so the paper, the ink and the petrol are the
    planner's by construction and cannot drift from it.
 
-   NOT landing.css. That file is the old landing page's and goes when the
-   page does. The handful of rules both need for now (the button, the copy
-   field, the footer) are written again here rather than shared, so that
-   deleting it is deleting a file and not untangling one.
+   landing.css IS ON TOP OF THIS. The landing page wears the same header on
+   the same paper, so its stylesheet imports this one and adds only what
+   is its own. (The landing page before it had a stylesheet apart from
+   this, with its own copies of the button and the footer. It is gone.)
    ===================================================================== */
 @import "./styles.css";
 /* Self-hosted, like the two faces above it: the content security policy
@@ -26,9 +27,10 @@
 
 .site {
   /* The display face. Raleway at 500 with tight tracking is the landing
-     family's voice; it is for headings and the header's links only. Body
-     copy stays in the app's sans so a paragraph here reads like a paragraph
-     in the planner. */
+     family's voice; it is for headings and the header's links, and on the
+     landing page for the two display lines in its footer. Body copy stays
+     in the app's sans so a paragraph here reads like a paragraph in the
+     planner. */
   --font-display: "Raleway Variable", "Raleway", "Space Grotesk Variable", system-ui, sans-serif;
   --gutter: clamp(1.25rem, 5vw, 3rem);
   /* The app's 14px is sized for a dense chart. These pages are for reading. */

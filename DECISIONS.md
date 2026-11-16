@@ -580,9 +580,9 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
     same site. Self-hosted like the other two (`@fontsource-variable/raleway`, imported by
     `site.css` only), so the CSP's `font-src 'self'` does not move; `site-surface.test.ts` pins the
     whole policy line so that adding a face can never quietly become allowlisting a font host.
-- **The landing page is a document, with a scene laid over it (2026-11-16, #60, #64).** A change
-  of direction, and the third landing page. The one it replaces was warm dark, one canvas, a 3D
-  journey along a real prerequisite chain to a real scheduling conflict
+- **The landing page is a document, with a scene to be laid over it (2026-11-16, #60, #64).** A
+  change of direction, and the third landing page. The one it replaces was warm dark, one canvas,
+  a 3D journey along a real prerequisite chain to a real scheduling conflict
   (`Landing-Page-Canvas-Spec.md`, `docs/landing-3d-journey.md`; both now marked superseded, with
   the two specs before them). It explained the product well and showed the wrong thing: a
   conflict, when what the product is for is the whole of a degree falling into order. The owner
@@ -590,32 +590,56 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
   that becomes a rectangle, eight Terms of six.
   - **The page is complete with no script.** The prototype hid its hero until a script ran, put
     the page behind a loader, and asked two other hosts for its fonts and its renderer. None of
-    that shipped. `/` is four short sections and a footer in the markup; the scene (#65) replaces
-    the sample Plan for the eye and for nothing else, and a visitor it cannot reach (scripts
-    off, no WebGL, reduced motion, a screen reader) is given the same Plan as a list.
+    that shipped. `/` is four short sections and a footer in the markup. The scene (#65) is to
+    replace the sample Plan for the eye and for nothing else, and a visitor it cannot reach
+    (scripts off, no WebGL, reduced motion, a screen reader) is given the same Plan as a list.
   - **So the words have to be true without the scene.** The prototype's copy narrated the
-    animation ("Keep scrolling and the field gives in to gravity", "The whole plan lifts off
-    the page and rushes past you"). Text that describes motion a reader is not being shown is
-    false for exactly the readers the static page is for, so those two sentences went: the
-    catalog section keeps the rest of its paragraph, and the last section says what the product
-    does. The headline and the line beside it are the owner's, unchanged.
-  - **The sample Plan is data, checked against the Edition.** `src/landing/sample-plan.ts`: a
-    Program, 48 Courses in eight Terms, and 48 more that the scene lets fall away. The core is
-    the Bulletin's suggested plan; the Slots it leaves open are filled with real Courses chosen
-    for the page, and the page says it is a sample twice, beside it and in the disclaimer.
-    `npm run build` checks every code against the latest Edition first and stops if one is
-    missing (`scripts/sample-plan.mts`). The figures on the page (Courses, Programs, the
-    coverage percentage with its qualifier) are written in by the build as before.
-  - **Nothing on it moves by itself.** The prototype's footer ticker stands still: a line of
-    type that scrolls for ever needs a control to stop it (WCAG 2.2.2), and the page has no
-    script to give it one. The hero's rise and the sections' fade-in are gone for the same
-    reason the loader is.
-  - **Section labels are in the sans, not the mono.** The prototype sets them in JetBrains
-    Mono; the type rule above keeps the mono for course codes, which on this page is exactly
-    the 48 discs of the Plan.
+    animation: "Keep scrolling and the field gives in to gravity", "Everything falls", "The rest
+    fall away", "The whole plan lifts off the page and rushes past you". Text that describes
+    motion a reader is not being shown is false for exactly the readers the static page is for.
+    Those went. The catalog and plan sections keep the rest of their paragraphs, and the last
+    section says what the product does instead. The headline and the line beside it are the
+    owner's, unchanged.
+  - **The sample Plan is data, checked against the Edition, and it is not a Template.**
+    `src/landing/sample-plan.ts`: a Program, 48 Courses in eight Terms, and 48 more for the
+    scene to let fall away. Its core is the Program's Template, but a Template has Slots where
+    this has named Courses, and fewer than six entries in most Terms, so real Courses were added
+    to square it off. It is a heavier load than the Bulletin suggests. The owner asked for one
+    perfect rectangle, so that stands, and the caption says what was done: "Drawn for the
+    picture, not for anyone's degree: the core is the Bulletin's suggested plan, with real
+    courses added so that every term shows six." The disclaimer says it is a sample as well.
+    `npm run build` checks every code and the Program against the latest Edition first and
+    stops if one is missing (`scripts/sample-plan.mts`; the unit suite runs that script against
+    a catalog with a Course taken out and reads the exit code). The figures on the page
+    (Courses, Programs, the coverage percentage with its qualifier) are written in by the build
+    and recounted from the catalog by the tests.
+  - **Nothing on it moves by itself.** The prototype's footer ticker stands still, as a band of
+    its four phrases: a line of type that scrolls for ever needs a control to stop it (WCAG
+    2.2.2), and the page has no script to give it one. The hero's rise and the sections'
+    fade-in are gone for the same reason the loader is.
+  - **Type and colour, against the prototype.** Section labels are in the sans, not the mono:
+    the type rule above keeps the mono for course codes, which on this page is exactly the 48
+    discs of the Plan. Raleway at 500 sets the headings, as on the pages beside it, and two
+    display lines in the footer (the band of phrases and the way in, which mirrors the header's
+    pill); sentences, the fact cards and the labels are in the sans, where the prototype set
+    everything in Raleway. The sign-up blue is on one thing, the roundel of the footer's way
+    in; the prototype also used it for the ticker's dots and a glow.
+  - **Also not as the prototype has it**, each for a reason:
+    - A way in, in the hero ("Start my plan"), which the prototype's hero lacks and #60 asks
+      for, and beside it "Already have a plan? Sign in": the old page's menu carried that link
+      and a returning student on a new device has no other way back.
+    - The third fact card keeps the prototype's heading and gives the coverage figure with its
+      qualifier where the prototype had "Straight from Penn State's own text".
+    - The footer gains "A prompt for finding your programs" (the old `#discovery` address lands
+      on it) and "Security", and loses the row of icon links, which repeated three links
+      already in the columns beside it.
+    - No "Scroll" cue, no palette drawer, no "© 2026".
+    - The preview card (`og:title`, `og.png`) still shows the route map of two landing pages
+      ago. New card art is the owner's to make.
   - **What the first paint weighs** is held by a ceiling: document, stylesheet and script,
-    20.1 KB gzipped when this landed. The old page's Three.js chunk (135 KB) is gone until the
-    scene brings it back as a chunk of its own.
+    20.2 KB gzipped when this landed (ADR 0005 for why the document and stylesheet are counted
+    now). The old page's journey chunk, 132.7 KB of Three.js and the code that drove it, is gone
+    until the scene brings Three.js back as a chunk of its own.
 - **The pages outside the planner are cream, and say so (2026-11-16, #61).** Connect your AI, Privacy
   and Terms used to wear the old landing page's dark canvas. They now sit on the app's light tokens
   with petrol as the only accent (`site.css`), and each carries `data-theme="light"`: merely dropping

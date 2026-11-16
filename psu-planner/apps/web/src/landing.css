@@ -17,16 +17,18 @@
 @import "./site.css";
 
 .landing {
-  /* The footer's ground, and the type on it. Petrol taken darker, not the
-     dark theme's warm grey: this is still the light page, ending. */
-  --deep: #043246;
-  --on-deep: #f8f4ea;
+  /* The footer's ground: petrol taken darker, not the dark theme's warm
+     grey, because this is still the light page, ending. The one colour
+     this file declares; everything else here is the app's. */
+  --foot-ground: #043246;
+  /* The type on it: the cream the app already sets on petrol. */
+  --foot-ink: var(--primary-fg);
   --land-gap: clamp(4.5rem, 13vh, 9.5rem);
 }
 
 /* The page's measure. Wider than the documents beside it (`.wrap`): it is
    set in display type, and the sample Plan is eight columns across. */
-.land { width: min(1360px, 100% - var(--gutter) * 2); margin-inline: auto; }
+.land-wrap { width: min(1360px, 100% - var(--gutter) * 2); margin-inline: auto; }
 
 /* ── Type ───────────────────────────────────────────────────────────── */
 .landing h1 {
@@ -46,6 +48,13 @@
    own `.eyebrow`, in the accent; not the mono, which is kept for course
    codes (DECISIONS 5.2). */
 .landing .eyebrow { margin: 0 0 clamp(1rem, 2.4vw, 1.5rem); }
+/* The small label: over a card, a Term, a column of links. One rule, the
+   same hand as `.eyebrow`, for the four places that are not one. */
+.hero-credit, .landing .fact-head, .landing .plan-term h3, .landing .foot-cols h3 {
+  font-family: var(--font-sans); font-size: var(--fs-xs); font-weight: 700;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--text-muted);
+}
 .landing .body { font-size: clamp(1rem, 0.4vw + 0.95rem, 1.1875rem); line-height: 1.55; color: var(--text); max-width: 30rem; margin: 0; }
 
 /* ── 01. Hero ───────────────────────────────────────────────────────── */
@@ -55,14 +64,17 @@
   .hero-row { flex-direction: row; align-items: flex-end; justify-content: space-between; }
   .hero-side { flex: none; width: 17rem; }
 }
-.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3) var(--sp-6); margin: clamp(2.25rem, 5vw, 3.5rem) 0 0; }
+/* Qualified, like the two below: `.site p` sets a paragraph's margins and
+   outranks a bare class. Unqualified, the button sat on the headline. */
+.landing .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3) var(--sp-6); margin: clamp(2.25rem, 5vw, 3.5rem) 0 0; }
 /* Findable, not competing. Signing in is what a RETURNING student wants;
    starting is what everyone else came for. */
 .hero-signin { display: inline-flex; align-items: center; min-height: var(--tap-min); font-size: var(--fs-base); }
-.hero-line { font-family: var(--font-display); font-weight: 500; font-size: 1.0625rem; line-height: 1.35; color: var(--text); margin: 0; max-width: 20rem; }
+/* A sentence, so it is in the sans. Raleway is for the display lines. */
+.landing .hero-line { font-weight: 500; font-size: 1.0625rem; line-height: 1.4; color: var(--text); margin: 0; max-width: 20rem; }
 /* Three facts about the thing, not a second disclaimer: the one that binds
    is in the footer, in full. */
-.hero-credit { margin: var(--sp-4) 0 0; font-size: var(--fs-xs); font-weight: 700; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--text-muted); }
+.landing .hero-credit { margin: var(--sp-4) 0 0; }
 
 /* ── 02. The catalog ────────────────────────────────────────────────── */
 .catalog { padding-block: 0 var(--land-gap); }
@@ -80,15 +92,11 @@
   box-shadow: var(--shadow);
 }
 .landing .fact p { margin: 0; }
-.landing .fact-head {
-  display: flex; align-items: center; gap: var(--sp-3);
-  font-size: var(--fs-xs); font-weight: 700; letter-spacing: var(--track-label); text-transform: uppercase;
-  color: var(--text-muted);
-}
+.landing .fact-head { display: flex; align-items: center; gap: var(--sp-3); }
 .fact-head span { color: var(--primary); }
 /* The station dot, as the planner draws a stop on a line. */
 .fact-head::after { content: ""; margin-left: auto; width: 8px; height: 8px; border-radius: 50%; background: var(--primary); }
-.landing .fact-val { margin-top: var(--sp-3); font-family: var(--font-display); font-weight: 600; font-size: 1.1875rem; line-height: 1.3; color: var(--navy); }
+.landing .fact-val { margin-top: var(--sp-3); font-weight: 700; font-size: 1.1875rem; line-height: 1.3; letter-spacing: var(--track-tight); color: var(--navy); }
 .landing .fact-desc { margin-top: var(--sp-1); font-size: var(--fs-base); line-height: 1.5; color: var(--text-muted); }
 .fact-desc strong { color: var(--text); font-weight: 700; }
 
@@ -115,12 +123,7 @@
   display: grid; grid-template-columns: repeat(8, minmax(0, 1fr));
   gap: clamp(0.4rem, 1.3vw, 1.5rem);
 }
-.landing .plan-term h3 {
-  margin: 0 0 var(--sp-4);
-  font-family: var(--font-sans); font-size: var(--fs-xs); font-weight: 700;
-  letter-spacing: var(--track-label); text-transform: uppercase; text-align: center;
-  color: var(--text-muted); white-space: nowrap;
-}
+.landing .plan-term h3 { margin: 0 0 var(--sp-4); text-align: center; white-space: nowrap; }
 .plan-term ul {
   list-style: none; margin: 0; padding: 0;
   display: grid; justify-items: center;
@@ -133,7 +136,7 @@
   font-family: var(--font-mono); line-height: 1.05; color: var(--navy);
   background: var(--success-bg);
   border: 1px solid var(--success-border);
-  box-shadow: inset 0.3rem 0.35rem 0.6rem rgb(255 255 255 / 0.75), inset -0.3rem -0.45rem 0.7rem rgb(61 104 72 / 0.14), var(--shadow-sm);
+  box-shadow: inset 0.3rem 0.35rem 0.6rem rgb(255 255 255 / 0.75), inset -0.3rem -0.45rem 0.7rem color-mix(in srgb, var(--success) 14%, transparent), var(--shadow-sm);
 }
 .course span { display: block; font-size: 0.625rem; font-weight: 500; letter-spacing: 0.06em; }
 .course b { display: block; font-size: 1rem; font-weight: 700; letter-spacing: var(--track-code); }
@@ -167,35 +170,37 @@
 /* ── Footer ─────────────────────────────────────────────────────────── */
 .land-foot {
   position: relative; overflow: clip;
-  background: var(--deep); color: var(--on-deep);
+  background: var(--foot-ground); color: var(--foot-ink);
   border-radius: clamp(2rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem) 0 0;
-  /* The app's ring is petrol, which is this ground. */
-  --focus-ring: #9cc4f5;
+  /* The app's ring is petrol, which is this ground. Here it is the ink. */
+  --focus-ring: var(--foot-ink);
 }
-/* Two soft lights, sky and green: the colours the scene passes through on
-   its way down the page. */
+/* Two soft lights, a lighter petrol and the plan's green. (Not the sign-up
+   blue: that is kept for the one thing on this ground to press.) */
 .land-foot::before, .land-foot::after { content: ""; position: absolute; border-radius: 50%; filter: blur(40px); pointer-events: none; }
-.land-foot::before { width: 28rem; height: 28rem; top: -9rem; right: -7rem; background: radial-gradient(circle, color-mix(in srgb, var(--cta-blue) 34%, transparent) 0%, transparent 65%); }
+.land-foot::before { width: 28rem; height: 28rem; top: -9rem; right: -7rem; background: radial-gradient(circle, color-mix(in srgb, var(--primary) 70%, transparent) 0%, transparent 65%); }
 .land-foot::after { width: 32rem; height: 32rem; bottom: -13rem; left: -9rem; background: radial-gradient(circle, color-mix(in srgb, var(--success-solid) 36%, transparent) 0%, transparent 65%); }
 
+/* The four phrases, whole. They wrap where they have to; none is cut off
+   at the edge, which is what a ticker that has stopped looks like. */
 .landing .strip {
-  position: relative; margin: 0; padding: 1.25rem 0;
-  display: flex; align-items: center;
-  white-space: nowrap; overflow: hidden;
-  border-bottom: 1px solid color-mix(in srgb, var(--on-deep) 12%, transparent);
-  font-family: var(--font-display); font-weight: 500; font-size: clamp(1.75rem, 6vw, 4rem); line-height: 1.1;
-  color: color-mix(in srgb, var(--on-deep) 90%, transparent);
+  position: relative; margin: 0; padding: 1.25rem calc(var(--gutter) - 1rem);
+  display: flex; flex-wrap: wrap; align-items: center; row-gap: 0.15em;
+  border-bottom: 1px solid color-mix(in srgb, var(--foot-ink) 12%, transparent);
+  font-family: var(--font-display); font-weight: 500; font-size: clamp(1.5rem, 4.4vw, 3.25rem); line-height: 1.15;
+  color: color-mix(in srgb, var(--foot-ink) 90%, transparent);
 }
-.strip span { padding: 0 2rem; flex: none; }
-.strip i { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--cta-blue); }
+.strip span { padding: 0 1rem; }
+.strip i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: color-mix(in srgb, var(--foot-ink) 42%, transparent); }
+.strip i:last-child { display: none; }
 
 .foot-in { position: relative; padding-block: clamp(4rem, 9vw, 6rem) clamp(2rem, 4vw, 2.5rem); }
 .foot-grid { display: grid; gap: clamp(2.5rem, 6vw, 3rem); }
 @media (min-width: 64rem) {
   .foot-grid { grid-template-columns: 5fr 7fr; }
 }
-.land-foot .eyebrow { color: color-mix(in srgb, var(--on-deep) 62%, transparent); }
-.landing .land-foot h2 { color: var(--on-deep); font-size: clamp(2.25rem, 4vw + 1rem, 3.75rem); line-height: 0.95; letter-spacing: -0.02em; }
+.land-foot .eyebrow { color: color-mix(in srgb, var(--foot-ink) 62%, transparent); }
+.landing .land-foot h2 { color: var(--foot-ink); font-size: clamp(2.25rem, 4vw + 1rem, 3.75rem); line-height: 0.95; letter-spacing: -0.02em; }
 
 /* The way in, at the bottom. A glass pill carrying a sky roundel: the
    brightest thing on the dark ground is the one thing to press. */
@@ -203,13 +208,13 @@
   display: inline-flex; align-items: center; gap: var(--sp-4);
   min-height: var(--tap-min);
   margin-top: clamp(1.5rem, 3.5vw, 2rem); padding: 8px 8px 8px 28px;
-  border: 1px solid color-mix(in srgb, var(--on-deep) 18%, transparent); border-radius: var(--r-full);
-  background: color-mix(in srgb, var(--on-deep) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--foot-ink) 18%, transparent); border-radius: var(--r-full);
+  background: color-mix(in srgb, var(--foot-ink) 6%, transparent);
   font-family: var(--font-display); font-weight: 500; font-size: clamp(1rem, 0.4vw + 0.95rem, 1.125rem);
-  color: var(--on-deep); text-decoration: none;
+  color: var(--foot-ink); text-decoration: none;
   transition: background .2s var(--ease-out);
 }
-.cta-link:hover { background: color-mix(in srgb, var(--on-deep) 12%, transparent); }
+.cta-link:hover { background: color-mix(in srgb, var(--foot-ink) 12%, transparent); }
 .cta-link svg {
   box-sizing: content-box; flex: none;
   width: 16px; height: 16px; padding: 12px;
@@ -223,40 +228,35 @@
 @media (min-width: 40rem) {
   .foot-cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
-.landing .foot-cols h3 {
-  margin: 0 0 var(--sp-4);
-  font-family: var(--font-sans); font-size: var(--fs-xs); font-weight: 700;
-  letter-spacing: var(--track-label); text-transform: uppercase;
-  color: color-mix(in srgb, var(--on-deep) 62%, transparent);
-}
+.landing .foot-cols h3 { margin: 0 0 var(--sp-4); color: color-mix(in srgb, var(--foot-ink) 62%, transparent); }
 .foot-cols ul { list-style: none; margin: 0; padding: 0; }
 .foot-cols a {
   display: inline-flex; align-items: center; min-height: var(--tap-min);
-  color: color-mix(in srgb, var(--on-deep) 82%, transparent); text-decoration: none;
+  color: color-mix(in srgb, var(--foot-ink) 82%, transparent); text-decoration: none;
 }
-.foot-cols a:hover { color: var(--on-deep); text-decoration: underline; text-underline-offset: 3px; }
+.foot-cols a:hover { color: var(--foot-ink); text-decoration: underline; text-underline-offset: 3px; }
 /* Arriving at `/#about`, `/#contact` or `/#discovery` with no script lands
    on the link that goes where that thing went (index.html). Marked, because
    a page that scrolls to its footer and says nothing looks broken. */
-.foot-cols a:target { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 2px; color: var(--on-deep); }
+.foot-cols a:target { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 2px; color: var(--foot-ink); }
 
 /* The disclaimer. Body size and a readable ink on this ground: it is the
    one statement on the page that has to be read. */
 .landing .land-foot .disclaim {
   margin: clamp(3rem, 7vw, 4rem) 0 0; max-width: 46rem;
   font-size: var(--fs-base); line-height: 1.6;
-  color: color-mix(in srgb, var(--on-deep) 78%, transparent);
+  color: color-mix(in srgb, var(--foot-ink) 78%, transparent);
 }
-.land-foot .disclaim strong { color: var(--on-deep); }
+.land-foot .disclaim strong { color: var(--foot-ink); }
 .landing .foot-bar {
   display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2) var(--sp-4);
   margin: clamp(2rem, 4vw, 2.5rem) 0 0; padding-top: var(--sp-6);
-  border-top: 1px solid color-mix(in srgb, var(--on-deep) 12%, transparent);
-  font-size: var(--fs-sm); color: color-mix(in srgb, var(--on-deep) 62%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--foot-ink) 12%, transparent);
+  font-size: var(--fs-sm); color: color-mix(in srgb, var(--foot-ink) 62%, transparent);
 }
 /* The wordmark once more, in the two tones this ground allows. */
-.foot-wm { font-size: 1.0625rem; font-weight: 700; letter-spacing: var(--track-tight); color: var(--on-deep); }
-.foot-wm b { font-weight: inherit; color: #8cc3d8; }
+.foot-wm { font-size: 1.0625rem; font-weight: 700; letter-spacing: var(--track-tight); color: var(--foot-ink); }
+.foot-wm b { font-weight: inherit; color: color-mix(in srgb, var(--primary) 45%, var(--foot-ink)); }
 
 /* ── Quality floor ──────────────────────────────────────────────────── */
 .landing .cta-link:focus-visible { border-radius: var(--r-full); }

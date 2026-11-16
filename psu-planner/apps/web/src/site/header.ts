@@ -47,6 +47,14 @@ const PAGES: readonly SitePage[] = [
 /** The same list as site paths, which is all most readers of it want. */
 export const SITE_PAGES: readonly string[] = PAGES.map((page) => page.path);
 
+/** Every page that WEARS the header: those, and the landing page. The
+ * landing page is not in the list above because it is the root and not a
+ * folder: the build has always handled it apart (its own entry, its own
+ * place in the sitemap, nothing to keep out of the precache by name). It is
+ * held to everything the header promises all the same, and the tests that
+ * hold it read this. */
+export const HEADER_PAGES: readonly string[] = ["/", ...SITE_PAGES];
+
 /** "/connect/" -> "connect": the page's folder, and the name the build gives
  * its entry. A page with a script of its own ships it as `assets/<name>-*.js`
  * (today that is About alone; the others load nothing, or a shared chunk). */

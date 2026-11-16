@@ -8,9 +8,8 @@
  * returned their plan was the one the screen did not offer.
  *
  * The landing page could not offer it either: it ships no Supabase
- * client, so its menu links into the planner with `?signin=1` rather
- * than growing a second auth implementation that would drift from the
- * first.
+ * client, so it links into the planner with `?signin=1` rather than
+ * growing a second auth implementation that would drift from the first.
  */
 import { describe, it, expect } from "vitest";
 import fs from "node:fs";
@@ -22,25 +21,16 @@ const WEB = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (rel: string) => fs.readFileSync(path.join(WEB, rel), "utf-8");
 
 describe("the landing page offers a way in", () => {
-  it("has a sign-in link in its hero, beside the way to start", () => {
-    // Not in a menu (the page has none) and not only in the footer: a
-    // returning student should not have to scroll past a pitch for
-    // something they already use.
-    const html = read("index.html");
-    const hero = html.slice(html.indexOf('<section class="hero"'), html.indexOf("</section>"));
-    expect(hero, "the landing hero has no sign-in link, so a returning student has no way back").toMatch(
-      /class="hero-signin"/,
-    );
-  });
-
-  it("points it at the planner, carrying the intent", () => {
-    const html = read("index.html");
-    const href = /<a class="hero-signin" href="([^"]+)"/.exec(html)?.[1];
-    expect(href, "the sign-in link has no href").toBeTruthy();
-    expect(href!, "the sign-in link does not reach the planner").toMatch(/^\/plan\//);
+  it("links to the planner, carrying the intent to sign in", () => {
+    // That the link is THERE, beside the way to start, is the browser
+    // suite's to say (landing.spec.ts). What only this can say is that the
+    // address it carries is one the planner reads as a request to sign in.
+    const html = read("index.html").replace(/<!--[\s\S]*?-->/g, "");
+    const hrefs = [...html.matchAll(/<a\b[^>]*href="(\/plan\/\?[^"]+)"/g)].map((m) => m[1]);
+    expect(hrefs, "the landing page has no link into the planner that asks for anything").toHaveLength(1);
     expect(
-      wantsSignIn(href!.slice(href!.indexOf("?"))),
-      `the planner will not read "${href}" as a request to sign in`,
+      wantsSignIn(hrefs[0].slice(hrefs[0].indexOf("?"))),
+      `the planner will not read "${hrefs[0]}" as a request to sign in`,
     ).toBe(true);
   });
 
@@ -59,17 +49,6 @@ describe("the landing page offers a way in", () => {
     for (const s of scripts) {
       expect(s, `${s} is not one of the landing page's own small modules`).toMatch(/^\/src\/[a-z]+\.ts$/);
     }
-  });
-
-  it("keeps it quieter than the call to action everyone else came for", () => {
-    // Findable, not competing. Signing in is what a RETURNING student
-    // wants; "Open the planner" is what the rest of the page is for.
-    // It is a text link beside a filled button, and set a size down.
-    const html = read("index.html");
-    expect(html, "the sign-in link is dressed as a button").not.toMatch(/class="[^"]*\bbtn\b[^"]*hero-signin|hero-signin[^"]*\bbtn\b/);
-    const css = read("src/landing.css");
-    const rule = css.slice(css.indexOf(".hero-signin {"));
-    expect(rule.slice(0, 200), "the sign-in link is not sized below the button beside it").toMatch(/font-size:\s*var\(--fs-base\)/);
   });
 });
 

@@ -4,7 +4,7 @@ import { resolve } from "node:path";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 import { SITE_HEADER_SLOT, SITE_PAGES, pageName, siteHeader } from "./src/site/header";
-import { SAMPLE_PLAN, SAMPLE_PLAN_SLOT, samplePlanHtml } from "./src/landing/sample-plan";
+import { SAMPLE_PLAN, SAMPLE_PLAN_MARKER, samplePlanHtml } from "./src/landing/sample-plan";
 
 /** TWO ENTRY POINTS. The root is a static document; the planner is the SPA,
  * served from /plan/.
@@ -109,12 +109,12 @@ const siteHeaderSlot = () => ({
  * The Plan is data (src/landing/sample-plan.ts), checked against the latest
  * Edition before the build starts (scripts/sample-plan.mts). The page leaves
  * a comment where it goes, so no Course code is ever typed into the markup,
- * and what a visitor reads with scripts off is the same list the scene
- * draws. */
-const samplePlanSlot = () => ({
+ * and what a visitor reads with scripts off is the list the scene is to
+ * draw (#65). */
+const writeSamplePlan = () => ({
   name: "sample-plan",
   transformIndexHtml: (html: string) =>
-    html.includes(SAMPLE_PLAN_SLOT) ? html.replaceAll(SAMPLE_PLAN_SLOT, samplePlanHtml(SAMPLE_PLAN)) : html,
+    html.includes(SAMPLE_PLAN_MARKER) ? html.replaceAll(SAMPLE_PLAN_MARKER, samplePlanHtml(SAMPLE_PLAN)) : html,
 });
 
 export default defineConfig({
@@ -160,7 +160,7 @@ export default defineConfig({
   plugins: [
     siteUrl(),
     siteHeaderSlot(),
-    samplePlanSlot(),
+    writeSamplePlan(),
     react(),
     VitePWA({
       registerType: "autoUpdate",

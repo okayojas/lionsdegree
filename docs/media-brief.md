@@ -1,5 +1,7 @@
 # Landing page media — brief
 
+> **Note (2026-11-16, #64).** The landing page these assets were briefed for has been replaced (#60), and the page that replaced it uses none of them: its only image is the header's mark. `apps/web/public/shots/` and the two capture scripts are still in the repo and still work against the planner; nothing on the site loads them. Keep or remove them as you see fit.
+
 **Ojas owns these.** Everything in this folder today is a placeholder I
 generated with `scripts/product-shots.mjs`: functional, correctly sized, and
 not good enough to launch with. Replace them.

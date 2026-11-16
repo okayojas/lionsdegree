@@ -5,7 +5,7 @@
  * suite slow and would test the wrong thing -- these tests are about what a
  * student can DO with a plan, not about creating one. So a real plan is
  * seeded before the page loads. */
-import { test as base, expect, type Page } from "@playwright/test";
+import { test as base, expect, type Locator, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import fs from "node:fs";
 import path from "node:path";
@@ -68,4 +68,31 @@ export async function expectNoA11yViolations(page: Page, where: string): Promise
     results.violations.length,
     summary.length ? `${where} has ${summary.length} accessibility violation(s):\n${summary.join("\n")}` : "",
   ).toBe(0);
+}
+
+/** Contrast of an element's text against the first opaque thing behind it. */
+export async function contrast(el: Locator): Promise<number> {
+  return el.evaluate((node) => {
+    const lum = (c: number) => {
+      const s = c / 255;
+      return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+    };
+    const rgba = (css: string) => {
+      // Everything on this page computes to rgb()/rgba() or color(srgb …).
+      const n = css.match(/[\d.]+/g)!.map(Number);
+      const unit = css.startsWith("color(") ? 255 : 1;
+      return { r: n[0] * unit, g: n[1] * unit, b: n[2] * unit, a: n[3] ?? 1 };
+    };
+    const L = (c: { r: number; g: number; b: number }) => 0.2126 * lum(c.r) + 0.7152 * lum(c.g) + 0.0722 * lum(c.b);
+    let ground = { r: 255, g: 255, b: 255 };
+    for (let up: Element | null = node; up; up = up.parentElement) {
+      const bg = rgba(getComputedStyle(up).backgroundColor);
+      if (bg.a === 1) { ground = bg; break; }
+    }
+    const ink = rgba(getComputedStyle(node).color);
+    // The ink may itself be translucent: lay it over the ground first.
+    const laid = { r: ink.r * ink.a + ground.r * (1 - ink.a), g: ink.g * ink.a + ground.g * (1 - ink.a), b: ink.b * ink.a + ground.b * (1 - ink.a) };
+    const [a, b] = [L(laid), L(ground)];
+    return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+  });
 }

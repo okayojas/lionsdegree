@@ -18,12 +18,12 @@
  * in about.spec.ts and connect.spec.ts.
  */
 import type { Locator, Page } from "@playwright/test";
-import { test, expect, expectNoA11yViolations } from "./fixtures";
+import { test, expect, contrast } from "./fixtures";
 
 /** The sample Plan, written out as a reader meets it. A literal on purpose:
  * a test that read the Plan from the file the page is built from would agree
  * with whatever that file said. */
-const TERMS = [
+const PLAN = [
   ["Fall 1", ["MATH 140", "PSYCH 100", "CMPSC 131", "CMPSC 150N", "ENGL 15", "ENGR 100"]],
   ["Spring 1", ["MATH 141", "PHYS 211", "CMPSC 132", "SOC 1", "MUSIC 4", "GEOG 30N"]],
   ["Fall 2", ["MATH 230", "PHYS 212", "CMPSC 221", "MATH 220", "CAS 100A", "THEA 100"]],
@@ -42,33 +42,6 @@ const plan = (page: Page): Locator => page.getByRole("list", { name: /a sample p
  * not survive the line breaks. */
 const said = async (el: Locator): Promise<string> => (await el.innerText()).replace(/\s+/g, " ").trim();
 
-/** Contrast of an element's text against the first opaque thing behind it. */
-async function contrast(el: Locator): Promise<number> {
-  return el.evaluate((node) => {
-    const lum = (c: number) => {
-      const s = c / 255;
-      return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
-    };
-    const rgba = (css: string) => {
-      // Everything on this page computes to rgb()/rgba() or color(srgb …).
-      const n = css.match(/[\d.]+/g)!.map(Number);
-      const unit = css.startsWith("color(") ? 255 : 1;
-      return { r: n[0] * unit, g: n[1] * unit, b: n[2] * unit, a: n[3] ?? 1 };
-    };
-    const L = (c: { r: number; g: number; b: number }) => 0.2126 * lum(c.r) + 0.7152 * lum(c.g) + 0.0722 * lum(c.b);
-    let ground = { r: 255, g: 255, b: 255 };
-    for (let up: Element | null = node; up; up = up.parentElement) {
-      const bg = rgba(getComputedStyle(up).backgroundColor);
-      if (bg.a === 1) { ground = bg; break; }
-    }
-    const ink = rgba(getComputedStyle(node).color);
-    // The ink may itself be translucent: lay it over the ground first.
-    const laid = { r: ink.r * ink.a + ground.r * (1 - ink.a), g: ink.g * ink.a + ground.g * (1 - ink.a), b: ink.b * ink.a + ground.b * (1 - ink.a) };
-    const [a, b] = [L(laid), L(ground)];
-    return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
-  });
-}
-
 test.describe("with JavaScript turned off", () => {
   // A previewer, a crawler and a student on a locked-down machine all land
   // here. So does anyone the scene cannot reach.
@@ -76,6 +49,7 @@ test.describe("with JavaScript turned off", () => {
 
   test("the page says what LionsDegree is", async ({ page }) => {
     await page.goto("/");
+    // (Two lines, broken in the markup: no space where the break is.)
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("One degree plan.Optimized for you.");
     await expect(page.getByText("The days of shuffling tabs to schedule classes are over.")).toBeVisible();
     // The headline is a promise, not a description. What the thing IS has to
@@ -126,21 +100,35 @@ test.describe("with JavaScript turned off", () => {
         .map((el) => (el.textContent ?? "").trim().slice(0, 40)),
     );
     expect(unseen, "on the page, but not there to be read").toEqual([]);
-    // And nothing stands in front of it.
-    await expect(page.getByRole("progressbar")).toHaveCount(0);
-    await expect(page.getByRole("dialog")).toHaveCount(0);
+    // And nothing stands in front of it. Asked of the screen, not of the
+    // markup: a loader is whatever is on top, whatever it is called.
+    const onTop = await page.evaluate(() =>
+      [...document.querySelectorAll("main h1, main h2, main .btn, footer h2")].map((el) => {
+        el.scrollIntoView({ block: "center" });
+        const box = el.getBoundingClientRect();
+        const hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
+        return el === hit || el.contains(hit) ? null : (el.textContent ?? "").trim().slice(0, 30);
+      }).filter(Boolean),
+    );
+    expect(onTop, "something is drawn over these").toEqual([]);
   });
 
   test("the sample Plan is there as a list: eight Terms of six Courses, in order", async ({ page }) => {
     await page.goto("/");
     const terms = plan(page).locator(":scope > li");
     await expect(terms).toHaveCount(8);
-    for (const [i, [name, courses]] of TERMS.entries()) {
+    for (const [i, [name, courses]] of PLAN.entries()) {
       const term = terms.nth(i);
       await expect(term.getByRole("heading")).toHaveText(name);
       // One code, with its space: how it is read out, copied and found.
       const listed = (await term.getByRole("listitem").allInnerTexts()).map((t) => t.replace(/\s+/g, " ").trim());
       expect(listed, name).toEqual([...courses]);
+    }
+    // Those 48 and no more. The file the Plan is built from also holds
+    // the Courses the scene lets fall away, and they are not in it.
+    await expect(plan(page).locator("li li")).toHaveCount(48);
+    for (const other of ["MATH 110", "FIN 413", "SPAN 131", "GEOSC 10"]) {
+      await expect(page.getByText(other, { exact: true }), `${other} is printed, and it is not in the Plan`).toHaveCount(0);
     }
   });
 
@@ -155,7 +143,8 @@ test.describe("with JavaScript turned off", () => {
   test("the figures are numbers, with the coverage figure's qualifier", async ({ page }) => {
     // Written in by the build from the latest Edition. What a visitor can
     // check is that they arrived as numbers; that they are the RIGHT numbers
-    // is recomputed from the catalog in the unit suite.
+    // is recomputed from the catalog in the unit suite (build-output.test.ts,
+    // "the coverage figure").
     await page.goto("/");
     await expect(page.getByText(/^\d{1,3}(,\d{3})+ courses$/)).toBeVisible();
     await expect(page.getByText(/^\d{3,} programs$/)).toBeVisible();
@@ -193,9 +182,34 @@ test.describe("with JavaScript turned off", () => {
 });
 
 test.describe("the landing page is usable", () => {
-  test("has no mechanically detectable accessibility violations", async ({ page }) => {
+  test("every way into the planner can be read, at rest and under the pointer", async ({ page }) => {
+    // axe reads the computed pair and has passed a button whose label was
+    // the wrong blue on its own fill. These are the controls the page most
+    // needs read, so each is measured, and again while it is hovered.
+    await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
-    await expectNoA11yViolations(page, "the landing page");
+    for (const way of [
+      page.getByRole("banner").getByRole("link", { name: "Start my plan" }),
+      page.getByRole("main").getByRole("link", { name: "Start my plan" }),
+      page.getByRole("contentinfo").getByRole("link", { name: "Open the planner" }),
+    ]) {
+      await way.scrollIntoViewIfNeeded();
+      const name = (await way.innerText()).trim();
+      expect(await contrast(way), `"${name}" at rest`).toBeGreaterThanOrEqual(4.5);
+      await way.hover();
+      expect(await contrast(way), `"${name}" under the pointer`).toBeGreaterThanOrEqual(4.5);
+    }
+  });
+
+  test("the hero's way in stands clear of the headline", async ({ page }) => {
+    // It once sat touching it: the page's paragraph rule outranked the
+    // hero's own spacing and took it to nothing. Measured at phone width,
+    // where the two are stacked with nothing else between them.
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    const headline = (await page.getByRole("heading", { level: 1 }).boundingBox())!;
+    const way = (await page.getByRole("main").getByRole("link", { name: "Start my plan" }).boundingBox())!;
+    expect(way.y - (headline.y + headline.height), "the button is hard up against the headline").toBeGreaterThanOrEqual(24);
   });
 
   test("every Course in the Plan can be read on its disc", async ({ page }) => {
@@ -289,6 +303,19 @@ test.describe("motion", () => {
   test("under reduced motion, nothing moves when it is touched either", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
+    // Every element, since any of them can be hovered or focused: none is
+    // set to animate, and none to take time over a change.
+    const moving = await page.evaluate(() =>
+      [...document.querySelectorAll("body, body *")]
+        .filter((el) => {
+          const style = getComputedStyle(el);
+          const takesTime = style.transitionDuration.split(",").some((d) => parseFloat(d) > 0);
+          return takesTime || style.animationName !== "none";
+        })
+        .map((el) => `<${el.tagName.toLowerCase()} class="${el.getAttribute("class") ?? ""}">`),
+    );
+    expect([...new Set(moving)], "set to move under reduced motion").toEqual([]);
+    // And seen not to, on the two links that do move for everyone else.
     for (const link of [
       page.getByRole("banner").getByRole("link", { name: "Start my plan" }),
       page.getByRole("contentinfo").getByRole("link", { name: "Open the planner" }),

@@ -16,7 +16,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { requirementCoverage } from "@psu-planner/engine";
-import { latestEdition, loadPrograms } from "./catalog-programs.mjs";
+import { courseCodes, latestEdition, loadPrograms } from "./catalog-programs.mjs";
 
 /** Distinct courses in the shipped catalog for this edition. The landing page
  * states it, so it is counted from the bytes that ship rather than typed.
@@ -28,12 +28,7 @@ import { latestEdition, loadPrograms } from "./catalog-programs.mjs";
  * failing the build is how that was caught, which is the right failure: a
  * count of courses is a claim on the public site, and a silent fallback to
  * zero would have shipped it. */
-function courseCount(edition: string): number {
-  const file = path.join(web, "public", "catalog", edition, "audit-index.json");
-  const raw = JSON.parse(fs.readFileSync(file, "utf-8")) as { courses?: unknown[] } | unknown[];
-  const list = Array.isArray(raw) ? raw : (raw.courses ?? []);
-  return new Set(list.map((c) => (c as { code?: string }).code).filter(Boolean)).size;
-}
+const courseCount = (edition: string): number => courseCodes(edition).size;
 
 const web = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 

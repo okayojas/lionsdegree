@@ -10,15 +10,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
-import { SITE_HEADER_SLOT, SITE_PAGES, pageName, siteHeader } from "../src/site/header.js";
+import { HEADER_PAGES as PAGES, SITE_HEADER_SLOT, pageName, siteHeader } from "../src/site/header.js";
 
 const web = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const source = (rel: string) => fs.readFileSync(path.join(web, rel), "utf-8");
-
-/** Every page outside the planner. The landing page is the root, not a
- * folder, so the header's own list does not carry it; it wears the same
- * header on the same paper all the same (#64). */
-const PAGES = ["/", ...SITE_PAGES];
 
 /** "/connect/" -> "connect/index.html", "/" -> "index.html" */
 const fileOf = (page: string) => (page === "/" ? "index.html" : `${pageName(page)}/index.html`);

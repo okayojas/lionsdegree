@@ -14,7 +14,7 @@ import path from "node:path";
 import zlib from "node:zlib";
 import { fileURLToPath } from "node:url";
 import { requirementCoverage } from "@psu-planner/engine";
-import { latestEdition, loadPrograms } from "../scripts/catalog-programs.mjs";
+import { courseCodes, latestEdition, loadPrograms } from "../scripts/catalog-programs.mjs";
 import { SITE_PAGES, pageName } from "../src/site/header.js";
 
 const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "dist");
@@ -46,8 +46,8 @@ beforeAll(() => {
  * in the commit message — that is the discipline the ADR exists to impose. */
 
 /** What has to arrive before the landing page can paint: the document, its
- * stylesheet, and every script in the static graph. Measured at 20.1 KB
- * (document 4.6, stylesheet 14.9, script 0.5), on the page that replaced the
+ * stylesheet, and every script in the static graph. Measured at 20.2 KB
+ * (document 4.7, stylesheet 15.0, script 0.5), on the page that replaced the
  * old landing in #64. Fonts are not in it: they are swapped in when they
  * land, and the text is readable before they do. */
 const LANDING_FIRST_PAINT_CEILING_KB = 24;
@@ -58,7 +58,7 @@ const LANDING_FIRST_PAINT_CEILING_KB = 24;
  * but 2.5 of it Three.js for the journey this page replaced. The scene that
  * comes back in #65 arrives as a chunk with a ceiling of its own; until
  * then nothing lazy is loaded at all, and this says so. */
-const LANDING_SCRIPT_CEILING_KB = 0.7;
+const LANDING_SCRIPT_CEILING_KB = 0.65;
 
 /** The About page, which has the feedback form now. Measured at 2.6 KB before
  * anyone presses Send, and 65.4 KB once the Supabase client has been fetched
@@ -202,11 +202,9 @@ describe("the landing document", () => {
     const srcs = [...markup.matchAll(/<img\b[^>]*\bsrc="(\/[^"]+)"/g)].map((m) => m[1]);
     // The header's mark, with the paper cut out of it (#61).
     expect(srcs, "no brand mark in the built page").toContain("/mark-clear.png");
-    // The product screenshot assertion was removed with the screenshots. The
-    // page's imagery is now the live prerequisite scene and the static chain
-    // behind it -- a screenshot of the planner alongside that would be two
-    // pictures of the same claim. The weight limits below still bind
-    // whatever images the page does carry.
+    // It is the page's only image: the sample Plan is drawn in markup. The
+    // weight limits below still bind whatever images the page comes to
+    // carry.
 
     // Names the file rather than letting `statSync` throw ENOENT with a
     // path and no explanation. A referenced image that is not in the build
@@ -268,7 +266,7 @@ describe("the icons", () => {
     // still governs /plan/.
     const html = read("index.html");
     const tags = [...html.matchAll(/<meta\s+name="theme-color"[^>]*content="([^"]+)"/g)].map((m) => m[1]);
-    expect(tags, "expected exactly one theme-color on a page with one canvas").toHaveLength(1);
+    expect(tags, "expected exactly one theme-color on a page with one surface").toHaveLength(1);
     expect(html, "a scheme-scoped theme-color on a page that ignores the scheme").not.toMatch(
       /theme-color[^>]*prefers-color-scheme/,
     );
@@ -424,10 +422,10 @@ describe("the landing page's content", () => {
   const html = () => read("index.html");
 
   it("says what this is as static text, before asking for anything", () => {
-    // The headline has to be in the markup, not produced by a script: that is
-    // the entire reason this page is a document. The hero is the wordmark
-    // plus one line saying what the product is, so both are checked -- a
-    // logotype on its own tells a first-time reader nothing.
+    // It has to be in the markup, not produced by a script: that is the
+    // entire reason this page is a document. The name, and the words that
+    // say what kind of thing it names -- a headline that promises is not
+    // a description.
     expect(html(), "the wordmark is not in the markup").toMatch(/<b>Lions<\/b>Degree/);
     expect(html(), "nothing in the markup says what this is").toMatch(/degree planner/i);
     expect(html()).toMatch(/prerequisite/i);
@@ -659,6 +657,16 @@ describe("the coverage figure", () => {
     // The programs the figure is measured across, so "95%" cannot quietly
     // become a percentage of something smaller.
     expect(html()).toContain(loadPrograms().length.toLocaleString("en-US"));
+  });
+
+  it("states the Edition's own count of Courses, and names the Edition", () => {
+    // The other two figures on the page. Recounted here from the shipped
+    // catalog for the reason the percentage is: a number that merely LOOKS
+    // like a count passes every check a browser can make.
+    const edition = latestEdition();
+    expect(html()).toContain(`${courseCodes(edition).size.toLocaleString("en-US")} courses`);
+    const [from, to] = edition.split("-");
+    expect(html()).toContain(`The ${from}–${to.slice(2)} Bulletin, read whole`);
   });
 
   it("never lets the number travel without its qualifier", () => {

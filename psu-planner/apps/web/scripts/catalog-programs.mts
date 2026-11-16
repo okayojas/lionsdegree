@@ -34,6 +34,25 @@ export function latestEdition(root = CATALOG_ROOT): string {
   return (JSON.parse(fs.readFileSync(index, "utf-8")) as { latest: string }).latest;
 }
 
+/** One of an edition's index files, as its list of rows. */
+function index(edition: string, root: string, file: string, key: string): Record<string, unknown>[] {
+  const at = path.join(root, edition, file);
+  if (!fs.existsSync(at)) throw new Error(`${at} is missing. Run \`npm run sync-catalog\` first.`);
+  const raw = JSON.parse(fs.readFileSync(at, "utf-8")) as unknown;
+  return Array.isArray(raw) ? raw : ((raw as Record<string, Record<string, unknown>[]>)[key] ?? []);
+}
+
+/** Every Course code in an edition. The landing page states how many there
+ * are, and checks its sample Plan against them; both ask here. */
+export function courseCodes(edition = latestEdition(), root = CATALOG_ROOT): Set<string> {
+  return new Set(index(edition, root, "audit-index.json", "courses").map((c) => c.code as string).filter(Boolean));
+}
+
+/** The identifier of every Program in an edition. */
+export function programSlugs(edition = latestEdition(), root = CATALOG_ROOT): Set<string> {
+  return new Set(index(edition, root, "programs_index.json", "programs").map((p) => p.slug as string).filter(Boolean));
+}
+
 /** Majors, minors and certificates for one edition. */
 export function loadPrograms(edition = latestEdition(), root = CATALOG_ROOT): CatalogProgram[] {
   const programs: CatalogProgram[] = [];
