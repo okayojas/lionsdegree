@@ -276,14 +276,35 @@ test.describe("a what-if the student makes with the +", () => {
     expect(after.candidates, "the kept what-if is still a tab").toEqual([]);
   });
 
+  test("leaves the tab it just made on the screen, phone included", async ({ planner }) => {
+    // THE FIRST WHAT-IF A STUDENT EVER MAKES. On a phone the rail is one
+    // control that opens a list, and `makeOne` used to close that list
+    // the way picking a tab closes it. Picking is a finished choice;
+    // making is not. With no what-ifs there is nothing to collapse into,
+    // so pressing + drew the tab and hid it in the same frame — the
+    // student got a toast and an unchanged-looking screen, which reads
+    // as a button that does nothing.
+    //
+    // Deliberately WITHOUT `openRail`: re-opening it here would pass
+    // against exactly the behaviour this pins.
+    await openRail(planner);
+    await rail(planner).getByRole("button", { name: /Make a new what-if/i }).click();
+    await expect(
+      rail(planner).getByRole("button", { name: /Show the what-if "What-if 1"/ }),
+      "the + made a what-if the student cannot see",
+    ).toBeVisible({ timeout: 30_000 });
+    // And the way back to their own plan is on screen beside it, or the
+    // tab they just made is a door that only opens one way.
+    await expect(rail(planner).getByRole("button", { name: /Show your own plan/ })).toBeVisible();
+  });
+
   test("is thrown away in one click, with nothing to read first", async ({ planner }) => {
     const before = await stored(planner);
     await openRail(planner);
     await rail(planner).getByRole("button", { name: /Make a new what-if/i }).click();
-    // THE CHART IS THE SIGNAL, not the rail: the what-if is drawn when
-    // its changes have been run, and on a phone the rail has closed
-    // itself by then to keep the chart on the screen. Reaching for a tab
-    // before this raced the render that creates it.
+    // THE CHART IS THE SIGNAL, not the rail: the what-if is drawn once
+    // its changes have been run, and reaching for a tab before that
+    // raced the render that creates it.
     await expect(planner.getByRole("region", { name: /What-if "What-if 1"/ }).first())
       .toBeVisible({ timeout: 30_000 });
     await openRail(planner);
@@ -303,10 +324,9 @@ test.describe("a what-if the student makes with the +", () => {
   test("can be renamed so three of them are tellable apart", async ({ planner }) => {
     await openRail(planner);
     await rail(planner).getByRole("button", { name: /Make a new what-if/i }).click();
-    // THE CHART IS THE SIGNAL, not the rail: the what-if is drawn when
-    // its changes have been run, and on a phone the rail has closed
-    // itself by then to keep the chart on the screen. Reaching for a tab
-    // before this raced the render that creates it.
+    // THE CHART IS THE SIGNAL, not the rail: the what-if is drawn once
+    // its changes have been run, and reaching for a tab before that
+    // raced the render that creates it.
     await expect(planner.getByRole("region", { name: /What-if "What-if 1"/ }).first())
       .toBeVisible({ timeout: 30_000 });
     await openRail(planner);

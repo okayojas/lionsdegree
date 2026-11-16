@@ -379,11 +379,19 @@ test.describe("two writers, racing", () => {
     await a.waitForTimeout(2000);
     await b.waitForTimeout(2000);
 
-    // Adopting the server's copy itself schedules a push, so both devices
-    // write the revision they just adopted before anyone edits. Those are
-    // no-ops that land legitimately; the baseline is what the server holds
-    // once they have settled.
-    await expect.poll(() => server.accepted.length, { timeout: 15_000 }).toBeGreaterThan(0);
+    // ADOPTING NO LONGER WRITES ANYTHING, and this used to wait for the
+    // write it did. Pushing back the revision you just pulled is a write
+    // the database must refuse — adopting is not an edit, so it does not
+    // advance `rev` — and that refusal raised the conflict bar, which is
+    // the loop reported from production as "the load the newer plan
+    // message keeps coming up even if I load the newer plan". The push is
+    // now skipped when this device already agrees at the plan's exact
+    // revision (`test/push-after-pull.test.ts`), so waiting for an
+    // accepted write here waits forever.
+    //
+    // The baseline is simply the revision both devices adopted. Nothing
+    // below needed that write: A's own edit is what has to clear it, and
+    // the poll on the next line is the barrier that matters.
     const adopted = server.rev!;
 
     test.skip(!(await editThePlan(a)), "no term control at this width to edit through");

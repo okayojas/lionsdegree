@@ -61,7 +61,12 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
   const makeOne = async () => {
     const said = await newCandidate();
     onToast(said);
-    if (phone) setOpen(false);
+    // OPEN, NOT SHUT. Picking a what-if closes the phone list because the
+    // choice is made; MAKING one is the opposite. Closing here means the
+    // first what-if a student ever makes appears and vanishes in the same
+    // frame — before there was one the rail had nothing to collapse into,
+    // so the tab they just asked for is the thing that disappears.
+    if (phone) setOpen(true);
   };
 
   return (
