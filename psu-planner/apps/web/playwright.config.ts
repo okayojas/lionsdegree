@@ -27,11 +27,17 @@ export default defineConfig({
     // THE LANDING PAGE'S SCENE IS WEBGL, and headless Chromium draws WebGL in
     // software unless told otherwise. The page refuses a scene it could
     // only draw in software (three frames a second, measured), so in a
-    // default headless browser `/` is the static page and scene.spec.ts
-    // skips itself. On Windows the browser can be pointed at the real GPU,
-    // and is: that is where the scene's tests run. Even there they step the
-    // simulation themselves (`advance`) and never wait on the frame rate.
-    launchOptions: process.platform === "win32" ? { args: ["--use-angle=d3d11", "--enable-gpu", "--ignore-gpu-blocklist"] } : {},
+    // default headless browser `/` is the static page and the scene's own
+    // tests skip. On Windows the browser can be pointed at the real GPU,
+    // and is: that is where the scene is tested. Even there its tests step
+    // the simulation themselves (`advance`) and do not wait on frames.
+    // LIONSDEGREE_E2E_GPU=off runs a Windows machine as a runner without a
+    // GPU would, to check the suite still stands there (the scene's tests
+    // skip, everything else passes).
+    launchOptions:
+      process.platform === "win32" && process.env.LIONSDEGREE_E2E_GPU !== "off"
+        ? { args: ["--use-angle=d3d11", "--enable-gpu", "--ignore-gpu-blocklist"] }
+        : {},
   },
   projects: [
     // Every other project runs against the DEFAULT build, which has no

@@ -20,6 +20,7 @@
  */
 import type { Locator, Page } from "@playwright/test";
 import { test, expect, contrast, withoutWebGL } from "./fixtures";
+import { expectEveryLinkReachable, expectHeroWayInClear, expectWaysInReadable } from "./landing-checks";
 import { PLAN } from "./the-sample-plan";
 
 /** The Plan's list, found the way assistive technology finds it. */
@@ -174,33 +175,18 @@ test.describe("the landing page is usable", () => {
   test.beforeEach(async ({ page }) => withoutWebGL(page));
 
   test("every way into the planner can be read, at rest and under the pointer", async ({ page }) => {
-    // axe reads the computed pair and has passed a button whose label was
-    // the wrong blue on its own fill. These are the controls the page most
-    // needs read, so each is measured, and again while it is hovered.
+    // Reduced motion, so a colour is the colour and not a frame of the fade
+    // towards it.
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
-    for (const way of [
-      page.getByRole("banner").getByRole("link", { name: "Start my plan" }),
-      page.getByRole("main").getByRole("link", { name: "Start my plan" }),
-      page.getByRole("contentinfo").getByRole("link", { name: "Open the planner" }),
-    ]) {
-      await way.scrollIntoViewIfNeeded();
-      const name = (await way.innerText()).trim();
-      expect(await contrast(way), `"${name}" at rest`).toBeGreaterThanOrEqual(4.5);
-      await way.hover();
-      expect(await contrast(way), `"${name}" under the pointer`).toBeGreaterThanOrEqual(4.5);
-    }
+    await expectWaysInReadable(page);
   });
 
   test("the hero's way in stands clear of the headline", async ({ page }) => {
-    // It once sat touching it: the page's paragraph rule outranked the
-    // hero's own spacing and took it to nothing. Measured at phone width,
-    // where the two are stacked with nothing else between them.
+    // At phone width, where the two are stacked with nothing else between.
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
-    const headline = (await page.getByRole("heading", { level: 1 }).boundingBox())!;
-    const way = (await page.getByRole("main").getByRole("link", { name: "Start my plan" }).boundingBox())!;
-    expect(way.y - (headline.y + headline.height), "the button is hard up against the headline").toBeGreaterThanOrEqual(24);
+    await expectHeroWayInClear(page);
   });
 
   test("every Course in the Plan can be read on its disc", async ({ page }) => {
@@ -215,30 +201,7 @@ test.describe("the landing page is usable", () => {
 
   test("everything in it can be reached by keyboard, and seen when it is", async ({ page }) => {
     await page.goto("/");
-    const links = await page.locator("main a, footer a").count();
-    expect(links, "found no links to reach").toBeGreaterThan(10);
-    const reached = new Set<string>();
-    const unringed: string[] = [];
-    // The skip link and the header's five come first; then every link on
-    // the page, in order.
-    for (let i = 0; i < links + 8; i++) {
-      await page.keyboard.press("Tab");
-      const at = await page.evaluate(() => {
-        const el = document.activeElement as HTMLElement | null;
-        if (!el || el === document.body) return null;
-        const style = getComputedStyle(el);
-        return {
-          name: `${(el.textContent ?? "").replace(/\s+/g, " ").trim()} -> ${el.getAttribute("href")}`,
-          inPage: Boolean(el.closest("main, footer")),
-          ring: style.outlineStyle !== "none" && parseFloat(style.outlineWidth) > 0,
-        };
-      });
-      if (!at?.inPage) continue;
-      reached.add(at.name);
-      if (!at.ring) unringed.push(at.name);
-    }
-    expect(reached.size, "some links cannot be reached with Tab").toBe(links);
-    expect(unringed, "focused, with nothing to show it").toEqual([]);
+    await expectEveryLinkReachable(page);
   });
 
   test("the palette drawer from the prototype is not on the page", async ({ page }) => {

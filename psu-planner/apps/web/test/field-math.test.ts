@@ -6,7 +6,7 @@
  * tell has moved.
  */
 import { describe, it, expect } from "vitest";
-import { planGrid, progressAt, stageAt, type Band, type PageAnchors } from "../src/landing/field-math.js";
+import { planGrid, progressAt, scrollYAt, stageAt, type Band, type PageAnchors } from "../src/landing/field-math.js";
 
 describe("how far down the page", () => {
   // The page as the design draws it: each of the first two sections one
@@ -29,6 +29,15 @@ describe("how far down the page", () => {
     expect(progressAt(2000, phone), "the Plan is assembled as its own section arrives").toBeCloseTo(2, 6);
     expect(progressAt(1600, phone), "two screens down, and still in the catalog").toBeLessThan(1.7);
     expect(progressAt(3280, phone)).toBeCloseTo(3.6, 6);
+  });
+
+  it("can be turned round: where to scroll to for a given stage", () => {
+    const phone: PageAnchors = { catalog: 800, plan: 2000, release: 3280, viewport: 800 };
+    for (const page of [design, phone]) {
+      for (const p of [0, 0.5, 1, 1.6, 2, 2.3, 3.6, 4.4]) {
+        expect(progressAt(scrollYAt(p, page), page), `there and back from ${p}`).toBeCloseTo(p, 6);
+      }
+    }
   });
 
   it("never runs backwards, and starts at nothing", () => {

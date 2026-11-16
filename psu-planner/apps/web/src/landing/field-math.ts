@@ -35,7 +35,7 @@ export interface PageAnchors {
 /** What `progress` is at the top of each section. With the sections exactly
  * as tall as the design draws them (one screen, one screen, 1.6 screens) this
  * is simply the scroll distance in screens, which is how #65 states it. */
-const AT = { catalog: 1, plan: 2, release: 3.6 } as const;
+const PROGRESS_AT = { catalog: 1, plan: 2, release: 3.6 } as const;
 
 /** Scroll position as `progress`: 0 scrambled, 1 fallen, 2 assembled, 3.6 gone.
  *
@@ -47,12 +47,7 @@ const AT = { catalog: 1, plan: 2, release: 3.6 } as const;
  * stages are pinned to where the sections actually are, and between them the
  * progress is a straight line. On a screen the design fits, the two agree. */
 export function progressAt(scrollY: number, page: PageAnchors): number {
-  const stops: [at: number, progress: number][] = [
-    [0, 0],
-    [page.catalog, AT.catalog],
-    [page.plan, AT.plan],
-    [page.release, AT.release],
-  ];
+  const stops = stopsOf(page);
   if (scrollY <= 0) return 0;
   for (let i = 1; i < stops.length; i++) {
     const [y0, p0] = stops[i - 1];
@@ -60,7 +55,30 @@ export function progressAt(scrollY: number, page: PageAnchors): number {
     if (scrollY <= y1) return y1 > y0 ? lerp(p0, p1, (scrollY - y0) / (y1 - y0)) : p1;
   }
   // Past the last section: a screen is a unit again.
-  return AT.release + (scrollY - page.release) / Math.max(1, page.viewport);
+  return PROGRESS_AT.release + (scrollY - page.release) / Math.max(1, page.viewport);
+}
+
+/** The scroll offset and the progress at the top of each section. */
+function stopsOf(page: PageAnchors): [scrollY: number, progress: number][] {
+  return [
+    [0, 0],
+    [page.catalog, PROGRESS_AT.catalog],
+    [page.plan, PROGRESS_AT.plan],
+    [page.release, PROGRESS_AT.release],
+  ];
+}
+
+/** The other way: where to scroll to for a given `progress`. What a test,
+ * or anything else that wants to show a particular stage, asks. */
+export function scrollYAt(progress: number, page: PageAnchors): number {
+  const stops = stopsOf(page);
+  if (progress <= 0) return 0;
+  for (let i = 1; i < stops.length; i++) {
+    const [y0, p0] = stops[i - 1];
+    const [y1, p1] = stops[i];
+    if (progress <= p1) return lerp(y0, y1, (progress - p0) / (p1 - p0));
+  }
+  return page.release + (progress - PROGRESS_AT.release) * Math.max(1, page.viewport);
 }
 
 /* ── What the spheres are doing ─────────────────────────────────────────── */

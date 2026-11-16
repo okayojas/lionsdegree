@@ -645,40 +645,65 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
   chunk the page asks for after it has painted. Its materials, lights, physics constants,
   entrance and label treatment are the prototype's and are the design; `field-math.ts` holds
   the stage values and the grid, where they can be read against #65 and tested with no canvas.
-  - **One class decides everything.** `src/gravity.ts` puts `has-scene` on `<html>` where a
-    scene can run, and the stylesheet's last section is the page laid out for one (a screen per
-    section, the plan section pinned, the list out of sight but still in the page). No reduced
-    motion, no save-data, and a WebGL context the browser can draw on a GPU, or it does nothing:
-    in software the scene measured three frames a second, and that is worse than the page. If
-    the chunk does not arrive or the renderer will not start, the class comes off and the page
-    is exactly the static one.
+  - **Two classes decide everything.** `src/gravity.ts` puts `has-scene` on `<html>` at once
+    where a scene can run (the sections become a screen each, so the page does not change
+    height when the scene arrives) and `scene-live` once it has drawn (the plan section pins,
+    and the list goes out of sight but stays in the page). Until the second, the list is where
+    it always is: a reader never has neither. The guards: no reduced motion, no save-data, and
+    a WebGL context the browser can draw on a GPU, or it does nothing; in software the scene
+    measured three frames a second, and that is worse than the page. (The browser is asked to
+    refuse a slow context AND what it is drawing with: a headless Chromium with no GPU hands
+    over a SwiftShader context even when asked not to.) If the chunk fails, never
+    arrives (six seconds), will not start, or the browser later takes the context away, both
+    classes come off and the page is exactly the static one.
   - **Sixty steps a second, whatever the screen does.** The prototype advanced once per frame,
-    so it ran twice as fast on a 120 Hz display and at a quarter speed in a software renderer.
-    The constants are unchanged; they are now per sixtieth of a second and not per frame.
+    so it ran twice as fast on a 120 Hz display. The constants are unchanged; they are now per
+    sixtieth of a second and not per frame. A frame is drawn when a step has been taken, and
+    the loop stops altogether once the Plan has flown past the camera and nothing is left on
+    screen, until the reader scrolls back (ADR 0002 asked for that of the old journey too).
   - **The stages follow the sections, not the scroll offset alone.** #65 gives progress as
     the scroll distance in screens, which assumes each section is one screen tall. On a phone
     the catalog section is taller, and the Plan would assemble while its cards were still on
     screen. Progress is 1 at the top of the catalog section, 2 at the top of the plan section
     and 3.6 at the top of the last, and linear between; where the sections are as tall as the
     design draws them the two are the same number.
+  - **The wheel glides; nothing else does.** The prototype's eased wheel is kept, by the clock
+    and not by the frame. It takes vertical wheel events only, and it stops the instant a key
+    or a pointer goes down: the browser animates a keyboard scroll and folds any scroll a
+    script makes into that animation, so one more frame of glide after End was pressed left
+    the page 20 to 60px short of the end (measured). The prototype also glided to in-page
+    anchors; this page's only one is the skip link, which jumps.
   - **The scene reports itself, and can be stepped.** `window.__lionsdegreeScene.report()`
     is where every Course is, whether it is showing and where its cell is; the browser suite
     asserts the rectangle from that and not from pixels. `advance(steps)` moves the simulation
     on without waiting for the screen. #60 allowed a read-only hook; this one is not strictly
     read-only, and the reason is that a test which waits for frames passes or fails on how
-    fast the machine under it draws. The scene's tests run where the test browser has a GPU
-    (Windows, as configured) and skip themselves where it does not.
+    fast the machine under it draws. One test does wait, to show the scene moves by itself.
+  - **Its tests need a GPU.** They run where the test browser has one (Windows, as
+    configured) and skip where it does not, which today includes the CI runner. Making the
+    browser accept a software context was tried and most of them time out. What a runner
+    without a GPU still checks: the page without the scene, every way the scene can fail to
+    arrive, and the scene's arithmetic.
   - **Not carried over from the prototype:** the push away from the pointer (the owner's
     call); the tint at the edges of the page, which changed with the stage and took the muted
     labels near the edges under AA contrast; the loader; the palette drawer. The Term names
-    over the rectangle are in the sans, like the page's other labels, where the prototype used
-    the mono. A sphere's label is the prototype's: subject in the mono, number in the sans.
-  - **What it weighs:** 134.8 KB gzipped for the chunk (the old journey's was 132.7), under a
-    ceiling of its own. The page's first paint went from 20.2 KB to 23.2 KB, which is the
+    over the rectangle are in the sans at 700, like the page's other labels, where the
+    prototype used the mono at 500. A sphere's label is the prototype's: subject in the mono,
+    number in the sans.
+  - **Two things that are the prototype's and look like rule-breaking.** The sky stage's
+    middle tone is `#5DBBF5`, which is also the sign-up blue's hover tone. The rule that keeps
+    that blue for the one thing being asked for is about controls; this is the colour of a
+    stage in a picture, and #60 names it (petrol, sky, green). And the shadows: the prototype
+    asked three.js r160 for a soft shadow map with a blur radius of 12, and r160 ignored the
+    radius for that map. This build is on r186, which honours it. The radius is left at its
+    default so the shadows are as the prototype drew them, not as it asked for them.
+  - **What it weighs:** 134.9 KB gzipped for the chunk (the old journey's was 132.7), under a
+    ceiling of its own. The page's first paint went from 20.2 KB to 23.7 KB, which is the
     script that decides and the layout rules; the scene itself is not on that path, and the
     browser suite times the request against the first paint.
   - **Not known:** how it runs on a real phone, in Safari or in Firefox. Everything measured
-    is Chromium on one laptop. That is #66, and it needs a person holding the devices.
+    is Chromium on one laptop (60 frames a second at 1600 by 900 and at phone size). That is
+    #66, and it needs a person holding the devices.
 - **The pages outside the planner are cream, and say so (2026-11-16, #61).** Connect your AI, Privacy
   and Terms used to wear the old landing page's dark canvas. They now sit on the app's light tokens
   with petrol as the only accent (`site.css`), and each carries `data-theme="light"`: merely dropping

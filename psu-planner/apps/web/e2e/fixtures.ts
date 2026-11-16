@@ -102,13 +102,30 @@ export async function contrast(el: Locator): Promise<number> {
  * The landing page lays a scene over itself where it can (#65). A good many
  * tests are about the page UNDER the scene, which is the page a visitor with
  * no WebGL is given, so this is how they ask for it. Not reduced motion: that
- * is a second reason for the same page, and it changes other things too. */
-export async function withoutWebGL(page: Page): Promise<void> {
-  await page.addInitScript(() => {
-    const original = HTMLCanvasElement.prototype.getContext;
-    HTMLCanvasElement.prototype.getContext = function (this: HTMLCanvasElement, kind: string, ...rest: unknown[]) {
-      if (/webgl/i.test(kind)) return null;
-      return (original as (...args: unknown[]) => unknown).call(this, kind, ...rest);
-    } as typeof HTMLCanvasElement.prototype.getContext;
-  });
+ * is a second reason for the same page, and it changes other things too.
+ *
+ * `"software only"` is the browser with no GPU to draw on. It hands out a
+ * WebGL context all the same, even to a page that asks for a fast one, and
+ * says when asked that it is drawing with SwiftShader. That is what a
+ * headless Chromium does on a machine without a GPU (measured), and it is
+ * reproduced here so the test means the same thing on a machine with one. */
+export async function withoutWebGL(page: Page, how: "at all" | "software only" = "at all"): Promise<void> {
+  await page.addInitScript((softwareOnly) => {
+    if (!softwareOnly) {
+      const original = HTMLCanvasElement.prototype.getContext as (this: HTMLCanvasElement, ...args: unknown[]) => unknown;
+      HTMLCanvasElement.prototype.getContext = function (this: HTMLCanvasElement, kind: string, ...rest: unknown[]) {
+        return /webgl/i.test(kind) ? null : original.call(this, kind, ...rest);
+      } as typeof HTMLCanvasElement.prototype.getContext;
+      return;
+    }
+    const UNMASKED_RENDERER_WEBGL = 0x9246;
+    for (const context of [window.WebGLRenderingContext, window.WebGL2RenderingContext]) {
+      if (!context) continue;
+      const original = context.prototype.getParameter;
+      context.prototype.getParameter = function (this: WebGLRenderingContext, name: number) {
+        if (name === UNMASKED_RENDERER_WEBGL || name === this.RENDERER) return "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero)), SwiftShader driver)";
+        return original.call(this, name);
+      };
+    }
+  }, how === "software only");
 }

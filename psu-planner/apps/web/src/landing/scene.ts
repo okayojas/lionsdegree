@@ -33,6 +33,10 @@ export interface SceneHost {
   progress(): number;
   /** The space the plan section's own text leaves free. */
   band(): Band;
+  /** The browser has taken the WebGL context away (a GPU reset, a tab left
+   * in the background too long) and the canvas is blank. The scene cannot
+   * be drawn any more; the page should stop relying on it. */
+  lost(): void;
 }
 
 /** One sphere, as the scene will report it. World units, origin at the
@@ -41,8 +45,10 @@ export interface CourseReport {
   code: string;
   /** In the sample Plan, as opposed to one of the Courses that fall away. */
   inPlan: boolean;
-  term: number;
-  lane: number;
+  /** Its Term and its place within the Term. Null for a Course that is not
+   * in the Plan: it has neither. */
+  term: number | null;
+  lane: number | null;
   x: number;
   y: number;
   z: number;
@@ -78,6 +84,9 @@ export interface SceneHandle {
    * the screen. What a test uses so that it does not depend on how fast the
    * machine under it happens to draw. */
   advance(steps: number): void;
+  /** The page's text has moved (a web font arrived, the window changed):
+   * measure the free band again and put the rectangle back in it. */
+  relayout(): void;
   dispose(): void;
 }
 
@@ -112,14 +121,18 @@ const MAX_STEPS_PER_FRAME = 3;
 
 const PHYSICS = { rebound: -0.3, damping: 0.91, centerAttract: 0.0035, bounciness: 0.02, gravity: 0.011 } as const;
 
-interface Label {
+/** Words drawn on a canvas and shown as a sprite. */
+interface Lettering {
   sprite: THREE.Sprite;
   material: THREE.SpriteMaterial;
   texture: THREE.CanvasTexture;
+}
+/** A sphere's code, which is drawn again once the page's fonts arrive. */
+interface Label extends Lettering {
   draw(): void;
 }
 
-interface Ball {
+interface Sphere {
   id: number;
   /** The size it happened to be given. Assembled, every Course is one size. */
   radius: number;
@@ -150,29 +163,44 @@ interface Ball {
 }
 
 /** Mounts the scene on a canvas inside `container`. Throws if the browser
- * will not give it a WebGL context; the caller falls back to the page. */
+ * will not give it a WebGL context, or if anything else stops it starting;
+ * the caller falls back to the page. */
 export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
   const canvas = container.querySelector("canvas");
   if (!canvas) throw new Error("the scene needs a canvas to draw on");
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(38, container.clientWidth / Math.max(1, container.clientHeight), 0.1, 100);
-  camera.position.set(0, 0, 11);
-
   // `failIfMajorPerformanceCaveat`: no context at all is better than one
   // drawn in software. The page asks the same before it sends for this
   // file (src/gravity.ts); this is the same answer if it is asked twice.
   const renderer = new THREE.WebGLRenderer({
     canvas, antialias: true, alpha: true, powerPreference: "high-performance", failIfMajorPerformanceCaveat: true,
   });
+  try {
+    return build(container, canvas, renderer, host);
+  } catch (error) {
+    // Browsers cap how many WebGL contexts a page may hold. A scene that
+    // got a renderer and then failed must give its context back.
+    renderer.dispose();
+    renderer.forceContextLoss();
+    throw error;
+  }
+}
+
+function build(container: HTMLElement, canvas: HTMLCanvasElement, renderer: THREE.WebGLRenderer, host: SceneHost): SceneHandle {
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(38, container.clientWidth / Math.max(1, container.clientHeight), 0.1, 100);
+  camera.position.set(0, 0, 11);
+
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(container.clientWidth, container.clientHeight, false);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.15;
   renderer.shadowMap.enabled = true;
-  // The prototype asked for PCFSoftShadowMap. This version of three.js has
-  // folded that into PCFShadowMap and says so on the console if asked for
-  // the old name; the shadows are the same.
+  // SHADOWS AS THE PROTOTYPE DREW THEM. It was written against three.js
+  // r160 and asked for PCFSoftShadowMap with a blur radius of 12; in r160
+  // that map ignored the radius. This build is on r186, which has folded
+  // the soft map into PCFShadowMap and DOES honour a radius there. So the
+  // radius is left at its default: asking for 12 here would draw a far
+  // softer shadow than the one the owner signed off.
   renderer.shadowMap.type = THREE.PCFShadowMap;
 
   // ── Lights ──
@@ -190,7 +218,6 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
   keyLight.shadow.camera.top = 8;
   keyLight.shadow.camera.bottom = -8;
   keyLight.shadow.bias = -0.0003;
-  keyLight.shadow.radius = 12.0;
   scene.add(keyLight);
 
   const rimLight = new THREE.DirectionalLight(0xffffff, 1.25);
@@ -224,7 +251,8 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
   const petrol = tones(PALETTES.petrol);
   const sky = tones(PALETTES.sky);
   const green = tones(PALETTES.green);
-  const now = tones(PALETTES.petrol);
+  /** The palette as it is at this point down the page. */
+  const palette = tones(PALETTES.petrol);
 
   // ── Labels ──
   // Drawn white and tinted per frame, so one texture serves a sphere through
@@ -285,7 +313,7 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
   const count = window.innerWidth < NARROW_BELOW ? SPHERES_NARROW : SPHERES_WIDE;
   const planSize = TERM_COUNT * COURSES_PER_TERM;
   const sphereGeometry = new THREE.SphereGeometry(1, 48, 48);
-  const balls: Ball[] = [];
+  const spheres: Sphere[] = [];
   for (let i = 0; i < count; i++) {
     let radius: number;
     const pick = Math.random();
@@ -331,7 +359,7 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
     const term = inPlan ? i % TERM_COUNT : 0;
     const code = inPlan ? SAMPLE_PLAN.terms[term].courses[lane] : SAMPLE_PLAN.others[(i - planSize) % SAMPLE_PLAN.others.length];
 
-    balls.push({
+    spheres.push({
       id: i, radius, mass: radius ** 3,
       position: new THREE.Vector3(), velocity: new THREE.Vector3(),
       group, sphere, material, role, size: radius,
@@ -344,16 +372,15 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
 
   // ── Where the Plan sits, and the names of its Terms ──
   let grid: PlanGrid = planGrid(view, host.band(), TERM_COUNT, COURSES_PER_TERM);
-  interface Caption { sprite: THREE.Sprite; material: THREE.SpriteMaterial; texture: THREE.CanvasTexture }
-  let captions: Caption[] = [];
+  let captions: Lettering[] = [];
   /** How strongly a Term's name is drawn at its strongest. It is furniture. */
   const CAPTION_STRENGTH = 0.62;
 
   const makeCaption = (text: string, worldHeight: number): THREE.Sprite => {
     const px = 64;
-    // A label, so it is in the sans, uppercase and tracked, like the page's
-    // other small labels. (The prototype set these in the mono, which this
-    // site keeps for course codes.)
+    // A label, so it is in the sans at 700, uppercase and tracked, like the
+    // page's other small labels. (The prototype set these in the mono at
+    // 500; this site keeps the mono for course codes.)
     const font = `700 ${px}px ${SANS}`;
     const face = document.createElement("canvas");
     const measure = face.getContext("2d");
@@ -394,7 +421,7 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
 
   const layOut = (): void => {
     grid = planGrid(view, host.band(), TERM_COUNT, COURSES_PER_TERM);
-    for (const b of balls) {
+    for (const b of spheres) {
       if (!b.inPlan) continue;
       const cell = grid.at(b.term, b.lane);
       b.home.set(cell.x, cell.y, 0);
@@ -416,7 +443,7 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
     Promise.all([document.fonts.load(`700 50px ${MONO}`), document.fonts.load(`700 108px ${SANS}`)])
       .then(() => {
         if (disposed) return;
-        for (const b of balls) b.label.draw();
+        for (const b of spheres) b.label.draw();
         layOut();
       })
       .catch(() => {});
@@ -424,7 +451,7 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
 
   // ── Entrance: from far off the screen, inward ──
   const reach = Math.max(view.width, view.height) * 1.5;
-  for (const b of balls) {
+  for (const b of spheres) {
     const angle = Math.random() * Math.PI * 2;
     const px = Math.cos(angle) * reach * 1.25;
     const py = Math.sin(angle) * reach * 0.85;
@@ -444,7 +471,11 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
   const rotAxis = new THREE.Vector3();
   const toCam = new THREE.Vector3();
 
-  const placeLabel = (b: Ball): void => {
+  /** A Plan Course that has come back in from the top: the only kind that
+   * is caught, drawn to a cell, and let down gently. */
+  const landing = (b: Sphere): boolean => b.inPlan && b.phase === "rain";
+
+  const placeLabel = (b: Sphere): void => {
     // On the camera's side of the sphere, along the line of sight, so it
     // stays centred on the ball wherever the ball is on screen.
     toCam.copy(camera.position).sub(b.position).normalize();
@@ -468,8 +499,8 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
     const { scrambled, falling, caught, rectangle, flight } = stage;
 
     // Petrol, to sky, to green.
-    for (const role of ROLES) now[role].copy(petrol[role]).lerp(sky[role], stage.toSky).lerp(green[role], stage.toGreen);
-    hemiLight.groundColor.copy(now.medium);
+    for (const role of ROLES) palette[role].copy(petrol[role]).lerp(sky[role], stage.toSky).lerp(green[role], stage.toGreen);
+    hemiLight.groundColor.copy(palette.medium);
 
     const entrance = easeOutCubic(clamp01(time / 2.2));
     const attractionBoost = lerp(7.5, 1, entrance);
@@ -491,7 +522,7 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
     const floorY = -view.height / 2 + 0.05;
 
     // 1. ACCELERATIONS
-    for (const b of balls) {
+    for (const b of spheres) {
       if (b.phase === "pile" && stage.floorOpen) {
         b.phase = "out";
       } else if (b.phase !== "pile" && stage.backToPile) {
@@ -528,7 +559,7 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
       // past one already seated in the top row. Measured in the prototype:
       // about half of them never reached their cell.
       let toCell = 0;
-      if (b.inPlan && b.phase === "rain") {
+      if (landing(b)) {
         const dx = b.home.x - b.position.x;
         const dy = b.home.y - b.position.y;
         b.travelling = dx * dx + dy * dy > grid.cell * grid.cell * 0.6;
@@ -540,13 +571,13 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
       // Gravity. On the floor it is the falling stage's. With the floor open
       // it is constant, except for a Plan Course that has come back in: that
       // one is let down more gently the more firmly it is caught.
-      const g = !fallen ? PHYSICS.gravity * falling : b.phase === "rain" && b.inPlan ? PHYSICS.gravity * (1 - caught) : PHYSICS.gravity;
+      const g = !fallen ? PHYSICS.gravity * falling : landing(b) ? PHYSICS.gravity * (1 - caught) : PHYSICS.gravity;
       if (g > 0.00001) b.velocity.y -= g;
 
       // Only a Plan Course that has come back in is drawn to its cell. One
       // still in the pile has to fall out first, or it would simply rise
       // into place and nothing would have been sorted.
-      if (b.inPlan && b.phase === "rain" && rectangle > 0.001) {
+      if (landing(b) && rectangle > 0.001) {
         const pull = 0.06 * rectangle;
         b.velocity.x += (b.home.x - b.position.x) * pull;
         b.velocity.y += (b.home.y - b.position.y) * pull;
@@ -567,7 +598,7 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
       // position that has overflowed does not come back.
       if (flight > 0.001 && b.position.z > 60) b.velocity.set(0, 0, 0);
 
-      const damp = !fallen ? damping : b.inPlan && b.phase === "rain" ? lerp(0.992, damping, caught) : 0.992;
+      const damp = !fallen ? damping : landing(b) ? lerp(0.992, damping, caught) : 0.992;
       b.velocity.multiplyScalar(damp);
 
       // EASED IN, NOT FIRED IN. The pull toward a cell grows with distance,
@@ -585,7 +616,7 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
       }
       b.position.add(b.velocity);
 
-      if (fallen && b.position.y < floorY - b.size - 0.6 && !(b.inPlan && b.phase === "rain" && caught > 0.6)) {
+      if (fallen && b.position.y < floorY - b.size - 0.6 && !(landing(b) && caught > 0.6)) {
         const above = topY + b.size + 0.4 + Math.random() * 3.2;
         if (b.inPlan) {
           // Back in from the top, directly above its own cell, and queued so
@@ -611,8 +642,8 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
         b.group.position.copy(b.position); // a jump is not a roll
       }
 
-      b.material.color.copy(now[b.role]);
-      b.material.emissive.copy(now[b.role]);
+      b.material.color.copy(palette[b.role]);
+      b.material.emissive.copy(palette[b.role]);
       b.material.opacity = flight > 0.001 ? 1 - smoothstep(camZ - 2.6, camZ - 0.3, b.position.z) : 1;
 
       // Scrambled, a Course is whatever size it happened to be. Assembled,
@@ -626,11 +657,11 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
     // onto their cells; off in flight)
     const collideScale = 0.28 * (1 - 0.93 * rectangle) * (1 - flight);
     for (let pass = 0; pass < 4; pass++) {
-      for (let i = 0; i < balls.length; i++) {
-        const b1 = balls[i];
+      for (let i = 0; i < spheres.length; i++) {
+        const b1 = spheres[i];
         if (b1.gone) continue;
-        for (let j = i + 1; j < balls.length; j++) {
-          const b2 = balls[j];
+        for (let j = i + 1; j < spheres.length; j++) {
+          const b2 = spheres[j];
           if (b2.gone) continue;
           if ((b1.travelling || b2.travelling) && b1.inPlan && b2.inPlan) continue;
           // A Course falling past the Plan does not knock the Plan about.
@@ -665,7 +696,7 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
     const contain = flight < 0.5;
     const containZ = flight < 0.02;
 
-    for (const b of balls) {
+    for (const b of spheres) {
       if (b.gone) continue;
       const r = b.size;
 
@@ -708,26 +739,52 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
     }
   };
 
-  // ── The loop: sixty steps a second, drawn as often as the screen asks ──
+  // ── The loop: sixty steps a second, and a frame drawn for each run of them ──
+  // (So on a 120 Hz screen it draws every other frame. Nothing has moved in
+  // between, and a frame that shows nothing new is only heat.)
   let frame = 0;
   let last = performance.now();
   let owed = 0;
+  /** Nothing is on screen and nothing will be until the reader scrolls back:
+   * the Plan has flown past the camera and faded. The loop stops stepping
+   * and drawing, and only watches for the page to come back up. */
+  let asleep = false;
+  const allGone = (): boolean => spheres.every((b) => b.gone || b.material.opacity <= 0.01);
+
   const tick = (at: number): void => {
     frame = requestAnimationFrame(tick);
+    if (asleep) {
+      if (stageAt(host.progress()).flight >= 1) return;
+      asleep = false;
+      last = at;
+      owed = 0;
+    }
     // Never negative: the first frame's timestamp is the start of that frame,
     // which can be EARLIER than the `performance.now()` taken above it. A
     // negative count here once ran the loop below for ever and froze the tab.
-    owed += Math.max(0, Math.min(0.25, (at - last) / 1000));
+    owed += Math.min(0.25, Math.max(0, at - last) / 1000);
     last = at;
-    const due = Math.min(MAX_STEPS_PER_FRAME, Math.floor(owed / STEP_SECONDS));
+    // Rounded, not floored: a 60 Hz screen delivers frames a hair under or
+    // over a sixtieth of a second apart, and flooring turns that jitter into
+    // a frame with no step followed by one with two.
+    const due = Math.min(MAX_STEPS_PER_FRAME, Math.round(owed / STEP_SECONDS));
     if (due < 1) return;
     owed = due === MAX_STEPS_PER_FRAME ? 0 : owed - due * STEP_SECONDS;
     for (let i = 0; i < due; i++) step();
     renderer.render(scene, camera);
+    asleep = stageAt(progress).flight >= 1 && allGone();
   };
   step();
   renderer.render(scene, camera);
   frame = requestAnimationFrame(tick);
+
+  // The browser can take a context away at any time. It tells the canvas,
+  // and the canvas is blank from then on. (Disposing does this too, which
+  // is not news to anyone.)
+  const onContextLost = (): void => {
+    if (!disposed) host.lost();
+  };
+  canvas.addEventListener("webglcontextlost", onContextLost);
 
   const onResize = (): void => {
     const width = container.clientWidth;
@@ -749,13 +806,13 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
       view: { ...view },
       wide: grid.wide,
       cell: grid.cell,
-      tone: `#${now.medium.getHexString()}`,
+      tone: `#${palette.medium.getHexString()}`,
       termNames,
-      courses: balls.map((b) => ({
+      courses: spheres.map((b) => ({
         code: b.code,
         inPlan: b.inPlan,
-        term: b.term,
-        lane: b.lane,
+        term: b.inPlan ? b.term : null,
+        lane: b.inPlan ? b.lane : null,
         x: b.position.x,
         y: b.position.y,
         z: b.position.z,
@@ -768,12 +825,14 @@ export function mount(container: HTMLElement, host: SceneHost): SceneHandle {
       for (let i = 0; i < count; i++) step();
       renderer.render(scene, camera);
     },
+    relayout: layOut,
     dispose: () => {
       disposed = true;
       cancelAnimationFrame(frame);
       resizes.disconnect();
+      canvas.removeEventListener("webglcontextlost", onContextLost);
       clearCaptions();
-      for (const b of balls) {
+      for (const b of spheres) {
         b.material.dispose();
         b.label.material.dispose();
         b.label.texture.dispose();

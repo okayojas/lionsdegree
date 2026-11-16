@@ -33,11 +33,11 @@ when this was written because there were none.
 
 | What | Measured | Ceiling |
 | --- | --- | --- |
-| First paint: document, stylesheet, static script | 23.2 KB | 28 |
-| The page's own script, which loads with it | 3.1 KB | 3.7 |
-| The scene: three.js and the simulation, one lazy chunk | 134.8 KB | 162 |
+| First paint: document, stylesheet, static script | 23.7 KB | 28 |
+| The page's own script, which loads with it | 3.5 KB | 4.2 |
+| The scene: three.js and the simulation, one lazy chunk | 134.9 KB | 162 |
 
-The first paint grew by 3 KB with the scene: the script that decides whether a browser gets
+The first paint grew by 3.5 KB with the scene: the script that decides whether a browser gets
 one, and the layout rules for when it does. The scene itself is asked for after the page has
 painted and is not in the first number, which is what having three numbers is for.
 

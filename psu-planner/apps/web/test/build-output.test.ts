@@ -46,8 +46,8 @@ beforeAll(() => {
  * in the commit message — that is the discipline the ADR exists to impose. */
 
 /** What has to arrive before the landing page can paint: the document, its
- * stylesheet, and every script in the static graph. Measured at 23.2 KB
- * (document 4.9, stylesheet 15.3, script 3.1). It was 20.2 before the scene
+ * stylesheet, and every script in the static graph. Measured at 23.7 KB
+ * (document 4.9, stylesheet 15.3, script 3.5). It was 20.2 before the scene
  * (#65): the difference is the script that decides whether this browser
  * gets one, and the rules for the page when it does. The scene itself is
  * not in this number, which is the point of the next one. Fonts are not in
@@ -56,11 +56,11 @@ beforeAll(() => {
 const LANDING_FIRST_PAINT_CEILING_KB = 28;
 
 /** The landing page's own script: what loads with the page. Measured at
- * 3.1 KB. It was 0.54 before it had a scene to start. */
-const LANDING_SCRIPT_CEILING_KB = 3.7;
+ * 3.5 KB. It was 0.54 before it had a scene to start. */
+const LANDING_SCRIPT_CEILING_KB = 4.2;
 
 /** The scene: three.js and the simulation, as the one chunk the page asks
- * for after it has painted. Measured at 134.8 KB. (The old landing page's
+ * for after it has painted. Measured at 134.9 KB. (The old landing page's
  * 3D journey, which this replaces, was 132.7.) Deferred is not free, so it
  * has a ceiling of its own. */
 const LANDING_SCENE_CEILING_KB = 162;
