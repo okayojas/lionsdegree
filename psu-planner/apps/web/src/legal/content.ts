@@ -38,7 +38,7 @@ export interface Section {
   body: Block[];
 }
 
-export const UPDATED = "October 10, 2026";
+export const UPDATED = "November 15, 2026";
 
 /** The one address a student can reach a human at. Deliberately not "open a
  * GitHub issue": a data-access or deletion request is not something to make
@@ -72,7 +72,11 @@ export const SECTIONS: Section[] = [
           ],
           [
             { b: "Sign-in is optional" },
-            " and uses Google or Microsoft. We receive your email address, to tell your account apart from anyone else's, and nothing else. Without it the app is entirely local.",
+            " and uses Google. Signing in asks Google for your email address and basic profile — your name and profile picture. ",
+            "We use only the email address: to tell your account apart from anyone else's, and to show you which account you are signed in to. ",
+            "What Google returns is stored with your account in our authentication database (Supabase, US region) and nowhere else. ",
+            "It is never sold, never shared with anyone, and never sent to any AI model. Deleting your account deletes it. ",
+            "Without signing in the app is entirely local.",
           ],
           [
             { b: "Your own AI assistant." },
