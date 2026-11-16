@@ -2,8 +2,10 @@
  *
  * Hand-written versions of these go stale the moment a page is added or
  * renamed, and a sitemap advertising a 404 is worse than no sitemap. The page
- * list comes from the same source the build does: the static documents the
- * legal generator emits, plus the two hand-authored entry points.
+ * list comes from the same source the build does: the landing page, the
+ * planner, and every page in the site header's own list (src/site/header.ts).
+ * It used to name the legal documents only, which is how Connect your AI came
+ * to be a public page no sitemap had ever mentioned.
  *
  * `/plan/` is listed but given a low priority: it is the application, and what
  * a search result should land on is the landing page that explains what the
@@ -14,6 +16,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { SECTIONS } from "../src/legal/content.js";
+import { SITE_PAGES } from "../src/site/header.js";
 
 const web = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -25,10 +28,18 @@ interface Entry {
   changefreq: string;
 }
 
+/** The legal documents: they have to be findable, and they are nobody's
+ * reason to visit. Every other page says something about the product. */
+const legal = new Set(SECTIONS.map((s) => s.path));
+
 const pages: Entry[] = [
   { path: "/", priority: "1.0", changefreq: "monthly" },
   { path: "/plan/", priority: "0.5", changefreq: "monthly" },
-  ...SECTIONS.filter((s) => s.path).map((s) => ({ path: s.path!, priority: "0.3", changefreq: "yearly" })),
+  ...SITE_PAGES.map((page) =>
+    legal.has(page)
+      ? { path: page, priority: "0.3", changefreq: "yearly" }
+      : { path: page, priority: "0.6", changefreq: "monthly" },
+  ),
 ];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

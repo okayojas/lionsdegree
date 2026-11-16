@@ -2,21 +2,21 @@
  *
  * The browser suite (e2e/site-pages.spec.ts) checks what a visitor sees. This
  * checks the things that are only visible in the source: that there is one
- * header and not three copies of it, and that the two marks are each still
- * the file their job needs.
+ * header and not a copy of it per page, that the two marks are each still
+ * the file their job needs, and that every page is findable as itself.
  */
 import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
-import { SITE_HEADER_SLOT, SITE_PAGES, siteHeader } from "../src/site/header.js";
+import { SITE_HEADER_SLOT, SITE_PAGES, pageName, siteHeader } from "../src/site/header.js";
 
 const web = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const source = (rel: string) => fs.readFileSync(path.join(web, rel), "utf-8");
 
 /** "/connect/" -> "connect/index.html" */
-const fileOf = (page: string) => `${page.slice(1)}index.html`;
+const fileOf = (page: string) => `${pageName(page)}/index.html`;
 const FILES = SITE_PAGES.map(fileOf);
 
 describe("the shared header", () => {
@@ -52,6 +52,85 @@ describe("the shared header", () => {
     // into.
     expect(source(file)).toMatch(/<html lang="en" data-theme="light">/);
     expect(source(file)).toMatch(/<meta name="theme-color" content="#f1ebdf" \/>/);
+  });
+
+  it("links to every page that wears it, and marks each one on its own page", () => {
+    // Privacy and Terms are the exception, and a deliberate one: they are in
+    // every footer, which is where a reader looks for them.
+    const inFooterOnly = new Set(["/privacy/", "/terms/"]);
+    for (const page of SITE_PAGES) {
+      if (inFooterOnly.has(page)) continue;
+      expect(siteHeader("/"), `the header has no link to ${page}`).toContain(`href="${page}"`);
+      expect(siteHeader(page)).toContain(`href="${page}" aria-current="page"`);
+    }
+  });
+});
+
+describe("a page of its own", () => {
+  /** Every document the site serves, the landing page and the planner
+   * included: a title or a description shared between two of them is one
+   * search result standing in for both. */
+  const DOCUMENTS = ["index.html", "plan/index.html", ...FILES];
+  const head = (file: string) => {
+    const html = source(file);
+    return {
+      title: /<title>([^<]+)<\/title>/.exec(html)?.[1].trim(),
+      description: /<meta\s+name="description"\s+content="([^"]+)"/.exec(html)?.[1].trim(),
+      canonical: /<link rel="canonical" href="([^"]+)"/.exec(html)?.[1],
+    };
+  };
+
+  it.each(FILES)("%s has a title, a description and its own address", (file) => {
+    const seen = head(file);
+    expect(seen.title, "no title").toMatch(/LionsDegree/);
+    expect(seen.description?.length ?? 0, "no description for a preview card to show").toBeGreaterThan(40);
+    expect(seen.canonical).toBe(`%SITE_URL%/${file.replace(/index\.html$/, "")}`);
+  });
+
+  it("shares neither with any other page", () => {
+    const heads = DOCUMENTS.map(head);
+    const titles = heads.map((h) => h.title);
+    const descriptions = heads.map((h) => h.description).filter(Boolean);
+    expect(new Set(titles).size, `two pages share a title: ${titles.join(" | ")}`).toBe(titles.length);
+    expect(new Set(descriptions).size, "two pages share a description").toBe(descriptions.length);
+  });
+});
+
+describe("About and Contact have moved off the landing page", () => {
+  const landing = source("index.html").replace(/<!--[\s\S]*?-->/g, "");
+
+  it("the landing page has neither section, and no form", () => {
+    expect(landing).not.toMatch(/<section id="(about|contact)"/);
+    expect(landing).not.toMatch(/<form\b/);
+    // The form's script went with it. It was the only thing on this page
+    // that could reach the account service.
+    expect(landing).not.toContain("/src/feedback.ts");
+    expect(source("about/index.html")).toContain('<script type="module" src="/src/feedback.ts"></script>');
+  });
+
+  it("the old anchors survive as the links to where the sections went", () => {
+    // With no script nothing can redirect `/#about`. The browser still
+    // scrolls to whatever carries the id, so the id is on the link.
+    expect(landing).toContain('<a id="about" href="/about/">About</a>');
+    expect(landing).toContain('<a id="contact" href="/about/#contact">Contact</a>');
+    expect(source("about/index.html")).toMatch(/<section id="contact"/);
+    // And with one, the page sends the visitor on.
+    expect(landing).toContain('<script type="module" src="/src/moved.ts"></script>');
+  });
+
+  it("the words came across unchanged", () => {
+    // Copied here from the landing page as it stood before the move, markup
+    // and all. The ticket moved these paragraphs; it did not edit them, and
+    // whitespace aside each one is still the one the landing page had.
+    const about = source("about/index.html").replace(/<!--[\s\S]*?-->/g, "").replace(/\s+/g, " ");
+    for (const paragraph of [
+      "<p>I'm <strong>Ojas Khadakban</strong>, a Penn State student studying Engineering Science and AI Engineering. I build things with AI for a living and for fun — AI engineering is the work I want to do, and this is the project where I learned most of it.</p>",
+      "<p>LionsDegree started because planning a degree here means holding four documents open at once, and every student I know ends up building the same slightly-wrong spreadsheet. I got tired of it and built the thing I wanted instead: it reads the Bulletin itself, so it knows what actually depends on what.</p>",
+      '<p>It\'s free and it always will be. <a href="https://github.com/okayojas/lionsdegree">The whole thing is open source</a>, Apache 2.0 — read it, fork it, tell me where it\'s wrong.</p>',
+      '<p>Found a requirement read wrong? Email <a href="mailto:ovk5113@psu.edu">ovk5113@psu.edu</a> or open a <a href="https://github.com/okayojas/lionsdegree/issues">GitHub issue</a>.</p>',
+    ]) {
+      expect(about, `not on the About page as it was written:\n${paragraph}`).toContain(paragraph);
+    }
   });
 });
 

@@ -31,8 +31,10 @@ if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
 /** Put the reader where the URL says, once the page is its final height.
  *
- * Called after the journey mounts, because scrolling to `#about` while the
- * scroller is still short lands hundreds of pixels off. */
+ * Called after the journey mounts, because scrolling to `#ai` while the
+ * scroller is still short lands hundreds of pixels off. (`#about` and
+ * `#contact` never get this far: those sections are a page now, and
+ * moved.ts has already sent the visitor there.) */
 function applyEntryPosition(): void {
   const hash = location.hash.slice(1);
   const target = hash && document.getElementById(hash);

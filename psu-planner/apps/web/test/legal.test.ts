@@ -16,6 +16,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { CONTACT, SECTIONS, type Block, type Inline } from "../src/legal/content.js";
 import { escapeHtml, pageHtml } from "../src/legal/render.js";
+import { SITE_PAGES } from "../src/site/header.js";
 
 const web = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const published = SECTIONS.filter((s) => s.path);
@@ -119,6 +120,11 @@ describe("robots and sitemap", () => {
     expect(locs).toContain("/");
     expect(locs).toContain("/plan/");
     for (const s of published) expect(locs, `sitemap missing ${s.path}`).toContain(s.path);
+    // And every page that wears the site header. Connect your AI was a
+    // public page for months that this file had never listed, because the
+    // list was built from the legal documents alone.
+    for (const page of SITE_PAGES) expect(locs, `sitemap missing ${page}`).toContain(page);
+    expect(new Set(locs).size, "a page is listed twice").toBe(locs.length);
     // Every listed path must correspond to a real document on disk.
     for (const p of locs) {
       const file = path.join(web, p === "/" ? "index.html" : path.join(p.replace(/^\/|\/$/g, ""), "index.html"));

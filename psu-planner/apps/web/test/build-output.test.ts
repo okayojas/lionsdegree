@@ -15,7 +15,7 @@ import zlib from "node:zlib";
 import { fileURLToPath } from "node:url";
 import { requirementCoverage } from "@psu-planner/engine";
 import { latestEdition, loadPrograms } from "../scripts/catalog-programs.mjs";
-import { SITE_PAGES } from "../src/site/header.js";
+import { SITE_PAGES, pageName } from "../src/site/header.js";
 
 const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "dist");
 const read = (rel: string) => fs.readFileSync(path.join(dist, rel), "utf-8");
@@ -45,12 +45,21 @@ beforeAll(() => {
  * Do not round either up to make a build pass. Re-measure, and put the figure
  * in the commit message — that is the discipline the ADR exists to impose. */
 
-/** Script that runs before the page is interactive. Measured at 4.2 KB. */
+/** Script that runs before the page is interactive. Measured at 2.9 KB
+ * (4.2 before the feedback form left for the About page, #62). */
 const LANDING_EAGER_CEILING_KB = 12;
 
-/** Everything reachable, lazy chunks included. Measured at 190.7 KB — of
- * which Three.js is 135.6 and the Supabase client 56.0, both deferred. */
-const LANDING_SCRIPT_CEILING_KB = 230;
+/** Everything reachable, lazy chunks included. Measured at 135.5 KB, all but
+ * 2.9 of it Three.js, deferred. It was 190.7 with a ceiling of 230 while the
+ * feedback form lived here and brought the Supabase client with it; the
+ * ceiling came down with the weight, keeping the same fifth of headroom. */
+const LANDING_SCRIPT_CEILING_KB = 165;
+
+/** The About page, which has the feedback form now. Measured at 2.6 KB before
+ * anyone presses Send, and 65.4 KB once the Supabase client has been fetched
+ * to send it. */
+const ABOUT_EAGER_CEILING_KB = 8;
+const ABOUT_SCRIPT_CEILING_KB = 80;
 
 /** Every script reachable from `entries`, static or dynamic, as dist-relative
  * paths.
@@ -101,8 +110,8 @@ function scriptKb(entries: string[], follow: "static" | "all"): number {
   return total / 1024;
 }
 
-const entryScripts = () =>
-  [...read("index.html").matchAll(/<script\b[^>]*\bsrc="(\/[^"]+)"/g)].map((m) => m[1]);
+const entryScripts = (page = "index.html") =>
+  [...read(page).matchAll(/<script\b[^>]*\bsrc="(\/[^"]+)"/g)].map((m) => m[1]);
 
 describe("the landing document", () => {
   it("is a real document, readable with no JavaScript", () => {
@@ -296,7 +305,11 @@ describe("the service worker", () => {
     // worker's scope stops at /plan/, so each of these would be bytes a
     // student downloads on install and the worker can never hand back.
     expect(
-      urls.filter((u) => SITE_PAGES.some((page) => u.startsWith(page.slice(1))) || /^assets\/(site|copy|journey)-/.test(u)),
+      urls.filter(
+        (u) =>
+          SITE_PAGES.some((page) => u.startsWith(`${pageName(page)}/`) || u.startsWith(`assets/${pageName(page)}-`)) ||
+          /^assets\/(site|copy|journey)-/.test(u),
+      ),
       "the planner's worker is precaching pages it cannot serve",
     ).toEqual([]);
     // It must still precache the planner's own shell.
@@ -443,10 +456,10 @@ describe("the monospace face", () => {
 });
 
 describe("the pages outside the planner", () => {
-  /** Connect, Privacy and Terms (#61). What is checked here is what only the
-   * BUILT page can show: that the header was actually written into it, and
-   * which faces its stylesheet really ships. */
-  const PAGES = SITE_PAGES.map((page) => `${page.slice(1)}index.html`);
+  /** Every page that wears the site header (#61). What is checked here is
+   * what only the BUILT page can show: that the header was actually written
+   * into it, and which faces its stylesheet really ships. */
+  const PAGES = SITE_PAGES.map((page) => `${pageName(page)}/index.html`);
   const sheetOf = (page: string) => {
     const href = /<link rel="stylesheet"[^>]*href="\/(assets\/[^"]+\.css)"/.exec(read(page))?.[1];
     expect(href, `${page} links no stylesheet`).toBeTruthy();
@@ -472,6 +485,43 @@ describe("the pages outside the planner", () => {
       if (url.startsWith("data:")) continue;
       expect(exists(url.replace(/^\//, "")), `${url} is referenced by @font-face but not in dist`).toBe(true);
     }
+  });
+
+  describe("the About page's feedback form", () => {
+    // The form used to sit at the bottom of the landing page, and at one
+    // point had that page downloading 55 KB of Supabase client before first
+    // paint so it could decide whether to show itself. The protection moves
+    // with the form.
+    const entries = () => entryScripts("about/index.html");
+
+    it("is driven by a script the page actually ships", () => {
+      expect(entries().length, "the About page loads no script, so the form can never appear").toBeGreaterThan(0);
+    });
+
+    it("does not fetch the account client until someone sends", () => {
+      const eager = [...reachableScripts(entries(), "static")];
+      // `sync-config` is the compile-time gate and nothing else; `sync` is
+      // the client.
+      expect(eager.filter((f) => /^assets\/sync-(?!config)/.test(f)), "the Supabase client loads with the page").toEqual([]);
+      const kb = scriptKb(entries(), "static");
+      expect(kb, `${kb.toFixed(1)} KB of script runs before the About page is interactive`).toBeLessThan(ABOUT_EAGER_CEILING_KB);
+    });
+
+    it("weighs what sending costs, lazy chunk included", () => {
+      const kb = scriptKb(entries(), "all");
+      expect(kb, `About scripts total ${kb.toFixed(1)} KB across the whole import graph`).toBeLessThan(ABOUT_SCRIPT_CEILING_KB);
+      expect(
+        [...reachableScripts(entries(), "all")].filter((f) => /^assets\/plan-.*\.js$/.test(f)),
+        "the planner bundle is reachable from the About page",
+      ).toEqual([]);
+    });
+
+    it("left the landing page with nothing that can reach the account service", () => {
+      expect(
+        [...reachableScripts(entryScripts(), "all")].filter((f) => /^assets\/sync-/.test(f)),
+        "the landing page still reaches the Supabase client",
+      ).toEqual([]);
+    });
   });
 
   it("keeps the display face out of the planner", () => {

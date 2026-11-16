@@ -3,7 +3,9 @@
  * Connect your AI, Privacy and Terms used to pin themselves to the dark
  * theme and each carry a header of its own. They are documents a student
  * reads on the way to or from the planner, so they sit on the planner's own
- * cream and say where they are with the same wordmark.
+ * cream and say where they are with the same wordmark. About joined them
+ * when it became a page (#62); every page in the header's own list is held
+ * to everything here.
  *
  * What these tests do NOT repeat: that the connect procedure is ordered and
  * code-free, that the legal documents read with JavaScript off, that a data
@@ -22,6 +24,7 @@ const HEADER = [
   { name: "LionsDegree", href: "/" },
   { name: "Planner", href: "/plan/" },
   { name: "Connect your AI", href: "/connect/" },
+  { name: "About", href: "/about/" },
   { name: "Start my plan", href: "/plan/" },
 ] as const;
 
@@ -193,7 +196,8 @@ for (const path of PAGES) {
     test("the header is reachable by keyboard, in reading order", async ({ page }) => {
       await page.goto(path);
       const reached: string[] = [];
-      for (let i = 0; i < 5; i++) {
+      // The skip link, then everything the header offers.
+      for (let i = 0; i < HEADER.length + 1; i++) {
         await page.keyboard.press("Tab");
         reached.push(
           await page.evaluate(() => {
@@ -298,6 +302,8 @@ test("the Copy button keeps its label while it is pressed", async ({ page }) => 
 test("the header says which page this is, and only on that page", async ({ page }) => {
   await page.goto("/connect/");
   await expect(page.getByRole("banner").getByRole("link", { name: "Connect your AI" })).toHaveAttribute("aria-current", "page");
+  await page.goto("/about/");
+  await expect(page.getByRole("banner").locator("[aria-current]")).toHaveText("About");
   await page.goto("/privacy/");
   await expect(page.getByRole("banner").locator("[aria-current]")).toHaveCount(0);
 });

@@ -574,84 +574,6 @@ test.describe("the page's own controls", () => {
   });
 });
 
-test.describe("about and contact", () => {
-  test("both sections exist and are linked from somewhere visible", async ({ page }) => {
-    // Reachable, not "in the nav": below 34rem the bar keeps only the brand
-    // and the primary action, which is ordinary on a phone. The footer links
-    // both at every width, so that is where the guarantee lives.
-    await page.goto("/");
-    for (const id of ["about", "contact"]) {
-      await expect(page.locator(`#${id}`), `no #${id} section`).toBeVisible();
-      const links = page.locator(`a[href="#${id}"], a[href="/#${id}"]`);
-      const visible = await links.evaluateAll((els) =>
-        els.filter((e) => (e as HTMLElement).offsetParent !== null).length,
-      );
-      expect(visible, `nothing visible links to #${id} at this width`).toBeGreaterThan(0);
-    }
-  });
-
-  test("about says who made it without inventing a company", async ({ page }) => {
-    await page.goto("/");
-    const about = page.locator("#about");
-    await expect(about.getByRole("heading")).toBeVisible();
-    // One student, named. Copy implying a team or a company would be the
-    // kind of small lie that makes the honest parts read as marketing too --
-    // and the opposite failure is just as bad: the section used to open
-    // "one person's side project" and never say WHO, which is the one thing
-    // an About section owes a reader. So the test asks for a name.
-    const text = (await about.innerText()).toLowerCase();
-    expect(text, "about does not say who built this").toMatch(/ojas/);
-    expect(text, "about does not say they are a student").toMatch(/student/);
-    expect(text, "about claims a team that does not exist").not.toMatch(/\bour team\b|\bwe are a company\b/);
-    // The claim a reader can check for themselves.
-    await expect(about.getByRole("link", { name: /github|open source/i })).toBeVisible();
-  });
-
-  test("contact reaches a human with JavaScript off", async ({ page, context }) => {
-    // The form is script-driven. If it were the ONLY route, a student on a
-    // locked-down machine would have a bug to report and nowhere to put it.
-    await context.route("**/*.js", (r) => r.abort());
-    await page.goto("/");
-    const contact = page.locator("#contact");
-    await expect(contact.locator("a[href^='mailto:']")).toBeVisible();
-    await expect(contact.locator("#feedback-form"), "the form shows before it can work").toBeHidden();
-  });
-
-  test("the form appears once the script can drive it", async ({ page }) => {
-    await page.goto("/");
-    const form = page.locator("#feedback-form");
-    await expect(form).toBeVisible();
-    await expect(form).toHaveAttribute("data-enhanced", "true");
-    await expect(form.locator("#fb-body")).toBeVisible();
-    // Email is optional: feedback that requires identifying yourself is
-    // feedback you do not get.
-    await expect(form.locator("#fb-email")).not.toHaveAttribute("required", /.*/);
-  });
-
-  test("refuses an empty message instead of sending nothing", async ({ page }) => {
-    await page.goto("/");
-    await page.locator("#feedback-form button[type=submit]").click();
-    await expect(page.locator("#feedback-form [data-status]")).toBeVisible();
-    await expect(page.locator("#feedback-form")).toHaveAttribute("data-state", "error");
-  });
-
-  test("the honeypot is reachable by no one who can see", async ({ page }) => {
-    await page.goto("/");
-    const trap = page.locator("#fb-website");
-    await expect(trap).toHaveCount(1);
-    // Off-screen, not display:none — and out of the tab order, so a keyboard
-    // user never lands in a field they cannot see.
-    await expect(trap).toHaveAttribute("tabindex", "-1");
-    await expect(page.locator(".fb-trap")).toHaveAttribute("aria-hidden", "true");
-  });
-
-  test("has no accessibility violations", async ({ page }) => {
-    await page.goto("/");
-    await settle(page);
-    await expectNoA11yViolations(page, "the landing page with about and contact");
-  });
-});
-
 test.describe("entering and re-entering the page", () => {
   /** The journey's scroller has its NATURAL height until the 3D chunk lands,
    * at which point journey.ts sets it to one screen per scene. Anything that
@@ -700,16 +622,6 @@ test.describe("entering and re-entering the page", () => {
       await page.evaluate(() => !!document.querySelector("#journey.is-live")),
       "the journey did not survive the back navigation",
     ).toBe(true);
-  });
-
-  test("still honours a deep link to a section", async ({ page }) => {
-    // Forcing the top on entry must not break `/#about`. It is scrolled to
-    // AFTER the journey mounts, because doing it while the scroller is
-    // still short lands hundreds of pixels off.
-    await page.goto("/#about");
-    await settle(page);
-    const top = await page.evaluate(() => document.getElementById("about")?.getBoundingClientRect().top ?? 9999);
-    expect(Math.abs(top), `#about sits ${Math.round(top)}px from the top of the viewport`).toBeLessThan(200);
   });
 });
 

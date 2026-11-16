@@ -1,5 +1,5 @@
 /* =====================================================================
-   The pages outside the planner: Connect your AI, Privacy, Terms.
+   The pages outside the planner: Connect your AI, About, Privacy, Terms.
 
    CREAM, AND PINNED TO IT. These used to wear the old landing page's dark
    canvas. They are documents a student reads on the way into or out of the
@@ -200,7 +200,13 @@
   transition: background .2s var(--ease-out), transform .12s var(--ease-out);
 }
 .btn-go { background: var(--primary); color: var(--primary-fg); }
-.btn-go:hover { background: var(--primary-hover); }
+/* Qualified, and `:active` as well as `:hover`. A `.btn` can be a real
+   <button> (the feedback form's is), and the app's bare button rules paint
+   both states paper-coloured with a tan border: under a cream label that is
+   a button with nothing written on it. Pressed from the keyboard there is no
+   hover to hide behind. The copy field's button further down has the same
+   problem and the same answer. */
+.site .btn-go:is(:hover, :active) { background: var(--primary-hover); border-color: transparent; }
 .btn:active { transform: scale(.98); }
 
 /* ── Connect your AI ────────────────────────────────────────────────── */
@@ -260,9 +266,7 @@
   font-family: var(--font-sans); font-size: var(--fs-base); font-weight: 700;
   cursor: pointer;
 }
-/* Qualified, and `:active` as well as `:hover`: the app's bare button rules
-   paint both states paper-coloured, which under cream text is a button with
-   no label. Pressed from the keyboard there is no hover to hide behind. */
+/* Qualified, and `:active` too, for the reason given at `.btn-go`. */
 .site .copyfield-btn:is(:hover, :active) { background: var(--primary-hover); }
 .site .copyfield-btn.is-done { background: var(--success); }
 
@@ -280,6 +284,85 @@
   border: 1px solid var(--border); border-radius: var(--r-lg) var(--r-lg) var(--r-lg) var(--r-sm);
   color: var(--text);
 }
+
+/* ── About ──────────────────────────────────────────────────────────── */
+.about-main { padding-bottom: clamp(3rem, 7vw, 5rem); }
+/* Who, then how to reach them: side by side where there is room, in that
+   order where there is not. */
+.about-cols { display: grid; gap: clamp(2.5rem, 6vw, 5rem); align-items: start; }
+@media (min-width: 60rem) {
+  .about-cols { grid-template-columns: minmax(0, 1fr) minmax(20rem, 26rem); }
+}
+
+/* One column until there is a photo to put beside the words. `:has` means
+   dropping the <img> in is the only edit required, with no paired change
+   here to forget. The text stands alone without it, but the photo carries
+   alt text anyway: "who wrote this" is exactly what a reader who cannot see
+   it is asking. */
+.bio { display: grid; gap: clamp(1.25rem, 4vw, 2rem); align-items: start; }
+.bio:has(.bio-photo) { grid-template-columns: 8.5rem 1fr; }
+.bio-photo {
+  width: 8.5rem; height: 8.5rem; border-radius: var(--r-lg);
+  object-fit: cover; display: block;
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow);
+  /* A tinted block while it loads and if it never arrives, so the layout
+     does not jump and a missing file is not a broken-image icon next to
+     someone's name. */
+  background: var(--surface-2);
+}
+.bio-text p { max-width: 60ch; line-height: 1.65; }
+/* The sentence that says who is speaking, a size up. */
+.bio-text p:first-child { font-size: 1.1875rem; line-height: 1.5; }
+.bio-text strong { font-weight: 700; }
+@media (max-width: 34rem) {
+  .bio:has(.bio-photo) { grid-template-columns: 1fr; }
+  .bio-photo { width: 6.5rem; height: 6.5rem; }
+}
+
+/* Under the words on a narrow screen, so it gets a rule to start from;
+   beside them on a wide one, where the gap already does that. */
+.contact { padding-top: clamp(2rem, 5vw, 3rem); border-top: 1px solid var(--border-strong); }
+@media (min-width: 60rem) {
+  .contact { padding-top: 0; border-top: 0; }
+}
+
+/* The feedback form. Shown by the script (src/feedback.ts); a form that
+   cannot submit without JavaScript should not be on the page claiming it
+   can. */
+.fb { display: grid; gap: var(--sp-4); margin-top: var(--sp-6); }
+/* `display: grid` above outranks the browser's own rule for [hidden]. */
+.fb[hidden] { display: none; }
+.fb-row { display: grid; gap: var(--sp-2); }
+.fb label { font-size: var(--fs-base); font-weight: 700; }
+.fb-opt { font-weight: 400; color: var(--text-muted); font-size: var(--fs-sm); margin-left: var(--sp-2); }
+.fb textarea,
+.fb input[type="email"] {
+  width: 100%;
+  /* 16px, and not for looks: iOS zooms the whole page in when a field
+     smaller than that takes focus, and does not zoom back out. */
+  font-size: var(--fs-md);
+  border-color: var(--border-strong);
+  padding: var(--sp-3);
+  resize: vertical;
+}
+/* The app's fields answer focus with a soft glow. On a page that is mostly
+   paper that is easy to miss, so here they take the ring everything else
+   has. */
+.fb textarea:focus-visible,
+.fb input:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+/* A count, so the digits hold still: the app's sans, tabular. Not the mono,
+   which is for course codes and literal machine text (DECISIONS 5.2). */
+.site .fb-count { font-size: var(--fs-sm); font-variant-numeric: tabular-nums; color: var(--text-muted); margin: 0; min-height: 1em; text-align: right; }
+/* Off-screen, not display:none: a bot reading the DOM should still see it. */
+.fb-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.fb-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-4); }
+.site .fb-status { margin: 0; font-size: var(--fs-base); line-height: 1.5; color: var(--text-muted); }
+.site .fb[data-state="error"] .fb-status { color: var(--danger); }
+.site .fb[data-state="sent"] .fb-status { color: var(--success); }
+/* `feedback.ts` sets this for the duration of the request. Without the rule
+   the submit button stays live and a second click sends a second copy. */
+.fb[data-state="sending"] button { opacity: .6; pointer-events: none; }
 
 /* ── Privacy and Terms ──────────────────────────────────────────────── */
 /* `.doc-body`, not `.legal-body`: the app stylesheet already has one of

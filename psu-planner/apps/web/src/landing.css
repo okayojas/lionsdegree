@@ -261,39 +261,6 @@
   .journey-label button span { display: none; }
 }
 
-/* ── Feedback form ──────────────────────────────────────────────────────
-   Revealed by the script. A form that cannot submit without JavaScript
-   should not be on the page claiming it can. */
-.fb { display: grid; gap: var(--sp-4); margin-top: var(--sp-4); }
-.fb[hidden] { display: none; }
-.fb-row { display: grid; gap: var(--sp-2); }
-.fb label { font-size: var(--fs-sm); font-weight: 700; color: var(--text); }
-.fb-opt { font-weight: 400; color: var(--text-muted); font-size: var(--fs-xs); margin-left: var(--sp-2); }
-.fb textarea,
-.fb input[type="email"] {
-  width: 100%;
-  font: inherit; font-size: var(--fs-sm);
-  color: var(--text);
-  background: var(--surface);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--r-sm);
-  padding: var(--sp-3);
-  resize: vertical;
-}
-.fb textarea::placeholder, .fb input::placeholder { color: color-mix(in srgb, var(--text-muted) 70%, transparent); }
-.fb textarea:focus-visible,
-.fb input:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-color: var(--primary); }
-.fb-count { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted); margin: 0; min-height: 1em; text-align: right; }
-/* Off-screen, not display:none — a bot reading the DOM should still see it. */
-.fb-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-.fb-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-4); }
-.fb-status { margin: 0; font-size: var(--fs-sm); line-height: 1.5; color: var(--text-muted); }
-.fb[data-state="error"] .fb-status { color: var(--danger); }
-.fb[data-state="sent"] .fb-status { color: var(--success); }
-/* `feedback.ts` sets this for the duration of the request. Without the rule
-   the submit button stays live and a second click sends a second copy. */
-.fb[data-state="sending"] button { opacity: .6; pointer-events: none; }
-
 /* ── The copy field ─────────────────────────────────────────────────────
    Connect, Privacy and Terms used to share this file. They have their own
    now (site.css), on cream; what is left here is the old landing page's
@@ -336,6 +303,10 @@
 /* ── Footer ─────────────────────────────────────────────────────────── */
 .foot { border-top: 1px solid var(--border-strong); padding: clamp(2.5rem, 6vh, 4rem) 0; margin-top: clamp(2rem, 5vh, 4rem); }
 .foot-in { width: min(1280px, 100% - clamp(1.5rem, 6vw, 4rem)); margin-inline: auto; }
+/* Arriving at `/#about` or `/#contact` with no script lands here, on the
+   link that goes where the section went (index.html). Marked, because a
+   page that scrolls to its footer and says nothing looks broken. */
+.foot a:target { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 2px; }
 .disclaim { font-size: var(--fs-base); line-height: 1.6; color: var(--text-muted); max-width: 64ch; }
 .small { font-size: var(--fs-sm); color: var(--text-muted); }
 .small a { color: var(--text-muted); text-decoration: none; }
@@ -514,48 +485,6 @@
     color-mix(in srgb, var(--bg) 84%, transparent) 0%,
     color-mix(in srgb, var(--bg) 50%, transparent) 36%,
     transparent 62%);
-}
-
-/* ── The coda ───────────────────────────────────────────────────────── */
-.coda {
-  width: min(44rem, 100% - clamp(1.5rem, 6vw, 4rem));
-  margin: clamp(4rem, 12vh, 8rem) auto 0;
-  display: grid; gap: clamp(2rem, 5vh, 3rem);
-}
-.coda h2 {
-  font-family: var(--font-mono); font-size: var(--fs-xs);
-  letter-spacing: .14em; text-transform: uppercase; color: var(--primary);
-  font-weight: 500; margin: 0 0 var(--sp-3);
-}
-.coda p { color: var(--text-muted); line-height: 1.65; margin: 0; }
-
-/* ── The bio ─────────────────────────────────────────────────────────
-   Photo beside the words on anything wider than a phone, stacked below
-   it. The photo is decorative in the sense that the text stands alone
-   without it -- but it carries the alt text anyway, because "who wrote
-   this" is exactly the question a reader who cannot see it is asking. */
-/* One column until there is a photo to put beside the words. `:has` means
-   dropping the <img> in is the only edit required -- no paired CSS change
-   to forget. */
-.bio { display: grid; gap: clamp(1.25rem, 4vw, 2rem); align-items: start; }
-.bio:has(.bio-photo) { grid-template-columns: 8.5rem 1fr; }
-.bio-photo {
-  width: 8.5rem; height: 8.5rem; border-radius: var(--r-lg);
-  object-fit: cover; display: block;
-  border: 1px solid var(--border-strong);
-  box-shadow: var(--shadow);
-  /* A tinted block while it loads and if it never arrives, so the layout
-     does not jump and a missing file is not a broken-image icon next to
-     someone's name. */
-  background: var(--surface-2);
-}
-.bio-text { display: grid; gap: var(--sp-4); }
-.bio-text p { margin: 0; }
-.bio-text strong { color: var(--text); font-weight: 700; }
-
-@media (max-width: 34rem) {
-  .bio:has(.bio-photo) { grid-template-columns: 1fr; }
-  .bio-photo { width: 6.5rem; height: 6.5rem; }
 }
 
 @media (max-width: 64rem) {

@@ -1,4 +1,4 @@
-/** The feedback form on the landing page.
+/** The feedback form on the About page.
  *
  * Writes straight to Supabase from the page. The anon key is already in the
  * bundle for auth and plan sync, and the `feedback` table grants INSERT and

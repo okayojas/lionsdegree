@@ -77,8 +77,8 @@
 
     <div class="menu" id="menu" hidden>
       <nav aria-label="All pages">
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="/about/">About</a>
+        <a href="/about/#contact">Contact</a>
         <a href="/connect/">Connect your AI</a>
         <a href="/privacy/">Privacy</a>
         <a href="/terms/">Terms</a>
@@ -203,74 +203,6 @@
           </div>
         </div>
       </div>
-
-      <!-- ══ THE SHORT PRINT ════════════════════════════════════════════
-           Everything a reader needs that is not a feature. Deliberately
-           after the journey and deliberately brief. -->
-      <div class="coda">
-        <section id="about">
-          <h2>About</h2>
-          <!-- A person, not a project description. The previous version
-               opened "One person's side project" and never said who the
-               person was, which is the one thing an About section owes a
-               reader. The photo is part of that: a tool that tells you your
-               degree is wrong is easier to trust when you can see who built
-               it and that he is a student too. -->
-          <div class="bio">
-            <!-- PHOTO GOES HERE. Drop the file at public/about-ojas.jpg and
-                 uncomment; the layout already reserves the column for it and
-                 collapses to one column without it, so this is the only edit
-                 needed. Left commented rather than pointing at a file that
-                 does not exist, which ships a broken-image icon next to
-                 someone's name and fails the image-budget test.
-            <img class="bio-photo" src="/about-ojas.jpg" width="320" height="320"
-                 alt="Ojas Khadakban" loading="lazy" decoding="async" />
-            -->
-            <div class="bio-text">
-              <p>I'm <strong>Ojas Khadakban</strong>, a Penn State student
-                studying Engineering Science and AI Engineering. I build things with AI for a living and
-                for fun — AI engineering is the work I want to do, and this is
-                the project where I learned most of it.</p>
-              <p>LionsDegree started because planning a degree here means
-                holding four documents open at once, and every student I know
-                ends up building the same slightly-wrong spreadsheet. I got
-                tired of it and built the thing I wanted instead: it reads the
-                Bulletin itself, so it knows what actually depends on what.</p>
-              <p>It's free and it always will be.
-                <a href="https://github.com/okayojas/lionsdegree">The whole thing is open source</a>,
-                Apache 2.0 — read it, fork it, tell me where it's wrong.</p>
-            </div>
-          </div>
-        </section>
-
-        <section id="contact">
-          <h2>Contact</h2>
-          <p>Found a requirement read wrong? Email
-            <a href="mailto:ovk5113@psu.edu">ovk5113@psu.edu</a> or open a
-            <a href="https://github.com/okayojas/lionsdegree/issues">GitHub issue</a>.</p>
-
-          <form id="feedback-form" class="fb" hidden novalidate>
-            <div class="fb-row">
-              <label for="fb-body">What is on your mind?</label>
-              <textarea id="fb-body" name="body" rows="3" required
-                        placeholder="CMPSC 465 shows as needing MATH 230, but the Bulletin says MATH 220…"></textarea>
-              <p class="fb-count" data-count aria-hidden="true"></p>
-            </div>
-            <div class="fb-row">
-              <label for="fb-email">Your email <span class="fb-opt">optional</span></label>
-              <input id="fb-email" name="email" type="email" autocomplete="email" placeholder="you@psu.edu" />
-            </div>
-            <div class="fb-trap" aria-hidden="true">
-              <label for="fb-website">Leave this empty</label>
-              <input id="fb-website" name="website" type="text" tabindex="-1" autocomplete="off" />
-            </div>
-            <div class="fb-actions">
-              <button type="submit" class="btn btn-cta">Send feedback</button>
-              <p class="fb-status" data-status role="status" aria-live="polite" hidden></p>
-            </div>
-          </form>
-        </section>
-      </div>
     </main>
 
     <footer class="foot">
@@ -285,8 +217,14 @@
         <p class="small">
           <a href="/plan/">Open the planner</a> ·
           <a href="/connect/">Connect your AI</a> ·
-          <a href="/#about">About</a> ·
-          <a href="/#contact">Contact</a> ·
+          <!-- THE OLD ANCHORS, KEPT AS THE LINKS THEMSELVES. About and
+               Contact were sections of this page at `#about` and
+               `#contact`, and those addresses are out in the world. With
+               scripts on, src/moved.ts sends a visitor straight to the
+               page. Without them the browser scrolls to whatever carries
+               the id, so the id is on the link that goes there. -->
+          <a id="about" href="/about/">About</a> ·
+          <a id="contact" href="/about/#contact">Contact</a> ·
           <a href="/privacy/">Privacy</a> ·
           <a href="/terms/">Terms</a> ·
           <a href="https://bulletins.psu.edu/">Penn State Bulletin</a> ·
@@ -297,8 +235,8 @@
       </div>
     </footer>
 
+    <script type="module" src="/src/moved.ts"></script>
     <script type="module" src="/src/reveal.ts"></script>
-    <script type="module" src="/src/feedback.ts"></script>
     <script type="module" src="/src/copy.ts"></script>
   </body>
 </html>
