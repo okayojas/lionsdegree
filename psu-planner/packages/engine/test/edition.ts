@@ -34,6 +34,21 @@ export const CATALOG_DIR = path.join(CATALOG_ROOT, latestEdition());
 
 /** The catalog the MCP package ships.
  *
+ * BUILT BY A `pretest` THAT POINTS AT THE MCP PACKAGE'S OWN SCRIPT, which
+ * is the one place this cross-package read has to be admitted in something
+ * other than a path. `catalog/` is generated and gitignored, and `mcp`
+ * depends on `engine` — so under `pnpm -r test` engine runs FIRST and the
+ * `pretest` that builds the catalog, which lives on `mcp`, had not run
+ * yet. On a developer's machine the directory is already there from some
+ * earlier run and nothing is noticed; on a clean checkout these suites
+ * fail every time. CI was red on exactly this from 2026-10-31, and the
+ * local suite stayed green throughout, which is the failure worth naming:
+ * a test that only passes on a machine that has already done the setup is
+ * not testing the thing that ships.
+ *
+ * `ensure-catalog.mjs` builds only when the catalog is ABSENT, so this
+ * costs nothing on a warm tree.
+ *
  * It used to be one combined `search-index.json`, and these suites read it
  * as a convenient whole-catalog source. #31 retired that file: the server
  * now reads a slim audit index always and everything else on demand,

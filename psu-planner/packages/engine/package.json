@@ -6,6 +6,7 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
+    "pretest": "node ../mcp/scripts/ensure-catalog.mjs",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
