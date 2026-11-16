@@ -597,7 +597,8 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
   - **The discovery prompt lives on Connect your AI, and only there (2026-11-16, #63).** It was
     printed on the landing page; the new landing has no place for it, and the page a student is on
     when they have just connected an assistant is the right one anyway. It sits after the four
-    steps and outside them, at `/connect/#discovery`, and the landing page links to it. Both copy
+    steps and outside them, at `/connect/#discovery`, and the landing page links to it; the old
+    `/#discovery` address is sent on the same way `/#about` is. Both copy
     buttons on that page now say what they copy ("Copy link", "Copy prompt"), and are `hidden` in
     the markup until `src/copy.ts` runs: with scripts off the text is there to select and no
     button pretends to copy it.

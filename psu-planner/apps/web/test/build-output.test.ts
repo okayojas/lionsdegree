@@ -47,8 +47,10 @@ beforeAll(() => {
 
 /** Script that runs before the page is interactive. Measured at 2.5 KB
  * (4.2 before the feedback form left for the About page in #62, and 2.9
- * before the copy button left for Connect in #63). */
-const LANDING_EAGER_CEILING_KB = 12;
+ * before the discovery prompt took the copy script with it to Connect in
+ * #63). The ceiling was 12 through all of that, which is not what ADR 0002
+ * says: it is the measurement plus a fifth now, like the others. */
+const LANDING_EAGER_CEILING_KB = 3;
 
 /** Everything reachable, lazy chunks included. Measured at 135.2 KB, all but
  * 2.5 of it Three.js, deferred. It was 190.7 with a ceiling of 230 while the
@@ -141,7 +143,7 @@ describe("the landing document", () => {
   it("keeps the first paint light: what loads before anyone scrolls", () => {
     // THE NUMBER THAT PROTECTS THE PHONE READER. Static import graph only --
     // the bytes a student waits for when the page opens, before any lazy
-    // chunk is asked for. Measured at 4.2 KB.
+    // chunk is asked for. The measured figure is beside the ceiling.
     const kb = scriptKb(entryScripts(), "static");
     expect(kb, `${kb.toFixed(1)} KB of script runs before the page is interactive`).toBeLessThan(
       LANDING_EAGER_CEILING_KB,
@@ -302,19 +304,35 @@ describe("the service worker", () => {
     ).map((e: { url: string }) => e.url);
     expect(urls).not.toContain("index.html");
     expect(urls.filter((u) => u.includes("landing"))).toEqual([]);
-    // Nor any other page outside /plan/, nor what only those pages load. The
-    // worker's scope stops at /plan/, so each of these would be bytes a
-    // student downloads on install and the worker can never hand back.
+    // Nor any other page outside /plan/. The worker's scope stops there, so
+    // each of these would be bytes a student downloads on install and the
+    // worker can never hand back.
     expect(
-      urls.filter(
-        (u) =>
-          SITE_PAGES.some((page) => u.startsWith(`${pageName(page)}/`) || u.startsWith(`assets/${pageName(page)}-`)) ||
-          /^assets\/(site|journey)-/.test(u),
-      ),
+      urls.filter((u) => SITE_PAGES.some((page) => u.startsWith(`${pageName(page)}/`))),
       "the planner's worker is precaching pages it cannot serve",
     ).toEqual([]);
     // It must still precache the planner's own shell.
     expect(urls).toContain("plan/index.html");
+  });
+
+  it("precaches no script or stylesheet the planner never loads", () => {
+    // ASKED OF THE BUILD, NOT OF A LIST OF NAMES. This used to be a pattern
+    // of chunk names to keep out (`site-`, `copy-`, `journey-`), kept by hand
+    // beside the one in vite.config.ts. A chunk's name is whatever the
+    // bundler makes of who shares it: when the landing page stopped loading
+    // the copy script, `copy-*.js` became `connect-*.js`, and a pattern
+    // naming the old one would have gone on passing with nothing to match.
+    const sw = read("plan/sw.js");
+    const urls: string[] = JSON.parse(
+      sw.match(/\[\{[^\]]*\}\]/)![0].replace(/url:/g, '"url":').replace(/revision:/g, '"revision":'),
+    ).map((e: { url: string }) => e.url);
+    const planner = read("plan/index.html");
+    const scripts = reachableScripts(entryScripts("plan/index.html"), "all");
+    const sheets = [...planner.matchAll(/<link rel="stylesheet"[^>]*href="\/(assets\/[^"]+\.css)"/g)].map((m) => m[1]);
+    expect(
+      urls.filter((u) => /^assets\/.*\.(js|css)$/.test(u) && !scripts.has(u) && !sheets.includes(u)),
+      "precached, and nothing in the planner asks for it",
+    ).toEqual([]);
   });
 
   it("precaches every script the planner can load", () => {

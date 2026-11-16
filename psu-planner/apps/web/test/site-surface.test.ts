@@ -87,16 +87,24 @@ describe("a page of its own", () => {
   it("the discovery prompt is written down once, on Connect your AI", () => {
     // It was on the landing page and is on the Connect page (#63). Two copies
     // is one that gets reworded and one that does not, and a student pastes
-    // whichever they happened to find. Every document the site serves and
-    // everything the site's scripts could write into one is searched, which
-    // is why this is here and not in the browser suite.
-    const OPENING = "Use LionsDegree to find programs";
-    const scripts = (fs.readdirSync(path.join(web, "src"), { recursive: true }) as string[])
-      .filter((f) => /\.(ts|tsx)$/.test(f))
+    // whichever they happened to find.
+    //
+    // Searched: the source of every document the site serves, and everything
+    // under src/ that could write text into one. Whitespace is flattened
+    // first, so a copy re-wrapped across lines is still a copy. Two phrases,
+    // so that rewording one end of it does not hide it. This is the source,
+    // not the browser, because "nowhere else" is a claim about pages nobody
+    // thought to open.
+    const PHRASES = ["Use LionsDegree to find programs", "minors and certificates that share credits with it"];
+    const flat = (file: string) => source(file).replace(/\s+/g, " ");
+    const written = (fs.readdirSync(path.join(web, "src"), { recursive: true }) as string[])
+      .filter((f) => /\.(ts|tsx|css|html|json|md)$/.test(f))
       .map((f) => `src/${f.replaceAll("\\", "/")}`);
-    const holders = [...DOCUMENTS, ...scripts].filter((file) => source(file).includes(OPENING));
-    expect(holders).toEqual(["connect/index.html"]);
-    expect(source("connect/index.html").split(OPENING), "it is on the Connect page twice").toHaveLength(2);
+    for (const phrase of PHRASES) {
+      const holders = [...DOCUMENTS, ...written].filter((file) => flat(file).includes(phrase));
+      expect(holders, `"${phrase}"`).toEqual(["connect/index.html"]);
+      expect(flat("connect/index.html").split(phrase), "it is on the Connect page twice").toHaveLength(2);
+    }
   });
 });
 

@@ -182,10 +182,14 @@
             <section class="scene" id="ai">
               <h2>Bring your own AI.</h2>
               <!-- The prompt that finds a major, minors and certificates
-                   used to be printed here. It is on the Connect page now,
-                   in one place (#63), and this links to it. -->
+                   used to be printed here, in a box with the id
+                   `discovery`. It is on the Connect page now, in one place
+                   (#63), and this links to it. The link keeps the old id,
+                   for the reason the footer's About link does: with no
+                   script, `/#discovery` scrolls to the way there. With one,
+                   src/moved.ts goes straight to it. -->
               <p>Connect Claude or ChatGPT and ask it about your actual degree —
-                or let it pick the degree: <a href="/connect/#discovery">there is
+                or let it pick the degree: <a id="discovery" href="/connect/#discovery">there is
                 a prompt for finding a major, minors and certificates that
                 share credits</a>.</p>
               <p class="actions">

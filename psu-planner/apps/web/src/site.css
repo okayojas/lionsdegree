@@ -268,7 +268,9 @@
 }
 /* The discovery prompt is a sentence, not an address: it wraps on words and
    is set in the body face. Monospace and `word-break: break-all` are right
-   for a URL and wrong for English. */
+   for a URL and wrong for English. Nor is it `user-select: all` like the
+   address: a student is meant to change part of it. (Qualified with `.site`
+   to outrank `.site p`, which would give it a paragraph's bottom margin.) */
 .copyfield-prose { align-items: flex-start; max-width: 44rem; }
 .site .copyfield-text {
   flex: 1 1 18rem;

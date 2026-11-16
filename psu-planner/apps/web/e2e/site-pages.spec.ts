@@ -268,7 +268,9 @@ test.describe("the header, with JavaScript off", () => {
   }
 });
 
-test("the Copy button keeps its label while it is pressed", async ({ page }) => {
+// Both of the Connect page's copy buttons: the same rule paints them, and a
+// second button is exactly where a fix made for the first gets forgotten.
+for (const name of ["Copy link", "Copy prompt"]) test(`"${name}" keeps its label while it is pressed`, async ({ page }) => {
   // The app's bare `button:active` paints a pressed button paper-coloured.
   // Under this button's cream label that is a control with nothing on it,
   // and from the keyboard there is no hover state covering for it.
@@ -279,7 +281,7 @@ test("the Copy button keeps its label while it is pressed", async ({ page }) => 
   // bug it was written for.
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/connect/");
-  const copy = page.getByRole("button", { name: "Copy link", exact: true });
+  const copy = page.getByRole("button", { name, exact: true });
   await copy.focus();
   await page.keyboard.down("Space");
   const pressed = await copy.evaluate((b) => {
@@ -296,7 +298,7 @@ test("the Copy button keeps its label while it is pressed", async ({ page }) => 
   });
   await page.keyboard.up("Space");
   expect(pressed.active, "the button was not actually pressed, so this measured nothing").toBe(true);
-  expect(pressed.ratio, "a pressed Copy button cannot be read").toBeGreaterThanOrEqual(4.5);
+  expect(pressed.ratio, `a pressed "${name}" button cannot be read`).toBeGreaterThanOrEqual(4.5);
 });
 
 test("the header says which page this is, and only on that page", async ({ page }) => {

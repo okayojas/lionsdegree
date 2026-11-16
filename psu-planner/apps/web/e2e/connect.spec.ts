@@ -1,9 +1,9 @@
 /** Connect your AI.
  *
- * The page exists because "paste a link into your settings" has to be
- * followable by a student who has never opened a terminal. These tests were
- * in landing.spec.ts while the page was an offshoot of the landing page; they
- * moved here, unchanged, when the discovery prompt moved to the page (#63).
+ * The first two blocks were in landing.spec.ts while this page was an
+ * offshoot of the landing page. They moved here when the discovery prompt
+ * moved to the page (#63), as they were but for the first button's name: it
+ * is "Copy link" now that the page has a second thing to copy.
  */
 import { test, expect, expectNoA11yViolations } from "./fixtures";
 
@@ -35,7 +35,7 @@ test.describe("connecting an assistant", () => {
     await page.goto("/connect/");
     // Sign in BEFORE copying the link: the link is only meaningful once the
     // account exists. An unordered list would lose that.
-    const steps = page.locator(".steps > li");
+    const steps = page.locator("ol.steps > li");
     await expect(steps).toHaveCount(4);
     await expect(steps.first()).toContainText(/sign in/i);
     await expect(steps.nth(1)).toContainText(/copy/i);
@@ -107,7 +107,11 @@ test.describe("connecting an assistant, with scripting on", () => {
  * hands over the sentence that starts it, not a search box it has no business
  * rendering. It lived on the landing page until the landing page stopped
  * having room for it, and it belongs here anyway: this is where a student is
- * standing when they have just connected an assistant. */
+ * standing when they have just connected an assistant.
+ *
+ * Written out, as a visitor reads it. That makes this a second copy of the
+ * words, and it is meant to be: a test that read the prompt off the page and
+ * compared it to the page would agree with anything. */
 const PROMPT =
   "I’m a Penn State student. Use LionsDegree to find programs that fit what I’m into: machine learning and clean energy. " +
   "Give me a major plus any minors and certificates that share credits with it, and send me the link to open the plan.";
@@ -115,32 +119,39 @@ const PROMPT =
 test.describe("the discovery prompt", () => {
   test("is plain text a student can read and edit", async ({ page }) => {
     await page.goto("/connect/");
-    const prompt = page.locator("#discovery-prompt");
+    const prompt = page.getByText("Use LionsDegree to find programs");
     await expect(prompt).toBeVisible();
-    // The words it had on the landing page, and English rather than an
-    // incantation: this page is for people who have never opened a terminal.
+    // The words it had on the landing page.
     expect((await prompt.innerText()).replace(/\s+/g, " ").trim()).toBe(PROMPT);
-    expect(PROMPT, "the prompt reads like code").not.toMatch(/[{}<>]|\bjson\b/i);
-    // Text on the page, which a student can select part of and change. Not
-    // a field that has to be filled in, and not an image of one.
-    expect(await prompt.evaluate((el) => el.tagName)).not.toMatch(/^(INPUT|TEXTAREA|IMG)$/);
-    // It names two interests that are not theirs, so the page says to
-    // change them.
-    await expect(page.locator("#discovery")).toContainText(/your own/i);
+    // It names two interests that are not the student's, so the page says to
+    // change them...
+    await expect(page.getByText(/change the interests to your own/i)).toBeVisible();
+    // ...and lets them: part of it can be selected and typed over, which
+    // `user-select: all` (how the address beside the first button is set)
+    // would not allow.
+    const selected = await prompt.evaluate((el) => {
+      const text = el.firstChild!;
+      const range = document.createRange();
+      range.setStart(text, text.textContent!.indexOf("machine learning"));
+      range.setEnd(text, text.textContent!.indexOf("clean energy") + "clean energy".length);
+      const selection = getSelection()!;
+      selection.removeAllRanges();
+      selection.addRange(range);
+      return selection.toString();
+    });
+    expect(selected, "the interests cannot be selected on their own").toBe("machine learning and clean energy");
   });
 
   test("comes after the steps, and is not one of them", async ({ page }) => {
-    // Finding a degree is something to do once connected. Numbering it
-    // would make it a fifth thing a student has to do to connect.
+    // Finding a degree is something to do once connected. Numbered, it would
+    // be a fifth thing a student has to do to connect; above the steps, it
+    // would be offered before there is anything to paste it into.
     await page.goto("/connect/");
-    await expect(page.locator(".steps > li")).toHaveCount(4);
-    await expect(page.locator(".steps #discovery-prompt")).toHaveCount(0);
-    const order = await page.evaluate(() => {
-      const steps = document.querySelector(".steps")!;
-      const prompt = document.getElementById("discovery-prompt")!;
-      return Boolean(steps.compareDocumentPosition(prompt) & Node.DOCUMENT_POSITION_FOLLOWING);
-    });
-    expect(order, "the prompt is offered before the student has connected anything").toBe(true);
+    const steps = page.getByRole("list").filter({ hasText: "Sign in to LionsDegree" }).getByRole("listitem");
+    const lastStep = (await steps.filter({ hasText: "Sign in when it asks" }).boundingBox())!;
+    const prompt = (await page.getByText("Use LionsDegree to find programs").boundingBox())!;
+    expect(prompt.y, "the prompt is not below the last step").toBeGreaterThan(lastStep.y + lastStep.height);
+    await expect(steps.filter({ hasText: "Use LionsDegree to find programs" }), "the prompt is a numbered step").toHaveCount(0);
   });
 
   test("the copy button copies the prompt, and only the prompt", async ({ page, context }) => {
@@ -151,25 +162,26 @@ test.describe("the discovery prompt", () => {
   });
 
   test("each of the two copy buttons says what it copies", async ({ page }) => {
-    // Two buttons called "Copy" on one page are one button to a screen
-    // reader's list of controls.
+    // Two buttons called "Copy" on one page are one button, twice, in a
+    // screen reader's list of controls.
     await page.goto("/connect/");
-    const names = await page.getByRole("button").evaluateAll((all) => all.map((b) => (b.textContent ?? "").trim()));
-    expect(names).toEqual(["Copy link", "Copy prompt"]);
+    await expect(page.getByRole("button", { name: "Copy link", exact: true })).toHaveCount(1);
+    await expect(page.getByRole("button", { name: "Copy prompt", exact: true })).toHaveCount(1);
+    await expect(page.getByRole("button", { name: "Copy", exact: true })).toHaveCount(0);
   });
 
-  test("is linked from the landing page, which no longer repeats it", async ({ page }) => {
-    await page.goto("/");
-    await expect(page.locator("#discovery-prompt")).toHaveCount(0);
-    await expect(page.locator("body")).not.toContainText("Use LionsDegree to find programs");
-    await expect(page.locator('a[href="/connect/#discovery"]')).toHaveCount(1);
-    // And the link lands on it.
-    await page.goto("/connect/#discovery");
-    await expect(page.locator("#discovery-prompt")).toBeInViewport();
+  test("an old link to the landing page's #discovery arrives at it", async ({ page }) => {
+    // The prompt's box was `#discovery` on the landing page. Old addresses
+    // keep working when a thing moves; About's did (about.spec.ts).
+    await page.goto("/#discovery");
+    await page.waitForURL(/\/connect\/#discovery$/);
+    await expect(page.getByText("Use LionsDegree to find programs")).toBeInViewport();
   });
 });
 
 test.describe("the discovery prompt, with JavaScript turned off", () => {
+  // With no script the landing page's scenes simply stack, so its link to the
+  // prompt is on the page to be read and pressed like any other.
   test.use({ javaScriptEnabled: false });
 
   test("still reads, and offers no button that cannot work", async ({ page }) => {
@@ -178,9 +190,26 @@ test.describe("the discovery prompt, with JavaScript turned off", () => {
     // control that does nothing when pressed, so there is none, here or
     // beside the connection link.
     await page.goto("/connect/");
-    await expect(page.locator("#discovery-prompt")).toBeVisible();
-    await expect(page.locator("#discovery-prompt")).toContainText("I’m a Penn State student.");
-    await expect(page.locator("#connector-url")).toBeVisible();
+    await expect(page.getByText("Use LionsDegree to find programs")).toBeVisible();
+    await expect(page.getByText("https://mcp.lionsdegree.com/mcp")).toBeVisible();
     await expect(page.getByRole("button")).toHaveCount(0);
+  });
+
+  test("the landing page links to it, and no longer repeats it", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByText("Use LionsDegree to find programs")).toHaveCount(0);
+    const link = page.getByRole("link", { name: /a prompt for finding a major/i });
+    await expect(link).toBeVisible();
+    await link.click();
+    await page.waitForURL(/\/connect\/#discovery$/);
+    await expect(page.getByText("Use LionsDegree to find programs")).toBeInViewport();
+  });
+
+  test("an old link to #discovery lands on the link to where it went", async ({ page }) => {
+    // Nothing can redirect here, so the id is on the link (as with #about).
+    await page.goto("/#discovery");
+    const link = page.getByRole("link", { name: /a prompt for finding a major/i });
+    await expect(link).toBeInViewport();
+    await expect(link).toHaveAttribute("href", "/connect/#discovery");
   });
 });
