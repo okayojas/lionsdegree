@@ -463,6 +463,10 @@ Companion to `README.md`; project memory lives with the AI assistant's notes.
   empty on re-optimize). Chat `add_semester`.
 - **Resizable advisor panel:** a drag handle (`.panel-resizer`) between the plan and the SidePanel sets
   its width (clamped 280px–70vw), persisted to localStorage (`lionsdegree-chat-w`).
+- **Side panel can be put away (2026-11-16):** one button collapses the panel to a named strip (a bar
+  under the plan on a phone) and brings it back; persisted to localStorage (`lionsdegree-side-panel`,
+  device-only, not synced — it is about the screen, not the plan). The panel is HIDDEN, never unmounted,
+  so an advisor reply still streaming survives it; the drag handle goes with it. Starts open.
 - **Readable chat:** assistant replies now render Markdown via a tiny dependency-free renderer
   (`chat/ChatMarkdown.tsx`, React text nodes only — no dangerouslySetInnerHTML, safe for model output;
   supports headings/bullets/numbered/bold/code/blockquote). The server system prompt gained a

@@ -1,5 +1,5 @@
 /** Right-hand side panel: AI advisor chat + degree audit tabs. */
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import { auditProgram, buildPool, type AuditResult, type ReqSection } from "@psu-planner/engine";
 import { useChat } from "../chat/useChat";
@@ -238,7 +238,7 @@ function AuditTab() {
   );
 }
 
-export function SidePanel({ width }: { width?: number }) {
+export function SidePanel({ width, open, onToggle }: { width?: number; open: boolean; onToggle: () => void }) {
   // Opens on the advisor when there IS one; otherwise on the requirements
   // audit, which is the panel's whole content in that configuration. Leaving
   // the default at "chat" showed an empty panel with a single tab beside it.
@@ -257,31 +257,106 @@ export function SidePanel({ width }: { width?: number }) {
   // server is what actually enforces it.
   const chatLocked = syncConfigured && !user;
   const phone = useMediaQuery(PHONE_QUERY);
+  // KEEPING YOUR PLACE. Putting the panel away takes its scroll boxes out
+  // of layout, and a box that is not laid out has no scroll position.
+  // Chromium quietly restores it when the box comes back; that is a
+  // courtesy of one engine, not something the platform promises, so the
+  // positions are read before the panel goes and written back when it
+  // returns. Read in the handler rather than in an effect: by the time an
+  // effect runs the boxes are already gone and every one of them reads 0.
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const savedScroll = useRef<number[]>([]);
+  const scrollBoxes = () => [...(bodyRef.current?.querySelectorAll<HTMLElement>(".chat-messages") ?? [])];
+  const toggle = () => {
+    if (open) savedScroll.current = scrollBoxes().map((el) => el.scrollTop);
+    onToggle();
+  };
+  useLayoutEffect(() => {
+    if (!open) return;
+    scrollBoxes().forEach((el, i) => {
+      const y = savedScroll.current[i];
+      if (y) el.scrollTop = y;
+    });
+  }, [open]);
   return (
     // The dragged width is a DESKTOP affordance and is not emitted on a
     // phone. An inline style beats every stylesheet rule, so emitting it
     // always would leave the phone layer no way to take the width back short
     // of !important -- and a 360px panel on a 320px screen pushes the plan
     // off the side of the page. Same fix as SearchBox's hard-coded width.
-    <div className="sidepanel" style={width && !phone ? { width, maxWidth: "none", flex: "0 0 auto" } : undefined}>
+    // The dragged width is not emitted while the panel is put away either,
+    // for the same reason: an inline width would hold the strip open at
+    // 360px with nothing in it.
+    <div
+      className={`sidepanel${open ? "" : " collapsed"}`}
+      style={open && width && !phone ? { width, maxWidth: "none", flex: "0 0 auto" } : undefined}
+    >
       <div className="sidepanel-tabs">
         {/* No Advisor tab when no advisor is configured. A student who
             configured nothing is never shown a control that cannot work, and
             with it hidden the panel is the requirements audit -- which needs
             no network, no account and no key. */}
-        {chatConfigured && (
+        {open && chatConfigured && (
           <button className={tab === "chat" ? "active" : ""} onClick={() => setTab("chat")}>
             ✦ Advisor{chat.busy && tab !== "chat" ? " …" : ""}
           </button>
         )}
-        <button className={tab === "audit" ? "active" : ""} onClick={() => setTab("audit")}>Requirements</button>
+        {open && (
+          <button className={tab === "audit" ? "active" : ""} onClick={() => setTab("audit")}>Requirements</button>
+        )}
+        {/* PUT AWAY, AND BROUGHT BACK, BY ONE BUTTON THAT NEVER UNMOUNTS.
+            Two buttons swapped for each other would drop focus to <body> on
+            every press, on the one control whose job is to be pressed twice.
+
+            Open, it is a chevron at the end of the tab row. Put away, it IS
+            the panel: a strip that still says what is behind it, because a
+            bare chevron on the edge of the screen is a control nobody
+            recognises a week later.
+
+            ITS NAME DOES NOT SAY WHICH WAY IT IS. "Side panel", plus what is
+            behind it once that is no longer on screen (so the visible word
+            is in the name, WCAG 2.5.3). Open or shut is `aria-expanded`'s
+            to say, and a name that also said "hide" would be read out as
+            "hide side panel, expanded" — the same fact twice. The tooltip
+            does say what a press will do, because a pointer user gets no
+            `aria-expanded`. */}
+        <button
+          type="button"
+          className="sidepanel-toggle"
+          aria-expanded={open}
+          aria-controls="sidepanel-body"
+          title={open ? "Put the side panel away" : "Bring the side panel back"}
+          onClick={toggle}
+        >
+          {open ? (
+            <span className="sr-only">Side panel</span>
+          ) : (
+            <span className="sidepanel-toggle-name">
+              {chatConfigured ? "Advisor & requirements" : "Requirements"}
+              <span className="sr-only"> side panel</span>
+              {/* The advisor's "still thinking" mark lives on its tab, and the
+                  tab is not on screen while the panel is away. Without this a
+                  question asked just before closing the panel would be
+                  answered with no sign anywhere that it had been. */}
+              {chat.busy ? " …" : ""}
+            </span>
+          )}
+          <span className="sidepanel-chevron" aria-hidden="true" />
+        </button>
       </div>
-      {chatConfigured && (
-        <div style={{ display: tab === "chat" ? "contents" : "none" }}>
-          {chatLocked ? <ChatLocked /> : <ChatTab chat={chat} />}
-        </div>
-      )}
-      {tab === "audit" && <AuditTab />}
+      {/* HIDDEN, NEVER UNMOUNTED. The advisor's conversation and a half-typed
+          question live in components under here; unmounting them to save a
+          strip of screen would throw away a reply that is still streaming.
+          `display: contents` when shown, so the panel's own flex column is
+          still what lays its children out. */}
+      <div id="sidepanel-body" ref={bodyRef} style={{ display: open ? "contents" : "none" }}>
+        {chatConfigured && (
+          <div style={{ display: tab === "chat" ? "contents" : "none" }}>
+            {chatLocked ? <ChatLocked /> : <ChatTab chat={chat} />}
+          </div>
+        )}
+        {tab === "audit" && <AuditTab />}
+      </div>
     </div>
   );
 }

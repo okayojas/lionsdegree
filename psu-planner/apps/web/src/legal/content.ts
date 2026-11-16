@@ -38,7 +38,7 @@ export interface Section {
   body: Block[];
 }
 
-export const UPDATED = "November 15, 2026";
+export const UPDATED = "November 16, 2026";
 
 /** The one address a student can reach a human at. Deliberately not "open a
  * GitHub issue": a data-access or deletion request is not something to make
@@ -68,7 +68,7 @@ export const SECTIONS: Section[] = [
           ],
           [
             { b: "Stored on your device" },
-            ", all of it in local storage rather than cookies: your plan and its recent history, a backup taken when two devices disagree, your light/dark choice, whether you last used the canvas or the list, and — if you sign in — your session token. Nothing here is sent anywhere unless you turn on sync.",
+            ", all of it in local storage rather than cookies: your plan and its recent history, a backup taken when two devices disagree, your light/dark choice, whether you last used the canvas or the list, how you left the side panel (its width, and whether it is put away), and — if you sign in — your session token. Nothing here is sent anywhere unless you turn on sync.",
           ],
           [
             { b: "Sign-in is optional" },

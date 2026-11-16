@@ -685,6 +685,12 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 .main-row .viewport { flex: 1; }
 .panel-resizer { flex: 0 0 6px; cursor: col-resize; background: var(--border); opacity: .5; transition: opacity .15s, background .15s; touch-action: none; }
 .panel-resizer:hover, .panel-resizer:active { opacity: 1; background: var(--primary); }
+/* BEFORE the phone rules below, not after them. It sat after for months,
+   and at equal specificity the later rule wins: `width: 360px; max-width:
+   42vw` beat the phone layer's `width: auto`, so on a 412px phone the open
+   panel was 173px wide with the rest of its row empty. Order is the whole
+   fix, which is why it is spelled out. */
+.sidepanel { width: 360px; max-width: 42vw; display: flex; flex-direction: column; background: var(--surface); border-left: 1px solid var(--border); }
 @media (max-width: 760px) {
   /* One column. The advisor panel sits UNDER the plan rather than beside it:
      there is no width for two columns, and the plan is what the student came
@@ -717,10 +723,55 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   .main-row > .listview { min-height: 55vh; }
   .sidepanel { max-height: 30vh; }
 }
-.sidepanel { width: 360px; max-width: 42vw; display: flex; flex-direction: column; background: var(--surface); border-left: 1px solid var(--border); }
 .sidepanel-tabs { display: flex; border-bottom: 1px solid var(--border); }
 .sidepanel-tabs button { flex: 1; border: none; border-radius: 0; padding: 10px; background: var(--surface-2); color: var(--text-muted); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: var(--track-label); font-weight: 700; }
 .sidepanel-tabs button.active { background: var(--surface); color: var(--primary); border-bottom: 2px solid var(--primary); }
+/* PUTTING THE PANEL AWAY.
+   Open, the control is a chevron at the end of the tab row, pointing the
+   way the panel will go. Put away, the panel is nothing BUT the control: a
+   strip one tap-target wide that still carries its name, set sideways,
+   because the alternative is an anonymous chevron on the edge of the
+   screen. The strip is --tap-min in its narrow direction so the whole of
+   it is pressable.
+
+   The chevron is two borders on a square rather than a glyph: "›" and "‹"
+   sit at different heights in different fonts, and this one has to line up
+   with a row of uppercase labels. */
+.sidepanel-tabs button.sidepanel-toggle {
+  flex: 0 0 var(--tap-min); display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2);
+  border-left: 1px solid var(--border);
+  /* --text, not the tabs' --text-muted. Muted on the HOVER background is
+     4.32:1, under AA, and this control is hovered at the moment it matters:
+     the pointer is still on it right after it has been pressed. axe caught
+     it only because the test clicks before it measures. */
+  color: var(--text);
+}
+.sidepanel-chevron {
+  flex: none; width: 7px; height: 7px;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg); /* points right: that is where the panel goes */
+}
+/* +1px: the panel's own left border comes out of a border-box size, and a
+   43px strip is one pixel short of the target size it exists to be. The
+   basis alone sets the size; it outranks the base rule's `width`. */
+.sidepanel.collapsed { flex: 0 0 calc(var(--tap-min) + 1px); max-width: none; }
+.sidepanel.collapsed .sidepanel-tabs { flex: 1; border-bottom: none; }
+.sidepanel.collapsed .sidepanel-tabs button.sidepanel-toggle {
+  flex: 1; border-left: none; padding: var(--sp-4) 0;
+  writing-mode: vertical-rl; white-space: nowrap;
+}
+.sidepanel.collapsed .sidepanel-chevron { transform: rotate(135deg); /* points left: back out */ }
+@media (max-width: 760px) {
+  /* Under the plan on a phone, so it folds DOWN and the chevrons turn to
+     match. Put away it is a bar across the bottom, not a strip down the
+     side: there is no side. */
+  .sidepanel-chevron { transform: rotate(45deg); }
+  .sidepanel.collapsed { width: auto; flex: 0 0 auto; }
+  .sidepanel.collapsed .sidepanel-tabs button.sidepanel-toggle {
+    writing-mode: horizontal-tb; min-height: var(--tap-min); padding: var(--sp-2) var(--sp-3);
+  }
+  .sidepanel.collapsed .sidepanel-chevron { transform: rotate(-135deg); }
+}
 .chat-messages { flex: 1; overflow-y: auto; padding: var(--sp-3); }
 .chat-empty { color: var(--text-muted); font-size: var(--fs-sm); padding: 10px; }
 .chat-empty ul { padding-left: 18px; }

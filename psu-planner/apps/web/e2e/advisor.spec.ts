@@ -41,6 +41,21 @@ test.describe("with an advisor configured", () => {
     await expect(panel).toContainText(/sign in/i);
   });
 
+  test("put away, the strip names both things behind it, and comes back to the advisor", async ({ planner }) => {
+    // With an advisor compiled in the panel is two things, so a strip that
+    // said only "Requirements" would hide the advisor behind the wrong name.
+    const toggle = planner.getByRole("button", { name: /side panel/i });
+    await toggle.click();
+    await expect(toggle).toHaveAttribute("aria-expanded", "false");
+    await expect(toggle).toContainText(/advisor/i);
+    await expect(toggle).toContainText(/requirements/i);
+
+    // The panel is hidden, not unmounted, so it reopens on the tab it was
+    // left on rather than resetting to a default.
+    await toggle.click();
+    await expect(planner.locator(".sidepanel-tabs button.active")).toHaveText(/Advisor/i);
+  });
+
   test("has no accessibility violations with the advisor present", async ({ planner }) => {
     const { expectNoA11yViolations } = await import("./fixtures.js");
     await expectNoA11yViolations(planner, "the planner with an advisor configured");

@@ -22,6 +22,11 @@ import { PlanSkeleton } from "./components/PlanSkeleton";
 import { CandidateRail } from "./components/CandidateRail";
 import { chatConfigured } from "./chat/config";
 
+/** Where "the side panel is put away" is remembered. Anything but "closed"
+ * reads as open, so a device that has never set it starts with the panel
+ * showing. */
+const SIDE_PANEL_KEY = "lionsdegree-side-panel";
+
 export default function App() {
   const { plan, catalog, items, setPlan, markCompleted, restoreItem, loading, loadError, servedEdition, repairNote, clearRepairNote, candidateId, candidateRefusal, showCandidate } = usePlanner();
   const [showRemoved, setShowRemoved] = useState(false);
@@ -64,6 +69,19 @@ export default function App() {
     document.body.style.cursor = "col-resize";
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
+  };
+  // WHETHER THE SIDE PANEL IS PUT AWAY. Held here rather than in the panel
+  // because the divider beside it is this component's, and a divider with
+  // nothing to resize has to go when the panel does. Remembered on the
+  // device like the view and the panel's width: it is a preference about
+  // this screen, not a fact about the plan, so it is not synced.
+  const [panelOpen, setPanelOpen] = useState<boolean>(
+    () => localStorage.getItem(SIDE_PANEL_KEY) !== "closed",
+  );
+  const togglePanel = () => {
+    const next = !panelOpen;
+    setPanelOpen(next);
+    try { localStorage.setItem(SIDE_PANEL_KEY, next ? "open" : "closed"); } catch { /* ignore */ }
   };
   const [view, setView] = useState<"canvas" | "list">(
     () => (localStorage.getItem("lionsdegree-view") === "list" ? "list" : "canvas"),
@@ -346,14 +364,16 @@ export default function App() {
         ) : (
           <PlanListView onOpenItem={setOpenItem} />
         )}
-        <div
-          className="panel-resizer"
-          role="separator"
-          aria-orientation="vertical"
-          aria-label={chatConfigured ? "Resize advisor panel" : "Resize side panel"}
-          onPointerDown={startResize}
-        />
-        <SidePanel width={chatWidth} />
+        {panelOpen && (
+          <div
+            className="panel-resizer"
+            role="separator"
+            aria-orientation="vertical"
+            aria-label={chatConfigured ? "Resize advisor panel" : "Resize side panel"}
+            onPointerDown={startResize}
+          />
+        )}
+        <SidePanel width={chatWidth} open={panelOpen} onToggle={togglePanel} />
       </div>
       {/* IN THE LAYOUT, NOT OVER IT. The conflict bar above is fixed and
           floats, because a refused save is urgent and interrupting is the
