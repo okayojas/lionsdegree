@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,43 +7,30 @@
     <meta name="description" content="LionsDegree is an independent, unofficial planning tool and is not affiliated with Penn State. Degree decisions must be confirmed with your adviser." />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="theme-color" content="#2b2a27" />
+    <meta name="theme-color" content="#f1ebdf" />
     <link rel="canonical" href="%SITE_URL%/terms/" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="LionsDegree" />
     <meta property="og:url" content="%SITE_URL%/terms/" />
     <meta property="og:title" content="Terms of Use — LionsDegree" />
     <meta property="og:description" content="LionsDegree is an independent, unofficial planning tool and is not affiliated with Penn State. Degree decisions must be confirmed with your adviser." />
-    <link rel="stylesheet" href="/src/landing.css" />
+    <link rel="stylesheet" href="/src/site.css" />
   </head>
-  <body class="landing legal-page">
+  <body class="site legal-page">
     <a href="#doc" class="skip-link">Skip to the document</a>
-    <header class="conn-head">
-      <div class="wrap">
-        <p class="home">
-          <a class="brand" href="/"><img src="/mark.png" width="420" height="327" alt="" /><span><b>Lions</b>Degree</span></a>
-          <!-- Menu on the trailing edge, the same corner every other
-               surface puts it. `<details>` rather than a scripted panel:
-               these documents ship no JavaScript, and an OAuth reviewer's
-               crawler has to be able to read them with none. -->
-          <details class="pagemenu">
-            <summary class="menu-btn">
-              <span class="menu-btn-label">Menu</span>
-              <span class="menu-btn-bars" aria-hidden="true"><i></i><i></i></span>
-            </summary>
-            <nav class="pagemenu-panel" aria-label="All pages">
-              <a href="/">Home</a>
-              <a href="/connect/">Connect your AI</a>
-              <a href="/privacy/">Privacy</a>
-              <a href="/terms/">Terms</a>
-              <a class="menu-go" href="/plan/">Open the planner &rarr;</a>
-            </nav>
-          </details>
-        </p>
+    <header class="site-head">
+      <a class="brand" href="/"><img src="/mark-clear.png" width="185" height="144" alt="" /><span><b>Lions</b>Degree</span></a>
+      <nav class="site-nav" aria-label="Site">
+        <a href="/plan/">Planner</a>
+        <a href="/connect/">Connect your AI</a>
+      </nav>
+      <a class="site-start" href="/plan/">Start my plan<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg></a>
+    </header>
+    <main id="doc" class="wrap">
+      <div class="page-head">
         <h1>Terms of Use</h1>
       </div>
-    </header>
-    <main id="doc" class="wrap legal-body">
+      <div class="doc-body">
         <ul>
           <li><strong>Not official advising.</strong> LionsDegree is an independent planning tool and is not affiliated with, endorsed by, or operated by The Pennsylvania State University. Course data comes from public university bulletins and may be incomplete, stale, or wrong. Degree decisions must be confirmed with your academic adviser and official university systems.</li>
           <li><strong>Course information belongs to Penn State.</strong> Course titles, requirements and descriptions are the University's, reproduced here to help you find them and linked back to the bulletin page they came from. They are quoted, never rewritten, and the bulletin is the authority wherever the two disagree.</li>
@@ -53,8 +40,9 @@
           <li><strong>Changes.</strong> Features and these terms may change; continued use is acceptance.</li>
         </ul>
         <p><em>Last updated November 16, 2026.</em> Questions: <a href="mailto:ovk5113@psu.edu">ovk5113@psu.edu</a>.</p>
+      </div>
     </main>
-    <footer class="band band-ink foot">
+    <footer class="foot">
       <div class="wrap">
         <p class="disclaim">
           <strong>Unofficial.</strong> LionsDegree is not affiliated with,

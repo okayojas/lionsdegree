@@ -2,6 +2,7 @@
  * /terms. The React renderer lives in LegalModal.tsx; both read `content.ts`,
  * so the two surfaces say the same thing by construction. */
 import type { Block, Inline, Section } from "./content.js";
+import { siteHeader } from "../site/header.js";
 
 /** Everything interpolated into the page goes through this. The content is
  * ours and contains no markup today, but a policy document that builds HTML
@@ -36,7 +37,7 @@ export function blockHtml(b: Block): string {
 export function pageHtml(section: Section, siteUrl = "%SITE_URL%"): string {
   const path = section.path ?? "/";
   return `<!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,46 +45,27 @@ export function pageHtml(section: Section, siteUrl = "%SITE_URL%"): string {
     <meta name="description" content="${escapeHtml(section.description)}" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="theme-color" content="#2b2a27" />
+    <meta name="theme-color" content="#f1ebdf" />
     <link rel="canonical" href="${siteUrl}${path}" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="LionsDegree" />
     <meta property="og:url" content="${siteUrl}${path}" />
     <meta property="og:title" content="${escapeHtml(section.title)}" />
     <meta property="og:description" content="${escapeHtml(section.description)}" />
-    <link rel="stylesheet" href="/src/landing.css" />
+    <link rel="stylesheet" href="/src/site.css" />
   </head>
-  <body class="landing legal-page">
+  <body class="site legal-page">
     <a href="#doc" class="skip-link">Skip to the document</a>
-    <header class="conn-head">
-      <div class="wrap">
-        <p class="home">
-          <a class="brand" href="/"><img src="/mark.png" width="420" height="327" alt="" /><span><b>Lions</b>Degree</span></a>
-          <!-- Menu on the trailing edge, the same corner every other
-               surface puts it. \`<details>\` rather than a scripted panel:
-               these documents ship no JavaScript, and an OAuth reviewer's
-               crawler has to be able to read them with none. -->
-          <details class="pagemenu">
-            <summary class="menu-btn">
-              <span class="menu-btn-label">Menu</span>
-              <span class="menu-btn-bars" aria-hidden="true"><i></i><i></i></span>
-            </summary>
-            <nav class="pagemenu-panel" aria-label="All pages">
-              <a href="/">Home</a>
-              <a href="/connect/">Connect your AI</a>
-              <a href="/privacy/">Privacy</a>
-              <a href="/terms/">Terms</a>
-              <a class="menu-go" href="/plan/">Open the planner &rarr;</a>
-            </nav>
-          </details>
-        </p>
+    ${siteHeader(path)}
+    <main id="doc" class="wrap">
+      <div class="page-head">
         <h1>${escapeHtml(section.heading)}</h1>
       </div>
-    </header>
-    <main id="doc" class="wrap legal-body">
+      <div class="doc-body">
         ${section.body.map(blockHtml).join("\n        ")}
+      </div>
     </main>
-    <footer class="band band-ink foot">
+    <footer class="foot">
       <div class="wrap">
         <p class="disclaim">
           <strong>Unofficial.</strong> LionsDegree is not affiliated with,

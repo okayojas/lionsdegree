@@ -1,0 +1,126 @@
+/** The pages outside the planner share one header and one surface (#61).
+ *
+ * The browser suite (e2e/site-pages.spec.ts) checks what a visitor sees. This
+ * checks the things that are only visible in the source: that there is one
+ * header and not three copies of it, and that the two marks are each still
+ * the file their job needs.
+ */
+import { describe, it, expect } from "vitest";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import sharp from "sharp";
+import { SECTIONS } from "../src/legal/content.js";
+import { SITE_HEADER_SLOT, siteHeader } from "../src/site/header.js";
+
+const web = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const source = (rel: string) => fs.readFileSync(path.join(web, rel), "utf-8");
+
+/** Every page that wears the header, and how it gets it. */
+const HAND_WRITTEN = ["connect/index.html"];
+const GENERATED = SECTIONS.filter((s) => s.path).map((s) => `${s.path!.replace(/^\/|\/$/g, "")}/index.html`);
+
+describe("the shared header", () => {
+  it("is the planner's wordmark, from the planner's markup", () => {
+    // One word in the markup: `<b>` colours half of it without splitting it,
+    // which is what keeps it "LionsDegree" to a screen reader and to
+    // find-in-page. App.tsx carries the same run.
+    expect(siteHeader("/")).toContain("<b>Lions</b>Degree");
+    expect(source("src/App.tsx")).toContain("<b>Lions</b>Degree");
+  });
+
+  it("marks the page it is on, and no other", () => {
+    expect(siteHeader("/connect/")).toMatch(/href="\/connect\/" aria-current="page"/);
+    expect(siteHeader("/connect/").match(/aria-current/g)).toHaveLength(1);
+    expect(siteHeader("/privacy/")).not.toContain("aria-current");
+  });
+
+  it.each(HAND_WRITTEN)("%s asks for it instead of carrying a copy", (file) => {
+    const html = source(file);
+    expect(html.split(SITE_HEADER_SLOT).length - 1, "the slot should appear exactly once").toBe(1);
+    // A second brand link in the file would be a second header.
+    expect(html, "this page still has a header of its own").not.toMatch(/class="brand"/);
+  });
+
+  it.each(GENERATED)("%s is generated with it", (file) => {
+    const page = `/${file.replace(/index\.html$/, "")}`;
+    expect(source(file)).toContain(siteHeader(page));
+  });
+
+  it.each([...HAND_WRITTEN, ...GENERATED])("%s is pinned to the light theme", (file) => {
+    // Not merely "no longer dark": with no theme named, the stylesheet
+    // follows the system, and these pages have no dark version to follow it
+    // into.
+    expect(source(file)).toMatch(/<html lang="en" data-theme="light">/);
+    expect(source(file)).toMatch(/<meta name="theme-color" content="#f1ebdf" \/>/);
+  });
+});
+
+describe("the two marks", () => {
+  const PAPER = [241, 235, 223];
+  const fromPaper = (px: Buffer, i: number) =>
+    Math.hypot(px[i] - PAPER[0], px[i + 1] - PAPER[1], px[i + 2] - PAPER[2]);
+
+  it("the header's mark has no paper left in it", async () => {
+    const { data, info } = await sharp(path.join(web, "public", "mark-clear.png"))
+      .ensureAlpha()
+      .raw()
+      .toBuffer({ resolveWithObject: true });
+    const n = info.width * info.height;
+    let clear = 0, solid = 0, paperLeft = 0;
+    for (let p = 0; p < n; p++) {
+      const a = data[p * 4 + 3];
+      if (a === 0) clear++;
+      if (a === 255) solid++;
+      // A pixel that still shows and is still paper-coloured is the box, or
+      // the pale halo an edge leaves when it is faded instead of unmixed.
+      if (a > 0 && fromPaper(data, p * 4) < 24) paperLeft++;
+    }
+    // Measured on the file as shipped: 30% clear, 60% solid, and the rest
+    // is the soft edge between them. The floors sit well under both, since
+    // the point is "the cut happened and the ink survived it", not the
+    // exact share.
+    expect(clear / n, "nothing was cut out").toBeGreaterThan(0.2);
+    expect(solid / n, "the ink went with the paper").toBeGreaterThan(0.5);
+    expect(paperLeft, "paper-coloured pixels are still visible in the mark").toBe(0);
+  });
+
+  it("the header states the size the file actually is", async () => {
+    // The <img> reserves its box from these two numbers before the file
+    // arrives. Wrong ones mean the header jumps when it does, or the mark is
+    // drawn squashed.
+    const meta = await sharp(path.join(web, "public", "mark-clear.png")).metadata();
+    expect(siteHeader("/")).toContain(`src="/mark-clear.png" width="${meta.width}" height="${meta.height}"`);
+  });
+
+  it("the opaque mark is untouched, because a card needs a rectangle", async () => {
+    const mark = path.join(web, "public", "mark.png");
+    const meta = await sharp(mark).metadata();
+    expect(meta.hasAlpha, "mark.png has gained an alpha channel").toBe(false);
+    const { data } = await sharp(mark).raw().toBuffer({ resolveWithObject: true });
+    expect([data[0], data[1], data[2]], "mark.png no longer sits on the app's paper").toEqual(PAPER);
+  });
+
+  it("social cards and icons never point at the transparent one", () => {
+    // A previewer composites onto whatever colour it likes; a transparent
+    // mark on a dark chat bubble is a navy shape on near-black.
+    for (const file of ["index.html", ...HAND_WRITTEN, ...GENERATED, "plan/index.html"]) {
+      const meta = [...source(file).matchAll(/<(?:meta|link)\b[^>]*>/g)].map((m) => m[0]);
+      expect(meta.filter((t) => t.includes("mark-clear")), `${file} uses the transparent mark in its <head>`).toEqual([]);
+    }
+    expect(source("index.html")).toMatch(/property="og:image" content="%SITE_URL%\/og\.png"/);
+  });
+});
+
+describe("the content security policy", () => {
+  it("is the one the privacy policy was written against", () => {
+    // Adding a display face is the classic moment a font host gets
+    // allowlisted. Raleway is served from here, so this line does not move.
+    const csp = /^\s*Content-Security-Policy: (.+)$/m.exec(source("public/_headers"))?.[1];
+    expect(csp).toBe(
+      "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; " +
+        "font-src 'self'; connect-src 'self' https://*.supabase.co; frame-ancestors 'none'; base-uri 'self'; " +
+        "form-action 'self'; object-src 'none'; upgrade-insecure-requests",
+    );
+  });
+});

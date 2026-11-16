@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
+import { SITE_HEADER_SLOT, siteHeader } from "./src/site/header";
 
 /** TWO ENTRY POINTS. The root is a static document; the planner is the SPA,
  * served from /plan/.
@@ -83,6 +84,23 @@ const siteUrl = () => ({
   },
 });
 
+/** Writes the shared header into every hand-written page that asks for it.
+ *
+ * The header is one function (src/site/header.ts). The legal documents are
+ * generated and call it themselves; a hand-written page leaves a comment
+ * where it goes. Filled in here rather than by a prebuild script so that the
+ * dev server and the build cannot disagree about what the page contains.
+ *
+ * `ctx.path` is the document being served ("/connect/index.html"), which is
+ * how the header knows which of its links is the current page. */
+const siteHeaderSlot = () => ({
+  name: "site-header",
+  transformIndexHtml: (html: string, ctx: { path: string }) =>
+    html.includes(SITE_HEADER_SLOT)
+      ? html.replaceAll(SITE_HEADER_SLOT, siteHeader(ctx.path.replace(/index\.html$/, "")))
+      : html,
+});
+
 export default defineConfig({
   resolve: {
     alias: {
@@ -122,6 +140,7 @@ export default defineConfig({
   },
   plugins: [
     siteUrl(),
+    siteHeaderSlot(),
     react(),
     VitePWA({
       registerType: "autoUpdate",
@@ -157,9 +176,25 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // The landing page is outside this worker's scope, so precaching it
-        // would store bytes the worker can never serve.
-        globIgnores: ["index.html", "assets/landing-*.js", "assets/landing-*.css", "og.png"],
+        // Everything outside /plan/ is outside this worker's scope, so
+        // precaching it would store bytes the worker can never serve. That
+        // is the landing page and every page that wears the site header,
+        // with the stylesheet, script and 3D chunk only they load. The list
+        // had only ever named the landing page's own files, so a student
+        // installing the planner was also handed the three documents and
+        // the landing page's copy of three.js.
+        globIgnores: [
+          "index.html",
+          "connect/**",
+          "privacy/**",
+          "terms/**",
+          "assets/landing-*.js",
+          "assets/landing-*.css",
+          "assets/journey-*.js",
+          "assets/site-*.css",
+          "assets/copy-*.js",
+          "og.png",
+        ],
         // Deep links inside the planner resolve to its shell. The denylist
         // keeps the worker's hands off the catalog and off anything outside
         // /plan/, which it could not reach anyway from this scope.

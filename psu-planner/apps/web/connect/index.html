@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,40 +10,25 @@
     />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="theme-color" content="#2b2a27" />
+    <meta name="theme-color" content="#f1ebdf" />
     <link rel="canonical" href="%SITE_URL%/connect/" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="LionsDegree" />
     <meta property="og:url" content="%SITE_URL%/connect/" />
     <meta property="og:title" content="Connect your AI to your degree plan" />
     <meta property="og:description" content="Copy one link into your assistant's settings. Nothing to install." />
-    <link rel="stylesheet" href="/src/landing.css" />
+    <link rel="stylesheet" href="/src/site.css" />
   </head>
-  <body class="landing connect-page">
+  <body class="site connect-page">
     <a href="#steps" class="skip-link">Skip to the steps</a>
 
-    <header class="conn-head">
-      <div class="wrap">
-        <p class="home">
-          
-          <a class="brand" href="/">
-            <img src="/mark.png" width="420" height="327" alt="" />
-            <span><b>Lions</b>Degree</span>
-          </a>
-          <details class="pagemenu">
-            <summary class="menu-btn">
-              <span class="menu-btn-label">Menu</span>
-              <span class="menu-btn-bars" aria-hidden="true"><i></i><i></i></span>
-            </summary>
-            <nav class="pagemenu-panel" aria-label="All pages">
-              <a href="/">Home</a>
-              <a href="/connect/">Connect your AI</a>
-              <a href="/privacy/">Privacy</a>
-              <a href="/terms/">Terms</a>
-              <a class="menu-go" href="/plan/">Open the planner &rarr;</a>
-            </nav>
-          </details>
-        </p>
+    <!-- The header is not written here. Every page outside the planner
+         wears the same one, from src/site/header.ts, and the build puts it
+         where this comment is (vite.config.ts). -->
+    <!-- site-header -->
+
+    <main class="wrap conn-main">
+      <div class="page-head">
         <p class="eyebrow">Works with your assistant</p>
         <h1>Connect your AI to your degree plan.</h1>
         <p class="lede">
@@ -59,12 +44,10 @@
           and you can disconnect it again at any time.
         </p>
       </div>
-    </header>
 
-    <main id="steps" class="wrap conn-main">
       <!-- A real sequence: each step depends on the one before it, so the
            numbering carries information rather than decorating the list. -->
-      <ol class="steps">
+      <ol class="steps" id="steps">
         <li>
           <h2>Sign in to LionsDegree</h2>
           <p>
@@ -163,7 +146,7 @@
       </section>
     </main>
 
-    <footer class="band band-ink foot">
+    <footer class="foot">
       <div class="wrap">
         <p class="disclaim">
           <strong>Unofficial.</strong> LionsDegree is not affiliated with,

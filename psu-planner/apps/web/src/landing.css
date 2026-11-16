@@ -38,7 +38,7 @@
    surface, like a poster; the theme toggle governs /plan/ only. Said out
    loud so nobody files it as a bug.
 
-   The tokens are NOT restated here. Every landing-family document carries
+   The tokens are NOT restated here. The landing page carries
    `data-theme="dark"` on <html>, which the app stylesheet above already
    answers with the full dark set -- palette, shadows and `color-scheme`
    together. A copy of that block was the first thing written here and it
@@ -294,93 +294,14 @@
    the submit button stays live and a second click sends a second copy. */
 .fb[data-state="sending"] button { opacity: .6; pointer-events: none; }
 
-/* ── The sibling documents ──────────────────────────────────────────────
-   /connect/, /privacy/ and /terms/ are single-column documents, not routes:
-   nothing branches, so a spine would be decoration. They share this
-   stylesheet for the canvas, the type and the tokens, and nothing else.
-   They carry `.landing` too, so the canvas and the dark pin apply. */
-.connect-page, .legal-page { padding-bottom: 0; }
-.wrap { width: min(1200px, 100% - clamp(2rem, 8vw, 6rem)); margin-inline: auto; position: relative; z-index: 2; }
-.conn-head { padding: clamp(2rem, 6vw, 4rem) 0 clamp(1.25rem, 3vw, 2.25rem); position: relative; z-index: 2; }
-/* Brand leading, menu trailing -- the same arrangement as the landing
-   page's bar and the planner's toolbar. */
-.conn-head .home { margin: 0 0 var(--sp-6); display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); }
+/* ── The copy field ─────────────────────────────────────────────────────
+   Connect, Privacy and Terms used to share this file. They have their own
+   now (site.css), on cream; what is left here is the old landing page's
+   alone, and goes when it does.
 
-/* ── Menu on the no-JavaScript pages ────────────────────────────────────
-   /connect/, /privacy/ and /terms/ are static documents that ship no
-   script, and the landing page's menu is a scripted panel. Rather than
-   pull that script onto three pages to get one button, these use
-   `<details>`: open/close, Escape, focus order and the disclosure
-   semantics are all the browser's, and there is nothing that can fail to
-   load. It sits in the same corner as every other surface's menu, which is
-   the point of adding it at all. */
-.pagemenu { position: relative; }
-.pagemenu > summary { list-style: none; }
-.pagemenu > summary::-webkit-details-marker { display: none; }
-.pagemenu > summary:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; border-radius: var(--r-sm); }
-.pagemenu[open] > summary .menu-btn-bars i:first-child { transform: translateY(3px) rotate(45deg); }
-.pagemenu[open] > summary .menu-btn-bars i:last-child { transform: translateY(-3px) rotate(-45deg); }
-.pagemenu .menu-btn-bars i { transition: transform .18s var(--ease-out); }
-.pagemenu-panel {
-  /* Anchored right, under a button on the trailing edge. */
-  position: absolute; top: calc(100% + 6px); right: 0; z-index: 40;
-  display: grid; min-width: 13rem; padding: var(--sp-2);
-  background: var(--surface); border: 1px solid var(--border-strong);
-  border-radius: var(--r); box-shadow: var(--shadow-lg);
-}
-/* `.landing a:not(.btn):not(.brand)` paints every link on these pages the
-   accent, which inside a menu makes five accented rows and no hierarchy --
-   the one item that IS the action stops standing out. Qualified past that
-   rule rather than loosening it, since accent links are right everywhere
-   else on the page. */
-.landing .pagemenu-panel a {
-  padding: 9px 12px; border-radius: var(--r-sm);
-  color: var(--text); text-decoration: none; font-size: var(--fs-sm); font-weight: 600;
-}
-.landing .pagemenu-panel a:hover { background: var(--surface-hover); }
-.landing .pagemenu-panel .menu-go { color: var(--primary); margin-top: var(--sp-2); border-top: 1px solid var(--border); border-radius: 0 0 var(--r-sm) var(--r-sm); padding-top: 12px; }
-
-@media (prefers-reduced-motion: reduce) { .pagemenu .menu-btn-bars i { transition: none; } }
-.conn-head .brand img { height: 42px; }
-.conn-head h1 { font-size: clamp(2rem, 5vw, 3.6rem); }
-.conn-main { padding-bottom: clamp(3rem, 7vw, 5rem); position: relative; z-index: 2; }
-
-.legal-body { padding-top: var(--sp-6); padding-bottom: var(--sp-8); }
-.legal-body p, .legal-body li { line-height: 1.65; margin: 0 0 var(--sp-4); color: var(--text-muted); }
-.legal-body ul { padding-left: var(--sp-6); margin: 0 0 var(--sp-6); }
-.legal-body li { margin-bottom: var(--sp-4); }
-.legal-body strong { color: var(--text); }
-
-/* The numbering is information: each step depends on the one before it. */
-.steps { list-style: none; counter-reset: step; padding: 0; margin: 0; }
-.steps > li {
-  counter-increment: step;
-  position: relative;
-  padding: 0 0 clamp(2rem, 4vw, 3rem) clamp(3.2rem, 6vw, 4.4rem);
-  border-left: 2px solid var(--border-strong);
-}
-.steps > li:last-child { border-left-color: transparent; padding-bottom: var(--sp-8); }
-/* Each step is a station on the same line the rest of the site runs on. */
-.steps > li::before {
-  content: counter(step);
-  position: absolute;
-  left: 0; top: 0;
-  transform: translateX(-50%);
-  width: clamp(2rem, 3.2vw, 2.4rem); height: clamp(2rem, 3.2vw, 2.4rem);
-  display: grid; place-items: center;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 2px solid var(--primary);
-  color: var(--primary);
-  font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700;
-}
-.steps h2 { font-size: clamp(1.25rem, 2.4vw, 1.8rem); margin: 0 0 var(--sp-3); }
-.steps p { color: var(--text-muted); line-height: 1.6; margin: 0 0 var(--sp-4); max-width: 54ch; }
-.steps .step-do { margin-top: var(--sp-6); }
-
-/* The connection link is a FIELD, not a code block: it is an address someone
-   copies, and dressing it as source would say "this page is for programmers",
-   which is the one thing it must not say. */
+   A FIELD, not a code block: it holds something a student copies, and
+   dressing it as source would say "this page is for programmers", which is
+   the one thing it must not say. */
 .copyfield {
   display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3);
   background: var(--surface-2);
@@ -390,14 +311,6 @@
   padding: var(--sp-3) var(--sp-3) var(--sp-3) clamp(0.9rem, 2vw, 1.3rem);
   margin: 0 0 var(--sp-4);
   max-width: 34rem;
-}
-.copyfield-url {
-  font-family: var(--font-mono);
-  font-size: clamp(0.82rem, 1.5vw, 0.98rem);
-  color: var(--text);
-  word-break: break-all;
-  flex: 1 1 14rem;
-  user-select: all;
 }
 .copyfield-btn {
   flex: none;
@@ -419,19 +332,6 @@
   user-select: all;
   padding: var(--sp-2) 0;
 }
-
-.pending {
-  font-size: var(--fs-sm); line-height: 1.6; color: var(--text-muted);
-  border-left: 3px solid var(--warning);
-  padding-left: var(--sp-4);
-  max-width: 48ch;
-}
-.pending strong { color: var(--text); }
-
-.where { margin: 0; padding-left: 1.1rem; color: var(--text-muted); line-height: 1.75; max-width: 56ch; }
-.where strong { color: var(--text); }
-.try { margin-top: clamp(2rem, 4vw, 3rem); }
-.try h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
 
 /* ── Footer ─────────────────────────────────────────────────────────── */
 .foot { border-top: 1px solid var(--border-strong); padding: clamp(2.5rem, 6vh, 4rem) 0; margin-top: clamp(2rem, 5vh, 4rem); }
@@ -676,9 +576,3 @@
   .journey-static .route-stop { animation: none; opacity: 1; }
   .is-pinned .scene { transition: none; }
 }
-
-/* The address before the connector exists. Shown so a reader knows what is
-   coming, styled so it does not read as an action: no Copy button, muted,
-   and the "not live" line sits above it rather than underneath. */
-.copyfield.is-pending { opacity: .65; }
-.copyfield.is-pending .copyfield-url { user-select: all; }

@@ -572,6 +572,29 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
     name them, so any entry that uses a token gets the face backing it. Both bundles are asserted in
     `apps/web/test/build-output.test.ts`; the first version of that test read only the landing
     stylesheet and passed green while the planner shipped no mono at all.
+  - **Amended 2026-11-16 (#60, #61).** A third face, **Raleway**, for display type on the pages
+    OUTSIDE the planner: their headings and the links in their shared header, at 500 with tight
+    tracking. The one-face rule was written to stop a second face being reached for as emphasis
+    inside the app, and it still holds there — the planner loads no Raleway and sets nothing in it.
+    The owner's landing prototype is set in it and the pages around the landing have to read as the
+    same site. Self-hosted like the other two (`@fontsource-variable/raleway`, imported by
+    `site.css` only), so the CSP's `font-src 'self'` does not move; `site-surface.test.ts` pins the
+    whole policy line so that adding a face can never quietly become allowlisting a font host.
+- **The pages outside the planner are cream, and say so (2026-11-16, #61).** Connect your AI, Privacy
+  and Terms used to wear the old landing page's dark canvas. They now sit on the app's light tokens
+  with petrol as the only accent (`site.css`), and each carries `data-theme="light"`: merely dropping
+  `dark` would hand them to the system preference, and there is no dark version for it to pick. One
+  header for all of them (`src/site/header.ts`): the mark, the planner's wordmark, Planner, Connect
+  your AI, Start my plan. No menu button — the legal documents ship no script — so on a narrow screen
+  the links take a row of their own instead of collapsing.
+  - **The lion in the mark is paper.** `public/mark-clear.png` is the mark with the cream cut out,
+    for use on anything that is not exactly `--bg`. Cutting "only the background" and keeping the
+    lion cream is not possible: the lion is negative space, its back runs into the gap between the L
+    and the D with no ink between (measured — a flood fill from the picture's edge reaches its
+    face). So every cream pixel goes, and on a tinted surface the lion takes that surface's colour,
+    exactly as it takes the page's on cream. Edge pixels are unmixed from the cream, not just faded,
+    or the mark carries a pale halo. `public/mark.png` stays opaque for anything that needs a
+    rectangle. Regenerate with `node scripts/make-mark.mjs`.
 - **Signature.** Station-dot nodes (hollow rings), route-line connectors (canvas edge hues), station-
   sign column headers, route progress with a "you are here" marker, and the animated route-drawing
   onboarding hero (major+minor lines converging — `Onboarding.tsx`).

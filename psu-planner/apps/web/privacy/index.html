@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,43 +7,30 @@
     <meta name="description" content="LionsDegree stores your degree plan in your own browser. No tracking, no analytics, no advertising, no sale of data." />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="theme-color" content="#2b2a27" />
+    <meta name="theme-color" content="#f1ebdf" />
     <link rel="canonical" href="%SITE_URL%/privacy/" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="LionsDegree" />
     <meta property="og:url" content="%SITE_URL%/privacy/" />
     <meta property="og:title" content="Privacy Policy — LionsDegree" />
     <meta property="og:description" content="LionsDegree stores your degree plan in your own browser. No tracking, no analytics, no advertising, no sale of data." />
-    <link rel="stylesheet" href="/src/landing.css" />
+    <link rel="stylesheet" href="/src/site.css" />
   </head>
-  <body class="landing legal-page">
+  <body class="site legal-page">
     <a href="#doc" class="skip-link">Skip to the document</a>
-    <header class="conn-head">
-      <div class="wrap">
-        <p class="home">
-          <a class="brand" href="/"><img src="/mark.png" width="420" height="327" alt="" /><span><b>Lions</b>Degree</span></a>
-          <!-- Menu on the trailing edge, the same corner every other
-               surface puts it. `<details>` rather than a scripted panel:
-               these documents ship no JavaScript, and an OAuth reviewer's
-               crawler has to be able to read them with none. -->
-          <details class="pagemenu">
-            <summary class="menu-btn">
-              <span class="menu-btn-label">Menu</span>
-              <span class="menu-btn-bars" aria-hidden="true"><i></i><i></i></span>
-            </summary>
-            <nav class="pagemenu-panel" aria-label="All pages">
-              <a href="/">Home</a>
-              <a href="/connect/">Connect your AI</a>
-              <a href="/privacy/">Privacy</a>
-              <a href="/terms/">Terms</a>
-              <a class="menu-go" href="/plan/">Open the planner &rarr;</a>
-            </nav>
-          </details>
-        </p>
+    <header class="site-head">
+      <a class="brand" href="/"><img src="/mark-clear.png" width="185" height="144" alt="" /><span><b>Lions</b>Degree</span></a>
+      <nav class="site-nav" aria-label="Site">
+        <a href="/plan/">Planner</a>
+        <a href="/connect/">Connect your AI</a>
+      </nav>
+      <a class="site-start" href="/plan/">Start my plan<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg></a>
+    </header>
+    <main id="doc" class="wrap">
+      <div class="page-head">
         <h1>Privacy Policy</h1>
       </div>
-    </header>
-    <main id="doc" class="wrap legal-body">
+      <div class="doc-body">
         <p><strong>The short version:</strong> your degree plan lives in your browser, not on our servers. We set no cookies and run no analytics.</p>
         <ul>
           <li><strong>Plan data</strong> (majors, courses, progress) is stored on your device. If you choose to sign in, your plan syncs to your own private row in our database (Supabase, US region), which only your account can read. You can remove it with “Start over”, and deleting your account deletes every plan attached to it.</li>
@@ -55,8 +42,9 @@
         </ul>
         <p>This service is intended for people 13 and older.</p>
         <p><em>Last updated November 16, 2026.</em> Source code: <a href="https://github.com/okayojas/lionsdegree" target="_blank" rel="noopener noreferrer">github.com/okayojas/lionsdegree</a>.</p>
+      </div>
     </main>
-    <footer class="band band-ink foot">
+    <footer class="foot">
       <div class="wrap">
         <p class="disclaim">
           <strong>Unofficial.</strong> LionsDegree is not affiliated with,

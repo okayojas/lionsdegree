@@ -167,9 +167,10 @@ test.describe("the wordmark", () => {
 
 test.describe("the menu", () => {
   test("is in the same corner on the planner as on every other page", async ({ page }) => {
-    // Not a style assertion -- a consistency one. The landing page, the
-    // planner and the three static pages all put the menu at the TRAILING
-    // edge; which edge matters far less than it never moving between them.
+    // Not a style assertion -- a consistency one. The landing page and the
+    // planner both put the menu at the TRAILING edge; which edge matters far
+    // less than it never moving between them. (Connect, Privacy and Terms
+    // no longer have a menu to place: see the test below.)
     await page.addInitScript(
       ([k, p]) => window.localStorage.setItem(k as string, p as string),
       ["psu-planner-plan-v1", JSON.stringify(SEEDED_PLAN)] as const,
@@ -201,13 +202,19 @@ test.describe("the menu", () => {
       .toBeLessThanOrEqual(page.viewportSize()!.width + 1);
   });
 
-  test("is reachable on a page that ships no JavaScript", async ({ page }) => {
+  test("is not needed on a page that ships no JavaScript", async ({ page }) => {
+    // REWRITTEN FOR #61, same property. These pages used to carry a
+    // `<details>` menu, and this test opened it to prove the way home and
+    // the way to Connect could be reached with no script. They now wear the
+    // site header, whose links are simply on the page: there is nothing to
+    // open, so the thing to hold is that nothing has to be.
+    // (site-pages.spec.ts checks the header itself, with scripting off.)
     await page.goto("/privacy/");
-    const menu = page.locator(".pagemenu summary");
-    await expect(menu).toBeVisible();
-    await menu.click();
-    await expect(page.locator(".pagemenu-panel a", { hasText: "Home" })).toBeVisible();
-    await expect(page.locator(".pagemenu-panel a[href='/connect/']")).toBeVisible();
+    await expect(page.locator("details, [aria-haspopup], [aria-expanded]"), "something here has to be opened").toHaveCount(0);
+    const header = page.getByRole("banner");
+    await expect(header.locator("a[href='/']")).toBeVisible();
+    await expect(header.locator("a[href='/connect/']")).toBeVisible();
+    await expect(header.locator("a[href='/plan/']").first()).toBeVisible();
   });
 });
 

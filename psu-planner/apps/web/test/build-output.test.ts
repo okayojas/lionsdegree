@@ -291,6 +291,13 @@ describe("the service worker", () => {
     ).map((e: { url: string }) => e.url);
     expect(urls).not.toContain("index.html");
     expect(urls.filter((u) => u.includes("landing"))).toEqual([]);
+    // Nor any other page outside /plan/, nor what only those pages load. The
+    // worker's scope stops at /plan/, so each of these would be bytes a
+    // student downloads on install and the worker can never hand back.
+    expect(
+      urls.filter((u) => /^(connect|privacy|terms)\//.test(u) || /^assets\/(site|copy|journey)-/.test(u)),
+      "the planner's worker is precaching pages it cannot serve",
+    ).toEqual([]);
     // It must still precache the planner's own shell.
     expect(urls).toContain("plan/index.html");
   });
@@ -432,6 +439,48 @@ describe("the monospace face", () => {
       }
     });
   }
+});
+
+describe("the pages outside the planner", () => {
+  /** Connect, Privacy and Terms (#61). What is checked here is what only the
+   * BUILT page can show: that the header was actually written into it, and
+   * which faces its stylesheet really ships. */
+  const PAGES = ["connect/index.html", "privacy/index.html", "terms/index.html"];
+  const sheetOf = (page: string) => {
+    const href = /<link rel="stylesheet"[^>]*href="\/(assets\/[^"]+\.css)"/.exec(read(page))?.[1];
+    expect(href, `${page} links no stylesheet`).toBeTruthy();
+    return read(href!);
+  };
+
+  it.each(PAGES)("%s is built with the header in it", (page) => {
+    const html = read(page);
+    // A slot left unfilled is an HTML comment: the page would build, serve
+    // and render with no header and no error anywhere.
+    expect(html, "the header slot was never filled").not.toContain("site-header -->");
+    expect(html.match(/<header class="site-head">/g), "expected exactly one site header").toHaveLength(1);
+    expect(html).toMatch(/<b>Lions<\/b>Degree/);
+  });
+
+  it.each(PAGES)("%s ships Raleway from this origin", (page) => {
+    const faces = [...sheetOf(page).matchAll(/@font-face\{([^}]*)\}/g)].map((m) => m[1]);
+    const raleway = faces.filter((f) => /Raleway/i.test(f));
+    expect(raleway.length, "the page names Raleway but ships no @font-face for it").toBeGreaterThan(0);
+    for (const f of raleway) {
+      const url = (/url\(([^)]+)\)/.exec(f)?.[1] ?? "").replace(/^["']|["']$/g, "");
+      expect(url, `Raleway loaded from a remote host: ${url}`).not.toMatch(/^https?:/);
+      if (url.startsWith("data:")) continue;
+      expect(exists(url.replace(/^\//, "")), `${url} is referenced by @font-face but not in dist`).toBe(true);
+    }
+  });
+
+  it("keeps the display face out of the planner", () => {
+    // DECISIONS 5.2: the app is one face plus mono for course codes. Raleway
+    // is for the pages around it, and a stray import into the shared
+    // stylesheet would hand every student another font to download.
+    const planner = fs.readdirSync(path.join(dist, "assets")).find((f) => /^plan-.*\.css$/.test(f));
+    expect(planner, "no planner stylesheet in dist/assets").toBeTruthy();
+    expect(read(path.join("assets", planner!))).not.toMatch(/Raleway/i);
+  });
 });
 
 describe("the default deployment", () => {
