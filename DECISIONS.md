@@ -594,6 +594,13 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
     along. The old addresses still work: `/#about` and `/#contact` are sent on by `src/moved.ts`,
     and with no script the landing footer's own About and Contact links carry those ids, so the
     browser scrolls to the link that goes there.
+  - **The discovery prompt lives on Connect your AI, and only there (2026-11-16, #63).** It was
+    printed on the landing page; the new landing has no place for it, and the page a student is on
+    when they have just connected an assistant is the right one anyway. It sits after the four
+    steps and outside them, at `/connect/#discovery`, and the landing page links to it. Both copy
+    buttons on that page now say what they copy ("Copy link", "Copy prompt"), and are `hidden` in
+    the markup until `src/copy.ts` runs: with scripts off the text is there to select and no
+    button pretends to copy it.
   - **One list of these pages.** `PAGES` in `src/site/header.ts` is what the header links, what
     the build takes its entry points from, what the planner's precache leaves out, and what the
     sitemap is written from. A page is added there. (The sitemap used to be built from the legal

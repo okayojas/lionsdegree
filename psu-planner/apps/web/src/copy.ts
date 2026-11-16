@@ -1,8 +1,8 @@
-/** Copy buttons: the connection link on /connect/, the discovery prompt on
- * the landing page.
+/** Copy buttons: the connection link and the discovery prompt, both on
+ * /connect/.
  *
  * A progressive enhancement and nothing more: whatever is being copied is
- * plain selectable text in the markup, so both pages work with this script
+ * plain selectable text in the markup, so the page works with this script
  * blocked, failed, or not yet parsed. That matters more here than on most
  * pages — someone setting up a connector is often doing it on a locked-down
  * machine.
@@ -13,6 +13,10 @@ function wire(btn: HTMLButtonElement): void {
   const target = document.getElementById(btn.dataset.copy ?? "");
   if (!target) return;
   const label = btn.textContent ?? "Copy";
+  // The buttons are `hidden` in the markup and shown here, once there is
+  // something behind them. With this script blocked the page has the text
+  // and no button, which is the truth.
+  btn.hidden = false;
 
   btn.addEventListener("click", async () => {
     const text = (target.textContent ?? "").trim();

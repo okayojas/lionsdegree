@@ -83,6 +83,21 @@ describe("a page of its own", () => {
     expect(new Set(titles).size, `two pages share a title: ${titles.join(" | ")}`).toBe(titles.length);
     expect(new Set(descriptions).size, "two pages share a description").toBe(descriptions.length);
   });
+
+  it("the discovery prompt is written down once, on Connect your AI", () => {
+    // It was on the landing page and is on the Connect page (#63). Two copies
+    // is one that gets reworded and one that does not, and a student pastes
+    // whichever they happened to find. Every document the site serves and
+    // everything the site's scripts could write into one is searched, which
+    // is why this is here and not in the browser suite.
+    const OPENING = "Use LionsDegree to find programs";
+    const scripts = (fs.readdirSync(path.join(web, "src"), { recursive: true }) as string[])
+      .filter((f) => /\.(ts|tsx)$/.test(f))
+      .map((f) => `src/${f.replaceAll("\\", "/")}`);
+    const holders = [...DOCUMENTS, ...scripts].filter((file) => source(file).includes(OPENING));
+    expect(holders).toEqual(["connect/index.html"]);
+    expect(source("connect/index.html").split(OPENING), "it is on the Connect page twice").toHaveLength(2);
+  });
 });
 
 describe("the two marks", () => {

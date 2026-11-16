@@ -79,7 +79,12 @@
           </p>
           <div class="copyfield">
             <span class="copyfield-url" id="connector-url">https://mcp.lionsdegree.com/mcp</span>
-            <button type="button" class="copyfield-btn" data-copy="connector-url">Copy</button>
+            <!-- Hidden until src/copy.ts is running, like the one beside the
+                 prompt further down. A button that copies nothing when it is
+                 pressed is worse than no button: the address is selectable
+                 text either way. It says WHAT it copies because there are two
+                 of them on the page. -->
+            <button type="button" class="copyfield-btn" data-copy="connector-url" hidden>Copy link</button>
           </div>
         </li>
 
@@ -143,6 +148,32 @@
           a course your degree requires unless you say so in your own words —
           and it has to repeat those words back to you.
         </p>
+      </section>
+
+      <!-- THE DISCOVERY PROMPT. It is not an unbuilt feature and must not
+           read as one: the connector can already find programs that fit,
+           and what it needs is a model to make sense of "machine learning
+           and clean energy". The model is the student's own, so the page
+           hands over the sentence that starts it. It moved here from the
+           landing page (#63) and exists nowhere else; `/connect/#discovery`
+           is what links to it.
+
+           After the steps and outside them, on purpose. It is something to
+           do once connected, and numbering it would make it a fifth thing
+           a student has to do to connect. -->
+      <section class="try" id="discovery">
+        <h2>Or let it pick the degree</h2>
+        <p class="lede">
+          Not sure what to study yet? Paste this to find a major, minors and
+          certificates that share credits. Change the interests to your own
+          before you send it.
+        </p>
+        <!-- A sentence, not an address: plain text in the body face, which
+             a student can read, select part of, and reword. -->
+        <div class="copyfield copyfield-prose">
+          <p class="copyfield-text" id="discovery-prompt">I&rsquo;m a Penn State student. Use LionsDegree to find programs that fit what I&rsquo;m into: machine learning and clean energy. Give me a major plus any minors and certificates that share credits with it, and send me the link to open the plan.</p>
+          <button type="button" class="copyfield-btn" data-copy="discovery-prompt" hidden>Copy prompt</button>
+        </div>
       </section>
     </main>
 

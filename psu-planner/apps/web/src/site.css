@@ -266,6 +266,15 @@
   font-family: var(--font-sans); font-size: var(--fs-base); font-weight: 700;
   cursor: pointer;
 }
+/* The discovery prompt is a sentence, not an address: it wraps on words and
+   is set in the body face. Monospace and `word-break: break-all` are right
+   for a URL and wrong for English. */
+.copyfield-prose { align-items: flex-start; max-width: 44rem; }
+.site .copyfield-text {
+  flex: 1 1 18rem;
+  margin: 0; padding: var(--sp-2) 0;
+  line-height: 1.55; color: var(--text);
+}
 /* Qualified, and `:active` too, for the reason given at `.btn-go`. */
 .site .copyfield-btn:is(:hover, :active) { background: var(--primary-hover); }
 .site .copyfield-btn.is-done { background: var(--success); }

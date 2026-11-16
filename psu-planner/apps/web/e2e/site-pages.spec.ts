@@ -279,7 +279,7 @@ test("the Copy button keeps its label while it is pressed", async ({ page }) => 
   // bug it was written for.
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/connect/");
-  const copy = page.getByRole("button", { name: "Copy", exact: true });
+  const copy = page.getByRole("button", { name: "Copy link", exact: true });
   await copy.focus();
   await page.keyboard.down("Space");
   const pressed = await copy.evaluate((b) => {

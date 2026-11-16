@@ -195,7 +195,6 @@ export default defineConfig({
           "assets/landing-*.css",
           "assets/journey-*.js",
           "assets/site-*.css",
-          "assets/copy-*.js",
           "og.png",
         ],
         // Deep links inside the planner resolve to its shell. The denylist

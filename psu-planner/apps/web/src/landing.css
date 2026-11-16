@@ -261,45 +261,6 @@
   .journey-label button span { display: none; }
 }
 
-/* ── The copy field ─────────────────────────────────────────────────────
-   Connect, Privacy and Terms used to share this file. They have their own
-   now (site.css), on cream; what is left here is the old landing page's
-   alone, and goes when it does.
-
-   A FIELD, not a code block: it holds something a student copies, and
-   dressing it as source would say "this page is for programmers", which is
-   the one thing it must not say. */
-.copyfield {
-  display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3);
-  background: var(--surface-2);
-  border: 1.5px solid var(--border-strong);
-  border-radius: var(--r-lg);
-  box-shadow: var(--shadow), inset 0 1px 0 color-mix(in srgb, var(--text) 10%, transparent);
-  padding: var(--sp-3) var(--sp-3) var(--sp-3) clamp(0.9rem, 2vw, 1.3rem);
-  margin: 0 0 var(--sp-4);
-  max-width: 34rem;
-}
-.copyfield-btn {
-  flex: none;
-  background: var(--primary); color: var(--primary-fg);
-  border: 0; border-radius: var(--r-full);
-  padding: 0.6rem 1.25rem;
-  font-family: var(--font-sans); font-size: var(--fs-sm); font-weight: 700;
-  cursor: pointer;
-}
-.copyfield-btn.is-done { background: var(--success); }
-
-/* The discovery prompt is a sentence, not an address: it wraps on words and
-   is set in the body face. Monospace and `word-break: break-all` are right
-   for a URL and wrong for English. */
-.copyfield-prose { align-items: flex-start; max-width: 42rem; }
-.copyfield-text {
-  flex: 1 1 18rem;
-  font-size: var(--fs-sm); line-height: 1.55; color: var(--text);
-  user-select: all;
-  padding: var(--sp-2) 0;
-}
-
 /* ── Footer ─────────────────────────────────────────────────────────── */
 .foot { border-top: 1px solid var(--border-strong); padding: clamp(2.5rem, 6vh, 4rem) 0; margin-top: clamp(2rem, 5vh, 4rem); }
 .foot-in { width: min(1280px, 100% - clamp(1.5rem, 6vw, 4rem)); margin-inline: auto; }

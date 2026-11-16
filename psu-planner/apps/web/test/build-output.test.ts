@@ -45,12 +45,13 @@ beforeAll(() => {
  * Do not round either up to make a build pass. Re-measure, and put the figure
  * in the commit message — that is the discipline the ADR exists to impose. */
 
-/** Script that runs before the page is interactive. Measured at 2.9 KB
- * (4.2 before the feedback form left for the About page, #62). */
+/** Script that runs before the page is interactive. Measured at 2.5 KB
+ * (4.2 before the feedback form left for the About page in #62, and 2.9
+ * before the copy button left for Connect in #63). */
 const LANDING_EAGER_CEILING_KB = 12;
 
-/** Everything reachable, lazy chunks included. Measured at 135.5 KB, all but
- * 2.9 of it Three.js, deferred. It was 190.7 with a ceiling of 230 while the
+/** Everything reachable, lazy chunks included. Measured at 135.2 KB, all but
+ * 2.5 of it Three.js, deferred. It was 190.7 with a ceiling of 230 while the
  * feedback form lived here and brought the Supabase client with it; the
  * ceiling came down with the weight, keeping the same fifth of headroom. */
 const LANDING_SCRIPT_CEILING_KB = 165;
@@ -308,7 +309,7 @@ describe("the service worker", () => {
       urls.filter(
         (u) =>
           SITE_PAGES.some((page) => u.startsWith(`${pageName(page)}/`) || u.startsWith(`assets/${pageName(page)}-`)) ||
-          /^assets\/(site|copy|journey)-/.test(u),
+          /^assets\/(site|journey)-/.test(u),
       ),
       "the planner's worker is precaching pages it cannot serve",
     ).toEqual([]);
