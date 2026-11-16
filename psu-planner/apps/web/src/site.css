@@ -76,6 +76,9 @@
   color: var(--navy);
 }
 .brand b { color: var(--primary); font-weight: inherit; }
+/* As in the planner: it does not look like a link, so the hover and the
+   focus ring are what say it is one. */
+.brand:hover span { color: var(--primary); }
 
 .site-nav {
   display: flex; align-items: center; flex-wrap: wrap;
@@ -105,7 +108,7 @@
   padding: 5px 5px 5px 18px;
   border: 1px solid var(--border-strong); border-radius: var(--r-full);
   background: var(--surface); box-shadow: var(--shadow-sm);
-  font-family: var(--font-display); font-size: 0.9375rem; font-weight: 600;
+  font-family: var(--font-display); font-size: 0.9375rem; font-weight: 500;
   color: var(--navy); text-decoration: none; white-space: nowrap;
   transition: border-color .2s var(--ease-out), box-shadow .2s var(--ease-out);
 }
@@ -165,7 +168,7 @@
   margin: 0 0 var(--sp-6);
 }
 .site h2 {
-  font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 600;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 500;
   line-height: 1.12; letter-spacing: -0.025em;
   margin: 0 0 var(--sp-3);
 }
@@ -174,14 +177,11 @@
 .site strong { color: var(--text); }
 
 .page-head { padding: clamp(2rem, 7vw, 5rem) 0 clamp(1.5rem, 4vw, 3rem); }
-/* A wayfinding label, in the face the planner keeps for course codes. The
-   qualifier beats the app's own `.eyebrow`, which is the sans in muted ink. */
-.site .eyebrow {
-  font-family: var(--font-mono); font-size: var(--fs-xs); font-weight: 500;
-  letter-spacing: .14em; text-transform: uppercase;
-  color: var(--primary);
-  margin: 0 0 var(--sp-4);
-}
+/* A wayfinding label. The app's own `.eyebrow` already sets it: the same
+   sans, uppercase and tracked, and NOT the mono, which is kept for course
+   codes and literal machine text (DECISIONS 5.2). Here it only takes the
+   accent, and the qualifier is what beats the app's muted ink. */
+.site .eyebrow { color: var(--primary); margin: 0 0 var(--sp-4); }
 .lede { font-size: 1.1875rem; line-height: 1.5; color: var(--text); max-width: 58ch; }
 .note { font-size: var(--fs-base); line-height: 1.6; color: var(--text-muted); max-width: 58ch; }
 
@@ -228,7 +228,7 @@
   background: var(--bg);
   border: 2px solid var(--primary);
   color: var(--primary);
-  font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700;
+  font-size: 0.9rem; font-weight: 700;
 }
 .steps p { max-width: 58ch; }
 .steps .step-do { margin-top: var(--sp-6); }
@@ -260,9 +260,10 @@
   font-family: var(--font-sans); font-size: var(--fs-base); font-weight: 700;
   cursor: pointer;
 }
-/* Qualified: the app's bare `button:hover` would turn it paper-coloured
-   under cream text. */
-.site .copyfield-btn:hover { background: var(--primary-hover); }
+/* Qualified, and `:active` as well as `:hover`: the app's bare button rules
+   paint both states paper-coloured, which under cream text is a button with
+   no label. Pressed from the keyboard there is no hover to hide behind. */
+.site .copyfield-btn:is(:hover, :active) { background: var(--primary-hover); }
 .site .copyfield-btn.is-done { background: var(--success); }
 
 .where { margin: 0; padding-left: 1.1rem; max-width: 60ch; }
@@ -301,11 +302,9 @@
 .small a:hover { color: var(--text); }
 
 /* ── Quality floor ──────────────────────────────────────────────────── */
-.site :is(a, button):focus-visible {
-  outline: 2px solid var(--focus-ring); outline-offset: 3px;
-  border-radius: var(--r-sm);
-}
-/* The pills keep their own shape under the ring. */
+/* The focus ring itself is the app's (`:focus-visible` in styles.css), so a
+   control here is found the same way as one in the planner. Only the pills
+   need a word: they keep their own shape under it. */
 .site :is(.site-start, .btn, .copyfield-btn):focus-visible { border-radius: var(--r-full); }
 
 @media (prefers-reduced-motion: reduce) {

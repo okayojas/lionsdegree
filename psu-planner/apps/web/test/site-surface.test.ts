@@ -10,15 +10,14 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
-import { SECTIONS } from "../src/legal/content.js";
-import { SITE_HEADER_SLOT, siteHeader } from "../src/site/header.js";
+import { SITE_HEADER_SLOT, SITE_PAGES, siteHeader } from "../src/site/header.js";
 
 const web = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const source = (rel: string) => fs.readFileSync(path.join(web, rel), "utf-8");
 
-/** Every page that wears the header, and how it gets it. */
-const HAND_WRITTEN = ["connect/index.html"];
-const GENERATED = SECTIONS.filter((s) => s.path).map((s) => `${s.path!.replace(/^\/|\/$/g, "")}/index.html`);
+/** "/connect/" -> "connect/index.html" */
+const fileOf = (page: string) => `${page.slice(1)}index.html`;
+const FILES = SITE_PAGES.map(fileOf);
 
 describe("the shared header", () => {
   it("is the planner's wordmark, from the planner's markup", () => {
@@ -35,19 +34,19 @@ describe("the shared header", () => {
     expect(siteHeader("/privacy/")).not.toContain("aria-current");
   });
 
-  it.each(HAND_WRITTEN)("%s asks for it instead of carrying a copy", (file) => {
-    const html = source(file);
-    expect(html.split(SITE_HEADER_SLOT).length - 1, "the slot should appear exactly once").toBe(1);
-    // A second brand link in the file would be a second header.
-    expect(html, "this page still has a header of its own").not.toMatch(/class="brand"/);
+  it.each(SITE_PAGES)("%s gets it from the one place, exactly once", (page) => {
+    // Two ways in, and a page uses one of them. A generated document has
+    // the header written into it by the generator; a hand-written one
+    // leaves the slot and the build fills it. What no page may have is a
+    // header typed into it by hand, because that is a copy.
+    const html = source(fileOf(page));
+    const generated = html.includes(siteHeader(page)) ? 1 : 0;
+    const slotted = html.split(SITE_HEADER_SLOT).length - 1;
+    expect(generated + slotted, "a page gets the header one way: generated, or one slot").toBe(1);
+    expect(html.match(/class="brand"/g) ?? [], "a header typed into the page by hand").toHaveLength(generated);
   });
 
-  it.each(GENERATED)("%s is generated with it", (file) => {
-    const page = `/${file.replace(/index\.html$/, "")}`;
-    expect(source(file)).toContain(siteHeader(page));
-  });
-
-  it.each([...HAND_WRITTEN, ...GENERATED])("%s is pinned to the light theme", (file) => {
+  it.each(FILES)("%s is pinned to the light theme", (file) => {
     // Not merely "no longer dark": with no theme named, the stylesheet
     // follows the system, and these pages have no dark version to follow it
     // into.
@@ -104,7 +103,7 @@ describe("the two marks", () => {
   it("social cards and icons never point at the transparent one", () => {
     // A previewer composites onto whatever colour it likes; a transparent
     // mark on a dark chat bubble is a navy shape on near-black.
-    for (const file of ["index.html", ...HAND_WRITTEN, ...GENERATED, "plan/index.html"]) {
+    for (const file of ["index.html", ...FILES, "plan/index.html"]) {
       const meta = [...source(file).matchAll(/<(?:meta|link)\b[^>]*>/g)].map((m) => m[0]);
       expect(meta.filter((t) => t.includes("mark-clear")), `${file} uses the transparent mark in its <head>`).toEqual([]);
     }

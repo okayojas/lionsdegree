@@ -15,6 +15,7 @@ import zlib from "node:zlib";
 import { fileURLToPath } from "node:url";
 import { requirementCoverage } from "@psu-planner/engine";
 import { latestEdition, loadPrograms } from "../scripts/catalog-programs.mjs";
+import { SITE_PAGES } from "../src/site/header.js";
 
 const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "dist");
 const read = (rel: string) => fs.readFileSync(path.join(dist, rel), "utf-8");
@@ -295,7 +296,7 @@ describe("the service worker", () => {
     // worker's scope stops at /plan/, so each of these would be bytes a
     // student downloads on install and the worker can never hand back.
     expect(
-      urls.filter((u) => /^(connect|privacy|terms)\//.test(u) || /^assets\/(site|copy|journey)-/.test(u)),
+      urls.filter((u) => SITE_PAGES.some((page) => u.startsWith(page.slice(1))) || /^assets\/(site|copy|journey)-/.test(u)),
       "the planner's worker is precaching pages it cannot serve",
     ).toEqual([]);
     // It must still precache the planner's own shell.
@@ -445,7 +446,7 @@ describe("the pages outside the planner", () => {
   /** Connect, Privacy and Terms (#61). What is checked here is what only the
    * BUILT page can show: that the header was actually written into it, and
    * which faces its stylesheet really ships. */
-  const PAGES = ["connect/index.html", "privacy/index.html", "terms/index.html"];
+  const PAGES = SITE_PAGES.map((page) => `${page.slice(1)}index.html`);
   const sheetOf = (page: string) => {
     const href = /<link rel="stylesheet"[^>]*href="\/(assets\/[^"]+\.css)"/.exec(read(page))?.[1];
     expect(href, `${page} links no stylesheet`).toBeTruthy();

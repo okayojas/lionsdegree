@@ -4,9 +4,11 @@
 import type { Block, Inline, Section } from "./content.js";
 import { siteHeader } from "../site/header.js";
 
-/** Everything interpolated into the page goes through this. The content is
- * ours and contains no markup today, but a policy document that builds HTML
- * by concatenation is one careless edit away from injecting it. */
+/** Every piece of CONTENT interpolated into the page goes through this. The
+ * content is ours and contains no markup today, but a policy document that
+ * builds HTML by concatenation is one careless edit away from injecting it.
+ * The one thing written in unescaped is `siteHeader()`, which is markup by
+ * design and takes nothing from the content module. */
 export function escapeHtml(s: string): string {
   return s
     .replace(/&/g, "&amp;")

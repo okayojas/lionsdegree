@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
-import { SITE_HEADER_SLOT, siteHeader } from "./src/site/header";
+import { SITE_HEADER_SLOT, SITE_PAGES, siteHeader } from "./src/site/header";
 
 /** TWO ENTRY POINTS. The root is a static document; the planner is the SPA,
  * served from /plan/.
@@ -185,9 +185,8 @@ export default defineConfig({
         // the landing page's copy of three.js.
         globIgnores: [
           "index.html",
-          "connect/**",
-          "privacy/**",
-          "terms/**",
+          // "/connect/" -> "connect/**"
+          ...SITE_PAGES.map((page) => `${page.slice(1)}**`),
           "assets/landing-*.js",
           "assets/landing-*.css",
           "assets/journey-*.js",

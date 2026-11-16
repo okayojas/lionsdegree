@@ -16,6 +16,15 @@
  * they drop to a row of their own (site.css).
  */
 
+/** Every page that wears this header, as site paths.
+ *
+ * THE ONE LIST. The build reads it to keep these pages out of the planner's
+ * precache (vite.config.ts), and the tests read it to know which pages to
+ * hold to the shared surface. A page added here and nowhere else is covered
+ * by all of them; a page left off is a page nothing checks, which is how the
+ * precache came to be handing three of them to every installed planner. */
+export const SITE_PAGES = ["/connect/", "/privacy/", "/terms/"] as const;
+
 /** Where the build writes the header into a hand-written page. An HTML
  * comment, so a page opened straight off the disk still parses. */
 export const SITE_HEADER_SLOT = "<!-- site-header -->";

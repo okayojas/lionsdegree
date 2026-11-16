@@ -11,9 +11,19 @@
  * against these pages; nothing here loosens them.
  */
 import type { Page } from "@playwright/test";
+import sharp from "sharp";
 import { test, expect, expectNoA11yViolations } from "./fixtures";
+import { SITE_PAGES as PAGES } from "../src/site/header";
 
-const PAGES = ["/connect/", "/privacy/", "/terms/"] as const;
+/** What the header offers, in the order it offers it. Written out here, not
+ * read from the header's own list: a test that asked the code what the code
+ * contains would agree with whatever it found. */
+const HEADER = [
+  { name: "LionsDegree", href: "/" },
+  { name: "Planner", href: "/plan/" },
+  { name: "Connect your AI", href: "/connect/" },
+  { name: "Start my plan", href: "/plan/" },
+] as const;
 
 /** The light tokens, as the browser reports them. Literals on purpose: a test
  * that read `--bg` back out of the page would pass on any colour at all. */
@@ -52,12 +62,7 @@ for (const path of PAGES) {
     test("carries the header, and every link in it goes somewhere", async ({ page, request }) => {
       await page.goto(path);
       const links = await headerLinks(page);
-      expect(links).toEqual([
-        { name: "LionsDegree", href: "/" },
-        { name: "Planner", href: "/plan/" },
-        { name: "Connect your AI", href: "/connect/" },
-        { name: "Start my plan", href: "/plan/" },
-      ]);
+      expect(links).toEqual(HEADER);
       for (const { name, href } of links) {
         const res = await request.get(href);
         expect(res.status(), `"${name}" points at ${href}, which did not serve`).toBe(200);
@@ -133,6 +138,33 @@ for (const path of PAGES) {
       expect(seen.padding).toBe("0px");
     });
 
+    test("the mark shows what is behind it, on a surface that is not cream", async ({ page }) => {
+      // The reason the mark was cut out at all. Everything above reads the
+      // file; this looks at the screen, with the header tinted the colour
+      // the landing page's scene will pass under it.
+      const TINT = { r: 58, g: 169, b: 240 };
+      await page.goto(path);
+      const mark = page.getByRole("banner").locator("img");
+      await expect.poll(() => mark.evaluate((i: HTMLImageElement) => i.complete && i.naturalWidth > 0)).toBe(true);
+      await page.getByRole("banner").evaluate((h, t) => {
+        (h as HTMLElement).style.background = `rgb(${t.r}, ${t.g}, ${t.b})`;
+      }, TINT);
+      const shot = await sharp(await mark.screenshot()).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+      const at = (fx: number, fy: number) => {
+        const x = Math.min(shot.info.width - 1, Math.round(fx * shot.info.width));
+        const y = Math.min(shot.info.height - 1, Math.round(fy * shot.info.height));
+        const i = (y * shot.info.width + x) * 3;
+        return { r: shot.data[i], g: shot.data[i + 1], b: shot.data[i + 2] };
+      };
+      const far = (a: typeof TINT, b: typeof TINT) => Math.hypot(a.r - b.r, a.g - b.g, a.b - b.b);
+      // Outside the D's curve, and in the gap between the letters: the tint.
+      expect(far(at(0.97, 0.04), TINT), "a cream box shows at the top right").toBeLessThan(12);
+      expect(far(at(0.97, 0.96), TINT), "a cream box shows at the bottom right").toBeLessThan(12);
+      expect(far(at(0.245, 0.06), TINT), "cream shows between the letters").toBeLessThan(12);
+      // The L's stem: still ink, and nothing like the tint.
+      expect(far(at(0.1, 0.5), TINT), "the ink let the tint through").toBeGreaterThan(120);
+    });
+
     test("sets its headings in Raleway, served from here", async ({ page, baseURL }) => {
       const origin = new URL(baseURL!).origin;
       const elsewhere: string[] = [];
@@ -173,8 +205,10 @@ for (const path of PAGES) {
           }),
         );
       }
-      expect(reached.slice(1)).toEqual(["LionsDegree", "Planner", "Connect your AI", "Start my plan"]);
-      expect(reached[0], "the first stop is not a way past the header").toMatch(/^Skip to /);
+      expect(reached.slice(1)).toEqual(HEADER.map((l) => l.name));
+      // Anchored at both ends: a missing ring appends " (no focus ring)",
+      // and a pattern open at the end would wave that through.
+      expect(reached[0], "the first stop is not a visible way past the header").toMatch(/^Skip to the \w+$/);
     });
 
     for (const width of [320, 360, 412]) {
@@ -223,11 +257,42 @@ test.describe("the header, with JavaScript off", () => {
     test(`${path} still has all of it`, async ({ page }) => {
       await page.goto(path);
       const banner = page.getByRole("banner");
-      for (const name of ["LionsDegree", "Planner", "Connect your AI", "Start my plan"]) {
+      for (const { name } of HEADER) {
         await expect(banner.getByRole("link", { name, exact: true })).toBeVisible();
       }
     });
   }
+});
+
+test("the Copy button keeps its label while it is pressed", async ({ page }) => {
+  // The app's bare `button:active` paints a pressed button paper-coloured.
+  // Under this button's cream label that is a control with nothing on it,
+  // and from the keyboard there is no hover state covering for it.
+  //
+  // Reduced motion, so the colour is the pressed colour and not a frame of
+  // the 120ms fade towards it. Without this the test read the fill a few
+  // milliseconds into the press, still petrol, and passed against the very
+  // bug it was written for.
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/connect/");
+  const copy = page.getByRole("button", { name: "Copy", exact: true });
+  await copy.focus();
+  await page.keyboard.down("Space");
+  const pressed = await copy.evaluate((b) => {
+    const lum = (c: number) => {
+      const s = c / 255;
+      return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+    };
+    const L = (css: string) => {
+      const [r, g, bl] = css.match(/[\d.]+/g)!.map(Number);
+      return 0.2126 * lum(r) + 0.7152 * lum(g) + 0.0722 * lum(bl);
+    };
+    const fg = L(getComputedStyle(b).color), bg = L(getComputedStyle(b).backgroundColor);
+    return { active: b.matches(":active"), ratio: (Math.max(fg, bg) + 0.05) / (Math.min(fg, bg) + 0.05) };
+  });
+  await page.keyboard.up("Space");
+  expect(pressed.active, "the button was not actually pressed, so this measured nothing").toBe(true);
+  expect(pressed.ratio, "a pressed Copy button cannot be read").toBeGreaterThanOrEqual(4.5);
 });
 
 test("the header says which page this is, and only on that page", async ({ page }) => {

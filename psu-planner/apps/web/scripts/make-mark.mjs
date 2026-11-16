@@ -44,7 +44,7 @@ const PAPER_TOLERANCE = 20;
 /** How far to look for the ink an edge pixel was mixed with. */
 const INK_REACH = 2;
 /** The least a colour can differ from the paper and still be called ink. The
- * palest ink in the mark, the sage of the route, is about 90 away. */
+ * palest ink in the mark, the sage of the route, is 95 away. */
 const MIN_INK = 40;
 /** Height of the file written, in pixels. `siteHeader()` states the
  * resulting size in its <img>, and site-surface.test.ts holds the two together. */

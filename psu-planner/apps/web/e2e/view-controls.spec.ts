@@ -166,7 +166,7 @@ test.describe("the wordmark", () => {
 });
 
 test.describe("the menu", () => {
-  test("is in the same corner on the planner as on every other page", async ({ page }) => {
+  test("sits at the trailing edge of the planner's toolbar, and opens on screen", async ({ page }) => {
     // Not a style assertion -- a consistency one. The landing page and the
     // planner both put the menu at the TRAILING edge; which edge matters far
     // less than it never moving between them. (Connect, Privacy and Terms
