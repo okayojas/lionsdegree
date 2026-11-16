@@ -16,31 +16,51 @@
  * they drop to a row of their own (site.css).
  */
 
-/** Every page that wears this header, as site paths.
- *
- * THE ONE LIST. The build reads it for its entry points and to keep these
- * pages out of the planner's precache (vite.config.ts), the sitemap is
- * written from it (scripts/site-index.mts), and the tests read it to know
- * which pages to hold to the shared surface. A page added here and nowhere
- * else is built, listed and covered by all of them; a page left off is a
- * page nothing checks, which is how the precache came to be handing three of
- * them to every installed planner. */
-export const SITE_PAGES = ["/connect/", "/about/", "/privacy/", "/terms/"] as const;
+/** A page that wears this header. */
+interface SitePage {
+  /** Where it is served, as a site path: "/about/". */
+  path: string;
+  /** What the header calls it. A page with no label is not in the header:
+   * Privacy and Terms are in every footer instead, which is where a reader
+   * looks for them. */
+  label?: string;
+}
 
-/** "/connect/" -> "connect": the page's folder, which is also the name the
- * build gives its entry and therefore the prefix of the files only it loads. */
+/** Every page that wears this header, in the order the header lists them.
+ *
+ * THE ONE LIST. The header's own links come from it. The build reads it for
+ * its entry points and to keep these pages out of the planner's precache
+ * (vite.config.ts), the sitemap is written from it (scripts/site-index.mts),
+ * and the tests read it to know which pages to hold to the shared surface. A
+ * page added here and nowhere else is built, linked, listed and covered by
+ * all of them; a page left off is a page nothing checks, which is how the
+ * precache came to be handing three of them to every installed planner.
+ *
+ * Sample plans joins it, first, when that page exists. */
+const PAGES: readonly SitePage[] = [
+  { path: "/connect/", label: "Connect your AI" },
+  { path: "/about/", label: "About" },
+  { path: "/privacy/" },
+  { path: "/terms/" },
+];
+
+/** The same list as site paths, which is all most readers of it want. */
+export const SITE_PAGES: readonly string[] = PAGES.map((page) => page.path);
+
+/** "/connect/" -> "connect": the page's folder, and the name the build gives
+ * its entry. A page with a script of its own ships it as `assets/<name>-*.js`
+ * (today that is About alone; the others load nothing, or a shared chunk). */
 export const pageName = (page: string): string => page.replace(/^\/|\/$/g, "");
 
 /** Where the build writes the header into a hand-written page. An HTML
  * comment, so a page opened straight off the disk still parses. */
 export const SITE_HEADER_SLOT = "<!-- site-header -->";
 
-/** The pages the header links to, in the order it lists them. Sample plans
- * joins this list, after Planner, when that page exists. */
+/** What the header links to: the planner, which is not one of these pages
+ * and has a toolbar of its own, then every page above that has a label. */
 const NAV: readonly { href: string; label: string }[] = [
   { href: "/plan/", label: "Planner" },
-  { href: "/connect/", label: "Connect your AI" },
-  { href: "/about/", label: "About" },
+  ...PAGES.flatMap(({ path, label }) => (label ? [{ href: path, label }] : [])),
 ];
 
 /** @param current the page being rendered, as a site path ("/connect/"). */

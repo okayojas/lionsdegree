@@ -311,9 +311,9 @@
      someone's name. */
   background: var(--surface-2);
 }
-.bio-text p { max-width: 60ch; line-height: 1.65; }
-/* The sentence that says who is speaking, a size up. */
-.bio-text p:first-child { font-size: 1.1875rem; line-height: 1.5; }
+/* The sentence that says who is speaking is the page's `.lede`; the rest
+   read as body copy. */
+.bio-text p:not(.lede) { max-width: 60ch; line-height: 1.65; }
 .bio-text strong { font-weight: 700; }
 @media (max-width: 34rem) {
   .bio:has(.bio-photo) { grid-template-columns: 1fr; }

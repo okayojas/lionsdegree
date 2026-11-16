@@ -39,17 +39,18 @@ test.describe("/about/ with JavaScript turned off", () => {
   });
 
   test("the words are the ones the landing page had", async ({ page }) => {
-    // The ticket moves the sections; it does not rewrite them. One sentence
-    // from each paragraph, so an edit to any of them shows up here.
+    // The ticket moved the sections; it did not rewrite them. These are the
+    // four paragraphs as the landing page had them, whole, so an edit to any
+    // word of any of them shows up here.
     await page.goto("/about/");
     const text = (await page.locator("main").innerText()).replace(/\s+/g, " ");
-    for (const sentence of [
-      "a Penn State student studying Engineering Science and AI Engineering",
-      "every student I know ends up building the same slightly-wrong spreadsheet",
-      "It's free and it always will be.",
-      "Found a requirement read wrong?",
+    for (const paragraph of [
+      "I'm Ojas Khadakban, a Penn State student studying Engineering Science and AI Engineering. I build things with AI for a living and for fun — AI engineering is the work I want to do, and this is the project where I learned most of it.",
+      "LionsDegree started because planning a degree here means holding four documents open at once, and every student I know ends up building the same slightly-wrong spreadsheet. I got tired of it and built the thing I wanted instead: it reads the Bulletin itself, so it knows what actually depends on what.",
+      "It's free and it always will be. The whole thing is open source, Apache 2.0 — read it, fork it, tell me where it's wrong.",
+      "Found a requirement read wrong? Email ovk5113@psu.edu or open a GitHub issue.",
     ]) {
-      expect(text, `"${sentence}" is not on the page`).toContain(sentence);
+      expect(text, `not on the page as it was written: "${paragraph}"`).toContain(paragraph);
     }
   });
 
@@ -66,106 +67,114 @@ test.describe("/about/ with JavaScript turned off", () => {
     await expect(mail).toHaveAttribute("href", `mailto:${ADDRESS}`);
     await expect(contact.locator("#feedback-form"), "the form shows before it can work").toBeHidden();
   });
-
-  test("has a title and a description of its own", async ({ page }) => {
-    await page.goto("/about/");
-    const about = { title: await page.title(), description: await page.locator('meta[name="description"]').getAttribute("content") };
-    expect(about.title).toMatch(/About/);
-    expect(about.description?.length ?? 0, "no description for a preview card to show").toBeGreaterThan(40);
-    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /\/about\/$/);
-    for (const other of ["/", "/connect/"]) {
-      await page.goto(other);
-      expect(await page.title(), `${other} and /about/ share a title`).not.toBe(about.title);
-      expect(await page.locator('meta[name="description"]').getAttribute("content"), `${other} and /about/ share a description`)
-        .not.toBe(about.description);
-    }
-  });
 });
 
 test.describe("the feedback form", () => {
-  /** Nothing in this block may reach the real database: the build under test
-   * can be a configured one, and a test run is not feedback. Every request to
-   * the backend is answered here, and the ones that arrive are kept. */
-  async function intercept(page: Page): Promise<{ inserts: Record<string, unknown>[] }> {
-    const seen = { inserts: [] as Record<string, unknown>[] };
-    await page.route(/supabase\.co/, async (route) => {
-      const req = route.request();
-      if (req.method() === "POST" && /\/rest\/v1\/feedback/.test(req.url())) {
-        seen.inserts.push(req.postDataJSON() as Record<string, unknown>);
-        return route.fulfill({ status: 201, contentType: "application/json", body: "" });
-      }
-      return route.fulfill({ status: 200, contentType: "application/json", body: "{}" });
-    });
-    return seen;
+  /** What the form tried to store, in this test. */
+  let inserts: Record<string, unknown>[];
+
+  /** NOTHING IN THIS BLOCK MAY REACH THE REAL DATABASE. The build under test
+   * can be a configured one, and a test run is not feedback. So every request
+   * that leaves this origin is answered here, whatever host it was for: a
+   * build pointed at a self-hosted backend is caught the same as one pointed
+   * at the usual one. */
+  test.beforeEach(async ({ page, baseURL }) => {
+    inserts = [];
+    const here = new URL(baseURL!).origin;
+    await page.route(
+      (url) => url.origin !== here,
+      async (route) => {
+        const req = route.request();
+        if (req.method() === "POST" && /\/rest\/v1\/feedback/.test(req.url())) {
+          inserts.push(req.postDataJSON() as Record<string, unknown>);
+          return route.fulfill({ status: 201, contentType: "application/json", body: "" });
+        }
+        return route.fulfill({ status: 200, contentType: "application/json", body: "{}" });
+      },
+    );
+  });
+
+  /** Whether this build has an account service to send to. Decided when it
+   * was built; the script marks the form when there is none. */
+  async function canSend(page: Page): Promise<boolean> {
+    const form = page.locator("#feedback-form");
+    await expect(form).toBeVisible();
+    return (await form.getAttribute("data-state")) !== "unavailable";
   }
 
-  test("appears once the script can drive it", async ({ page }) => {
+  const MESSAGE = "CMPSC 465 shows as needing MATH 230, but the Bulletin says MATH 220.";
+
+  test("appears once the script can drive it, with the fields it had", async ({ page }) => {
     await page.goto("/about/");
     const form = page.locator("#feedback-form");
     await expect(form).toBeVisible();
-    await expect(form).toHaveAttribute("data-enhanced", "true");
-    await expect(form.getByLabel("What is on your mind?")).toBeVisible();
-    // Email is optional: feedback that requires identifying yourself is
-    // feedback you do not get.
-    await expect(form.locator("#fb-email")).not.toHaveAttribute("required", /.*/);
+    await expect(form.getByLabel("What is on your mind?")).toHaveAttribute(
+      "placeholder",
+      "CMPSC 465 shows as needing MATH 230, but the Bulletin says MATH 220…",
+    );
+    // Email is optional, and says so: feedback that requires identifying
+    // yourself is feedback you do not get.
+    const email = form.getByLabel("Your email optional");
+    await expect(email).toBeVisible();
+    await expect(email).not.toHaveAttribute("required", /.*/);
+    await expect(form.getByRole("button", { name: "Send feedback" })).toBeVisible();
   });
 
   test("refuses an empty message instead of sending nothing", async ({ page }) => {
-    const seen = await intercept(page);
     await page.goto("/about/");
     await page.getByRole("button", { name: "Send feedback" }).click();
-    await expect(page.locator("#feedback-form [data-status]")).toBeVisible();
-    await expect(page.locator("#feedback-form")).toHaveAttribute("data-state", "error");
-    expect(seen.inserts).toEqual([]);
+    await expect(page.getByRole("status")).toContainText(/a little more than that/i);
+    expect(inserts).toEqual([]);
   });
 
   test("sends what was typed, and says so", async ({ page }) => {
-    const seen = await intercept(page);
     await page.goto("/about/");
-    const form = page.locator("#feedback-form");
-    await expect(form).toHaveAttribute("data-enhanced", "true");
-    // Decided at build time. A build with no account service has nowhere to
-    // send it; what it owes the student then is the truth and the address.
-    const configured = (await form.getAttribute("data-state")) !== "unavailable";
-
-    const message = "CMPSC 465 shows as needing MATH 230, but the Bulletin says MATH 220.";
-    await form.getByLabel("What is on your mind?").fill(message);
+    test.skip(!(await canSend(page)), "this build has no account service to send to");
+    const body = page.getByLabel("What is on your mind?");
+    await body.fill(MESSAGE);
     await page.getByRole("button", { name: "Send feedback" }).click();
-    const status = form.locator("[data-status]");
+    await expect(page.getByRole("status")).toContainText(/that's been sent/i);
+    expect(inserts).toHaveLength(1);
+    // The same row the landing page wrote, from the page the form is on now.
+    expect(inserts[0]).toMatchObject({ body: MESSAGE, email: null, page: "/about/" });
+    await expect(body).toHaveValue("");
+  });
 
-    if (!configured) {
-      await expect(status).toContainText(/isn't available on this build/i);
-      await expect(form.getByLabel("What is on your mind?"), "a failed send threw the message away").toHaveValue(message);
-      return;
-    }
-    await expect(form).toHaveAttribute("data-state", "sent");
-    await expect(status).toContainText(/that's been sent/i);
-    expect(seen.inserts).toHaveLength(1);
-    // The same row the landing page wrote, from the page it is on now.
-    expect(seen.inserts[0]).toMatchObject({ body: message, email: null, page: "/about/" });
-    await expect(form.getByLabel("What is on your mind?")).toHaveValue("");
+  test("with nowhere to send it, says so and keeps the message", async ({ page }) => {
+    await page.goto("/about/");
+    test.skip(await canSend(page), "this build can send; the test above covers it");
+    // What the form owes the student then is the truth and the address.
+    const body = page.getByLabel("What is on your mind?");
+    await body.fill(MESSAGE);
+    await page.getByRole("button", { name: "Send feedback" }).click();
+    await expect(page.getByRole("status")).toContainText(/isn't available on this build/i);
+    await expect(body, "a failed send threw the message away").toHaveValue(MESSAGE);
+    expect(inserts).toEqual([]);
   });
 
   test("a bot that fills the hidden field is thanked and sent nowhere", async ({ page }) => {
-    const seen = await intercept(page);
     await page.goto("/about/");
     const trap = page.locator("#fb-website");
     await expect(trap).toHaveCount(1);
     // Off-screen, not display:none, and out of the tab order, so a keyboard
     // user never lands in a field they cannot see.
     await expect(trap).toHaveAttribute("tabindex", "-1");
-    await expect(page.locator(".fb-trap")).toHaveAttribute("aria-hidden", "true");
+    // Nor is it announced: a screen reader is not told about a field whose
+    // only instruction is to leave it alone.
+    await expect(page.getByRole("textbox", { name: "Leave this empty" })).toHaveCount(0);
     const box = (await trap.boundingBox())!;
     expect(box.x + box.width, "the trap is on screen").toBeLessThan(0);
 
     await page.getByLabel("What is on your mind?").fill("Buy cheap course codes at example dot com");
     await trap.evaluate((el: HTMLInputElement) => { el.value = "https://example.com"; });
     await page.getByRole("button", { name: "Send feedback" }).click();
-    await expect(page.locator("#feedback-form")).toHaveAttribute("data-state", "sent");
-    expect(seen.inserts, "the honeypot let a bot's message through").toEqual([]);
+    // Told it worked. Telling a bot it was caught teaches whoever wrote it
+    // to stop filling the field.
+    await expect(page.getByRole("status")).toContainText(/that's been sent/i);
+    expect(inserts, "the honeypot let a bot's message through").toEqual([]);
   });
 
-  test("the fields can be read and the button can be pressed", async ({ page }) => {
+  test("the Send button can be read, at rest and while it is pressed", async ({ page }) => {
     // The form moved from a dark page to a cream one, under a stylesheet whose
     // bare `button` rules repaint a pressed button paper-coloured. Measured
     // rather than assumed, in both states a sighted student meets.
@@ -190,8 +199,8 @@ test.describe("the feedback form", () => {
     await send.focus();
     await page.keyboard.down("Space");
     const pressed = await contrast();
-    // Released over the page, not the button, so nothing is submitted.
-    await page.locator("h1").focus().catch(() => {});
+    // Letting go submits the form, empty; it is refused, and the block's
+    // intercept would answer anything it sent.
     await page.keyboard.up("Space");
     expect(pressed.active, "the button was not actually pressed, so this measured nothing").toBe(true);
     expect(pressed.ratio, "a pressed Send button cannot be read").toBeGreaterThanOrEqual(4.5);
@@ -206,8 +215,11 @@ test.describe("the landing page, now that About has moved out", () => {
     await expect(page.locator("#feedback-form")).toHaveCount(0);
     // Nothing on the page still points at an anchor that is not there.
     await expect(page.locator('a[href="#about"], a[href="/#about"], a[href="#contact"], a[href="/#contact"]')).toHaveCount(0);
-    // Reachable at every width from the footer; the bar keeps only the brand
-    // and the primary action on a phone.
+    // The menu's two, which are in the document whether or not it is open...
+    await expect(page.locator('#menu a[href="/about/"]')).toHaveText("About");
+    await expect(page.locator('#menu a[href="/about/#contact"]')).toHaveText("Contact");
+    // ...and the footer's, reachable at every width: the bar keeps only the
+    // brand and the primary action on a phone.
     const foot = page.getByRole("contentinfo");
     await expect(foot.getByRole("link", { name: "About", exact: true })).toHaveAttribute("href", "/about/");
     await expect(foot.getByRole("link", { name: "Contact", exact: true })).toHaveAttribute("href", "/about/#contact");

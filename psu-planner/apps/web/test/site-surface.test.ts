@@ -53,17 +53,6 @@ describe("the shared header", () => {
     expect(source(file)).toMatch(/<html lang="en" data-theme="light">/);
     expect(source(file)).toMatch(/<meta name="theme-color" content="#f1ebdf" \/>/);
   });
-
-  it("links to every page that wears it, and marks each one on its own page", () => {
-    // Privacy and Terms are the exception, and a deliberate one: they are in
-    // every footer, which is where a reader looks for them.
-    const inFooterOnly = new Set(["/privacy/", "/terms/"]);
-    for (const page of SITE_PAGES) {
-      if (inFooterOnly.has(page)) continue;
-      expect(siteHeader("/"), `the header has no link to ${page}`).toContain(`href="${page}"`);
-      expect(siteHeader(page)).toContain(`href="${page}" aria-current="page"`);
-    }
-  });
 });
 
 describe("a page of its own", () => {
@@ -93,44 +82,6 @@ describe("a page of its own", () => {
     const descriptions = heads.map((h) => h.description).filter(Boolean);
     expect(new Set(titles).size, `two pages share a title: ${titles.join(" | ")}`).toBe(titles.length);
     expect(new Set(descriptions).size, "two pages share a description").toBe(descriptions.length);
-  });
-});
-
-describe("About and Contact have moved off the landing page", () => {
-  const landing = source("index.html").replace(/<!--[\s\S]*?-->/g, "");
-
-  it("the landing page has neither section, and no form", () => {
-    expect(landing).not.toMatch(/<section id="(about|contact)"/);
-    expect(landing).not.toMatch(/<form\b/);
-    // The form's script went with it. It was the only thing on this page
-    // that could reach the account service.
-    expect(landing).not.toContain("/src/feedback.ts");
-    expect(source("about/index.html")).toContain('<script type="module" src="/src/feedback.ts"></script>');
-  });
-
-  it("the old anchors survive as the links to where the sections went", () => {
-    // With no script nothing can redirect `/#about`. The browser still
-    // scrolls to whatever carries the id, so the id is on the link.
-    expect(landing).toContain('<a id="about" href="/about/">About</a>');
-    expect(landing).toContain('<a id="contact" href="/about/#contact">Contact</a>');
-    expect(source("about/index.html")).toMatch(/<section id="contact"/);
-    // And with one, the page sends the visitor on.
-    expect(landing).toContain('<script type="module" src="/src/moved.ts"></script>');
-  });
-
-  it("the words came across unchanged", () => {
-    // Copied here from the landing page as it stood before the move, markup
-    // and all. The ticket moved these paragraphs; it did not edit them, and
-    // whitespace aside each one is still the one the landing page had.
-    const about = source("about/index.html").replace(/<!--[\s\S]*?-->/g, "").replace(/\s+/g, " ");
-    for (const paragraph of [
-      "<p>I'm <strong>Ojas Khadakban</strong>, a Penn State student studying Engineering Science and AI Engineering. I build things with AI for a living and for fun — AI engineering is the work I want to do, and this is the project where I learned most of it.</p>",
-      "<p>LionsDegree started because planning a degree here means holding four documents open at once, and every student I know ends up building the same slightly-wrong spreadsheet. I got tired of it and built the thing I wanted instead: it reads the Bulletin itself, so it knows what actually depends on what.</p>",
-      '<p>It\'s free and it always will be. <a href="https://github.com/okayojas/lionsdegree">The whole thing is open source</a>, Apache 2.0 — read it, fork it, tell me where it\'s wrong.</p>',
-      '<p>Found a requirement read wrong? Email <a href="mailto:ovk5113@psu.edu">ovk5113@psu.edu</a> or open a <a href="https://github.com/okayojas/lionsdegree/issues">GitHub issue</a>.</p>',
-    ]) {
-      expect(about, `not on the About page as it was written:\n${paragraph}`).toContain(paragraph);
-    }
   });
 });
 

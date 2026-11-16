@@ -587,6 +587,17 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
   header for all of them (`src/site/header.ts`): the mark, the planner's wordmark, Planner, Connect
   your AI, Start my plan. No menu button — the legal documents ship no script — so on a narrow screen
   the links take a row of their own instead of collapsing.
+  - **About is one of them, and a page (2026-11-16, #62).** About and Contact were the last two
+    sections of the landing page: somewhere to scroll to, not somewhere to link to. They are
+    `/about/` now, words unchanged, Contact at `/about/#contact`, and the header links to it. The
+    feedback form went with them, and took the landing page's only route to the account service
+    along. The old addresses still work: `/#about` and `/#contact` are sent on by `src/moved.ts`,
+    and with no script the landing footer's own About and Contact links carry those ids, so the
+    browser scrolls to the link that goes there.
+  - **One list of these pages.** `PAGES` in `src/site/header.ts` is what the header links, what
+    the build takes its entry points from, what the planner's precache leaves out, and what the
+    sitemap is written from. A page is added there. (The sitemap used to be built from the legal
+    documents alone, and had never listed `/connect/`.)
   - **The lion in the mark is paper.** `public/mark-clear.png` is the mark with the cream cut out,
     for use on anything that is not exactly `--bg`. Cutting "only the background" and keeping the
     lion cream is not possible: the lion is negative space, its back runs into the gap between the L

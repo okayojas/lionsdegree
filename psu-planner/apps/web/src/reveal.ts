@@ -33,8 +33,9 @@ if ("scrollRestoration" in history) history.scrollRestoration = "manual";
  *
  * Called after the journey mounts, because scrolling to `#ai` while the
  * scroller is still short lands hundreds of pixels off. (`#about` and
- * `#contact` never get this far: those sections are a page now, and
- * moved.ts has already sent the visitor there.) */
+ * `#contact` are a page now, and moved.ts has already asked the browser to
+ * go there. If this runs before it has, those ids are the footer's links to
+ * that page, which is a sane place to be left.) */
 function applyEntryPosition(): void {
   const hash = location.hash.slice(1);
   const target = hash && document.getElementById(hash);

@@ -57,8 +57,8 @@ const LANDING_SCRIPT_CEILING_KB = 165;
 
 /** The About page, which has the feedback form now. Measured at 2.6 KB before
  * anyone presses Send, and 65.4 KB once the Supabase client has been fetched
- * to send it. */
-const ABOUT_EAGER_CEILING_KB = 8;
+ * to send it. Each ceiling is the measurement plus a fifth (ADR 0002). */
+const ABOUT_EAGER_CEILING_KB = 3.2;
 const ABOUT_SCRIPT_CEILING_KB = 80;
 
 /** Every script reachable from `entries`, static or dynamic, as dist-relative
@@ -314,6 +314,28 @@ describe("the service worker", () => {
     ).toEqual([]);
     // It must still precache the planner's own shell.
     expect(urls).toContain("plan/index.html");
+  });
+
+  it("precaches every script the planner can load", () => {
+    // The other half of the test above. Pages are kept out of the precache
+    // by NAME (`about/**`, `assets/about-*.js`), and a rule written that way
+    // cannot tell a page's script from a planner chunk that happens to share
+    // the prefix: a lazily loaded `about.ts` inside the planner would be
+    // dropped without a word, and the installed planner would break offline
+    // the first time it asked for it. So: everything reachable from the
+    // planner's document, lazy chunks included, is in the list.
+    const sw = read("plan/sw.js");
+    const urls = new Set(
+      (JSON.parse(sw.match(/\[\{[^\]]*\}\]/)![0].replace(/url:/g, '"url":').replace(/revision:/g, '"revision":')) as {
+        url: string;
+      }[]).map((e) => e.url),
+    );
+    const planner = [...reachableScripts(entryScripts("plan/index.html"), "all")];
+    expect(planner.length, "found no planner scripts, so this checked nothing").toBeGreaterThan(3);
+    expect(
+      planner.filter((f) => !urls.has(f)),
+      "the planner can load a script its worker never cached",
+    ).toEqual([]);
   });
 
   it("installs the planner, not the marketing page", () => {
