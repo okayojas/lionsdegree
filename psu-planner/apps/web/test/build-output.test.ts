@@ -73,8 +73,8 @@ const ABOUT_EAGER_CEILING_KB = 3.2;
 const ABOUT_SCRIPT_CEILING_KB = 80;
 
 /** The Sample plans page: the same measure as the landing page's first
- * paint, as ADR 0005 said it should get. Measured at 28.6 KB (document
- * 14.1, stylesheet 13.6, script 0.9). The document is the heavy part and
+ * paint, as ADR 0005 said it should get. Measured at 28.2 KB (document
+ * 13.6, stylesheet 13.6, script 1.0). The document is the heavy part and
  * is meant to be: it is the list, all 383 Programs of it, in the page and
  * not fetched into it. What this ceiling is for is the day a second copy
  * of each name, or a Program's whole plan, gets written into every row. */
@@ -571,14 +571,14 @@ describe("the pages outside the planner", () => {
     }
   });
 
-  it.each(PAGES)("%s ships no unsubstituted placeholder and no unfilled slot", (page) => {
+  it.each(PAGES)("%s ships no unsubstituted placeholder, and no marker the build should have replaced", (page) => {
     // The landing page has had this check since its coverage figure. A
     // page that names the Edition, or carries a list the build writes,
     // can ship the same mistake: literal %SHOUTING% text, or a comment
     // where its content should be.
     const html = read(page);
     expect([...new Set([...html.matchAll(/%[A-Z][A-Z0-9_]{2,}%/g)].map((m) => m[0]))]).toEqual([]);
-    expect(html, "a slot the build should have filled is still a comment").not.toMatch(/<!-- (site-header|sample-plan|sample-plans-list) -->/);
+    expect(html, "a marker the build should have replaced is still a comment").not.toMatch(/<!-- (site-header|sample-plan|sample-plans-list) -->/);
   });
 
   describe("the Sample plans page", () => {
@@ -589,7 +589,7 @@ describe("the pages outside the planner", () => {
     it("has the whole list in the document, one row for each Program in the latest Edition's index", () => {
       // In the markup, where a crawler and a student with scripts off find
       // it. Counted against the index the build ships beside it.
-      const rows = [...html().matchAll(/<a class="program-open" href="\/plan\/\?programs=([^"]+)"/g)].map((m) => m[1]);
+      const rows = [...html().matchAll(/<a\b[^>]*\bhref="\/plan\/\?programs=([^"]+)"/g)].map((m) => m[1]);
       expect(rows.length).toBeGreaterThan(300);
       expect(rows.sort()).toEqual(index().map((e) => e.program).sort());
       expect(html()).toContain(`${rows.length} Penn State programs publish a suggested plan`);
@@ -606,7 +606,7 @@ describe("the pages outside the planner", () => {
       );
     });
 
-    it("loads one small script and nothing of the planner's, now or later", () => {
+    it("reaches nothing of the planner's or the scene's, now or later, and asks for no catalog", () => {
       const all = [...reachableScripts(entryScripts("sample-plans/index.html"), "all")];
       expect(all.length, "the page loads no script, so the list can never be narrowed").toBeGreaterThan(0);
       expect(all.filter((f) => /^assets\/(plan|sync|scene)-/.test(f)), "the list page reaches the app").toEqual([]);

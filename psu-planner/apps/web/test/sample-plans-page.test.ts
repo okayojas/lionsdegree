@@ -33,11 +33,21 @@ describe("what typing finds", () => {
     expect(found(erie, "computer abington")).toBe(false);
   });
 
-  it("finds it from the start of a word, which is how far a student has typed", () => {
+  it("finds it from part of a word, which is how far a student has typed", () => {
     expect(found(erie, "comp sci")).toBe(true);
-    // From the START: "ba" is the B.A.s, not every word with "ba" inside it.
+    // Inside a word too: nobody types the "Bio" to find Biobehavioral Health.
+    const biobehavioral: TemplateEntry = { program: "hhd-bbh-bs", name: "Biobehavioral Health, B.S.", campuses: ["University Park Campus"] };
+    expect(found(biobehavioral, "behavioral")).toBe(true);
+    expect(found(biobehavioral, "behavioural")).toBe(false);
+  });
+
+  it("takes one or two letters as the start of a word, not as letters anywhere", () => {
+    // "ba" is the B.A.s. Anywhere in a word it is also Abington, and
+    // every Program with "Global" in its name.
     expect(found(womens, "ba")).toBe(true);
     expect(found({ ...erie, campuses: ["Abington Campus"] }, "ba")).toBe(false);
+    expect(found(erie, "c")).toBe(true);
+    expect(found(erie, "r")).toBe(false);
   });
 
   it("reads a degree as it is typed, with its full stops or without", () => {
@@ -70,13 +80,13 @@ describe("the list written into the page", () => {
 
   it("names the Program in each link, for someone hearing a list of 383 of them", () => {
     expect(programListHtml([erie])).toMatch(
-      /Open in the planner<span class="sr-only">: Computer Science, B\.S\. \(Behrend\)<\/span>/,
+      /<a\b[^>]*>Open in the planner<span\b[^>]*>: Computer Science, B\.S\. \(Behrend\)<\/span><\/a>/,
     );
   });
 
   it("says so where the Bulletin names no campus, and does not guess one", () => {
     const html = programListHtml([{ ...erie, campuses: [] }]);
-    expect(html).toContain("The Bulletin names no campus for this plan");
+    expect(html).toContain("The Bulletin names no campus for this program");
     expect(html).not.toContain("Erie");
   });
 

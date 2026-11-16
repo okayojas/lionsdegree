@@ -118,15 +118,19 @@ const writeSamplePlan = () => ({
     html.includes(SAMPLE_PLAN_MARKER) ? html.replaceAll(SAMPLE_PLAN_MARKER, samplePlanHtml(SAMPLE_PLAN)) : html,
 });
 
-/** Every Program in the latest Edition that publishes a suggested plan.
+/** Every Program that has a Template, in the Edition the site's figures are
+ * computed from.
+ *
+ * That Edition, and not a second reading of which one is latest: the page
+ * names its Edition with %COVERAGE_EDITION_LABEL%, and the list under that
+ * name has to be that Edition's list.
  *
  * From the index the catalog sync writes (scripts/template-index.mjs). Throws
  * where it is missing, for the reason the coverage figure does: a Sample
  * plans page with no plans on it is worse than a build that stops. */
 function templates(): TemplateEntry[] {
-  const catalog = resolve(__dirname, "public/catalog");
-  const { latest } = JSON.parse(readFileSync(resolve(catalog, "editions.json"), "utf-8")) as { latest: string };
-  const file = resolve(catalog, latest, "templates/index.json");
+  const edition = coverageFacts()["%COVERAGE_EDITION%"];
+  const file = resolve(__dirname, "public/catalog", edition, "templates/index.json");
   if (!existsSync(file)) {
     throw new Error(`${file} is missing. Run \`node scripts/template-index.mjs\` (the catalog sync does this).`);
   }

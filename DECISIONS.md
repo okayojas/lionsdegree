@@ -719,24 +719,45 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
     syncs, so the next catalog refresh rewrites it; the index is committed with the catalog and
     a test fails if it is stale. It carries a Program's identifier, name and campuses and
     nothing else: no Course, no sentence of the Bulletin's.
-  - **A campus is what the Bulletin's own label says, unedited.** The text after the last
-    " at " in each plan's label ("… at Erie Campus", "… at University Park Campus (Last Names
-    Starting with A-K)"), each one once. Where no label names one, the Program's own record
-    is used; where neither does (three Programs today), the page says the Bulletin names none.
-  - **What typing finds:** every word typed has to begin some word of the Program's name or
+    A Program file that cannot be read stops the sync and names the file: the page's claim is
+    that it lists them all.
+  - **A campus is one of Penn State's, recognised in the Bulletin's label.** The labels are
+    sentences ("Chemistry, B.S. at Commonwealth Campuses (For Change-of-Campus students who can
+    take CHEM 213 at their Commonwealth Campus)", "Nursing, B.S.N. at Altoona, Erie, and
+    Harrisburg Campuses"). The first version cut each at its last " at " and showed the rest,
+    which gave students "their Commonwealth Campus)" as a place and "Erie Campus (3-Year
+    Accelerated Plan)" as a second campus beside Erie. Now the generator names the campuses it
+    finds after the first " at ", once brackets and anything from " with " on are set aside: a
+    list of twenty-one campuses, "Commonwealth Campuses" and "All campuses". What that loses,
+    knowingly: "(except Altoona)" on two plans. A plan with no place in its label takes the
+    campus on its Program's own record, plan by plan (Software Engineering at Behrend has one
+    unlabelled plan, Erie's, and one labelled World Campus). Where neither says (three Programs
+    today), the page says the Bulletin names none. A place the list does not know is published
+    as the Bulletin wrote it and fails a test, so that it is added and not dropped.
+  - **What typing finds:** every word typed has to be in some word of the Program's name or
     campuses, in any order, with case, accents, full stops and apostrophes ignored ("comp sci
-    erie bs"). From the start of a word, so that "ba" is the B.A.s and not Abington. The rule
-    is one function beside the code that writes the list, and the build and the page fold text
-    with the same one.
+    erie bs"; "behavioral" finds Biobehavioral Health). One or two letters have to begin a
+    word, so that "ba" is the B.A.s and not Abington. #60 asked for the list to be "filterable
+    by name"; campuses are matched too, because a Program's name often does not say where it
+    is. The rule is one function beside the code that writes the list, and the build and the
+    page fold text with the same one.
+  - **Which Edition:** the one the site's coverage figures are computed from, read once. The
+    page's name for its Edition and the list under it cannot then be two different Editions.
+  - **Left as it is, and worth the owner knowing:** the link opens the planner's setup with the
+    Program chosen, for someone with no Plan yet. A student who already has a Plan gets that
+    Plan and the link's Program is ignored, as it is for every Program link (the Discovery
+    prompt's too); changing that is a change to the planner, which #60 rules out. And where a
+    Program has plans for several campuses, the planner's own "Campus plan" step is where the
+    student picks; the link does not carry a campus.
   - **The header has four links now**, Sample plans first after Planner. They stopped fitting
     on one line with the brand and the action below about 896px, so the header's narrow layout
     starts at 56rem where it started at 48rem; on a phone the gap between links tightens so
     the four are one row at 390px. The landing page's pinned section used to assume a
     two-row header on a phone: it now takes the header's measured height from
     `src/gravity.ts` (`--head-height`).
-  - **What it weighs:** 28.6 KB gzipped to first paint (document 14.1, stylesheet 13.6,
-    script 0.9), under a ceiling of its own. The document is the heavy part and is meant to
-    be; the published index is 56.3 KB uncompressed and the page does not download it.
+  - **What it weighs:** 28.2 KB gzipped to first paint (document 13.6, stylesheet 13.6,
+    script 1.0), under a ceiling of its own. The document is the heavy part and is meant to
+    be; the published index is 55.7 KB uncompressed and the page does not download it.
   - **Not here yet:** seeing a Program's plan Term by Term before opening it. That is #68.
 - **The pages outside the planner are cream, and say so (2026-11-16, #61).** Connect your AI, Privacy
   and Terms used to wear the old landing page's dark canvas. They now sit on the app's light tokens

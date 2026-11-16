@@ -16,8 +16,9 @@ export interface TemplateEntry {
   /** The Program's identifier in the catalog. */
   program: string;
   name: string;
-  /** The campuses its suggested plans are for, in the Bulletin's own words.
-   * Empty where the Bulletin names none. */
+  /** The campuses its Templates are for, each once: the ones the Bulletin's
+   * label for each names, or the one on the Program's record where a label
+   * names none (scripts/template-index.mjs). Empty where neither says. */
   campuses: readonly string[];
 }
 
@@ -46,16 +47,25 @@ export const fold = (text: string): string =>
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
 
-/** Whether what was typed finds an entry: every word typed begins some word
+/** A typed word this short has to begin a word, not merely be inside one. */
+const SHORT = 2;
+
+/** Whether what was typed finds an entry: every word typed is in some word
  * of the entry's name or campuses, in any order. "comp sci erie" finds
- * Computer Science at Erie; "ba" finds the B.A.s and not Abington.
- * Nothing typed finds everything. */
+ * Computer Science at Erie, and "behavioral" finds Biobehavioral Health.
+ *
+ * One or two letters have to BEGIN a word: "ba" is the B.A.s, and it would
+ * otherwise be Abington and every "Global" as well. Nothing typed finds
+ * everything.
+ *
+ * `findableText` is an entry as `findable` folded it; `typed` is what the
+ * student typed, as they typed it. */
 export function finds(findableText: string, typed: string): boolean {
   const words = findableText.split(" ");
   return fold(typed)
     .split(" ")
     .filter(Boolean)
-    .every((start) => words.some((word) => word.startsWith(start)));
+    .every((part) => words.some((word) => (part.length <= SHORT ? word.startsWith(part) : word.includes(part))));
 }
 
 /** What typing is matched against: the Program's name and its campuses. */
@@ -74,7 +84,7 @@ export function programListHtml(entries: readonly TemplateEntry[]): string {
       // Never a guess: where the Bulletin names no campus, the page says so.
       const campuses = entry.campuses.length
         ? entry.campuses.map(escapeHtml).join(" · ")
-        : "The Bulletin names no campus for this plan";
+        : "The Bulletin names no campus for this program";
       return `<li class="program" data-find="${escapeHtml(findable(entry))}">
             <p class="program-name">${name}</p>
             <p class="program-campus">${campuses}</p>

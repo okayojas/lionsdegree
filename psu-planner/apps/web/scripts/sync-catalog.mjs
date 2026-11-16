@@ -177,7 +177,7 @@ for (const edition of editions) {
   console.log(
     `synced ${edition} (${countFiles(dst)} files, ${stripped.withheld.toFixed(1)} MB of description prose withheld, ` +
       `${stripped.summaries.toFixed(2)} MB of opening sentences in summaries/, ` +
-      `${templates.programs} Programs in templates/index.json)`,
+      `${templates.programCount} Programs in templates/index.json)`,
   );
 }
 

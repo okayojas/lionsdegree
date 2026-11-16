@@ -206,7 +206,8 @@ test.describe("the scene", () => {
     // the heading, over the caption, inside the screen.
     const text = await page.evaluate(() => ({
       header: document.querySelector("header")!.getBoundingClientRect().bottom,
-      top: document.querySelector("#plan .plan-top")!.getBoundingClientRect().top,
+      // Where the section's words begin: the block its heading is in.
+      top: document.querySelector("#plan h2")!.parentElement!.getBoundingClientRect().top,
       heading: document.querySelector("#plan h2")!.getBoundingClientRect().bottom,
       caption: document.querySelector("#plan figcaption")!.getBoundingClientRect().top,
       width: innerWidth,

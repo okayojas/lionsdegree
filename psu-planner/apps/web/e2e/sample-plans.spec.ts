@@ -75,13 +75,27 @@ test.describe("with JavaScript off", () => {
         campus: li.querySelectorAll("p")[1]?.textContent?.trim() ?? "",
       })),
     );
-    for (const { name, campus } of campuses) expect(campus, `${name} says nothing about where`).not.toBe("");
-    // Most name a campus. A list where every one fell through to "the
-    // Bulletin names none" would pass the line above and be useless.
-    const named = campuses.filter((c) => /Campus/.test(c.campus));
-    expect(named.length / campuses.length).toBeGreaterThan(0.9);
-    const erie = campuses.find((c) => c.name === "Computer Science, B.S. (Behrend)");
-    expect(erie?.campus).toBe("Erie Campus");
+    // A PLACE, OR THE ADMISSION THAT THERE IS NONE. Every row is campus names
+    // and nothing else: the first version of this page cut the Bulletin's
+    // labels at a word and showed "their Commonwealth Campus)" as somewhere
+    // a plan was for. Written out here as a student would recognise them.
+    const place = /^(?:[A-Z][A-Za-z-]*(?: [A-Z][A-Za-z-]*)? Campus(?:es)?|World Campus|All campuses)$/;
+    const NONE = "The Bulletin names no campus for this program";
+    for (const { name, campus } of campuses) {
+      if (campus === NONE) continue;
+      for (const one of campus.split(" · ")) expect(one, `${name} is said to be for "${one}"`).toMatch(place);
+    }
+    // Nearly all name one. A list where every row fell through to the
+    // admission would pass the loop above and be useless.
+    expect(campuses.filter((c) => c.campus === NONE).length).toBeLessThanOrEqual(5);
+
+    const where = (program: string) => campuses.find((c) => c.name === program)?.campus;
+    expect(where("Computer Science, B.S. (Behrend)")).toBe("Erie Campus");
+    // One plan with a label and one without: both campuses, not just the
+    // labelled one.
+    expect(where("Software Engineering, B.S.")).toBe("Erie Campus · World Campus");
+    // A label with a sentence in brackets after the campus.
+    expect(where("Chemistry, B.S. (Science)")).toBe("University Park Campus · Commonwealth Campuses");
   });
 
   test("names the Edition, and says a plan here is a suggestion before it shows one", async ({ page, request }) => {
@@ -144,6 +158,13 @@ test.describe("finding a Program", () => {
     await box.fill("erie comp sci bs");
     await expect(showing(page)).toHaveCount(1);
     expect(await names(page)).toEqual(["Computer Science, B.S. (Behrend)"]);
+    // A Program whose name does not say where it is, found by where it is.
+    await box.fill("software erie");
+    expect(await names(page)).toEqual(["Software Engineering, B.S."]);
+    // Part of a word is enough: nobody types the "Bio".
+    await box.fill("behavioral health");
+    const behavioral = await names(page);
+    expect(behavioral.filter((name) => name.startsWith("Biobehavioral Health, B.S."))).not.toHaveLength(0);
     // Letter by letter, as a person does it: the list follows each one.
     await box.fill("");
     await box.pressSequentially("comp");
@@ -164,7 +185,7 @@ test.describe("finding a Program", () => {
     await expectNoA11yViolations(page, "/sample-plans/ with nothing found");
   });
 
-  test("the narrowed page is still accessible, and the count is announced", async ({ page }) => {
+  test("the narrowed page is still accessible, and says how many are left in a live region", async ({ page }) => {
     await page.goto("/sample-plans/");
     const status = page.getByRole("status");
     // Polite, and there from the start: a live region added at the moment it
@@ -243,6 +264,9 @@ test("the header's links never run into each other, at any width between phone a
       }
       return gap;
     });
+    // The brand and the action share a row at every width, so there is
+    // always a pair to measure: no pair at all means this measured nothing.
+    expect(Number.isFinite(closest), `at ${width}px no two header links share a row`).toBe(true);
     expect(closest, `at ${width}px two header links are ${closest}px apart`).toBeGreaterThanOrEqual(12);
   }
 });

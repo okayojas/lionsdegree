@@ -41,6 +41,20 @@ The first paint grew by 3.5 KB with the scene: the script that decides whether a
 one, and the layout rules for when it does. The scene itself is asked for after the page has
 painted and is not in the first number, which is what having three numbers is for.
 
+**Since #67 (same day) there is a fourth**, and the first two were measured again, because the
+Sample plans page's rules joined the stylesheet every one of these pages shares:
+
+| What | Measured | Ceiling |
+| --- | --- | --- |
+| Landing first paint: document, stylesheet, static script | 24.0 KB | 28 |
+| The landing page's own script | 3.7 KB | 4.2 |
+| The scene, one lazy chunk | 134.9 KB | 162 |
+| Sample plans first paint: document, stylesheet, static script | 28.2 KB | 34 |
+
+The Sample plans document is 13.6 KB of that, and is the list itself: 383 Programs written into
+the page, so that it is there with scripts off. That is the "heavy document of its own" the last
+consequence below was written about.
+
 Fonts and images are not in the first-paint figure. Fonts are swapped in when they land and the
 text is readable before they do; the page's one image is the header's mark, which has its own
 limit in the same test file.
