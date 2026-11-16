@@ -5,6 +5,7 @@ import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 import { SITE_HEADER_SLOT, SITE_PAGES, pageName, siteHeader } from "./src/site/header";
 import { SAMPLE_PLAN, SAMPLE_PLAN_MARKER, samplePlanHtml } from "./src/landing/sample-plan";
+import { PROGRAM_LIST_MARKER, programListHtml, type TemplateEntry } from "./src/site/sample-plans";
 
 /** TWO ENTRY POINTS. The root is a static document; the planner is the SPA,
  * served from /plan/.
@@ -117,6 +118,35 @@ const writeSamplePlan = () => ({
     html.includes(SAMPLE_PLAN_MARKER) ? html.replaceAll(SAMPLE_PLAN_MARKER, samplePlanHtml(SAMPLE_PLAN)) : html,
 });
 
+/** Every Program in the latest Edition that publishes a suggested plan.
+ *
+ * From the index the catalog sync writes (scripts/template-index.mjs). Throws
+ * where it is missing, for the reason the coverage figure does: a Sample
+ * plans page with no plans on it is worse than a build that stops. */
+function templates(): TemplateEntry[] {
+  const catalog = resolve(__dirname, "public/catalog");
+  const { latest } = JSON.parse(readFileSync(resolve(catalog, "editions.json"), "utf-8")) as { latest: string };
+  const file = resolve(catalog, latest, "templates/index.json");
+  if (!existsSync(file)) {
+    throw new Error(`${file} is missing. Run \`node scripts/template-index.mjs\` (the catalog sync does this).`);
+  }
+  return JSON.parse(readFileSync(file, "utf-8")) as TemplateEntry[];
+}
+
+/** Writes the Sample plans page's list, and how long it is, into the page.
+ * In the document and not fetched into it: a student with scripts off, and
+ * a crawler, get the whole list and every link in it. */
+const writeProgramList = () => ({
+  name: "sample-plans-list",
+  transformIndexHtml: (html: string) => {
+    if (!html.includes(PROGRAM_LIST_MARKER)) return html;
+    const entries = templates();
+    return html
+      .replaceAll(PROGRAM_LIST_MARKER, programListHtml(entries))
+      .replaceAll("%TEMPLATES_COUNT%", entries.length.toLocaleString("en-US"));
+  },
+});
+
 export default defineConfig({
   resolve: {
     alias: {
@@ -161,6 +191,7 @@ export default defineConfig({
     siteUrl(),
     siteHeaderSlot(),
     writeSamplePlan(),
+    writeProgramList(),
     react(),
     VitePWA({
       registerType: "autoUpdate",

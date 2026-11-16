@@ -1,6 +1,6 @@
 /* =====================================================================
-   The pages outside the planner: the landing page, Connect your AI, About,
-   Privacy, Terms.
+   The pages outside the planner: the landing page, Sample plans, Connect
+   your AI, About, Privacy, Terms.
 
    CREAM, AND PINNED TO IT. These used to wear the old landing page's dark
    canvas. They are documents a student reads on the way into or out of the
@@ -127,8 +127,12 @@
 /* NARROW: the links take a row of their own under the brand and the action.
    Nothing collapses into a menu, because a menu needs a script to open it or
    a <details> to stand in for one, and links that are simply on the page
-   need neither. */
-@media (max-width: 47.99rem) {
+   need neither.
+
+   Below 56rem, which is where four links, the brand and the action stop
+   fitting on one line with room between them (it was 48rem while there
+   were three links; at an 820px tablet the fourth made them touch). */
+@media (max-width: 55.99rem) {
   .site-head {
     grid-template-columns: 1fr auto;
     grid-template-areas: "brand start" "nav nav";
@@ -140,7 +144,9 @@
   .site-start { grid-area: start; padding-left: 14px; gap: var(--sp-2); font-size: 0.875rem; }
   .site-nav {
     grid-area: nav;
-    gap: 0 var(--sp-6);
+    /* Closer together as the screen narrows, so that the four of them
+       are one row on a 390px phone and not three with About alone. */
+    gap: 0 clamp(0.75rem, 3.5vw, 1.5rem);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
@@ -376,6 +382,48 @@
 /* `feedback.ts` sets this for the duration of the request. Without the rule
    the submit button stays live and a second click sends a second copy. */
 .fb[data-state="sending"] button { opacity: .6; pointer-events: none; }
+
+/* ── Sample plans ───────────────────────────────────────────────────── */
+.plans-main { padding-bottom: clamp(3rem, 7vw, 5rem); }
+/* The box to type in. Shown by the script that makes it work
+   (src/site/find-program.ts). */
+.finder { max-width: 34rem; }
+.finder label { display: block; margin-bottom: var(--sp-2); font-size: var(--fs-base); font-weight: 700; }
+.finder input {
+  width: 100%;
+  /* 16px, and not for looks: iOS zooms the page in when a smaller field
+     takes focus, and does not zoom back out. */
+  font-size: var(--fs-md);
+  padding: var(--sp-3) var(--sp-4);
+  border-color: var(--border-strong); border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+.finder input:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+/* How much of the list is showing. Always on the page: with no script it
+   is simply how many there are. */
+.site .finder-status { margin: var(--sp-3) 0 0; font-size: var(--fs-base); color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+/* One Program a row: its name, where its plans are for, the way in. */
+.programs { list-style: none; margin: var(--sp-6) 0 0; padding: 0; border-top: 1px solid var(--border-strong); }
+.program {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center;
+  gap: 0 var(--sp-6);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--border);
+}
+/* `display: grid` above outranks the browser's own rule for [hidden]. */
+.program[hidden] { display: none; }
+.site .program-name { margin: 0; font-weight: 700; color: var(--navy); }
+.site .program-campus { grid-column: 1; margin: 0; font-size: var(--fs-base); line-height: 1.5; color: var(--text-muted); }
+.program-open {
+  grid-column: 2; grid-row: 1 / span 2;
+  display: inline-flex; align-items: center; min-height: var(--tap-min);
+  font-size: var(--fs-base); font-weight: 700; white-space: nowrap;
+}
+@media (max-width: 34rem) {
+  .program { grid-template-columns: minmax(0, 1fr); }
+  .program-open { grid-column: 1; grid-row: auto; justify-self: start; }
+}
 
 /* ── Privacy and Terms ──────────────────────────────────────────────── */
 /* `.doc-body`, not `.legal-body`: the app stylesheet already has one of

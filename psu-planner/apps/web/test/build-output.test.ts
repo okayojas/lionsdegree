@@ -46,17 +46,18 @@ beforeAll(() => {
  * in the commit message — that is the discipline the ADR exists to impose. */
 
 /** What has to arrive before the landing page can paint: the document, its
- * stylesheet, and every script in the static graph. Measured at 23.7 KB
- * (document 4.9, stylesheet 15.3, script 3.5). It was 20.2 before the scene
+ * stylesheet, and every script in the static graph. Measured at 24.0 KB
+ * (document 4.9, stylesheet 15.5, script 3.7). It was 20.2 before the scene
  * (#65): the difference is the script that decides whether this browser
- * gets one, and the rules for the page when it does. The scene itself is
+ * gets one, and the rules for the page when it does; and 23.7 before the
+ * Sample plans page's rules joined the shared stylesheet (#67). The scene itself is
  * not in this number, which is the point of the next one. Fonts are not in
  * it either: they are swapped in when they land, and the text is readable
  * before they do. (ADR 0005.) */
 const LANDING_FIRST_PAINT_CEILING_KB = 28;
 
 /** The landing page's own script: what loads with the page. Measured at
- * 3.5 KB. It was 0.54 before it had a scene to start. */
+ * 3.7 KB. It was 0.54 before it had a scene to start. */
 const LANDING_SCRIPT_CEILING_KB = 4.2;
 
 /** The scene: three.js and the simulation, as the one chunk the page asks
@@ -70,6 +71,14 @@ const LANDING_SCENE_CEILING_KB = 162;
  * to send it. Each ceiling is the measurement plus a fifth (ADR 0002). */
 const ABOUT_EAGER_CEILING_KB = 3.2;
 const ABOUT_SCRIPT_CEILING_KB = 80;
+
+/** The Sample plans page: the same measure as the landing page's first
+ * paint, as ADR 0005 said it should get. Measured at 28.6 KB (document
+ * 14.1, stylesheet 13.6, script 0.9). The document is the heavy part and
+ * is meant to be: it is the list, all 383 Programs of it, in the page and
+ * not fetched into it. What this ceiling is for is the day a second copy
+ * of each name, or a Program's whole plan, gets written into every row. */
+const SAMPLE_PLANS_FIRST_PAINT_CEILING_KB = 34;
 
 /** Every script reachable from `entries`, static or dynamic, as dist-relative
  * paths.
@@ -560,6 +569,51 @@ describe("the pages outside the planner", () => {
       if (url.startsWith("data:")) continue;
       expect(exists(url.replace(/^\//, "")), `${url} is referenced by @font-face but not in dist`).toBe(true);
     }
+  });
+
+  it.each(PAGES)("%s ships no unsubstituted placeholder and no unfilled slot", (page) => {
+    // The landing page has had this check since its coverage figure. A
+    // page that names the Edition, or carries a list the build writes,
+    // can ship the same mistake: literal %SHOUTING% text, or a comment
+    // where its content should be.
+    const html = read(page);
+    expect([...new Set([...html.matchAll(/%[A-Z][A-Z0-9_]{2,}%/g)].map((m) => m[0]))]).toEqual([]);
+    expect(html, "a slot the build should have filled is still a comment").not.toMatch(/<!-- (site-header|sample-plan|sample-plans-list) -->/);
+  });
+
+  describe("the Sample plans page", () => {
+    const html = () => read("sample-plans/index.html");
+    const latest = (JSON.parse(read("catalog/editions.json")) as { latest: string }).latest;
+    const index = () => JSON.parse(read(`catalog/${latest}/templates/index.json`)) as { program: string; name: string }[];
+
+    it("has the whole list in the document, one row for each Program in the latest Edition's index", () => {
+      // In the markup, where a crawler and a student with scripts off find
+      // it. Counted against the index the build ships beside it.
+      const rows = [...html().matchAll(/<a class="program-open" href="\/plan\/\?programs=([^"]+)"/g)].map((m) => m[1]);
+      expect(rows.length).toBeGreaterThan(300);
+      expect(rows.sort()).toEqual(index().map((e) => e.program).sort());
+      expect(html()).toContain(`${rows.length} Penn State programs publish a suggested plan`);
+    });
+
+    it("keeps the first paint light: the document, its stylesheet, its script", () => {
+      const sheets = [...html().matchAll(/<link rel="stylesheet"[^>]*href="\/(assets\/[^"]+\.css)"/g)].map((m) => m[1]);
+      expect(sheets.length, "the page links no stylesheet").toBeGreaterThan(0);
+      const gz = (rel: string) => zlib.gzipSync(fs.readFileSync(path.join(dist, rel))).length / 1024;
+      const kb =
+        gz("sample-plans/index.html") + sheets.reduce((n, s) => n + gz(s), 0) + scriptKb(entryScripts("sample-plans/index.html"), "static");
+      expect(kb, `${kb.toFixed(1)} KB has to arrive before the Sample plans page can paint`).toBeLessThan(
+        SAMPLE_PLANS_FIRST_PAINT_CEILING_KB,
+      );
+    });
+
+    it("loads one small script and nothing of the planner's, now or later", () => {
+      const all = [...reachableScripts(entryScripts("sample-plans/index.html"), "all")];
+      expect(all.length, "the page loads no script, so the list can never be narrowed").toBeGreaterThan(0);
+      expect(all.filter((f) => /^assets\/(plan|sync|scene)-/.test(f)), "the list page reaches the app").toEqual([]);
+      // Nothing is fetched to draw the list, the index it was written from
+      // least of all: it is already drawn.
+      for (const f of all) expect(read(f), `${f} asks for the catalog`).not.toMatch(/catalog\/|templates\/index/);
+    });
   });
 
   describe("the About page's feedback form", () => {

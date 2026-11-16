@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample plans — LionsDegree</title>
+    <meta
+      name="description"
+      content="Every Penn State program that publishes a suggested plan in the Bulletin, with its campuses. Find yours by name and open it in the planner."
+    />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#f1ebdf" />
+    <link rel="canonical" href="%SITE_URL%/sample-plans/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="LionsDegree" />
+    <meta property="og:url" content="%SITE_URL%/sample-plans/" />
+    <meta property="og:title" content="Sample plans for Penn State programs" />
+    <meta property="og:description" content="Every program that publishes a suggested plan. Find yours and open it in the planner." />
+    <link rel="stylesheet" href="/src/site.css" />
+  </head>
+  <body class="site plans-page">
+    <a href="#main" class="skip-link">Skip to the list</a>
+
+    <!-- The header is not written here. Every page outside the planner
+         wears the same one, from src/site/header.ts, and the build puts it
+         where this comment is (vite.config.ts). -->
+    <!-- site-header -->
+
+    <!-- EVERY PROGRAM THAT PUBLISHES A SUGGESTED PLAN, and a way into the
+         planner for each (#60, #67). The list is not typed here and not
+         fetched: the build writes it in from the latest Edition's Template
+         index, with the count and the Edition's name, so it is in the page
+         for a crawler and for a student with scripts off. The one script
+         only narrows it. -->
+    <main id="main" class="wrap plans-main">
+      <div class="page-head">
+        <p class="eyebrow">The %COVERAGE_EDITION_LABEL% Bulletin</p>
+        <h1>Sample plans</h1>
+        <p class="lede">
+          %TEMPLATES_COUNT% Penn State programs publish a suggested plan: which
+          courses, in which term, from the first to the last. Find yours and
+          open it in the planner.
+        </p>
+        <!-- WHAT THESE ARE, said before the list and not under it. A plan
+             read as "what I have to take" by a student whose requirements
+             are a different Edition's is the mistake this project exists
+             not to cause. -->
+        <p class="note">
+          <strong>A suggestion, not your requirements.</strong> Each of these
+          is the Bulletin's own sample for a program, from its
+          %COVERAGE_EDITION_LABEL% edition. What you have to take depends on
+          when you entered your major and what you have already done. Check
+          it with your academic adviser.
+        </p>
+      </div>
+
+      <!-- Hidden until src/site/find-program.ts is running: a box to type in
+           that narrows nothing is worse than a list with no box. -->
+      <div class="finder" id="finder" role="search" hidden>
+        <label for="find-program">Find your program</label>
+        <input id="find-program" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Computer Science, Erie, B.A.…" aria-describedby="finder-status" />
+      </div>
+      <p class="finder-status" id="finder-status" role="status" aria-live="polite">%TEMPLATES_COUNT% programs</p>
+
+      <ul class="programs" id="programs">
+          <!-- sample-plans-list -->
+      </ul>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <p class="disclaim">
+          <strong>Unofficial.</strong> LionsDegree is not affiliated with,
+          endorsed by, or an official product of The Pennsylvania State
+          University. Confirm your degree plan with your academic adviser.
+        </p>
+        <p class="small">
+          <a href="/">Home</a> ·
+          <a href="/plan/">Open the planner</a> ·
+          <a href="/privacy/">Privacy</a> ·
+          <a href="/terms/">Terms</a> ·
+          <a href="https://bulletins.psu.edu/">Penn State Bulletin</a> ·
+          <a href="https://github.com/okayojas/lionsdegree">Source</a>
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/site/find-program.ts"></script>
+  </body>
+</html>

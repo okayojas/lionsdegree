@@ -147,6 +147,12 @@ function start(): void {
     // the footer slides under it; and a header nobody can see must not be
     // somewhere the keyboard can land.
     const away = footer.getBoundingClientRect().top < header.offsetHeight * 0.8;
+    // How tall the header is, for the stylesheet: it rides over the page
+    // here, its links wrap to a second and third row on a narrow screen,
+    // and the plan section's heading has to start below it.
+    // On the body, where the stylesheet declares its default: a value set
+    // higher up would lose to that declaration.
+    document.body.style.setProperty("--head-height", `${header.offsetHeight}px`);
     header.classList.toggle("is-away", away);
     header.inert = away;
   };
@@ -245,6 +251,7 @@ function start(): void {
     header.inert = false;
     field.remove();
     root.classList.remove("has-scene", "scene-live");
+    document.body.style.removeProperty("--head-height");
   };
   const giveUp = window.setTimeout(abandon, GIVE_UP_AFTER_MS);
   // A real unload, not a suspend into the back/forward cache: the page

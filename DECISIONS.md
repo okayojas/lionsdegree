@@ -704,6 +704,40 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
   - **Not known:** how it runs on a real phone, in Safari or in Firefox. Everything measured
     is Chromium on one laptop (60 frames a second at 1600 by 900 and at phone size). That is
     #66, and it needs a person holding the devices.
+- **Sample plans is a list in a document (2026-11-16, #60, #67).** `/sample-plans/` lists every
+  Program in the latest Edition that publishes a suggested plan (a Template), with the campuses
+  its plans are for and one action each: "Open in the planner", which is the planner's own
+  Program link (`/plan/?programs=…`) and generates nothing until the student says so.
+  - **The list is written into the page by the build**, from `templates/index.json` in the
+    Edition's catalog, and not fetched into it. With scripts off it is all there, links and
+    all; the one script (`src/site/find-program.ts`) only narrows it, and the box it narrows
+    with is hidden until that script is running.
+  - **The index is the sync's to write.** `scripts/template-index.mjs` walks an Edition's
+    Program files for suggested plans that have Terms in them and joins what it finds to the
+    Edition's own Program index. A plan whose Program the Edition does not have is not listed,
+    because its link would open an error. `sync-catalog.mjs` calls it for every Edition it
+    syncs, so the next catalog refresh rewrites it; the index is committed with the catalog and
+    a test fails if it is stale. It carries a Program's identifier, name and campuses and
+    nothing else: no Course, no sentence of the Bulletin's.
+  - **A campus is what the Bulletin's own label says, unedited.** The text after the last
+    " at " in each plan's label ("… at Erie Campus", "… at University Park Campus (Last Names
+    Starting with A-K)"), each one once. Where no label names one, the Program's own record
+    is used; where neither does (three Programs today), the page says the Bulletin names none.
+  - **What typing finds:** every word typed has to begin some word of the Program's name or
+    campuses, in any order, with case, accents, full stops and apostrophes ignored ("comp sci
+    erie bs"). From the start of a word, so that "ba" is the B.A.s and not Abington. The rule
+    is one function beside the code that writes the list, and the build and the page fold text
+    with the same one.
+  - **The header has four links now**, Sample plans first after Planner. They stopped fitting
+    on one line with the brand and the action below about 896px, so the header's narrow layout
+    starts at 56rem where it started at 48rem; on a phone the gap between links tightens so
+    the four are one row at 390px. The landing page's pinned section used to assume a
+    two-row header on a phone: it now takes the header's measured height from
+    `src/gravity.ts` (`--head-height`).
+  - **What it weighs:** 28.6 KB gzipped to first paint (document 14.1, stylesheet 13.6,
+    script 0.9), under a ceiling of its own. The document is the heavy part and is meant to
+    be; the published index is 56.3 KB uncompressed and the page does not download it.
+  - **Not here yet:** seeing a Program's plan Term by Term before opening it. That is #68.
 - **The pages outside the planner are cream, and say so (2026-11-16, #61).** Connect your AI, Privacy
   and Terms used to wear the old landing page's dark canvas. They now sit on the app's light tokens
   with petrol as the only accent (`site.css`), and each carries `data-theme="light"`: merely dropping

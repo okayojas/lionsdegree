@@ -24,6 +24,7 @@ import { HEADER_PAGES as PAGES } from "../src/site/header";
 const HEADER = [
   { name: "LionsDegree", href: "/" },
   { name: "Planner", href: "/plan/" },
+  { name: "Sample plans", href: "/sample-plans/" },
   { name: "Connect your AI", href: "/connect/" },
   { name: "About", href: "/about/" },
   { name: "Start my plan", href: "/plan/" },

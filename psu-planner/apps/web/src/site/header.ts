@@ -36,8 +36,9 @@ interface SitePage {
  * all of them; a page left off is a page nothing checks, which is how the
  * precache came to be handing three of them to every installed planner.
  *
- * Sample plans joins it, first, when that page exists. */
+ */
 const PAGES: readonly SitePage[] = [
+  { path: "/sample-plans/", label: "Sample plans" },
   { path: "/connect/", label: "Connect your AI" },
   { path: "/about/", label: "About" },
   { path: "/privacy/" },

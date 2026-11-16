@@ -18,6 +18,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { firstSentence } from "./firstSentence.mjs";
+import { writeTemplateIndex } from "./template-index.mjs";
 import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -168,9 +169,15 @@ for (const edition of editions) {
     fs.rmSync(path.join(dst, mcpOnly), { force: true });
   }
   const stripped = stripDescriptions(dst);
+  // Which Programs publish a suggested plan, and for which campuses: one
+  // small file the Sample plans page is built from (template-index.mjs).
+  // Written here because this directory was just rebuilt from the
+  // pipeline's output, and anything not written here is gone.
+  const templates = writeTemplateIndex(dst);
   console.log(
     `synced ${edition} (${countFiles(dst)} files, ${stripped.withheld.toFixed(1)} MB of description prose withheld, ` +
-      `${stripped.summaries.toFixed(2)} MB of opening sentences in summaries/)`,
+      `${stripped.summaries.toFixed(2)} MB of opening sentences in summaries/, ` +
+      `${templates.programs} Programs in templates/index.json)`,
   );
 }
 

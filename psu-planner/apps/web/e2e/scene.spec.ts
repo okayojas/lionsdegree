@@ -205,6 +205,8 @@ test.describe("the scene", () => {
     // On the page, the rectangle sits in the space the text leaves it: under
     // the heading, over the caption, inside the screen.
     const text = await page.evaluate(() => ({
+      header: document.querySelector("header")!.getBoundingClientRect().bottom,
+      top: document.querySelector("#plan .plan-top")!.getBoundingClientRect().top,
       heading: document.querySelector("#plan h2")!.getBoundingClientRect().bottom,
       caption: document.querySelector("#plan figcaption")!.getBoundingClientRect().top,
       width: innerWidth,
@@ -216,6 +218,9 @@ test.describe("the scene", () => {
       top: ((r.view.height / 2 - c.y - c.size) / r.view.height) * text.height,
       bottom: ((r.view.height / 2 - c.y + c.size) / r.view.height) * text.height,
     });
+    // The header rides over this section, and on a phone its links take a
+    // second row: the words start below it, however tall it is.
+    expect(text.top, "the section's heading starts under the header").toBeGreaterThanOrEqual(text.header);
     const discs = planOf(r).map(px);
     expect(Math.min(...discs.map((d) => d.top)), "the rectangle runs up into the heading").toBeGreaterThanOrEqual(text.heading);
     expect(Math.max(...discs.map((d) => d.bottom)), "the rectangle runs down into the caption").toBeLessThanOrEqual(text.caption);
