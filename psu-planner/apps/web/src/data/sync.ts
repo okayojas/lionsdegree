@@ -495,6 +495,32 @@ async function send(plan: PlanDoc): Promise<void> {
 /** Debounced push — call on every local mutation. */
 export function schedulePush(plan: PlanDoc): void {
   if (!syncConfigured) return;
+  // NOTHING TO SEND WHEN WE ALREADY AGREE AT THIS EXACT REVISION, and
+  // this is not an optimisation — without it the conflict banner never
+  // goes away.
+  //
+  // THE LOOP. A refused push raises the banner. The student presses
+  // "Load the newer plan", which pulls the remote copy and records
+  // agreement at its revision. Adopting it calls `persist`, which calls
+  // this, which schedules a push of the plan that was just pulled — at
+  // the revision we just agreed on, because adopting is not an edit and
+  // does not advance it. Migration 0003's trigger refuses a revision
+  // that does not advance, that refusal reads as "stale", and the banner
+  // comes straight back. Press it again and the same thing happens.
+  //
+  // Reported from production as "the load the newer plan message keeps
+  // coming up even if I load the newer plan", which is exactly the shape
+  // of it: the button works, and then undoes itself.
+  //
+  // The guard is the honest statement rather than a special case for the
+  // banner: a Plan whose revision is the one the server last confirmed
+  // is a Plan the server already has. Any edit advances `rev`, so a real
+  // change is never swallowed here.
+  if (plan.rev === syncedRev(plan.id)) {
+    pending = null;
+    clearTimeout(timer);
+    return;
+  }
   pending = plan;
   clearTimeout(timer);
   timer = setTimeout(() => { void send(plan); }, 2500);
