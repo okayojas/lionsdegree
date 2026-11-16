@@ -73,6 +73,35 @@ jobs:
         working-directory: psu-planner
         if: steps.pw-cache.outputs.cache-hit == 'true'
 
+      # SYNC HAS TO BE CONFIGURED FOR THE CONFLICT SUITE TO MEAN ANYTHING.
+      #
+      # `.env.local` is gitignored, so CI built with no Supabase values and
+      # `syncConfigured` false. Nothing then pushes, nothing is refused, and
+      # the conflict bar cannot render -- so all nine of plan-conflict's
+      # tests asserted a banner the build was incapable of showing, and the
+      # browser job had been red on that since 2026-10-31 while every
+      # developer's machine stayed green.
+      #
+      # THESE VALUES POINT NOWHERE ON PURPOSE. Both specs stub `/auth/v1/**`
+      # and `/rest/v1/plans**` at the Playwright layer, so the build only has
+      # to BELIEVE sync exists; no request is meant to leave the browser.
+      # A host that does not resolve is the safety property -- the real
+      # project's anon key is public (it ships in the bundle), so using it
+      # would work too, and would point CI at production data the moment a
+      # route stub failed to match. That trade is not worth taking.
+      #
+      # Measured before trusting it: the whole suite under exactly these
+      # values ran 749 passed / 32 skipped / 0 failed in 323s, against a
+      # 320s baseline on real values. Booting every other spec with sync
+      # "on" against a dead host cost nothing and flaked nothing.
+      - name: Point the build at a Supabase that does not exist
+        run: |
+          cat > apps/web/.env.local <<'ENVEOF'
+          VITE_SUPABASE_URL=https://ci-stub.supabase.co
+          VITE_SUPABASE_ANON_KEY=ci-stub-anon-key-not-a-real-key
+          ENVEOF
+        working-directory: psu-planner
+
       # Runs against the BUILT app: the launch gate is about what ships.
       - run: pnpm --filter web build
         working-directory: psu-planner
