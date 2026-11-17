@@ -12,7 +12,7 @@
  * and only where a scene can run. Nothing here is the only copy of anything
  * a reader needs: the Plan it draws is in the document as a list.
  *
- * PORTED FROM THE OWNER'S PROTOTYPE (`gravity-landing-test.html`), and the
+ * PORTED FROM THE OWNER'S PROTOTYPE (a standalone page, since removed), and the
  * materials, lights, physics constants, entrance and label treatment are
  * that prototype's, unchanged: they are the design. What differs:
  *   - Scroll is the only input. The prototype once pushed the spheres away

@@ -12,8 +12,9 @@ be patient on fixes.
 
 ## Scope
 
-In scope: the planner app, the chat proxy in `apps/api`, the scraper, and the
-Supabase sync path.
+In scope: lionsdegree.com and the planner, the hosted AI connector at
+mcp.lionsdegree.com (`packages/mcp`), the chat proxy in `apps/api`, the scraper,
+and the Supabase sync path.
 
 Out of scope: anything on Penn State's own systems. Do not test against
 bulletins.psu.edu or LionPATH. If you find a problem in a Penn State service,
@@ -35,7 +36,7 @@ anyone who can reach it. Before exposing it publicly:
   that actually binds.
 
 Running entirely local (a local model, no hosted key) sidesteps all of this,
-which is one reason it is the recommended default. See README.
+which is one reason it is the recommended default.
 
 ## Known accepted risks
 

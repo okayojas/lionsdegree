@@ -9,17 +9,18 @@ By contributing you agree your work is licensed under Apache-2.0 (see LICENSE).
 ## Getting set up
 
 ```bash
-git clone <repo> && cd psu-planner
+git clone https://github.com/okayojas/lionsdegree.git && cd lionsdegree/psu-planner
 pnpm install
 pnpm --filter web dev     # http://localhost:5173
 ```
 
 The catalog is committed under `apps/web/public/catalog`, so the planner works
 immediately. You only need the scraper if you are changing parsing or refreshing
-the edition — see README "Refreshing the catalog".
+the edition — see README "Catalog updates".
 
 ```bash
-pnpm -r test        # 112 engine tests, incl. real-catalog + flowchart regression
+pnpm -r test        # engine, AI connector and web unit tests
+pnpm test:e2e       # Playwright browser suite
 pnpm -r typecheck
 ```
 
