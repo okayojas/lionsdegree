@@ -41,18 +41,25 @@ The first paint grew by 3.5 KB with the scene: the script that decides whether a
 one, and the layout rules for when it does. The scene itself is asked for after the page has
 painted and is not in the first number, which is what having three numbers is for.
 
-**Since #67 (same day) there is a fourth**, and the first two were measured again, because the
-Sample plans page's rules joined the stylesheet every one of these pages shares:
+**Since #67 (same day) there is a fourth**, for the Sample plans page: 28.2 KB measured, ceiling
+34, with the landing page at 24.0 because that page's rules sat in the stylesheet every one of
+these pages shares.
+
+**Since #68 (same day)** the Sample plans page can show a Program's plan Term by Term, and has a
+stylesheet of its own, as the landing page has, so its rules are counted against it and nobody
+else. Its ceiling went from 34 to 39 with the measurement, which is a new feature's weight and
+not a relaxed budget:
 
 | What | Measured | Ceiling |
 | --- | --- | --- |
-| Landing first paint: document, stylesheet, static script | 24.0 KB | 28 |
+| Landing first paint: document, stylesheet, static script | 23.8 KB | 28 |
 | The landing page's own script | 3.7 KB | 4.2 |
 | The scene, one lazy chunk | 134.9 KB | 162 |
-| Sample plans first paint: document, stylesheet, static script | 28.2 KB | 34 |
+| Sample plans first paint: document, stylesheet, static script | 32.8 KB | 39 |
 
-The Sample plans document is 13.6 KB of that, and is the list itself: 383 Programs written into
-the page, so that it is there with scripts off. That is the "heavy document of its own" the last
+The Sample plans document is 15.6 KB of that, and is the list itself: 383 Programs written into
+the page, so that it is there with scripts off. A Program's plan is not in the number: it is
+one small file (4.4 KB at most), fetched when that Program is chosen. That is the "heavy document of its own" the last
 consequence below was written about.
 
 Fonts and images are not in the first-paint figure. Fonts are swapped in when they land and the

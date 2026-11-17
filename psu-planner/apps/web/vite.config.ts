@@ -125,14 +125,14 @@ const writeSamplePlan = () => ({
  * names its Edition with %COVERAGE_EDITION_LABEL%, and the list under that
  * name has to be that Edition's list.
  *
- * From the index the catalog sync writes (scripts/template-index.mjs). Throws
+ * From the index the catalog sync writes (scripts/templates.mjs). Throws
  * where it is missing, for the reason the coverage figure does: a Sample
  * plans page with no plans on it is worse than a build that stops. */
 function templates(): TemplateEntry[] {
   const edition = coverageFacts()["%COVERAGE_EDITION%"];
   const file = resolve(__dirname, "public/catalog", edition, "templates/index.json");
   if (!existsSync(file)) {
-    throw new Error(`${file} is missing. Run \`node scripts/template-index.mjs\` (the catalog sync does this).`);
+    throw new Error(`${file} is missing. Run \`node scripts/templates.mjs\` (the catalog sync does this).`);
   }
   return JSON.parse(readFileSync(file, "utf-8")) as TemplateEntry[];
 }
@@ -243,8 +243,9 @@ export default defineConfig({
         globIgnores: [
           "index.html",
           // "/about/" -> the document, "about/**", and the script that is
-          // its entry and no other page's, "assets/about-*.js".
-          ...SITE_PAGES.flatMap((page) => [`${pageName(page)}/**`, `assets/${pageName(page)}-*.js`]),
+          // its entry and no other page's, "assets/about-*.js"; and its
+          // stylesheet where it has one of its own (Sample plans does).
+          ...SITE_PAGES.flatMap((page) => [`${pageName(page)}/**`, `assets/${pageName(page)}-*.js`, `assets/${pageName(page)}-*.css`]),
           "assets/landing-*.js",
           // The landing page's scene and three.js, fetched after it paints.
           "assets/scene-*.js",

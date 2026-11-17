@@ -4,7 +4,7 @@
  * that publishes a suggested plan, each with a link that opens it in the
  * planner. A crawler, a link previewer and a student with scripts off all get
  * that list, because the build writes it into the page (vite.config.ts) from
- * the Edition's own Template index (scripts/template-index.mjs). The script
+ * the Edition's own Template index (scripts/templates.mjs). The script
  * the page loads only narrows what is already there.
  *
  * NO IMPORTS, and it has to stay that way: vite.config.ts loads this file
@@ -18,7 +18,7 @@ export interface TemplateEntry {
   name: string;
   /** The campuses its Templates are for, each once: the ones the Bulletin's
    * label for each names, or the one on the Program's record where a label
-   * names none (scripts/template-index.mjs). Empty where neither says. */
+   * names none (scripts/templates.mjs). Empty where neither says. */
   campuses: readonly string[];
 }
 
@@ -29,7 +29,7 @@ export const PROGRAM_LIST_MARKER = "<!-- sample-plans-list -->";
  * Program chosen, and generates nothing until the student says so. */
 export const plannerLink = (program: string): string => `/plan/?programs=${encodeURIComponent(program)}`;
 
-const escapeHtml = (text: string): string =>
+export const escapeHtml = (text: string): string =>
   text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
 
 /** Text as it is compared: lower case, accents taken off, and anything that
@@ -72,7 +72,9 @@ export function finds(findableText: string, typed: string): boolean {
 export const findable = (entry: TemplateEntry): string => fold([entry.name, ...entry.campuses].join(" "));
 
 /** The list's items. Each is a Program: its name, where its suggested plans
- * are for, and the way into the planner.
+ * are for, and the way into the planner. (The script that shows a Program's
+ * Template adds its own button beside that link, and finds the Program by
+ * `data-program`: src/site/show-template.ts.)
  *
  * "Open in the planner" would be the same words three hundred times over to
  * a screen reader's list of links, so each carries its Program's name out of
@@ -85,10 +87,10 @@ export function programListHtml(entries: readonly TemplateEntry[]): string {
       const campuses = entry.campuses.length
         ? entry.campuses.map(escapeHtml).join(" · ")
         : "The Bulletin names no campus for this program";
-      return `<li class="program" data-find="${escapeHtml(findable(entry))}">
+      return `<li class="program" data-program="${escapeHtml(entry.program)}" data-find="${escapeHtml(findable(entry))}">
             <p class="program-name">${name}</p>
             <p class="program-campus">${campuses}</p>
-            <a class="program-open" href="${plannerLink(entry.program)}">Open in the planner<span class="sr-only">: ${name}</span></a>
+            <div class="program-actions"><a class="program-open" href="${plannerLink(entry.program)}">Open in the planner<span class="sr-only">: ${name}</span></a></div>
           </li>`;
     })
     .join("\n          ");

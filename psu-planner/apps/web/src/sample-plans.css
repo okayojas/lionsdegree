@@ -1,0 +1,116 @@
+/* =====================================================================
+   Sample plans (/sample-plans/): the list of Programs, the box that narrows
+   it, and a Program's Template shown Term by Term under its row.
+
+   A STYLESHEET OF ITS OWN, as the landing page has, and for the same reason:
+   these rules are a kilobyte and a half that Connect your AI, About, Privacy,
+   Terms and the landing page would otherwise download and never use (ADR
+   0005 counts a page's stylesheet in what it costs to paint). Everything
+   shared is in site.css, imported here: the surface, the header, the type.
+   ===================================================================== */
+@import "./site.css";
+
+/* ── Sample plans ───────────────────────────────────────────────────── */
+.plans-main { padding-bottom: clamp(3rem, 7vw, 5rem); }
+/* The box to type in. Shown by the script that makes it work
+   (src/site/find-program.ts). */
+.finder { max-width: 34rem; }
+.finder label { display: block; margin-bottom: var(--sp-2); font-size: var(--fs-base); font-weight: 700; }
+.finder input {
+  width: 100%;
+  /* 16px, and not for looks: iOS zooms the page in when a smaller field
+     takes focus, and does not zoom back out. */
+  font-size: var(--fs-md);
+  padding: var(--sp-3) var(--sp-4);
+  border-color: var(--border-strong); border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+.finder input:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+/* How much of the list is showing. Always on the page: with no script it
+   is simply how many there are. */
+.site .finder-status { margin: var(--sp-3) 0 0; font-size: var(--fs-base); color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+/* One Program a row: its name, where its plans are for, the way in. */
+.programs { list-style: none; margin: var(--sp-6) 0 0; padding: 0; border-top: 1px solid var(--border-strong); }
+.program {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center;
+  gap: 0 var(--sp-6);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--border);
+}
+/* `display: grid` above outranks the browser's own rule for [hidden]. */
+.program[hidden] { display: none; }
+.site .program-name { margin: 0; font-weight: 700; color: var(--navy); }
+.site .program-campus { grid-column: 1; margin: 0; font-size: var(--fs-base); line-height: 1.5; color: var(--text-muted); }
+/* What can be done with it: look (a button the script adds), go. */
+.program-actions {
+  grid-column: 2; grid-row: 1 / span 2;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--sp-1) var(--sp-6);
+}
+.program-open, .template-open {
+  display: inline-flex; align-items: center; min-height: var(--tap-min);
+  font-size: var(--fs-base); font-weight: 700; white-space: nowrap;
+}
+/* A button that reads as one beside a link that reads as one: an outline,
+   and a mark that turns over when the row is open. */
+.site .program-see, .site .template-retry {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  min-height: var(--tap-min); padding: 0 var(--sp-4);
+  font-family: var(--font-sans); font-size: var(--fs-base); font-weight: 700; white-space: nowrap;
+  color: var(--navy); background: transparent;
+  border: 1px solid var(--border-strong); border-radius: var(--r-full);
+}
+.site :is(.program-see, .template-retry):is(:hover, :active) { background: var(--surface); border-color: var(--primary); }
+.program-see::after {
+  content: ""; width: 0.45em; height: 0.45em; margin-top: -0.2em;
+  border-right: 2px solid var(--primary); border-bottom: 2px solid var(--primary);
+  transform: rotate(45deg);
+}
+.program-see[aria-expanded="true"]::after { transform: rotate(-135deg); margin-top: 0.2em; }
+@media (max-width: 40rem) {
+  .program { grid-template-columns: minmax(0, 1fr); }
+  .program-actions { grid-column: 1; grid-row: auto; justify-content: flex-start; }
+}
+
+/* A Program's Template, Term by Term, under its row (src/site/show-template.ts). */
+.template { grid-column: 1 / -1; padding: var(--sp-4) 0 var(--sp-6); }
+.site .template-title { margin: 0 0 var(--sp-3); font-size: var(--fs-lg); line-height: 1.2; }
+.site .template :is(.template-summary, .template-status, .template-key, .template-error) { margin: 0 0 var(--sp-3); font-size: var(--fs-base); line-height: 1.5; }
+.site .template .template-summary { font-weight: 700; color: var(--navy); font-variant-numeric: tabular-nums; }
+.site .template :is(.template-key, .template-status) { color: var(--text-muted); max-width: 62ch; }
+.site .template .template-error { font-weight: 700; max-width: 62ch; }
+.site .template-choice { margin: 0 0 var(--sp-4); }
+.template-choice label { display: block; margin-bottom: var(--sp-2); font-size: var(--fs-base); font-weight: 700; }
+.template-count { font-weight: 400; color: var(--text-muted); margin-left: var(--sp-2); }
+.template-choice select {
+  /* As wide as the screen and no wider: some of the Bulletin's names for a
+     plan run to a hundred characters. 16px, for the reason the box above
+     is. */
+  width: 100%; max-width: 46rem; min-height: var(--tap-min);
+  font-size: var(--fs-md); padding: var(--sp-2) var(--sp-3);
+  border-color: var(--border-strong); border-radius: var(--r-lg);
+}
+.site .template-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2) var(--sp-6); margin: var(--sp-4) 0 0; }
+
+/* The Terms: four across is a year to a pair of columns on a wide screen,
+   then two, then one. */
+.terms { list-style: none; margin: var(--sp-4) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-3); }
+@media (max-width: 64rem) { .terms { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 34rem) { .terms { grid-template-columns: minmax(0, 1fr); } }
+.term { min-width: 0; padding: var(--sp-3) var(--sp-4) var(--sp-4); background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); }
+.site .term-name { margin: 0; font-family: var(--font-sans); font-size: var(--fs-base); font-weight: 700; line-height: 1.3; color: var(--navy); }
+.site .term :is(.term-credits, .term-empty) { margin: 0; font-size: var(--fs-sm); line-height: 1.5; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.site .term .term-empty { margin-top: var(--sp-3); }
+.entries { list-style: none; margin: var(--sp-3) 0 0; padding: 0; display: grid; gap: var(--sp-2); }
+.entry { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-3); font-size: var(--fs-base); line-height: 1.4; }
+.entry-what { min-width: 0; overflow-wrap: anywhere; }
+/* Course codes: the one place the mono belongs (DECISIONS 5.2). */
+.entry .code { font-family: var(--font-mono); font-size: 0.9375em; font-weight: 500; white-space: nowrap; }
+.entry-or { color: var(--text-muted); }
+.entry-credits { flex: none; font-size: var(--fs-sm); color: var(--text-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* A Slot: a choice the Bulletin leaves open. Dashed, because nothing is in
+   it; in the sans, because it is the Bulletin's words and not a code. */
+.entry.is-slot { padding: var(--sp-2) var(--sp-3); border: 1px dashed var(--border-strong); border-radius: var(--r); }
+.entry-flag { font-size: var(--fs-sm); color: var(--text-muted); }
+/* A remark of the Bulletin's that is not copied: said quietly, as ours. */
+.entry.is-note { font-size: var(--fs-sm); color: var(--text-muted); }

@@ -46,11 +46,12 @@ beforeAll(() => {
  * in the commit message — that is the discipline the ADR exists to impose. */
 
 /** What has to arrive before the landing page can paint: the document, its
- * stylesheet, and every script in the static graph. Measured at 24.0 KB
- * (document 4.9, stylesheet 15.5, script 3.7). It was 20.2 before the scene
+ * stylesheet, and every script in the static graph. Measured at 23.8 KB
+ * (document 4.9, stylesheet 15.3, script 3.7). It was 20.2 before the scene
  * (#65): the difference is the script that decides whether this browser
- * gets one, and the rules for the page when it does; and 23.7 before the
- * Sample plans page's rules joined the shared stylesheet (#67). The scene itself is
+ * gets one, and the rules for the page when it does. (It was 24.0 for a
+ * day, while the Sample plans page's rules sat in the stylesheet this page
+ * shares; they have one of their own now.) The scene itself is
  * not in this number, which is the point of the next one. Fonts are not in
  * it either: they are swapped in when they land, and the text is readable
  * before they do. (ADR 0005.) */
@@ -73,12 +74,16 @@ const ABOUT_EAGER_CEILING_KB = 3.2;
 const ABOUT_SCRIPT_CEILING_KB = 80;
 
 /** The Sample plans page: the same measure as the landing page's first
- * paint, as ADR 0005 said it should get. Measured at 28.2 KB (document
- * 13.6, stylesheet 13.6, script 1.0). The document is the heavy part and
- * is meant to be: it is the list, all 383 Programs of it, in the page and
- * not fetched into it. What this ceiling is for is the day a second copy
- * of each name, or a Program's whole plan, gets written into every row. */
-const SAMPLE_PLANS_FIRST_PAINT_CEILING_KB = 34;
+ * paint, as ADR 0005 said it should get. Measured at 32.8 KB (document
+ * 15.6, stylesheet 14.1, script 3.1). It was 28.2 before the page could
+ * show a Program's plan Term by Term (#68): the script that does it, the
+ * rules for it, and a Program identifier on every row. The document is the
+ * heavy part and is meant to be: it is the list, all 383 Programs of it, in
+ * the page and not fetched into it. No Program's plan is in this number: one
+ * is fetched when it is asked for, and the test below says so. What this
+ * ceiling is for is the day a Program's whole plan gets written into every
+ * row. */
+const SAMPLE_PLANS_FIRST_PAINT_CEILING_KB = 39;
 
 /** Every script reachable from `entries`, static or dynamic, as dist-relative
  * paths.
@@ -606,13 +611,42 @@ describe("the pages outside the planner", () => {
       );
     });
 
-    it("reaches nothing of the planner's or the scene's, now or later, and asks for no catalog", () => {
+    it("reaches nothing of the planner's or the scene's, now or later", () => {
       const all = [...reachableScripts(entryScripts("sample-plans/index.html"), "all")];
       expect(all.length, "the page loads no script, so the list can never be narrowed").toBeGreaterThan(0);
       expect(all.filter((f) => /^assets\/(plan|sync|scene)-/.test(f)), "the list page reaches the app").toEqual([]);
-      // Nothing is fetched to draw the list, the index it was written from
-      // least of all: it is already drawn.
-      for (const f of all) expect(read(f), `${f} asks for the catalog`).not.toMatch(/catalog\/|templates\/index/);
+    });
+
+    it("has no Program's plan in the document, and nothing that fetches one ahead of time", () => {
+      // A plan is one small file, asked for when its Program is chosen (the
+      // browser suite watches the requests). Here: none was written into the
+      // page, and the page tells the browser to fetch none in advance.
+      expect(html(), "a Term is in the document").not.toMatch(/Year \d (Fall|Spring|Summer)/);
+      expect(html()).not.toMatch(/<link\b[^>]*\brel="(preload|prefetch)"[^>]*templates\//);
+      // The script is told where the Edition's files are, by the page.
+      expect(html()).toContain(`data-templates="/catalog/${latest}/templates/"`);
+      // And the index the list was written from is never asked for: the list
+      // is already drawn.
+      for (const f of reachableScripts(entryScripts("sample-plans/index.html"), "all")) {
+        expect(read(f), `${f} asks for the Template index`).not.toMatch(/index\.json/);
+      }
+    });
+
+    it("has a stylesheet of its own, so no other page downloads its rules", () => {
+      const sheet = /<link rel="stylesheet"[^>]*href="\/(assets\/[^"]+\.css)"/.exec(html())?.[1];
+      expect(sheet).toMatch(/^assets\/sample-plans-/);
+      // A rule only this page has (the grid its Terms are laid out on) is in
+      // its sheet and in nobody else's: every other page outside the
+      // planner, and the landing page.
+      const marker = /\.terms\{/;
+      expect(read(sheet!)).toMatch(marker);
+      const others = ["index.html", ...PAGES.filter((page) => page !== "sample-plans/index.html")];
+      expect(others.length).toBeGreaterThan(4);
+      for (const other of others) {
+        const theirs = /<link rel="stylesheet"[^>]*href="\/(assets\/[^"]+\.css)"/.exec(read(other))?.[1];
+        expect(theirs, `${other} links no stylesheet`).toBeTruthy();
+        expect(read(theirs!), `${other} downloads the Sample plans page's rules`).not.toMatch(marker);
+      }
     });
   });
 

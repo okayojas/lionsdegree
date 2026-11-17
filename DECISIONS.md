@@ -712,7 +712,7 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
     Edition's catalog, and not fetched into it. With scripts off it is all there, links and
     all; the one script (`src/site/find-program.ts`) only narrows it, and the box it narrows
     with is hidden until that script is running.
-  - **The index is the sync's to write.** `scripts/template-index.mjs` walks an Edition's
+  - **The index is the sync's to write.** `scripts/templates.mjs` walks an Edition's
     Program files for suggested plans that have Terms in them and joins what it finds to the
     Edition's own Program index. A plan whose Program the Edition does not have is not listed,
     because its link would open an error. `sync-catalog.mjs` calls it for every Edition it
@@ -758,7 +758,74 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
   - **What it weighs:** 28.2 KB gzipped to first paint (document 13.6, stylesheet 13.6,
     script 1.0), under a ceiling of its own. The document is the heavy part and is meant to
     be; the published index is 55.7 KB uncompressed and the page does not download it.
-  - **Not here yet:** seeing a Program's plan Term by Term before opening it. That is #68.
+- **A Program's plan, Term by Term, on the Sample plans page (2026-11-16, #60, #68).** Each
+  row has a "See term by term" button that shows the Program's Template under it: the Terms in
+  the Bulletin's order, each with its Courses and its Slots.
+  - **One small file per Program, fetched when it is chosen.** `templates/<program>.json` in
+    the Edition's catalog, written by the catalog sync with the index (`scripts/templates.mjs`,
+    which was `template-index.mjs`). Nothing is fetched until a row's button is pressed, then
+    that Program's file and no other, once, however the row is opened and closed while it is
+    on its way. The largest is 4.4 KB compressed (Information Technology, B.S., 44 plans); the
+    middle one is 0.7 KB; an Edition's 383 files are 2.5 MB on
+    disk, committed with the catalog like the rest of it. A file with no entry in the index is
+    never written, and the directory is emptied before each write so none is left behind.
+  - **What a file carries:** the address of the Program's page in the Bulletin, and for each
+    of its plans the Bulletin's name for it, its Terms, and in each Term the Course codes, the
+    credits and the Bulletin's own label for each choice it leaves open. Not the footnotes or
+    their marks (a mark inside a label, "IST 140*# or CMPSC 121", is taken off: it points at a
+    note that is not there), not a Course's title, nothing of a description (a test checks
+    every label against the opening sentences the catalog does publish). **The plan's name is carried**, which #68's "Course codes, credits and Slot labels
+    only" does not list: a Program has up to 44 plans, one per option and campus, and the name
+    is the only thing that tells them apart. It is a title, the longest is under 200 characters,
+    and the index already publishes the campuses read out of it.
+  - **A Slot is a Slot.** The Bulletin's label, in a dashed box, with "Open:" in front of it
+    for a screen reader, and no Course in it. The page says so above the Terms. About 1,400
+    of the Bulletin's labels name Courses themselves ("STAT 200 or SCM 200 or DS 200"): that is
+    the Bulletin listing what it accepts, kept as it wrote it, and the codes inside a label
+    are not checked against the catalog (one of them is the Bulletin's own "PYSCH 400").
+  - **A remark is a note, and is not copied.** 33 lines in the latest Edition are not a
+    Course and not a choice: "Take PECT exams (not required for graduation…)" with a web
+    address, "Enter the major before the end of this semester…", and also "Semester Abroad"
+    and "Optional Add-on Course". The first version showed them as open choices. They are
+    told apart by what a Slot is: a line the Bulletin gives no credits, and the catalog does
+    not count as General Education, is a note. A file says only that there is one, the page
+    says "A note in the Bulletin, not copied here", and the plan links to the Program's page
+    in the Bulletin. Some of those 33 are harmless labels and are withheld with the
+    sentences; that is the cautious side of 5.1, and showing them is a one-line change if the
+    owner prefers it.
+  - **A Course's code is the catalog's.** Where the Bulletin's plan writes "CAS 100" and its
+    catalog lists CAS 100A, 100B, 100C and 100S, the catalog's record of the plan already
+    names those four (177 lines: CAS 100, ENGL 202, SPAN 215…), and the page shows what the
+    record says, as the planner does. "BISC 004" is the catalog's "BISC 4".
+  - **Credits are the Bulletin's figures**, nought included ("Elective (if needed)", and
+    PSU 8 in seven plans), and so are a Term's total and a plan's: 36 Terms do not add up to
+    their own lines in the Bulletin, and are not corrected here.
+  - **A code the Edition does not have is not called a Course.** The Bulletin's plans name 33
+    codes its own catalog does not list (LA 283 in 130 plans, IST 302, SRA 221…), and six
+    alternatives. #68 requires that every Course a Template names exists in the Edition, and
+    dropping them would misstate the plan, so they are published as a third kind (`unlisted`,
+    `orUnlisted`) and shown with "not in this edition's catalog" beside them. The test runs
+    both ways: nothing named as a Course is missing from the Edition, and nothing flagged is
+    in it; and it stops at 39 flagged codes (32 today), so a catalog that failed to load
+    cannot pass as a Bulletin full of missing Courses.
+  - **Never an empty plan.** A file that does not arrive, or is not a Template file for that
+    Program (no plan in it, a plan with no Terms, a line that is not a Course, a Slot or a
+    flagged code), is refused whole and said in words, with "Try again" and the way into the
+    planner still there. A half-read plan looks exactly like a plan. A Term the Bulletin lists
+    nothing for (four of them) says that.
+  - **A button, made by the script.** With scripts off the page is the list and its links;
+    the button is not in the document, for the reason the search box is hidden there. It is a
+    disclosure (`aria-expanded`), the plan opens in place under its row with focus left where
+    it was, and a Program with several plans gets a "Which plan" chooser, with the chosen
+    plan's name in full under it. What happens is said for a screen reader in a live region
+    that is in the page before anything is opened; "Try again" hands the focus back to the
+    row's button. Seventeen plans have no name in the Bulletin and are "Plan 1", "Plan 2":
+    for three Programs that is all that tells their plans apart. No per-Program address: #60
+    rules that out for now.
+  - **A stylesheet of its own.** The page's rules moved out of the one every page outside the
+    planner shares, so the landing page, Connect, About, Privacy and Terms do not download them.
+  - **What it weighs:** Sample plans first paint 32.8 KB gzipped (document 15.6, stylesheet
+    14.1, script 3.1; it was 28.2), ceiling 39. Landing first paint 23.8 KB, ceiling 28.
 - **The pages outside the planner are cream, and say so (2026-11-16, #61).** Connect your AI, Privacy
   and Terms used to wear the old landing page's dark canvas. They now sit on the app's light tokens
   with petrol as the only accent (`site.css`), and each carries `data-theme="light"`: merely dropping

@@ -17,7 +17,7 @@
     <meta property="og:url" content="%SITE_URL%/sample-plans/" />
     <meta property="og:title" content="Sample plans for Penn State programs" />
     <meta property="og:description" content="Every program that publishes a suggested plan. Find yours and open it in the planner." />
-    <link rel="stylesheet" href="/src/site.css" />
+    <link rel="stylesheet" href="/src/sample-plans.css" />
   </head>
   <body class="site plans-page">
     <a href="#main" class="skip-link">Skip to the list</a>
@@ -31,16 +31,17 @@
          planner for each (#60, #67). The list is not typed here and not
          fetched: the build writes it in from the latest Edition's Template
          index, with the count and the Edition's name, so it is in the page
-         for a crawler and for a student with scripts off. The one script
-         only narrows it. -->
+         for a crawler and for a student with scripts off. One script
+         narrows it; the other shows a Program's plan Term by Term under
+         its row, from that Program's own file in the catalog (#68). -->
     <main id="main" class="wrap plans-main">
       <div class="page-head">
         <p class="eyebrow">The %COVERAGE_EDITION_LABEL% Bulletin</p>
         <h1>Sample plans</h1>
         <p class="lede">
           %TEMPLATES_COUNT% Penn State programs publish a suggested plan: which
-          courses, in which term, from the first to the last. Find yours and
-          open it in the planner.
+          courses, in which term, from the first to the last. Find yours, see
+          it term by term, and open it in the planner.
         </p>
         <!-- WHAT THESE ARE, said before the list and not under it. A plan
              read as "what I have to take" by a student whose requirements
@@ -64,7 +65,9 @@
       </div>
       <p class="finder-status" id="finder-status" role="status" aria-live="polite">%TEMPLATES_COUNT% programs</p>
 
-      <ul class="programs" id="programs">
+      <!-- `data-templates` is where this Edition's Template files are, for
+           the script that shows one. -->
+      <ul class="programs" id="programs" data-templates="/catalog/%COVERAGE_EDITION%/templates/">
           <!-- sample-plans-list -->
       </ul>
     </main>
@@ -88,5 +91,6 @@
     </footer>
 
     <script type="module" src="/src/site/find-program.ts"></script>
+    <script type="module" src="/src/site/show-template.ts"></script>
   </body>
 </html>
