@@ -854,6 +854,29 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
     planner shares, so the landing page, Connect, About, Privacy and Terms do not download them.
   - **What it weighs:** Sample plans first paint 32.8 KB gzipped (document 15.6, stylesheet
     14.1, script 3.1; it was 28.2), ceiling 39. Landing first paint 23.8 KB, ceiling 28.
+- **Start over stays started over when signed in (2026-11-16, reported by the owner).** Start over
+  removed the Plan from the device and told the account nothing, so the setup screen's account
+  menu found a Plan in the account and none here and loaded it straight back. The owner chose,
+  over deleting the account's Plan: the device remembers that the student started over. Until
+  that is answered the account's Plan is not pulled back (the setup screen says so, with "Bring it
+  back"), the new Plan is held back from the account, and once it is built the existing two-plans
+  question asks which to keep. Both Plans survive either answer. `startOver` in `sync.ts`.
+- **Setup asks about AP exams first, and they tick the classes (2026-11-16, the owner's request).**
+  - **AP is step 5, the classes are step 6.** An exam is something a student knows they took;
+    which Penn State course it stands for is not something they should have to work out.
+  - **Chosen from a list, with no button to press.** Picking an exam makes a row; picking the
+    score on the row credits the Courses Penn State's table gives for it, at once. No score, no
+    credit. A lower score takes back what only the higher one earned. The old picker needed
+    "Add AP credit" pressed, and what it added appeared as a chip in another place.
+  - **The Courses are ticked in the list of classes**, shown as given by the exam, and are
+    unticked by changing or removing the exam, not in the list: a tick the student could clear
+    there would come back the next time the exam was touched.
+  - **The instruction says which classes:** "Tick every class you have already passed and every
+    class you are taking this term". A class being taken now is treated as done, because the plan
+    starts from the student's NEXT term, which the same step asks for.
+  - **A class that is not listed** (a transfer course, one from another major) is searched for
+    under the list, in the same step. It used to share a step with AP.
+  - The Menu's "Import courses / AP credit" dialog keeps the older picker.
 - **A what-if is an independent copy, and a Program can be changed in one step (2026-11-16, #69).**
   The owner's decisions, in conversation; `docs/adr/0006` has the reasoning for the first.
   - **A what-if is a copy of the Plan**, not a list of changes replayed against it. Anything can

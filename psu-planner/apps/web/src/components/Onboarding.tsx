@@ -1,13 +1,14 @@
-/** Onboarding wizard: pick program(s) -> campus plan -> check off every
- * course from the major's track you've already taken (works for
- * major-switchers) -> AP / transfer / other credit -> generate. */
+/** Onboarding wizard: pick program(s) -> campus plan -> AP exams, chosen
+ * from a list, which tick the classes they count for -> tick every class
+ * from the major's track already passed or being taken now (works for
+ * major-switchers), and search for any that is not listed -> generate. */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { generatePlan, RCL_SEQUENCE, type Catalog, type ProgramTemplate, type ReqSection } from "@psu-planner/engine";
 import { parseProgramLink } from "../data/deepLink";
 import { currentEdition, loadAuditIndex, loadCoverage, loadEditions, loadProgram, loadProgramsIndex, loadSubject, setCatalogEdition } from "../data/catalogClient";
 import type { ProgramIndexEntry } from "../data/catalogClient";
 import { extractCodesFromFile, extractCodesFromText } from "../data/importSchedule";
-import { ApCreditPicker, CourseSearchPicker } from "./CreditPickers";
+import { ApExamList, CourseSearchPicker, type ApChoice } from "./CreditPickers";
 import { LegalModal } from "./LegalModal";
 import { BuildOverlay, nextPaint, type BuildStage } from "./BuildOverlay";
 import { usePlanner } from "../store";
@@ -109,6 +110,17 @@ export function Onboarding() {
   const [startYear, setStartYear] = useState(defaultStartTerm().year);
   const [completed, setCompleted] = useState<Set<string>>(new Set());
   const [extraCredits, setExtraCredits] = useState<{ code: string; source: string }[]>([]);
+  /** The AP exams chosen in step 5. What they are worth is in
+   * `extraCredits`, under a source that starts "AP ". */
+  const [apChoices, setApChoices] = useState<ApChoice[]>([]);
+  /** What gave a Course without the student ticking it: an AP exam, or a
+   * course they searched for. `undefined` where nothing did. */
+  const creditedBy = (code: string): string | undefined => {
+    const source = extraCredits.find((x) => x.code === code)?.source;
+    return source === undefined ? undefined : source === "search" ? "added below" : source;
+  };
+  /** Ticked: by the student, or for them. */
+  const done = (code: string): boolean => completed.has(code) || creditedBy(code) !== undefined;
   const [imported, setImported] = useState<string[]>([]);
   const [pasteOpen, setPasteOpen] = useState(false);
   const [pasteText, setPasteText] = useState("");
@@ -192,6 +204,7 @@ export function Onboarding() {
     // uploaded schedule, not from our catalog, and are re-matched at generate.
     setCompleted(new Set());
     setExtraCredits([]);
+    setApChoices([]);
     loadProgramsIndex()
       .then((idx) => {
         setIndex(idx);
@@ -531,8 +544,36 @@ export function Onboarding() {
         </div>
       </div>
 
+      {/* AP FIRST, THEN THE CLASSES (the owner, 2026-11-16). An exam is
+          something a student knows they took; which Penn State course it
+          stands for is something they should not have to work out. Chosen
+          here, it ticks those courses in the list below, so by the time
+          they are asked what they have taken, part of the answer is done. */}
       <div className="step">
-        <h3>5 · Which of these have you already taken?</h3>
+        <h3>5 · AP exams</h3>
+        <p className="step-help">
+          Choose each AP exam you have taken, then your score. The Penn State courses it counts
+          for are ticked for you in the next step. Skip this if you took none.
+        </p>
+        <ApExamList
+          key={servedEdition}
+          choices={apChoices}
+          onChange={(choices, outcomes) => {
+            setApChoices(choices);
+            // Everything AP gave before goes, and what the choices now come
+            // to takes its place: a score changed from 5 to 3 must take back
+            // the course only the 5 earned.
+            const fromAp = outcomes.flatMap((o) => o.courses.map((code) => ({ code, source: `AP ${o.exam}` })));
+            setExtraCredits((cur) => {
+              const others = cur.filter((x) => !x.source.startsWith("AP "));
+              return [...others, ...fromAp.filter((x) => !others.some((y) => y.code === x.code))];
+            });
+          }}
+        />
+      </div>
+
+      <div className="step">
+        <h3>6 · Select the classes you have taken or are taking now</h3>
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center", marginBottom: 8 }}>
           <label>Your next term{" "}
             <select value={startTerm} onChange={(e) => setStartTerm(e.target.value as "Fall" | "Spring")}>
@@ -550,16 +591,18 @@ export function Onboarding() {
         </div>
         {track.length === 0 && <p style={{ fontSize: 12.5, color: "var(--muted)" }}>Pick a major above to see its course track.</p>}
         {track.length > 0 && (
-          <p style={{ fontSize: 12.5, color: "var(--muted)", margin: "0 0 8px" }}>
-            Check every course you've completed — no matter which major you took it under.
-            Anything unchecked stays on your schedule; fully-completed terms disappear automatically.
+          <p className="step-help">
+            Tick every class you have <b>already passed</b> and every class you are <b>taking this
+            term</b>, whichever major you took it under. Classes your AP exams count for are
+            ticked already. Anything you leave unticked stays on your schedule, and a term with
+            every class ticked disappears.
           </p>
         )}
         {track.map((group) => {
           // A group is "all checked" when every entry is satisfied by its
           // default code OR any of its same-credit alternatives.
           const entryDone = (e: { code: string; alternatives: string[] }) =>
-            completed.has(e.code) || e.alternatives.some((a) => completed.has(a));
+            done(e.code) || e.alternatives.some((a) => done(a));
           const allChecked = group.entries.every(entryDone);
           const toggle = (code: string, on: boolean) => {
             const next = new Set(completed);
@@ -596,14 +639,19 @@ export function Onboarding() {
                   // ended up 827px below the furthest a student could scroll.
                   // One un-wrappable row made the page impossible to use.
                   <span key={e.code} style={{ display: "inline-flex", flexWrap: "wrap", alignItems: "center", gap: 4, minWidth: 0 }}>
-                    <label className="check" title={e.note}>
+                    <label className="check" title={creditedBy(e.code) ? `Ticked because of ${creditedBy(e.code)}` : e.note}>
                       <input
                         type="checkbox"
-                        checked={completed.has(e.code)}
+                        checked={done(e.code)}
+                        // Ticked by an AP exam (or a course added below): it
+                        // is unticked where it was given, not here, or the
+                        // tick would come back the next time that changed.
+                        disabled={!!creditedBy(e.code)}
                         onChange={(ev) => toggle(e.code, ev.target.checked)}
                       />
                       {e.code}
                     </label>
+                    {creditedBy(e.code) && <span className="track-note">{creditedBy(e.code)}</span>}
                     {/* SAID, NOT JUST DONE. A student scanning for ENGL 15 and
                         finding ENGL 137H needs to know the list changed on
                         purpose — a silent substitution looks exactly like a
@@ -613,7 +661,8 @@ export function Onboarding() {
                       <label className="check" key={alt} title={`same-credit alternative to ${e.code}`} style={{ borderStyle: "dashed" }}>
                         <input
                           type="checkbox"
-                          checked={completed.has(alt)}
+                          checked={done(alt)}
+                          disabled={!!creditedBy(alt)}
                           onChange={(ev) => toggle(alt, ev.target.checked)}
                         />
                         or {alt.replace(/^\S+ /, e.code.split(" ")[0] === alt.split(" ")[0] ? "" : alt.split(" ")[0] + " ")}
@@ -625,30 +674,31 @@ export function Onboarding() {
             </div>
           );
         })}
-      </div>
-
-      <div className="step">
-        <h3>6 · AP credit & other courses you've taken</h3>
-        <p style={{ fontSize: 12.5, color: "var(--muted)", margin: "0 0 8px" }}>
-          These count toward prerequisites, gen eds, and electives automatically.
-        </p>
-        <ApCreditPicker key={servedEdition} onAdd={(codes, label) => {
-          setExtraCredits((cur) => [...cur, ...codes.filter((c) => !cur.some((x) => x.code === c)).map((code) => ({ code, source: label }))]);
-        }} />
-        <div style={{ marginTop: 10 }}>
+        <div className="step-more">
+          <p className="step-help">
+            <b>Taken a class that is not listed?</b> A transfer course, or one from another major.
+            Search for it and it counts towards prerequisites, gen eds and electives.
+          </p>
           <CourseSearchPicker key={servedEdition} onAdd={(code) => {
             setExtraCredits((cur) => (cur.some((x) => x.code === code) ? cur : [...cur, { code, source: "search" }]));
           }} />
+          {extraCredits.some((x) => x.source === "search") && (
+            <div className="grid" style={{ marginTop: 8 }}>
+              {extraCredits.filter((x) => x.source === "search").map((x) => (
+                <button
+                  type="button"
+                  className="check"
+                  key={x.code}
+                  aria-label={`Remove ${x.code}`}
+                  title="Click to remove"
+                  onClick={() => setExtraCredits(extraCredits.filter((y) => y.code !== x.code))}
+                >
+                  ✓ {x.code}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
-        {extraCredits.length > 0 && (
-          <div className="grid" style={{ marginTop: 8 }}>
-            {extraCredits.map((x) => (
-              <label className="check" key={x.code} title={`${x.source} — click to remove`} onClick={() => setExtraCredits(extraCredits.filter((y) => y.code !== x.code))}>
-                ✓ {x.code} <span style={{ color: "var(--muted)", fontSize: 10.5 }}>({x.source})</span>
-              </label>
-            ))}
-          </div>
-        )}
       </div>
 
       <div className="step">
