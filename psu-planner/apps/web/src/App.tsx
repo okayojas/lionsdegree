@@ -9,6 +9,9 @@ import { SiteHead } from "./components/SiteHead";
 import { SITE_NAV } from "./site/header";
 import { followProgramLink, withoutProgramLink } from "./data/programLinkWhatIf";
 import { countPlan } from "./data/planCount";
+import { Tour } from "./components/Tour";
+import { markTourSeen, tourSeen, tourSteps } from "./data/tour";
+import { currentUser, syncConfigured } from "./data/sync";
 import { PlanCanvas } from "./components/PlanCanvas";
 import { Dialog } from "./components/Dialog";
 import { CourseModal } from "./components/CourseModal";
@@ -155,6 +158,27 @@ export default function App() {
      onboarding has just generated FROM this link has the Program in it,
      and following the link again would be noise. Once, and the link is
      taken out of the address so a reload does not follow it again. */
+  /* ── The first-run tour (#71) ───────────────────────────────────────
+     Once per browser, the first time a plan is on screen and loaded;
+     never over setup, and not while a dialog or a what-if link is
+     being dealt with. Again from Menu → Take the tour. */
+  const [tour, setTour] = useState<ReturnType<typeof tourSteps> | null>(null);
+  const startTour = async () => {
+    const user = syncConfigured ? await currentUser().catch(() => null) : null;
+    setTour(tourSteps({ accounts: syncConfigured, signedIn: !!user }));
+  };
+  const tourOffered = useRef(false);
+  useEffect(() => {
+    if (!plan || loading || loadError || tourOffered.current) return;
+    tourOffered.current = true;
+    if (tourSeen()) return;
+    // A moment after the chart is drawn, so the controls it points at
+    // are where they will stay.
+    const t = window.setTimeout(() => void startTour(), 700);
+    return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [plan, loading, loadError]);
+
   const hadPlanOnArrival = useRef(loadSavedPlan() !== null);
   const linkFollowed = useRef(false);
   useEffect(() => {
@@ -323,7 +347,7 @@ export default function App() {
         {/* Menu on the trailing edge, next to the account control --
             the same corner the landing page and the static pages put
             it. One position across every surface is the point. */}
-        <div className="toolbar-menu-wrap">
+        <div className="toolbar-menu-wrap" data-tour="menu">
           <button aria-haspopup="menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>Menu ▾</button>
           {menuOpen && (
             <div role="menu" className="toolbar-menu" onClick={() => setMenuOpen(false)}>
@@ -362,6 +386,7 @@ export default function App() {
               <button role="menuitem" disabled={removedCount === 0} onClick={() => setShowRemoved(true)}>
                 Removed items ({removedCount})
               </button>
+              <button role="menuitem" onClick={() => void startTour()}>Take the tour</button>
               <button role="menuitem" onClick={() => setShowLegal(true)}>Privacy · Terms · Accessibility</button>
               {/* The site's other pages. On a phone the header has no row of
                   its own for them (styles.css says why), so they are here;
@@ -610,6 +635,15 @@ export default function App() {
         />
       )}
       {showLegal && <LegalModal onClose={() => setShowLegal(false)} />}
+      {tour && (
+        <Tour
+          steps={tour}
+          onClose={() => {
+            markTourSeen();
+            setTour(null);
+          }}
+        />
+      )}
       {conflict && (
         <div className="conflict-bar" role="alert">
           <p>{conflictMessage()}</p>

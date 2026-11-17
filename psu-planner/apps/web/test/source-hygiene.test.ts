@@ -66,7 +66,9 @@ describe("tracked source", () => {
       }
     }
     expect(offenders, "control characters in source — a \\b that became a backspace?").toEqual([]);
-  });
+  // Reads every tracked source file, which takes about 5 s on a busy
+  // machine and timed out at the default limit while the browser suite ran.
+  }, 30_000);
 
   it("would catch a planted backspace", () => {
     // Mutation check: the scan is only worth its runtime if it actually fires,

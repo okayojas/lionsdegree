@@ -325,6 +325,7 @@ export function SidePanel({ width, open, onToggle, onChangeProgram }: {
     // 360px with nothing in it.
     <div
       className={`sidepanel${open ? "" : " collapsed"}`}
+      data-tour="requirements"
       style={open && width && !phone ? { width, maxWidth: "none", flex: "0 0 auto" } : undefined}
     >
       <div className="sidepanel-tabs">

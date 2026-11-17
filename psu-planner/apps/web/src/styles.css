@@ -1377,3 +1377,39 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
    phone is wide, and it has to wrap somewhere that is not inside a date. */
 .pc-choice { align-items: center; }
 .pc-facts { display: block; color: var(--text-muted); font-size: var(--fs-xs); margin-top: 2px; }
+
+/* ---------- the first-run tour (#71) ---------- */
+/* Above everything in the planner: the toasts and the save-conflict bar sit
+   at 200 and 300, and a message drawn over the tour's card reads as part of it. */
+.tour { position: fixed; inset: 0; z-index: 400; }
+.tour-dim { position: absolute; inset: 0; background: rgb(0 0 0 / 0.45); }
+/* The control the step is about, left clear: the ring is drawn by a shadow
+   wide enough to dim the rest of the page instead of the flat dim. */
+.tour-spot {
+  position: fixed; border-radius: var(--r);
+  box-shadow: 0 0 0 3px var(--primary), 0 0 0 9999px rgb(0 0 0 / 0.45);
+  pointer-events: none;
+}
+.tour:has(.tour-spot) .tour-dim { background: transparent; }
+.tour-card {
+  position: fixed; z-index: 1;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+  max-height: calc(100vh - 24px); overflow: auto;
+}
+.tour-card:focus { outline: none; }
+.tour-card:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.tour-card h2 { margin: 0 0 var(--sp-2); font-size: var(--fs-md); }
+.tour-card p { margin: 0; font-size: var(--fs-sm); line-height: 1.55; }
+.tour-count { color: var(--text-muted); font-size: var(--fs-xs) !important; margin-bottom: var(--sp-1) !important; text-transform: uppercase; letter-spacing: 0.04em; }
+.tour-acts { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); margin-top: var(--sp-3); flex-wrap: wrap; }
+.tour-nav { display: flex; gap: var(--sp-2); margin-left: auto; }
+.tour-acts button { min-height: var(--tap-min); }
+.tour-skip { border: 0; background: none; color: var(--text-muted); text-decoration: underline; padding: 0 var(--sp-1); }
+@media (prefers-reduced-motion: no-preference) {
+  .tour-card { animation: tour-in 160ms var(--ease-out); }
+  @keyframes tour-in { from { opacity: 0; transform: translateY(4px); } }
+}
+

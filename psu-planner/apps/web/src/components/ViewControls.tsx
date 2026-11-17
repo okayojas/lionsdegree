@@ -34,6 +34,9 @@ export interface ViewControlsProps {
 }
 
 const STEP = 0.002;
+/** One press of + or −. 15%, down from 20%: from fitting the screen to the
+ * course text being readable is about three presses, not one jump. */
+const ZOOM_BUTTON_STEP = 1.15;
 
 export function ViewControls({
   xFraction, yFraction, zoom, onPanX, onPanY, onZoom, onFit, connectHref,
@@ -48,7 +51,7 @@ export function ViewControls({
       {/* The one bright thing on the chart. Everything else here is a muted
           control; this is the single action we are actually asking for, so
           it gets the accent and nothing else competes with it. */}
-      <a className="vc-connect" href={connectHref}>
+      <a className="vc-connect" href={connectHref} data-tour="connect">
         <span aria-hidden="true">✦</span> Connect your AI
       </a>
 
@@ -79,7 +82,7 @@ export function ViewControls({
       />
 
       <div className="vc-zoom">
-        <button type="button" onClick={() => onZoom(zoom / 1.2)} aria-label="Zoom out" title="Zoom out">−</button>
+        <button type="button" onClick={() => onZoom(zoom / ZOOM_BUTTON_STEP)} aria-label="Zoom out" title="Zoom out">−</button>
         <input
           type="range"
           className="vc-zoom-range"
@@ -93,7 +96,7 @@ export function ViewControls({
           // 0.25-2.2 scale means nothing to anyone.
           aria-valuetext={`${Math.round(zoom * 100)} percent`}
         />
-        <button type="button" onClick={() => onZoom(zoom * 1.2)} aria-label="Zoom in" title="Zoom in">+</button>
+        <button type="button" onClick={() => onZoom(zoom * ZOOM_BUTTON_STEP)} aria-label="Zoom in" title="Zoom in">+</button>
         <button
           type="button"
           className="vc-fit"

@@ -2,7 +2,7 @@
  * React component using Pointer Events (mouse + touch). */
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  LAYOUT, ZOOM, cardStatus, clampView, columnFromX, computeEdges, credOf, defaultOrderKey,
+  LAYOUT, ZOOM, wheelZoomFactor, cardStatus, clampView, columnFromX, computeEdges, credOf, defaultOrderKey,
   fitView, layoutColumns, offsetForFraction, panBounds, viewportFraction, worldSize, type PlanItem,
 } from "@psu-planner/engine";
 import { usePlanner } from "../store";
@@ -116,7 +116,9 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
 
   const onWheel = (e: React.WheelEvent) => {
     const k0 = view.k;
-    const k = Math.min(ZOOM.MAX, Math.max(ZOOM.MIN, k0 * (e.deltaY < 0 ? 1.12 : 0.89)));
+    // By how far the wheel or trackpad moved, not a fixed step per event
+    // (engine/layout.ts says why).
+    const k = Math.min(ZOOM.MAX, Math.max(ZOOM.MIN, k0 * wheelZoomFactor(e.deltaY, e.deltaMode)));
     const r = vpRef.current!.getBoundingClientRect();
     const cx = e.clientX - r.left, cy = e.clientY - r.top;
     setView({ x: cx - (cx - view.x) * (k / k0), y: cy - (cy - view.y) * (k / k0), k });
@@ -216,6 +218,7 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
     <div
       ref={vpRef}
       className={`viewport${drag?.type === "pan" ? " panning" : ""}${inCandidate ? " candidate" : ""}`}
+      data-tour="chart"
       aria-label={whatIf ? `What-if "${whatIf.name}" — editing the what-if, not your plan` : undefined}
       role={whatIf ? "region" : undefined}
       onWheel={onWheel}

@@ -137,6 +137,26 @@ export function worldSize(numTerms: number, positions: Record<string, Position>)
  * limit or a bug. */
 export const ZOOM = { MIN: 0.25, MAX: 2.2 } as const;
 
+/** How much one wheel or trackpad event zooms the chart, as a factor.
+ *
+ * PROPORTIONAL TO HOW FAR IT MOVED (reported by the owner, 2026-11-17: "it
+ * zooms too much for people to use it well"). It used to be a fixed 12%
+ * per event whatever the size of the event. A mouse wheel sends one large
+ * event per notch, but a trackpad sends dozens of small ones for a single
+ * gesture, so one flick of two fingers took the chart from fitting the
+ * screen to its limit. Now a mouse notch (about 100 px) zooms about 8%, a
+ * trackpad gesture zooms by how far the fingers moved, and no single event
+ * zooms more than 8%.
+ *
+ * `deltaMode` is the wheel event's unit: 0 pixels, 1 lines, 2 pages. */
+export const WHEEL_ZOOM = { PER_PIXEL: 0.0008, MAX_STEP: 1.08 } as const;
+export function wheelZoomFactor(deltaY: number, deltaMode = 0): number {
+  if (!Number.isFinite(deltaY) || deltaY === 0) return 1;
+  const pixels = deltaY * (deltaMode === 1 ? 16 : deltaMode === 2 ? 800 : 1);
+  const factor = Math.exp(-pixels * WHEEL_ZOOM.PER_PIXEL);
+  return Math.min(WHEEL_ZOOM.MAX_STEP, Math.max(1 / WHEEL_ZOOM.MAX_STEP, factor));
+}
+
 /** Slack in world pixels at each edge of the pannable range, so a card on
  * the outer edge of the plan is not flush against the frame. */
 export const PAN_MARGIN = 80;

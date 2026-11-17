@@ -82,6 +82,7 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
   return (
     <div
       className="listview"
+      data-tour="chart"
       role="region"
       aria-label={
         whatIf

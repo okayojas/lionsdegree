@@ -172,7 +172,7 @@ export function AccountMenu({
     return (
       <div ref={wrap} style={{ position: "relative" }}>
         {askWhichPlan}
-        <button className="btn-signin" aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen(!open)}>
+        <button className="btn-signin" data-tour="signin" aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen(!open)}>
           Sign in
         </button>
         {open && (

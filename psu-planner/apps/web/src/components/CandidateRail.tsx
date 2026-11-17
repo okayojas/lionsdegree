@@ -100,7 +100,7 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
   };
 
   return (
-    <nav className={`rail${none ? " empty" : ""}${expanded ? "" : " collapsed"}`} aria-label="Your plan and your what-ifs">
+    <nav className={`rail${none ? " empty" : ""}${expanded ? "" : " collapsed"}`} aria-label="Your plan and your what-ifs" data-tour="whatifs">
       {phone && !none && (
         <button
           type="button"

@@ -13,6 +13,8 @@
  */
 import { describe, it, expect } from "vitest";
 import {
+  wheelZoomFactor,
+  WHEEL_ZOOM,
   ZOOM, LAYOUT, cardSlot, clampView, layoutColumns, panBounds, sliderFraction, fromFraction,
   viewportFraction, offsetForFraction,
 } from "../src/layout.js";
@@ -177,5 +179,44 @@ describe("cardSlot", () => {
     const a = cardSlot(0, 0);
     expect(cardSlot(1, 0).x - a.x).toBe(LAYOUT.COLW + LAYOUT.GAP);
     expect(cardSlot(0, 1).y - a.y).toBe(LAYOUT.CARDH + LAYOUT.VGAP);
+  });
+});
+
+describe("how much the wheel zooms", () => {
+  it("zooms in for a wheel turned up, out for down, and not at all for nothing", () => {
+    expect(wheelZoomFactor(-100)).toBeGreaterThan(1);
+    expect(wheelZoomFactor(100)).toBeLessThan(1);
+    expect(wheelZoomFactor(0)).toBe(1);
+    expect(wheelZoomFactor(Number.NaN)).toBe(1);
+  });
+
+  it("zooms a mouse notch by under 10%, where it used to be 12%", () => {
+    // One notch of a mouse wheel is about 100 px in Chrome.
+    const notch = wheelZoomFactor(-100);
+    expect(notch).toBeGreaterThan(1.05);
+    expect(notch).toBeLessThan(1.1);
+  });
+
+  it("zooms a trackpad's many small events by how far the fingers moved, not 12% each", () => {
+    // REPORTED BY THE OWNER. A trackpad pinch sends dozens of events of a
+    // few pixels. At a fixed 12% each, thirty of them took the chart from
+    // its smallest to its largest; now they add up to their distance.
+    let k = 1;
+    for (let i = 0; i < 30; i++) k *= wheelZoomFactor(-4);
+    expect(k).toBeGreaterThan(1.05);
+    expect(k).toBeLessThan(1.15);
+    // What the old rule did with the same gesture.
+    expect(1.12 ** 30).toBeGreaterThan(29);
+  });
+
+  it("never zooms more than one step in one event, whatever the event says", () => {
+    expect(wheelZoomFactor(-100_000)).toBe(WHEEL_ZOOM.MAX_STEP);
+    expect(wheelZoomFactor(100_000)).toBeCloseTo(1 / WHEEL_ZOOM.MAX_STEP, 10);
+  });
+
+  it("reads a wheel that reports lines or pages in pixels first", () => {
+    // Firefox reports lines (deltaMode 1): 3 lines is one notch.
+    expect(wheelZoomFactor(-3, 1)).toBeCloseTo(wheelZoomFactor(-48, 0), 10);
+    expect(wheelZoomFactor(-1, 2)).toBe(WHEEL_ZOOM.MAX_STEP);
   });
 });

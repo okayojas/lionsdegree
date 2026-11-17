@@ -18,7 +18,8 @@
  * screen. A page that has been silently zoomed out fails here, which is
  * what nothing caught for the three weeks #23 sat open as a question.
  */
-import { test, expect, type Page } from "@playwright/test";
+import type { Page } from "@playwright/test";
+import { test, expect } from "./fixtures";
 
 /** A real major WITH a suggested-plan grid, so onboarding will offer to
  * generate from it. Duplicated from `deep-link.spec.ts` rather than

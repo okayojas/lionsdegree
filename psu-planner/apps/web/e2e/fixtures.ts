@@ -21,7 +21,21 @@ export const SEEDED_PLAN = JSON.parse(fs.readFileSync(path.join(here, "seeded-pl
 /** The localStorage key the store reads on boot. */
 const PLAN_KEY = "psu-planner-plan-v1";
 
-export const test = base.extend<{ planner: Page }>({
+/** Every page starts with the first-run tour (#71) already seen. Without
+ * this, a card over a dimmed page would sit on top of the planner in
+ * every test that opens it, and not one of them is about the tour. The
+ * tour's own spec removes the flag in an init script of its own, which
+ * runs after this one. */
+export const test = base.extend<{ planner: Page; noTour: void }>({
+  noTour: [
+    async ({ context }, use) => {
+      await context.addInitScript(() => {
+        try { window.localStorage.setItem("lionsdegree-tour-done", "1"); } catch { /* no storage */ }
+      });
+      await use();
+    },
+    { auto: true },
+  ],
   /** A page at /plan/ with a plan already loaded and the catalog settled. */
   planner: async ({ page, colorScheme }, use) => {
     await page.addInitScript(

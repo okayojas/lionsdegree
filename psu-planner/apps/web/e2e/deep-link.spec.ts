@@ -7,7 +7,7 @@
  * These run WITHOUT the seeded-plan fixture — a deep link is what a student
  * arrives with before they have a plan at all.
  */
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures";
 
 /** Real slugs from the shipped index, so the test breaks if the catalog stops
  * containing what it claims rather than passing against made-up ones.
