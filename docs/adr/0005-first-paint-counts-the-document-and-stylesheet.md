@@ -57,6 +57,11 @@ not a relaxed budget:
 | The scene, one lazy chunk | 134.9 KB | 162 |
 | Sample plans first paint: document, stylesheet, static script | 32.8 KB | 39 |
 
+**Later the same day**, with the footer's band of phrases moving again and the header's rules in
+a stylesheet the planner loads too: landing first paint 24.7 KB (document 5.1, stylesheet 15.9,
+script 3.7), Sample plans 33.0 KB (document 15.6, stylesheet 14.3, script 3.1). Ceilings
+unchanged.
+
 The Sample plans document is 15.6 KB of that, and is the list itself: 383 Programs written into
 the page, so that it is there with scripts off. A Program's plan is not in the number: it is
 one small file (4.4 KB at most), fetched when that Program is chosen. That is the "heavy document of its own" the last

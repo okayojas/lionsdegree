@@ -60,6 +60,10 @@ export async function expectEveryLinkReachable(page: Page): Promise<void> {
     reached.add(at.name);
     if (!at.ring) unringed.push(at.name);
   }
-  expect(reached.size, "some links cannot be reached with Tab").toBe(links);
+  // And the one control that is not a link: the footer's band of phrases
+  // can be paused, where it moves (it does not under reduced motion, and
+  // then there is no control).
+  const controls = await page.locator("footer input:visible").count();
+  expect(reached.size, "some links cannot be reached with Tab").toBe(links + controls);
   expect(unringed, "focused, with nothing to show it").toEqual([]);
 }

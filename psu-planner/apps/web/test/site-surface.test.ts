@@ -23,9 +23,24 @@ describe("the shared header", () => {
   it("is the planner's wordmark, from the planner's markup", () => {
     // One word in the markup: `<b>` colours half of it without splitting it,
     // which is what keeps it "LionsDegree" to a screen reader and to
-    // find-in-page. App.tsx carries the same run.
+    // find-in-page. The planner's copy of the header carries the same run.
     expect(siteHeader("/")).toContain("<b>Lions</b>Degree");
-    expect(source("src/App.tsx")).toContain("<b>Lions</b>Degree");
+    expect(source("src/components/SiteHead.tsx")).toContain("<b>Lions</b>Degree");
+  });
+
+  it("is on the planner too, from the same list of links", () => {
+    // The planner draws its own (it is a React tree, and its brand is the
+    // page's heading), so what keeps the two from drifting is that
+    // neither types a link: both map over the one list.
+    const planner = source("src/components/SiteHead.tsx");
+    expect(planner).toContain("SITE_NAV.map(");
+    expect(planner).not.toMatch(/href="\/(sample-plans|connect|about)\//);
+    // Above the chart, inside the one banner, and above onboarding.
+    const app = source("src/App.tsx");
+    expect(app.match(/<SiteHead\b/g)).toHaveLength(2);
+    expect(app.match(/role="banner"/g)).toHaveLength(1);
+    // No way in to the page you are on.
+    expect(planner).not.toContain("site-start");
   });
 
   it("marks the page it is on, and no other", () => {

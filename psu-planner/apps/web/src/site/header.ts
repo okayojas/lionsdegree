@@ -4,8 +4,11 @@
  * how the three drifted: a link added to one was a link missing from two.
  * The legal generator calls this directly (src/legal/render.ts); hand-written
  * pages leave `SITE_HEADER_SLOT` where it goes and the build fills it in
- * (vite.config.ts). The planner is not a caller. It has a toolbar, not a
- * site header, and only the wordmark's markup is shared with it.
+ * (vite.config.ts). The planner wears it too, above its toolbar, since the
+ * owner asked for the same top on every page (2026-11-16): it draws the
+ * brand and the links itself (components/SiteHead.tsx), because it is a
+ * React tree and its brand is the page's heading, and it takes the links
+ * from `SITE_NAV` below so that there is still one list of them.
  *
  * NO IMPORTS, and it has to stay that way: vite.config.ts loads this file
  * while it is still deciding how to resolve everything else.
@@ -65,16 +68,16 @@ export const pageName = (page: string): string => page.replace(/^\/|\/$/g, "");
  * comment, so a page opened straight off the disk still parses. */
 export const SITE_HEADER_SLOT = "<!-- site-header -->";
 
-/** What the header links to: the planner, which is not one of these pages
- * and has a toolbar of its own, then every page above that has a label. */
-const NAV: readonly { href: string; label: string }[] = [
+/** What the header links to: the planner, which is not one of these pages,
+ * then every page above that has a label. */
+export const SITE_NAV: readonly { href: string; label: string }[] = [
   { href: "/plan/", label: "Planner" },
   ...PAGES.flatMap(({ path, label }) => (label ? [{ href: path, label }] : [])),
 ];
 
 /** @param current the page being rendered, as a site path ("/connect/"). */
 export function siteHeader(current: string): string {
-  const links = NAV.map(
+  const links = SITE_NAV.map(
     ({ href, label }) => `<a href="${href}"${href === current ? ` aria-current="page"` : ""}>${label}</a>`,
   ).join("\n        ");
   // The mark is decoration beside its own name, hence the empty alt: the

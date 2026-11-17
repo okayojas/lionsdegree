@@ -19,6 +19,50 @@ test.describe("the planner, with a plan already loaded", () => {
     await expect(planner.getByText(/Chart your degree/)).toHaveCount(0);
   });
 
+  test("wears the site's header above its own tools", async ({ planner }) => {
+    // The same top as every other page (the owner asked for it, 2026-11-16):
+    // the brand, which is the way home and this page's heading, and the
+    // site's links with this page marked. One banner holds it and the
+    // toolbar, so the page still has one banner and one heading.
+    const banner = planner.getByRole("banner");
+    await expect(banner).toHaveCount(1);
+    await expect(planner.getByRole("heading", { level: 1 })).toHaveText(["LionsDegree"]);
+    await expect(banner.getByRole("link", { name: "LionsDegree", exact: true })).toHaveAttribute("href", "/");
+    // No way in to the page you are already on.
+    await expect(banner.getByRole("link", { name: "Start my plan" })).toHaveCount(0);
+    const elsewhere = [
+      ["Sample plans", "/sample-plans/"],
+      ["Connect your AI", "/connect/"],
+      ["About", "/about/"],
+    ] as const;
+    if (planner.viewportSize()!.width <= 760) {
+      // A phone has no row to spare above the chart, so the links are in
+      // the Menu, and the mark alone stands for the brand.
+      await expect(banner.getByRole("navigation", { name: "Site" })).toHaveCount(0);
+      await planner.getByRole("button", { name: /^Menu/ }).click();
+      for (const [name, href] of elsewhere) {
+        const item = planner.getByRole("menuitem", { name, exact: true });
+        await expect(item).toBeVisible();
+        await expect(item).toHaveAttribute("href", href);
+      }
+      await planner.keyboard.press("Escape");
+    } else {
+      const site = banner.getByRole("navigation", { name: "Site" });
+      await expect(site.getByRole("link")).toHaveText(["Planner", ...elsewhere.map(([name]) => name)]);
+      await expect(site.getByRole("link", { name: "Planner" })).toHaveAttribute("aria-current", "page");
+      await expect(site.locator("[aria-current]")).toHaveCount(1);
+      // In the header, so not in the Menu a second time.
+      await planner.getByRole("button", { name: /^Menu/ }).click();
+      await expect(planner.getByRole("menuitem", { name: "About", exact: true })).toHaveCount(0);
+      await planner.keyboard.press("Escape");
+      // The links are above the planner's tools, and nothing covers them.
+      const links = (await site.boundingBox())!;
+      const search = (await planner.getByPlaceholder("Search courses by code or description").boundingBox())!;
+      expect(links.y + links.height).toBeLessThanOrEqual(search.y + 0.5);
+    }
+    await expectNoA11yViolations(planner);
+  });
+
   test("renders every term the plan contains", async ({ planner }) => {
     for (const term of SEEDED_PLAN.terms.slice(0, 3)) {
       await expect(planner.getByText(term.label, { exact: false }).first()).toBeVisible();

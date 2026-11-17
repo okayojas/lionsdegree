@@ -184,18 +184,71 @@
 .land-foot::before { width: 28rem; height: 28rem; top: -9rem; right: -7rem; background: radial-gradient(circle, color-mix(in srgb, var(--primary) 70%, transparent) 0%, transparent 65%); }
 .land-foot::after { width: 32rem; height: 32rem; bottom: -13rem; left: -9rem; background: radial-gradient(circle, color-mix(in srgb, var(--success-solid) 36%, transparent) 0%, transparent 65%); }
 
-/* The four phrases, whole. They wrap where they have to; none is cut off
-   at the edge, which is what a ticker that has stopped looks like. */
+/* The four phrases, flowing in at the right and out at the left. Two runs
+   of them side by side, moved left by one run's width and started again:
+   the second is where the first was, so the join never shows.
+
+   IT CAN BE STOPPED, WITHOUT A SCRIPT. The checkbox before the track is the
+   control (WCAG 2.2.2), drawn as the round button at the band's end; the
+   pointer resting on the band holds it too. */
 .landing .strip {
-  position: relative; margin: 0; padding: 1.25rem calc(var(--gutter) - 1rem);
-  display: flex; flex-wrap: wrap; align-items: center; row-gap: 0.15em;
+  position: relative; display: flex; overflow: hidden;
+  padding-block: 1.25rem;
   border-bottom: 1px solid color-mix(in srgb, var(--foot-ink) 12%, transparent);
+}
+.landing .strip-track {
+  flex: none; display: flex; margin: 0;
   font-family: var(--font-display); font-weight: 500; font-size: clamp(1.5rem, 4.4vw, 3.25rem); line-height: 1.15;
   color: color-mix(in srgb, var(--foot-ink) 90%, transparent);
+  white-space: nowrap;
+  animation: strip-flow 32s linear infinite;
 }
-.strip span { padding: 0 1rem; }
-.strip i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: color-mix(in srgb, var(--foot-ink) 42%, transparent); }
-.strip i:last-child { display: none; }
+@keyframes strip-flow { to { transform: translateX(-50%); } }
+.strip-run { flex: none; display: flex; align-items: center; }
+.strip-run span { padding: 0 1rem; }
+.strip-run i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: color-mix(in srgb, var(--foot-ink) 42%, transparent); }
+.strip:hover .strip-track, .strip-stop:checked ~ .strip-track { animation-play-state: paused; }
+
+/* The control. The checkbox itself is the size of the button and lies
+   over it, clear: it takes the click, the key and the focus ring, and
+   the label under it is only the picture. Two bars while the band
+   moves, a triangle once it is held. */
+.strip-stop, .strip-toggle {
+  position: absolute; z-index: 1; top: 50%; right: var(--gutter);
+  width: var(--tap-min); height: var(--tap-min); margin: calc(var(--tap-min) / -2) 0 0;
+  border-radius: 50%;
+}
+.strip-stop { z-index: 2; appearance: none; -webkit-appearance: none; background: transparent; border: 0; cursor: pointer; }
+.strip-toggle {
+  pointer-events: none;
+  display: grid; place-items: center;
+  /* The phrases pass under it, so it is a pane over them and not a hole
+     in them. */
+  background: color-mix(in srgb, var(--foot-ground) 72%, transparent);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1px solid color-mix(in srgb, var(--foot-ink) 34%, transparent);
+}
+.strip-toggle::before {
+  content: ""; width: 4px; height: 14px;
+  border-inline: 4px solid var(--foot-ink);
+}
+.strip-stop:checked + .strip-toggle::before {
+  width: 0; height: 0; margin-left: 3px;
+  border-block: 8px solid transparent; border-inline: 0 solid transparent;
+  border-left: 13px solid var(--foot-ink);
+}
+.strip-stop:hover + .strip-toggle { border-color: var(--foot-ink); }
+.strip-stop:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+
+/* STILL, for anyone who has asked for less motion: one run of the phrases,
+   wrapped where it has to and none cut off at the edge, and no control,
+   because there is nothing left to stop. */
+@media (prefers-reduced-motion: reduce) {
+  .landing .strip { padding-inline: calc(var(--gutter) - 1rem); }
+  .landing .strip-track { flex: 1; animation: none; white-space: normal; }
+  .strip-run { flex: 1; flex-wrap: wrap; row-gap: 0.15em; }
+  .strip-run i:last-child, .strip-again, .strip-stop, .strip-toggle { display: none; }
+}
 
 .foot-in { position: relative; padding-block: clamp(4rem, 9vw, 6rem) clamp(2rem, 4vw, 2.5rem); }
 .foot-grid { display: grid; gap: clamp(2.5rem, 6vw, 3rem); }

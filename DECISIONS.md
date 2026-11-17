@@ -576,6 +576,29 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
     OUTSIDE the planner: their headings and the links in their shared header, at 500 with tight
     tracking. The one-face rule was written to stop a second face being reached for as emphasis
     inside the app, and it still holds there — the planner loads no Raleway and sets nothing in it.
+    **Still so with the site's header on the planner (same day, below):** the planner's copy of
+    the header sets its links in the app's sans. In Raleway they were 47 KB of the planner's boot
+    payload for four words, which took it to 793 KB against a ceiling of 790, and a third face
+    in the app. The cost is that the links change face between Planner and the page beside it;
+    putting Raleway there is one line (`.app-head .site-head` in `styles.css`) and a ceiling
+    to move, if the owner prefers the header identical.
+  - **The planner wears the site's header (2026-11-16, the owner's request: "keep the stuff on
+    the top like all the other pages").** The brand and the four links, above the toolbar and
+    above onboarding. Drawn by the planner itself (`components/SiteHead.tsx`) from the same list
+    of links as every other page's (`SITE_NAV` in `src/site/header.ts`), and laid out by the
+    same rules, which moved to a stylesheet of their own (`site-head.css`) so the planner can
+    load them without the rest of `site.css`. Not as on the other pages, each for a reason: no
+    "Start my plan" pill (it would link to the page you are on); the brand is the page's `h1`,
+    as the toolbar's wordmark was; and the header and the toolbar are ONE banner, so the page
+    still has one. Above onboarding it is not a banner at all: the browser tests take the
+    banner to mean the chart is up. It costs the chart a row: 49px on a wide screen. **On a
+    phone it takes no row at all**, because there is none to give: on a 412 by 839 screen with
+    the keep-this-plan bar up, the chart has its floor of 45vh and 51px more, and a header row
+    of any height took that, so that putting the side panel away gave the plan nothing (the
+    panel's own test caught it, twice). Below 760px the mark alone stands for the brand, in
+    the toolbar's first row where the wordmark used to be, and the site's links are in the
+    Menu. The phone's menu panel now spans the toolbar instead of hanging from one end of the
+    button, because which end the button sits at moves with what is in its row.
     The owner's landing prototype is set in it and the pages around the landing have to read as the
     same site. Self-hosted like the other two (`@fontsource-variable/raleway`, imported by
     `site.css` only), so the CSP's `font-src 'self'` does not move; `site-surface.test.ts` pins the
@@ -613,10 +636,15 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
     a catalog with a Course taken out and reads the exit code). The figures on the page
     (Courses, Programs, the coverage percentage with its qualifier) are written in by the build
     and recounted from the catalog by the tests.
-  - **Nothing on it moves by itself.** The prototype's footer ticker stands still, as a band of
-    its four phrases: a line of type that scrolls for ever needs a control to stop it (WCAG
-    2.2.2), and the page has no script to give it one. The hero's rise and the sections'
-    fade-in are gone for the same reason the loader is.
+  - **One thing on it moves by itself: the footer's band of phrases.** The first version stood
+    the prototype's ticker still, because a line of type that scrolls for ever needs a control
+    to stop it (WCAG 2.2.2) and the page must work without a script. **Reversed by the owner
+    2026-11-16**, who asked for the text flowing in and out again. It moves as the prototype's
+    did (two runs of the four phrases, 32 seconds a run), and the control is a checkbox the
+    stylesheet reads ("Pause the moving text", drawn as a round button at the band's end), so
+    it needs no script; the pointer resting on the band holds it too. Under reduced motion the
+    band is what it was: one run, whole, wrapped, still, and no control. The hero's rise and
+    the sections' fade-in stay gone, for the same reason the loader is.
   - **Type and colour, against the prototype.** Section labels are in the sans, not the mono:
     the type rule above keeps the mono for course codes, which on this page is exactly the 48
     discs of the Plan. Raleway at 500 sets the headings, as on the pages beside it, and two

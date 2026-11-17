@@ -246,14 +246,64 @@ test.describe("the landing page is usable", () => {
 test.describe("motion", () => {
   test.beforeEach(async ({ page }) => withoutWebGL(page));
 
-  test("nothing on the page moves on its own", async ({ page }) => {
-    // The prototype's hero rose into place, its sections faded up and its
-    // footer carried a ticker that never stopped. A page that is complete as
-    // a document does none of that. What moves on this page is the scene,
-    // where there is one (#65), and here there is not.
+  /** Where the footer's band of phrases has got to, in pixels. */
+  const bandAt = (page: Page): Promise<number> =>
+    page.locator(".strip-track").evaluate((track) => track.getBoundingClientRect().left);
+
+  test("one thing on the page moves on its own, and it is the footer's band", async ({ page }) => {
+    // The prototype's hero rose into place and its sections faded up. A page
+    // that is complete as a document does neither. Its footer carried a
+    // ticker, and the owner asked for that back: it is the one animation,
+    // and what else moves is the scene, where there is one (#65), and here
+    // there is not.
     await page.goto("/");
     await page.waitForTimeout(600);
-    expect(await page.evaluate(() => document.getAnimations().length)).toBe(0);
+    const animated = await page.evaluate(() =>
+      document.getAnimations().map((a) => (a.effect as KeyframeEffect).target?.getAttribute("class")),
+    );
+    expect(animated).toEqual(["strip-track"]);
+    // And it is seen to move: leftwards, the phrases arriving at the right.
+    const before = await bandAt(page);
+    await page.waitForTimeout(400);
+    expect(await bandAt(page)).toBeLessThan(before - 2);
+  });
+
+  test("the band can be stopped and started again, from the keyboard, without a script", async ({ page }) => {
+    // WCAG 2.2.2. It is a checkbox and a stylesheet, so it works on the
+    // page as it is here, where the scene's script never started.
+    await page.goto("/");
+    const pause = page.getByRole("checkbox", { name: "Pause the moving text" });
+    await pause.focus();
+    await page.keyboard.press("Space");
+    await expect(pause).toBeChecked();
+    // A frame for the hold to take, or the last step of the move is read
+    // as the band still moving.
+    await page.waitForTimeout(150);
+    const held = await bandAt(page);
+    await page.waitForTimeout(400);
+    expect(await bandAt(page)).toBe(held);
+    await page.keyboard.press("Space");
+    await page.waitForTimeout(400);
+    expect(await bandAt(page)).toBeLessThan(held - 2);
+  });
+
+  test("the band is decoration to a screen reader, and whole to anyone who asked for less motion", async ({ page }) => {
+    await page.goto("/");
+    // Written twice so that it loops. Read out not at all.
+    await expect(page.locator(".strip-track")).toHaveAttribute("aria-hidden", "true");
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/");
+    // One run of the four phrases, none cut off at the edge, and no control
+    // for a motion that is not there.
+    await expect(page.getByRole("checkbox", { name: "Pause the moving text" })).toHaveCount(0);
+    const shown = page.locator(".strip-run span:visible");
+    await expect(shown).toHaveText(["Less guesswork", "More degree", "Every prerequisite, in order", "Start at the first stop"]);
+    const viewport = page.viewportSize()!.width;
+    for (const phrase of await shown.all()) {
+      const box = (await phrase.boundingBox())!;
+      expect(box.x).toBeGreaterThanOrEqual(0);
+      expect(box.x + box.width).toBeLessThanOrEqual(viewport + 0.5);
+    }
   });
 
   test("under reduced motion, nothing moves when it is touched either", async ({ page }) => {

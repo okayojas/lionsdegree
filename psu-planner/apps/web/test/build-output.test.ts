@@ -46,8 +46,10 @@ beforeAll(() => {
  * in the commit message — that is the discipline the ADR exists to impose. */
 
 /** What has to arrive before the landing page can paint: the document, its
- * stylesheet, and every script in the static graph. Measured at 23.8 KB
- * (document 4.9, stylesheet 15.3, script 3.7). It was 20.2 before the scene
+ * stylesheet, and every script in the static graph. Measured at 24.7 KB
+ * (document 5.1, stylesheet 15.9, script 3.7; it was 23.8 before the
+ * footer's band of phrases moved again and the planner's copy of the
+ * header brought its rules). It was 20.2 before the scene
  * (#65): the difference is the script that decides whether this browser
  * gets one, and the rules for the page when it does. (It was 24.0 for a
  * day, while the Sample plans page's rules sat in the stylesheet this page
@@ -211,7 +213,7 @@ describe("the landing document", () => {
     const lazy = [...reachableScripts(entries, "all")].filter((f) => !eager.has(f));
     // One lazy chunk, the scene. A second would be something the page
     // fetches that nobody decided it should.
-    expect(lazy.map((f) => f.replace(/-[^-.]+\.js$/, ".js")), "what the landing page fetches after it has painted").toEqual(["assets/scene.js"]);
+    expect(lazy.map((f) => f.replace(/-[\w-]+\.js$/, ".js")), "what the landing page fetches after it has painted").toEqual(["assets/scene.js"]);
     const kb = lazy.reduce((n, f) => n + zlib.gzipSync(fs.readFileSync(path.join(dist, f))).length, 0) / 1024;
     expect(kb, `the scene's chunk is ${kb.toFixed(1)} KB`).toBeLessThan(LANDING_SCENE_CEILING_KB);
   });
@@ -690,7 +692,9 @@ describe("the pages outside the planner", () => {
   it("keeps the display face out of the planner", () => {
     // DECISIONS 5.2: the app is one face plus mono for course codes. Raleway
     // is for the pages around it, and a stray import into the shared
-    // stylesheet would hand every student another font to download.
+    // stylesheet would hand every student another font to download. The
+    // planner wears the site's header since 2026-11-16, and sets its copy
+    // in the app's sans for exactly this reason.
     const planner = fs.readdirSync(path.join(dist, "assets")).find((f) => /^plan-.*\.css$/.test(f));
     expect(planner, "no planner stylesheet in dist/assets").toBeTruthy();
     expect(read(path.join("assets", planner!))).not.toMatch(/Raleway/i);

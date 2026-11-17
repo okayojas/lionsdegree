@@ -5,6 +5,8 @@ import { conflictMessage, flushPush, pullNewerPlan, setConflictListener } from "
 import { loadCourse, loadIugIndex, type IugIndexEntry } from "./data/catalogClient";
 import { downloadPlan, openPlanFile } from "./data/planFileIO";
 import { Onboarding } from "./components/Onboarding";
+import { SiteHead } from "./components/SiteHead";
+import { SITE_NAV } from "./site/header";
 import { PlanCanvas } from "./components/PlanCanvas";
 import { Dialog } from "./components/Dialog";
 import { CourseModal } from "./components/CourseModal";
@@ -175,6 +177,11 @@ export default function App() {
   if (!plan) {
     return (
       <>
+        {/* The same top as every other page, so the way to the rest of
+            the site is where it always is. Not a banner here: the
+            planner's banner is its toolbar's, and the browser tests
+            wait for that one to know the chart is up. */}
+        <SiteHead />
         <div className="onboard-account">
           <AccountMenu onToast={setToast} openOnMount={wantsSignIn(window.location.search)} />
         </div>
@@ -226,18 +233,13 @@ export default function App() {
   return (
     <div className="app">
       <a href="#main" className="skip-link">Skip to plan</a>
-      <div className="toolbar" role="banner">
-        {/* THE WAY BACK. The wordmark is a link on the landing page and on
-            every static page; in the planner it was the one place it was
-            not, so a student who got here had no way home short of editing
-            the URL. Clicking a logo is the convention they already expect.
-
-            Still an <h1> wrapping an <a>, not an <a> replacing it: the
-            heading is what names this page for a screen reader, and
-            `harness.spec.ts` finds the planner by it. */}
-        <h1>
-          <a href="/" title="Back to the LionsDegree home page"><b>Lions</b>Degree</a>
-        </h1>
+      {/* ONE BANNER, TWO ROWS. The site's header, the same as on every
+          other page (the owner asked for it, 2026-11-16), and under it
+          the planner's own tools. The brand in the first row is the way
+          home and the page's heading, as the toolbar's wordmark was. */}
+      <div className="app-head" role="banner">
+      <SiteHead heading />
+      <div className="toolbar">
         <SearchBox onPick={openFromSearch} />
         {view === "canvas" && (
           <div className="legend" aria-hidden="true">
@@ -322,6 +324,13 @@ export default function App() {
                 Removed items ({removedCount})
               </button>
               <button role="menuitem" onClick={() => setShowLegal(true)}>Privacy · Terms · Accessibility</button>
+              {/* The site's other pages. On a phone the header has no row of
+                  its own for them (styles.css says why), so they are here;
+                  on anything wider they are in the header and these are
+                  not shown. The same list either way. */}
+              {SITE_NAV.filter(({ href }) => href !== "/plan/").map(({ href, label }) => (
+                <a key={href} role="menuitem" className="menu-site-link" href={href}>{label}</a>
+              ))}
               <button
                 role="menuitem"
                 onClick={() => {
@@ -333,6 +342,7 @@ export default function App() {
             </div>
           )}
         </div>
+      </div>
       </div>
       <div className="main-row" id="main" role="main">
         {/* THE RAIL GOES ON THE LEFT. The side panel is on the right with

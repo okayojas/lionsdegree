@@ -5,6 +5,7 @@
    Every entry that uses the tokens below now gets the faces that back them. */
 @import "@fontsource-variable/space-grotesk";
 @import "@fontsource-variable/jetbrains-mono";
+@import "./site-head.css";
 
 /* =====================================================================
    LionsDegree — "Transit map" identity, muted edition.
@@ -216,48 +217,59 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 }
 .app-disclaimer strong { color: var(--text); font-weight: 600; }
 
+/* ---------- the top: the site's header, then the toolbar ---------- */
+/* The header's rules are site-head.css, the same as on every other page.
+   Here it is the first row of the planner's banner: on the toolbar's
+   surface, at the toolbar's edge, and no taller than its links, because
+   every row up here is a row the chart does not get. */
+.app-head { flex: 0 0 auto; background: var(--surface); position: relative; z-index: 30; }
+/* Above the chart, and above onboarding (where it is the root's first child). */
+.app-head .site-head, #root > .site-head {
+  /* The app's own face. On the pages around the planner the links are
+     Raleway; here that would be a third face for four words, and 47 KB
+     of the planner's boot payload (DECISIONS 5.2). */
+  --font-display: var(--font-sans);
+  --gutter: var(--sp-4);
+  padding-block: var(--sp-1) 0;
+}
+.app-head .site-head { border-bottom: 1px solid var(--border); }
+/* The brand, as the page's heading: the heading is the grid's item, and
+   brings nothing of its own to the picture. */
+.brand-heading { justify-self: start; display: flex; margin: 0; font: inherit; }
+@media (max-width: 55.99rem) {
+  .brand-heading { grid-area: brand; }
+  /* The toolbar's rule is under the links already. */
+  .app-head .site-nav { border-bottom: 0; }
+}
+/* ON A PHONE THERE IS NO ROW TO SPARE. Measured on a 412 by 839 screen with
+   the keep-this-plan bar up: the toolbar's two rows, the what-if tab, that
+   bar and the disclaimer leave the chart its floor of 45vh and 51px more.
+   A header row of its own, even one row, took exactly that, and putting
+   the side panel away then gave the plan nothing (the panel's own test
+   caught it). So here the header takes no row: the two boxes dissolve
+   into one wrapping row, as the toolbar was when the wordmark was in it,
+   the mark alone stands for the brand (its name is still there for a
+   screen reader, and is still the heading), and the site's links are in
+   the Menu (`.menu-site-link`). */
+@media (max-width: 760px) {
+  .app-head {
+    display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2);
+    padding: var(--sp-2) var(--sp-3);
+    border-bottom: 1px solid var(--border);
+  }
+  .app-head .site-head, .app-head .toolbar { display: contents; }
+  .app-head .site-nav { display: none; }
+  .app-head .brand span {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+}
+
 /* ---------- toolbar (station-board header) ---------- */
 .toolbar {
   display: flex; gap: var(--sp-3); align-items: center; flex-wrap: wrap;
   padding: var(--sp-2) var(--sp-4); background: var(--surface); color: var(--text);
   border-bottom: 1px solid var(--border); position: relative; z-index: 30;
-}
-.toolbar h1 {
-  /* 700, not 800: Space Grotesk's variable weight axis tops out at 700, so a
-     larger number was already being clamped by the browser. Writing 800 said
-     the design wanted something it was never getting. */
-  font-size: var(--fs-md); margin: 0 var(--sp-2) 0 0; font-weight: 700; white-space: nowrap;
-  /* The logo's deep blue, matching the "Lions" half of the wordmark. */
-  /* NOT a flex container, though it was one for years to centre the dot.
-     Flex blockifies its children, so the `<b>` wrapping "Lions" became a
-     block: it rendered as "Lions Degree" with the row's gap between the
-     halves, and -- the part a screenshot does not show -- the accessible
-     name computed as "Lions Degree" too, so the heading stopped matching
-     its own product name for a screen reader. An inline run with an
-     inline-block dot gives the same picture and keeps the wordmark one
-     word in both trees. */
-  color: var(--navy); letter-spacing: var(--track-tight); line-height: 1;
-}
-/* The wordmark is the way home.
-   Inherits rather than looks like a link: a blue underlined "LionsDegree"
-   in the corner would read as navigation chrome instead of the product's
-   own mark, and the convention it relies on is that a logo is clickable,
-   not that it is styled as a link. The hover and the focus ring are what
-   say so — a target with no visible state is one a keyboard user cannot
-   find. */
-.toolbar h1 a {
-  color: inherit; text-decoration: none;
-  border-radius: var(--r-sm);
-}
-.toolbar h1 a:hover { color: var(--primary); }
-.toolbar h1 a:focus-visible {
-  outline: 2px solid var(--focus-ring); outline-offset: 3px;
-}
-.toolbar h1::before {  /* wordmark station-dot */
-  content: ""; display: inline-block; vertical-align: middle;
-  width: 12px; height: 12px; border-radius: 50%; margin-right: 8px;
-  position: relative; top: -1px;
-  background: var(--surface); border: 3.5px solid var(--primary);
 }
 .toolbar .spacer { flex: 1; }
 @media (max-width: 760px) {
@@ -814,6 +826,18 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   transform-origin: top right; transition: opacity 160ms var(--ease-out), transform 160ms var(--ease-out);
   @starting-style { opacity: 0; transform: scale(0.96) translateY(-4px); }
 }
+/* The site's links, in the Menu on a phone, where the header has no row
+   of its own to put them in. Everywhere else they are in the header. */
+.toolbar-menu .menu-site-link { display: none; }
+@media (max-width: 760px) {
+  .toolbar-menu .menu-site-link {
+    display: flex; align-items: center; min-height: var(--tap-min);
+    padding: 0 var(--sp-3); border-radius: var(--r-sm);
+    color: var(--text); font-weight: 500; text-decoration: none;
+  }
+  .toolbar-menu .menu-site-link:hover { background: var(--surface-hover); }
+  .toolbar-menu .menu-site-link:first-of-type { margin-top: var(--sp-1); border-top: 1px solid var(--border); border-radius: 0 0 var(--r-sm) var(--r-sm); }
+}
 .toolbar-menu button { text-align: left; border: none; background: var(--surface); color: var(--text); font-weight: 500; border-radius: var(--r-sm); }
 .toolbar-menu button:hover:not(:disabled) { background: var(--surface-hover); }
 .toolbar-menu button:disabled { color: var(--text-muted); background: var(--surface); cursor: default; }
@@ -1185,7 +1209,6 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 /* `Lions` in the accent, `Degree` in the body colour -- the same split the
    site header carries, from the same markup, so the wordmark reads as one
    thing across both surfaces. */
-.toolbar h1 b { color: var(--primary); font-weight: inherit; }
 
 /* Sign in, in the same bright blue as the roundel on the landing page's
    last way in and the chart's Connect button. Those three are the only places the product
@@ -1216,12 +1239,18 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   }
   .toolbar .progress .lbl-short { display: inline; }
 
-  /* The menu panel anchors LEFT on a phone. The toolbar wraps here and the
-     Menu button sits near the left of the second row, so a right-anchored
-     panel extended off the side of the screen -- measured at x = -60 on a
-     412px viewport. Capped to the viewport so it cannot overflow the other
-     way either. */
-  .toolbar-menu { left: 0; right: auto; transform-origin: top left; max-width: calc(100vw - 24px); }
+  /* The menu panel spans the toolbar on a phone, under the button's row.
+     The toolbar wraps here, and which end of a row the Menu button lands
+     at has changed twice (with the wordmark in the row it sat near the
+     left, and a right-anchored panel ran off the screen at x = -60;
+     without it the button is at the right, and a left-anchored one ran
+     off the other side, to 510 of 412). So it is anchored to neither:
+     the toolbar is what it is placed against, edge to edge. */
+  .toolbar-menu-wrap { position: static; }
+  .toolbar-menu {
+    left: var(--sp-3); right: var(--sp-3); top: auto; margin-top: var(--sp-1);
+    min-width: 0; transform-origin: top center;
+  }
 }
 
 /* A save that was refused.

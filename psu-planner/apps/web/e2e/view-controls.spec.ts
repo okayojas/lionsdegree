@@ -126,7 +126,7 @@ test.describe("the wordmark", () => {
     await page.goto("/plan/");
     await page.locator(".card").first().waitFor({ timeout: 60_000 });
 
-    const mark = page.locator(".toolbar h1 a");
+    const mark = page.locator(".app-head h1 a");
     await expect(mark, "the wordmark is not a link").toHaveCount(1);
     await expect(mark).toHaveAttribute("href", "/");
 
@@ -161,8 +161,8 @@ test.describe("the wordmark", () => {
     );
     await page.goto("/plan/");
     await page.locator(".card").first().waitFor({ timeout: 60_000 });
-    await page.locator(".toolbar h1 a").focus();
-    const outline = await page.locator(".toolbar h1 a").evaluate(
+    await page.locator(".app-head h1 a").focus();
+    const outline = await page.locator(".app-head h1 a").evaluate(
       (el) => getComputedStyle(el).outlineStyle + " " + getComputedStyle(el).outlineWidth,
     );
     expect(outline, `focused wordmark has no outline: ${outline}`).not.toMatch(/^none/);
@@ -184,7 +184,10 @@ test.describe("the menu", () => {
 
     const menu = page.getByRole("button", { name: /^Menu/ });
     await expect(menu).toBeVisible();
-    const bar = await page.locator(".toolbar").boundingBox();
+    // On a phone the toolbar has no box of its own: it and the site's header
+    // dissolve into the banner's one wrapping row (styles.css), so the
+    // banner is what the tools sit in there.
+    const bar = (await page.locator(".toolbar").boundingBox()) ?? (await page.locator(".app-head").boundingBox());
     const box = await menu.boundingBox();
     // Only where the toolbar is a single row. On a phone it wraps to two by
     // design, so "the trailing edge" is not a position anything occupies and
