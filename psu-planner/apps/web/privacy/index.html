@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Privacy Policy — LionsDegree</title>
-    <meta name="description" content="LionsDegree stores your degree plan in your own browser. No tracking, no analytics, no advertising, no sale of data." />
+    <meta name="description" content="LionsDegree stores your degree plan in your own browser. No tracking, no advertising, no sale of data. One anonymous count of plans, and nothing about you." />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#f1ebdf" />
@@ -13,7 +13,7 @@
     <meta property="og:site_name" content="LionsDegree" />
     <meta property="og:url" content="%SITE_URL%/privacy/" />
     <meta property="og:title" content="Privacy Policy — LionsDegree" />
-    <meta property="og:description" content="LionsDegree stores your degree plan in your own browser. No tracking, no analytics, no advertising, no sale of data." />
+    <meta property="og:description" content="LionsDegree stores your degree plan in your own browser. No tracking, no advertising, no sale of data. One anonymous count of plans, and nothing about you." />
     <link rel="stylesheet" href="/src/site.css" />
   </head>
   <body class="site legal-page">
@@ -33,13 +33,14 @@
         <h1>Privacy Policy</h1>
       </div>
       <div class="doc-body">
-        <p><strong>The short version:</strong> your degree plan lives in your browser, not on our servers. We set no cookies and run no analytics.</p>
+        <p><strong>The short version:</strong> your degree plan lives in your browser, not on our servers. We set no cookies and do not track you. We count how many plans are made, and nothing else.</p>
         <ul>
-          <li><strong>Plan data</strong> (majors, courses, progress) is stored on your device. If you choose to sign in, your plan syncs to your own private row in our database (Supabase, US region), which only your account can read. You can remove it with “Start over”, and deleting your account deletes every plan attached to it.</li>
+          <li><strong>Plan data</strong> (majors, courses, progress) is stored on your device. If you choose to sign in, your plan syncs to your own private row in our database (Supabase, US region), which only your account can read. “Start over” removes the plan from your device, not from your account; deleting your account deletes every plan attached to it.</li>
           <li><strong>Stored on your device</strong>, all of it in local storage rather than cookies: your plan and its recent history, a backup taken when two devices disagree, your light/dark choice, whether you last used the canvas or the list, how you left the side panel (its width, and whether it is put away), and — if you sign in — your session token. Nothing here is sent anywhere unless you turn on sync.</li>
           <li><strong>Sign-in is optional</strong> and uses Google. Signing in asks Google for your email address and basic profile — your name and profile picture. We use only the email address: to tell your account apart from anyone else's, and to show you which account you are signed in to. What Google returns is stored with your account in our authentication database (Supabase, US region) and nowhere else. It is never sold, never shared with anyone, and never sent to any AI model. Deleting your account deletes it. Without signing in the app is entirely local.</li>
           <li><strong>Your own AI assistant.</strong> LionsDegree publishes an MCP server that runs on your machine and reads a plan file you own. We operate no AI service and receive nothing from it. If you connect your own assistant, your plan is handled by whichever AI provider you chose, under their terms — that is a path between you and them, and we are not in it.</li>
-          <li><strong>No tracking:</strong> no advertising, no analytics, no third-party scripts of any kind, no sale of data. The page loads nothing from any other host, which is enforced by our Content Security Policy rather than only promised here.</li>
+          <li><strong>No tracking:</strong> no advertising, no third-party scripts of any kind, no sale of data, and nothing that follows you from one visit to the next. Apart from the database described here, the page loads nothing from any other host, which is enforced by our Content Security Policy rather than only promised here.</li>
+          <li><strong>One anonymous count.</strong> So that we can tell whether the planner is used, it records one event when a plan is made, and one the first time it opens a plan that already existed. The event says which of those two it was and which bulletin year the plan is for; our database adds the day. That is all of it: no plan, no courses, no account, no device or browser identifier, and no time of day. Whether a plan has been counted is remembered in your browser and is not sent. Like any request, it reaches our database host (Supabase), which sees your IP address in the ordinary course of serving it; we do not store it.</li>
           <li><strong>Access or deletion:</strong> email <a href="mailto:ovk5113@psu.edu">ovk5113@psu.edu</a>. Sync is off unless you turned it on, in which case your data lives in the database of whoever runs the instance you signed in to.</li>
         </ul>
         <p>This service is intended for people 13 and older.</p>

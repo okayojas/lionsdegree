@@ -246,3 +246,64 @@ test("does not take the screen away from the plan", async ({ planner }) => {
   ).toBeLessThan(boxes.viewportHeight * 0.25);
   expect(boxes.chartHeight, "the chart was squeezed to nothing").toBeGreaterThan(boxes.viewportHeight * 0.3);
 });
+
+/** The line that stays after "Not now". */
+const NOTE = ".keep-plan-note";
+
+/** Move one course a term later and back, in the list view: two real edits
+ * to the plan, made the way a student makes them. */
+async function editTwice(page: Page): Promise<void> {
+  const later = page.locator('[data-move$=":1"]:not([disabled])').first();
+  await later.click();
+  const earlier = page.locator('[data-move$=":-1"]:not([disabled])').first();
+  await earlier.click();
+}
+
+test("after not now, one line stays: the plan is still only on this device", async ({ planner }) => {
+  test.skip(!(await syncIsConfigured(planner)), "this build has no VITE_SUPABASE_URL, so there is no account to offer");
+  await expect(planner.locator(BAR)).toBeVisible({ timeout: 15_000 });
+  const barHeight = (await planner.locator(BAR).boundingBox())!.height;
+  await planner.locator(BAR).getByRole("button", { name: /not now/i }).click();
+
+  // THE OFFER IS GONE AND THE FACT IS NOT. "Not now" used to be the last a
+  // student heard of it for the rest of the sitting.
+  await expect(planner.locator(BAR)).toHaveCount(0);
+  const note = planner.locator(NOTE);
+  await expect(note).toBeVisible();
+  await expect(note).toContainText("Only on this device.");
+  await expect(note.getByRole("button", { name: "Sign in to keep it" })).toBeVisible();
+  // A line, not another bar: saying no still gives the chart its room back.
+  const noteHeight = (await note.boundingBox())!.height;
+  expect(noteHeight, `the reminder is ${noteHeight}px against the offer's ${barHeight}px`).toBeLessThan(barHeight * 0.75);
+  // It stays across a reload in the same sitting, where the offer does not come back.
+  await planner.reload();
+  await expect(planner.getByRole("banner")).toBeVisible({ timeout: 30_000 });
+  await expect(planner.locator(NOTE)).toBeVisible({ timeout: 15_000 });
+  await expect(planner.locator(BAR)).toHaveCount(0);
+  const overflow = await planner.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+  expect(overflow, "the reminder pushed the page wider than the screen").toBeLessThanOrEqual(1);
+});
+
+test("the offer comes back once after real edits, and not for looking around", async ({ planner }) => {
+  test.skip(!(await syncIsConfigured(planner)), "this build has no VITE_SUPABASE_URL, so there is no account to offer");
+  test.setTimeout(120_000);
+  await expect(planner.locator(BAR)).toBeVisible({ timeout: 15_000 });
+  await planner.locator(BAR).getByRole("button", { name: /not now/i }).click();
+  await planner.getByRole("button", { name: /List view/i }).click();
+  await expect(planner.getByRole("region", { name: /list view/i })).toBeVisible();
+
+  // Eight edits: not yet.
+  for (let i = 0; i < 4; i++) await editTwice(planner);
+  await expect(planner.locator(BAR), "the offer came back early").toHaveCount(0);
+  await expect(planner.locator(NOTE)).toBeVisible();
+  // The tenth brings it back.
+  await editTwice(planner);
+  await expect(planner.locator(BAR), "the offer did not come back after ten edits").toBeVisible({ timeout: 15_000 });
+
+  // ONCE. The second "not now" stands for the sitting, however much is edited.
+  await planner.locator(BAR).getByRole("button", { name: /not now/i }).click();
+  for (let i = 0; i < 6; i++) await editTwice(planner);
+  await expect(planner.locator(BAR), "the offer nagged").toHaveCount(0);
+  await expect(planner.locator(NOTE)).toBeVisible();
+});
+

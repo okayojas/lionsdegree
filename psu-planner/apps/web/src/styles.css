@@ -1338,6 +1338,22 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   font-size: var(--fs-sm); line-height: 1.45;
 }
 .keep-plan-bar p { margin: 0; flex: 1 1 18rem; min-width: 0; }
+/* What is left after "Not now": one line, quieter than the offer and
+   a fraction of its height, so saying no still gives the chart its
+   room back. It wraps on a narrow phone and never widens the page. */
+.keep-plan-note {
+  flex: 0 0 auto;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0 var(--sp-3);
+  padding: 0 var(--sp-4);
+  background: var(--surface); color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-xs); line-height: 1.4;
+}
+.keep-plan-note p { margin: 0; flex: 1 1 14rem; min-width: 0; }
+.keep-plan-note strong { color: var(--text); }
+.keep-plan-note button { flex: 0 0 auto; margin-left: auto; min-height: 30px; border: 0; background: none; color: var(--accent-text); font-weight: 600; text-decoration: underline; padding: 0 var(--sp-1); }
+/* A full tap target where the pointer is a thumb; a mouse does not need the height. */
+@media (pointer: coarse) { .keep-plan-note button { min-height: var(--tap-min); } }
 .kp-actions { display: flex; gap: 8px; flex: 0 0 auto; margin-left: auto; }
 
 /* The two plans a student chooses between after signing in. Spacing comes

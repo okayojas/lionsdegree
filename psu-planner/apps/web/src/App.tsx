@@ -8,6 +8,7 @@ import { Onboarding } from "./components/Onboarding";
 import { SiteHead } from "./components/SiteHead";
 import { SITE_NAV } from "./site/header";
 import { followProgramLink, withoutProgramLink } from "./data/programLinkWhatIf";
+import { countPlan } from "./data/planCount";
 import { PlanCanvas } from "./components/PlanCanvas";
 import { Dialog } from "./components/Dialog";
 import { CourseModal } from "./components/CourseModal";
@@ -140,6 +141,18 @@ export default function App() {
      onboarding has just generated FROM this link has the Program in it,
      and following the link again would be noise. Once, and the link is
      taken out of the address so a reload does not follow it again. */
+  /* ── Counted, once, anonymously (#70) ──────────────────────────────
+     AFTER the Plan is on screen and NOT WAITED FOR: nothing about a
+     Plan may depend on a count. What is sent, and why only from the
+     site itself, is in data/planCount.ts. By the Plan's id and not the
+     plan in view: a what-if is the same Plan. */
+  const planId = plan?.id;
+  const planEdition = plan?.edition;
+  useEffect(() => {
+    if (!planId || loading) return;
+    void countPlan({ id: planId, edition: planEdition });
+  }, [planId, planEdition, loading]);
+
   const hadPlanOnArrival = useRef(loadSavedPlan() !== null);
   const linkFollowed = useRef(false);
   useEffect(() => {
@@ -415,7 +428,7 @@ export default function App() {
           would cover the plan the student came to look at — so it takes a
           row of its own between the chart and the disclaimer and the chart
           shrinks to fit. Nothing is obscured and nothing is unreachable. */}
-      <KeepPlanBar hasPlan={!!plan} />
+      <KeepPlanBar plan={plan} />
       <footer className="app-disclaimer" role="contentinfo">
         {/* The edition is the first thing an adviser needs to know, because it
             decides which requirements apply at all. It lives beside the

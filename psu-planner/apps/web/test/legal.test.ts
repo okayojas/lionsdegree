@@ -98,7 +98,16 @@ describe("what the policy promises", () => {
 
   it("states the no-cookie, no-tracking claim the headers actually enforce", () => {
     const privacy = plainText(SECTIONS.find((s) => s.id === "privacy")!.body);
-    expect(privacy).toMatch(/no analytics/i);
+    // It used to say "no analytics". Since #70 the planner counts plans,
+    // so the policy says exactly what is counted instead of denying it,
+    // and what the count leaves out is what makes "no tracking" still true.
+    expect(privacy).not.toMatch(/no analytics/i);
+    expect(privacy).toMatch(/do not track you/i);
+    expect(privacy).toMatch(/One anonymous count/);
+    expect(privacy).toMatch(/no plan, no courses, no account, no device or browser identifier, and no time of day/);
+    expect(privacy).toMatch(/remembered in your browser and is not sent/);
+    // Start over has never removed the account's copy, and the policy said it did.
+    expect(privacy).toMatch(/removes the plan from your device, not from your account/);
     expect(privacy).toMatch(/local storage rather than cookies/i);
     // The claim is only safe to make while the CSP forbids other hosts.
     const headers = fs.readFileSync(path.join(web, "public", "_headers"), "utf-8");

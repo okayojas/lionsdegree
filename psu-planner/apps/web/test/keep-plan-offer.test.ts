@@ -33,9 +33,9 @@ const storage = (m: Map<string, string>) => ({
 Object.defineProperty(globalThis, "sessionStorage", { value: storage(session), configurable: true });
 Object.defineProperty(globalThis, "localStorage", { value: storage(local), configurable: true });
 
-const { dismissKeepPlanOffer, keepPlanOfferDismissed, shouldOfferToKeepPlan } = await import(
-  "../src/data/keepPlanOffer"
-);
+const {
+  REOFFER_AFTER_EDITS, dismissKeepPlanOffer, keepPlanOfferDismissed, noteEditSinceNotNow, shouldOfferToKeepPlan, whatToShow,
+} = await import("../src/data/keepPlanOffer");
 
 /** Every condition true: a student who has just built a plan, on a build
  * with sync configured, signed out, who has not waved it away. */
@@ -121,6 +121,78 @@ describe("saying not now", () => {
   });
 });
 
+describe("after not now, the plan is still only on this device, and the strip says so", () => {
+  it("shows one line where the offer was, for the rest of the sitting", () => {
+    // Saying no to the offer is not being told the plan is safe. It used to
+    // be the last a student heard of it until they came back another day.
+    expect(whatToShow(AFTER_A_BUILD)).toBe("offer");
+    expect(whatToShow({ ...AFTER_A_BUILD, dismissed: true })).toBe("reminder");
+  });
+
+  it("shows nothing where the offer would show nothing: no account, no plan, or already signed in", () => {
+    for (const dismissed of [false, true]) {
+      expect(whatToShow({ ...AFTER_A_BUILD, dismissed, configured: false })).toBe("nothing");
+      expect(whatToShow({ ...AFTER_A_BUILD, dismissed, hasPlan: false })).toBe("nothing");
+      expect(whatToShow({ ...AFTER_A_BUILD, dismissed, signedIn: true })).toBe("nothing");
+    }
+  });
+
+  it("says where the plan is and offers the way in, in the component", () => {
+    const bar = fs.readFileSync(
+      path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "src", "components", "KeepPlanBar.tsx"),
+      "utf-8",
+    );
+    expect(bar).toMatch(/Only on this device\./);
+    expect(bar).toMatch(/Sign in to keep it/);
+  });
+});
+
+describe("the offer comes back once, after real work", () => {
+  const edit = (times: number): boolean[] => Array.from({ length: times }, () => noteEditSinceNotNow());
+
+  it("returns after enough edits since not now, and not before", () => {
+    dismissKeepPlanOffer();
+    const before = edit(REOFFER_AFTER_EDITS - 1);
+    expect(before.every((back) => back === false), "it came back early").toBe(true);
+    expect(keepPlanOfferDismissed()).toBe(true);
+    // The edit that makes it enough.
+    expect(noteEditSinceNotNow()).toBe(true);
+    expect(keepPlanOfferDismissed(), "the offer is still dismissed").toBe(false);
+  });
+
+  it("does not return a second time: the second not now stands for the sitting", () => {
+    dismissKeepPlanOffer();
+    edit(REOFFER_AFTER_EDITS);
+    dismissKeepPlanOffer();
+    expect(edit(REOFFER_AFTER_EDITS * 3).some(Boolean), "the offer nagged").toBe(false);
+    expect(keepPlanOfferDismissed()).toBe(true);
+  });
+
+  it("counts nothing while the offer is on screen", () => {
+    expect(edit(REOFFER_AFTER_EDITS * 2).some(Boolean)).toBe(false);
+    dismissKeepPlanOffer();
+    // The count starts from the not now, not from before it.
+    expect(edit(REOFFER_AFTER_EDITS - 1).some(Boolean)).toBe(false);
+  });
+
+  it("is forgotten with the sitting, like the dismissal itself", () => {
+    dismissKeepPlanOffer();
+    edit(3);
+    expect([...local.keys()], "something about the offer outlives the session").toEqual([]);
+  });
+
+  it("counts edits to the plan, not pans across it, in the component", () => {
+    // The Revision advances when the chart is panned. Ten pans are not ten
+    // things worth keeping, so the bar compares the plan's contents.
+    const bar = fs.readFileSync(
+      path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "src", "components", "KeepPlanBar.tsx"),
+      "utf-8",
+    );
+    expect(bar).toMatch(/const \{ view: _view, rev: _rev, updatedAt: _updatedAt, \.\.\.contents \} = plan;/);
+    expect(bar).toMatch(/noteEditSinceNotNow\(\)/);
+  });
+});
+
 /** Source-level, like `account-menu.test.ts`: the claim is about which rule
  * the component obeys, and there is no DOM here to render it in. */
 const src = fs.readFileSync(
@@ -134,7 +206,7 @@ describe("the bar on the chart", () => {
     // the component is a copy that stops agreeing with the one under
     // test — and the tests above would keep passing while the bar did
     // something else.
-    expect(src, "the bar does not use the shared rule").toMatch(/shouldOfferToKeepPlan\(/);
+    expect(src, "the bar does not use the shared rule").toMatch(/whatToShow\(/);
     expect(src, "the bar does not pass syncConfigured as the gate").toMatch(/configured:\s*syncConfigured/);
   });
 

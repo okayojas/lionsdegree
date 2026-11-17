@@ -854,6 +854,36 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
     planner shares, so the landing page, Connect, About, Privacy and Terms do not download them.
   - **What it weighs:** Sample plans first paint 32.8 KB gzipped (document 15.6, stylesheet
     14.1, script 3.1; it was 28.2), ceiling 39. Landing first paint 23.8 KB, ceiling 28.
+- **Plans are counted, anonymously, and the privacy policy says so (2026-11-16, #70).** The owner
+  could not tell whether the planner was used: a Plan made without signing in is only in that
+  browser, and few students sign in.
+  - **What is sent:** one event when setup builds a Plan, and one the first time the planner opens a
+    Plan that already existed. It holds which of the two, and the Edition. The database adds the
+    day. No Plan id, no Programs or Courses, no account, no device id, no time of day.
+    `data/planCount.ts`; a test holds the event to those two keys, and adding the Plan's id to it
+    fails 3 tests.
+  - **Counted once per Plan, remembered in the browser** under the Plan's id, which is never sent.
+    A Plan restored or adopted on a device that never counted it counts again there; accepted.
+  - **Where:** an insert-only table, `plan_events`, in the database the planner already uses for
+    sign-in (the one other host the CSP allows). Nobody can read it through the public key. The
+    alternative was a same-origin request counted from Cloudflare's own figures: no table, but
+    not queryable. Anyone may insert, so the number can be inflated: it is a rough count for the
+    owner. **The migration (`supabase/migrations/0004_plan_events.sql`) is applied by the owner;**
+    until it is, the insert fails silently and nothing is counted.
+  - **Only from the site itself** (`lionsdegree.com`, `www.`). The test suite, a local build, a
+    preview deploy and a self-hosted copy all run the same code and none is a student.
+  - **Never in the way:** sent after the Plan is on screen, not awaited, silent on failure, tried
+    again on the next open.
+  - **The privacy policy** no longer says "no analytics". It says what is counted and what is not,
+    and that the database's host sees the request's IP address as any host does. It also said a
+    synced Plan could be removed with "Start over", which has never been true; corrected.
+  - **"Only on this device" stays on screen.** After "Not now" the offer gives way to one line
+    under the chart, with "Sign in to keep it". Not a label in the toolbar, where the spec first
+    put it: the toolbar has no room on a phone, and a row there costs the chart its height. The
+    line is 30px with a mouse and a full tap target with a thumb.
+  - **The offer returns once in a sitting, after ten edits** since "Not now". Edits to the Plan's
+    contents, not Revisions: panning the chart advances the Revision. ("Not now" already lasted
+    only for the sitting.)
 - **Start over stays started over when signed in (2026-11-16, reported by the owner).** Start over
   removed the Plan from the device and told the account nothing, so the setup screen's account
   menu found a Plan in the account and none here and loaded it straight back. The owner chose,

@@ -55,16 +55,16 @@ export const SECTIONS: Section[] = [
     heading: "Privacy Policy",
     title: "Privacy Policy — LionsDegree",
     description:
-      "LionsDegree stores your degree plan in your own browser. No tracking, no analytics, no advertising, no sale of data.",
+      "LionsDegree stores your degree plan in your own browser. No tracking, no advertising, no sale of data. One anonymous count of plans, and nothing about you.",
     path: "/privacy/",
     body: [
-      { p: [{ b: "The short version:" }, " your degree plan lives in your browser, not on our servers. We set no cookies and run no analytics."] },
+      { p: [{ b: "The short version:" }, " your degree plan lives in your browser, not on our servers. We set no cookies and do not track you. We count how many plans are made, and nothing else."] },
       {
         ul: [
           [
             { b: "Plan data" },
             " (majors, courses, progress) is stored on your device. If you choose to sign in, your plan syncs to your own private row in our database (Supabase, US region), which only your account can read. ",
-            "You can remove it with “Start over”, and deleting your account deletes every plan attached to it.",
+            "“Start over” removes the plan from your device, not from your account; deleting your account deletes every plan attached to it.",
           ],
           [
             { b: "Stored on your device" },
@@ -84,7 +84,11 @@ export const SECTIONS: Section[] = [
           ],
           [
             { b: "No tracking:" },
-            " no advertising, no analytics, no third-party scripts of any kind, no sale of data. The page loads nothing from any other host, which is enforced by our Content Security Policy rather than only promised here.",
+            " no advertising, no third-party scripts of any kind, no sale of data, and nothing that follows you from one visit to the next. Apart from the database described here, the page loads nothing from any other host, which is enforced by our Content Security Policy rather than only promised here.",
+          ],
+          [
+            { b: "One anonymous count." },
+            " So that we can tell whether the planner is used, it records one event when a plan is made, and one the first time it opens a plan that already existed. The event says which of those two it was and which bulletin year the plan is for; our database adds the day. That is all of it: no plan, no courses, no account, no device or browser identifier, and no time of day. Whether a plan has been counted is remembered in your browser and is not sent. Like any request, it reaches our database host (Supabase), which sees your IP address in the ordinary course of serving it; we do not store it.",
           ],
           [
             { b: "Access or deletion:" },

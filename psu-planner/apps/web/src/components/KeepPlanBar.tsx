@@ -15,12 +15,29 @@
  * an interruption. The beat after is stronger anyway: the student has just
  * been handed the thing they came for, and "keep this" is self-evidently
  * worth something.
+ *
+ * AFTER "NOT NOW", ONE LINE STAYS (#70). The owner expects few students to
+ * sign in, and "Not now" used to be the last a student heard of it for the
+ * rest of the sitting. The full bar gives way to a single line that says
+ * the plan is only on this device and offers the way in. It is a line and
+ * not a label in the toolbar, where the spec first put it: the toolbar has
+ * no room on a phone, and on a phone a row costs the chart its height.
+ * After ten real edits the full offer returns, once.
  */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { PlanDoc } from "@psu-planner/engine";
 import { currentUser, onAuthChange, signIn, syncConfigured } from "../data/sync";
-import { dismissKeepPlanOffer, keepPlanOfferDismissed, shouldOfferToKeepPlan } from "../data/keepPlanOffer";
+import { dismissKeepPlanOffer, keepPlanOfferDismissed, noteEditSinceNotNow, whatToShow } from "../data/keepPlanOffer";
 
-export function KeepPlanBar({ hasPlan }: { hasPlan: boolean }) {
+/** What makes two versions of a plan different for THIS purpose: its
+ * contents. Not where the student has panned to, and not the Revision,
+ * which panning advances. */
+function contentsOnly(plan: PlanDoc): string {
+  const { view: _view, rev: _rev, updatedAt: _updatedAt, ...contents } = plan;
+  return JSON.stringify(contents);
+}
+
+export function KeepPlanBar({ plan }: { plan: PlanDoc | null }) {
   /** null while we do not yet know. `currentUser()` is a promise, and
    * defaulting to "signed out" would flash a warning about losing a plan
    * at the one student for whom it is already false. */
@@ -32,12 +49,37 @@ export function KeepPlanBar({ hasPlan }: { hasPlan: boolean }) {
     void currentUser().then((u) => setSignedIn(!!u));
     // Signing in from this very bar is the common case, so the bar has to
     // hear about it: without this it would sit there promising to keep a
-    // plan that is already being kept.
+    // plan that is, as of a moment ago, already kept.
     return onAuthChange((u) => setSignedIn(!!u));
   }, []);
 
+  // Edits made after "Not now" bring the offer back, once (keepPlanOffer.ts).
+  const last = useRef<string | null>(null);
+  const rev = plan?.rev;
+  useEffect(() => {
+    if (!plan) { last.current = null; return; }
+    const now = contentsOnly(plan);
+    const before = last.current;
+    last.current = now;
+    if (before === null || before === now) return;
+    if (noteEditSinceNotNow()) setDismissed(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rev]);
+
   if (signedIn === null) return null;
-  if (!shouldOfferToKeepPlan({ configured: syncConfigured, hasPlan, signedIn, dismissed })) return null;
+  const shows = whatToShow({ configured: syncConfigured, hasPlan: !!plan, signedIn, dismissed });
+  if (shows === "nothing") return null;
+
+  if (shows === "reminder") {
+    return (
+      <aside className="keep-plan-note" aria-label="Where this plan is saved">
+        <p>
+          <strong>Only on this device.</strong> This plan is saved in this browser and nowhere else.
+        </p>
+        <button type="button" onClick={() => void signIn("google")}>Sign in to keep it</button>
+      </aside>
+    );
+  }
 
   return (
     // Not `role="alert"`. Nothing has gone wrong and nothing is waiting on

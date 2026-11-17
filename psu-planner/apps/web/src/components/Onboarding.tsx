@@ -5,6 +5,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { generatePlan, RCL_SEQUENCE, type Catalog, type ProgramTemplate, type ReqSection } from "@psu-planner/engine";
 import { parseProgramLink } from "../data/deepLink";
+import { noteNewPlan } from "../data/planCount";
 import { currentEdition, loadAuditIndex, loadCoverage, loadEditions, loadProgram, loadProgramsIndex, loadSubject, setCatalogEdition } from "../data/catalogClient";
 import type { ProgramIndexEntry } from "../data/catalogClient";
 import { extractCodesFromFile, extractCodesFromText } from "../data/importSchedule";
@@ -391,6 +392,9 @@ export function Onboarding() {
       if (honors) plan.honors = { admit: honors };
       setStage("optimizing");
       await nextPaint();
+      // New, for the count (#70): the first sight of this Plan is of one
+      // that was just built, not of one that was already here.
+      noteNewPlan(plan.id);
       await setPlan(plan, { repairOrdering: true, optimize: true });
       // No setStage(null) on success: setPlan swaps this whole screen out
       // for the chart, and clearing it first would flash the empty form.

@@ -37,6 +37,10 @@ export function keepPlanOfferDismissed(): boolean {
 export function dismissKeepPlanOffer(): void {
   try {
     sessionStorage.setItem(DISMISSED_KEY, "1");
+    // How many times it has been waved away this sitting, and a fresh
+    // count of edits since: see `noteEditSinceNotNow`.
+    sessionStorage.setItem(TIMES_KEY, String(timesDismissed() + 1));
+    sessionStorage.setItem(EDITS_KEY, "0");
   } catch {
     /* storage disabled — the offer reappears on the next load, which is
        the cost of not being able to remember anything at all */
@@ -60,5 +64,51 @@ export interface KeepPlanConditions {
 }
 
 export function shouldOfferToKeepPlan(c: KeepPlanConditions): boolean {
-  return c.configured && c.hasPlan && !c.signedIn && !c.dismissed;
+  return whatToShow(c) === "offer";
+}
+
+/** What the strip under the chart shows.
+ *
+ * `offer`    the full bar: the sentence, "Keep this plan" and "Not now".
+ * `reminder` one line that STAYS after "Not now" (#70): "Only on this
+ *            device", and the way to sign in. Saying no to the offer is
+ *            not being told the plan is safe, and until now it was the
+ *            last the student heard of it for the rest of the sitting.
+ * `nothing`  no account to offer, no plan to keep, or already kept. */
+export type KeepPlanShows = "nothing" | "offer" | "reminder";
+export function whatToShow(c: KeepPlanConditions): KeepPlanShows {
+  if (!c.configured || !c.hasPlan || c.signedIn) return "nothing";
+  return c.dismissed ? "reminder" : "offer";
+}
+
+/* ── The offer comes back once, after real work (#70) ─────────────────
+   "Not now" at minute one is an answer about a plan with nothing in it
+   yet. An hour and many edits later the student has more to lose, so the
+   full offer returns ONCE in the sitting, after this many edits. Edits,
+   not Revisions: panning the chart advances the Revision, and ten pans
+   are not ten things worth keeping. The caller says what an edit is. */
+export const REOFFER_AFTER_EDITS = 10;
+const EDITS_KEY = "lionsdegree-keep-plan-edits";
+const TIMES_KEY = "lionsdegree-keep-plan-times";
+
+const read = (key: string): number => {
+  try { return Number(sessionStorage.getItem(key) ?? "0") || 0; } catch { return 0; }
+};
+const timesDismissed = (): number => read(TIMES_KEY);
+
+/** The student edited their plan after saying "Not now". Returns true
+ * when that is the edit that brings the offer back: the dismissal is
+ * then forgotten, so the full bar shows again. Only the first "Not now"
+ * of a sitting can be answered this way; the second one stands. */
+export function noteEditSinceNotNow(): boolean {
+  if (!keepPlanOfferDismissed() || timesDismissed() !== 1) return false;
+  try {
+    const edits = read(EDITS_KEY) + 1;
+    sessionStorage.setItem(EDITS_KEY, String(edits));
+    if (edits < REOFFER_AFTER_EDITS) return false;
+    sessionStorage.removeItem(DISMISSED_KEY);
+    return true;
+  } catch {
+    return false;
+  }
 }
