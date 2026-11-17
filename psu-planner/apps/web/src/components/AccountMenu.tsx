@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import {
-  currentUser, findPlansAtSignIn, keepThisDevicesPlan, signIn, signOut, supabase, syncConfigured,
-  takeTheAccountsPlan, type PlanCollision,
+  bringBackTheAccountsPlan, currentUser, findPlansAtSignIn, keepThisDevicesPlan, signIn, signOut, supabase,
+  syncConfigured, takeTheAccountsPlan, type PlanCollision, type PlanSetAside,
 } from "../data/sync";
 import { usePlanner, loadSavedPlan, recordInPlanHistory } from "../store";
 import { chatConfigured } from "../chat/config";
@@ -40,6 +40,10 @@ export function AccountMenu({
    * the offer on the chart, this menu, or the landing page's link. One
    * listener means the safe path is not only the one through the prompt. */
   const [collision, setCollision] = useState<PlanCollision | null>(null);
+  /** The account's Plan, not loaded because the student started over.
+   * Said, with the way back beside it: a Plan that silently stopped
+   * appearing would read as lost. */
+  const [setAside, setSetAside] = useState<PlanSetAside | null>(null);
   const setPlan = usePlanner((s) => s.setPlan);
   const wrap = useRef<HTMLDivElement>(null);
   /** The account whose sign-in has already been dealt with. See the guard
@@ -81,6 +85,8 @@ export function AccountMenu({
         onToast("Signed in, but this plan has not reached your account yet. It is safe on this device, and the next change you make will try again.");
       } else if (found.kind === "collision") {
         setCollision(found);
+      } else if (found.kind === "set-aside") {
+        setSetAside(found);
       }
     });
     return () => data.subscription.unsubscribe();
@@ -201,8 +207,28 @@ export function AccountMenu({
 
   const who = user.email?.split("@")[0] ?? "account";
   return (
-    <div ref={wrap} style={{ position: "relative" }}>
+    <div ref={wrap} style={{ position: "relative", display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", justifyContent: "flex-end" }}>
       {askWhichPlan}
+      {/* STARTED OVER, SIGNED IN. The plan in the account is the one the
+          student walked away from, so it is not loaded; this says so and
+          is the way back. When their new plan is ready they are asked
+          which of the two to keep. */}
+      {setAside && (
+        <p className="started-over" role="status">
+          You started over. The plan in your account has not been changed.{" "}
+          <button
+            type="button"
+            onClick={async () => {
+              const back = bringBackTheAccountsPlan(setAside);
+              setSetAside(null);
+              await setPlan(back);
+              onToast("Brought back the plan from your account.");
+            }}
+          >
+            Bring it back
+          </button>
+        </p>
+      )}
       {/* NOT "SYNCING". That read as a spinner that never finished — a
           student who had signed in successfully asked why it was stuck,
           because a present participle describes something in progress.

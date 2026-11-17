@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { progress, type Course, type PlanItem } from "@psu-planner/engine";
 import { usePlanner, loadSavedPlan, getPlanHistory, storedPlan, type PlanHistoryEntry } from "./store";
-import { conflictMessage, flushPush, pullNewerPlan, setConflictListener } from "./data/sync";
+import { conflictMessage, flushPush, pullNewerPlan, setConflictListener, startOver } from "./data/sync";
 import { loadCourse, loadIugIndex, type IugIndexEntry } from "./data/catalogClient";
 import { downloadPlan, openPlanFile } from "./data/planFileIO";
 import { Onboarding } from "./components/Onboarding";
@@ -358,7 +358,17 @@ export default function App() {
               <button
                 role="menuitem"
                 onClick={() => {
-                  if (confirm("Start over? This deletes your current plan on this device.")) void setPlan(null);
+                  // MARKED BEFORE THE PLAN GOES (sync.ts, `startOver`). Signed
+                  // in, the plan in the account used to be loaded straight
+                  // back, so starting over undid itself.
+                  if (confirm(
+                    "Start over? This removes your current plan from this device. If you are signed in, the plan " +
+                    "in your account is not changed: you can bring it back, and once your new plan is ready " +
+                    "you will be asked which of the two to keep.",
+                  )) {
+                    startOver();
+                    void setPlan(null);
+                  }
                 }}
               >
                 Start over

@@ -376,10 +376,59 @@ function remember(remote: PlanDoc, rev: number, replacing: PlanDoc | null): Plan
  *              same reason they are wrong here. */
 export type SignInFinding =
   | { kind: "nothing" }
+  /** The student started over: no Plan here, one in the account, and it
+   *  is NOT taken. See `startOver`. */
+  | { kind: "set-aside"; remote: PlanDoc; remoteRev: number }
   | { kind: "kept" }
   | { kind: "unsaved" }
   | { kind: "adopted"; plan: PlanDoc }
   | { kind: "collision"; local: PlanDoc; remote: PlanDoc; remoteRev: number };
+
+/** The account's Plan, set aside because the student started over. */
+export type PlanSetAside = Extract<SignInFinding, { kind: "set-aside" }>;
+
+/* ── Starting over ───────────────────────────────────────────────────
+   REPORTED BY THE OWNER: "Whenever I try to start over, it loads the
+   newest plan backed up." Start over removes the Plan from this device
+   and says nothing to the account, so the next look at the account
+   found a Plan there and none here, which is exactly the case
+   `findPlansAtSignIn` adopts. Signed in, starting over undid itself.
+
+   The owner's choice of fix, over deleting the account's Plan: remember
+   that the student started over. While that is so,
+     - the account's Plan is NOT pulled back (`set-aside`), though it can
+       be brought back in one step;
+     - the new Plan is HELD BACK from the account, so that it cannot
+       become the account's newest Plan before the student has been
+       asked which of the two they keep (the collision, which already
+       exists for a Plan built signed out);
+     - answering that question, either way, ends it.
+   Nothing is deleted on one click, here or in the account.
+
+   On this device only, and it survives a reload: it is a fact about
+   what this device was told to forget. */
+const STARTED_OVER = "lionsdegree-started-over";
+
+/** The student pressed Start over. Call before the Plan is cleared. */
+export function startOver(): void {
+  try { localStorage.setItem(STARTED_OVER, "1"); } catch { /* private mode: it behaves as it used to */ }
+}
+
+/** Whether a Start over is still unanswered. */
+export function startedOver(): boolean {
+  try { return localStorage.getItem(STARTED_OVER) === "1"; } catch { return false; }
+}
+
+function startOverSettled(): void {
+  try { localStorage.removeItem(STARTED_OVER); } catch { /* nothing to settle */ }
+}
+
+/** Bring back the account's Plan after all: the way out for a student who
+ * started over and thought better of it. */
+export function bringBackTheAccountsPlan(found: PlanSetAside): PlanDoc {
+  startOverSettled();
+  return remember(found.remote, found.remoteRev, null);
+}
 
 /** The collision, as the two things the student is choosing between. */
 export type PlanCollision = Extract<SignInFinding, { kind: "collision" }>;
@@ -400,6 +449,9 @@ export async function findPlansAtSignIn(local: PlanDoc | null): Promise<SignInFi
 
   if (!newest) {
     if (!local) return { kind: "nothing" };
+    // Nothing in the account to ask about, so a Start over is over: the
+    // Plan on this device is the only one there is.
+    startOverSettled();
     return (await pushNowInsteadOfLater(local)) === "pushed" ? { kind: "kept" } : { kind: "unsaved" };
   }
 
@@ -410,9 +462,14 @@ export async function findPlansAtSignIn(local: PlanDoc | null): Promise<SignInFi
   // DIFFERENT Plan already in the account. Same id is not this question —
   // that is one Plan in two places, which is what `takesRemote` is for and
   // what two long-standing bugs were fixed inside.
-  if (local && remote.id !== local.id && neverSynced) {
+  // A Start over still unanswered is the same question, and is asked
+  // whatever this page has pushed: the new Plan was held back for it.
+  if (local && remote.id !== local.id && (neverSynced || startedOver())) {
     return { kind: "collision", local, remote, remoteRev };
   }
+  // STARTED OVER, AND NOTHING BUILT YET. The account's Plan is the one
+  // the student just walked away from. Taking it here is the bug.
+  if (!local && startedOver()) return { kind: "set-aside", remote, remoteRev };
   if (!takesRemote(local, remote, remoteRev, false)) return { kind: "nothing" };
   return { kind: "adopted", plan: remember(remote, remoteRev, local) };
 }
@@ -420,6 +477,11 @@ export async function findPlansAtSignIn(local: PlanDoc | null): Promise<SignInFi
 /** Keep the account's Plan. The one on this device is backed up on the way
  * through, exactly as an ordinary pull does it. */
 export function takeTheAccountsPlan(c: PlanCollision): PlanDoc {
+  // Answered: if this was a Start over, it ends here. The Plan built
+  // since is backed up by `remember`, and was never sent.
+  startOverSettled();
+  pending = null;
+  clearTimeout(timer);
   return remember(c.remote, c.remoteRev, c.local);
 }
 
@@ -432,6 +494,8 @@ export function takeTheAccountsPlan(c: PlanCollision): PlanDoc {
  * caller puts it in Plan history) writes a clean compare-and-swap instead
  * of an insert the database correctly refuses. */
 export async function keepThisDevicesPlan(c: PlanCollision): Promise<"pushed" | "stale" | "off" | "failed"> {
+  // Answered: if this was a Start over, the new Plan is no longer held back.
+  startOverSettled();
   rememberSyncedRev(c.remote.id, c.remoteRev);
   return pushNowInsteadOfLater(c.local);
 }
@@ -521,6 +585,15 @@ export function schedulePush(plan: PlanDoc): void {
     clearTimeout(timer);
     return;
   }
+  // HELD BACK AFTER A START OVER, until the student has said which Plan
+  // they keep. Sent, it would become the account's newest Plan, and the
+  // one they started over from would be unreachable without having been
+  // asked about. It stays owed: answering sends it (`keepThisDevicesPlan`).
+  if (startedOver()) {
+    pending = plan;
+    clearTimeout(timer);
+    return;
+  }
   pending = plan;
   clearTimeout(timer);
   timer = setTimeout(() => { void send(plan); }, 2500);
@@ -535,6 +608,8 @@ export function schedulePush(plan: PlanDoc): void {
  * are still thinking about the edit that caused it. */
 export async function flushPush(): Promise<void> {
   if (!syncConfigured || !pending) return;
+  // Not while a Start over is unanswered: see `schedulePush`.
+  if (startedOver()) return;
   clearTimeout(timer);
   await send(pending);
 }

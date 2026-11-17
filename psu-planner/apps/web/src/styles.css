@@ -560,6 +560,9 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
   border-bottom: 1px solid transparent;
 }
 @supports not (backdrop-filter: blur(6px)) { .onboard-account { background: var(--bg); } }
+/* "You started over", beside the account control: one line and the way back. */
+.started-over { margin: 0; font-size: var(--fs-sm); color: var(--text-muted); text-align: right; }
+.started-over button { margin-left: var(--sp-2); min-height: var(--tap-min); }
 
 /* Why a course in the checklist is not the one the program's grid names —
    a Schreyer substitution. Quiet, because it is an explanation rather

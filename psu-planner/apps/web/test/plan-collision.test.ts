@@ -101,9 +101,10 @@ vi.mock("@supabase/supabase-js", () => ({
   }),
 }));
 
-const { findPlansAtSignIn, keepThisDevicesPlan, rememberSyncedRev, takeTheAccountsPlan } = await import(
-  "../src/data/sync"
-);
+const {
+  bringBackTheAccountsPlan, findPlansAtSignIn, flushPush, keepThisDevicesPlan, rememberSyncedRev, schedulePush,
+  startOver, startedOver, takeTheAccountsPlan,
+} = await import("../src/data/sync");
 
 /** A fresh page load, which is the unit the module works in: it snapshots
  * the agreement it starts from, precisely so this page's own pushes
@@ -299,5 +300,116 @@ describe("what the student is choosing between", () => {
     // gap in what we know about it (iron rule 2).
     const summary = describePlan(plan("p", "not-a-date"), nameFor);
     expect(summary.changed).toBe("date not recorded");
+  });
+});
+
+describe("starting over, signed in", () => {
+  /* REPORTED BY THE OWNER: "Whenever I try to start over, it loads the
+     newest plan backed up." Start over removed the Plan from this device
+     and told the account nothing, so the next look at the account found a
+     Plan there and none here, and took it. The owner's choice of fix: the
+     account's Plan is left alone and NOT pulled back; the new Plan is held
+     back from the account until the student has been asked which of the
+     two they keep. Nothing is deleted on one click. */
+  const OLD = "in-the-account";
+  const NEW = "built-after-starting-over";
+  const newPlan = () => plan(NEW, "2026-11-16T12:00:00.000Z");
+
+  it("does not bring the account's plan back while there is no plan here", async () => {
+    accountHolds(OLD, "2026-11-01T09:00:00.000Z");
+    startOver();
+    const found = await findPlansAtSignIn(null);
+    expect(found.kind, "the plan the student started over from was loaded straight back").toBe("set-aside");
+    // Not adopted, so nothing was backed up as "replaced" either.
+    expect(backup()).toBeNull();
+    expect(rows.map((r) => r.id), "starting over wrote to the account").toEqual([OLD]);
+  });
+
+  it("still does not, after a reload: starting over is not forgotten by closing the tab", async () => {
+    accountHolds(OLD, "2026-11-01T09:00:00.000Z");
+    startOver();
+    const later = await afterAReload();
+    expect((await later.findPlansAtSignIn(null)).kind).toBe("set-aside");
+  });
+
+  it("can be undone in one step: the account's plan is still there to bring back", async () => {
+    accountHolds(OLD, "2026-11-01T09:00:00.000Z");
+    startOver();
+    const found = await findPlansAtSignIn(null);
+    if (found.kind !== "set-aside") throw new Error(`expected the plan to be set aside, got ${found.kind}`);
+    const back = bringBackTheAccountsPlan(found);
+    expect(back.id).toBe(OLD);
+    expect(startedOver(), "bringing it back did not end the starting over").toBe(false);
+    // And from here it is an ordinary plan this device agrees with the account about.
+    expect((await findPlansAtSignIn(back)).kind).toBe("nothing");
+  });
+
+  it("holds the new plan back from the account until the student has been asked", async () => {
+    vi.useFakeTimers();
+    try {
+      accountHolds(OLD, "2026-11-01T09:00:00.000Z");
+      startOver();
+      // Building the new Plan saves it, and saving schedules a push.
+      schedulePush(newPlan());
+      await vi.advanceTimersByTimeAsync(10_000);
+      // Switching away flushes whatever is waiting.
+      await flushPush();
+      expect(rows.map((r) => r.id), "the new plan reached the account before the question was asked").toEqual([OLD]);
+    } finally {
+      vi.useRealTimers();
+    }
+    // ASKED. Both Plans, and the student chooses.
+    const found = await findPlansAtSignIn(newPlan());
+    expect(found.kind).toBe("collision");
+  });
+
+  it("is asked again after a reload, until it is answered", async () => {
+    accountHolds(OLD, "2026-11-01T09:00:00.000Z");
+    startOver();
+    const later = await afterAReload();
+    expect((await later.findPlansAtSignIn(newPlan())).kind).toBe("collision");
+  });
+
+  it("keeping the new plan sends it, leaves the old one in the account, and ends the holding back", async () => {
+    accountHolds(OLD, "2026-11-01T09:00:00.000Z");
+    startOver();
+    const found = await findPlansAtSignIn(newPlan());
+    if (found.kind !== "collision") throw new Error(`expected to be asked, got ${found.kind}`);
+    expect(await keepThisDevicesPlan(found)).toBe("pushed");
+    // BOTH SURVIVE. The old row is not written over; the new one is beside it.
+    expect(rows.map((r) => r.id).sort()).toEqual([NEW, OLD].sort());
+    expect(startedOver()).toBe(false);
+    // The next edit goes to the account like any other.
+    vi.useFakeTimers();
+    try {
+      schedulePush(plan(NEW, "2026-11-16T12:05:00.000Z", ["a-major"], 2));
+      await vi.advanceTimersByTimeAsync(10_000);
+    } finally {
+      vi.useRealTimers();
+    }
+    expect(rows.find((r) => r.id === NEW)!.rev).toBe(2);
+  });
+
+  it("keeping the account's plan ends it too, and the new one is kept back on this device", async () => {
+    accountHolds(OLD, "2026-11-01T09:00:00.000Z");
+    startOver();
+    const found = await findPlansAtSignIn(newPlan());
+    if (found.kind !== "collision") throw new Error(`expected to be asked, got ${found.kind}`);
+    expect(takeTheAccountsPlan(found).id).toBe(OLD);
+    expect(startedOver()).toBe(false);
+    expect(backup()?.id, "the new plan was not kept back").toBe(NEW);
+    expect(rows.map((r) => r.id)).toEqual([OLD]);
+  });
+
+  it("asks nothing where the account holds no plan: the new one is saved", async () => {
+    startOver();
+    expect((await findPlansAtSignIn(newPlan())).kind).toBe("kept");
+    expect(rows.map((r) => r.id)).toEqual([NEW]);
+    expect(startedOver()).toBe(false);
+  });
+
+  it("changes nothing for a student who has not started over: no plan here means the account's is taken", async () => {
+    accountHolds(OLD, "2026-11-01T09:00:00.000Z");
+    expect((await findPlansAtSignIn(null)).kind).toBe("adopted");
   });
 });
