@@ -1,7 +1,8 @@
 /** Onboarding wizard: pick program(s) -> campus plan -> AP exams, chosen
  * from a list, which tick the classes they count for -> tick every class
  * from the major's track already passed or being taken now (works for
- * major-switchers), and search for any that is not listed -> generate. */
+ * major-switchers), and search for any that is not listed -> an existing
+ * schedule, optional -> connecting your own AI, optional -> generate. */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { generatePlan, RCL_SEQUENCE, type Catalog, type ProgramTemplate, type ReqSection } from "@psu-planner/engine";
 import { parseProgramLink } from "../data/deepLink";
@@ -11,6 +12,8 @@ import type { ProgramIndexEntry } from "../data/catalogClient";
 import { extractCodesFromFile, extractCodesFromText } from "../data/importSchedule";
 import { ApExamList, CourseSearchPicker, type ApChoice } from "./CreditPickers";
 import { LegalModal } from "./LegalModal";
+import { ConnectAiStep } from "./ConnectAiStep";
+import { syncConfigured } from "../data/sync-config";
 import { BuildOverlay, nextPaint, type BuildStage } from "./BuildOverlay";
 import { usePlanner } from "../store";
 
@@ -769,6 +772,10 @@ export function Onboarding() {
         )}
       </div>
 
+
+      {/* Optional, and last: it needs a plan saved to an account, which
+          comes after the button below. Not shown where there are no accounts. */}
+      {syncConfigured && <ConnectAiStep number={8} />}
 
       {linkMissing.length > 0 && (
         /* An assistant named something the catalog does not have. Said out

@@ -49,6 +49,20 @@ function publishedAddresses(): string[] {
 }
 
 describe("the address students are told to paste", () => {
+  it("is the one the setup screen offers too", () => {
+    // Setup's optional step 8 (ConnectAiStep) copies the address from a
+    // constant. A second place to publish it is a second place for it to
+    // go stale, so the two are held to each other here.
+    const constant = fs.readFileSync(path.join(web, "src", "data", "connector.ts"), "utf-8");
+    const offered = /CONNECTOR_URL = "([^"]+)"/.exec(constant)?.[1];
+    expect(offered).toBeDefined();
+    expect([...new Set(publishedAddresses())]).toEqual([offered]);
+    // And the step uses the constant rather than typing the address again.
+    const step = fs.readFileSync(path.join(web, "src", "components", "ConnectAiStep.tsx"), "utf-8");
+    expect(step).toMatch(/CONNECTOR_URL/);
+    expect(step).not.toMatch(/mcp\.lionsdegree\.com/);
+  });
+
   it("is published exactly once, so there is nothing to choose between", () => {
     const all = new Set(publishedAddresses());
     expect([...all], "the page offers more than one address").toHaveLength(1);
@@ -152,12 +166,29 @@ describe("what happens to the website if the connector is down", () => {
     //
     // Asserted by the absence of the hostname anywhere the browser
     // would reach it, rather than by a comment promising independence.
-    const reaching = [path.join(web, "src"), path.join(web, "public")]
+    //
+    // ONE EXCEPTION, AND IT IS TEXT. Setup's optional AI step offers the
+    // address to copy, from `src/data/connector.ts`. That file is the only
+    // place in the app allowed to hold it, and what it holds is checked
+    // below never to be fetched, linked or loaded.
+    const holder = path.join("src", "data", "connector.ts");
+    const all = [path.join(web, "src"), path.join(web, "public")]
       .filter((d) => fs.existsSync(d))
-      .flatMap((d) => sources(d))
+      .flatMap((d) => sources(d));
+    const reaching = all
       .filter((f) => /mcp\.lionsdegree\.com/.test(fs.readFileSync(f, "utf-8")))
-      .map((f) => path.relative(web, f));
+      .map((f) => path.relative(web, f))
+      .filter((f) => f !== holder);
     expect(reaching, "the website makes a request to the connector").toEqual([]);
+    // The constant is shown and copied, never requested: no fetch, link,
+    // image, script or frame is made from it anywhere.
+    for (const f of all) {
+      const src = fs.readFileSync(f, "utf-8");
+      if (!src.includes("CONNECTOR_URL")) continue;
+      expect(src, `${path.relative(web, f)} requests the connector`).not.toMatch(
+        /(fetch|EventSource|WebSocket|sendBeacon)\([^)]*CONNECTOR_URL|(href|src|action)=\{\s*CONNECTOR_URL/,
+      );
+    }
   });
 
   it("and the connector's address appears only as text for a student to copy", () => {
