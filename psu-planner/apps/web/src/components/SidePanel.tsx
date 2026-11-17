@@ -126,9 +126,9 @@ function firstIdle(): Promise<void> {
   });
 }
 
-function AuditTab() {
-  const { plan } = usePlanner();
-  const [audits, setAudits] = useState<{ name: string; audit: AuditResult }[] | null>(null);
+function AuditTab({ onChangeProgram }: { onChangeProgram?: (slug: string) => void }) {
+  const { plan, candidateId } = usePlanner();
+  const [audits, setAudits] = useState<{ slug: string; name: string; audit: AuditResult }[] | null>(null);
   const [failed, setFailed] = useState(false);
   const rev = plan?.rev;
 
@@ -156,10 +156,10 @@ function AuditTab() {
         const cat = await loadAuditIndex();
         const coveredBy = await loadCoverage();
         const pool = buildPool(plan, cat);
-        const results: { name: string; audit: AuditResult }[] = [];
+        const results: { slug: string; name: string; audit: AuditResult }[] = [];
         for (const slug of plan.programs) {
           const prog = await loadProgramBySlug<{ name: string; requirementSections: ReqSection[] }>(slug);
-          if (prog) results.push({ name: prog.name, audit: auditProgram(prog.requirementSections, pool, cat, coveredBy) });
+          if (prog) results.push({ slug, name: prog.name, audit: auditProgram(prog.requirementSections, pool, cat, coveredBy) });
         }
         if (alive) setAudits(results);
       } catch (e) {
@@ -172,8 +172,12 @@ function AuditTab() {
       }
     })();
     return () => { alive = false; };
+    // THE PLAN IN VIEW (#69). Opening a what-if's tab changes which plan
+    // this is about without changing the Revision, so the tab is part of
+    // what it depends on: an audit of the student's own Plan under a
+    // what-if's chart would be requirements for a different degree.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rev]);
+  }, [rev, candidateId]);
 
   if (failed)
     return (
@@ -208,8 +212,22 @@ function AuditTab() {
         Computed from your plan + completed courses against the bulletin's requirement tables.
         "Manual" items can't be checked automatically — verify with your adviser.
       </p>
-      {audits.map(({ name, audit }) => (
-        <div key={name} style={{ marginBottom: 14 }}>
+      {audits.map(({ slug, name, audit }) => (
+        <div key={slug} style={{ marginBottom: 14 }}>
+          {/* THE WAY TO CHANGE IT, WHERE ITS NAME IS (#69). Changing a
+              Program was two steps inside a dialog inside a menu; a
+              student looking at what their degree requires is the one
+              asking whether it should be a different degree. */}
+          {onChangeProgram && (
+            <button
+              type="button"
+              className="audit-change"
+              aria-label={`Change ${name} for another program`}
+              onClick={() => onChangeProgram(slug)}
+            >
+              Change program
+            </button>
+          )}
           <h3 style={{ fontSize: 13.5, margin: "0 0 6px", color: "var(--blue)" }}>
             {name}
             <span style={{ fontWeight: 400, color: "var(--muted)", fontSize: 11.5 }}>
@@ -238,7 +256,13 @@ function AuditTab() {
   );
 }
 
-export function SidePanel({ width, open, onToggle }: { width?: number; open: boolean; onToggle: () => void }) {
+export function SidePanel({ width, open, onToggle, onChangeProgram }: {
+  width?: number;
+  open: boolean;
+  onToggle: () => void;
+  /** Open the programs dialog on changing this Program. */
+  onChangeProgram?: (slug: string) => void;
+}) {
   // Opens on the advisor when there IS one; otherwise on the requirements
   // audit, which is the panel's whole content in that configuration. Leaving
   // the default at "chat" showed an empty panel with a single tab beside it.
@@ -355,7 +379,7 @@ export function SidePanel({ width, open, onToggle }: { width?: number; open: boo
             {chatLocked ? <ChatLocked /> : <ChatTab chat={chat} />}
           </div>
         )}
-        {tab === "audit" && <AuditTab />}
+        {tab === "audit" && <AuditTab onChangeProgram={onChangeProgram} />}
       </div>
     </div>
   );

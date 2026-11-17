@@ -158,3 +158,77 @@ export function withdrawProgram(
   optimizeSchedule(plan, catalog, { maxCredits, patterns });
   return result;
 }
+
+/** What changing one Program for another did, or would do. */
+export interface ChangeProgramResult {
+  /** The Program that went, and the one that came. */
+  from: string;
+  to: string;
+  /** Set when the change cannot happen. The caller's copy is not a Plan to
+   * keep: declaring may already have run on it. */
+  refusal: string | null;
+  /** What the new Program brought. */
+  added: AddProgramResult | null;
+  /** What the old Program took with it: Courses nothing else requires,
+   * Slots, and what the Plan no longer has anything standing for. */
+  removed: RemoveProgramPreview | null;
+  note: string;
+}
+
+/** Change one Program for another, in one step (#69).
+ *
+ * DECLARE FIRST, THEN WITHDRAW, and the order is the point. A Course both
+ * Programs require is, after the declaration, shared: the withdrawal then
+ * re-points it at the Program that still needs it and it never leaves its
+ * Term. The other order removes it and adds it back somewhere else, having
+ * lost where the student put it. It also means the Plan is never without a
+ * Program in between, which is what made this two steps in the planner
+ * ("add the program you are switching to first").
+ *
+ * WHAT GOES IS WHAT NOTHING ELSE REQUIRES: the old Program's Courses that
+ * neither the new Program nor any other declared Program asks for. Courses
+ * the student has completed stay, and so do Courses they added themselves
+ * (`removeProgram` holds both).
+ *
+ * The new Program takes the old one's place in the Plan's list, so a
+ * student's major stays first.
+ *
+ * Mutates `plan`, like the rest of the engine. Both callers hand it a copy:
+ * to preview, and because a refusal can come after the declaration ran. */
+export function changeProgram(
+  plan: PlanDoc,
+  fromSlug: string,
+  template: ProgramTemplate,
+  opts: DeclareProgramOptions & { remaining?: ProgramTemplate[] },
+): ChangeProgramResult {
+  const result: ChangeProgramResult = { from: fromSlug, to: template.slug, refusal: null, added: null, removed: null, note: "" };
+  const at = plan.programs.indexOf(fromSlug);
+  if (at < 0) return { ...result, refusal: "That is not one of this plan's programs." };
+  if (fromSlug === template.slug) return { ...result, refusal: "That is already the program on this plan." };
+
+  const { catalog, maxCredits = 19, patterns, remaining, ...merge } = opts;
+  result.added = addProgram(plan, template, merge);
+  // The Programs being kept are the others and the one that just came:
+  // its requirements are what decides which shared Courses stay.
+  result.removed = removeProgram(plan, fromSlug, { remaining: [...(remaining ?? []), template], catalog });
+  if (result.removed.refusal) return { ...result, refusal: result.removed.refusal };
+
+  // In the old one's place.
+  plan.programs = plan.programs.filter((slug) => slug !== template.slug);
+  plan.programs.splice(Math.min(at, plan.programs.length), 0, template.slug);
+
+  refineGenEdSlots(plan, catalog);
+  optimizeSchedule(plan, catalog, { maxCredits, patterns });
+  if (plan.honors) applyHonorsUpgrades(plan, catalog);
+
+  const gone = result.removed.coursesRemoved.length;
+  const came = result.added.coursesAdded.length;
+  const stayed = result.removed.coursesKept.length;
+  const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+  result.note =
+    `Changed to ${template.name}. ` +
+    `${count(came, "course", "courses")} came in, ${count(gone, "course", "courses")} left` +
+    (stayed ? `, and ${count(stayed, "course", "courses")} stayed because the new program needs ${stayed === 1 ? "it" : "them"} too` : "") +
+    ". Courses you have completed and courses you added yourself are still there.";
+  return result;
+}

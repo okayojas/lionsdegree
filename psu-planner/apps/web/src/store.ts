@@ -1,17 +1,17 @@
 import { create } from "zustand";
 import {
-  applyHonorsUpgrades, attachIug, auditHonors, buildItems, buildSchedule, declareProgram, detachIug,
+  applyHonorsUpgrades, attachIug, auditHonors, buildItems, buildSchedule, changeProgram, declareProgram, detachIug,
   optimizeSchedule, parseTermLabel, previewRemoveProgram, refineGenEdSlots, templateCourseCodes,
   withdrawProgram, carryCourseRefs, repairPrereqOrdering, termSequence, unrecordPriorCredit,
-  type Catalog, type CourseSpec, type PlanDoc, type PlanItem, type ProgramTemplate,
+  type Catalog, type ChangeProgramResult, type CourseSpec, type PlanDoc, type PlanItem, type ProgramTemplate,
   type RemoveProgramPreview, type ReqSection, type Schedule,
 } from "@psu-planner/engine";
 import {
   CANDIDATE_NAME_MAX, MAX_CANDIDATES, candidatesOf, contentsOf, foldView, isLegacyCandidate,
-  keepCandidate as swapWithPlan, makeCandidate, viewOf,
+  keepCandidate as swapWithPlan, makeCandidate, nameThatFits, viewOf,
   type Candidate, type LegacyCandidate, type PlanContents,
 } from "@psu-planner/engine";
-import { loadCatalogFor, loadCoverage, loadEditions, loadFlowchartPatterns, loadIug, loadProgramBySlug, setCatalogEdition } from "./data/catalogClient";
+import { loadCatalogFor, loadCoverage, loadEditions, loadFlowchartPatterns, loadIug, loadProgramBySlug, loadProgramsIndex, setCatalogEdition } from "./data/catalogClient";
 import { schedulePush } from "./data/sync";
 
 /** A program file as the pipeline writes it. Only the parts the merge reads. */
@@ -188,6 +188,18 @@ interface PlannerState {
   previewDropProgram: (slug: string) => Promise<RemoveProgramPreview | null>;
   /** Drop a Program, removing the Courses it placed that nothing else needs. */
   removeProgramNow: (slug: string) => Promise<string>;
+  /** What changing one Program for another WOULD do, item by item, so the
+   * student reads it before deciding. Changes nothing. `null` where there
+   * is no plan or the new Program will not load. */
+  previewChangeProgram: (from: string, to: string) => Promise<ChangeProgramResult | null>;
+  /** Change one Program for another in one step (#69), on the plan in
+   * view. Returns what to tell the student. */
+  changeProgramNow: (from: string, to: string) => Promise<string>;
+  /** A link to a Program, followed by a student who already has a Plan
+   * (#69): open a what-if, a copy of their Plan with that Program in it,
+   * and leave the Plan alone. A major takes the place of their major; a
+   * minor or a certificate is added. Returns what to tell them. */
+  openProgramAsWhatIf: (entry: { slug: string; name: string; type: "major" | "minor" | "certificate" }) => Promise<string>;
   /** Attach an IUG master's (by slug) to the current plan: loads the grad
    * program + grad courses, folds them on as graduate terms with double-count,
    * re-optimizes the undergrad half. Returns a human summary. */
@@ -334,6 +346,46 @@ export const usePlanner = create<PlannerState>((set, get) => {
     return true;
   };
 
+  /** The plan in view with one Program changed for another, worked out on
+   * a copy and committed nowhere. The preview shows it; the change itself
+   * installs it. One function, so the two cannot disagree. */
+  const changedPlan = async (
+    from: string,
+    to: string,
+  ): Promise<{ next: PlanDoc; catalog: Catalog; res: ChangeProgramResult } | null> => {
+    const plan = get().plan;
+    if (!plan) return null;
+    const template = await templateFor(to);
+    if (!template) return null;
+    const next = structuredClone(plan);
+    // THE SUBJECTS FIRST, as for declaring: the re-flow reads the catalog
+    // it is handed, so it has to cover the new Program before it runs.
+    const catalog = {
+      ...get().catalog,
+      ...(await loadCatalogFor([...planCodes(plan), ...templateCourseCodes(template)])),
+    };
+    const res = changeProgram(next, from, template, {
+      coveredBy: await loadCoverage(),
+      catalog,
+      maxCredits: 19,
+      patterns: await loadFlowchartPatterns(),
+      // The Programs being kept, so the report can say which of their
+      // requirements this leaves with nothing standing for them.
+      remaining: await templatesFor(plan.programs.filter((slug) => slug !== from && slug !== to)),
+    });
+    return { next, catalog, res };
+  };
+
+  /** Which kind each Program is, to tell a student's major from a minor.
+   * An empty map where the index will not load: the caller falls back. */
+  const loadProgramsIndexSafely = async (): Promise<Map<string, string>> => {
+    try {
+      return new Map((await loadProgramsIndex()).map((e) => [e.slug, e.type]));
+    } catch {
+      return new Map();
+    }
+  };
+
   /** Put a stored document on screen: its Plan, or the what-if `id`.
    * Writes nothing. Says whether the what-if was there to show. */
   const showStored = (stored: PlanDoc, id: string | null): boolean => {
@@ -439,7 +491,7 @@ export const usePlanner = create<PlannerState>((set, get) => {
     // sketch before starting it is friction at exactly the wrong moment,
     // so it gets the first unused number and a Rename button.
     const taken = new Set(already.map((c) => c.name.toLowerCase()));
-    let name = opts?.name?.trim().slice(0, CANDIDATE_NAME_MAX).trimEnd() ?? "";
+    let name = nameThatFits(opts?.name ?? "");
     if (!name || taken.has(name.toLowerCase())) {
       let n = 1;
       while (taken.has(`what-if ${n}`)) n++;
@@ -932,6 +984,69 @@ export const usePlanner = create<PlannerState>((set, get) => {
     persist(next, `remove program ${slug}`);
     set({ plan: next, ...recompute(next, catalog) });
     return res.note;
+  },
+
+  previewChangeProgram: async (from, to) => {
+    const out = await changedPlan(from, to);
+    return out ? out.res : null;
+  },
+
+  changeProgramNow: async (from, to) => {
+    const before = get().plan;
+    if (!before) return "No plan yet.";
+    const out = await changedPlan(from, to);
+    if (!out) return "Couldn't load that program from the catalog.";
+    // Refused: the plan in view was never touched, because the engine was
+    // handed a copy.
+    if (out.res.refusal) return out.res.refusal;
+    // The plan moved while the catalog was on its way (another tab was
+    // opened, or an edit landed): what was worked out is about a plan
+    // that is no longer the one on screen.
+    if (get().plan !== before) return "Your plan changed while that was being worked out, so nothing was changed. Try again.";
+    out.next.rev = before.rev + 1;
+    out.next.updatedAt = new Date().toISOString();
+    persist(out.next, `change program ${from} to ${to}`);
+    set({ plan: out.next, catalog: out.catalog, ...recompute(out.next, out.catalog) });
+    return out.res.note;
+  },
+
+  openProgramAsWhatIf: async (entry) => {
+    const view = get().plan;
+    if (!view) return "No plan yet.";
+    const stored = storedFrom(view);
+    const name = nameThatFits(entry.name);
+    // ALREADY THERE: a link followed twice opens the what-if it made the
+    // first time, with whatever the student has done in it since.
+    const existing = candidatesOf(stored).find((c) => c.name.toLowerCase() === name.toLowerCase());
+    if (existing) {
+      await get().showCandidate(existing.id);
+      return `Showing the what-if "${existing.name}". Your plan is untouched.`;
+    }
+    if (stored.programs.includes(entry.slug)) {
+      return `${entry.name} is already on your plan.`;
+    }
+    const made = await get().newCandidate({ name });
+    const id = get().candidateId;
+    // At the limit, or no plan: say what `newCandidate` said, and change nothing.
+    if (!id || candidatesOf(storedFrom(get().plan!)).find((c) => c.id === id)?.name !== name) return made;
+
+    // IN THE WHAT-IF, which is the plan in view now. A major takes the
+    // place of the major the student has; anything else is added.
+    const programs = get().plan!.programs;
+    const index = await loadProgramsIndexSafely();
+    const major = entry.type === "major"
+      ? programs.find((slug) => index.get(slug) === "major") ?? (index.size === 0 ? programs[0] : undefined)
+      : undefined;
+    const said = major
+      ? await get().changeProgramNow(major, entry.slug)
+      : await get().addProgramNow(entry.slug);
+    if (!get().plan!.programs.includes(entry.slug)) {
+      // It did not take (the Program would not load). An empty copy under
+      // the Program's name would be a what-if that is not one.
+      get().deleteCandidate(id);
+      return `${said} No what-if was made, and your plan is untouched.`;
+    }
+    return `Opened ${entry.name} as a what-if: a copy of your plan with it in. Your plan is untouched.`;
   },
 
   attachIugNow: async (slug) => {

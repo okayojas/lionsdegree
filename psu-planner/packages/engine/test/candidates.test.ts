@@ -15,6 +15,7 @@ import {
   keepCandidate,
   makeCandidate,
   nameForReplacedPlan,
+  nameThatFits,
   viewOf,
   type LegacyCandidate,
   type PlanDoc,
@@ -201,6 +202,21 @@ describe("what the replaced Plan is called", () => {
     const again = nameForReplacedPlan("x".repeat(CANDIDATE_NAME_MAX), [long]);
     expect(again.length).toBeLessThanOrEqual(CANDIDATE_NAME_MAX);
     expect(again).not.toBe(long);
+  });
+});
+
+describe("a name cut to fit a tab", () => {
+  it("is left alone where it fits", () => {
+    expect(nameThatFits("Mathematics, Minor (Science)")).toBe("Mathematics, Minor (Science)");
+  });
+
+  it("loses a trailing note in brackets first, then whole words, and never ends mid-word", () => {
+    expect(nameThatFits("Mechanical Engineering, B.S. (Engineering)")).toBe("Mechanical Engineering, B.S.");
+    const long = nameThatFits("Recreation, Park, and Tourism Management, B.S. (Health and Human Development)");
+    expect(long).toBe("Recreation, Park, and Tourism");
+    expect(long.length).toBeLessThanOrEqual(CANDIDATE_NAME_MAX);
+    // One word longer than a tab is cut, because there is nothing else to do.
+    expect(nameThatFits("x".repeat(50))).toHaveLength(CANDIDATE_NAME_MAX);
   });
 });
 

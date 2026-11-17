@@ -693,6 +693,13 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 }
 
 /* ---------- side panel (chat + audit) ---------- */
+/* "Change program", beside each Program's name in the requirements. At
+   the trailing edge of its heading, quiet, and a full tap target. */
+.audit-change {
+  float: right; margin: -4px 0 4px var(--sp-2);
+  min-height: var(--tap-min); padding: 0 var(--sp-3);
+  font-size: var(--fs-xs); font-weight: 600;
+}
 .main-row { display: flex; flex: 1; min-height: 0; }
 .main-row .viewport { flex: 1; }
 .panel-resizer { flex: 0 0 6px; cursor: col-resize; background: var(--border); opacity: .5; transition: opacity .15s, background .15s; touch-action: none; }

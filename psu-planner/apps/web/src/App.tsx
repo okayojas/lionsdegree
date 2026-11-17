@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { progress, type Course, type PlanItem } from "@psu-planner/engine";
 import { usePlanner, loadSavedPlan, getPlanHistory, storedPlan, type PlanHistoryEntry } from "./store";
 import { conflictMessage, flushPush, pullNewerPlan, setConflictListener } from "./data/sync";
@@ -7,6 +7,7 @@ import { downloadPlan, openPlanFile } from "./data/planFileIO";
 import { Onboarding } from "./components/Onboarding";
 import { SiteHead } from "./components/SiteHead";
 import { SITE_NAV } from "./site/header";
+import { followProgramLink, withoutProgramLink } from "./data/programLinkWhatIf";
 import { PlanCanvas } from "./components/PlanCanvas";
 import { Dialog } from "./components/Dialog";
 import { CourseModal } from "./components/CourseModal";
@@ -34,6 +35,8 @@ export default function App() {
   const [showRemoved, setShowRemoved] = useState(false);
   const [showImport, setShowImport] = useState(false);
   const [showPrograms, setShowPrograms] = useState(false);
+  /** The Program the dialog should open on changing, from the button beside its name. */
+  const [changingProgram, setChangingProgram] = useState<string | null>(null);
   const [showLegal, setShowLegal] = useState(false);
   const [historyOpen, setHistoryOpen] = useState<PlanHistoryEntry[] | null>(null);
   const [iugOpen, setIugOpen] = useState<IugIndexEntry[] | null>(null);
@@ -126,6 +129,30 @@ export default function App() {
   // banner shows one fixed message and the recovery path re-reads from
   // storage. Carrying the document implied a use that did not exist.
   const [conflict, setConflict] = useState(false);
+
+  /* ── A link to a Program, with a Plan already saved (#69) ──────────
+     Onboarding reads `?programs=` for a student with no Plan. One who
+     has a Plan used to get it back with no word about the link. Now the
+     Program opens as a what-if, a copy of their Plan with it in, and the
+     Plan is not touched.
+
+     ONLY WHERE THE PLAN WAS ALREADY THERE when the page opened: a plan
+     onboarding has just generated FROM this link has the Program in it,
+     and following the link again would be noise. Once, and the link is
+     taken out of the address so a reload does not follow it again. */
+  const hadPlanOnArrival = useRef(loadSavedPlan() !== null);
+  const linkFollowed = useRef(false);
+  useEffect(() => {
+    if (!plan || loading || linkFollowed.current || !hadPlanOnArrival.current) return;
+    linkFollowed.current = true;
+    void followProgramLink(window.location.search)
+      .then((said) => {
+        if (said === null) return;
+        setToast(said);
+        window.history.replaceState(null, "", withoutProgramLink(new URL(window.location.href)));
+      })
+      .catch(() => setToast("That link could not be followed: the program list did not load. Your plan is untouched."));
+  }, [plan, loading]);
   useEffect(() => {
     setConflictListener(() => setConflict(true));
     return () => setConflictListener(null);
@@ -369,7 +396,12 @@ export default function App() {
             onPointerDown={startResize}
           />
         )}
-        <SidePanel width={chatWidth} open={panelOpen} onToggle={togglePanel} />
+        <SidePanel
+          width={chatWidth}
+          open={panelOpen}
+          onToggle={togglePanel}
+          onChangeProgram={(slug) => { setChangingProgram(slug); setShowPrograms(true); }}
+        />
       </div>
       {/* IN THE LAYOUT, NOT OVER IT. The conflict bar above is fixed and
           floats, because a refused save is urgent and interrupting is the
@@ -549,7 +581,13 @@ export default function App() {
           onDone={(msg) => setToast(`Import: ${msg}.`)}
         />
       )}
-      {showPrograms && <ProgramsModal onClose={() => setShowPrograms(false)} onToast={setToast} />}
+      {showPrograms && (
+        <ProgramsModal
+          changing={changingProgram}
+          onClose={() => { setShowPrograms(false); setChangingProgram(null); }}
+          onToast={setToast}
+        />
+      )}
       {showLegal && <LegalModal onClose={() => setShowLegal(false)} />}
       {conflict && (
         <div className="conflict-bar" role="alert">

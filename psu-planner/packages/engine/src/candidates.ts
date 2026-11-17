@@ -81,6 +81,19 @@ export function makeCandidate(id: string, name: string, contents: PlanDoc | Plan
 /** The longest a what-if's name may be. */
 export const CANDIDATE_NAME_MAX = 40;
 
+/** A name cut to fit a tab, for a what-if named after something longer
+ * (a Program: "Mechanical Engineering, B.S. (Engineering)" is 42).
+ *
+ * A trailing note in brackets goes first, since it is the part a reader
+ * can spare; then whole words from the end. Never mid-word: "(Engineerin"
+ * reads as a mistake. */
+export function nameThatFits(name: string): string {
+  let fit = name.trim();
+  if (fit.length > CANDIDATE_NAME_MAX) fit = fit.replace(/\s*\([^()]*\)\s*$/, "");
+  while (fit.length > CANDIDATE_NAME_MAX && fit.includes(" ")) fit = fit.slice(0, fit.lastIndexOf(" "));
+  return fit.slice(0, CANDIDATE_NAME_MAX).replace(/[\s,;:(]+$/, "");
+}
+
 /** What the Plan is called once a what-if has taken its place: "My plan
  * before <the what-if's name>", cut to fit, and numbered if that name is
  * taken. */

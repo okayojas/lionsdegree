@@ -465,3 +465,116 @@ describe("a what-if stored the old way, as a list of changes", () => {
     expect(state().repairNote).toMatch(/no longer on this plan/);
   });
 });
+
+const ME = "engineering-mechanical-engineering-bs";
+const ME_ENTRY = { slug: ME, name: "Mechanical Engineering, B.S.", type: "major" as const };
+
+describe("changing one program for another", () => {
+  it("shows what it would do first, and changes nothing by showing it", async () => {
+    const plan = seed();
+    const preview = await state().previewChangeProgram(ESC, ME);
+    expect(preview!.refusal).toBeNull();
+    expect(preview!.removed!.coursesRemoved.length, "nothing is said to leave, between two different majors").toBeGreaterThan(0);
+    expect(preview!.added!.coursesAdded.length).toBeGreaterThan(0);
+    // A PREVIEW. Not saved, not pushed, not on screen.
+    expect(loadSavedPlan(), "the preview was saved").toBeNull();
+    expect(pushed).toHaveLength(0);
+    expect(state().plan!.programs).toEqual(plan.programs);
+    expect(state().plan!.rev).toBe(plan.rev);
+  });
+
+  it("does it in one step: the new program in the old one's place, and what the preview said left is gone", async () => {
+    seed();
+    const preview = await state().previewChangeProgram(ESC, ME);
+    const said = await state().changeProgramNow(ESC, ME);
+    expect(said).toContain("Changed to Mechanical Engineering");
+    expect(saved().programs).toEqual([ME]);
+    expect(saved().rev).toBe(10);
+    const now = codesIn(saved());
+    for (const code of preview!.removed!.coursesRemoved) expect(now, `${code} was to leave`).not.toContain(code);
+    // What the student had done is still theirs.
+    expect(saved().completed["MATH 140"]).toBe(true);
+  });
+
+  it("can be tried in a what-if, which is what a what-if could not hold before", async () => {
+    const plan = seed();
+    const before = contentsOf(plan);
+    await state().newCandidate();
+    await state().changeProgramNow(ESC, ME);
+    expect(whatIf("What-if 1").programs).toEqual([ME]);
+    expect(mine(), "changing the program in a what-if changed the student's plan").toEqual(before);
+    expect(saved().programs).toEqual([ESC]);
+  });
+
+  it("refuses a program the plan does not have, and writes nothing", async () => {
+    seed();
+    expect(await state().changeProgramNow(MINOR, ME)).toMatch(/not one of this plan's programs/);
+    expect(loadSavedPlan()).toBeNull();
+  });
+});
+
+describe("a link to a program, followed by a student who already has a plan", () => {
+  it("opens it as a what-if: a copy of their plan with that major in place of theirs, and the plan untouched", async () => {
+    const plan = seed();
+    const before = contentsOf(plan);
+    const said = await state().openProgramAsWhatIf(ME_ENTRY);
+    expect(said).toMatch(/Opened Mechanical Engineering, B\.S\. as a what-if/);
+    expect(said).toMatch(/Your plan is untouched/);
+    // The what-if is named for the Program, is open, and has it.
+    expect(candidatesOf(saved()).map((c) => c.name)).toEqual(["Mechanical Engineering, B.S."]);
+    expect(whatIf("Mechanical Engineering, B.S.").programs).toEqual([ME]);
+    expect(state().candidateId).toBe(candidatesOf(saved())[0]!.id);
+    expect(state().plan!.programs).toEqual([ME]);
+    // THE POINT. The link used to be ignored; the alternative that was
+    // never acceptable is that it changes the plan they have.
+    expect(mine()).toEqual(before);
+  });
+
+  it("adds a minor or a certificate beside the major, in the what-if", async () => {
+    const plan = seed();
+    await state().openProgramAsWhatIf({ slug: MINOR, name: "Mathematics Minor", type: "minor" });
+    expect(whatIf("Mathematics Minor").programs).toEqual([ESC, MINOR]);
+    expect(mine()).toEqual(contentsOf(plan));
+  });
+
+  it("followed twice, opens the what-if it made the first time and makes no second", async () => {
+    seed();
+    await state().openProgramAsWhatIf(ME_ENTRY);
+    await state().deleteTerm(3);
+    const edited = whatIf("Mechanical Engineering, B.S.");
+    await state().showCandidate(null);
+    const said = await state().openProgramAsWhatIf(ME_ENTRY);
+    expect(said).toMatch(/Showing the what-if "Mechanical Engineering, B\.S\."/);
+    expect(candidatesOf(saved())).toHaveLength(1);
+    expect(whatIf("Mechanical Engineering, B.S."), "the student's edits in it were lost").toEqual(edited);
+    expect(state().candidateId).toBe(candidatesOf(saved())[0]!.id);
+  });
+
+  it("at the limit says so, names the what-ifs in the way, and changes nothing", async () => {
+    seed();
+    for (let i = 0; i < MAX_CANDIDATES; i++) await state().newCandidate();
+    await state().showCandidate(null);
+    const was = saved();
+    const said = await state().openProgramAsWhatIf(ME_ENTRY);
+    expect(said).toMatch(/the most a plan holds/);
+    expect(said).toContain('"What-if 1"');
+    expect(saved()).toEqual(was);
+    expect(state().candidateId).toBeNull();
+  });
+
+  it("says so where the program is already on their plan, and makes nothing", async () => {
+    seed();
+    const said = await state().openProgramAsWhatIf({ slug: ESC, name: "Engineering Science, B.S.", type: "major" });
+    expect(said).toMatch(/already on your plan/);
+    expect(loadSavedPlan()).toBeNull();
+  });
+
+  it("leaves no empty what-if behind where the program will not load", async () => {
+    const plan = seed();
+    const said = await state().openProgramAsWhatIf({ slug: "no-such-program", name: "No Such Program", type: "major" });
+    expect(said).toMatch(/No what-if was made, and your plan is untouched/);
+    expect(candidatesOf(saved())).toEqual([]);
+    expect(state().candidateId).toBeNull();
+    expect(mine()).toEqual(contentsOf(plan));
+  });
+});

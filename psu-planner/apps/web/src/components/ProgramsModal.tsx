@@ -6,18 +6,27 @@
  * Constraint they set. A student who declares a minor in October was being
  * asked to pay for it with all of that.
  *
+ * CHANGING one for another is one step (#69): pick the one to replace and
+ * its replacement, read what would leave and what would come, and decide.
+ * It used to be "add the program you are switching to first", then drop.
+ *
  * Dropping is a two-step conversation rather than a confirm box. The blast
  * radius is bigger than removing one Course — it can take Courses, filled
  * Slots and whole requirements with it — so the student reads what WOULD
  * happen, named item by item, and only then decides.
  */
 import { useEffect, useMemo, useState } from "react";
-import type { RemoveProgramPreview } from "@psu-planner/engine";
+import type { ChangeProgramResult, RemoveProgramPreview } from "@psu-planner/engine";
 import { loadProgramsIndex, type ProgramIndexEntry } from "../data/catalogClient";
 import { usePlanner } from "../store";
 import { Dialog } from "./Dialog";
 
-export function ProgramsModal({ onClose, onToast }: { onClose: () => void; onToast: (msg: string) => void }) {
+export function ProgramsModal({ onClose, onToast, changing: startChanging = null }: {
+  onClose: () => void;
+  onToast: (msg: string) => void;
+  /** Open already choosing a replacement for this Program. */
+  changing?: string | null;
+}) {
   const plan = usePlanner((s) => s.plan);
   const [index, setIndex] = useState<ProgramIndexEntry[] | null>(null);
   const [query, setQuery] = useState("");
@@ -25,6 +34,10 @@ export function ProgramsModal({ onClose, onToast }: { onClose: () => void; onToa
   const [error, setError] = useState<string | null>(null);
   /** The withdrawal the student is being shown, before it happens. */
   const [pending, setPending] = useState<RemoveProgramPreview | null>(null);
+  /** The Program being replaced, while its replacement is chosen. */
+  const [changing, setChanging] = useState<string | null>(startChanging);
+  /** The change the student is being shown, before it happens. */
+  const [pendingChange, setPendingChange] = useState<ChangeProgramResult | null>(null);
 
   useEffect(() => {
     loadProgramsIndex()
@@ -38,9 +51,13 @@ export function ProgramsModal({ onClose, onToast }: { onClose: () => void; onToa
     if (!index || !plan) return [];
     const q = query.toLowerCase().trim();
     const pool = index.filter((p) => !plan.programs.includes(p.slug));
-    if (!q) return pool.filter((p) => p.type === "minor").slice(0, 15);
+    // Replacing a major, the first thing offered is another major; with
+    // nothing typed and nothing being replaced, minors, which is what a
+    // student most often adds.
+    const kind = changing ? index.find((p) => p.slug === changing)?.type ?? "major" : "minor";
+    if (!q) return pool.filter((p) => p.type === kind).slice(0, 15);
     return pool.filter((p) => p.name.toLowerCase().includes(q) || p.slug.includes(q)).slice(0, 25);
-  }, [index, plan, query]);
+  }, [index, plan, query, changing]);
 
   if (!plan) return null;
 
@@ -53,6 +70,34 @@ export function ProgramsModal({ onClose, onToast }: { onClose: () => void; onToa
       onClose();
     } catch {
       setError(`Could not add ${p.name}. Your plan is unchanged.`);
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  const askToChange = async (to: ProgramIndexEntry) => {
+    if (!changing) return;
+    setBusy(to.slug);
+    setError(null);
+    try {
+      const preview = await usePlanner.getState().previewChangeProgram(changing, to.slug);
+      if (!preview) setError(`Could not load ${to.name}, so nothing was changed.`);
+      else setPendingChange(preview);
+    } catch {
+      setError("Could not work out what that change would do, so nothing was changed.");
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  const confirmChange = async (change: ChangeProgramResult) => {
+    setBusy(change.to);
+    try {
+      const msg = await usePlanner.getState().changeProgramNow(change.from, change.to);
+      onToast(msg);
+      onClose();
+    } catch {
+      setError("Could not make that change. Your plan is unchanged.");
     } finally {
       setBusy(null);
     }
@@ -92,7 +137,52 @@ export function ProgramsModal({ onClose, onToast }: { onClose: () => void; onToa
         requirements fold into the terms you already have.
       </p>
 
-      {pending ? (
+      {pendingChange ? (
+        <div className="status warn" role="status">
+          <h3 style={{ margin: "0 0 6px" }}>Change {nameOf(pendingChange.from)} to {nameOf(pendingChange.to)}?</h3>
+          {pendingChange.refusal ? (
+            <p className="desc">{pendingChange.refusal}</p>
+          ) : (
+            <>
+              <p className="desc">
+                Courses you have completed and courses you added yourself stay. Nothing has
+                been changed yet.
+              </p>
+              {(pendingChange.removed?.coursesRemoved.length ?? 0) > 0 && (
+                <p className="desc">
+                  <b>Leaves your plan:</b> {pendingChange.removed!.coursesRemoved.join(", ")}
+                  {pendingChange.removed!.creditsRemoved > 0 ? ` (${pendingChange.removed!.creditsRemoved} credits)` : ""}
+                </p>
+              )}
+              {(pendingChange.added?.coursesAdded.length ?? 0) > 0 && (
+                <p className="desc">
+                  <b>Comes in:</b> {pendingChange.added!.coursesAdded.join(", ")}
+                </p>
+              )}
+              {(pendingChange.removed?.coursesKept.length ?? 0) > 0 && (
+                <p className="desc">
+                  <b>Stays, because {nameOf(pendingChange.to)} needs it too:</b>{" "}
+                  {pendingChange.removed!.coursesKept.join(", ")}
+                </p>
+              )}
+              {(pendingChange.removed?.filledSlotsCleared.length ?? 0) > 0 && (
+                <p className="desc">
+                  <b>Slots you had already chosen a course for:</b>{" "}
+                  {pendingChange.removed!.filledSlotsCleared.map((s) => `${s.label} → ${s.code}`).join(", ")}
+                </p>
+              )}
+            </>
+          )}
+          <div className="row">
+            {!pendingChange.refusal && (
+              <button disabled={busy === pendingChange.to} onClick={() => void confirmChange(pendingChange)}>
+                {busy === pendingChange.to ? "Changing…" : `Yes, change to ${nameOf(pendingChange.to)}`}
+              </button>
+            )}
+            <button onClick={() => setPendingChange(null)}>Keep {nameOf(pendingChange.from)}</button>
+          </div>
+        </div>
+      ) : pending ? (
         <div className="status warn" role="status">
           <h3 style={{ margin: "0 0 6px" }}>Drop {nameOf(pending.program)}?</h3>
           {pending.refusal ? (
@@ -156,8 +246,16 @@ export function ProgramsModal({ onClose, onToast }: { onClose: () => void; onToa
               <div key={slug} className="row" style={{ alignItems: "center", marginTop: 8 }}>
                 <span style={{ flex: 1 }}><b>{nameOf(slug)}</b></span>
                 <button
+                  disabled={!!busy}
+                  aria-pressed={changing === slug}
+                  aria-label={`Change ${nameOf(slug)} for another program`}
+                  onClick={() => { setChanging(changing === slug ? null : slug); setQuery(""); }}
+                >
+                  {changing === slug ? "Changing…" : "Change"}
+                </button>
+                <button
                   disabled={busy === slug || plan.programs.length === 1}
-                  title={plan.programs.length === 1 ? "Add the program you are switching to first" : "See what dropping this would do"}
+                  title={plan.programs.length === 1 ? "A plan needs a program: use Change to switch to another" : "See what dropping this would do"}
                   onClick={() => void askToDrop(slug)}
                 >
                   {busy === slug ? "Checking…" : "Drop"}
@@ -166,10 +264,18 @@ export function ProgramsModal({ onClose, onToast }: { onClose: () => void; onToa
             ))}
           </div>
 
-          <p className="desc" style={{ marginTop: 16 }}><b>Add another program</b></p>
+          <p className="desc" style={{ marginTop: 16 }}>
+            <b>{changing ? `Change ${nameOf(changing)} to…` : "Add another program"}</b>
+            {changing && (
+              <>
+                {" "}
+                <button type="button" onClick={() => setChanging(null)}>Cancel</button>
+              </>
+            )}
+          </p>
           <input
             placeholder="Search majors, minors and certificates"
-            aria-label="Search programs to add"
+            aria-label={changing ? `Search for the program to change ${nameOf(changing)} to` : "Search programs to add"}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             style={{ width: "100%" }}
@@ -184,9 +290,19 @@ export function ProgramsModal({ onClose, onToast }: { onClose: () => void; onToa
                     {p.type}{p.college ? ` · ${p.college}` : ""}
                   </span>
                 </span>
-                <button disabled={!!busy} onClick={() => void add(p)}>
-                  {busy === p.slug ? "Adding…" : "Add"}
-                </button>
+                {changing ? (
+                  <button
+                    disabled={!!busy}
+                    aria-label={`Change to ${p.name}`}
+                    onClick={() => void askToChange(p)}
+                  >
+                    {busy === p.slug ? "Checking…" : "Change to this"}
+                  </button>
+                ) : (
+                  <button disabled={!!busy} onClick={() => void add(p)}>
+                    {busy === p.slug ? "Adding…" : "Add"}
+                  </button>
+                )}
               </div>
             ))}
           </div>

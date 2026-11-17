@@ -27,8 +27,11 @@ export { earliestLegalTerm, type LegalTerm } from "./earliestLegal.js";
 export { discover, sharedCredits, programSearchText, type Combination, type ProgramHit, type Overlap, type DiscoverOptions } from "./discover.js";
 export { unrecordPriorCredit, type UnrecordResult } from "./priorCredit.js";
 export { carryCourseRefs, describeCarry, type SwapCarry } from "./swapRefs.js";
-export { declareProgram, withdrawProgram, templateCourseCodes, type DeclareProgramOptions } from "./declareProgram.js";
+export {
+  declareProgram, withdrawProgram, changeProgram, templateCourseCodes,
+  type DeclareProgramOptions, type ChangeProgramResult,
+} from "./declareProgram.js";
 export {
   contentsOf, viewOf, foldView, makeCandidate, keepCandidate, candidatesOf, isLegacyCandidate,
-  nameForReplacedPlan, CANDIDATE_NAME_MAX,
+  nameForReplacedPlan, nameThatFits, CANDIDATE_NAME_MAX,
 } from "./candidates.js";

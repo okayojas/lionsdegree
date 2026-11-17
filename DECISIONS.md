@@ -854,6 +854,41 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
     planner shares, so the landing page, Connect, About, Privacy and Terms do not download them.
   - **What it weighs:** Sample plans first paint 32.8 KB gzipped (document 15.6, stylesheet
     14.1, script 3.1; it was 28.2), ceiling 39. Landing first paint 23.8 KB, ceiling 28.
+- **A what-if is an independent copy, and a Program can be changed in one step (2026-11-16, #69).**
+  The owner's decisions, in conversation; `docs/adr/0006` has the reasoning for the first.
+  - **A what-if is a copy of the Plan**, not a list of changes replayed against it. Anything can
+    be changed in one, a Program included, and it and the Plan do not affect each other. The
+    planner draws and edits the plan IN VIEW, and every write folds the view back into the one
+    stored document (`packages/engine/src/candidates.ts`, `storedPlan()` in the store).
+  - **Keeping swaps.** The what-if becomes the Plan; the Plan it replaces becomes a what-if called
+    "My plan before …". The limit stays four, and keeping never meets it.
+  - **An assistant's what-if is applied once**, to a copy, by `save_candidate`. The consent
+    bypass ADR 0004 added for replaying a kept what-if (`byTheStudent`) is deleted.
+  - **What-ifs saved before this are converted when the Plan loads.** One whose changes no longer
+    apply is kept as a copy of the Plan under its own name, and the student is told.
+  - **Each tab says how it differs from the Plan**: Programs, credits, Terms skipped, Terms of
+    classes, where it ends. A Term the student skipped is said as skipped ("skips Spring 2028"):
+    counted only as "1 term fewer" it read as finishing sooner. Credits are left out where the
+    catalog on hand does not have every Course the plan names.
+  - **Changing a Program is one step** (`changeProgram` in the engine): declare the new one, then
+    withdraw the old, so a Course both require never leaves its Term and the Plan is never
+    without a Program. The dialog shows what leaves, what comes and what stays before the student
+    agrees. Completed Courses and Courses the student added stay.
+  - **The visible way to change it is beside the Program's name in the requirements panel**
+    ("Change program"), not on the chart as the spec's first draft said: the chart does not show
+    the Program's name anywhere, and the requirements panel is where a student is looking at what
+    the degree asks of them. The Menu's "Your programs" still opens the same dialog.
+  - **A Program link arriving at a saved Plan opens as a what-if** named for the Program (cut to
+    fit a tab at a word, never mid-word). A major takes the place of the student's major; a
+    minor or certificate is added. Followed twice, it opens the what-if it made the first time.
+    At the limit it says so and changes nothing. The link is then taken out of the address.
+  - **The requirements panel describes the tab in view.** It used to follow the Revision only,
+    which does not change when a tab is opened.
+  - **Not changed:** the in-app advisor still refuses to write while a what-if is open.
+  - **Measured:** a generated Plan is 9.7 KB of JSON, so a stored document with four what-ifs is
+    about 50 KB against the 1 MB row limit. Planner precache 14 entries, 1144.64 KiB (1140.46
+    before #69: the replay code left the bundle, and the change-Program dialog and the link
+    handling came in). Planner boot payload under its 790 KB ceiling.
 - **The pages outside the planner are cream, and say so (2026-11-16, #61).** Connect your AI, Privacy
   and Terms used to wear the old landing page's dark canvas. They now sit on the app's light tokens
   with petrol as the only accent (`site.css`), and each carries `data-theme="light"`: merely dropping
