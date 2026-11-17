@@ -23,8 +23,13 @@ Object.defineProperty(globalThis, "localStorage", {
   configurable: true,
 });
 
-// The real sender is never reached here: every test hands its own.
-vi.mock("../src/data/sync", () => ({ supabase: () => null }));
+// The project the default sender would write to. Every test but the one
+// about that sender hands its own.
+vi.mock("../src/data/sync-config", () => ({
+  syncConfigured: true,
+  supabaseUrl: "https://project.supabase.co/",
+  supabaseAnonKey: "anon-key",
+}));
 
 async function fresh(): Promise<typeof import("../src/data/planCount")> {
   vi.resetModules();
@@ -81,6 +86,80 @@ describe("what is sent", () => {
       { kind: "created", edition: "2026-2027" },
       { kind: "existing", edition: "2025-2026" },
     ]);
+  });
+});
+
+describe("how it is sent", () => {
+  it("is a plain request with the project's public key and nothing of the student's", async () => {
+    // THE REVIEW'S FIRST FINDING. Sent through the planner's database
+    // client, the request carried a signed-in student's session: the row
+    // held no identity and the request did.
+    const calls: { url: string; init: RequestInit }[] = [];
+    const realFetch = globalThis.fetch;
+    const realLocation = Object.getOwnPropertyDescriptor(globalThis, "location");
+    globalThis.fetch = (async (url: string, init: RequestInit) => {
+      calls.push({ url, init });
+      return { ok: true } as Response;
+    }) as typeof fetch;
+    Object.defineProperty(globalThis, "location", { value: { hostname: SITE }, configurable: true });
+    try {
+      const { countPlan } = await fresh();
+      expect(await countPlan(PLAN)).toBe("counted");
+    } finally {
+      globalThis.fetch = realFetch;
+      if (realLocation) Object.defineProperty(globalThis, "location", realLocation);
+      else delete (globalThis as { location?: unknown }).location;
+    }
+    expect(calls).toHaveLength(1);
+    const { url, init } = calls[0]!;
+    expect(url).toBe("https://project.supabase.co/rest/v1/plan_events");
+    expect(init.method).toBe("POST");
+    // No cookies, and no sign-in: the headers are these three and no others.
+    expect(init.credentials).toBe("omit");
+    expect(Object.keys(init.headers as Record<string, string>).sort()).toEqual(["Content-Type", "Prefer", "apikey"]);
+    expect(JSON.stringify(init.headers)).not.toMatch(/authorization|bearer/i);
+    expect(JSON.parse(init.body as string)).toEqual({ kind: "existing", edition: "2026-2027" });
+  });
+
+  it("does not go through the planner's database client, which signs requests as the student", () => {
+    const src = fs.readFileSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "src", "data", "planCount.ts"), "utf-8");
+    const code = src.replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, "");
+    expect(code).not.toMatch(/from "\.\/sync"/);
+    expect(code).not.toMatch(/supabase\(\)/);
+  });
+});
+
+describe("a new Plan stays new until it is counted", () => {
+  it("is still `created` when the count lands after a reload, days later", async () => {
+    // Built offline, behind a blocker, or before the table existed: the
+    // first try fails. It used to come back as one that "already existed".
+    const first = await fresh();
+    first.noteNewPlan(PLAN.id);
+    expect(await first.countPlan(PLAN, sender(false).deps())).toBe("failed");
+    const later = await fresh();
+    const { sent, deps } = sender();
+    expect(await later.countPlan(PLAN, deps())).toBe("counted");
+    expect(sent).toEqual([{ kind: "created", edition: "2026-2027" }]);
+    // Counted, so no longer waiting.
+    expect(JSON.parse(local.get("lionsdegree-plans-new") ?? "[]")).toEqual([]);
+  });
+
+  it("is not counted again within a page where the browser cannot remember it was", async () => {
+    const { countPlan } = await fresh();
+    const real = Object.getOwnPropertyDescriptor(globalThis, "localStorage")!;
+    Object.defineProperty(globalThis, "localStorage", {
+      value: { getItem: () => null, setItem() { throw new Error("full"); } },
+      configurable: true,
+    });
+    try {
+      const { sent, deps } = sender();
+      await countPlan(PLAN, deps());
+      await countPlan(PLAN, deps());
+      await countPlan(PLAN, deps());
+      expect(sent).toHaveLength(1);
+    } finally {
+      Object.defineProperty(globalThis, "localStorage", real);
+    }
   });
 });
 
@@ -175,6 +254,8 @@ describe("never in the way", () => {
     // Plan back for a count.
     const app = fs.readFileSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "src", "App.tsx"), "utf-8");
     expect(app).toMatch(/void countPlan\(/);
+    // And not where the plan failed to load: the student is looking at an error.
+    expect(app).toMatch(/if \(!planId \|\| loading \|\| loadError\) return;/);
     expect(app, "the count is awaited somewhere in the shell").not.toMatch(/await countPlan\(/);
   });
 });
@@ -198,5 +279,7 @@ describe("the table it goes to", () => {
     expect(statements).toMatch(/for insert to anon, authenticated/);
     expect(statements).not.toMatch(/for (select|update|delete|all)\b/i);
     expect(statements).toMatch(/grant insert \(kind, edition\)/);
+    // Said on the table itself, where whoever reads it will see it.
+    expect(statements).toMatch(/comment on table public\.plan_events is/);
   });
 });

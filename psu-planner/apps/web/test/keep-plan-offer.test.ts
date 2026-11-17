@@ -188,8 +188,13 @@ describe("the offer comes back once, after real work", () => {
       path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "src", "components", "KeepPlanBar.tsx"),
       "utf-8",
     );
-    expect(bar).toMatch(/const \{ view: _view, rev: _rev, updatedAt: _updatedAt, \.\.\.contents \} = plan;/);
+    expect(bar).toMatch(/contentsOf\(plan\)/);
+    expect(bar, "where the student has panned to is compared as if it were an edit").toMatch(/view: _view/);
     expect(bar).toMatch(/noteEditSinceNotNow\(\)/);
+    // Nor opening another tab: a different plan in view is not an edit.
+    expect(bar).toMatch(/before\.tab !== now\.tab/);
+    // And nothing is read at all unless the reminder is what is showing.
+    expect(bar).toMatch(/shows !== "reminder"/);
   });
 });
 

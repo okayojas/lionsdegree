@@ -18,6 +18,14 @@
  * sign-in, which is the one other host the Content Security Policy allows.
  * Nobody can read it through the public key; the owner reads it with SQL.
  *
+ * WITH NO SIGN-IN ON THE REQUEST (#70 review). The first version sent it
+ * through the planner's database client, which attaches the signed-in
+ * student's session to everything it sends: the row held no identity and
+ * the request did. It is a plain request now, carrying the project's public
+ * key and nothing of the student's, and no cookies. Like any request it
+ * reaches a host that sees an IP address and the time; the table holds
+ * neither, and the privacy policy says both things.
+ *
  * ONLY FROM THE SITE ITSELF. A test run, a local build, a preview deploy
  * and a self-hosted copy all carry the same code, and none of them is a
  * student. So nothing is sent unless the page is on the site's own host.
@@ -26,7 +34,7 @@
  * failure is silent: the Plan is marked counted only when the insert lands,
  * so the next open tries again.
  */
-import { supabase } from "./sync";
+import { supabaseAnonKey, supabaseUrl, syncConfigured } from "./sync-config";
 
 export type PlanEventKind = "created" | "existing";
 
@@ -52,38 +60,57 @@ export function planEvent(kind: PlanEventKind, edition: string | undefined): Pla
 /** Which Plans this browser has already counted. Here only. */
 const COUNTED_KEY = "lionsdegree-plans-counted";
 /** A browser holds one Plan at a time, and a student who starts over a
- * few times. The list is capped so it cannot grow without end. */
-const REMEMBERED = 20;
+ * few times. The lists are capped so they cannot grow without end. */
+const MOST_IDS_KEPT = 20;
 
-function countedIds(): string[] {
+/** Plans setup built that have not been counted yet. Here only, and kept
+ * until the count lands: a Plan built offline, behind a blocker, or before
+ * the table exists is still a NEW Plan when the count finally goes, days
+ * later, and not one that "already existed". */
+const NEW_KEY = "lionsdegree-plans-new";
+
+function idsIn(key: string): string[] {
   try {
-    const ids = JSON.parse(localStorage.getItem(COUNTED_KEY) ?? "[]") as unknown;
+    const ids = JSON.parse(localStorage.getItem(key) ?? "[]") as unknown;
     return Array.isArray(ids) ? ids.filter((x): x is string => typeof x === "string") : [];
   } catch {
     return [];
   }
 }
 
-export function isCounted(planId: string): boolean {
-  return countedIds().includes(planId);
-}
-
-function markCounted(planId: string): void {
+function keepIds(key: string, ids: string[]): void {
   try {
-    const ids = countedIds().filter((id) => id !== planId);
-    localStorage.setItem(COUNTED_KEY, JSON.stringify([...ids, planId].slice(-REMEMBERED)));
+    localStorage.setItem(key, JSON.stringify(ids.slice(-MOST_IDS_KEPT)));
   } catch {
-    /* storage disabled: it will be counted again next time, which is the
-       cost of not being able to remember anything */
+    /* storage disabled or full: see `countedThisPage` */
   }
 }
 
-/** Plans built by setup in this sitting, so that the first sight of one is
- * counted as `created` and not as `existing`. In memory only. */
-const justBuilt = new Set<string>();
-export function noteNewPlan(planId: string): void {
-  justBuilt.add(planId);
+/** Counted since this page loaded. Beside the stored list, because that
+ * list cannot always be written (storage disabled, or full): without this
+ * a Plan would be counted again every time the planner reloaded it within
+ * one page. */
+const countedThisPage = new Set<string>();
+
+export function isCounted(planId: string): boolean {
+  return countedThisPage.has(planId) || idsIn(COUNTED_KEY).includes(planId);
 }
+
+function markCounted(planId: string): void {
+  countedThisPage.add(planId);
+  keepIds(COUNTED_KEY, [...idsIn(COUNTED_KEY).filter((id) => id !== planId), planId]);
+  keepIds(NEW_KEY, idsIn(NEW_KEY).filter((id) => id !== planId));
+}
+
+/** Setup has just built this Plan: its count, whenever it lands, is of a
+ * Plan `created`. */
+const builtThisPage = new Set<string>();
+export function noteNewPlan(planId: string): void {
+  builtThisPage.add(planId);
+  keepIds(NEW_KEY, [...idsIn(NEW_KEY).filter((id) => id !== planId), planId]);
+}
+
+const isNew = (planId: string): boolean => builtThisPage.has(planId) || idsIn(NEW_KEY).includes(planId);
 
 /** Plans whose event is on its way, so that two callers in one moment send
  * one event. */
@@ -98,10 +125,17 @@ export interface CountDeps {
 const defaults = (): CountDeps => ({
   host: typeof location === "undefined" ? "" : location.hostname,
   insert: async (event) => {
-    const sb = supabase();
-    if (!sb) return false;
-    const { error } = await sb.from("plan_events").insert(event);
-    return !error;
+    if (!syncConfigured || !supabaseUrl || !supabaseAnonKey) return false;
+    // A PLAIN REQUEST, not the database client's: that one attaches the
+    // signed-in student's session. The public key says which project;
+    // nothing here says which student. No cookies either way.
+    const response = await fetch(`${supabaseUrl.replace(/\/$/, "")}/rest/v1/plan_events`, {
+      method: "POST",
+      credentials: "omit",
+      headers: { apikey: supabaseAnonKey, "Content-Type": "application/json", Prefer: "return=minimal" },
+      body: JSON.stringify(event),
+    });
+    return response.ok;
   },
 });
 
@@ -116,7 +150,7 @@ export async function countPlan(
   if (isCounted(plan.id) || inFlight.has(plan.id)) return "already";
   inFlight.add(plan.id);
   try {
-    const landed = await deps.insert(planEvent(justBuilt.has(plan.id) ? "created" : "existing", plan.edition));
+    const landed = await deps.insert(planEvent(isNew(plan.id) ? "created" : "existing", plan.edition));
     if (!landed) return "failed";
     markCounted(plan.id);
     return "counted";

@@ -25,15 +25,16 @@
  * After ten real edits the full offer returns, once.
  */
 import { useEffect, useRef, useState } from "react";
-import type { PlanDoc } from "@psu-planner/engine";
+import { contentsOf, type PlanDoc } from "@psu-planner/engine";
 import { currentUser, onAuthChange, signIn, syncConfigured } from "../data/sync";
 import { dismissKeepPlanOffer, keepPlanOfferDismissed, noteEditSinceNotNow, whatToShow } from "../data/keepPlanOffer";
+import { usePlanner } from "../store";
 
-/** What makes two versions of a plan different for THIS purpose: its
- * contents. Not where the student has panned to, and not the Revision,
- * which panning advances. */
-function contentsOnly(plan: PlanDoc): string {
-  const { view: _view, rev: _rev, updatedAt: _updatedAt, ...contents } = plan;
+/** What an edit changes, for THIS purpose: the plan's contents. Not where
+ * the student has panned to (panning advances the Revision, and ten pans
+ * are not ten things worth keeping), and not the what-ifs beside it. */
+function whatAnEditChanges(plan: PlanDoc): string {
+  const { view: _view, ...contents } = contentsOf(plan);
   return JSON.stringify(contents);
 }
 
@@ -53,21 +54,34 @@ export function KeepPlanBar({ plan }: { plan: PlanDoc | null }) {
     return onAuthChange((u) => setSignedIn(!!u));
   }, []);
 
+  const shows = signedIn === null
+    ? "nothing"
+    : whatToShow({ configured: syncConfigured, hasPlan: !!plan, signedIn, dismissed });
+
   // Edits made after "Not now" bring the offer back, once (keepPlanOffer.ts).
-  const last = useRef<string | null>(null);
+  // ONLY WHILE THE REMINDER IS SHOWING: for a student who is signed in, or
+  // has not said "Not now", there is nothing to count and no reason to
+  // read the plan on every Revision.
+  const tab = usePlanner((s) => s.candidateId);
+  const watched = useRef<{ tab: string | null; contents: string } | null>(null);
+  const [cameBack, setCameBack] = useState(false);
   const rev = plan?.rev;
   useEffect(() => {
-    if (!plan) { last.current = null; return; }
-    const now = contentsOnly(plan);
-    const before = last.current;
-    last.current = now;
-    if (before === null || before === now) return;
-    if (noteEditSinceNotNow()) setDismissed(false);
+    if (!plan || shows !== "reminder") { watched.current = null; return; }
+    const now = { tab, contents: whatAnEditChanges(plan) };
+    const before = watched.current;
+    watched.current = now;
+    // Nothing to compare with yet, or ANOTHER TAB: opening a what-if puts
+    // a different plan in view without anything having been edited, and
+    // comparing across it counted looking around as work.
+    if (!before || before.tab !== now.tab || before.contents === now.contents) return;
+    if (noteEditSinceNotNow()) {
+      setCameBack(true);
+      setDismissed(false);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rev]);
+  }, [rev, tab, shows]);
 
-  if (signedIn === null) return null;
-  const shows = whatToShow({ configured: syncConfigured, hasPlan: !!plan, signedIn, dismissed });
   if (shows === "nothing") return null;
 
   if (shows === "reminder") {
@@ -85,7 +99,10 @@ export function KeepPlanBar({ plan }: { plan: PlanDoc | null }) {
     // Not `role="alert"`. Nothing has gone wrong and nothing is waiting on
     // the student; an assertive announcement would interrupt a screen
     // reader mid-plan to deliver an offer.
-    <aside className="keep-plan-bar" aria-label="Keep this plan">
+    // When it has COME BACK after "Not now" it is a polite status, so a
+    // screen reader hears that the offer is there again; the first time
+    // it is simply part of the page the student has just been given.
+    <aside className="keep-plan-bar" aria-label="Keep this plan" role={cameBack ? "status" : undefined}>
       <p>
         <strong>This plan is only in this browser.</strong> Sign in with Google and it follows you to your
         phone — the same plan, nothing to build again.

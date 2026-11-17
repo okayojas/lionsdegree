@@ -106,6 +106,12 @@ describe("what the policy promises", () => {
     expect(privacy).toMatch(/One anonymous count/);
     expect(privacy).toMatch(/no plan, no courses, no account, no device or browser identifier, and no time of day/);
     expect(privacy).toMatch(/remembered in your browser and is not sent/);
+    // Sent without the student's sign-in, and the host's own logs are named.
+    expect(privacy).toMatch(/sent without your sign-in, whether or not you are signed in/);
+    expect(privacy).toMatch(/whose own logs record the IP address and time of requests/);
+    // No sentence left saying nothing at all is sent.
+    expect(privacy).not.toMatch(/the app is entirely local/i);
+    expect(privacy).not.toMatch(/Nothing here is sent anywhere unless you turn on sync\./);
     // Start over has never removed the account's copy, and the policy said it did.
     expect(privacy).toMatch(/removes the plan from your device, not from your account/);
     expect(privacy).toMatch(/local storage rather than cookies/i);

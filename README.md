@@ -11,8 +11,10 @@ Pennsylvania State University. Course data may be out of date or wrong. Verify
 everything with your academic adviser and LionPATH before you register.
 
 Apache-2.0 licensed. Local-first: your plan lives in your browser, there is no
-tracking, and nothing is sent anywhere unless you turn on the AI advisor or
-account sync yourself.
+tracking, and it is sent nowhere unless you turn on the AI advisor or account
+sync yourself. The site counts how many plans are made, anonymously: one event
+with the bulletin year and nothing about you or the plan (see the privacy
+policy).
 
 ![The planner: a generated Computer Science B.S. plan, with prerequisite route
 lines connecting courses across eight semesters](docs/planner.png)

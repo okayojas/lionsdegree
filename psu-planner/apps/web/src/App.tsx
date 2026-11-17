@@ -131,6 +131,20 @@ export default function App() {
   // storage. Carrying the document implied a use that did not exist.
   const [conflict, setConflict] = useState(false);
 
+  /* ── Counted, once, anonymously (#70) ──────────────────────────────
+     AFTER the Plan is on screen and NOT WAITED FOR: nothing about a
+     Plan may depend on a count. What is sent, and why only from the
+     site itself, is in data/planCount.ts. By the Plan's id and not the
+     plan in view: a what-if is the same Plan. */
+  const planId = plan?.id;
+  const planEdition = plan?.edition;
+  useEffect(() => {
+    // Not while it is loading, and not where it failed to load: a Plan the
+    // student is looking at an error instead of has not been opened.
+    if (!planId || loading || loadError) return;
+    void countPlan({ id: planId, edition: planEdition });
+  }, [planId, planEdition, loading, loadError]);
+
   /* ── A link to a Program, with a Plan already saved (#69) ──────────
      Onboarding reads `?programs=` for a student with no Plan. One who
      has a Plan used to get it back with no word about the link. Now the
@@ -141,18 +155,6 @@ export default function App() {
      onboarding has just generated FROM this link has the Program in it,
      and following the link again would be noise. Once, and the link is
      taken out of the address so a reload does not follow it again. */
-  /* ── Counted, once, anonymously (#70) ──────────────────────────────
-     AFTER the Plan is on screen and NOT WAITED FOR: nothing about a
-     Plan may depend on a count. What is sent, and why only from the
-     site itself, is in data/planCount.ts. By the Plan's id and not the
-     plan in view: a what-if is the same Plan. */
-  const planId = plan?.id;
-  const planEdition = plan?.edition;
-  useEffect(() => {
-    if (!planId || loading) return;
-    void countPlan({ id: planId, edition: planEdition });
-  }, [planId, planEdition, loading]);
-
   const hadPlanOnArrival = useRef(loadSavedPlan() !== null);
   const linkFollowed = useRef(false);
   useEffect(() => {

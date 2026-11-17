@@ -14,7 +14,7 @@
  * subject — and the bar is asserted there to read the same rule rather
  * than a copy of it.
  */
-import { test, expect, SEEDED_PLAN } from "./fixtures.js";
+import { test, expect, expectNoA11yViolations, SEEDED_PLAN } from "./fixtures.js";
 import type { Page, Route } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
@@ -204,6 +204,8 @@ test("says nothing at all to a student who is already signed in", async ({ page,
   });
   await page.waitForTimeout(2000);
   await expect(page.locator(BAR), "a signed-in student was offered an account").toHaveCount(0);
+  // Nor told their plan is only on this device, which for them is false.
+  await expect(page.locator(".keep-plan-note"), "a signed-in student was told their plan is only here").toHaveCount(0);
 });
 
 test("does not take the screen away from the plan", async ({ planner }) => {
@@ -282,6 +284,7 @@ test("after not now, one line stays: the plan is still only on this device", asy
   await expect(planner.locator(BAR)).toHaveCount(0);
   const overflow = await planner.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   expect(overflow, "the reminder pushed the page wider than the screen").toBeLessThanOrEqual(1);
+  await expectNoA11yViolations(planner, "the planner with the only-on-this-device line");
 });
 
 test("the offer comes back once after real edits, and not for looking around", async ({ planner }) => {
@@ -299,6 +302,8 @@ test("the offer comes back once after real edits, and not for looking around", a
   // The tenth brings it back.
   await editTwice(planner);
   await expect(planner.locator(BAR), "the offer did not come back after ten edits").toBeVisible({ timeout: 15_000 });
+  // SAID, not only shown: back, it is a polite status, so a screen reader hears it.
+  await expect(planner.locator(BAR)).toHaveAttribute("role", "status");
 
   // ONCE. The second "not now" stands for the sitting, however much is edited.
   await planner.locator(BAR).getByRole("button", { name: /not now/i }).click();

@@ -1,7 +1,7 @@
 # Cloudflare Pages security headers (OWASP Secure Headers baseline).
 # CSP notes: no third-party scripts at all; styles allow inline because React
 # style props are used throughout; connect-src covers same-origin /v1 and
-# Supabase (auth/sync) only.
+# Supabase only (sign-in, sync, and the anonymous count of plans, #70).
 /*
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://*.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests

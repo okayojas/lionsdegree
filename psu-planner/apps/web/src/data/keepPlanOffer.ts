@@ -91,10 +91,10 @@ export const REOFFER_AFTER_EDITS = 10;
 const EDITS_KEY = "lionsdegree-keep-plan-edits";
 const TIMES_KEY = "lionsdegree-keep-plan-times";
 
-const read = (key: string): number => {
+const sessionNumber = (key: string): number => {
   try { return Number(sessionStorage.getItem(key) ?? "0") || 0; } catch { return 0; }
 };
-const timesDismissed = (): number => read(TIMES_KEY);
+const timesDismissed = (): number => sessionNumber(TIMES_KEY);
 
 /** The student edited their plan after saying "Not now". Returns true
  * when that is the edit that brings the offer back: the dismissal is
@@ -103,7 +103,7 @@ const timesDismissed = (): number => read(TIMES_KEY);
 export function noteEditSinceNotNow(): boolean {
   if (!keepPlanOfferDismissed() || timesDismissed() !== 1) return false;
   try {
-    const edits = read(EDITS_KEY) + 1;
+    const edits = sessionNumber(EDITS_KEY) + 1;
     sessionStorage.setItem(EDITS_KEY, String(edits));
     if (edits < REOFFER_AFTER_EDITS) return false;
     sessionStorage.removeItem(DISMISSED_KEY);

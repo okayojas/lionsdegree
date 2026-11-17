@@ -68,7 +68,7 @@ export const SECTIONS: Section[] = [
           ],
           [
             { b: "Stored on your device" },
-            ", all of it in local storage rather than cookies: your plan and its recent history, a backup taken when two devices disagree, your light/dark choice, whether you last used the canvas or the list, how you left the side panel (its width, and whether it is put away), and — if you sign in — your session token. Nothing here is sent anywhere unless you turn on sync.",
+            ", all of it in local storage rather than cookies: your plan and its recent history, a backup taken when two devices disagree, your light/dark choice, whether you last used the canvas or the list, how you left the side panel (its width, and whether it is put away), which plans have been counted (see below), and — if you sign in — your session token. None of it is sent anywhere unless you turn on sync, apart from the one anonymous count described below.",
           ],
           [
             { b: "Sign-in is optional" },
@@ -76,7 +76,7 @@ export const SECTIONS: Section[] = [
             "We use only the email address: to tell your account apart from anyone else's, and to show you which account you are signed in to. ",
             "What Google returns is stored with your account in our authentication database (Supabase, US region) and nowhere else. ",
             "It is never sold, never shared with anyone, and never sent to any AI model. Deleting your account deletes it. ",
-            "Without signing in the app is entirely local.",
+            "Without signing in, your plan never leaves your device; the one anonymous count described below is all the app sends.",
           ],
           [
             { b: "Your own AI assistant." },
@@ -88,7 +88,7 @@ export const SECTIONS: Section[] = [
           ],
           [
             { b: "One anonymous count." },
-            " So that we can tell whether the planner is used, it records one event when a plan is made, and one the first time it opens a plan that already existed. The event says which of those two it was and which bulletin year the plan is for; our database adds the day. That is all of it: no plan, no courses, no account, no device or browser identifier, and no time of day. Whether a plan has been counted is remembered in your browser and is not sent. Like any request, it reaches our database host (Supabase), which sees your IP address in the ordinary course of serving it; we do not store it.",
+            " So that we can tell whether the planner is used, it records one event when a plan is made, and one the first time it opens a plan that already existed. The event says which of those two it was and which bulletin year the plan is for; our database adds the day. That is all of it: no plan, no courses, no account, no device or browser identifier, and no time of day. It is sent without your sign-in, whether or not you are signed in. Whether a plan has been counted is remembered in your browser and is not sent. Like any request, it reaches our database host (Supabase), whose own logs record the IP address and time of requests in the ordinary course of serving them; the count itself holds neither.",
           ],
           [
             { b: "Access or deletion:" },

@@ -884,6 +884,27 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
   - **The offer returns once in a sitting, after ten edits** since "Not now". Edits to the Plan's
     contents, not Revisions: panning the chart advances the Revision. ("Not now" already lasted
     only for the sitting.)
+  - **Found by the review of #70, and fixed:**
+    - *A signed-in student's count carried their sign-in.* It was sent through the planner's
+      database client, which attaches the session to every request: the row held no identity and
+      the request did. It is a plain request now, with the project's public key, no cookies and
+      nothing of the student's. The policy says it is sent without the sign-in, and that the
+      host's own logs record an IP address and a time, which the table does not hold.
+    - *A new Plan was counted as one that "already existed"* if its first count did not land
+      (built offline, behind a blocker, or before the table was created). Which Plans are new and
+      uncounted is kept in the browser until the count lands.
+    - *Three sentences still said nothing is sent* (the policy's "entirely local" and "nothing here
+      is sent anywhere", and the README). Each now names the count.
+    - *A Plan that failed to load was counted*, and one whose "counted" mark could not be written
+      was counted on every reload within a page. Neither now.
+    - *Opening a what-if and panning counted as edits* towards the offer returning, and the
+      Plan was read on every Revision for every student. It is read only while the reminder is
+      showing, and a change of tab is not an edit.
+    - The offer is a polite status when it returns, so a screen reader hears it. The table's
+      caveat is a `comment on table`.
+  - **Known and left:** two tabs opening the same uncounted Plan at once can send two events. The
+    CSP allows any `*.supabase.co` host, as it did before; the count goes to the configured
+    project.
 - **Start over stays started over when signed in (2026-11-16, reported by the owner).** Start over
   removed the Plan from the device and told the account nothing, so the setup screen's account
   menu found a Plan in the account and none here and loaded it straight back. The owner chose,

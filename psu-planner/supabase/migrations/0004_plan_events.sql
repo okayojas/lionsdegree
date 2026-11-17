@@ -35,6 +35,9 @@ create policy "anyone may add a count" on public.plan_events
 revoke all on public.plan_events from anon, authenticated;
 grant insert (kind, edition) on public.plan_events to anon, authenticated;
 
+comment on table public.plan_events is
+  'An anonymous count of Plans (#70): one row per Plan created or first seen. Insert-only through the API; anyone holding the public key may insert, so the total can be inflated and is a rough figure for the owner. No identity, no plan, no time of day, by design.';
+
 -- What the owner runs:
 --   select day, kind, count(*) from plan_events group by 1, 2 order by 1;
 --   select kind, count(*) from plan_events group by 1;
