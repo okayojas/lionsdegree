@@ -90,7 +90,7 @@ describe("a what-if is a copy", () => {
 describe("the document in view", () => {
   it("is the what-if's contents under the Plan's identity and Revision", () => {
     const doc = withWhatIf();
-    doc.candidates![0]!.plan.programs = ["data-sciences-bs"];
+    candidatesOf(doc)[0]!.plan.programs = ["data-sciences-bs"];
     const view = viewOf(doc, "c1")!;
     expect(view.id).toBe("p1");
     expect(view.rev).toBe(7);
@@ -116,9 +116,9 @@ describe("the document in view", () => {
     const stored = foldView(view, "c1", home);
     expect(contentsOf(stored)).toEqual(home);
     expect(stored.rev).toBe(8);
-    expect(stored.candidates![0]!.plan.programs).toEqual(["data-sciences-bs"]);
-    expect(stored.candidates![0]!.plan.summerYears).toEqual([2027, 2028]);
-    expect(stored.candidates![0]!.plan.terms).toHaveLength(3);
+    expect(candidatesOf(stored)[0]!.plan.programs).toEqual(["data-sciences-bs"]);
+    expect(candidatesOf(stored)[0]!.plan.summerYears).toEqual([2027, 2028]);
+    expect(candidatesOf(stored)[0]!.plan.terms).toHaveLength(3);
   });
 
   it("when edited, leaves every other what-if alone", () => {
@@ -150,8 +150,8 @@ describe("the document in view", () => {
 describe("keeping a what-if", () => {
   const edited = (): PlanDoc => {
     const doc = withWhatIf();
-    doc.candidates![0]!.plan.programs = ["data-sciences-bs"];
-    doc.candidates![0]!.plan.terms.length = 1;
+    candidatesOf(doc)[0]!.plan.programs = ["data-sciences-bs"];
+    candidatesOf(doc)[0]!.plan.terms.length = 1;
     return doc;
   };
 
@@ -165,7 +165,7 @@ describe("keeping a what-if", () => {
     expect(kept.candidates).toHaveLength(1);
     expect(kept.candidates![0]!.id).toBe("c9");
     expect(kept.candidates![0]!.name).toBe("My plan before Abroad");
-    expect(kept.candidates![0]!.plan).toEqual(was);
+    expect(candidatesOf(kept)[0]!.plan).toEqual(was);
   });
 
   it("can be undone by keeping what it replaced", () => {
@@ -197,6 +197,8 @@ describe("what the replaced Plan is called", () => {
   it("fits in a name, and is not a name already taken", () => {
     expect(nameForReplacedPlan("Abroad", [])).toBe("My plan before Abroad");
     expect(nameForReplacedPlan("Abroad", ["my plan before abroad"])).toBe("My plan before Abroad (2)");
+    // Cut at a word, like every name here: never "My plan before Mechanical Engin".
+    expect(nameForReplacedPlan("Mechanical Engineering, B.S.", [])).toBe("My plan before Mechanical Engineering,".replace(/,$/, ""));
     const long = nameForReplacedPlan("x".repeat(CANDIDATE_NAME_MAX), []);
     expect(long.length).toBeLessThanOrEqual(CANDIDATE_NAME_MAX);
     const again = nameForReplacedPlan("x".repeat(CANDIDATE_NAME_MAX), [long]);
@@ -232,6 +234,28 @@ describe("a what-if stored the old way", () => {
   it("is told apart from a copy", () => {
     expect(isLegacyCandidate(legacy)).toBe(true);
     expect(isLegacyCandidate(makeCandidate("c1", "Abroad", plan(), NOW))).toBe(false);
+  });
+
+  it("survives the keeping of another what-if: it is not shown yet, and it is still the student's", () => {
+    // It is waiting to be converted (the catalog did not load). Keeping a
+    // different what-if must not be what deletes it.
+    const doc = plan();
+    doc.candidates = [legacy, makeCandidate("c1", "Abroad", doc, NOW)];
+    const kept = keepCandidate(doc, "c1", "c9", NOW)!;
+    expect(kept.candidates!.map((c) => c.id)).toEqual(["old", "c9"]);
+    expect(kept.candidates![0]).toEqual(legacy);
+    // And an edit made with a what-if open leaves it alone too.
+    const view = viewOf(doc, "c1")!;
+    view.terms.length = 1;
+    expect(foldView(view, "c1", contentsOf(doc)).candidates![0]).toEqual(legacy);
+  });
+
+  it("is told apart by the version a copy carries, not by which fields happen to be there", () => {
+    const copy = makeCandidate("c1", "Abroad", plan(), NOW);
+    expect(copy.v).toBe(2);
+    // Something with a `plan` and no version is not a copy this code wrote.
+    const { v: _v, ...unversioned } = copy;
+    expect(isLegacyCandidate(unversioned as never)).toBe(true);
   });
 
   it("is not drawn or listed as a copy until it has been converted", () => {

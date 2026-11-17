@@ -55,7 +55,16 @@ and never re-run against anything.
   cannot be made refuses the whole save.
 - **What-ifs already saved as change lists are converted when the Plan loads**, by replaying each
   once against the Plan as it stands. One whose changes no longer apply is kept as a copy of the
-  Plan under its own name, and the student is told.
+  Plan under its own name, and the student is told. The conversion is saved on the device at
+  the SAME Revision and is not pushed: it is not an edit, and two devices converting the same
+  document would otherwise each claim to have edited it. It reaches the account with the
+  student's next edit. Where the catalog will not load, nothing is converted and nothing is
+  dropped; the rail says how many are waiting.
+- **A stored what-if carries its version** (`v: 2`). One without it is from before this change.
+- **An action that waits commits only to the plan it started from.** Anything that reads the
+  plan in view, waits on the network and then saves works on a copy, and saves only if that
+  plan is still the one in view. Without this the fold puts its result into whichever tab was
+  open when it finished.
 
 ## Consequences
 
@@ -71,13 +80,14 @@ and never re-run against anything.
 - **Keeping no longer warns about what it removes.** The warning existed because keeping
   destroyed the Plan it replaced. It does not any more. If the swap is ever dropped, keeping
   needs a confirmation.
-- **The stored document is bigger.** A generated Plan is about 10 KB of JSON; with four what-ifs
-  the document is about five times that. The row limit is 1 MB. Plan history keeps 15 versions of
-  the whole document on the device, which is the larger cost (about 750 KB at the limit) and is
-  best-effort by design.
+- **The stored document is bigger.** Measured: the seeded test Plan is 6.6 KB of JSON, and the
+  same document with four what-ifs is 33.3 KB. The row limit is 1 MB. Plan history keeps 15
+  versions of the whole document on the device, which is the larger cost (about 500 KB at the
+  limit) and is best-effort by design.
 - **The in-app advisor still does not write while a what-if is open.** Its tools would write the
-  plan in view while the model believes it is changing the degree, and its undo restores the
-  plan it read before a turn. That refusal is kept.
+  plan in view while the model believes it is changing the degree. What it reads then is the
+  what-if's copy, and it is told so. Its undo snapshots and restores the STORED document, not
+  the plan in view: restoring a view would install a what-if as the Plan.
 - **Two tabs open on one Plan in two browsers** behave as any two edits do: the second write is
   refused by the Revision check and the student reloads. A what-if adds no new case.
 

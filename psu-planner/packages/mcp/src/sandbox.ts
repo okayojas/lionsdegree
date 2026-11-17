@@ -14,13 +14,12 @@
  * escaped into production fails loudly rather than quietly relaxing the
  * consent gate.
  *
- * WHY THE LIST RUNNER MOVED HERE (#56). A Candidate tab is the plan a
- * saved list of changes would leave behind, drawn by the planner itself,
- * and the planner is in the browser. If it applied those changes by a
- * second route, a tab and a `simulate_changes` preview of the same
- * changes could disagree — a picture of a degree the planner then refuses
- * to produce, which is the drift this codebase has paid for five times
- * over. So `runChanges` is what both of them call, and it does not know
+ * WHY THE LIST RUNNER IS HERE (#56, #69). A what-if an assistant saves
+ * is the plan a list of changes leaves behind, and a preview is the same
+ * thing described. If they were worked out by two routes, a tab and a
+ * `simulate_changes` preview of the same changes could disagree. So
+ * `runChanges` is what `save_candidate`, the previews and the planner's
+ * one-time conversion of old what-ifs all call, and it does not know
  * which it is serving: whether anything is written is decided entirely by
  * the store on the context it is handed, exactly as `commit` intends.
  */
@@ -350,10 +349,8 @@ export async function runChanges(
   // the sandbox's internal bookkeeping, and a student's preview must
   // not depend on a model guessing it right.
   //
-  // A SAVED CANDIDATE CARRIES NO SUCH NUMBER, on purpose: it is stripped
-  // when the Candidate is stored, because a Candidate is recomputed
-  // against the plan as it stands and a frozen revision would make every
-  // one of them refuse itself the moment the student edited anything.
+  // A WHAT-IF'S CHANGES CARRY NO SUCH NUMBER: they are all made in one
+  // copy, from one reading of the plan, when the what-if is saved.
   const held = heldRev(ctx);
   for (let i = 0; i < changes.length; i++) {
     const stated = changes[i].arguments.based_on_revision;

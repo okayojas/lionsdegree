@@ -67,6 +67,21 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
     return () => ro.disconnect();
   }, []);
 
+  // EACH TAB HAS ITS OWN PAN AND ZOOM, read when the tab is opened. The
+  // view used to be read once, when the chart mounted, so the first pan
+  // in a what-if saved the Plan's viewport into it.
+  const shownTab = useRef(candidateId);
+  useEffect(() => {
+    if (shownTab.current === candidateId) return;
+    shownTab.current = candidateId;
+    if (plan?.view) setView(plan.view);
+    else if (vpRef.current) {
+      const r = vpRef.current.getBoundingClientRect();
+      setView(fitView(worldW, worldH, r.width, r.height));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [candidateId]);
+
   useEffect(() => {
     // First mount with no saved view: fit to content.
     if (!plan?.view && vpRef.current && items.length) {
@@ -120,9 +135,8 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
 
   const onPointerDown = (e: React.PointerEvent) => {
     (e.target as Element).setPointerCapture?.(e.pointerId);
-    // Draggable under a what-if's tab too — the drag is routed to its
-    // change list. What a card does NOT do there is open: the detail card
-    // carries edits that act on the real plan.
+    // Under a what-if's tab this is the what-if's own card: dragging it
+    // and opening it both act on the plan in view.
     const cardEl = (e.target as Element).closest?.(".card") as HTMLElement | null;
     if (cardEl) {
       const id = cardEl.dataset.id!;
@@ -162,8 +176,7 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
     if (it && cardOffset) {
       const worldX = d.ox + cardOffset.dx;
       // Dropped in the space past the last term → make a new term and
-      // place the card there. Both halves are routed: inside a what-if
-      // this is `add_term` then `move_course` on its change list.
+      // place the card there. Both halves act on the plan in view.
       const rawCol = Math.round((worldX - LAYOUT.LEFT) / (LAYOUT.COLW + LAYOUT.GAP));
       if (rawCol >= numTerms) {
         void addTerm().then((newIdx) => { if (newIdx >= 0) void moveItem(it.id, newIdx); });

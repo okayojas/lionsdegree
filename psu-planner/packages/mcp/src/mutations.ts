@@ -46,7 +46,7 @@ import {
   type Candidate,
   CANDIDATE_NAME_MAX,
   MAX_CANDIDATES,
-  contentsOf,
+  makeCandidate,
   type PlanDoc,
   type PlanItem,
   type ScheduleConstraint,
@@ -54,7 +54,7 @@ import {
 import type { ToolContext } from "./tools.js";
 // A CYCLE, AND A DELIBERATE ONE. `sandbox.ts` imports this file for
 // `executeMutation`; this file imports it back for the change runner that
-// `save_candidate` uses to check a what-if is computable before storing
+// `save_candidate` uses to make a what-if's copy before storing
 // it. Nothing is read at module-evaluation time on either side, so the
 // cycle is inert — and the alternative is a second implementation of
 // running a list of changes, which is the one thing #56 exists to
@@ -304,13 +304,10 @@ export const MUTATIONS: ReadonlySet<string> = new Set([
 
 /** The changes a preview or a Candidate may be made of.
  *
- * EVERY MUTATION EXCEPT `save_candidate`. A Candidate whose changes
- * include saving a Candidate is a branch from a branch — explicitly out
- * of scope in #56, and it multiplies every rule here: which plan is the
- * inner one recomputed against, what does keeping the outer one do to
- * it, and how deep may it go. One guard, in the one place a list of
- * changes is read, answers all three questions by refusing the
- * question.
+ * EVERY MUTATION EXCEPT `save_candidate`. A what-if whose changes
+ * include saving a what-if is a what-if inside a what-if: a copy that
+ * holds copies, which `contentsOf` exists to rule out. One guard, in
+ * the one place a list of changes is read, refuses the question.
  *
  * Also what `can_simulate` names, so a model is never offered a change
  * it will then be refused for making. */
@@ -511,20 +508,18 @@ export async function executeMutation(
         };
       }
 
-      const candidate: Candidate = {
-        // Short and local: there are at most MAX_CANDIDATES of these on
-        // one plan and they are never referenced from anywhere else, so a
-        // UUID would be ceremony. Time-ordered so the rail's order is
-        // stable without a sort key.
-        id: `c${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`,
-        name: candidateName,
-        // THE COPY: the plan the sandbox was left with, without its
-        // identity, its revision or the what-ifs beside it. The student's
-        // plan is not in it by reference anywhere; from here the two do
-        // not affect each other.
-        plan: contentsOf(trial.after.plan!),
-        createdAt: new Date().toISOString(),
-      };
+      // THE COPY: the plan the sandbox was left with, without its
+      // identity, its revision or the what-ifs beside it. The student's
+      // plan is not in it by reference anywhere; from here the two do
+      // not affect each other. The id is short and local (there are at
+      // most MAX_CANDIDATES of these on one plan) and time-ordered, so
+      // the rail's order is stable without a sort key.
+      const candidate: Candidate = makeCandidate(
+        `c${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`,
+        candidateName,
+        trial.after.plan!,
+        new Date().toISOString(),
+      );
 
       const saved = await commit(ctx, name, (p) => {
         p.candidates = [...(p.candidates ?? []), candidate];

@@ -13,7 +13,7 @@
  */
 import { parseProgramLink } from "./deepLink";
 import { loadProgramsIndex } from "./catalogClient";
-import { usePlanner } from "../store";
+import { storedPlan, usePlanner } from "../store";
 
 /** Follow the Program link in `search`, if there is one. Returns what to
  * tell the student, or `null` where the address carries no such link. */
@@ -32,10 +32,18 @@ export async function followProgramLink(search: string): Promise<string | null> 
   }
 
   const store = usePlanner.getState;
+  // What the student's own Plan already has is not what the link is
+  // asking to try. Left in, a link naming their major and a minor
+  // stopped at "already on your plan" and never tried the minor.
+  const mine = storedPlan()?.programs ?? [];
+  const fresh = chosen.filter((p) => !mine.includes(p.slug));
+  if (!fresh.length) {
+    return `${chosen.map((p) => p.name).join(" and ")} ${chosen.length === 1 ? "is" : "are"} already on your plan, so there is nothing to try.${strangers}`;
+  }
   const before = store().plan?.candidates?.length ?? 0;
   // A major first: it takes the place of the student's major, and the
   // rest are added beside it.
-  const [first, ...rest] = [...chosen].sort((a, b) => Number(b.type === "major") - Number(a.type === "major"));
+  const [first, ...rest] = [...fresh].sort((a, b) => Number(b.type === "major") - Number(a.type === "major"));
   let said = await store().openProgramAsWhatIf(first!);
   const made = (store().plan?.candidates?.length ?? 0) > before && store().candidateId !== null;
   if (made) {

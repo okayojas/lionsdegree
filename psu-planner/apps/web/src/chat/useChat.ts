@@ -9,7 +9,7 @@
  * wire log persist to localStorage so a reload doesn't cause amnesia. */
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { PlanDoc } from "@psu-planner/engine";
-import { usePlanner } from "../store";
+import { usePlanner, storedPlan } from "../store";
 import { accessToken } from "../data/sync";
 import { executeTool, resetTurnGuards } from "./tools";
 import { chatConfigured, chatEndpoint } from "./config";
@@ -174,7 +174,13 @@ export function useChat() {
     if (busy || !text.trim()) return;
     setBusy(true);
     resetTurnGuards(); // per-turn tool guards (removal limits)
-    const planBefore = usePlanner.getState().plan;
+    // THE STORED DOCUMENT, not the plan in view (#69 review). Undo puts
+    // this back with `setPlan`, which installs what it is handed as the
+    // student's Plan. With a what-if open the plan in view is the
+    // what-if's copy: snapshotted and undone, it replaced the degree
+    // with a sketch. The stored document is the Plan with its what-ifs
+    // inside it, whichever tab is open, and that is what undo restores.
+    const planBefore = storedPlan();
     const preTurnSnapshot = planBefore ? (structuredClone(planBefore) as PlanDoc) : null;
 
     wireRef.current = trimWire(wireRef.current);
@@ -235,7 +241,7 @@ export function useChat() {
     } finally {
       // Push an undo point ONLY if this turn actually changed the plan — a
       // read-only follow-up question can never clobber a good snapshot again.
-      const after = usePlanner.getState().plan;
+      const after = storedPlan();
       if (preTurnSnapshot && JSON.stringify(after) !== JSON.stringify(preTurnSnapshot)) {
         undoStackRef.current.push({
           snapshot: preTurnSnapshot,

@@ -24,6 +24,27 @@ export interface PlanShape {
   lastTerm: string | null;
 }
 
+/** The Terms a plan puts something in, by position.
+ *
+ * BY PLACEMENT, which is `moves` over where the document lists a thing:
+ * a Course dragged to an earlier Term is in that Term, whatever `terms`
+ * still says. Read off `terms` alone, a what-if whose last Term had been
+ * emptied by dragging still "ended" there, and an empty Term added at
+ * the end counted as a Term of classes. Needs no catalog. */
+function termsInUse(plan: PlanContents): Set<number> {
+  const removed = plan.removed ?? {};
+  const at = (id: string, listed: number): number => (id in plan.moves ? plan.moves[id]! : listed);
+  const used = new Set<number>();
+  plan.terms.forEach((term, i) => {
+    for (const it of term.items) {
+      const id = "slot" in it ? it.id : it.code;
+      if (!removed[id]) used.add(at(id, i));
+    }
+  });
+  for (const a of plan.added) used.add(at(`add-${a.code}`, a.sem));
+  return used;
+}
+
 /** Every Course code a plan names. */
 function codesIn(plan: PlanContents): string[] {
   return [
@@ -36,7 +57,8 @@ function codesIn(plan: PlanContents): string[] {
 
 export function shapeOf(contents: PlanContents, catalog: Catalog): PlanShape {
   const doc = { ...contents, id: "", rev: 0, updatedAt: "" } as PlanDoc;
-  const used = doc.terms.filter((t) => !t.gap);
+  const inUse = termsInUse(contents);
+  const used = doc.terms.filter((t, i) => !t.gap && inUse.has(i));
   const known = codesIn(contents).every((code) => catalog[code]);
   return {
     programs: [...doc.programs],

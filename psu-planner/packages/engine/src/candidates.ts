@@ -30,13 +30,13 @@ export function contentsOf(doc: PlanDoc | PlanContents): PlanContents {
 /** A what-if stored the old way, as a list of changes to replay. It is read
  * once and converted (the planner does that when it loads the Plan). */
 export function isLegacyCandidate(c: Candidate | LegacyCandidate): c is LegacyCandidate {
-  return !("plan" in c) || !c.plan;
+  return c.v !== 2 || !c.plan;
 }
 
 /** The what-ifs of a document that are copies, which is all of them once
  * the planner has converted any stored the old way. */
 export function candidatesOf(doc: PlanDoc | null | undefined): Candidate[] {
-  return ((doc?.candidates ?? []) as (Candidate | LegacyCandidate)[]).filter((c): c is Candidate => !isLegacyCandidate(c));
+  return (doc?.candidates ?? []).filter((c): c is Candidate => !isLegacyCandidate(c));
 }
 
 /** The document to draw and edit while the what-if `candidateId` is open:
@@ -67,15 +67,15 @@ export function foldView(view: PlanDoc, candidateId: string, home: PlanContents)
     id: view.id,
     rev: view.rev,
     updatedAt: view.updatedAt,
-    candidates: ((view.candidates ?? []) as Candidate[]).map((c) =>
-      c.id === candidateId ? { ...structuredClone(c), plan: contents } : structuredClone(c),
+    candidates: (view.candidates ?? []).map((c) =>
+      c.id === candidateId && !isLegacyCandidate(c) ? { ...structuredClone(c), plan: contents } : structuredClone(c),
     ),
   };
 }
 
 /** A new what-if: a copy of `contents`, named. */
 export function makeCandidate(id: string, name: string, contents: PlanDoc | PlanContents, now: string): Candidate {
-  return { id, name, plan: contentsOf(contents), createdAt: now };
+  return { id, name, plan: contentsOf(contents), v: 2, createdAt: now };
 }
 
 /** The longest a what-if's name may be. */
@@ -87,11 +87,11 @@ export const CANDIDATE_NAME_MAX = 40;
  * A trailing note in brackets goes first, since it is the part a reader
  * can spare; then whole words from the end. Never mid-word: "(Engineerin"
  * reads as a mistake. */
-export function nameThatFits(name: string): string {
+export function nameThatFits(name: string, max: number = CANDIDATE_NAME_MAX): string {
   let fit = name.trim();
-  if (fit.length > CANDIDATE_NAME_MAX) fit = fit.replace(/\s*\([^()]*\)\s*$/, "");
-  while (fit.length > CANDIDATE_NAME_MAX && fit.includes(" ")) fit = fit.slice(0, fit.lastIndexOf(" "));
-  return fit.slice(0, CANDIDATE_NAME_MAX).replace(/[\s,;:(]+$/, "");
+  if (fit.length > max) fit = fit.replace(/\s*\([^()]*\)\s*$/, "");
+  while (fit.length > max && fit.includes(" ")) fit = fit.slice(0, fit.lastIndexOf(" "));
+  return fit.slice(0, max).replace(/[\s,;:(]+$/, "");
 }
 
 /** What the Plan is called once a what-if has taken its place: "My plan
@@ -99,12 +99,12 @@ export function nameThatFits(name: string): string {
  * taken. */
 export function nameForReplacedPlan(keptName: string, taken: readonly string[]): string {
   const has = (name: string) => taken.some((t) => t.trim().toLowerCase() === name.toLowerCase());
-  const lead = "My plan before ";
-  const base = (lead + keptName).slice(0, CANDIDATE_NAME_MAX).trimEnd();
+  // Cut at a word, as every name here is (`nameThatFits`).
+  const base = nameThatFits(`My plan before ${keptName}`);
   if (!has(base)) return base;
   for (let n = 2; n < 100; n++) {
     const tail = ` (${n})`;
-    const name = base.slice(0, CANDIDATE_NAME_MAX - tail.length).trimEnd() + tail;
+    const name = nameThatFits(base, CANDIDATE_NAME_MAX - tail.length) + tail;
     if (!has(name)) return name;
   }
   return base;
@@ -118,10 +118,14 @@ export function nameForReplacedPlan(keptName: string, taken: readonly string[]):
  * does not change, so keeping never meets the limit. The Revision is not
  * advanced here; the caller writes the result as it writes any edit.
  *
+ * EVERY OTHER WHAT-IF STAYS, one stored the old way and not yet converted
+ * included: it is not shown until it is converted, and it is still the
+ * student's.
+ *
  * `null` if the document holds no such what-if. */
 export function keepCandidate(stored: PlanDoc, candidateId: string, replacedId: string, now: string): PlanDoc | null {
-  const all = candidatesOf(stored);
-  const kept = all.find((c) => c.id === candidateId);
+  const all = stored.candidates ?? [];
+  const kept = candidatesOf(stored).find((c) => c.id === candidateId);
   if (!kept) return null;
   const others = all.filter((c) => c.id !== candidateId);
   const replaced = makeCandidate(

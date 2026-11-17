@@ -171,6 +171,18 @@ export function ProgramsModal({ onClose, onToast, changing: startChanging = null
                   {pendingChange.removed!.filledSlotsCleared.map((s) => `${s.label} → ${s.code}`).join(", ")}
                 </p>
               )}
+              {(pendingChange.removed?.unfilled.length ?? 0) > 0 && (
+                <>
+                  <p className="desc"><b>Left unfilled in your other programs:</b></p>
+                  <ul className="desc">
+                    {pendingChange.removed!.unfilled.map((u, i) => (
+                      <li key={`${u.program}-${u.requirement}-${i}`}>
+                        {u.requirement} ({u.program}) — {u.because}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
             </>
           )}
           <div className="row">

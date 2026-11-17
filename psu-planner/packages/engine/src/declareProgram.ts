@@ -126,10 +126,26 @@ export function declareProgram(
   // student never asked for.
   if (result.alreadyPresent) return result;
 
+  reflow(plan, catalog, maxCredits, patterns, "with honors");
+  return result;
+}
+
+/** What turns a merged Plan into one a student could follow, in the one
+ * order it has to happen in: the gen-eds refined against the whole Plan,
+ * the optimizer last, and then honors where a Program came in.
+ *
+ * ONE COPY, which is what this file is for (its header says why). There
+ * were three: declaring, withdrawing and changing each wrote it out. */
+function reflow(
+  plan: PlanDoc,
+  catalog: Catalog,
+  maxCredits: number,
+  patterns: FlowchartPatterns | undefined,
+  honors: "with honors" | "no honors step",
+): void {
   refineGenEdSlots(plan, catalog);
   optimizeSchedule(plan, catalog, { maxCredits, patterns });
-  if (plan.honors) applyHonorsUpgrades(plan, catalog);
-  return result;
+  if (honors === "with honors" && plan.honors) applyHonorsUpgrades(plan, catalog);
 }
 
 /** Withdraw a Program and re-flow what is left.
@@ -154,8 +170,7 @@ export function withdrawProgram(
   const result = removeProgram(plan, slug, { remaining, catalog });
   if (result.refusal) return result;
 
-  refineGenEdSlots(plan, catalog);
-  optimizeSchedule(plan, catalog, { maxCredits, patterns });
+  reflow(plan, catalog, maxCredits, patterns, "no honors step");
   return result;
 }
 
@@ -217,9 +232,7 @@ export function changeProgram(
   plan.programs = plan.programs.filter((slug) => slug !== template.slug);
   plan.programs.splice(Math.min(at, plan.programs.length), 0, template.slug);
 
-  refineGenEdSlots(plan, catalog);
-  optimizeSchedule(plan, catalog, { maxCredits, patterns });
-  if (plan.honors) applyHonorsUpgrades(plan, catalog);
+  reflow(plan, catalog, maxCredits, patterns, "with honors");
 
   const gone = result.removed.coursesRemoved.length;
   const came = result.added.coursesAdded.length;

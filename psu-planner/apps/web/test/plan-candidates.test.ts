@@ -431,9 +431,16 @@ describe("a what-if stored the old way, as a list of changes", () => {
     expect(saved().terms[3]?.gap).toBeUndefined();
     // Nothing of the old shape is left to replay.
     expect(saved().candidates![0]).not.toHaveProperty("changes");
-    // And the conversion is saved as an ordinary write, so it reaches the
-    // account and is not done again on every device.
-    expect(saved().rev).toBe(rev + 1);
+    // SAVED ON THIS DEVICE, AT THE SAME REVISION, AND NOT PUSHED. The
+    // conversion is not an edit. Two devices loading the same document
+    // would each "edit" it from the same Revision, and the second would
+    // meet the conflict banner having changed nothing.
+    expect(saved().rev).toBe(rev);
+    expect(saved().candidates![0]).toMatchObject({ v: 2 });
+    expect(pushed.filter((doc) => doc.candidates?.some((c) => "plan" in c && c.plan)), "the conversion was pushed").toEqual([]);
+    // It reaches the account with the student's next real edit.
+    await state().deleteTerm(3);
+    expect(pushed[pushed.length - 1]!.candidates![0]).toMatchObject({ v: 2, name: "a term off" });
     expect(state().repairNote ?? "").not.toMatch(/no longer fit/);
   });
 
@@ -576,5 +583,121 @@ describe("a link to a program, followed by a student who already has a plan", ()
     expect(candidatesOf(saved())).toEqual([]);
     expect(state().candidateId).toBeNull();
     expect(mine()).toEqual(contentsOf(plan));
+  });
+});
+
+describe("an action that waits, and a tab opened while it waited", () => {
+  /* THE REVIEW'S FIRST FINDING (#69). An action that waits on the network
+     and then saves used to save into whichever tab was open WHEN IT
+     FINISHED. Each of these starts in one tab, switches before the action
+     comes back, and asserts nothing was written anywhere. */
+  const SLOW: [string, () => Promise<string>][] = [
+    ["declaring a program", () => state().addProgramNow(MINOR)],
+    ["changing a program", () => state().changeProgramNow(ESC, ME)],
+    ["packing the schedule", () => state().optimizeNow()],
+  ];
+
+  it.each(SLOW)("%s in a what-if, then back to the plan: nothing is saved as the plan", async (_what, act) => {
+    const plan = seed();
+    const before = contentsOf(plan);
+    await state().newCandidate();
+    const was = saved();
+    const acting = act();
+    await state().showCandidate(null);
+    const said = await acting;
+    expect(said).toMatch(/changed while that was being worked out, so nothing was changed/);
+    expect(saved(), "something was written").toEqual(was);
+    expect(mine(), "the what-if's contents were saved as the student's plan").toEqual(before);
+    expect(whatIf("What-if 1")).toEqual(before);
+    expect(contentsOf(state().plan!)).toEqual(before);
+  });
+
+  it.each(SLOW)("%s in the plan, then into a what-if: nothing is saved into the what-if", async (_what, act) => {
+    const plan = seed();
+    const before = contentsOf(plan);
+    await state().newCandidate();
+    const id = state().candidateId!;
+    await state().showCandidate(null);
+    const was = saved();
+    const acting = act();
+    await state().showCandidate(id);
+    const said = await acting;
+    expect(said).toMatch(/changed while that was being worked out, so nothing was changed/);
+    expect(saved()).toEqual(was);
+    expect(whatIf("What-if 1"), "the plan's result was saved into the what-if").toEqual(before);
+    expect(mine()).toEqual(before);
+  });
+
+  it("an edit made while it waited stops it too: its answer is about a plan that has changed", async () => {
+    seed();
+    const acting = state().optimizeNow();
+    await state().moveItem(aCourse().id, aCourse().term + 1);
+    expect(await acting).toMatch(/changed while that was being worked out/);
+  });
+});
+
+describe("what the advisor's undo puts back", () => {
+  it("is the stored document: the plan and its what-ifs, never the what-if on screen", async () => {
+    // The advisor snapshots before a turn and restores with `setPlan`. With
+    // a what-if open, a snapshot of the plan IN VIEW is the what-if; put
+    // back, it replaced the student's degree with a sketch.
+    const plan = seed();
+    const before = contentsOf(plan);
+    await state().newCandidate();
+    await state().deleteTerm(3);
+    const snapshot = structuredClone(storedPlan()!);
+    const sketch = whatIf("What-if 1");
+    await state().showCandidate(null);
+    await state().deleteTerm(5);
+    await state().setPlan(snapshot);
+    // The Plan is the Plan again: no Term skipped (the what-if skipped one,
+    // and the later edit to the Plan skipped another), and its Program.
+    expect(saved().terms.some((term) => term.gap), "undo installed something other than the plan").toBe(false);
+    expect(saved().programs).toEqual(plan.programs);
+    expect(before.terms.some((term) => term.gap)).toBe(false);
+    // And the what-if is beside it, as it was when the turn began.
+    expect(whatIf("What-if 1")).toEqual(sketch);
+    expect(sketch.terms[3]?.gap).toBe(true);
+  });
+
+  it("is what the advisor reads: its snapshot comes from storedPlan(), in the source", () => {
+    const chat = fs.readFileSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "src", "chat", "useChat.ts"), "utf-8");
+    expect(chat).toContain("const planBefore = storedPlan();");
+    expect(chat).toContain("const after = storedPlan();");
+    expect(chat, "the advisor still snapshots the plan in view").not.toMatch(/planBefore\s*=\s*usePlanner\.getState\(\)\.plan/);
+  });
+});
+
+describe("a link naming several programs", () => {
+  it("skips the ones already on the plan and tries the rest", async () => {
+    const { followProgramLink } = await import("../src/data/programLinkWhatIf");
+    const plan = seed();
+    const said = await followProgramLink(`?programs=${ESC}+${MINOR}`);
+    expect(said).toMatch(/as a what-if/);
+    expect(candidatesOf(saved())).toHaveLength(1);
+    expect(candidatesOf(saved())[0]!.plan.programs).toEqual([ESC, MINOR]);
+    expect(mine()).toEqual(contentsOf(plan));
+  });
+
+  it("says there is nothing to try where every one of them is on the plan", async () => {
+    const { followProgramLink } = await import("../src/data/programLinkWhatIf");
+    seed();
+    expect(await followProgramLink(`?programs=${ESC}`)).toMatch(/already on your plan, so there is nothing to try/);
+    expect(loadSavedPlan()).toBeNull();
+  });
+
+  it("puts a major in place of the major and adds the minor beside it, in one what-if", async () => {
+    const { followProgramLink } = await import("../src/data/programLinkWhatIf");
+    seed();
+    await followProgramLink(`?programs=${MINOR}+${ME}`);
+    expect(candidatesOf(saved())).toHaveLength(1);
+    expect(candidatesOf(saved())[0]!.plan.programs).toEqual([ME, MINOR]);
+    expect(saved().programs).toEqual([ESC]);
+  });
+
+  it("is nothing where the address has no such link", async () => {
+    const { followProgramLink } = await import("../src/data/programLinkWhatIf");
+    seed();
+    expect(await followProgramLink("?signin=1")).toBeNull();
   });
 });

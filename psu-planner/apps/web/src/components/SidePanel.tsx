@@ -132,8 +132,20 @@ function AuditTab({ onChangeProgram }: { onChangeProgram?: (slug: string) => voi
   const [failed, setFailed] = useState(false);
   const rev = plan?.rev;
 
+  /** The tab the audit on screen was worked out for. */
+  const auditedTab = useRef<string | null>(candidateId);
   useEffect(() => {
     if (!plan) return;
+    // A DIFFERENT TAB IS A DIFFERENT DEGREE. Until its own audit arrives,
+    // nothing is shown: the last tab's requirements under this tab's
+    // chart would be a confident answer about the wrong plan. (An edit
+    // in the same tab keeps the old audit up until the new one lands,
+    // as before: that one is about this plan, a moment ago.)
+    if (auditedTab.current !== candidateId) {
+      auditedTab.current = candidateId;
+      setAudits(null);
+      setFailed(false);
+    }
     let alive = true;
     (async () => {
       // YIELD BEFORE THE BIG FETCH. This tab is the default when no advisor

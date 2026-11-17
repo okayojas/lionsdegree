@@ -884,11 +884,47 @@ Final visual identity (supersedes §5.1). User feedback drove it: earlier passes
     At the limit it says so and changes nothing. The link is then taken out of the address.
   - **The requirements panel describes the tab in view.** It used to follow the Revision only,
     which does not change when a tab is opened.
-  - **Not changed:** the in-app advisor still refuses to write while a what-if is open.
-  - **Measured:** a generated Plan is 9.7 KB of JSON, so a stored document with four what-ifs is
-    about 50 KB against the 1 MB row limit. Planner precache 14 entries, 1144.64 KiB (1140.46
-    before #69: the replay code left the bundle, and the change-Program dialog and the link
-    handling came in). Planner boot payload under its 790 KB ceiling.
+  - **Not changed:** the in-app advisor still refuses to write while a what-if is open. What it
+    READS then is the what-if's copy, and it is told so (`showing`, in its `get_plan`).
+  - **Found by the review of #69, and fixed:**
+    - *A slow action could save into the wrong tab.* Adding or dropping a Program, a master's
+      degree and the optimizer wait on the network and then save, and they saved into
+      whichever tab was open when they FINISHED: add a master's in a what-if, click "Your
+      plan" while it loads, and the what-if was saved as the degree. Each now works on a
+      copy of the plan it started from and commits only if that plan is still the one in
+      view; otherwise it says the plan changed and does nothing.
+    - *The advisor's undo could install a what-if as the Plan.* It snapshotted the plan in
+      view and restored it with `setPlan`. It snapshots the stored document now.
+    - *Keeping a what-if dropped any older what-ifs still waiting to be converted.* They are
+      kept, and the rail says how many are waiting and why.
+    - *Converting old what-ifs raised a false sync conflict.* It advanced the Revision on
+      load, so a second device converting the same document was refused having changed
+      nothing. The conversion is saved on the device at the same Revision and reaches the
+      account with the student's next edit.
+    - *The line on a tab could be untrue.* It read where the document lists a Course, not
+      where the Course is placed, so a last Term emptied by dragging still "ended" the plan
+      and an empty Term added at the end counted as a Term of classes. It goes by placement.
+    - *The requirements panel could show the last tab's audit* until the new one arrived. It
+      shows the loading state instead.
+    - *The chart saved the Plan's pan and zoom into a what-if* on the first pan there. Each
+      tab's view is read when the tab is opened.
+    - *A link naming a Program already on the Plan and a new one did nothing.* The ones
+      already there are skipped and the rest are tried. (With two majors on the Plan, a link
+      to a major replaces the first.)
+    - A stored what-if now carries a version (`v: 2`), as the spec asked, and is told from an
+      old one by it.
+  - **Known and left:** the "Change program" button is on the Requirements tab of the side
+    panel, so it is not on screen while the panel is put away or showing the advisor; the
+    Menu's "Your programs" is always there. The link flow does not list what the change
+    removed (the Plan is untouched, and the tab says how the what-if differs). A what-if on
+    another tab whose Courses the catalog on hand does not cover shows no credit difference
+    until it is opened.
+  - **Sabotage, as the spec asks, each run once and restored:** a copy sharing the Plan's data
+    fails the engine and store tests; saving the tab on screen as the Plan fails 17 store
+    tests; letting a slow action commit after a tab switch fails 7.
+  - **Measured:** the seeded test Plan is 6.6 KB of JSON as stored, and the same document
+    holding four what-ifs is 33.3 KB, against the 1 MB row limit. Planner precache 14 entries,
+    1146.44 KiB (1140.46 before #69). Planner boot payload under its 790 KB ceiling.
 - **The pages outside the planner are cream, and say so (2026-11-16, #61).** Connect your AI, Privacy
   and Terms used to wear the old landing page's dark canvas. They now sit on the app's light tokens
   with petrol as the only accent (`site.css`), and each carries `data-theme="light"`: merely dropping

@@ -93,6 +93,31 @@ describe("what a plan comes to", () => {
     });
   });
 
+  it("goes by where things are PLACED: a Term emptied by dragging is not where the plan ends", () => {
+    // `moves` is where a card is; `terms` is only where the document first
+    // listed it. The last Term's one Course, dragged to the first Term.
+    const dragged = contents({ moves: { "ENGL 15": 0 } });
+    expect(shapeOf(dragged, catalog)).toMatchObject({ terms: 1, lastTerm: "Fall 2026" });
+  });
+
+  it("does not count an empty Term added at the end as a Term of classes", () => {
+    const base = contents();
+    const longer = contents({ terms: [...base.terms, { label: "Spring 2028", items: [] }] });
+    expect(shapeOf(longer, catalog)).toMatchObject({ terms: 2, lastTerm: "Fall 2027" });
+  });
+
+  it("counts a Course the student added where they put it, and not one they took out", () => {
+    const base = contents();
+    const added = contents({
+      terms: [...base.terms, { label: "Spring 2028", items: [] }],
+      added: [{ code: "ENGL 15", sem: 3 }],
+      removed: { "MATH 140": true, "CMPSC 131": true },
+    });
+    // The first Term's two Courses are out, so it is not a Term of classes;
+    // the added one is in the fourth.
+    expect(shapeOf(added, catalog)).toMatchObject({ terms: 2, lastTerm: "Spring 2028" });
+  });
+
   it("gives no credit total where the catalog on hand lacks one of its Courses", () => {
     // A total that left a Course out would be a smaller number offered as
     // the answer. The what-if on another tab may name Courses the catalog

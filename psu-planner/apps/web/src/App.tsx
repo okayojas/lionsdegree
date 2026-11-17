@@ -238,12 +238,9 @@ export default function App() {
       .catch(() => {});
   };
 
-  /* THROUGH THE STORE, WHICH KNOWS WHICH PLAN IS BEING EDITED (#59).
-     These used to write the real Plan directly and then announce it —
-     which with a what-if open would have added the course to the plan the
-     student was comparing against, and told them it had worked. The store
-     routes it to the open what-if's change list and hands back the
-     sentence to show either way. */
+  /* THROUGH THE STORE, WHICH EDITS THE PLAN IN VIEW (#69): the student's
+     Plan, or the what-if they have open. It hands back the sentence to
+     show either way. */
   const addPicked = async (sem: number) => {
     const c = pickedCourse!;
     setPickedCourse(null);
@@ -378,10 +375,9 @@ export default function App() {
             which suits a list you pick from. It renders nothing at all
             until there is a what-if to compare against. */}
         <CandidateRail onToast={setToast} />
-        {/* A WHAT-IF THAT CANNOT BE WORKED OUT DRAWS NOTHING. Falling back
-            to the real plan here would show the student their own chart
-            under a what-if's tab — the confident wrong answer, with their
-            own degree as the lie. */}
+        {/* THE PLAN IN VIEW: the student's own, or the what-if whose tab
+            is open. The chart and the list are handed the same thing
+            either way. */}
         {view === "canvas" ? (
           <PlanCanvas onOpenItem={setOpenItem} />
         ) : (

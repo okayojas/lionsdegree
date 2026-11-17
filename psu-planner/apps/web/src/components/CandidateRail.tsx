@@ -57,7 +57,7 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
   // ON A PHONE THE RAIL IS NOT A RAIL. At 412px the planner has no 200px
   // to give away, so it starts as one control that opens the list — and
   // nothing may push the chart off the screen (#23).
-  const [open, setOpen] = useState(false);
+  const [listOpen, setListOpen] = useState(false);
   /** Which what-if is being renamed, and what has been typed so far. */
   const [renaming, setRenaming] = useState<{ id: string; text: string } | null>(null);
 
@@ -65,6 +65,11 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
   // (store.ts); until then it is not something a tab could show.
   const candidates = candidatesOf(plan);
   if (!plan) return null;
+  /** What-ifs from before #69 that could not be converted when the plan
+   * loaded (the catalog did not arrive). They are still in the document
+   * and still count towards the limit, so the rail says they are there. */
+  const waiting = (plan.candidates ?? []).length - candidates.length;
+  const open = candidates.find((c) => c.id === candidateId);
 
   /* HOW EACH ONE DIFFERS FROM THE PLAN, worked out here and now from the two
      as they are. The Plan's own contents are `home` while a what-if is in
@@ -73,14 +78,14 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
      edited since it was opened. */
   const nameOf = (slug: string): string => programNames[slug] ?? slug;
   const mine = shapeOf(home ?? contentsOf(plan), catalog);
-  const differs = (id: string, stored: Parameters<typeof shapeOf>[0]): string =>
-    differenceFrom(mine, shapeOf(id === candidateId ? contentsOf(plan) : stored, catalog), nameOf);
+  const differs = (id: string, itsCopy: Parameters<typeof shapeOf>[0]): string =>
+    differenceFrom(mine, shapeOf(id === candidateId ? contentsOf(plan) : itsCopy, catalog), nameOf);
 
   const none = candidates.length === 0;
-  const expanded = none || !phone || open;
+  const expanded = none || !phone || listOpen;
   const pick = (id: string | null) => {
     void showCandidate(id);
-    if (phone) setOpen(false);
+    if (phone) setListOpen(false);
   };
 
   const makeOne = async () => {
@@ -91,7 +96,7 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
     // first what-if a student ever makes appears and vanishes in the same
     // frame — before there was one the rail had nothing to collapse into,
     // so the tab they just asked for is the thing that disappears.
-    if (phone) setOpen(true);
+    if (phone) setListOpen(true);
   };
 
   return (
@@ -100,12 +105,12 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
         <button
           type="button"
           className="rail-toggle"
-          aria-expanded={open}
+          aria-expanded={listOpen}
           aria-controls="rail-list"
-          onClick={() => setOpen(!open)}
+          onClick={() => setListOpen(!listOpen)}
         >
-          {candidateId
-            ? `Showing a what-if (${candidates.length})`
+          {open
+            ? `Showing the what-if "${open.name}"`
             : `Your plan · ${candidates.length} what-${candidates.length === 1 ? "if" : "ifs"}`}
         </button>
       )}
@@ -210,6 +215,15 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
             </li>
           );
         })}
+        {waiting > 0 && (
+          <li className="rail-item">
+            <p className="rail-problem" role="status">
+              {waiting === 1 ? "1 older what-if is" : `${waiting} older what-ifs are`} waiting to be
+              brought up to date: the course catalog did not load. Reload the page to try again.
+              Nothing has been lost.
+            </p>
+          </li>
+        )}
         <li className="rail-item new">
           <button
             type="button"

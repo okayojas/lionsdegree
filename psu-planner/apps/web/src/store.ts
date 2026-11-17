@@ -164,10 +164,8 @@ interface PlannerState {
    * dragging a course past the last term). Transient like any manual move —
    * re-optimizing repacks and trims it if left empty.
    *
-   * ASYNC BECAUSE A WHAT-IF IS RE-RUN. Inside a Candidate this appends
-   * `add_term` to its change list and the new index is read off the plan
-   * those changes leave behind, which means running them. Returns -1 when
-   * nothing was added. */
+   * On the plan in view, like every edit. Returns -1 when nothing was
+   * added. */
   addTerm: () => Promise<number>;
   /** Skip a term (gap year / co-op / leave): mark it an empty gap and
    * re-optimize so coursework flows around it and graduation moves back. */
@@ -282,7 +280,7 @@ export function storedPlan(): PlanDoc | null {
 /** A short, local, time-ordered id, the shape `save_candidate` uses too. */
 const candidateIdNow = (): string => `c${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
 
-function persist(view: PlanDoc | null, cause = "edit") {
+function persist(view: PlanDoc | null, cause = "edit", where: "everywhere" | "this device" = "everywhere") {
   // WHAT IS SAVED IS THE STORED DOCUMENT. With a what-if open, `view` is its
   // copy under the Plan's identity; folded, it lands in the what-if and the
   // Plan's own contents go back exactly as they were.
@@ -293,7 +291,7 @@ function persist(view: PlanDoc | null, cause = "edit") {
       localStorage.setItem(LS_KEY, JSON.stringify(plan));
     } else localStorage.removeItem(LS_KEY);
   } catch { /* quota exceeded: plan persists next time */ }
-  if (plan) schedulePush(plan); // no-op unless Supabase configured + signed in
+  if (plan && where === "everywhere") schedulePush(plan); // no-op unless Supabase configured + signed in
 }
 
 /** Completing X clears not just X's card but any card X substitutes for:
@@ -385,6 +383,21 @@ export const usePlanner = create<PlannerState>((set, get) => {
       return new Map();
     }
   };
+
+  /** What a slow action says, and does nothing, where the plan it started
+   * from is no longer the one in view.
+   *
+   * THE HOLE THIS CLOSES (#69 review). An action that waits on the network
+   * (a Program's file, the catalog) and then saves used to save into
+   * whichever tab was open WHEN IT FINISHED: add a master's degree in a
+   * what-if, click "Your plan" while it loads, and the what-if's contents
+   * were saved as the student's degree. So every such action works on a
+   * COPY of the plan it started from, and commits only if that plan is
+   * still the one on screen. An edit made meanwhile also stops it, which
+   * is the right answer too: its result was worked out from a plan that
+   * has since changed. */
+  const MOVED = "Your plan changed while that was being worked out, so nothing was changed. Try again.";
+  const stillInView = (started: PlanDoc): boolean => get().plan === started;
 
   /** Put a stored document on screen: its Plan, or the what-if `id`.
    * Writes nothing. Says whether the what-if was there to show. */
@@ -631,26 +644,32 @@ export const usePlanner = create<PlannerState>((set, get) => {
     // it comes to. One whose changes no longer apply becomes a copy of the
     // Plan under its own name, and the student is told: an update must not
     // delete their work, and must not show them a what-if that is not one
-    // without saying so. A catalog that would not load converts nothing;
-    // the next load tries again.
+    // without saying so. A catalog that would not load converts nothing:
+    // they stay in the document, the rail says they are waiting, and the
+    // next load tries again.
     const unconverted: string[] = [];
-    const old = ((plan.candidates ?? []) as (Candidate | LegacyCandidate)[]).filter(isLegacyCandidate);
+    const old = (plan.candidates ?? []).filter(isLegacyCandidate);
     if (old.length) {
       try {
         const { convertLegacyCandidate } = await import("./data/candidateRun");
         const snap = { plan, catalog, ...recompute(plan, catalog) };
         const copies: Candidate[] = [];
-        for (const c of (plan.candidates ?? []) as (Candidate | LegacyCandidate)[]) {
+        for (const c of plan.candidates ?? []) {
           if (!isLegacyCandidate(c)) { copies.push(c); continue; }
           const contents = await convertLegacyCandidate(snap, c);
           if (!contents) unconverted.push(c.name);
-          copies.push({ id: c.id, name: c.name, createdAt: c.createdAt, plan: contents ?? contentsOf(plan) });
+          copies.push(makeCandidate(c.id, c.name, contents ?? plan, c.createdAt));
         }
         plan.candidates = copies;
-        plan.rev += 1;
-        plan.updatedAt = new Date().toISOString();
-        persist(plan, "what-ifs converted to copies");
-      } catch { /* the catalog did not load: they stay as they are, unlisted, for the next load */ }
+        // ON THIS DEVICE, AT THE SAME REVISION, and not pushed. The
+        // conversion is not an edit: two devices loading the same document
+        // would each "edit" it from the same Revision, and the second
+        // would meet the conflict banner having changed nothing. Each
+        // device converts what it loads, to the same result, and the
+        // converted what-ifs reach the account with the student's next
+        // real edit.
+        persist(plan, "what-ifs converted to copies", "this device");
+      } catch { /* the catalog did not load: they stay as they are for the next load, and the rail says so */ }
     }
     const said = [
       notes.length ? `Optimized your schedule: ${notes.join("; ")}.` : "",
@@ -676,17 +695,21 @@ export const usePlanner = create<PlannerState>((set, get) => {
   },
 
   optimizeNow: async (targetTerms?: number) => {
-    const plan = get().plan;
-    if (!plan) return "No plan yet.";
+    const started = get().plan;
+    if (!started) return "No plan yet.";
     const catalog = get().catalog;
     const patterns = await loadFlowchartPatterns();
+    if (!stillInView(started)) return MOVED;
+    // A COPY. This used to repack the plan in the store in place, which is
+    // a half-made change sitting on screen if anything below throws.
+    const plan = structuredClone(started);
     if (plan.honors) applyHonorsUpgrades(plan, catalog); // RCL pin + pre-pack upgrades (idempotent)
     const genEd = refineGenEdSlots(plan, catalog); // idempotent; keeps categories fresh
     const res = optimizeSchedule(plan, catalog, { maxCredits: 19, patterns, targetTerms });
     // Post-pack honors pass: packing shifts academic years, so top up windows
     // on the final layout (in-place swaps, no re-pack needed).
     const honors = plan.honors ? applyHonorsUpgrades(plan, catalog) : null;
-    const next: PlanDoc = { ...plan, rev: plan.rev + 1, updatedAt: new Date().toISOString() };
+    const next: PlanDoc = { ...plan, rev: started.rev + 1, updatedAt: new Date().toISOString() };
     persist(next, "optimize");
     set({ plan: next, ...recompute(next, catalog) });
     let base: string;
@@ -944,6 +967,7 @@ export const usePlanner = create<PlannerState>((set, get) => {
       maxCredits: 19,
       patterns: await loadFlowchartPatterns(),
     });
+    if (!stillInView(plan)) return MOVED;
     next.rev = plan.rev + 1;
     next.updatedAt = new Date().toISOString();
     persist(next, `add program ${slug}`);
@@ -979,6 +1003,7 @@ export const usePlanner = create<PlannerState>((set, get) => {
     // Refused — the stored plan was never touched, because the engine was
     // handed a copy.
     if (res.refusal) return res.refusal;
+    if (!stillInView(plan)) return MOVED;
     next.rev = plan.rev + 1;
     next.updatedAt = new Date().toISOString();
     persist(next, `remove program ${slug}`);
@@ -1002,7 +1027,7 @@ export const usePlanner = create<PlannerState>((set, get) => {
     // The plan moved while the catalog was on its way (another tab was
     // opened, or an edit landed): what was worked out is about a plan
     // that is no longer the one on screen.
-    if (get().plan !== before) return "Your plan changed while that was being worked out, so nothing was changed. Try again.";
+    if (!stillInView(before)) return MOVED;
     out.next.rev = before.rev + 1;
     out.next.updatedAt = new Date().toISOString();
     persist(out.next, `change program ${from} to ${to}`);
@@ -1050,8 +1075,9 @@ export const usePlanner = create<PlannerState>((set, get) => {
   },
 
   attachIugNow: async (slug) => {
-    const plan = get().plan;
-    if (!plan) return "No plan yet.";
+    const started = get().plan;
+    if (!started) return "No plan yet.";
+    const plan = structuredClone(started);
     const spec = await loadIug(slug);
     if (!spec) return "Couldn't load that IUG program.";
     // Load the grad courses the IUG needs (grad-level subjects merge in via
@@ -1065,20 +1091,23 @@ export const usePlanner = create<PlannerState>((set, get) => {
     const res = attachIug(plan, spec, catalog);
     const patterns = await loadFlowchartPatterns();
     optimizeSchedule(plan, catalog, { maxCredits: 19, patterns }); // re-flow UG half; grad terms preserved
-    const next: PlanDoc = { ...plan, rev: plan.rev + 1, updatedAt: new Date().toISOString() };
+    if (!stillInView(started)) return MOVED;
+    const next: PlanDoc = { ...plan, rev: started.rev + 1, updatedAt: new Date().toISOString() };
     persist(next, `attach IUG ${slug}`);
     set({ plan: next, catalog, ...recompute(next, catalog) });
     return res.note;
   },
 
   detachIugNow: async () => {
-    const plan = get().plan;
-    if (!plan?.iug) return "No IUG attached.";
+    const started = get().plan;
+    if (!started?.iug) return "No IUG attached.";
+    const plan = structuredClone(started);
     const catalog = get().catalog;
     detachIug(plan);
     const patterns = await loadFlowchartPatterns();
     optimizeSchedule(plan, catalog, { maxCredits: 19, patterns });
-    const next: PlanDoc = { ...plan, rev: plan.rev + 1, updatedAt: new Date().toISOString() };
+    if (!stillInView(started)) return MOVED;
+    const next: PlanDoc = { ...plan, rev: started.rev + 1, updatedAt: new Date().toISOString() };
     persist(next, "detach IUG");
     set({ plan: next, ...recompute(next, catalog) });
     return "Removed the master's degree — back to your bachelor's plan.";

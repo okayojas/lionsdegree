@@ -144,12 +144,8 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
                       {/* Details carries everything the canvas shows on a card that
                           is too long for a row: the prerequisite leaves and which
                           course each one refers to, concurrency, and the override.
-                          It is absent on a what-if because the card it opens
-                          carries Remove, Mark complete and a prerequisite
-                          override, which act on the real plan — a destructive
-                          control that silently edits the other plan is worse
-                          than a missing one. The moves below are routed to the
-                          what-if and stay. */}
+                          On a what-if too: the card it opens acts on the plan
+                          in view, which there is the what-if's own copy. */}
                       <button onClick={() => onOpenItem(it)} aria-label={`Details for ${label}`}>Details</button>
                       <button
                         data-move={`${it.id}:-1`}

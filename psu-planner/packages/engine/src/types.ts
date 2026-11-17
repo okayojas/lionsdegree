@@ -212,7 +212,9 @@ export interface PlanDoc {
    * `order by updated_at desc limit 1`, so a Candidate written there would
    * be adopted as the student's REAL plan the next time they signed in on
    * another device — a second plan-shaped row nobody decided how to reach. */
-  candidates?: Candidate[];
+  /* Typed as what it can hold: until the planner has converted them, a
+   * document may still carry what-ifs stored the old way. */
+  candidates?: (Candidate | LegacyCandidate)[];
   view: { x: number; y: number; k: number } | null;
 }
 
@@ -253,6 +255,11 @@ export interface Candidate {
   name: string;
   /** Its own contents. Never a reference to the Plan's: a copy. */
   plan: PlanContents;
+  /** The shape it is stored in. 2 is a copy; a what-if with no version
+   * is from before #69 and is a `LegacyCandidate`. Written down so the
+   * next change of shape has something to read, instead of guessing
+   * from which fields happen to be there. */
+  v: 2;
   createdAt: string;
 }
 
@@ -266,6 +273,7 @@ export interface LegacyCandidate {
   basedOnRev: number;
   createdAt: string;
   plan?: undefined;
+  v?: undefined;
 }
 
 /** How many Candidates one Plan may hold.

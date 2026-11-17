@@ -39,6 +39,21 @@ async function openRail(page: Page): Promise<void> {
   if (await toggle.count()) await toggle.click();
 }
 
+/** Press Tab until the focus is on a button or a text box whose name
+ * matches. The keyboard and nothing else: a test that calls `.focus()` has
+ * shown the control exists, not that a keyboard reaches it. */
+async function tabTo(page: Page, name: RegExp, max = 250): Promise<void> {
+  for (let stops = 0; stops < max; stops++) {
+    await page.keyboard.press("Tab");
+    const at = await page.evaluate(() => {
+      const el = document.activeElement as HTMLElement | null;
+      return { tag: el?.tagName ?? "", name: (el?.getAttribute("aria-label") ?? el?.textContent ?? "").trim() };
+    });
+    if ((at.tag === "BUTTON" || at.tag === "INPUT") && name.test(at.name)) return;
+  }
+  throw new Error(`never reached ${name} by tabbing`);
+}
+
 /** Wait until the stored document holds `n` what-ifs.
  *
  * Before the rail is reached for: on a phone the rail turns into one
@@ -160,20 +175,20 @@ test.describe("changing one program for another", () => {
   });
 
   test("can be reached and done from the keyboard", async ({ planner }) => {
+    // Tab, Enter and typing, from the top of the page to the change made.
+    test.setTimeout(90_000);
     const change = requirements(planner).getByRole("button", { name: `Change ${MINE.name} for another program` });
     await expect(change).toBeVisible({ timeout: 20_000 });
-    await change.focus();
+    await tabTo(planner, /^Change Engineering Science, B\.S\. for another program$/);
     await planner.keyboard.press("Enter");
-    const search = dialog(planner).getByRole("textbox", { name: /Search for the program to change/ });
-    await expect(search).toBeVisible();
-    await search.focus();
+    await expect(dialog(planner).getByText(`Change ${MINE.name} to…`)).toBeVisible();
+    await tabTo(planner, /^Search for the program to change/);
     await planner.keyboard.type(OTHER.name);
-    const pick = dialog(planner).getByRole("button", { name: `Change to ${OTHER.name}` });
-    await pick.focus();
+    await expect(dialog(planner).getByRole("button", { name: `Change to ${OTHER.name}` })).toBeVisible();
+    await tabTo(planner, /^Change to Mechanical Engineering, B\.S\. \(Engineering\)$/);
     await planner.keyboard.press("Enter");
-    const yes = dialog(planner).getByRole("button", { name: `Yes, change to ${OTHER.name}` });
-    await expect(yes).toBeVisible({ timeout: 20_000 });
-    await yes.focus();
+    await expect(dialog(planner).getByRole("button", { name: `Yes, change to ${OTHER.name}` })).toBeVisible({ timeout: 20_000 });
+    await tabTo(planner, /^Yes, change to Mechanical Engineering/);
     await planner.keyboard.press("Enter");
     await expect.poll(async () => (await stored(planner)).programs, { timeout: 20_000 }).toEqual([OTHER.slug]);
   });

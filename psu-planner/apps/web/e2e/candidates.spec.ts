@@ -292,6 +292,64 @@ test.describe("a what-if the student makes with the +", () => {
     expect(after.candidates[0].plan.terms, "the plan that was replaced is not what it was").toEqual(before.terms);
   });
 
+  test("keeping can be undone: keep the plan it replaced, and the plan is back", async ({ planner }) => {
+    // WHAT MAKES ONE CLICK SAFE. Keeping swaps, so the way back is the
+    // same click on the tab the old plan became.
+    const before = await stored(planner);
+    await openRail(planner);
+    await rail(planner).getByRole("button", { name: /Make a new what-if/i }).click();
+    await planner.getByRole("button", { name: /List view/i }).click();
+    const list = planner.getByRole("region", { name: /What-if "What-if 1", list view/ });
+    await list.getByRole("button", { name: /Skip Fall 2027/i }).click();
+    await expect(list.getByText(/gap term/i).first()).toBeVisible({ timeout: 30_000 });
+
+    await openRail(planner);
+    await rail(planner).getByRole("button", { name: /Keep "What-if 1" as your plan/ }).click();
+    await openRail(planner);
+    const was = rail(planner).getByRole("button", { name: /Show the what-if "My plan before What-if 1"/ });
+    await expect(was).toBeVisible({ timeout: 30_000 });
+    expect((await stored(planner)).terms, "keeping did not change the plan").not.toEqual(before.terms);
+
+    await was.click();
+    await openRail(planner);
+    await rail(planner).getByRole("button", { name: /Keep "My plan before What-if 1" as your plan/ }).click();
+    await expect.poll(async () => (await stored(planner)).terms, { message: "the plan did not come back" }).toEqual(before.terms);
+    // And what was kept the first time is still there, as a what-if.
+    const after = await stored(planner);
+    expect(after.candidates).toHaveLength(1);
+    expect(after.candidates[0].plan.terms.some((t: { gap?: boolean }) => t.gap)).toBe(true);
+  });
+
+  test("at four, the + says which what-ifs are in the way and makes no fifth", async ({ planner }) => {
+    for (let n = 1; n <= 4; n++) {
+      await openRail(planner);
+      await rail(planner).getByRole("button", { name: /Make a new what-if/i }).click();
+      await openRail(planner);
+      await expect(rail(planner).getByRole("button", { name: `Show the what-if "What-if ${n}"` })).toBeVisible({ timeout: 30_000 });
+    }
+    await rail(planner).getByRole("button", { name: /Make a new what-if/i }).click();
+    const said = planner.getByText(/which is the most a plan holds/);
+    await expect(said).toBeVisible();
+    for (let n = 1; n <= 4; n++) await expect(said).toContainText(`"What-if ${n}"`);
+    await expect(rail(planner).getByRole("button", { name: /^Show the what-if/ })).toHaveCount(4);
+    expect((await stored(planner)).candidates).toHaveLength(4);
+  });
+
+  test("says which what-if is showing where the rail is one control", async ({ planner }) => {
+    await openRail(planner);
+    await rail(planner).getByRole("button", { name: /Make a new what-if/i }).click();
+    await expect(planner.locator(".viewport.candidate")).toBeVisible({ timeout: 30_000 });
+    // On a phone the rail collapses to one control once a tab is picked; it
+    // must name the what-if, not only say that there is one.
+    await openRail(planner);
+    await rail(planner).getByRole("button", { name: /Show your own plan/ }).click();
+    await openRail(planner);
+    await rail(planner).getByRole("button", { name: 'Show the what-if "What-if 1"' }).click();
+    const toggle = rail(planner).getByRole("button", { expanded: false });
+    if (await toggle.count()) await expect(toggle).toHaveText('Showing the what-if "What-if 1"');
+    else await expect(rail(planner).getByText("Editing this what-if. Your plan is untouched.")).toBeVisible();
+  });
+
   test("leaves the tab it just made on the screen, phone included", async ({ planner }) => {
     // THE FIRST WHAT-IF A STUDENT EVER MAKES. On a phone the rail is one
     // control that opens a list, and `makeOne` used to close that list

@@ -114,8 +114,7 @@ async function editionCatalog(
   const effective = editions.editions.includes(pinned) ? pinned : editions.editions[0];
 
   // The Plan's own courses plus anything the changes name, in one fetch.
-  // `loadCatalogFor` is memoised per subject, so re-opening a tab costs
-  // nothing.
+  // `loadCatalogFor` is memoised per subject.
   const catalog: Catalog = {
     ...snap.catalog,
     ...(await loadCatalogFor([...planCodes(snap.plan), ...codesNamedIn(changes)])),
@@ -190,9 +189,9 @@ async function editionCatalog(
 /** Build the context the connector's tools work on, over the Plan the
  * planner is holding.
  *
- * `store` is null: a sandbox makes its own, and the real-apply path below
- * supplies one. `rev` is the document's, which in the browser IS the held
- * revision — there is no column that can be ahead of it. */
+ * `store` is null: the sandbox makes its own, and nothing here writes.
+ * `rev` is the document's, which in the browser IS the held revision:
+ * there is no column that can be ahead of it. */
 async function contextFor(
   snap: PlannerSnapshot,
   changes: readonly CandidateChange[],

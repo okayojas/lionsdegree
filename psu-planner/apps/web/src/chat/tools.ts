@@ -49,9 +49,10 @@ function requireCode(code: unknown): string {
 
 /** The tools here that WRITE the student's plan.
  *
- * Listed so the what-if guard below can be scoped to them: reading the
- * plan while a what-if is open is fine, and answering questions is most
- * of what the advisor does. */
+ * Listed so the what-if guard below can be scoped to them. Reading with
+ * a what-if open is allowed, and answering questions is most of what the
+ * advisor does, but what it reads then is the what-if's copy, so every
+ * plan it is handed says so (`showing`, in `get_plan`). */
 const WRITES = new Set([
   "add_course", "move_course", "remove_course", "set_schedule_constraint",
   "clear_schedule_constraint", "add_summer_session", "add_term", "skip_term",
@@ -113,6 +114,17 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
       }));
       const prog = progress(plan, s.items, s.catalog);
       return {
+        // WHICH PLAN THIS IS. With a what-if open the plan in view is its
+        // copy, and a model told nothing would describe a sketch as the
+        // student's degree.
+        ...(s.candidateId
+          ? {
+              showing:
+                `This is the what-if "${(plan.candidates ?? []).find((c) => c.id === s.candidateId)?.name ?? ""}" ` +
+                "the student has open: a copy of their plan they are experimenting in. It is NOT " +
+                "their plan. Say so when you describe it.",
+            }
+          : {}),
         programs: plan.programs,
         terms,
         completed_courses: Object.keys(plan.completed).filter((c) => plan.completed[c]),
