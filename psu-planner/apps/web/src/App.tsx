@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { progress, type Course, type PlanItem } from "@psu-planner/engine";
-import { usePlanner, loadSavedPlan, getPlanHistory, type PlanHistoryEntry } from "./store";
+import { usePlanner, loadSavedPlan, getPlanHistory, storedPlan, type PlanHistoryEntry } from "./store";
 import { conflictMessage, flushPush, pullNewerPlan, setConflictListener } from "./data/sync";
 import { loadCourse, loadIugIndex, type IugIndexEntry } from "./data/catalogClient";
 import { downloadPlan, openPlanFile } from "./data/planFileIO";
@@ -30,7 +30,7 @@ import { chatConfigured } from "./chat/config";
 const SIDE_PANEL_KEY = "lionsdegree-side-panel";
 
 export default function App() {
-  const { plan, catalog, items, setPlan, markCompleted, restoreItem, loading, loadError, servedEdition, repairNote, clearRepairNote, candidateId, candidateRefusal, showCandidate } = usePlanner();
+  const { plan, catalog, items, setPlan, markCompleted, restoreItem, loading, loadError, servedEdition, repairNote, clearRepairNote } = usePlanner();
   const [showRemoved, setShowRemoved] = useState(false);
   const [showImport, setShowImport] = useState(false);
   const [showPrograms, setShowPrograms] = useState(false);
@@ -305,7 +305,7 @@ export default function App() {
                 Your programs ({plan.programs.length})
               </button>
               <button role="menuitem" onClick={() => setShowImport(true)}>Import courses / AP credit</button>
-              <button role="menuitem" onClick={() => downloadPlan(plan)}>Save plan to a file</button>
+              <button role="menuitem" onClick={() => { const whole = storedPlan(); if (whole) downloadPlan(whole); }}>Save plan to a file</button>
               <button role="menuitem" onClick={() => void openPlanFile(setPlan, setToast)}>Open a plan file</button>
               <button
                 role="menuitem"
@@ -355,21 +355,7 @@ export default function App() {
             to the real plan here would show the student their own chart
             under a what-if's tab — the confident wrong answer, with their
             own degree as the lie. */}
-        {candidateRefusal && candidateId ? (
-          <div className="candidate-refused" role="region" aria-label="This what-if cannot be shown">
-            <h2>This what-if can't be worked out from your plan as it stands</h2>
-            <p>
-              {candidateRefusal.position ? `${candidateRefusal.position}: ` : ""}
-              {candidateRefusal.reason}
-            </p>
-            <p className="muted">{candidateRefusal.nothingChanged}</p>
-            <p className="muted">
-              Nothing is drawn here on purpose: a chart missing one of the changes you asked
-              about would look like a plan you could have.
-            </p>
-            <button type="button" onClick={() => void showCandidate(null)}>Back to your plan</button>
-          </div>
-        ) : view === "canvas" ? (
+        {view === "canvas" ? (
           <PlanCanvas onOpenItem={setOpenItem} />
         ) : (
           <PlanListView onOpenItem={setOpenItem} />

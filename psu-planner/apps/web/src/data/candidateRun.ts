@@ -1,36 +1,27 @@
-/** Running a Candidate's changes — in the browser, through the connector's
- * own sandbox.
+/** Converting a what-if that was stored as a list of changes (#69).
  *
- * THE DECISION THIS FILE EXISTS TO HONOUR (#56). A Candidate tab draws the
- * plan a saved list of changes would leave behind, and it must be drawn by
- * the planner's own chart because it IS the planner's own chart. For that
- * to be safe, the plan it draws has to be the same plan `simulate_changes`
- * would describe — so this does not apply changes itself. It imports
- * `runChanges` from `packages/mcp/src/sandbox.ts`, the one place an ordered
- * list of changes is applied, and hands it a context built over the
- * planner's state.
+ * A what-if is a copy of the Plan now (engine/candidates.ts). Before #69 it
+ * was a list of changes, re-run against the Plan every time its tab was
+ * opened, and students have some of those saved. This file turns one into
+ * the copy it comes to, once, when the planner loads the Plan.
  *
- * A second implementation here would be a picture of a degree the connector
- * then refuses to produce, which is the drift this codebase has paid for in
- * #47, #50, #53 and #54.
+ * IT DOES NOT APPLY THE CHANGES ITSELF. It imports `runChanges` from
+ * `packages/mcp/src/sandbox.ts`, the one place an ordered list of changes
+ * is applied, and hands it a context built over the planner's state: the
+ * copy a student is left with is the plan their assistant was shown when
+ * it proposed the what-if.
  *
  * LOADED LAZILY, AND THAT IS NOT AN OPTIMISATION. The connector's mutation
- * surface is ~12 KB gzipped (MEASURED: `plan-*.js` went from 104.1 KB to
- * 116.3 KB gzipped when it was imported statically, `zlib.gzipSync` over the
- * built asset). A student who never opens a what-if should not download it
- * before their chart appears — `e2e/boot-budget.spec.ts` holds a measured
- * ceiling on exactly that, and ADR 0002 says the answer is to fix the
+ * surface is ~12 KB gzipped, and a student with no old what-ifs (which will
+ * soon be every student) should never download it: the store imports this
+ * only when it finds one. `e2e/boot-budget.spec.ts` holds a measured ceiling
+ * on the planner's boot payload, and ADR 0002 says the answer is to fix the
  * payload rather than raise the number.
- *
- * NOTHING HERE IS ACCOUNT-DEPENDENT. A Candidate is on the Plan document,
- * which lives in localStorage whether or not `syncConfigured` is true, and
- * the catalog is the same static files the chart already reads. Signed out,
- * all of this works.
  */
 import type {
-  Candidate, CandidateChange, Catalog, PlanDoc, PlanItem, ProgramTemplate, ReqSection, Schedule,
+  CandidateChange, Catalog, LegacyCandidate, PlanContents, PlanDoc, PlanItem, ProgramTemplate, ReqSection, Schedule,
 } from "@psu-planner/engine";
-import { buildItems, buildSchedule } from "@psu-planner/engine";
+import { buildItems, buildSchedule, contentsOf } from "@psu-planner/engine";
 // TYPE ONLY, and that matters: `@connector/tools.js` imports `node:fs` at
 // the top level, so a value import of it would drag Node into the browser
 // bundle. Types are erased, and the context shape is what has to agree.
@@ -55,39 +46,6 @@ export interface PlannerSnapshot {
   catalog: Catalog;
   items: PlanItem[];
   sched: Schedule;
-}
-
-/** The plan a Candidate's changes leave behind, ready to draw. */
-export interface CandidateDrawing {
-  /** Which what-if this is, so a view that is not the rail can say so —
-     a screen-reader user in the list view has no tab to look at. */
-  name: string;
-  plan: PlanDoc;
-  items: PlanItem[];
-  sched: Schedule;
-  /** Courses or Programs this what-if takes out of the degree.
-   *
-   * TOLD, NOT REFUSED (#59). Keeping this is the student's own click on
-   * their own plan — the same one the course card already takes — so it
-   * is allowed. What they must not do is discover the cost afterwards,
-   * so the rail states it before they choose. The name is the connector's
-   * own (`runChanges` computes it); what changed is what the planner does
-   * with the answer. */
-  needsConsent: string[];
-}
-
-/** Why a Candidate cannot be drawn, in the connector's own words.
- *
- * NO PARTIAL PLAN COMES WITH THIS. A tab showing the plan as it stood after
- * three of five changes is a plan nobody asked for, offered as the answer
- * to a question about five. The rule is `simulate_changes`'s and this is
- * the same refusal object, so the sentence a student reads on a tab is the
- * sentence their assistant would have read. */
-export interface CandidateRefusal {
-  reason: string;
-  nothingChanged: string;
-  /** Which change stopped it, counted the way a person reads a list. */
-  position: string | null;
 }
 
 /** A program file as the pipeline writes it. Only the parts the connector
@@ -229,16 +187,6 @@ async function editionCatalog(
   };
 }
 
-/** Read the refusal the connector built into the words a tab shows. */
-function refusalFrom(refused: Record<string, unknown>): CandidateRefusal {
-  const stopped = refused.stopped_at as { position?: string } | undefined;
-  return {
-    reason: String(refused.reason ?? refused.error ?? "This what-if cannot be worked out from your plan as it stands."),
-    nothingChanged: String(refused.nothing_changed ?? "Your plan has not been changed."),
-    position: stopped?.position ?? null,
-  };
-}
-
 /** Build the context the connector's tools work on, over the Plan the
  * planner is holding.
  *
@@ -267,152 +215,23 @@ async function contextFor(
   };
 }
 
-/** The plan this Candidate's changes would leave, recomputed against the
- * Plan as it stands RIGHT NOW.
+/** The copy a what-if stored as changes comes to, against the Plan as it
+ * stands: its contents, or `null` where a change can no longer be made.
  *
- * Never replayed from a snapshot: that is what stops a tab going stale into
- * a lie. If the student edited their plan after saving the what-if, the tab
- * shows the what-if applied to the plan they actually have. */
-export async function drawCandidate(
+ * NO PARTIAL COPY. A what-if that got through three of its five changes is
+ * a plan nobody asked for; the caller is told there is none and decides
+ * what the student keeps (a copy of their Plan under the what-if's name,
+ * and a sentence saying so).
+ *
+ * THROWS if the catalog will not load. That is not a verdict about the
+ * what-if, and the caller must not treat it as one. */
+export async function convertLegacyCandidate(
   snap: PlannerSnapshot,
-  candidate: Candidate,
-): Promise<{ drawn: CandidateDrawing } | { refused: CandidateRefusal }> {
+  candidate: LegacyCandidate,
+): Promise<PlanContents | null> {
   const { runChanges, sandbox } = await import("@connector/sandbox.js");
   const ctx = await contextFor(snap, candidate.changes);
   const run = await runChanges(sandbox(ctx), candidate.changes);
-  if ("refused" in run) return { refused: refusalFrom(run.refused as Record<string, unknown>) };
-
-  const plan = run.after.plan!;
-  const catalog = run.after.data.catalog;
-  const items = buildItems(plan, catalog);
-  return {
-    drawn: {
-      name: candidate.name,
-      plan,
-      items,
-      sched: buildSchedule(plan, items, catalog),
-      needsConsent: run.needsConsent,
-    },
-  };
-}
-
-/** One more change on the end of a Candidate's list — tried first, and
- * only handed back if the what-if still draws.
- *
- * THE EDIT PATH (#59). A student editing inside a what-if is adding to
- * ITS change list, never mutating a copy of the Plan: that is what keeps
- * a Candidate recomputable, small, and keepable through the ordinary
- * mutation path with the revision check intact. Storing the mutated
- * document instead would reintroduce exactly what #56 refused.
- *
- * TRIED BEFORE IT IS STORED, because one impossible edit must not brick
- * the tab. The change runs against the plan the what-if currently leaves
- * behind; if the connector refuses it, nothing is appended and the
- * student is told in the connector's own words — the same sentence their
- * assistant would have read.
- *
- * The caller does the storing: this module does not reach into the
- * store, for the same reason `keepCandidate` does not. */
-export async function appendChange(
-  snap: PlannerSnapshot,
-  candidate: Candidate,
-  change: CandidateChange,
-): Promise<{ drawn: CandidateDrawing } | { refused: CandidateRefusal }> {
-  const { MAX_CHANGES } = await import("@connector/sandbox.js");
-  if (candidate.changes.length >= MAX_CHANGES) {
-    // The connector's own ceiling, read from the connector rather than
-    // written down twice: every change re-runs the optimiser over the
-    // whole plan, and a list past this is a tab that takes longer to draw
-    // than the student will wait.
-    return {
-      refused: {
-        reason:
-          `This what-if already has ${candidate.changes.length} changes, which is as many as one ` +
-          "holds — each change re-runs your whole plan.",
-        nothingChanged:
-          "Your plan has not been changed. Keep this what-if, or start another one for the rest.",
-        position: null,
-      },
-    };
-  }
-  return drawCandidate(snap, { ...candidate, changes: [...candidate.changes, change] });
-}
-
-/** What happened when a Candidate was kept. */
-export interface KeptResult {
-  /** How many of the changes landed. Reported even on a refusal, because a
-   * change that lands and one that does not are both facts about the
-   * student's plan and only one of them is visible. */
-  applied: number;
-  of: number;
-  refused: CandidateRefusal | null;
-}
-
-/** Keep a Candidate: replay its changes through the ORDINARY mutation path,
- * against the revision the Plan is at now.
- *
- * NOT AN INSTALL OF THE DRAWN DOCUMENT, and that is the whole reason a
- * Candidate stores changes. Writing the plan the tab was showing would
- * overwrite whatever the student or their assistant did in the meantime;
- * replaying the calls means each one names the revision it was computed
- * from and is refused rather than allowed to overwrite them (ADR 0003).
- *
- * `write` is the compare-and-swap. It is handed in so this module does not
- * reach into the store, and so the swap is against the LIVE plan rather
- * than against the copy this function started with.
- *
- * A DRY RUN FIRST. The changes are run in a sandbox before any of them is
- * written, so the ordinary "this is no longer possible" case costs nothing
- * and leaves the plan alone. What survives that is a genuine race — another
- * tab or the assistant writing between two of our calls — and the count is
- * reported rather than rounded to "done". */
-export async function keepCandidate(
-  snap: PlannerSnapshot,
-  candidate: Candidate,
-  write: (plan: PlanDoc, baseRev: number) => Promise<"written" | "stale">,
-): Promise<KeptResult> {
-  const total = candidate.changes.length;
-  const { runChanges, sandbox } = await import("@connector/sandbox.js");
-  const ctx = await contextFor(snap, candidate.changes);
-
-  const dry = await runChanges(sandbox(ctx), candidate.changes);
-  if ("refused" in dry) {
-    return { applied: 0, of: total, refused: refusalFrom(dry.refused as Record<string, unknown>) };
-  }
-
-  // THE REAL PATH, with a real store behind it.
-  //
-  // A WHAT-IF THAT REMOVES A COURSE MAY BE KEPT (#59), and this flag is
-  // where that decision lives. The consent gate demands the student's own
-  // words because a MODEL can claim they asked; the caller here is the
-  // student, pressing "keep this one" in their own browser, and the
-  // planner already lets them drop a Course with one click on its card.
-  // Refusing it from a tab was inherited from the hosted path, not
-  // decided — and a product that refuses from one tab what it permits on
-  // the next erodes trust in the refusal itself.
-  //
-  // NOTHING ABOUT THE HOSTED GATE MOVES. `byTheStudent` is set here, in
-  // the browser, and nowhere in the connector; over the wire
-  // `remove_course` still requires `user_explicitly_asked` and
-  // `student_words`, still rejects model narration, and still echoes the
-  // quote. What the student is told BEFORE this — `needsConsent` on the
-  // tab — is the warning, and it stays.
-  let applied = 0;
-  const live: ToolContext = {
-    ...ctx,
-    byTheStudent: true,
-    store: {
-      read: async () => ({ plan: live.plan!, rev: live.rev ?? 0, updatedAt: live.updatedAt ?? "" }),
-      write: async (next: PlanDoc, baseRev: number) => {
-        const outcome = await write(next, baseRev);
-        if (outcome === "written") applied++;
-        return outcome;
-      },
-    } satisfies PlanStore,
-  };
-  const real = await runChanges(live, candidate.changes);
-  if ("refused" in real) {
-    return { applied, of: total, refused: refusalFrom(real.refused as Record<string, unknown>) };
-  }
-  return { applied, of: total, refused: null };
+  if ("refused" in run) return null;
+  return contentsOf(run.after.plan!);
 }

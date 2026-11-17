@@ -64,13 +64,14 @@ export async function executeTool(name: string, args: Record<string, unknown>): 
   const plan = s.plan;
   if (!plan) return { error: "no plan exists yet — the student must complete onboarding first" };
 
-  /* NOT WHILE A WHAT-IF IS OPEN (#59). With a tab open the planner routes
-     the student's OWN edits into that what-if's change list, and these
-     tools write the real plan — so a model editing here would change the
-     plan the student is comparing against while they watch a different
-     one. Refused by name rather than quietly redirected: a change the
-     model believes it made to the degree, made somewhere else instead, is
-     a worse answer than "not now". */
+  /* NOT WHILE A WHAT-IF IS OPEN (#59, kept through #69). With a tab open
+     the plan in view is the what-if's copy, so these tools would write
+     THAT, while the model believes it is changing the student's degree.
+     And the advisor's undo puts back the plan it read before a turn, which
+     with a tab open is the what-if: undone, it would install a sketch as
+     the degree. Refused by name rather than quietly redirected: a change
+     the model believes it made to the degree, made somewhere else instead,
+     is a worse answer than "not now". */
   if (s.candidateId && WRITES.has(name)) {
     const open = (plan.candidates ?? []).find((c) => c.id === s.candidateId);
     return {

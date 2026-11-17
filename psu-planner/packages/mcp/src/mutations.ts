@@ -44,7 +44,9 @@ import {
   type RemoveProgramPreview,
   type SwapCarry,
   type Candidate,
+  CANDIDATE_NAME_MAX,
   MAX_CANDIDATES,
+  contentsOf,
   type PlanDoc,
   type PlanItem,
   type ScheduleConstraint,
@@ -428,25 +430,19 @@ export async function executeMutation(
     }
 
     /* A what-if the student can LOOK AT, in the chart they already know
-     * how to read (#56).
+     * how to read (#56), and edit like any plan (#69).
      *
-     * WHAT IS SAVED IS THE LIST OF CHANGES, never the plan they would
-     * produce. Storing the resulting document would mean keeping a
-     * Candidate installs a decision made against a plan that may have
-     * moved since, which is exactly what ADR 0003 refuses — and it is
-     * the objection `simulate_changes` raises when it says there is no
-     * preview to apply later. Storing the changes answers that objection
-     * rather than overriding it: the planner re-runs them against the
-     * plan as it stands to draw the tab, and "keep this one" replays the
-     * calls through the ordinary mutation path with the revision check
-     * intact.
-     *
-     * So the narrowing is specific. A preview may now be stored and
-     * re-shown. It may still never be APPLIED from storage.
+     * WHAT IS SAVED IS A COPY of the student's plan with these changes
+     * made in it. It used to be the list of changes, re-run every time the
+     * tab was opened; the owner reversed that (#69, docs/adr/0006): a
+     * what-if is independent of the plan from the moment it is made, so
+     * the list is applied ONCE, here, and what is stored is what it came
+     * to. The student's plan is not written by this, and an assistant
+     * still cannot apply a what-if: keeping one is the student's own click
+     * in the planner, and there is no tool for it.
      *
      * NOTHING IS DRAWN HERE. The answer says what was created and where
-     * the student will find it; the picture is the planner's job, which
-     * is the whole point of the ticket. */
+     * the student will find it; the picture is the planner's job. */
     case "save_candidate": {
       const candidateName = typeof args.name === "string" ? args.name.trim() : "";
       if (!candidateName) {
@@ -461,9 +457,9 @@ export async function executeMutation(
       // Long enough to be a sentence fragment, short enough to be a tab.
       // MEASURED against the rail: 200px at the planner's label size fits
       // roughly 40 characters before it wraps to a third line.
-      if (candidateName.length > 40) {
+      if (candidateName.length > CANDIDATE_NAME_MAX) {
         return {
-          error: `That name is ${candidateName.length} characters, and a tab shows about 40.`,
+          error: `That name is ${candidateName.length} characters, and a tab shows about ${CANDIDATE_NAME_MAX}.`,
           remedy: "Name it after what it is, not what it does to each term.",
         };
       }
@@ -488,7 +484,7 @@ export async function executeMutation(
         return {
           error:
             `The student already has ${already.length} what-ifs, which is the most a plan holds — ` +
-            "each open tab re-runs the whole plan, and a rail nobody can read is not a comparison.",
+            "each is a whole copy of their plan, and a rail nobody can read is not a comparison.",
           candidates: already.map((c) => c.name),
           remedy:
             "Ask them which of these they have finished with, and tell them to close it on the " +
@@ -496,12 +492,10 @@ export async function executeMutation(
         };
       }
 
-      // COMPUTABLE NOW, OR NOT SAVED. A Candidate that cannot be run
-      // against the plan it is being saved against is a tab that would
-      // open on an error the moment it was made — and the student would
-      // have been told their option was saved. The same sandbox and the
-      // same runner the planner will use to draw it, so the answer here
-      // and the answer there cannot differ.
+      // APPLIED NOW, TO A COPY, OR NOT SAVED. The changes run in a
+      // sandbox over the student's plan as it stands; what they leave
+      // behind is what is stored. One change that cannot be made refuses
+      // the whole save, with the reason: no partial what-if, ever.
       const trial = await runChanges(sandbox(ctx), changes);
       if ("refused" in trial) {
         return {
@@ -524,16 +518,11 @@ export async function executeMutation(
         // stable without a sort key.
         id: `c${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`,
         name: candidateName,
-        // STRIPPED OF `based_on_revision`. Every mutation requires it over
-        // the wire, but freezing one into storage would make this what-if
-        // refuse itself the moment the student edited anything — and a
-        // Candidate is recomputed against the plan as it stands, which is
-        // the entire reason it stores changes at all.
-        changes: changes.map((c) => {
-          const { based_on_revision: _computedFrom, ...rest } = c.arguments;
-          return { tool: c.tool, arguments: rest };
-        }),
-        basedOnRev: heldRev(ctx),
+        // THE COPY: the plan the sandbox was left with, without its
+        // identity, its revision or the what-ifs beside it. The student's
+        // plan is not in it by reference anywhere; from here the two do
+        // not affect each other.
+        plan: contentsOf(trial.after.plan!),
         createdAt: new Date().toISOString(),
       };
 
@@ -552,33 +541,34 @@ export async function executeMutation(
         candidate: {
           id: candidate.id,
           name: candidate.name,
-          changes: candidate.changes.length,
-          computed_from_revision: candidate.basedOnRev,
+          changes: changes.length,
+          computed_from_revision: heldRev(ctx),
         },
         // SAID RATHER THAN IMPLIED. `ok: true` on a tool whose name
         // starts with "save" is the one thing a model could read as "the
         // plan now has these changes in it".
         applied: false,
         nothing_changed:
-          "The student's plan is unchanged. This saved the what-if as a tab beside it; the " +
-          "changes happen only if they choose to keep it.",
+          "The student's plan is unchanged. This saved a what-if as a tab beside it: a copy of " +
+          "their plan with these changes made in the copy. The copy is theirs to edit, and it and " +
+          "the plan no longer affect each other. It becomes their plan only if they choose to keep it.",
         where_to_find_it:
           `It is on the left of the planner as a tab called "${candidate.name}". Tell them to ` +
           "click it to see their plan with these changes in it — do not describe the plan or " +
           "draw it yourself, the chart there is the one they already know how to read.",
         ...(trial.needsConsent.length
           ? {
-              // SAID, NOT REFUSED (#59). Nothing is removed from anyone's
-              // degree by looking at a what-if, and the student MAY keep
-              // this one — it is their own plan and their own click, the
-              // same one the planner already takes on a course card. What
-              // they must not do is find that out afterwards, so the tab
-              // states what keeping takes out before they choose.
+              // SAID, NOT REFUSED (#59, #69). Nothing is removed from
+              // anyone's degree by looking at a what-if, and the student
+              // MAY keep this one: it is their own plan and their own
+              // click. What they must not do is find the cost out
+              // afterwards. Keeping swaps the what-if with their plan, so
+              // the plan they had stays beside it as a what-if.
               keeping_it_removes: trial.needsConsent,
               before_they_keep_it:
                 `Keeping this takes ${andList(trial.needsConsent)} out of their degree. Tell them ` +
-                "that now, so they are choosing with the cost in front of them. The planner says " +
-                "the same thing on the tab, and removing stays reversible.",
+                "that now, so they are choosing with the cost in front of them. The plan they have " +
+                "now is kept as a what-if when they do, so they can go back.",
             }
           : {}),
       };
@@ -707,13 +697,11 @@ export async function executeMutation(
       // flag to answer them would teach a model to assert consent on a
       // read — the exact assertion this gate exists to make expensive.
       // The simulation reports that consent will be needed instead.
-      // NOT ASKED OF THE STUDENT THEMSELVES (#59). `byTheStudent` is set
-      // only by the planner in the student's own browser, where the caller
-      // IS the person whose degree this is — the same click `removeItem`
-      // already takes with no quote at all. The gate exists against a
-      // model asserting consent on their behalf, and that is still the
-      // only path it stands in.
-      if (wasRequired && !ctx.simulating && !ctx.byTheStudent) {
+      // Asked of every caller that is not a simulation. There was once a
+      // way past it for the planner replaying a what-if the student kept
+      // (#59); a what-if is a copy now and keeping one is a swap that
+      // calls nothing here (#69), so the way past is gone.
+      if (wasRequired && !ctx.simulating) {
         // The model cannot grant itself this. A catalog description it read
         // is not the student speaking (DECISIONS.md 5.0, S4).
         const refusal = consentProblem(args);
@@ -793,14 +781,7 @@ export async function executeMutation(
         // that a student said this — but a fabricated quote sitting in
         // the transcript beside a dropped requirement is something they
         // can find, and an unverifiable claim nobody ever sees is not.
-        // A STUDENT'S OWN CLICK IS REPORTED AS WHAT IT WAS, not as an
-        // empty quote. `String(undefined ?? "")` is "", which reads in a
-        // transcript as a removal justified by nothing said at all.
-        on_the_strength_of: wasRequired
-          ? ctx.byTheStudent
-            ? "the student kept a what-if containing this removal, in their own planner"
-            : String(args.student_words ?? "")
-          : undefined,
+        on_the_strength_of: wasRequired ? String(args.student_words ?? "") : undefined,
         plan: planView(ctx, plan()),
       };
     }
@@ -1138,10 +1119,7 @@ export async function executeMutation(
       // happen if I dropped my minor?" has not agreed to drop it, and
       // requiring the flag to answer them would teach a model to assert
       // consent on a read.
-      // Not asked of the student themselves either (#59): `byTheStudent`
-      // is the planner in their own browser, which is the same one-click
-      // drop `removeProgramNow` already offers on the Programs panel.
-      if (!ctx.simulating && !ctx.byTheStudent) {
+      if (!ctx.simulating) {
         const refusal = consentProblem(args);
         if (refusal) {
           return {
@@ -1213,9 +1191,7 @@ export async function executeMutation(
         // including the quote. What is real is that a fabricated one now
         // sits in the transcript beside a dropped degree, where the
         // student can find it.
-        on_the_strength_of: ctx.byTheStudent
-          ? "the student kept a what-if containing this removal, in their own planner"
-          : String(args.student_words ?? ""),
+        on_the_strength_of: String(args.student_words ?? ""),
         note: dropped!.note,
         plan: planView(ctx, plan()),
       };

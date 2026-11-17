@@ -20,28 +20,16 @@ interface DragState {
 
 export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void }) {
   const {
-    plan: myPlan, catalog, items: myItems, sched: mySched, candidateView,
+    plan, catalog, items, sched, candidateId,
     mutatePlan, moveItem, addTerm, deleteTerm, restoreTerm,
   } = usePlanner();
-  /* THE SAME CHART, DRAWING A DIFFERENT PLAN. A Candidate tab is not a
-     second renderer — it is this one, handed the plan its changes leave
-     behind. That is the whole point of #56: the student looks at a what-if
-     in the chart they already know how to read.
-
-     AND EDITABLE (#59). A tab the student made to experiment in is the
-     wrong place for read-only: #56 chose it when an assistant was the
-     only author, and the result was a chart you could look at and not
-     think in. What makes it safe is not the affordances being gone, it
-     is the STORE knowing which plan is being edited — every control
-     below goes through an action that appends to the what-if's change
-     list and does not write the real plan. Two things stay out: the
-     course detail card, which carries edits no single change expresses
-     (a prerequisite override has no tool at all), and the pan/zoom
-     below, which is a preference belonging to the student's own plan. */
-  const inCandidate = !!candidateView;
-  const plan = candidateView?.plan ?? myPlan;
-  const items = candidateView?.items ?? myItems;
-  const sched = candidateView?.sched ?? mySched;
+  /* THE SAME CHART, DRAWING THE PLAN IN VIEW. A what-if's tab is not a
+     second renderer: the store's `plan` IS the what-if's copy while its tab
+     is open (#69), so this draws it and every control below edits it, the
+     detail card included. Nothing here has to ask which tab is open, except
+     to say so to a screen reader. */
+  const whatIf = candidateId ? (plan?.candidates ?? []).find((c) => c.id === candidateId) : undefined;
+  const inCandidate = !!whatIf;
   const vpRef = useRef<HTMLDivElement>(null);
   const [view, setView] = useState(plan?.view ?? { x: 0, y: 0, k: 0.86 });
   const [drag, setDrag] = useState<DragState | null>(null);
@@ -89,11 +77,8 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
   }, [items.length > 0]);
 
   const persistView = (v: typeof view) => {
-    // The pan and zoom belong to the student's plan, and a what-if is not
-    // it. Panning around a tab must not write to the document underneath
-    // — and there is no change that says "I scrolled", so this is not
-    // something the what-if can hold either. Looking around stays free.
-    if (inCandidate) return;
+    // Each tab keeps its own pan and zoom: a what-if is a copy, and where
+    // the student was looking in it is part of what it holds.
     mutatePlan((p) => { p.view = v; });
   };
 
@@ -171,9 +156,7 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
     const it = items.find((x) => x.id === d.id);
     setCardOffset(null);
     if (!d.moved) {
-      // A tap inside a what-if opens nothing: the detail card's controls
-      // are the real plan's. Moving the card is the edit a what-if takes.
-      if (it && !inCandidate) onOpenItem(it);
+      if (it) onOpenItem(it);
       return;
     }
     if (it && cardOffset) {
@@ -220,8 +203,8 @@ export function PlanCanvas({ onOpenItem }: { onOpenItem: (it: PlanItem) => void 
     <div
       ref={vpRef}
       className={`viewport${drag?.type === "pan" ? " panning" : ""}${inCandidate ? " candidate" : ""}`}
-      aria-label={candidateView ? `What-if "${candidateView.name}" — editing the what-if, not your plan` : undefined}
-      role={candidateView ? "region" : undefined}
+      aria-label={whatIf ? `What-if "${whatIf.name}" — editing the what-if, not your plan` : undefined}
+      role={whatIf ? "region" : undefined}
       onWheel={onWheel}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}

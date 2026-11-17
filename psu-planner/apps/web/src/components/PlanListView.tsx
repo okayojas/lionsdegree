@@ -26,19 +26,14 @@ const STATUS_TEXT: Record<string, string> = {
 
 export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => void }) {
   const {
-    plan: myPlan, catalog, items: myItems, sched: mySched, candidateView,
+    plan, catalog, items, sched, candidateId,
+
     moveItem, addTerm, deleteTerm, restoreTerm,
   } = usePlanner();
-  /* A what-if is readable here too, or the feature would be mouse-only for
-     the one view that is not — and EDITABLE here too (#59), or making one
-     would be. The controls that stay out are the ones that edit the real
-     plan: Details opens a card carrying Remove, Mark complete and a
-     prerequisite override, none of which a change list can hold. The
-     moves and the term controls are routed to the what-if's own list. */
-  const inCandidate = !!candidateView;
-  const plan = candidateView?.plan ?? myPlan;
-  const items = candidateView?.items ?? myItems;
-  const sched = candidateView?.sched ?? mySched;
+  /* A what-if is readable and editable here too, or the feature would be
+     mouse-only for the one view that is not. The store's `plan` is the
+     plan in view (#69), so there is nothing to choose between. */
+  const whatIf = candidateId ? (plan?.candidates ?? []).find((c) => c.id === candidateId) : undefined;
 
   /** Which move control was last activated, so focus can be put back on it.
    *
@@ -89,8 +84,8 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
       className="listview"
       role="region"
       aria-label={
-        candidateView
-          ? `What-if "${candidateView.name}", list view — editing the what-if, not your plan`
+        whatIf
+          ? `What-if "${whatIf.name}", list view — editing the what-if, not your plan`
           : "Degree plan, list view"
       }
     >
@@ -155,9 +150,7 @@ export function PlanListView({ onOpenItem }: { onOpenItem: (it: PlanItem) => voi
                           control that silently edits the other plan is worse
                           than a missing one. The moves below are routed to the
                           what-if and stay. */}
-                      {!inCandidate && (
-                        <button onClick={() => onOpenItem(it)} aria-label={`Details for ${label}`}>Details</button>
-                      )}
+                      <button onClick={() => onOpenItem(it)} aria-label={`Details for ${label}`}>Details</button>
                       <button
                         data-move={`${it.id}:-1`}
                         onClick={() => move(it, -1)}

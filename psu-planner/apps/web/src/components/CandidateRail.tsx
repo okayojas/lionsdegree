@@ -31,15 +31,28 @@
  * toolbar's view toggle already uses, and it keeps every control reachable
  * by Tab rather than behind arrow keys.
  */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePlanner } from "../store";
 import { PHONE_QUERY, useMediaQuery } from "../hooks/useMediaQuery";
+import { CANDIDATE_NAME_MAX, candidatesOf, contentsOf } from "@psu-planner/engine";
+import { loadProgramsIndex } from "../data/catalogClient";
+import { differenceFrom, shapeOf } from "../data/whatIfDifference";
 
 export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
   const {
-    plan, candidateId, candidateBusy, candidateRefusal, candidateView,
+    plan, catalog, candidateId, home,
     showCandidate, keepCandidate, deleteCandidate, newCandidate, renameCandidate,
   } = usePlanner();
+  /** What each Program is called, for the line that says how a what-if
+   * differs. A slug until the names arrive, never a blank. */
+  const [programNames, setProgramNames] = useState<Record<string, string>>({});
+  useEffect(() => {
+    let live = true;
+    void loadProgramsIndex()
+      .then((index) => { if (live) setProgramNames(Object.fromEntries(index.map((e) => [e.slug, e.name]))); })
+      .catch(() => { /* the slugs stand in */ });
+    return () => { live = false; };
+  }, []);
   const phone = useMediaQuery(PHONE_QUERY);
   // ON A PHONE THE RAIL IS NOT A RAIL. At 412px the planner has no 200px
   // to give away, so it starts as one control that opens the list — and
@@ -48,8 +61,20 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
   /** Which what-if is being renamed, and what has been typed so far. */
   const [renaming, setRenaming] = useState<{ id: string; text: string } | null>(null);
 
-  const candidates = plan?.candidates ?? [];
+  // Copies only. One stored the old way is converted when the Plan loads
+  // (store.ts); until then it is not something a tab could show.
+  const candidates = candidatesOf(plan);
   if (!plan) return null;
+
+  /* HOW EACH ONE DIFFERS FROM THE PLAN, worked out here and now from the two
+     as they are. The Plan's own contents are `home` while a what-if is in
+     view, and the plan in view otherwise; the open what-if's are the plan
+     in view, which is ahead of the copy on the list by whatever has been
+     edited since it was opened. */
+  const nameOf = (slug: string): string => programNames[slug] ?? slug;
+  const mine = shapeOf(home ?? contentsOf(plan), catalog);
+  const differs = (id: string, stored: Parameters<typeof shapeOf>[0]): string =>
+    differenceFrom(mine, shapeOf(id === candidateId ? contentsOf(plan) : stored, catalog), nameOf);
 
   const none = candidates.length === 0;
   const expanded = none || !phone || open;
@@ -101,16 +126,6 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
         )}
         {candidates.map((c) => {
           const on = candidateId === c.id;
-          /* WHAT KEEPING TAKES OUT, SAID BEFORE THEY CHOOSE (#59).
-             This used to be a refusal: keeping a what-if that drops a
-             required Course or a Program was blocked, because that
-             removal wants the student's own words and a button is not a
-             quote. The gate is against a MODEL claiming a student asked;
-             the student pressing this is the same person making the same
-             one-click removal the course card already allows, so the
-             planner stops refusing and starts telling. Removing is still
-             reversible — Menu → Removed items, and plan history. */
-          const removes = on ? (candidateView?.needsConsent ?? []) : [];
           return (
             <li key={c.id} className={`rail-item${on ? " on" : ""}`}>
               <button
@@ -122,36 +137,15 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
               >
                 <span className="rail-kind">What-if</span>
                 <span className="rail-name">{c.name}</span>
-                <span className="rail-meta">
-                  {c.changes.length} change{c.changes.length === 1 ? "" : "s"}
-                  {on && candidateBusy ? " · working it out…" : ""}
-                  {on && candidateRefusal ? " · can't be worked out" : ""}
-                </span>
+                <span className="rail-meta">{differs(c.id, c.plan)}</span>
               </button>
-              {on && candidateView && (
-                /* SAID IN WORDS, because a what-if is editable now and the
-                   chart under it looks exactly like the student's plan.
-                   The one outcome worth ruling out is an edit they believe
-                   is going to their degree. */
+              {on && (
+                /* SAID IN WORDS, because the chart under a what-if looks
+                   exactly like the student's plan. The one outcome worth
+                   ruling out is an edit they believe is going to their
+                   degree. */
                 <p className="rail-editing" role="status">
                   Editing this what-if. Your plan is untouched.
-                </p>
-              )}
-              {on && candidateRefusal && (
-                /* SAID ON THE TAB, AND NOTHING IS DRAWN. A what-if whose
-                   change has stopped being possible must not be rendered as
-                   a partial plan — the words are the connector's own, so a
-                   student reads the same sentence here as their assistant
-                   would have read. */
-                <p className="rail-problem" role="status">
-                  {candidateRefusal.position ? `${candidateRefusal.position}: ` : ""}
-                  {candidateRefusal.reason} {candidateRefusal.nothingChanged}
-                </p>
-              )}
-              {on && removes.length > 0 && (
-                <p className="rail-problem" role="status">
-                  Keeping this takes {removes.join(", ")} out of your degree. You can put a course
-                  back from Menu → Removed items.
                 </p>
               )}
               {renaming?.id === c.id ? (
@@ -171,7 +165,7 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
                     id={`rename-${c.id}`}
                     type="text"
                     value={renaming.text}
-                    maxLength={40}
+                    maxLength={CANDIDATE_NAME_MAX}
                     autoFocus
                     onChange={(e) => setRenaming({ id: c.id, text: e.target.value })}
                     onKeyDown={(e) => { if (e.key === "Escape") setRenaming(null); }}
@@ -186,7 +180,6 @@ export function CandidateRail({ onToast }: { onToast: (msg: string) => void }) {
                   {on && (
                     <button
                       type="button"
-                      disabled={!candidateView}
                       aria-label={`Keep "${c.name}" as your plan`}
                       onClick={async () => onToast(await keepCandidate(c.id))}
                     >

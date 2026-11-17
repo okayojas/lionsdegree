@@ -216,56 +216,64 @@ export interface PlanDoc {
   view: { x: number; y: number; k: number } | null;
 }
 
-/** One change a Candidate proposes: a named plan tool and its arguments.
+/** One change to a Plan, as a named plan tool and its arguments.
  *
- * The same shape `simulate_changes` takes, deliberately — a Candidate is a
- * preview the student kept, so the two cannot be allowed to describe a
- * change differently. */
+ * The shape `simulate_changes` and `save_candidate` take. A what-if no
+ * longer STORES these (#69): an assistant's list is applied once, to a copy,
+ * when the what-if is saved. The type stays for that list, and for reading
+ * what-ifs stored before the change. */
 export interface CandidateChange {
   tool: string;
   arguments: Record<string, unknown>;
 }
 
-/** A what-if: a named list of CHANGES, never the plan they would produce.
+/** Everything a Plan holds except its identity, its Revision and the
+ * what-ifs beside it: what a what-if is a copy of. */
+export type PlanContents = Omit<PlanDoc, "id" | "rev" | "updatedAt" | "candidates">;
+
+/** A what-if: a named, independent COPY of a Plan's contents.
  *
- * THE DECISION THE WHOLE FEATURE TURNS ON. Storing the resulting document
- * would mean "keep this one" installs a decision made against a plan that
- * has since moved, which is exactly what the compare-and-swap in ADR 0003
- * exists to refuse. Storing the changes answers that objection instead of
- * overriding it: the Candidate is re-run against the Plan as it stands to
- * draw it, and keeping it replays the calls through the ordinary mutation
- * path with the revision check intact.
+ * THE OWNER'S DECISION (2026-11-16, #69), REVERSING #56. A what-if used to
+ * be a list of changes, re-run against the Plan as it stood, so that it
+ * could not go stale. The price was that it could hold only what could be
+ * replayed: not a change of Program, a summer or a master's degree, which
+ * is the question students most want to ask of one. And it was never
+ * independent: editing the Plan redrew every what-if.
  *
- * So a Candidate cannot go stale into a lie. A change that has stopped
- * being possible is reported on its tab rather than drawn as a partial
- * plan — the rule `simulate_changes` already holds: no partial candidate,
- * ever. */
+ * Now it is a copy. Anything can be changed in it. From the moment it is
+ * made, it and the Plan do not affect each other, and keeping it SWAPS the
+ * two (candidates.ts), so that nothing is destroyed by one click.
+ * docs/adr/0006 has the trade. */
 export interface Candidate {
   /** Stable across re-sorts and renames, so a tab the student has open
    * does not become a different tab when another one is deleted. */
   id: string;
-  /** What it is — "finish in 7 terms", "abroad junior spring" — so the
+  /** What it is, "finish in 7 terms", "abroad junior spring", so the
    * student can tell two of them apart without opening each one. */
   name: string;
+  /** Its own contents. Never a reference to the Plan's: a copy. */
+  plan: PlanContents;
+  createdAt: string;
+}
+
+/** A what-if as it was stored before #69: a list of changes and the
+ * Revision they were worked out against. Read once: the planner replays it
+ * against the Plan as it stands and stores the result as a copy. */
+export interface LegacyCandidate {
+  id: string;
+  name: string;
   changes: CandidateChange[];
-  /** The Revision the changes were computed from.
-   *
-   * PROVENANCE, NOT A GATE. It is shown so a student can see the Candidate
-   * was worked out against an older reading of their plan; it never refuses
-   * anything, because the Candidate is recomputed against the current Plan
-   * rather than replayed against that one. A rule written against this
-   * number would make every Candidate refuse itself the moment the student
-   * edited anything. */
   basedOnRev: number;
   createdAt: string;
+  plan?: undefined;
 }
 
 /** How many Candidates one Plan may hold.
  *
  * The rail is for comparing options a person can hold in their head, and
- * every open tab costs a re-simulation of the whole plan. An unbounded list
- * is also a way for an assistant to fill a student's screen with what-ifs
- * nobody asked for.
+ * each one is a whole copy of the Plan in the one stored document. An
+ * unbounded list is also a way for an assistant to fill a student's screen
+ * with what-ifs nobody asked for.
  *
  * AT THE LIMIT THE NEW ONE IS REFUSED, and the refusal names what is
  * already there. Dropping the oldest silently would delete a comparison the

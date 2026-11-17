@@ -28,3 +28,7 @@ export { discover, sharedCredits, programSearchText, type Combination, type Prog
 export { unrecordPriorCredit, type UnrecordResult } from "./priorCredit.js";
 export { carryCourseRefs, describeCarry, type SwapCarry } from "./swapRefs.js";
 export { declareProgram, withdrawProgram, templateCourseCodes, type DeclareProgramOptions } from "./declareProgram.js";
+export {
+  contentsOf, viewOf, foldView, makeCandidate, keepCandidate, candidatesOf, isLegacyCandidate,
+  nameForReplacedPlan, CANDIDATE_NAME_MAX,
+} from "./candidates.js";

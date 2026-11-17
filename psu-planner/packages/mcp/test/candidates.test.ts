@@ -5,21 +5,20 @@
  * abroad, or both?" is asking a COMPARATIVE question, and nothing held two
  * answers side by side.
  *
- * THE DECISION EVERY TEST HERE IS ABOUT: what gets stored is the list of
- * CHANGES, never the plan they produce. Storing the document would mean
- * keeping a what-if installs a decision made against a plan that may have
- * moved since — the thing the compare-and-swap in ADR 0003 exists to
- * refuse, and the exact objection `simulate_changes` raises when it says
- * there is no preview to apply later. So the assertions below are mostly
- * about what is NOT in the stored plan, and about a what-if and a preview
- * of the same changes being incapable of disagreeing.
+ * THE DECISION EVERY TEST HERE IS ABOUT (#69, reversing #56): what gets
+ * stored is a COPY of the student's plan with the changes made in it. The
+ * changes are applied once, when the what-if is saved, in a sandbox; from
+ * then on the copy and the plan do not affect each other. So the assertions
+ * below are about the copy being what a preview of the same changes shows,
+ * the student's own plan being left alone, and an assistant having no way
+ * to make a what-if the student's plan.
  */
 import { describe, it, expect, beforeEach } from "vitest";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { MAX_CANDIDATES, type Candidate, type PlanDoc } from "@psu-planner/engine";
+import { MAX_CANDIDATES, contentsOf, type Candidate, type PlanDoc } from "@psu-planner/engine";
 import { executeTool, listTools, loadContext, type ToolContext } from "../src/tools.js";
 import { runChanges, sandbox } from "../src/sandbox.js";
 
@@ -52,42 +51,52 @@ const stored = (): Candidate[] =>
 const ONE_CHANGE = [{ tool: "skip_term", arguments: { term_index: 3 } }];
 
 describe("saving a what-if", () => {
-  it("puts it on the student's own plan document, named, with its changes", async () => {
+  it("puts it on the student's own plan document, named, as a copy with the changes made in it", async () => {
     const r = await save({ name: "a term off", changes: ONE_CHANGE });
     expect(r.error, String(r.error)).toBeUndefined();
 
     const on = stored();
     expect(on.length, "nothing was written to the plan").toBe(1);
     expect(on[0].name).toBe("a term off");
-    expect(on[0].changes, "the changes were not what was stored").toEqual([
-      { tool: "skip_term", arguments: { term_index: 3 } },
-    ]);
-    expect(on[0].basedOnRev, "the what-if does not say what it was worked out from").toBe(1);
+    // THE COPY, with the change in it: the term the what-if skips is a gap
+    // there, and is not one on the student's plan.
+    expect(on[0].plan.terms[3]?.gap, "the change is not in the copy").toBe(true);
+    const mine = JSON.parse(fs.readFileSync(planPath, "utf-8")).plan as PlanDoc;
+    expect(mine.terms[3]?.gap, "the change was made to the student's own plan").toBeUndefined();
   });
 
-  it("stores the CHANGES and nothing that looks like a plan", async () => {
-    // THE WHOLE TICKET. A stored `terms` array here would be a plan
-    // document under another name, and keeping it later would overwrite
-    // whatever the student did in the meantime.
+  it("stores what a preview of the same changes shows, and no list of changes", async () => {
+    // ONE APPLIER. The copy is the plan `runChanges` leaves, which is the
+    // plan `simulate_changes` describes: a what-if and a preview of the
+    // same changes cannot disagree, because they are the same run.
+    const trial = await runChanges(sandbox(ctx), ONE_CHANGE);
+    if ("refused" in trial) throw new Error(`the changes refused: ${String(trial.refused.reason)}`);
     await save({ name: "a term off", changes: ONE_CHANGE });
-    const written = JSON.stringify(stored()[0]);
-    expect(written, "a plan document was stored inside the what-if").not.toMatch(/"terms"/);
-    expect(written, "a schedule was stored inside the what-if").not.toMatch(/"slotFills"/);
+    expect(stored()[0].plan, "the copy is not the plan a preview shows").toEqual(contentsOf(trial.after.plan!));
+    // Nothing is left to replay: a what-if is not re-run against anything.
+    expect(stored()[0], "a list of changes was stored with the copy").not.toHaveProperty("changes");
+    expect(stored()[0]).not.toHaveProperty("basedOnRev");
   });
 
-  it("strips the revision out of the stored changes", async () => {
-    // A frozen `based_on_revision` would make this what-if refuse itself
-    // the moment the student edited anything, because it is recomputed
-    // against the plan as it stands rather than replayed against the one
-    // it was worked out from.
-    await save({
-      name: "a term off",
-      changes: [{ tool: "skip_term", arguments: { term_index: 3, based_on_revision: rev() } }],
-    });
-    expect(
-      JSON.stringify(stored()[0].changes),
-      "the what-if froze a revision into its own changes",
-    ).not.toMatch(/based_on_revision/);
+  it("is a copy of the plan's contents only: not its identity, and not the what-ifs beside it", async () => {
+    await save({ name: "first", changes: ONE_CHANGE });
+    await save({ name: "second", changes: ONE_CHANGE });
+    for (const whatIf of stored()) {
+      // A what-if holding the other what-ifs would be plans inside plans.
+      expect(whatIf.plan).not.toHaveProperty("candidates");
+      expect(whatIf.plan).not.toHaveProperty("id");
+      expect(whatIf.plan).not.toHaveProperty("rev");
+    }
+  });
+
+  it("does not move when the student's plan does", async () => {
+    // INDEPENDENT. The plan is edited after the what-if is saved; the
+    // what-if is exactly what it was.
+    await save({ name: "a term off", changes: ONE_CHANGE });
+    const before = JSON.stringify(stored()[0].plan);
+    const edit = (await executeTool("skip_term", { term_index: 5, based_on_revision: rev() }, ctx)) as Record<string, unknown>;
+    expect(edit.error, String(edit.error)).toBeUndefined();
+    expect(JSON.stringify(stored()[0].plan), "editing the plan changed a what-if").toBe(before);
   });
 
   it("says plainly that nothing has been applied, and draws nothing", async () => {
@@ -231,40 +240,6 @@ describe("a what-if and a preview of the same changes", () => {
   });
 });
 
-describe("a what-if the student wrote and one their assistant wrote", () => {
-  it("leave the same plan behind when they hold the same changes", async () => {
-    // TWO AUTHORS, ONE APPLIER (#59). The planner can now build a change
-    // list itself — the `+` makes an empty one and each edit appends to
-    // it — and the thing that stops the two authors drifting is that
-    // neither of them applies anything: both lists go through
-    // `runChanges`. If a student-authored list could produce a different
-    // plan from an identical assistant-authored one, "keep this one"
-    // would mean two different things depending on who typed it.
-    const changes = [
-      { tool: "skip_term", arguments: { term_index: 3 } },
-      { tool: "optimize_schedule", arguments: {} },
-    ];
-    // The assistant's: sent over the wire, each change stating the
-    // revision it was computed from, and stored by `save_candidate`.
-    await save({
-      name: "theirs",
-      changes: changes.map((c) => ({ ...c, arguments: { ...c.arguments, based_on_revision: rev() } })),
-    });
-    const assistants = stored()[0].changes;
-    // The student's: what the planner appends, which never carries a
-    // revision at all.
-    const students = changes;
-    expect(assistants, "the two authors do not even store the same list").toEqual(students);
-
-    const a = await runChanges(sandbox(ctx), assistants);
-    const b = await runChanges(sandbox(ctx), students);
-    if ("refused" in a) throw new Error(`the assistant's what-if refused: ${String(a.refused.reason)}`);
-    if ("refused" in b) throw new Error(`the student's what-if refused: ${String(b.refused.reason)}`);
-    expect(JSON.stringify(b.after.plan!.terms), "the same changes left two different plans")
-      .toBe(JSON.stringify(a.after.plan!.terms));
-  });
-});
-
 describe("keeping a what-if that takes a required course out", () => {
   /** A Course the student's Program requires — the one kind of removal
    * the consent gate stands in front of. */
@@ -288,41 +263,40 @@ describe("keeping a what-if that takes a required course out", () => {
     expect(String(r.error)).toMatch(/student/i);
   });
 
-  it("goes through when the student themselves is the one keeping it", async () => {
-    // THE OWNER'S DECISION (#59). `byTheStudent` is set only by the
-    // planner in the student's own browser, where the caller IS the
-    // person whose degree this is — the same one-click removal the
-    // course card already offers.
+  it("has no way past it: not a flag, not a caller", async () => {
+    // There used to be one. The planner kept a what-if by replaying its
+    // changes through this path, and said so with a flag on the context
+    // (#59). A what-if is a copy now and keeping one is a swap in the
+    // student's own browser that calls nothing here (#69), so the flag is
+    // gone, and with it the one thing a hosted request could ever have
+    // been made to set.
     const code = required();
     const r = (await executeTool(
       "remove_course",
       { code, based_on_revision: rev() },
-      { ...ctx, byTheStudent: true },
+      { ...ctx, byTheStudent: true } as ToolContext,
     )) as Record<string, unknown>;
-    expect(r.error, String(r.error)).toBeUndefined();
-    expect(r.removed).toBe(code);
-    // AND IT SAYS WHAT IT WAS DONE ON THE STRENGTH OF. An empty quote
-    // beside a dropped requirement reads as a removal justified by
-    // nothing said at all.
-    expect(String(r.on_the_strength_of), "the transcript does not say who took it out")
-      .toMatch(/student kept a what-if/i);
-  });
-
-  it("is never something a request over the wire can switch on", async () => {
-    // THE FLAG'S WHOLE SAFETY PROPERTY is that the hosted connector does
-    // not set it. Nothing in this package may assign it: the moment a
-    // worker did, `user_explicitly_asked` would be optional for any model
-    // that knew the field name.
+    expect(r.ok, "a required course came out with no words from the student").toBeUndefined();
+    expect(r.needs_confirmation).toBe(true);
     const src = path.resolve(here, "..", "src");
-    const offenders: string[] = [];
     for (const f of fs.readdirSync(src)) {
       if (!f.endsWith(".ts")) continue;
-      const text = fs.readFileSync(path.join(src, f), "utf-8");
-      // An assignment, not a read: `ctx.byTheStudent` in the gate is the
-      // point of the field.
-      if (/byTheStudent\s*[:=]\s*(true|!)/.test(text)) offenders.push(f);
+      expect(fs.readFileSync(path.join(src, f), "utf-8"), `${f} still reads the flag`).not.toMatch(/byTheStudent/);
     }
-    expect(offenders, `the connector itself sets byTheStudent in ${offenders.join(", ")}`).toEqual([]);
+  });
+
+  it("can be tried in a what-if, which removes nothing from the student's plan", async () => {
+    // A what-if is where a removal is weighed. Saving one that takes a
+    // required Course out is allowed and says what keeping it would cost;
+    // the student's own plan still has the Course.
+    const code = required();
+    const r = await save({ name: "without it", changes: [{ tool: "remove_course", arguments: { code } }] });
+    expect(r.error, String(r.error)).toBeUndefined();
+    expect(r.keeping_it_removes, "the cost of keeping it is not said").toEqual([code]);
+    const mine = JSON.parse(fs.readFileSync(planPath, "utf-8")).plan as PlanDoc;
+    const has = (plan: Pick<PlanDoc, "terms">) => plan.terms.some((term) => term.items.some((i) => "code" in i && i.code === code));
+    expect(has(mine), "saving a what-if took the course out of the student's plan").toBe(true);
+    expect(has(stored()[0].plan), "the what-if still has the course it was made to remove").toBe(false);
   });
 });
 

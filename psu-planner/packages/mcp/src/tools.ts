@@ -74,25 +74,6 @@ export interface ToolContext {
    * on a read, which is precisely the assertion the gate exists to make
    * expensive. */
   simulating?: true;
-  /** These calls were made by the STUDENT, in their own planner, by
-   * pressing a button — not by a model asserting what they asked for.
-   *
-   * SET ONLY IN THE BROWSER (`apps/web/src/data/candidateRun.ts`, where a
-   * what-if is kept). Nothing in this package assigns it, and
-   * `candidate-consent.test.ts` fails if anything ever does: the moment a
-   * hosted request could set it, the consent gate below would be a flag a
-   * model can send.
-   *
-   * WHAT IT IS FOR (#59). Removing a required Course needs the student's
-   * own words BECAUSE A MODEL CAN CLAIM THEY ASKED. A student clicking
-   * "keep this one" in their own browser is not that threat — it is the
-   * same person, the same plan and the same click that `removeItem`
-   * already permits on the next tab along, and refusing it there while
-   * allowing it here left the planner stricter in one place than the
-   * other for no safety bought. The hosted gate is untouched: over the
-   * wire this is never set, so `user_explicitly_asked` and
-   * `student_words` are still required and still echoed. */
-  byTheStudent?: true;
   /** The revision and time the Plan was read at, when it came from a
    * store that knows. Reported by `get_plan`: a model that cannot say
    * how current its view is will imply it is live. */
@@ -632,11 +613,13 @@ function allTools(): ToolDefinition[] {
         "weighing options — \"seven terms, or study abroad, or both?\" — because comparing is " +
         "flipping between tabs, not re-reading two answers. Takes the same changes list as " +
         "simulate_changes plus a short name saying what it is (\"finish in 7 terms\", \"abroad " +
-        "junior spring\"), and saves the CHANGES, not a plan: the planner re-runs them against " +
-        "their plan as it stands, so the tab cannot go stale, and keeping it makes the changes for " +
-        "real with the revision check intact. Their plan is NOT changed by this. It returns no " +
-        "picture on purpose — tell them to look at the tab; anything you draw will be worse than " +
-        "the chart they already have.",
+        "junior spring\"). The changes are made ONCE, in a COPY of their plan, and the copy is " +
+        "what is saved: an independent what-if they can go on editing themselves, which no later " +
+        "change to their plan will alter. If any one change cannot be made, nothing is saved. " +
+        "Their plan is NOT changed by this, and you cannot make it their plan: keeping a what-if " +
+        "is their own click in the planner, which swaps it with their plan and keeps the plan " +
+        "they had as a what-if. It returns no picture on purpose — tell them to look at the tab; " +
+        "anything you draw will be worse than the chart they already have.",
       inputSchema: obj(
         {
           name: str(
@@ -649,8 +632,8 @@ function allTools(): ToolDefinition[] {
             description:
               "The changes this what-if makes, in the order they should happen. Each is " +
               "{ tool, arguments }, exactly as simulate_changes takes them. Do not state " +
-              "based_on_revision inside them: a what-if is recomputed against the plan as it " +
-              "stands each time it is opened.",
+              "based_on_revision inside them: they are all made in one copy, from one reading of " +
+              "the plan.",
             items: obj(
               {
                 tool: str(

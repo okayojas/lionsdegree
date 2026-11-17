@@ -1,18 +1,22 @@
 /** What-if tabs, in a real browser.
  *
- * The point of #56 is that a student can LOOK at a what-if in the chart
- * they already know how to read. That is a claim about pixels and
- * controls, so it is asserted here rather than at the store: that the rail
- * is there with their own plan first, that clicking a tab changes the
- * chart, that a what-if which cannot be worked out draws nothing at all,
- * that deleting one is not a risk to the plan, and that none of it is
- * mouse-only.
+ * A what-if is an independent copy of the student's plan (#69), drawn in the
+ * chart they already know how to read and edited like any plan. That is a
+ * claim about pixels and controls, so it is asserted here rather than at
+ * the store: that the rail is there with their own plan first, that
+ * clicking a tab changes the chart, that keeping one swaps it with the plan
+ * and loses nothing, that deleting one is not a risk to the plan, and that
+ * none of it is mouse-only.
  *
- * The rail is new furniture on the left of the planner, so the width
- * guards from #23 are repeated here with it present. `mobile.spec.ts` and
+ * MOST OF THESE SEED A WHAT-IF THE OLD WAY, as a list of changes, which is
+ * what students have saved from before. The planner converts it to a copy
+ * when it loads, so every test that does is also a test of that.
+ *
+ * The rail is furniture on the left of the planner, so the width guards
+ * from #23 are repeated here with it present. `mobile.spec.ts` and
  * `no-horizontal-overflow.spec.ts` both run against a plan with no
- * what-ifs on it, where the rail is not in the DOM at all — so neither of
- * them would have noticed a rail that pushed the chart off the screen.
+ * what-ifs on it, so neither of them would have noticed a rail that pushed
+ * the chart off the screen.
  */
 import { SEEDED_PLAN, test, expect, expectNoA11yViolations } from "./fixtures";
 import type { Page } from "@playwright/test";
@@ -118,12 +122,11 @@ test.describe("the rail of what-ifs", () => {
       "the tab drew a plan with the change missing from it",
     ).toBeVisible();
 
-    // EDITABLE (#59), and the view says which plan the edits are for.
-    // The move controls are routed to the what-if's change list; Details
-    // is not, because the card it opens carries edits no change
-    // expresses, so it stays out.
+    // EDITABLE, all of it (#69), and the view says which plan the edits
+    // are for. The detail card used to stay out of a what-if, because it
+    // carried edits a list of changes could not hold. A copy holds them.
     await expect(planner.getByRole("button", { name: /one term later/i }).first()).toBeVisible();
-    await expect(planner.getByRole("button", { name: /^Details for/ })).toHaveCount(0);
+    await expect(planner.getByRole("button", { name: /^Details for/ }).first()).toBeVisible();
 
     await openRail(planner);
     await rail(planner).getByRole("button", { name: /Show your own plan/ }).click();
@@ -131,21 +134,24 @@ test.describe("the rail of what-ifs", () => {
     await expect(planner.getByText(/gap term/i)).toHaveCount(0);
   });
 
-  test("says so and draws nothing when a what-if cannot be worked out", async ({ planner }) => {
-    // NO PARTIAL PLAN, EVER. A chart missing the change the student asked
-    // about looks exactly like a plan they could have.
+  test("keeps an old what-if whose changes no longer apply, as a copy of the plan, and says so", async ({ planner }) => {
+    // AN UPDATE MUST NOT DELETE THEIR WORK, and must not show them a
+    // what-if that is not one without saying so. This one was saved as a
+    // change that can no longer be made; it used to draw nothing.
     await withCandidates(planner, [
       candidate("c1", "a course that is gone", ADD_A_COURSE_THAT_IS_NOT_THERE),
     ]);
+    await expect(
+      planner.getByText(/"a course that is gone" was a what-if made of changes that no longer fit your plan/),
+      "the student is not told what became of their what-if",
+    ).toBeVisible({ timeout: 30_000 });
     await openRail(planner);
     await rail(planner).getByRole("button", { name: /Show the what-if "a course that is gone"/ }).click();
-
-    const said = planner.getByRole("region", { name: /cannot be shown/i });
-    await expect(said).toBeVisible({ timeout: 30_000 });
-    await expect(said).toContainText(/NOPE 999/);
-    await expect(planner.locator(".viewport"), "a chart was drawn for a what-if nobody can have")
-      .toHaveCount(0);
-    await expect(planner.locator(".listview")).toHaveCount(0);
+    // A tab like any other: a chart, and the student's own plan in it.
+    await expect(planner.locator(".viewport.candidate")).toBeVisible({ timeout: 30_000 });
+    const now = JSON.parse((await planner.evaluate((k) => window.localStorage.getItem(k), PLAN_KEY))!);
+    expect(now.candidates[0].plan.terms, "the kept what-if is not a copy of the plan").toEqual(now.terms);
+    expect(now.candidates[0], "the old list of changes is still stored").not.toHaveProperty("changes");
   });
 
   test("loses a tab when it is deleted, and the plan is untouched", async ({ planner }) => {
@@ -172,14 +178,16 @@ test.describe("the rail of what-ifs", () => {
     expect(now.completed, "deleting a what-if lost a completed course").toEqual(was.completed);
   });
 
-  test("says what keeping takes out of the degree, and lets them keep it", async ({ planner }) => {
-    /* THE OWNER'S DECISION ON #59, in the browser. This tab used to
-       refuse: dropping a required course wants the student's own words,
-       and a button is not a quote. The gate is against a MODEL claiming
-       they asked — the student pressing Keep is the same person making
-       the same one-click removal the course card already takes. So the
-       rail stops refusing and starts telling, and the telling is what is
-       asserted here: the cost is on screen BEFORE they choose. */
+  /** Every Course code in a plan's Terms. */
+  const codesOf = (plan: { terms: { items: { code?: string }[] }[] }): string[] =>
+    plan.terms.flatMap((t) => t.items.flatMap((i) => (i.code ? [i.code] : [])));
+
+  test("keeping one that takes a course out loses nothing: the plan it replaces is kept as a what-if", async ({ planner }) => {
+    /* THE OWNER'S DECISIONS ON #59 AND #69, in the browser. Keeping a
+       what-if that drops a required course is the student's own click and
+       is allowed. What makes one click safe is that keeping SWAPS: the
+       plan they had is a tab beside the one they kept, with the course
+       still in it. */
     await withCandidates(planner, [
       candidate("c1", "drop ECON 102", [{ tool: "remove_course", arguments: { code: "ECON 102" } }]),
     ]);
@@ -187,38 +195,45 @@ test.describe("the rail of what-ifs", () => {
     await rail(planner).getByRole("button", { name: /Show the what-if "drop ECON 102"/ }).click();
 
     await openRail(planner);
-    const keep = rail(planner).getByRole("button", { name: /Keep "drop ECON 102" as your plan/ });
-    await expect(keep, "keeping a what-if that removes a course is still refused").toBeEnabled({ timeout: 30_000 });
+    await rail(planner).getByRole("button", { name: /Keep "drop ECON 102" as your plan/ }).click();
+    await openRail(planner);
     await expect(
-      rail(planner).getByText(/takes ECON 102 out of your degree/i),
-      "the student is not told what keeping takes out",
-    ).toBeVisible();
+      rail(planner).getByRole("button", { name: /Show the what-if "My plan before drop ECON 102"/ }),
+      "the plan that was replaced is not kept as a what-if",
+    ).toBeVisible({ timeout: 30_000 });
+    await expect(rail(planner).getByRole("button", { name: /^Show the what-if/ })).toHaveCount(1);
+    await expect(planner.getByText(/It's your plan now, and the plan it replaced is the what-if/)).toBeVisible();
 
-    await keep.click();
-    await expect(rail(planner).getByRole("button", { name: /^Show the what-if/ }))
-      .toHaveCount(0, { timeout: 30_000 });
     const now = JSON.parse((await planner.evaluate((k) => window.localStorage.getItem(k), PLAN_KEY))!);
-    const codes = now.terms.flatMap((t: { items: { code?: string }[] }) =>
-      t.items.flatMap((i) => (i.code ? [i.code] : [])));
-    expect(codes, "the course the what-if removes is still in the plan").not.toContain("ECON 102");
+    expect(codesOf(now), "the course the what-if removes is still in the plan").not.toContain("ECON 102");
+    expect(codesOf(now.candidates[0].plan), "the plan that was replaced lost the course").toContain("ECON 102");
   });
 
-  test("becomes the real plan when it is kept", async ({ planner }) => {
+  test("becomes the real plan when it is kept, and the student is looking at it", async ({ planner }) => {
     await withCandidates(planner, [candidate("c1", "a term off", SKIP_A_TERM)]);
     await openRail(planner);
     await rail(planner).getByRole("button", { name: /Show the what-if "a term off"/ }).click();
     await openRail(planner);
 
-    const keep = rail(planner).getByRole("button", { name: /Keep "a term off" as your plan/ });
-    await expect(keep).toBeEnabled({ timeout: 30_000 });
-    await keep.click();
+    await rail(planner).getByRole("button", { name: /Keep "a term off" as your plan/ }).click();
 
-    // The tab goes, because it is the plan now. The `+` stays.
-    await expect(rail(planner).getByRole("button", { name: /^Show the what-if/ })).toHaveCount(0);
+    // Their own plan is the tab showing, and it is the one they kept.
+    await openRail(planner);
+    await expect(rail(planner).getByRole("button", { name: /Show your own plan/ })).toHaveAttribute("aria-pressed", "true");
     const now = JSON.parse((await planner.evaluate((k) => window.localStorage.getItem(k), PLAN_KEY))!);
     expect(now.terms.some((t: { gap?: boolean }) => t.gap), "keeping did not make the change").toBe(true);
     expect(now.rev, "the revision did not advance").toBeGreaterThan(SEEDED_PLAN.rev);
-    expect(now.candidates, "the kept what-if is still a tab").toEqual([]);
+    expect(now.candidates.map((c: { name: string }) => c.name)).toEqual(["My plan before a term off"]);
+    expect(now.candidates[0].plan.terms.some((t: { gap?: boolean }) => t.gap), "the replaced plan has the change in it").toBe(false);
+  });
+
+  test("says on each tab how it differs from the plan", async ({ planner }) => {
+    await withCandidates(planner, [candidate("c1", "a term off", SKIP_A_TERM)]);
+    await openRail(planner);
+    const tab = rail(planner).getByRole("button", { name: /Show the what-if "a term off"/ });
+    // Not "1 change": what it comes to, in the student's words for it.
+    await expect(tab).toContainText(/skips (Fall|Spring|Summer) \d{4}/, { timeout: 30_000 });
+    await expect(tab).not.toContainText(/\d+ changes?/);
   });
 });
 
@@ -258,22 +273,23 @@ test.describe("a what-if the student makes with the +", () => {
     const mid = await stored(planner);
     expect(mid.terms, "editing a what-if rescheduled the student's own plan").toEqual(before.terms);
     expect(mid.completed).toEqual(before.completed);
-    expect(mid.candidates[0].changes, "the edit was not recorded on the what-if").toEqual([
-      { tool: "skip_term", arguments: { term_index: 2 } },
-    ]);
+    expect(
+      mid.candidates[0].plan.terms.some((t: { gap?: boolean }) => t.gap),
+      "the edit is not in the what-if's own copy",
+    ).toBe(true);
 
     await openRail(planner);
-    const keep = rail(planner).getByRole("button", { name: /Keep "What-if 1" as your plan/ });
-    await expect(keep).toBeEnabled({ timeout: 30_000 });
-    await keep.click();
-    // The tab going is what says the replay finished; reading storage
-    // before that is reading it mid-keep.
-    await expect(rail(planner).getByRole("button", { name: /^Show the what-if/ }))
-      .toHaveCount(0, { timeout: 30_000 });
+    await rail(planner).getByRole("button", { name: /Keep "What-if 1" as your plan/ }).click();
+    // The plan it replaced arriving as a tab is what says the keep is done.
+    await openRail(planner);
+    await expect(
+      rail(planner).getByRole("button", { name: /Show the what-if "My plan before What-if 1"/ }),
+    ).toBeVisible({ timeout: 30_000 });
 
     const after = await stored(planner);
     expect(after.terms.some((t: { gap?: boolean }) => t.gap), "keeping did not make the change").toBe(true);
-    expect(after.candidates, "the kept what-if is still a tab").toEqual([]);
+    expect(after.candidates.map((c: { name: string }) => c.name)).toEqual(["My plan before What-if 1"]);
+    expect(after.candidates[0].plan.terms, "the plan that was replaced is not what it was").toEqual(before.terms);
   });
 
   test("leaves the tab it just made on the screen, phone included", async ({ planner }) => {

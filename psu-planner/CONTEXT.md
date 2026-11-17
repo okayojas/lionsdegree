@@ -56,30 +56,37 @@ The culminating course or sequence a Program ends with. Identified by what it
 is called, not merely by where it falls.
 
 **Candidate**:
-A what-if the student is holding beside their Plan: a named list of CHANGES,
-never the Plan those changes would produce. The planner re-runs it against the
-Plan as it stands to draw it, so a Candidate cannot go stale into a lie, and
-keeping one replays its calls through the ordinary mutation path with the
-Revision check intact. A change that has stopped being possible is reported on
-its tab; no partial Plan is ever drawn.
-_Avoid_: scenario, draft, branch — the first says nothing about what is
-stored, and the third implies a merge, which there is none of. A Candidate is
-a thing to compare and then keep or discard.
+A what-if the student is holding beside their Plan: a named, independent COPY
+of the Plan's contents. It is made by copying, edited like any plan, and never
+re-run against anything: from the moment it is made, it and the Plan do not
+affect each other. Its tab says how it differs from the Plan as both now
+stand.
+_Avoid_: scenario, draft, branch. The first says nothing about what is stored,
+and the third implies a merge, which there is none of. A Candidate is a thing
+to compare and then keep or discard.
 
-Either author may write one: an assistant with `save_candidate`, or the
-student with the `+` on the rail, which makes one with an EMPTY change list —
-"my Plan as it stands". Editing inside a Candidate APPENDS TO ITS CHANGE LIST
-and does not touch the Plan; the store routes every edit it accepts by which
-tab is open, and refuses the ones it cannot express rather than letting them
-fall through to the real Plan. Keeping one is the student's own click, so it
-may take a Course or a Program out of the degree — the tab says what will go
-before they choose. The gate on the connector is unmoved: a model removing a
-required Course still needs the student's words and still echoes them.
+Either author may make one: the student with the `+` on the rail, which copies
+their Plan, or an assistant with `save_candidate`, whose list of changes is
+applied once, to a copy, when it is saved. Anything a Plan can hold a
+Candidate can hold, a change of Program included. KEEPING one swaps it with
+the Plan: the Plan it replaces becomes a Candidate in its place, so nothing is
+lost by one click, and keeping is always the student's own click (there is no
+tool for it). The gate on the connector is unmoved: a model removing a
+required Course from the Plan still needs the student's words and still echoes
+them.
 
 Lives on the Plan beside `constraints` and `slotFills`, and must never be a
 row in `plans`: that table is read newest-first with a limit of one, so a
 Candidate written there would be adopted as the student's real Plan on their
-next device.
+next device. (Until #69 a Candidate was a list of changes, replayed against the
+Plan; docs/adr/0006 has why that changed.)
+
+**Plan in view**:
+The plan the planner is drawing and editing: the student's Plan, or the
+Candidate whose tab is open. Every edit changes the plan in view. What is
+saved, synced and exported is always the stored document, with the student's
+Plan at the top and its Candidates inside it.
+_Avoid_: current plan, active plan. They do not say which of the two is meant.
 
 ### What fills a term
 

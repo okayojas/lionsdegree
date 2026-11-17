@@ -6,8 +6,11 @@ import {
   type Catalog, type CourseSpec, type PlanDoc, type PlanItem, type ProgramTemplate,
   type RemoveProgramPreview, type ReqSection, type Schedule,
 } from "@psu-planner/engine";
-import { MAX_CANDIDATES, type Candidate, type CandidateChange } from "@psu-planner/engine";
-import type { CandidateDrawing, CandidateRefusal } from "./data/candidateRun";
+import {
+  CANDIDATE_NAME_MAX, MAX_CANDIDATES, candidatesOf, contentsOf, foldView, isLegacyCandidate,
+  keepCandidate as swapWithPlan, makeCandidate, viewOf,
+  type Candidate, type LegacyCandidate, type PlanContents,
+} from "@psu-planner/engine";
 import { loadCatalogFor, loadCoverage, loadEditions, loadFlowchartPatterns, loadIug, loadProgramBySlug, setCatalogEdition } from "./data/catalogClient";
 import { schedulePush } from "./data/sync";
 
@@ -84,66 +87,44 @@ interface PlannerState {
   repairNote: string | null;
   clearRepairNote: () => void;
 
-  /* ── Candidates: what-ifs the student can look at ──────────────────────
-     A Candidate lives on `plan.candidates` as a list of CHANGES. What is
-     here is the one the student has open and the plan those changes leave
-     behind — recomputed every time the tab is opened, never kept on disk.
-     Storing the drawn plan is the mistake the whole design avoids: it
-     would go stale against the real Plan without saying so. */
+  /* ── What-ifs: independent copies of the Plan (#69) ───────────────────
+     `plan` above is THE PLAN IN VIEW: the student's own, or the what-if
+     whose tab is open. Everything that draws a plan or edits one reads it
+     and needs to know nothing more, which is the whole mechanism: there is
+     one editing path, and it edits what the student is looking at. The
+     STORED document, the Plan with its what-ifs inside it, is
+     `storedPlan()`; that is what is saved, synced and exported. */
 
-  /** Which Candidate's tab is open, or null for the student's own Plan.
-   *
-   * AND THEREFORE WHERE AN EDIT GOES (#59). This is the store's answer to
-   * "which plan am I editing": with a tab open every edit the planner
-   * accepts is appended to THAT Candidate's change list, and the real
-   * Plan is not written at all. A mutation that forgot the routing would
-   * edit the student's degree while they believed they were
-   * experimenting, so the ones that are not routed do not fall through —
-   * `mutatePlan` refuses them (see below), which makes a forgotten one a
-   * message rather than a silent write. */
+  /** Which what-if's tab is open, or null for the student's own Plan.
+   * AND THEREFORE WHAT AN EDIT CHANGES: with a tab open, `plan` is that
+   * what-if's copy, and the Plan's own contents are set aside in `home`,
+   * untouched, until the student goes back to them. */
   candidateId: string | null;
-  /** The plan that Candidate's changes leave behind, ready for the chart. */
-  candidateView: CandidateDrawing | null;
-  /** Why the open Candidate cannot be drawn, in the connector's own words.
-   *
-   * A tab whose change has stopped being possible says so and draws
-   * NOTHING. Half a what-if rendered as a plan is the confident wrong
-   * answer this project exists to refuse. */
-  candidateRefusal: CandidateRefusal | null;
-  /** A Candidate is being recomputed. Every open costs a re-run of the
-   * whole plan, so the rail has to be able to say it is working. */
-  candidateBusy: boolean;
-  /** Open a Candidate's tab, or pass null to go back to the real Plan. */
+  /** The Plan's own contents while a what-if is in view; null otherwise. */
+  home: PlanContents | null;
+  /** Open a what-if's tab, or pass null to go back to the Plan. */
   showCandidate: (id: string | null) => Promise<void>;
-  /** Make a what-if of the student's own, starting as the Plan as it
-   * stands — an EMPTY change list — and open it.
-   *
-   * The door #56 left only on the assistant's side. Returns what to tell
-   * the student, including at the cap: the refusal names the what-ifs
-   * that are in the way, because a `+` that silently fails or silently
-   * drops the oldest is worse than one that explains itself. */
-  newCandidate: () => Promise<string>;
+  /** Make a what-if: an exact copy of the student's Plan, in a new tab, and
+   * open it. Returns what to tell the student, including at the limit: the
+   * refusal names the what-ifs that are in the way, because a `+` that
+   * silently fails or silently drops the oldest is worse than one that
+   * explains itself. */
+  newCandidate: (opts?: { name?: string }) => Promise<string>;
   /** Rename a what-if. A default name must not block the student from
    * drawing, and three of them have to be tellable apart. */
   renameCandidate: (id: string, name: string) => string;
-  /** Append one change to the OPEN Candidate's change list.
-   *
-   * THE EDIT SEAM. Tried against the plan the what-if currently leaves
-   * behind before it is stored, so one impossible edit cannot brick the
-   * tab, and nothing but the Candidate's own list is written. */
-  editCandidate: (change: CandidateChange) => Promise<{ ok: boolean; message: string }>;
-  /** Move an item to a Term — a drag on the chart, or "later →" in the
-   * list view. Routed: inside a what-if this is a `move_course` on its
-   * change list, and the real Plan is untouched. */
+  /** Move an item to a Term: a drag on the chart, or "later" in the list
+   * view. On the plan in view, like every edit. */
   moveItem: (itemId: string, termIndex: number) => Promise<void>;
-  /** Add a Course from the toolbar search. Routed. Returns the toast. */
+  /** Add a Course from the toolbar search. Returns the toast. */
   addCourseAt: (code: string, termIndex: number) => Promise<string>;
-  /** Fill a Slot with a Course. Routed. Returns the toast. */
+  /** Fill a Slot with a Course. Returns the toast. */
   fillSlotWith: (slotId: string, code: string, label: string) => Promise<string>;
-  /** Make the open Candidate the student's real Plan, by REPLAYING its
-   * changes through the ordinary mutation path. Returns what to tell them. */
+  /** Make a what-if the student's Plan. A SWAP: the Plan it replaces
+   * becomes a what-if in its place, so nothing is lost by one click.
+   * Returns what to tell them. */
   keepCandidate: (id: string) => Promise<string>;
-  /** Throw a Candidate away. Touches nothing else on the Plan. */
+  /** Throw a what-if away. Touches nothing else. */
   deleteCandidate: (id: string) => void;
   setPlan: (plan: PlanDoc | null, opts?: { repairOrdering?: boolean; optimize?: boolean }) => Promise<void>;
   /** Repack the current plan into the fewest <=19-credit terms, keeping the
@@ -151,19 +132,12 @@ interface PlannerState {
    * target to spread the work across exactly that many terms (best effort). */
   optimizeNow: (targetTerms?: number) => Promise<string>;
   autoReoptimize: () => void;
-  /** Edit the student's REAL Plan.
+  /** Edit the plan in view: the student's Plan, or the what-if they have
+   * open (#69). It used to refuse with a what-if open; a what-if is a copy
+   * now, and takes any edit a plan takes.
    *
-   * REFUSES WHILE A WHAT-IF IS OPEN, and says so. Every edit here writes
-   * the document the student's degree is in, so an edit made while they
-   * are looking at a what-if would change the plan they are comparing
-   * AGAINST — the worst outcome this feature can produce. The chart's own
-   * edits are routed to the Candidate instead (`editCandidate`); anything
-   * that is not routed lands here and is refused rather than silently
-   * applied to the wrong plan.
-   *
-   * Returns whether anything was written. `false` always comes with a
-   * message already on screen, so a caller that ignores it cannot claim
-   * success — it can only fail to add words of its own. */
+   * Returns whether anything was written (`false` only where there is no
+   * plan at all). */
   mutatePlan: (fn: (plan: PlanDoc) => void) => boolean;
   /** Marking complete removes the course from future terms (it already
    * happened — don't keep scheduling it); unmarking re-adds it to the first
@@ -273,7 +247,34 @@ function pushHistory(plan: PlanDoc, cause: string) {
   } catch { /* quota — history is best-effort, never blocks saving the plan */ }
 }
 
-function persist(plan: PlanDoc | null, cause = "edit") {
+/** The stored document a plan in view belongs to.
+ *
+ * Which what-if is in view, and the Plan's own contents while it is, are the
+ * store's `candidateId` and `home`. `persist`, which every writer calls,
+ * reads them here and puts a view back where it belongs, so that no writer
+ * has to know there are what-ifs. A writer that had to, and forgot, would
+ * save a what-if's contents as the student's degree. */
+function storedFrom(view: PlanDoc): PlanDoc {
+  const { candidateId, home } = usePlanner.getState();
+  return candidateId && home ? foldView(view, candidateId, home) : view;
+}
+
+/** The stored document: the student's Plan with its what-ifs inside it,
+ * whichever tab is open. What is saved, synced and exported; never the
+ * plan in view, which with a tab open is somebody's sketch. */
+export function storedPlan(): PlanDoc | null {
+  const view = usePlanner.getState().plan;
+  return view ? storedFrom(view) : null;
+}
+
+/** A short, local, time-ordered id, the shape `save_candidate` uses too. */
+const candidateIdNow = (): string => `c${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
+
+function persist(view: PlanDoc | null, cause = "edit") {
+  // WHAT IS SAVED IS THE STORED DOCUMENT. With a what-if open, `view` is its
+  // copy under the Plan's identity; folded, it lands in the what-if and the
+  // Plan's own contents go back exactly as they were.
+  const plan = view ? storedFrom(view) : null;
   try {
     if (plan) {
       pushHistory(plan, cause);
@@ -314,23 +315,14 @@ function planCodes(plan: PlanDoc): string[] {
 }
 
 export const usePlanner = create<PlannerState>((set, get) => {
-  /** The ONE writer of the student's real Plan.
+  /** The one writer of the plan in view.
    *
-   * `mutatePlan` is this plus the guard that refuses while a what-if is
-   * open. The two are separate because the Candidate housekeeping —
-   * creating one, appending a change to one, deleting one — writes the
-   * plan document on purpose WITH a tab open, and routing it through the
-   * guard would mean the guard had an exception in it. An exception in a
-   * guard is the shape of the bug the guard exists to stop.
-   *
-   * `redrawCandidate` is skipped by the edit path, which has already
-   * computed the drawing it is about to show: re-running the whole change
-   * list a second time costs an optimiser pass per edit and lands on the
-   * same answer. */
-  const writePlan = (
-    fn: (plan: PlanDoc) => void,
-    opts?: { cause?: string; redrawCandidate?: boolean },
-  ): boolean => {
+   * With no what-if open that is the student's Plan. With one open it is
+   * the what-if's copy, and `persist` folds it back into the stored
+   * document, leaving the Plan's own contents as they were. Every edit the
+   * planner makes comes through here or calls `persist` itself, so none of
+   * them has to ask which tab is open. */
+  const writePlan = (fn: (plan: PlanDoc) => void, opts?: { cause?: string }): boolean => {
     const plan = get().plan;
     if (!plan) return false;
     const next: PlanDoc = structuredClone(plan);
@@ -339,43 +331,32 @@ export const usePlanner = create<PlannerState>((set, get) => {
     next.updatedAt = new Date().toISOString();
     persist(next, opts?.cause);
     set({ plan: next, ...recompute(next, get().catalog) });
-    // AN OPEN WHAT-IF FOLLOWS THE PLAN IT IS A WHAT-IF ABOUT. The student
-    // or their assistant can edit the real Plan while a tab is open, and a
-    // tab still showing the old comparison is the stale-into-a-lie case the
-    // stored-changes design exists to rule out.
-    const open = get().candidateId;
-    if (open && opts?.redrawCandidate !== false) void get().showCandidate(open);
     return true;
   };
 
-  /** What a change a what-if cannot hold is refused with.
-   *
-   * ONE SENTENCE, EVERYWHERE. A student who tried to drop a Program from
-   * a what-if and a student whose detail card wrote nothing are in the
-   * same position and need the same two facts: nothing happened, and
-   * which plan is the one they are looking at. */
-  const notInWhatIf = (what: string, c: Candidate): string =>
-    `${what} isn't something a what-if can hold, so nothing was changed. You're looking at ` +
-    `"${c.name}" — switch to Your plan to do it there.`;
-
-  /** Route one chart edit into the open what-if, and make sure a refusal
-   * is never silent.
-   *
-   * The chart's own controls — a drag, a term header button — have
-   * nowhere of their own to put a sentence, and an edit that quietly does
-   * nothing reads as a broken control. `repairNote` is the store's
-   * channel to the toast. */
-  const routeToCandidate = async (change: CandidateChange): Promise<string> => {
-    const out = await get().editCandidate(change);
-    if (!out.ok) set({ repairNote: out.message });
-    return out.message;
+  /** Put a stored document on screen: its Plan, or the what-if `id`.
+   * Writes nothing. Says whether the what-if was there to show. */
+  const showStored = (stored: PlanDoc, id: string | null): boolean => {
+    const view = id ? viewOf(stored, id) : null;
+    if (id && view) {
+      set({ candidateId: id, home: contentsOf(stored), plan: view, ...recompute(view, get().catalog) });
+      return true;
+    }
+    set({ candidateId: null, home: null, plan: stored, ...recompute(stored, get().catalog) });
+    return false;
   };
 
-  /** The what-if the student has open, if it is still on the plan. */
-  const openCandidate = (): Candidate | null => {
-    const s = get();
-    if (!s.candidateId) return null;
-    return (s.plan?.candidates ?? []).find((c) => c.id === s.candidateId) ?? null;
+  /** Write the stored document itself, whichever tab is open: a what-if
+   * made, kept or thrown away. Then show `thenShow` (or the Plan). */
+  const writeStored = (next: PlanDoc, cause: string, thenShow: string | null): void => {
+    next.rev += 1;
+    next.updatedAt = new Date().toISOString();
+    // `next` IS a stored document, so nothing is in view while it is saved:
+    // folded a second time, the Plan's contents would be overwritten by
+    // the ones set aside before this write.
+    set({ candidateId: null, home: null });
+    persist(next, cause);
+    showStored(next, thenShow);
   };
 
   return {
@@ -391,137 +372,60 @@ export const usePlanner = create<PlannerState>((set, get) => {
   clearRepairNote: () => set({ repairNote: null }),
 
   candidateId: null,
-  candidateView: null,
-  candidateRefusal: null,
-  candidateBusy: false,
+  home: null,
 
   showCandidate: async (id) => {
-    if (id === null) {
-      set({ candidateId: null, candidateView: null, candidateRefusal: null, candidateBusy: false });
+    const view = get().plan;
+    if (!view || id === get().candidateId) return;
+    const stored = storedFrom(view);
+    if (!showStored(stored, id) && id !== null) {
+      // Gone: deleted or kept on another device. Said, and the student is
+      // looking at their own Plan and knows it.
+      set({ repairNote: "That what-if is no longer on this plan. You're looking at your own plan, which has not been changed." });
       return;
     }
-    const s = get();
-    const candidate = (s.plan?.candidates ?? []).find((c) => c.id === id);
-    if (!s.plan || !candidate) {
-      // Gone — deleted on another device, or kept there. The id is KEPT
-      // so the message is reachable: the refusal panel is shown only for
-      // an open tab, and clearing the id here left the student silently
-      // looking at their own plan under a tab they had just clicked.
-      set({ candidateId: id, candidateView: null, candidateBusy: false,
-        candidateRefusal: {
-          reason: "That what-if is no longer on this plan.",
-          nothingChanged: "Your plan has not been changed.",
-          position: null,
-        } });
-      return;
-    }
-    set({ candidateId: id, candidateBusy: true, candidateRefusal: null });
-    // RECOMPUTED, NOT REPLAYED. The changes run against the Plan as it
-    // stands at this moment, so a student who edited their plan after
-    // saving the what-if is comparing against the plan they actually have.
-    const { drawCandidate } = await import("./data/candidateRun");
-    const snap = { plan: s.plan, catalog: s.catalog, items: s.items, sched: s.sched };
-    try {
-      const out = await drawCandidate(snap, candidate);
-      // The student may have clicked another tab while this ran. Dropping a
-      // stale answer is the difference between a slow tab and the wrong one.
-      if (get().candidateId !== id) return;
-      if ("refused" in out) {
-        set({ candidateView: null, candidateRefusal: out.refused, candidateBusy: false });
-      } else {
-        set({ candidateView: out.drawn, candidateRefusal: null, candidateBusy: false });
-      }
-    } catch {
-      if (get().candidateId !== id) return;
-      // A failed catalog fetch is not a verdict about the what-if. It says
-      // so rather than reporting the changes impossible.
-      set({
-        candidateView: null,
-        candidateBusy: false,
-        candidateRefusal: {
-          reason: "This what-if couldn't be worked out just now — the course catalog didn't load.",
-          nothingChanged: "Your plan has not been changed. Try the tab again in a moment.",
-          position: null,
-        },
-      });
-    }
+    // A what-if may name Courses the Plan does not (that is the point of
+    // one), and the catalog on hand was loaded for whichever was in view.
+    await get().refreshCatalog();
   },
 
   keepCandidate: async (id) => {
-    const s = get();
-    const plan = s.plan;
-    const candidate = (plan?.candidates ?? []).find((c) => c.id === id);
-    if (!plan || !candidate) return "That what-if is no longer on this plan.";
-
-    const { keepCandidate: replay } = await import("./data/candidateRun");
-    /* THE COMPARE-AND-SWAP, against the LIVE plan rather than the copy this
-       started from (ADR 0003). Each change names the revision it was
-       computed from; if the assistant or another tab moved the plan in
-       between, the write is refused and nothing is overwritten. This is why
-       a Candidate stores changes and not a document: installing the drawn
-       plan would have no revision to name. */
-    const write = async (next: PlanDoc, baseRev: number): Promise<"written" | "stale"> => {
-      const live = get().plan;
-      if (!live || live.rev !== baseRev) return "stale";
-      persist(next, `kept the what-if "${candidate.name}"`);
-      set({ plan: next, ...recompute(next, get().catalog) });
-      return "written";
-    };
-
-    const result = await replay(
-      { plan, catalog: s.catalog, items: s.items, sched: s.sched },
-      candidate,
-      write,
+    const view = get().plan;
+    const stored = view ? storedFrom(view) : null;
+    const candidate = candidatesOf(stored).find((c) => c.id === id);
+    if (!stored || !candidate) return "That what-if is no longer on this plan.";
+    // A SWAP (candidates.ts). What was the Plan becomes a what-if where the
+    // kept one was, whole, so the student who kept the wrong one keeps the
+    // other and is back where they started.
+    const replacedId = candidateIdNow();
+    const swapped = swapWithPlan(stored, id, replacedId, new Date().toISOString());
+    if (!swapped) return "That what-if is no longer on this plan.";
+    const replacedName = candidatesOf(swapped).find((c) => c.id === replacedId)?.name ?? "";
+    writeStored(swapped, `kept the what-if "${candidate.name}"`, null);
+    await get().refreshCatalog();
+    return (
+      `Kept "${candidate.name}". It's your plan now, and the plan it replaced is the what-if ` +
+      `"${replacedName}", so nothing is lost.`
     );
-
-    if (result.refused) {
-      if (result.applied === 0) {
-        return `${result.refused.reason} ${result.refused.nothingChanged}`;
-      }
-      // A PARTIAL APPLY IS SAID OUT LOUD. It takes a genuine race to get
-      // here — the changes were run in a sandbox first — and rounding it to
-      // "done" or to "nothing happened" would both be false about a plan
-      // the student is about to act on. Plan history holds the version from
-      // before, which is where the recovery is.
-      await get().showCandidate(id);
-      return (
-        `${result.applied} of ${result.of} changes were made before this stopped: ` +
-        `${result.refused.reason} The rest were not made. Menu → Plan history has your plan ` +
-        "from before, if you would rather go back."
-      );
-    }
-
-    // Kept. The what-if is the plan now, so its tab goes: leaving it would
-    // be a tab showing the plan it is beside.
-    set({ candidateId: null, candidateView: null, candidateRefusal: null });
-    writePlan((p) => {
-      p.candidates = (p.candidates ?? []).filter((c) => c.id !== id);
-    }, { cause: `kept the what-if "${candidate.name}"` });
-    return `Kept "${candidate.name}" — it's your plan now. The other what-ifs are still here.`;
   },
 
   deleteCandidate: (id) => {
     // NOTHING ELSE IS TOUCHED. Tidying up the rail must never be a risk to
-    // the plan itself, which is what `plan-candidates.test.ts` asserts on
-    // the stored document rather than on what the screen shows.
-    if (get().candidateId === id) {
-      set({ candidateId: null, candidateView: null, candidateRefusal: null, candidateBusy: false });
-    }
-    // THROUGH THE WRITER, NOT THE GUARD. Deleting one what-if while
-    // ANOTHER one is open is an edit to the plan document made on
-    // purpose with a tab open, which is exactly what `mutatePlan` now
-    // refuses — routing it there would have made the second tab
-    // undeletable from the first.
-    writePlan((p) => {
-      p.candidates = (p.candidates ?? []).filter((c) => c.id !== id);
-    }, { cause: "deleted a what-if" });
+    // the Plan itself, or to another what-if.
+    const view = get().plan;
+    if (!view) return;
+    const open = get().candidateId;
+    const stored = structuredClone(storedFrom(view));
+    stored.candidates = (stored.candidates ?? []).filter((c) => c.id !== id);
+    writeStored(stored, "deleted a what-if", open === id ? null : open);
   },
 
-  newCandidate: async () => {
-    const plan = get().plan;
-    if (!plan) return "No plan yet.";
-    const already = plan.candidates ?? [];
-    // AT THE CAP, SAY WHICH ONE IS IN THE WAY. Dropping the oldest
+  newCandidate: async (opts) => {
+    const view = get().plan;
+    if (!view) return "No plan yet.";
+    const stored = structuredClone(storedFrom(view));
+    const already = stored.candidates ?? [];
+    // AT THE LIMIT, SAY WHICH ONES ARE IN THE WAY. Dropping the oldest
     // silently deletes a comparison the student is in the middle of
     // making, and failing silently teaches them the button is broken.
     if (already.length >= MAX_CANDIDATES) {
@@ -535,24 +439,17 @@ export const usePlanner = create<PlannerState>((set, get) => {
     // sketch before starting it is friction at exactly the wrong moment,
     // so it gets the first unused number and a Rename button.
     const taken = new Set(already.map((c) => c.name.toLowerCase()));
-    let n = 1;
-    while (taken.has(`what-if ${n}`)) n++;
-    const candidate: Candidate = {
-      // The same id shape `save_candidate` uses: short, local, and
-      // time-ordered so the rail's order is stable without a sort key.
-      id: `c${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`,
-      name: `What-if ${n}`,
-      // EMPTY, which is what makes it "my plan as it stands". A what-if
-      // that started as a copy of the document would be the frozen
-      // PlanDoc #56 refused; an empty change list re-runs to exactly the
-      // plan the student is looking at, every time it is drawn.
-      changes: [],
-      basedOnRev: plan.rev,
-      createdAt: new Date().toISOString(),
-    };
-    writePlan((p) => { p.candidates = [...(p.candidates ?? []), candidate]; },
-      { cause: `made the what-if "${candidate.name}"`, redrawCandidate: false });
-    await get().showCandidate(candidate.id);
+    let name = opts?.name?.trim().slice(0, CANDIDATE_NAME_MAX).trimEnd() ?? "";
+    if (!name || taken.has(name.toLowerCase())) {
+      let n = 1;
+      while (taken.has(`what-if ${n}`)) n++;
+      name = `What-if ${n}`;
+    }
+    // A COPY OF THE STUDENT'S PLAN, whichever tab the `+` was pressed from:
+    // "what if" is a question about the plan they have.
+    const candidate: Candidate = makeCandidate(candidateIdNow(), name, stored, new Date().toISOString());
+    stored.candidates = [...already, candidate];
+    writeStored(stored, `made the what-if "${candidate.name}"`, candidate.id);
     return `Made "${candidate.name}", starting as your plan. Edit it here — your plan is untouched.`;
   },
 
@@ -565,73 +462,28 @@ export const usePlanner = create<PlannerState>((set, get) => {
     // MEASURED against the rail: 200px at the planner's label size fits
     // roughly 40 characters before it wraps to a third line. The same
     // number `save_candidate` holds the assistant to.
-    if (trimmed.length > 40) {
-      return `That name is ${trimmed.length} characters, and a tab shows about 40.`;
+    if (trimmed.length > CANDIDATE_NAME_MAX) {
+      return `That name is ${trimmed.length} characters, and a tab shows about ${CANDIDATE_NAME_MAX}.`;
     }
     if ((plan.candidates ?? []).some((c) => c.id !== id && c.name.toLowerCase() === trimmed.toLowerCase())) {
       return `You already have a what-if called "${trimmed}", and two of the same name are not tellable apart.`;
     }
     if (trimmed === candidate.name) return `Still called "${trimmed}".`;
+    // The list of what-ifs is on the plan in view as well as on the stored
+    // one (`viewOf` carries it, `foldView` puts it back), so this is an
+    // ordinary write whichever tab is open.
     writePlan((p) => {
       const c = (p.candidates ?? []).find((x) => x.id === id);
       if (c) c.name = trimmed;
-    }, { cause: "renamed a what-if", redrawCandidate: false });
-    // The drawing carries the name so a view that is not the rail can say
-    // which what-if it is showing — the list view's region label, which a
-    // screen-reader user has instead of a tab.
-    const view = get().candidateView;
-    if (view && get().candidateId === id) set({ candidateView: { ...view, name: trimmed } });
+    }, { cause: "renamed a what-if" });
     return `Renamed it to "${trimmed}".`;
-  },
-
-  editCandidate: async (change) => {
-    const s = get();
-    const candidate = openCandidate();
-    if (!s.plan || !candidate) {
-      return { ok: false, message: "Open a what-if first — this changes the what-if, not your plan." };
-    }
-    const id = candidate.id;
-    set({ candidateBusy: true });
-    const { appendChange } = await import("./data/candidateRun");
-    const snap = { plan: s.plan, catalog: s.catalog, items: s.items, sched: s.sched };
-    let out: Awaited<ReturnType<typeof appendChange>>;
-    try {
-      out = await appendChange(snap, candidate, change);
-    } catch {
-      set({ candidateBusy: false });
-      return {
-        ok: false,
-        message: "That couldn't be worked out just now — the course catalog didn't load. Nothing was changed.",
-      };
-    }
-    // The student may have closed the tab or opened another while this
-    // ran. Appending to a what-if they are no longer looking at would be
-    // an edit they did not watch happen.
-    if (get().candidateId !== id) {
-      set({ candidateBusy: false });
-      return { ok: false, message: "That what-if is no longer open, so nothing was changed." };
-    }
-    if ("refused" in out) {
-      // NOTHING IS APPENDED. A change that cannot be made is not written
-      // into the list, so the tab still draws and the student can try
-      // something else — a what-if bricked by one bad edit would be a
-      // dead end with their work in it.
-      set({ candidateBusy: false });
-      return { ok: false, message: `${out.refused.reason} ${out.refused.nothingChanged}` };
-    }
-    writePlan((p) => {
-      const c = (p.candidates ?? []).find((x) => x.id === id);
-      if (c) c.changes = [...c.changes, change];
-    }, { cause: `edited the what-if "${candidate.name}"`, redrawCandidate: false });
-    set({ candidateView: out.drawn, candidateRefusal: null, candidateBusy: false });
-    return { ok: true, message: `Added to "${candidate.name}". Your plan is untouched.` };
   },
 
   setPlan: async (plan, opts) => {
     // A DIFFERENT PLAN HAS DIFFERENT WHAT-IFS. Carrying the open tab across
     // would leave a Candidate id pointing at nothing, or worse at a
     // same-named one belonging to another plan.
-    set({ candidateId: null, candidateView: null, candidateRefusal: null, candidateBusy: false });
+    set({ candidateId: null, home: null });
     persist(plan, opts?.optimize ? "generated" : "set plan");
     if (!plan) {
       // Starting over: drop the previous plan's edition pin too. Without this
@@ -722,9 +574,43 @@ export const usePlanner = create<PlannerState>((set, get) => {
       if (short.length) notes.push(short.map((w) => `Schreyer ${w.label}: still ${w.shortfall} honors credits short (honors options on regular courses count too — arrange with instructors)`).join("; "));
     }
     if (notes.length) persist(plan, opts?.optimize ? "generated + optimized" : "repaired");
+    // WHAT-IFS STORED THE OLD WAY (#69) were lists of changes. Each is
+    // replayed once, against the Plan as it stands, and stored as the copy
+    // it comes to. One whose changes no longer apply becomes a copy of the
+    // Plan under its own name, and the student is told: an update must not
+    // delete their work, and must not show them a what-if that is not one
+    // without saying so. A catalog that would not load converts nothing;
+    // the next load tries again.
+    const unconverted: string[] = [];
+    const old = ((plan.candidates ?? []) as (Candidate | LegacyCandidate)[]).filter(isLegacyCandidate);
+    if (old.length) {
+      try {
+        const { convertLegacyCandidate } = await import("./data/candidateRun");
+        const snap = { plan, catalog, ...recompute(plan, catalog) };
+        const copies: Candidate[] = [];
+        for (const c of (plan.candidates ?? []) as (Candidate | LegacyCandidate)[]) {
+          if (!isLegacyCandidate(c)) { copies.push(c); continue; }
+          const contents = await convertLegacyCandidate(snap, c);
+          if (!contents) unconverted.push(c.name);
+          copies.push({ id: c.id, name: c.name, createdAt: c.createdAt, plan: contents ?? contentsOf(plan) });
+        }
+        plan.candidates = copies;
+        plan.rev += 1;
+        plan.updatedAt = new Date().toISOString();
+        persist(plan, "what-ifs converted to copies");
+      } catch { /* the catalog did not load: they stay as they are, unlisted, for the next load */ }
+    }
+    const said = [
+      notes.length ? `Optimized your schedule: ${notes.join("; ")}.` : "",
+      unconverted.length
+        ? `${unconverted.map((n) => `"${n}"`).join(", ")} ${unconverted.length === 1 ? "was a what-if" : "were what-ifs"} ` +
+          "made of changes that no longer fit your plan, so " +
+          `${unconverted.length === 1 ? "it is" : "they are"} now a copy of your plan under the same name.`
+        : "",
+    ].filter(Boolean).join(" ");
     set({
       plan, catalog, ...recompute(plan, catalog), loading: false,
-      repairNote: notes.length ? `Optimized your schedule: ${notes.join("; ")}.` : null,
+      repairNote: said || null,
     });
     } catch (e) {
       // The plan itself is untouched on disk. Clearing `loading` and saying
@@ -740,15 +626,6 @@ export const usePlanner = create<PlannerState>((set, get) => {
   optimizeNow: async (targetTerms?: number) => {
     const plan = get().plan;
     if (!plan) return "No plan yet.";
-    // ROUTED. Optimising inside a what-if is a change the what-if holds,
-    // not a repack of the student's real schedule.
-    if (openCandidate()) {
-      const out = await get().editCandidate({
-        tool: "optimize_schedule",
-        arguments: targetTerms ? { target_terms: targetTerms } : {},
-      });
-      return out.message;
-    }
     const catalog = get().catalog;
     const patterns = await loadFlowchartPatterns();
     if (plan.honors) applyHonorsUpgrades(plan, catalog); // RCL pin + pre-pack upgrades (idempotent)
@@ -787,16 +664,10 @@ export const usePlanner = create<PlannerState>((set, get) => {
   },
 
   mutatePlan: (fn) => {
-    // THE BACKSTOP, AND THE POINT OF THE WHOLE TICKET. Reaching here with
-    // a what-if open means an edit was not routed to it — so it is
-    // refused and named, never applied to the plan the student is
-    // comparing against. The ones the planner does route never arrive
-    // here; they go through `editCandidate`.
-    const open = openCandidate();
-    if (open) {
-      set({ repairNote: notInWhatIf("That", open) });
-      return false;
-    }
+    // ONE PATH (#69). The plan in view is what this writes: the student's
+    // Plan, or the what-if they have open. There used to be a guard here
+    // that refused with a what-if open; a what-if is a copy now, and takes
+    // any edit a plan takes.
     return writePlan(fn);
   },
 
@@ -828,10 +699,6 @@ export const usePlanner = create<PlannerState>((set, get) => {
 
   bulkComplete: (codes) => {
     const coverage = get().coverage;
-    // The re-optimize below is OUTSIDE the mutation, so a refused write
-    // would otherwise still reflow something — the real plan, or the open
-    // what-if. Nothing happened; nothing follows.
-    if (openCandidate()) { get().mutatePlan(() => {}); return; }
     get().mutatePlan((p) => {
       for (const code of codes) {
         p.completed[code] = true;
@@ -844,9 +711,6 @@ export const usePlanner = create<PlannerState>((set, get) => {
   applyImport: async (completed, scheduled) => {
     if (!get().plan) return;
     const coverage = get().coverage;
-    // Same reason as `bulkComplete`: the import ends in an unconditional
-    // re-optimize, which must not run when the import itself did not.
-    if (openCandidate()) { get().mutatePlan(() => {}); return; }
     get().mutatePlan((p) => {
       for (const code of completed) {
         p.completed[code] = true;
@@ -915,16 +779,6 @@ export const usePlanner = create<PlannerState>((set, get) => {
   addSummerSession: (year) => {
     const plan = get().plan;
     if (!plan) return -1;
-    // The index this returns is a fact about a plan that was changed, so
-    // it refuses here rather than letting the backstop below swallow the
-    // write and still hand back a number. (Nothing in the chart reaches
-    // this inside a what-if: it is the advisor's tool, and the advisor is
-    // refused by name while a tab is open.)
-    const open = openCandidate();
-    if (open) {
-      set({ repairNote: notInWhatIf("Adding a summer", open) });
-      return -1;
-    }
     const label = `Summer ${year}`;
     const existing = plan.terms.findIndex((t) => t.label === label);
     if (existing >= 0 || (plan.summerYears ?? []).includes(year)) {
@@ -948,16 +802,6 @@ export const usePlanner = create<PlannerState>((set, get) => {
   addTerm: async () => {
     const plan = get().plan;
     if (!plan) return -1;
-    if (openCandidate()) {
-      const before = get().candidateView?.plan.terms.length ?? 0;
-      await routeToCandidate({ tool: "add_term", arguments: {} });
-      if ((get().candidateView?.plan.terms.length ?? 0) <= before) return -1;
-      // THE INDEX OF THE TERM THE WHAT-IF NOW HAS, read off the plan its
-      // changes leave behind rather than off the student's own plan —
-      // dropping a card past the last column has to land in the term the
-      // student can see, and the two plans need not be the same length.
-      return (get().candidateView?.plan.terms.length ?? 0) - 1;
-    }
     let idx = -1;
     get().mutatePlan((p) => {
       const ref = parseTermLabel(p.terms[0]?.label ?? "") ?? { kind: "Fall" as const, year: 2026, label: "Fall 2026" };
@@ -970,44 +814,11 @@ export const usePlanner = create<PlannerState>((set, get) => {
   },
 
   moveItem: async (itemId, termIndex) => {
-    const candidate = openCandidate();
-    if (!candidate) {
-      get().mutatePlan((p) => { p.moves[itemId] = termIndex; });
-      return;
-    }
-    // THE ITEM AS THE WHAT-IF HAS IT. The card the student dragged is on
-    // the plan the what-if's changes leave behind, and `move_course`
-    // names a COURSE CODE — so the id has to be resolved against that
-    // plan, not against the student's own, where the same slot may be
-    // filled by a different course or not exist at all.
-    const it = (get().candidateView?.items ?? []).find((i) => i.id === itemId);
-    if (!it || it.kind !== "course" || !it.code) {
-      // An EMPTY Slot has no code, and the change list names courses. The
-      // honest answer is to say which plan can take the edit rather than
-      // to invent a change that means something else.
-      set({
-        repairNote:
-          "An open requirement can't be moved inside a what-if — a what-if records changes by " +
-          "course. Fill it first, or move it on your own plan.",
-      });
-      return;
-    }
-    // A refusal is said out loud and a move that worked is not: it is
-    // already on the screen, and a toast after every drag is noise over
-    // an answer the student can see.
-    await routeToCandidate({ tool: "move_course", arguments: { code: it.code, term_index: termIndex } });
+    get().mutatePlan((p) => { p.moves[itemId] = termIndex; });
   },
 
   addCourseAt: async (code, termIndex) => {
     const display = get().catalog[code]?.display ?? code;
-    const candidate = openCandidate();
-    if (candidate) {
-      const out = await get().editCandidate({
-        tool: "add_course",
-        arguments: { code, term_index: termIndex },
-      });
-      return out.message;
-    }
     if (!get().mutatePlan((p) => { p.added.push({ code, sem: termIndex }); })) return "";
     await get().refreshCatalog();
     const label = get().plan?.terms[termIndex]?.label ?? "your plan";
@@ -1016,13 +827,6 @@ export const usePlanner = create<PlannerState>((set, get) => {
 
   fillSlotWith: async (slotId, code, label) => {
     const display = get().catalog[code]?.display ?? code;
-    if (openCandidate()) {
-      const out = await get().editCandidate({
-        tool: "fill_slot",
-        arguments: { slot_id: slotId, code },
-      });
-      return out.message;
-    }
     if (!get().mutatePlan((p) => { p.slotFills[slotId] = code; })) return "";
     await get().refreshCatalog();
     return `Filled your ${label} slot with ${display}.`;
@@ -1030,12 +834,6 @@ export const usePlanner = create<PlannerState>((set, get) => {
 
   deleteTerm: async (index) => {
     const plan = get().plan;
-    if (openCandidate()) {
-      // The term indices on screen are the WHAT-IF's, which is what the
-      // change has to name: its plan may be a different length from the
-      // student's own by the time three changes have run.
-      return routeToCandidate({ tool: "skip_term", arguments: { term_index: index } });
-    }
     if (!plan || !plan.terms[index]) return "No such term.";
     const label = plan.terms[index].label;
     // Marking the term a gap makes the optimizer keep it empty and flow the
@@ -1050,9 +848,6 @@ export const usePlanner = create<PlannerState>((set, get) => {
 
   restoreTerm: async (index) => {
     const plan = get().plan;
-    if (openCandidate()) {
-      return routeToCandidate({ tool: "restore_term", arguments: { term_index: index } });
-    }
     if (!plan || !plan.terms[index]) return "No such term.";
     const label = plan.terms[index].label;
     get().mutatePlan((p) => { if (p.terms[index]) delete p.terms[index].gap; });
@@ -1065,15 +860,11 @@ export const usePlanner = create<PlannerState>((set, get) => {
   addProgramNow: async (slug) => {
     const plan = get().plan;
     if (!plan) return "No plan yet.";
-    /* THESE FOUR WRITE THE PLAN WITHOUT GOING THROUGH `mutatePlan` — they
-       hand the engine a copy, re-flow it and install it — so the backstop
-       there does not cover them and they refuse for themselves. A Program
-       or a master's degree is also a decision about the DEGREE rather
-       than about the shape of one what-if, which is why they are refused
-       rather than routed: there is no reading of "drop my minor inside
-       this sketch" that does not change what the student is studying. */
-    const open = openCandidate();
-    if (open) return notInWhatIf("Declaring a program", open);
+    /* THESE FOUR WRITE WITHOUT GOING THROUGH `mutatePlan`: they hand the
+       engine a copy, re-flow it and install it. They write the plan in
+       view like everything else, so a Program or a master's degree can be
+       tried in a what-if (#69): that is the question a what-if is most
+       often for, and the one it used to refuse. */
     if (plan.programs.includes(slug)) return "That program is already on your plan.";
     const template = await templateFor(slug);
     if (!template) return "Couldn't load that program from the catalog.";
@@ -1122,8 +913,6 @@ export const usePlanner = create<PlannerState>((set, get) => {
   removeProgramNow: async (slug) => {
     const plan = get().plan;
     if (!plan) return "No plan yet.";
-    const open = openCandidate();
-    if (open) return notInWhatIf("Dropping a program", open);
     const remaining = await templatesFor(plan.programs.filter((p) => p !== slug));
     const next = structuredClone(plan);
     const catalog = get().catalog;
@@ -1148,8 +937,6 @@ export const usePlanner = create<PlannerState>((set, get) => {
   attachIugNow: async (slug) => {
     const plan = get().plan;
     if (!plan) return "No plan yet.";
-    const open = openCandidate();
-    if (open) return notInWhatIf("Adding a master's degree", open);
     const spec = await loadIug(slug);
     if (!spec) return "Couldn't load that IUG program.";
     // Load the grad courses the IUG needs (grad-level subjects merge in via
@@ -1172,8 +959,6 @@ export const usePlanner = create<PlannerState>((set, get) => {
   detachIugNow: async () => {
     const plan = get().plan;
     if (!plan?.iug) return "No IUG attached.";
-    const open = openCandidate();
-    if (open) return notInWhatIf("Removing the master's degree", open);
     const catalog = get().catalog;
     detachIug(plan);
     const patterns = await loadFlowchartPatterns();
@@ -1214,7 +999,13 @@ export const usePlanner = create<PlannerState>((set, get) => {
     const plan = get().plan;
     if (!plan) return;
     const catalog = await loadCatalogFor(planCodes(plan));
-    set({ catalog, ...recompute(plan, catalog) });
+    // THE PLAN IN VIEW NOW, not the one this started for: the student may
+    // have opened another tab while the catalog was on its way, and items
+    // built for a plan that is no longer on screen would be drawn under it.
+    const now = get().plan;
+    if (!now) return;
+    const wide = { ...get().catalog, ...catalog };
+    set({ catalog: wide, ...recompute(now, wide) });
   },
   };
 });

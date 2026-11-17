@@ -4,6 +4,11 @@ Date: 2026-11-15
 
 ## Status
 
+**Mechanism superseded by ADR 0006 (#69).** A what-if is a copy now and keeping one is a swap,
+so nothing is replayed and the `byTheStudent` flag described below no longer exists. The
+decision this ADR records, that a student's own click may keep a what-if that takes a Course
+or a Program out, stands.
+
 Accepted. **The decision itself is the owner's and its record is the
 comment on issue #59**; what is here is why the rule it replaces existed,
 the mechanism that implements it, and what the choice costs — the parts a
